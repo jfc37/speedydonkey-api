@@ -48,6 +48,7 @@
     <Compile Include="CreateLecture.cs" />
     <Compile Include="CreateNotice.cs" />
     <Compile Include="AddCourseWorkGrade.cs" />
+    <Compile Include="CreateAccount.cs" />
     <Compile Include="DeleteCourseWorkGrade.cs" />
     <Compile Include="DeleteNotice.cs" />
     <Compile Include="DeleteLecture.cs" />

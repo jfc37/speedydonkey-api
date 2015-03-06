@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
+    <Compile Include="CreateAccountHandler.cs" />
     <Compile Include="UpdateCourseWorkGradeHandler.cs" />
     <Compile Include="AddCourseWorkGradeHandler.cs" />
     <Compile Include="UpdateNoticeHandler.cs" />

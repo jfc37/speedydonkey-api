@@ -22,7 +22,7 @@ namespace ActionHandlersTests.Builders.MockBuilders
             {
                 ValidationErrors = new List<ValidationError>
                 {
-                    new ValidationError("error", "erro")
+                    new ValidationError("error", "error")
                 }
             };
 

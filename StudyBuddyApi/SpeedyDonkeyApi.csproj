@@ -178,6 +178,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountApiController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CourseWorkGradeApiController.cs" />
     <Compile Include="Controllers\ExamApiController.cs" />
@@ -196,6 +197,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalErrorLoggerService.cs" />
+    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\ExamModel.cs" />
     <Compile Include="Models\CourseWorkModel.cs" />
     <Compile Include="Models\AssignmentModel.cs" />
