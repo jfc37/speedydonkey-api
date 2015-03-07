@@ -2,7 +2,9 @@
 
 namespace Actions
 {
-    public class CreateAccount : IAction<Account>
+    public interface ICreateAction<TEntity> : IAction<TEntity> { }
+
+    public class CreateAccount : ICreateAction<Account>
     {
         public CreateAccount(Account account)
         {

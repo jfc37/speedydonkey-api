@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using ActionHandlers;
+using Actions;
 using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
@@ -37,6 +38,9 @@ namespace SpeedyDonkeyApi
 
             builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionHandler<,>)).AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(typeof(IRepository<>).Assembly)
+                .AsClosedTypesOf(typeof(IRepository<>)).AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(typeof(PersonRepository<>).Assembly)
                 .AsClosedTypesOf(typeof(IPersonRepository<>)).AsImplementedInterfaces();

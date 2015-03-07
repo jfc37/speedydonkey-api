@@ -69,6 +69,7 @@
     <Compile Include="Builders\UnenrolStudentHandlerBuilder.cs" />
     <Compile Include="Builders\EnrolStudentHandlerBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockActionHandlerOverlordBuilder.cs" />
+    <Compile Include="CreateActionTests.cs" />
     <Compile Include="CreateExamHandlerTestFixture.cs" />
     <Compile Include="CreateAssignmentHandlerTestFixture.cs" />
     <Compile Include="CreateLectureHandlerTestFixture.cs" />

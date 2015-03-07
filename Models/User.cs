@@ -12,7 +12,10 @@ namespace Models
         public virtual Person Person { get; set; }
     }
 
-    public interface IEntity { }
+    public interface IEntity
+    {
+        int Id { get; set; }
+    }
     public interface IAccount
     {
         string Email { get; set; }

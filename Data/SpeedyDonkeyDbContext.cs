@@ -5,6 +5,8 @@ namespace Data
 {
     public interface ISpeedyDonkeyDbContext
     {
+        IDbSet<Account> Accounts { get; set; }
+
         IDbSet<User> Users { get; set; }
         IDbSet<Person> People { get; set; }
         IDbSet<Course> Courses { get; set; }
@@ -22,6 +24,8 @@ namespace Data
 
     public class SpeedyDonkeyDbContext : DbContext, ISpeedyDonkeyDbContext
     {
+        public IDbSet<Account> Accounts { get; set; }
+
         public IDbSet<User> Users { get; set; }
         public IDbSet<Person> People { get; set; }
         public IDbSet<Course> Courses { get; set; }

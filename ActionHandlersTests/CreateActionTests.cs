@@ -1,0 +1,69 @@
+﻿using ActionHandlers.CreateHandlers;
+using Actions;
+using Common.Tests.Builders.MockBuilders;
+using Data.Tests.Builders;
+using Models;
+using Moq;
+using NUnit.Framework;
+
+namespace ActionHandlersTests
+{
+    [TestFixture]
+    public abstract class CreateActionTests<TEntity> where TEntity : IEntity
+    {
+        protected MockRepositoryBuilder<TEntity> RepositoryBuilder;
+
+        protected void SetupDependencies()
+        {
+            RepositoryBuilder = new MockRepositoryBuilder<TEntity>()
+                .WithCreate();
+        }
+
+        protected void CheckCreateWasCalled()
+        {
+            RepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<TEntity>()), Times.Once);
+        }
+    }
+
+    public class GivenCreateAccountIsHandled : CreateActionTests<Account>
+    {
+        private MockPasswordHasherBuilder _passwordHasherBuilder;
+        private CreateAccount _action;
+
+        [SetUp]
+        public void Setup()
+        {
+            SetupDependencies();
+            _passwordHasherBuilder = new MockPasswordHasherBuilder()
+                .WithHashCreation();
+
+            _action = new CreateAccount(new Account());
+        }
+
+        private CreateAccountHandler GetHandler()
+        {
+            return new CreateAccountHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject());
+        }
+
+        private void PerformAction()
+        {
+            GetHandler().Handle(_action);
+        }
+
+        [Test]
+        public void It_should_hash_the_password()
+        {
+            PerformAction();
+
+            _passwordHasherBuilder.Mock.Verify(x => x.CreateHash(It.IsAny<string>()), Times.Once);
+        }
+
+        [Test]
+        public void It_should_call_create_on_repository()
+        {
+            PerformAction();
+
+            CheckCreateWasCalled();
+        }
+    }
+}

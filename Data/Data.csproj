@@ -55,11 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CourseWorkGradeRepository.cs" />
     <Compile Include="Repositories\CourseGradeRepository.cs" />
     <Compile Include="Repositories\CourseWorkRepository.cs" />
     <Compile Include="Repositories\ExamRepository.cs" />
     <Compile Include="Repositories\AssignmentRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\LectureRepository.cs" />
     <Compile Include="Repositories\NoticeRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />

@@ -63,6 +63,7 @@
     <Compile Include="Builders\MockBuilders\MockQueryModifierFactoryBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockSearchBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockSearchStatementParseBuilder.cs" />
+    <Compile Include="Builders\MockRepositoryBuilder.cs" />
     <Compile Include="Builders\StudentRepositoryBuilder.cs" />
     <Compile Include="CourseWorkRepositoryTestFixture.cs" />
     <Compile Include="Builders\CourseWorkGradeRepositoryBuilder.cs" />
