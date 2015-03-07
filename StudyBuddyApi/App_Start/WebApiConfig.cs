@@ -22,7 +22,7 @@ namespace SpeedyDonkeyApi
             config.Routes.MapHttpRoute(
                 name: "AccountApi",
                 routeTemplate: "api/accounts/{id}",
-                defaults: new { controller = "AccountApi", userId = RouteParameter.Optional }
+                defaults: new { controller = "AccountApi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

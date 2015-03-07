@@ -48,6 +48,10 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             RepositoryBuilder.Mock.Verify(x => x.Get(id), Times.Once);
         }
+        protected void VerifyGetAllCalled()
+        {
+            RepositoryBuilder.Mock.Verify(x => x.GetAll(), Times.Once);
+        }
     }
     public class GivenTheAccountApiIsCalled : GenericApiControllerTests<Account>
     {
@@ -86,7 +90,7 @@ namespace StudyBuddyApi.Tests.Controllers
             }
         }
 
-        public class WhenItIsAGet : GivenTheAccountApiIsCalled
+        public class WhenItIsAGetById : GivenTheAccountApiIsCalled
         {
             private int _id;
 
@@ -107,6 +111,28 @@ namespace StudyBuddyApi.Tests.Controllers
                 PerformAction();
 
                 VerifyGetByIdCalled(_id);
+            }
+        }
+
+        public class WhenItIsAGet : GivenTheAccountApiIsCalled
+        {
+            [SetUp]
+            public void Setup()
+            {
+                DependencySetup();
+            }
+
+            private void PerformAction()
+            {
+                GetController().Get();
+            }
+
+            [Test]
+            public void It_should_get_all_accounts()
+            {
+                PerformAction();
+
+                VerifyGetAllCalled();
             }
         }
     }

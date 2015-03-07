@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -66,6 +67,16 @@ namespace SpeedyDonkeyApi.Controllers
 
             var model = new TModel().CloneFromEntity(Request, _urlConstructor, entity);
             return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
+        public HttpResponseMessage Get()
+        {
+            var allEntities = _repository.GetAll()
+                .Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x))
+                .ToList();
+
+            return !allEntities.Any()
+                ? Request.CreateResponse(HttpStatusCode.NotFound)
+                : Request.CreateResponse(HttpStatusCode.OK, allEntities);
         }
     }
 }

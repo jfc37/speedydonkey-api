@@ -28,7 +28,7 @@ namespace Data.Repositories
 
         public IEnumerable<TEntity> GetAll()
         {
-            throw new System.NotImplementedException();
+            return GetDatabaseSet().ToList();
         }
 
         public TEntity Get(int id)

@@ -17,6 +17,11 @@ namespace Data.Tests.Builders
 
         public MockRepositoryBuilder<T> WithSuccessfulGet()
         {
+            Mock.Setup(x => x.GetAll())
+                .Returns(new []
+                {
+                    new T() 
+                });
             Mock.Setup(x => x.Get(It.IsAny<int>()))
                 .Returns(new T());
             return this;
