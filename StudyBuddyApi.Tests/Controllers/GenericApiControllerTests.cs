@@ -2,6 +2,7 @@
 using System.Web.Http;
 using ActionHandlersTests.Builders.MockBuilders;
 using Actions;
+using Data.Tests.Builders;
 using Models;
 using Moq;
 using NUnit.Framework;
@@ -12,61 +13,100 @@ using SpeedyDonkeyApi.Tests.Builders.MockBuilders;
 namespace StudyBuddyApi.Tests.Controllers
 {
     [TestFixture]
-    public class GenericApiControllerTests
+    public abstract class GenericApiControllerTests<TEntity> where TEntity : IEntity, new()
     {
-        private MockActionHandlerOverlordBuilder _actionHandlerOverlordBuilder;
-        private MockUrlConstructorBuilder _urlConstructorBuilder;
+        protected MockActionHandlerOverlordBuilder ActionHandlerOverlordBuilder;
+        protected MockUrlConstructorBuilder UrlConstructorBuilder;
+        protected MockRepositoryBuilder<TEntity> RepositoryBuilder; 
 
-        private void DependencySetup<TAction, TEntity>() where TAction : IAction<TEntity>
+        protected void DependencySetup()
         {
-            _actionHandlerOverlordBuilder = new MockActionHandlerOverlordBuilder()
-                .WithNoErrorsOnHandling<TAction, TEntity>();
-            _urlConstructorBuilder = new MockUrlConstructorBuilder()
+            ActionHandlerOverlordBuilder = new MockActionHandlerOverlordBuilder();
+            UrlConstructorBuilder = new MockUrlConstructorBuilder()
                 .WithUrlConstruction();
+            RepositoryBuilder = new MockRepositoryBuilder<TEntity>()
+                .WithSuccessfulGet();
         }
 
-        private void SetupController(ApiController controller)
+        protected void SetupActionHandler<TAction>() where TAction : IAction<TEntity>
+        {
+            ActionHandlerOverlordBuilder.WithNoErrorsOnHandling<TAction, TEntity>();
+        }
+
+        protected void SetupController(ApiController controller)
         {
             controller.Request = new HttpRequestMessage();
             controller.Configuration = new HttpConfiguration();
         }
 
-        private void VerifyHandleOfAction<TAction, TEntity>() where TAction : IAction<TEntity>
+        protected void VerifyHandleOfAction<TAction, TEntity>() where TAction : IAction<TEntity>
         {
-            _actionHandlerOverlordBuilder.Mock.Verify(x => x.HandleAction<TAction, TEntity>(It.IsAny<TAction>()), Times.Once);
+            ActionHandlerOverlordBuilder.Mock.Verify(x => x.HandleAction<TAction, TEntity>(It.IsAny<TAction>()), Times.Once);
         }
 
-        public class GivenTheAccountApiIsCalled : GenericApiControllerTests
+        protected void VerifyGetByIdCalled(int id)
         {
-            private AccountApiController GetController()
+            RepositoryBuilder.Mock.Verify(x => x.Get(id), Times.Once);
+        }
+    }
+    public class GivenTheAccountApiIsCalled : GenericApiControllerTests<Account>
+    {
+        private AccountApiController GetController()
+        {
+            var controller = new AccountApiController(
+                ActionHandlerOverlordBuilder.BuildObject(), 
+                UrlConstructorBuilder.BuildObject(),
+                RepositoryBuilder.BuildObject());
+            SetupController(controller);
+            return controller;
+        }
+
+        public class WhenItIsAPost : GivenTheAccountApiIsCalled
+        {
+            private AccountModel _model;
+
+            [SetUp]
+            public void Setup()
             {
-                var controller = new AccountApiController(_actionHandlerOverlordBuilder.BuildObject(), _urlConstructorBuilder.BuildObject());
-                SetupController(controller);
-                return controller;
+                DependencySetup();
+                SetupActionHandler<CreateAccount>();
+                _model = new AccountModel();
             }
 
-            public class WhenItIsAPost : GivenTheAccountApiIsCalled
+            private void PerformAction()
             {
-                private AccountModel _model;
+                GetController().Post(_model);
+            }
 
-                [SetUp]
-                public void Setup()
-                {
-                    DependencySetup<CreateAccount, Account>();
-                    _model = new AccountModel();
-                }
+            [Test]
+            public void It_should_use_create_account_action()
+            {
+                PerformAction();
+                VerifyHandleOfAction<CreateAccount, Account>();
+            }
+        }
 
-                private void PerformAction()
-                {
-                    GetController().Post(_model);
-                }
+        public class WhenItIsAGet : GivenTheAccountApiIsCalled
+        {
+            private int _id;
 
-                [Test]
-                public void It_should_use_create_account_action()
-                {
-                    PerformAction();
-                    VerifyHandleOfAction<CreateAccount, Account>();
-                }
+            [SetUp]
+            public void Setup()
+            {
+                DependencySetup();
+            }
+
+            private void PerformAction()
+            {
+                GetController().Get(_id);
+            }
+
+            [Test]
+            public void It_should_get_account_by_id()
+            {
+                PerformAction();
+
+                VerifyGetByIdCalled(_id);
             }
         }
     }

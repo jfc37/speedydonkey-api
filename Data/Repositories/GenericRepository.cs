@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using Models;
 
 namespace Data.Repositories
@@ -32,7 +33,7 @@ namespace Data.Repositories
 
         public TEntity Get(int id)
         {
-            throw new System.NotImplementedException();
+            return GetDatabaseSet().SingleOrDefault(x => x.Id == id);
         }
 
         public TEntity Create(TEntity entity)

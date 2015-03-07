@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Http;
 using ActionHandlers;
 using Actions;
+using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
@@ -14,9 +15,8 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public AccountApiController(
             IActionHandlerOverlord actionHandlerOverlord,
-            IUrlConstructor urlConstructor) : base(actionHandlerOverlord, urlConstructor)
-        {
-        }
+            IUrlConstructor urlConstructor,
+            IRepository<Account> repository) : base(actionHandlerOverlord, urlConstructor, repository) { }
 
         public HttpResponseMessage Post([FromBody] AccountModel model)
         {
@@ -24,17 +24,20 @@ namespace SpeedyDonkeyApi.Controllers
         }
     }
 
-    public abstract class GenericController<TModel, TEntity> : BaseApiController where TModel : IApiModel where TEntity : IEntity
+    public abstract class GenericController<TModel, TEntity> : BaseApiController where TModel : IApiModel<TEntity>, new() where TEntity : class, IEntity
     {
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
         private readonly IUrlConstructor _urlConstructor;
+        private readonly IRepository<TEntity> _repository;
 
         protected GenericController(
             IActionHandlerOverlord actionHandlerOverlord,
-            IUrlConstructor urlConstructor)
+            IUrlConstructor urlConstructor,
+            IRepository<TEntity> repository)
         {
             _actionHandlerOverlord = actionHandlerOverlord;
             _urlConstructor = urlConstructor;
+            _repository = repository;
         }
 
         protected HttpResponseMessage Post<TAction>([FromBody]TModel model, Func<IEntity,TAction> actionCreator) where TAction : IAction<TEntity>
@@ -47,11 +50,22 @@ namespace SpeedyDonkeyApi.Controllers
                 : HttpStatusCode.BadRequest;
             return Request.CreateResponse(
                 responseCode,
-                new ActionReponse<IApiModel>
+                new ActionReponse<IApiModel<TEntity>>
                 {
                     ActionResult = model.CloneFromEntity(Request, _urlConstructor, result.ActionResult),
                     ValidationResult = result.ValidationResult
                 });
+        }
+
+        public HttpResponseMessage Get(int id)
+        {
+            var entity = _repository.Get(id);
+
+            if (entity == null)
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+
+            var model = new TModel().CloneFromEntity(Request, _urlConstructor, entity);
+            return Request.CreateResponse(HttpStatusCode.OK, model);
         }
     }
 }
