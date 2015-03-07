@@ -1,7 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
+using Data.Mappings;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 using Models;
+using NHibernate;
+using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Data.Repositories
 {
@@ -19,27 +27,36 @@ namespace Data.Repositories
 
     public abstract class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity 
     {
-        private readonly ISpeedyDonkeyDbContext _context;
-
-        protected GenericRepository(ISpeedyDonkeyDbContext context)
+        private ISession GetSession()
         {
-            _context = context;
+            return CreateSessionFactory().OpenSession();
         }
+
 
         public IEnumerable<TEntity> GetAll()
         {
-            return GetDatabaseSet().ToList();
+            using (var session = GetSession())
+            {
+                return session.CreateCriteria<TEntity>()
+                    .List<TEntity>();
+            }
         }
 
         public TEntity Get(int id)
         {
-            return GetDatabaseSet().SingleOrDefault(x => x.Id == id);
+            using (var session = GetSession())
+            {
+                return session.Get<TEntity>(id);
+            }
         }
 
         public TEntity Create(TEntity entity)
         {
-            GetDatabaseSet().Add(entity);
-            _context.SaveChanges();
+            using (var session = GetSession())
+            {
+                session.Save(entity);
+            }
+
             return entity;
         }
 
@@ -53,9 +70,14 @@ namespace Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        private IDbSet<TEntity> GetDatabaseSet()
-        {
-            return _context.GetSetOfType<TEntity>();
+        private static ISessionFactory CreateSessionFactory()
+        { 
+            return Fluently.Configure()
+               .Database(
+                    MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
+                    .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                    //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, true, false))
+                    .BuildSessionFactory();
         }
     }
 }

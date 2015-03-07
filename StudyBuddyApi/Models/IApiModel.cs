@@ -12,5 +12,6 @@ namespace SpeedyDonkeyApi.Models
         TEntity ToEntity();
 
         IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity);
+        IApiModel<TEntity> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id);
     }
 }

@@ -15,12 +15,12 @@ namespace Models
 
     public class User : IUser, IEntity
     {
-        public IAccount Account { get; set; }
-        public string FirstName { get; set; }
-        public string Surname { get; set; }
-        public ISchedule Schedule { get; set; }
-        public IList<IBlock> EnroledBlocks { get; set; }
-        public IList<IPass> Passes { get; set; }
-        public int Id { get; set; }
+        public virtual IAccount Account { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string Surname { get; set; }
+        public virtual ISchedule Schedule { get; set; }
+        public virtual IList<IBlock> EnroledBlocks { get; set; }
+        public virtual IList<IPass> Passes { get; set; }
+        public virtual int Id { get; set; }
     }
 }

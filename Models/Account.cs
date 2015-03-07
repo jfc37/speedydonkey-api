@@ -10,9 +10,9 @@
     public class Account : IAccount, IEntity 
     {
         
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int Id { get; set; }
-        public IUser User { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string Password { get; set; }
+        public virtual int Id { get; set; }
+        public virtual IUser User { get; set; }
     }
 }

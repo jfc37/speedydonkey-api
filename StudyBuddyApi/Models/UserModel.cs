@@ -39,8 +39,22 @@ namespace SpeedyDonkeyApi.Models
                 Id = entity.Id,
                 FirstName = entity.FirstName,
                 Surname = entity.Surname,
-                Url = urlConstructor.Construct("UserApi", new {id = entity.Id}, request)
+                Url = ConstructUrl(request, urlConstructor, entity.Id),
+                Account = (IAccount) new AccountModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Account.Id)
             };
+        }
+
+        public IApiModel<User> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id)
+        {
+            return new UserModel
+            {
+                Url = ConstructUrl(request, urlConstructor, id),
+            };
+        }
+
+        private string ConstructUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id)
+        {
+            return urlConstructor.Construct("UserApi", new { id }, request);
         }
     }
 }
