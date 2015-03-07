@@ -11,7 +11,15 @@ namespace Data.Mappings
             Map(x => x.Email);
             Map(x => x.Password);
             References(x => x.User)
-                .Class(typeof(User));
+                .Cascade.SaveUpdate()
+                //.Constrained()
+                .LazyLoad(Laziness.Proxy) // or .NoProxy, .False
+                //.PropertyRef(x => x.Account)
+                .Access.Property()
+                .Class<User>()
+                .Fetch.Join() // or .Select(), .Subselect()
+                //.ForeignKey()
+                ;
         }
     }
 
@@ -22,8 +30,16 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.FirstName);
             Map(x => x.Surname);
-            References(x => x.Account)
-                .Class(typeof(Account));
+            HasOne(x => x.Account)
+                .Cascade.SaveUpdate()
+                .Constrained()
+                .LazyLoad(Laziness.Proxy) // or .NoProxy, .False
+                //.PropertyRef(x => x.User)
+                .Access.Property()
+                .Class<Account>()
+                .Fetch.Join() // or .Select(), .Subselect()
+                .ForeignKey()
+                ;
         }
     }
 }

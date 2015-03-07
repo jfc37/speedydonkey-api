@@ -46,6 +46,7 @@ namespace Data.Repositories
         {
             using (var session = GetSession())
             {
+                //var blah = session.Get<Account>(id);
                 return session.Get<TEntity>(id);
             }
         }
@@ -76,7 +77,7 @@ namespace Data.Repositories
                .Database(
                     MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
                     .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                    //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, true, false))
+                    //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(false, true, false))
                     .BuildSessionFactory();
         }
     }

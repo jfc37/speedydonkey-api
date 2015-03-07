@@ -14,9 +14,8 @@ namespace SpeedyDonkeyApi.Controllers
         public UserApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
             IUrlConstructor urlConstructor, 
-            IRepository<User> repository) : base(actionHandlerOverlord, urlConstructor, repository)
-        {
-        }
+            IRepository<User> repository) : base(actionHandlerOverlord, urlConstructor, repository) { }
+
         public HttpResponseMessage Post(int accountId, [FromBody] UserModel model)
         {
             model.Account.Id = accountId;
