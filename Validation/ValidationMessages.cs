@@ -5,7 +5,7 @@
         #region User messages
         public const string MissingUsername = "Please provide a username";
         public const string MissingPassword = "Please provide a password";
-        public const string DuplicateUsername = "Username is already in use. Please try another";
+        public const string DuplicateUsername = "Email is already in use. Please try another";
         public const string UserDoesntExist = "User doesn't exist";
         #endregion
 

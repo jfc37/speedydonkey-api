@@ -2,7 +2,7 @@
 
 namespace Actions
 {
-    public class CreateUser : IAction<User>
+    public class CreateUser : ICreateAction<User>
     {
         public CreateUser(User user)
         {

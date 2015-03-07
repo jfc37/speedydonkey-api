@@ -9,7 +9,7 @@ namespace Data.Searches
 
     public class SearchElements
     {
-        public const string Username = "username";
+        public const string Email = "email";
     }
 
     public class SearchKeyWords

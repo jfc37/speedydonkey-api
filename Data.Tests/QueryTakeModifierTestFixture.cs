@@ -9,7 +9,7 @@ namespace Data.Tests
     [TestFixture]
     public class QueryTakeModifierTestFixture
     {
-        private IList<User> _userCollectionSearchingOver; 
+        private IList<Account> _userCollectionSearchingOver; 
 
         private QueryTakeModifier GetTakeDescriptor()
         {
@@ -23,11 +23,11 @@ namespace Data.Tests
             {
                 _userCollectionSearchingOver = new[]
                 {
-                    new User {Username = "tim"},
-                    new User {Username = "john"},
-                    new User {Username = "timmy"},
-                    new User {Username = "jess"},
-                    new User {Username = "atimmy"},
+                    new Account {Email = "tim"},
+                    new Account {Email = "john"},
+                    new Account {Email = "timmy"},
+                    new Account {Email = "jess"},
+                    new Account {Email = "atimmy"},
                 };
 
                 var takeModifier = GetTakeDescriptor();
@@ -51,11 +51,11 @@ namespace Data.Tests
             {
                 _userCollectionSearchingOver = new[]
                 {
-                    new User {Username = "tim"},
-                    new User {Username = "john"},
-                    new User {Username = "timmy"},
-                    new User {Username = "jess"},
-                    new User {Username = "atimmy"},
+                    new Account {Email = "tim"},
+                    new Account {Email = "john"},
+                    new Account {Email = "timmy"},
+                    new Account {Email = "jess"},
+                    new Account {Email = "atimmy"},
                 };
 
                 var takeModifier = GetTakeDescriptor();

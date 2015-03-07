@@ -180,16 +180,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountApiController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Controllers\CourseWorkGradeApiController.cs" />
-    <Compile Include="Controllers\ExamApiController.cs" />
-    <Compile Include="Controllers\AssignmentApiController.cs" />
-    <Compile Include="Controllers\LectureApiController.cs" />
-    <Compile Include="Controllers\NoticeApiController.cs" />
-    <Compile Include="Controllers\PersonApiController.cs" />
-    <Compile Include="Controllers\ProfessorApiController.cs" />
-    <Compile Include="Controllers\CourseGradeApiController.cs" />
-    <Compile Include="Controllers\StudentApiController.cs" />
-    <Compile Include="Controllers\CourseApiController.cs" />
+    <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
@@ -198,16 +189,8 @@
     </Compile>
     <Compile Include="GlobalErrorLoggerService.cs" />
     <Compile Include="Models\AccountModel.cs" />
-    <Compile Include="Models\ExamModel.cs" />
-    <Compile Include="Models\CourseWorkModel.cs" />
-    <Compile Include="Models\AssignmentModel.cs" />
-    <Compile Include="Models\LectureModel.cs" />
-    <Compile Include="Models\NoticeModel.cs" />
-    <Compile Include="Models\CourseModel.cs" />
-    <Compile Include="Models\ModelFactory.cs" />
-    <Compile Include="Models\CourseGradeModel.cs" />
+    <Compile Include="Models\IApiModel.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UrlConstructor.cs" />
   </ItemGroup>

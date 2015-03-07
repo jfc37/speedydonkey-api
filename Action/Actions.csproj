@@ -43,35 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateExam.cs" />
-    <Compile Include="CreateAssignment.cs" />
-    <Compile Include="CreateLecture.cs" />
-    <Compile Include="CreateNotice.cs" />
-    <Compile Include="AddCourseWorkGrade.cs" />
-    <Compile Include="CreateAccount.cs" />
-    <Compile Include="DeleteCourseWorkGrade.cs" />
-    <Compile Include="DeleteNotice.cs" />
-    <Compile Include="DeleteLecture.cs" />
-    <Compile Include="DeleteCourseWork.cs" />
-    <Compile Include="DeleteCourse.cs" />
-    <Compile Include="DeletePerson.cs" />
-    <Compile Include="DeleteUser.cs" />
-    <Compile Include="UnenrolStudent.cs" />
-    <Compile Include="EnrolStudent.cs" />
-    <Compile Include="CreatePerson.cs" />
-    <Compile Include="CreateCourse.cs" />
-    <Compile Include="IAction.cs" />
     <Compile Include="CreateUser.cs" />
+    <Compile Include="CreateAccount.cs" />
+    <Compile Include="IAction.cs" />
+    <Compile Include="ICreateAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UpdateCourseWorkGrade.cs" />
-    <Compile Include="UpdateNotice.cs" />
-    <Compile Include="UpdateLecture.cs" />
-    <Compile Include="UpdateExam.cs" />
-    <Compile Include="UpdateCourse.cs" />
-    <Compile Include="UpdateProfessor.cs" />
-    <Compile Include="UpdateStudent.cs" />
-    <Compile Include="UpdateAssignment.cs" />
-    <Compile Include="UpdateUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

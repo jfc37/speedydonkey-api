@@ -42,30 +42,14 @@ namespace SpeedyDonkeyApi
             builder.RegisterAssemblyTypes(typeof(IRepository<>).Assembly)
                 .AsClosedTypesOf(typeof(IRepository<>)).AsImplementedInterfaces();
 
-            builder.RegisterAssemblyTypes(typeof(PersonRepository<>).Assembly)
-                .AsClosedTypesOf(typeof(IPersonRepository<>)).AsImplementedInterfaces();
-
-            builder.RegisterAssemblyTypes(typeof(CourseWorkRepository).Assembly)
-                .AsClosedTypesOf(typeof(ICourseWorkRepository<>)).AsImplementedInterfaces();
-
             builder.RegisterGeneric(typeof(EntitySearch<>))
                 .As(typeof(IEntitySearch<>))
                 .InstancePerDependency();
 
             builder.RegisterType<SpeedyDonkeyDbContext>().As<ISpeedyDonkeyDbContext>().InstancePerLifetimeScope();
-
-            builder.RegisterType<UserRepository>().As<IUserRepository>();
-            builder.RegisterType<CourseRepository>().As<ICourseRepository>();
-            builder.RegisterType<CourseGradeRepository>().As<ICourseGradeRepository>();
-            builder.RegisterType<CourseWorkGradeRepository>().As<ICourseWorkGradeRepository>();
-            builder.RegisterType<NoticeRepository>().As<INoticeRepository>();
-            builder.RegisterType<LectureRepository>().As<ILectureRepository>();
-            builder.RegisterType<AssignmentRepository>().As<IAssignmentRepository>();
-            builder.RegisterType<ExamRepository>().As<IExamRepository>();
             builder.RegisterType<ActionHandlerOverlord>().As<IActionHandlerOverlord>();
             builder.RegisterType<ValidatorOverlord>().As<IValidatorOverlord>();
             builder.RegisterType<Container>().As<IContainer>();
-            builder.RegisterType<ModelFactory>().As<IModelFactory>();
             builder.RegisterType<UrlConstructor>().As<IUrlConstructor>();
             builder.RegisterType<PasswordHasher>().As<IPasswordHasher>();
             builder.RegisterType<SearchQueryParser>().As<ISearchQueryParser>();

@@ -63,24 +63,6 @@
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="ValidatorOverlord.cs" />
-    <Compile Include="Validators\UpdateCourseWorkGradeValidator.cs" />
-    <Compile Include="Validators\AddCourseWorkGradeValidator.cs" />
-    <Compile Include="Validators\UpdateNoticeValidator.cs" />
-    <Compile Include="Validators\UpdateLectureValidator.cs" />
-    <Compile Include="Validators\UpdateExamValidator.cs" />
-    <Compile Include="Validators\UpdateAssignmentValidator.cs" />
-    <Compile Include="Validators\UpdateCourseValidator.cs" />
-    <Compile Include="Validators\UpdateProfessorValidator.cs" />
-    <Compile Include="Validators\UpdateStudentValidator.cs" />
-    <Compile Include="Validators\UpdateUserValidator.cs" />
-    <Compile Include="Validators\EnrolStudentValidator.cs" />
-    <Compile Include="Validators\CreateExamValidator.cs" />
-    <Compile Include="Validators\CreateAssignmentValidator.cs" />
-    <Compile Include="Validators\CreateLectureValidator.cs" />
-    <Compile Include="Validators\CreateNoticeValidator.cs" />
-    <Compile Include="Validators\CreatePersonValidator.cs" />
-    <Compile Include="Validators\CreateCourseValidator.cs" />
-    <Compile Include="Validators\CreateUserValidator.cs" />
     <Compile Include="Validators\IActionValidator.cs" />
   </ItemGroup>
   <ItemGroup>

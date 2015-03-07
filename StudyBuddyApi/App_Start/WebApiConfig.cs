@@ -27,100 +27,14 @@ namespace SpeedyDonkeyApi
 
             config.Routes.MapHttpRoute(
                 name: "UserApi",
-                routeTemplate: "api/users/{userId}",
-                defaults: new { controller = "UserApi", userId = RouteParameter.Optional }
+                routeTemplate: "api/users/{id}",
+                defaults: new { controller = "UserApi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: "UserStudentApi",
-                routeTemplate: "api/users/{userId}/students/{personId}",
-                defaults: new { controller = "StudentApi", personId = RouteParameter.Optional }
-            );
-            config.Routes.MapHttpRoute(
-                name: "StudentApi",
-                routeTemplate: "api/students/{personId}",
-                defaults: new { controller = "StudentApi", personId = RouteParameter.Optional }
-            );
-            config.Routes.MapHttpRoute(
-                name: "StudentCourseApi",
-                routeTemplate: "api/students/{personId}/courses/{courseId}",
-                defaults: new { controller = "StudentApi", courseId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserProfessorApi",
-                routeTemplate: "api/users/{userId}/professors/{personId}",
-                defaults: new { controller = "ProfessorApi", personId = RouteParameter.Optional }
-            );
-            config.Routes.MapHttpRoute(
-                name: "ProfessorApi",
-                routeTemplate: "api/professors/{personId}",
-                defaults: new { controller = "ProfessorApi", personId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "PersonCourseApi",
-                routeTemplate: "api/professors/{personId}/courses/{courseId}",
-                defaults: new { controller = "CourseApi", courseId = RouteParameter.Optional }
-            );
-            config.Routes.MapHttpRoute(
-                name: "CourseApi",
-                routeTemplate: "api/courses/{courseId}",
-                defaults: new { controller = "CourseApi", courseId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "NoticeApi",
-                routeTemplate: "api/courses/{courseId}/notices/{noticeId}",
-                defaults: new { controller = "NoticeApi", noticeId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "LectureApi",
-                routeTemplate: "api/courses/{courseId}/lectures/{lectureId}",
-                defaults: new { controller = "LectureApi", lectureId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "LectureSearchApi",
-                routeTemplate: "api/lectures",
-                defaults: new { controller = "LectureApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "AssignmentApi",
-                routeTemplate: "api/courses/{courseId}/assignments/{courseWorkId}",
-                defaults: new { controller = "AssignmentApi", courseWorkId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "AssignmentSearchApi",
-                routeTemplate: "api/assignments",
-                defaults: new { controller = "AssignmentApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ExamApi",
-                routeTemplate: "api/courses/{courseId}/exams/{courseWorkId}",
-                defaults: new { controller = "ExamApi", courseWorkId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ExamSearchApi",
-                routeTemplate: "api/exams",
-                defaults: new { controller = "ExamApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CourseGradeApi",
-                routeTemplate: "api/students/{personId}/grades/courses/{courseId}",
-                defaults: new { controller = "CourseGradeApi", courseId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CourseWorkGradeApi",
-                routeTemplate: "api/students/{personId}/grades/courses/{courseId}/course_work/{courseWorkId}",
-                defaults: new { controller = "CourseWorkGradeApi", courseWorkId = RouteParameter.Optional }
+                name: "UserAccountApi",
+                routeTemplate: "api/accounts/{accountId}/users",
+                defaults: new { controller = "UserApi" }
             );
 
             //Default to json

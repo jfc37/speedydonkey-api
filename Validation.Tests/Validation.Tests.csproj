@@ -56,34 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\UpdateCourseWorkGradeValidatorBuilder.cs" />
-    <Compile Include="UpdateCourseWorkGradeValidatorTestFixture.cs" />
-    <Compile Include="Builders\CreateCourseValidatorBuilder.cs" />
-    <Compile Include="Builders\UpdateCourseValidatorBuilder.cs" />
-    <Compile Include="Builders\UpdateUserValidatorBuilder.cs" />
-    <Compile Include="Builders\CreateUserValidatorBuilder.cs" />
-    <Compile Include="Builders\AddCourseWorkGradeValidatorBuilder.cs" />
-    <Compile Include="Builders\EnrolStudentValidatorBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockValidatorOverlordBuilder.cs" />
     <Compile Include="Builders\ValidationResultBuilder.cs" />
     <Compile Include="Builders\ValidatorOverlordBuilder.cs" />
-    <Compile Include="AddCourseWorkGradeValidatorTestFixture.cs" />
-    <Compile Include="UpdateNoticeValidatorTestFixture.cs" />
-    <Compile Include="UpdateLectureValidatorTestFixture.cs" />
-    <Compile Include="UpdateExamValidatorTestFixture.cs" />
-    <Compile Include="UpdateAssignmentValidatorTestFixture.cs" />
-    <Compile Include="UpdateCourseValidatorTestFixture.cs" />
-    <Compile Include="UpdateProfessorValidatorTestFixture.cs" />
-    <Compile Include="UpdateStudentValidatorTestFixture.cs" />
-    <Compile Include="UpdateUserValidatorTestFixture.cs" />
-    <Compile Include="EnrolStudentValidatorTestFixture.cs" />
-    <Compile Include="CreateExamValidatorTestFixture.cs" />
-    <Compile Include="CreateAssignmentValidatorTestFixture.cs" />
-    <Compile Include="CreateLectureValidatorTestFixture.cs" />
-    <Compile Include="CreateNoticeValidatorTestFixture.cs" />
-    <Compile Include="CreatePersonValidatorTestFixture.cs" />
-    <Compile Include="CreateCourseValidatorTestFixture.cs" />
-    <Compile Include="CreateUserValidatorTestFixture.cs" />
     <Compile Include="FluentConverterTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidatorOverlordTestFixture.cs" />

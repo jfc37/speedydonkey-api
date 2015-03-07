@@ -106,36 +106,14 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\CourseWorkGradeApiControllerBuilder.cs" />
-    <Compile Include="Builders\CourseGradeApiControllerBuilder.cs" />
-    <Compile Include="Builders\ExamApiControllerBuilder.cs" />
-    <Compile Include="Builders\CourseApiControllerBuilder.cs" />
     <Compile Include="Builders\HttpActionContextBuilder.cs" />
     <Compile Include="Builders\HttpRequestMessageBuilder.cs" />
-    <Compile Include="Builders\AssignmentApiControllerBuilder.cs" />
-    <Compile Include="Builders\LectureApiControllerBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockDependencyResolverBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockModelFactoryBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockPrincipalBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockUrlConstructorBuilder.cs" />
-    <Compile Include="Builders\ModelFactoryBuilder.cs" />
-    <Compile Include="Builders\NoticeApiControllerBuilder.cs" />
-    <Compile Include="Builders\StudentApiControllerBuilder.cs" />
-    <Compile Include="Builders\ProfessorApiControllerBuilder.cs" />
     <Compile Include="Builders\UrlConstructorBuilder.cs" />
-    <Compile Include="Builders\UserApiControllerBuilder.cs" />
-    <Compile Include="Controllers\CourseWorkGradeApiControllerTestFixture.cs" />
-    <Compile Include="Controllers\CourseGradeApiControllerTestFixture.cs" />
-    <Compile Include="Controllers\ExamApiControllerTestFixture.cs" />
-    <Compile Include="Controllers\AssignmentApiControllerTestFixture.cs" />
+    <Compile Include="Controllers\AccountApiControllerTests.cs" />
     <Compile Include="Controllers\GenericApiControllerTests.cs" />
-    <Compile Include="Controllers\LectureApiControllerTestFixture.cs" />
-    <Compile Include="Controllers\NoticeApiControllerTestFixture.cs" />
-    <Compile Include="Controllers\StudentApiControllerTestFixture.cs" />
-    <Compile Include="Controllers\ProfessorApiControllerTestFixture.cs" />
-    <Compile Include="Controllers\CourseApiControllerTestFixture.cs" />
-    <Compile Include="Controllers\UserApiControllerTestFixture.cs" />
-    <Compile Include="ModelFactoryTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BasicAuthAuthoriseAttributeTestFixture.cs" />
     <Compile Include="UrlConstructorTestFixture.cs" />

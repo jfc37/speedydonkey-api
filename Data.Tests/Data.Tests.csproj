@@ -57,47 +57,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\CourseWorkRepositoryBuilder.cs" />
     <Compile Include="Builders\EntitySearcherBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockCourseWorkRepositoryBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockQueryModifierFactoryBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockSearchBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockSearchStatementParseBuilder.cs" />
     <Compile Include="Builders\MockRepositoryBuilder.cs" />
-    <Compile Include="Builders\StudentRepositoryBuilder.cs" />
-    <Compile Include="CourseWorkRepositoryTestFixture.cs" />
-    <Compile Include="Builders\CourseWorkGradeRepositoryBuilder.cs" />
-    <Compile Include="Builders\ExamRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockCourseGradeRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockCourseWorkGradeRepositoryBuilder.cs" />
-    <Compile Include="CourseWorkGradeRepositoryTestFixture.cs" />
-    <Compile Include="CourseGradeRepositoryTestFixture.cs" />
-    <Compile Include="ExamRepositoryTestFixture.cs" />
-    <Compile Include="Builders\CourseRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockCourseRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockExamRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockDbContextBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockAssignmentRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockLectureRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockNoticeRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockPersonRepositoryBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockUserRepositoryBuilder.cs" />
-    <Compile Include="Builders\UserRepositoryBuilder.cs" />
-    <Compile Include="AssignmentRepositoryTestFixture.cs" />
     <Compile Include="QuerySkipModifierTestFixture.cs" />
     <Compile Include="QueryTakeModifierTestFixture.cs" />
     <Compile Include="QueryOrderByModifierTestFixture.cs" />
     <Compile Include="QueryFilterModifierTestFixture.cs" />
-    <Compile Include="LectureRepositoryTestFixture.cs" />
-    <Compile Include="NoticeRepositoryTestFixture.cs" />
     <Compile Include="QueryIncludeModifierTestFixture.cs" />
     <Compile Include="QueryModifierFactoryTestFixture.cs" />
     <Compile Include="SearchQueryParserTestFixture.cs" />
-    <Compile Include="StudentRepositoryTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProfessorRepositoryTestFixture.cs" />
-    <Compile Include="CourseRepositoryTestFixture.cs" />
-    <Compile Include="UserRepositoryTestFixture.cs" />
     <Compile Include="EntitySearcherTestFixture.cs" />
   </ItemGroup>
   <ItemGroup>

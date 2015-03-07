@@ -21,7 +21,7 @@ namespace SpeedyDonkeyApi.Tests
         private HttpActionContextBuilder _httpActionContextBuilder;
         private MockPrincipalBuilder _principalBuilder;
         private MockDependencyResolverBuilder _dependencyResolverBuilder;
-        private MockEntitySearchBuilder<User> _entitySearchBuilder;
+        private MockEntitySearchBuilder<Account> _entitySearchBuilder;
         private MockPasswordHasherBuilder _passwordHasherBuilder;
 
         [SetUp]
@@ -29,8 +29,8 @@ namespace SpeedyDonkeyApi.Tests
         {
             _httpActionContextBuilder = new HttpActionContextBuilder();
             _principalBuilder = new MockPrincipalBuilder();
-            _entitySearchBuilder = new MockEntitySearchBuilder<User>()
-                .WithEntity(new UserBuilder().WithUsername("username").WithPassword("password").Build());
+            _entitySearchBuilder = new MockEntitySearchBuilder<Account>()
+                .WithEntity(new AccountBuilder().WithEmail("username").WithPassword("password").Build());
             _passwordHasherBuilder = new MockPasswordHasherBuilder();
             _dependencyResolverBuilder = new MockDependencyResolverBuilder()
                 .WithService(_entitySearchBuilder.BuildObject())

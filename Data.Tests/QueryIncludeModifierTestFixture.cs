@@ -16,7 +16,7 @@ namespace Data.Tests
             public void It_should_throw_exception()
             {
                 var modifier = new QueryIncludeModifier();
-                Assert.Throws<ArgumentException>(() => modifier.ApplyStatementToQuery(new SearchStatement(), new List<User>().AsQueryable()));
+                Assert.Throws<ArgumentException>(() => modifier.ApplyStatementToQuery(new SearchStatement(), new List<Account>().AsQueryable()));
 
             }
         }
@@ -27,7 +27,7 @@ namespace Data.Tests
             public void It_should_not_throw_exception()
             {
                 var modifier = new QueryIncludeModifier();
-                Assert.DoesNotThrow(() => modifier.ApplyStatementToQuery(new SearchStatement{Element = "something"}, new List<User>().AsQueryable()));
+                Assert.DoesNotThrow(() => modifier.ApplyStatementToQuery(new SearchStatement { Element = "something" }, new List<Account>().AsQueryable()));
 
             }
         }

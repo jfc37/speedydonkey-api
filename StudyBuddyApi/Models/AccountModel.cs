@@ -4,23 +4,18 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public interface IApiModel<TEntity> where TEntity : IEntity
-    {
-        string Url { get; set; }
-
-        IEntity ToEntity();
-
-        IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity);
-    }
     public class AccountModel : IAccount, IApiModel<Account>
     {
         public string Email { get; set; }
         public string Password { get; set; }
+        public int Id { get; set; }
+        public IUser User { get; set; }
         public string Url { get; set; }
-        public IEntity ToEntity()
+        public Account ToEntity()
         {
             return new Account
             {
+                Id = Id,
                 Email = Email,
                 Password = Password
             };
@@ -30,6 +25,7 @@ namespace SpeedyDonkeyApi.Models
         {
             return new AccountModel
             {
+                Id = entity.Id,
                 Email = entity.Email,
                 Url = urlConstructor.Construct("AccountApi", new { id = entity.Id }, request)
             };
