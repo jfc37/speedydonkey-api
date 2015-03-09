@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -62,7 +61,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<ConditionExpressionHandlerFactory>().As<IConditionExpressionHandlerFactory>();
             builder.RegisterType<QueryModifierFactory>().As<IQueryModifierFactory>();
 
-           //new SessionSetup().BuildSchema();
+           new SessionSetup().BuildSchema();
 
             // Build the container.
             var container = builder.Build();
@@ -94,12 +93,15 @@ namespace SpeedyDonkeyApi
 
         public void BuildSchema()
         {
-            Fluently.Configure()
-                .Database(
-                    MsSqlConfiguration.MsSql2012.ConnectionString(
-                        c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(false, true, false));
+            var configuration = new Configuration();
+
+            Fluently.Configure(configuration)
+              .Database(
+                   MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
+                   .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                   .BuildSessionFactory();
+            var schemaBuilder = new SchemaExport(configuration);
+            schemaBuilder.Execute(false, true, false);
         }
     }
 }

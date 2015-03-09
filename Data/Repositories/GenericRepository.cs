@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using Data.Mappings;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Models;
 using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Tool.hbm2ddl;
 
 namespace Data.Repositories
 {
@@ -46,7 +40,6 @@ namespace Data.Repositories
         {
             using (var session = GetSession())
             {
-                //var blah = session.Get<Account>(id);
                 return session.Get<TEntity>(id);
             }
         }
