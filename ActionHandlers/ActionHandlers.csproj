@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
+    <Compile Include="CreateHandlers\CreateLevelHandler.cs" />
     <Compile Include="CreateHandlers\CreateUserHandler.cs" />
     <Compile Include="CreateHandlers\CreateEntityHandler.cs" />
     <Compile Include="PasswordHasher.cs" />
