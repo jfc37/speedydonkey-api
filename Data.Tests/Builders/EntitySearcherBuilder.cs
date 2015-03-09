@@ -1,10 +1,11 @@
 using Data.Searches;
+using NHibernate;
 
 namespace Data.Tests.Builders
 {
     public class EntitySearcherBuilder<T> where T : class
     {
-        private ISpeedyDonkeyDbContext _context;
+        private ISession _context;
         private ISearchQueryParser _searchQueryParser;
         private IQueryModifierFactory _queryModifierFactory;
 
@@ -13,7 +14,7 @@ namespace Data.Tests.Builders
             return new EntitySearch<T>(_context, _searchQueryParser, _queryModifierFactory);
         }
 
-        public EntitySearcherBuilder<T> WithContext(ISpeedyDonkeyDbContext userRepository)
+        public EntitySearcherBuilder<T> WithContext(ISession userRepository)
         {
             _context = userRepository;
             return this;

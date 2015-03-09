@@ -50,7 +50,6 @@ namespace SpeedyDonkeyApi
                 .As(typeof(IEntitySearch<>))
                 .InstancePerDependency();
 
-            builder.RegisterType<SpeedyDonkeyDbContext>().As<ISpeedyDonkeyDbContext>().InstancePerLifetimeScope();
             builder.RegisterType<ActionHandlerOverlord>().As<IActionHandlerOverlord>();
             builder.RegisterType<ValidatorOverlord>().As<IValidatorOverlord>();
             builder.RegisterType<Container>().As<IContainer>();

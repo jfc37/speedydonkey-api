@@ -75,7 +75,6 @@
     <Compile Include="Searches\SearchQueryParser.cs" />
     <Compile Include="Searches\QueryModifiers.cs" />
     <Compile Include="Searches\EntitySearch.cs" />
-    <Compile Include="SpeedyDonkeyDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
