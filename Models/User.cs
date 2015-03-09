@@ -5,7 +5,8 @@ namespace Models
     public interface IUser
     {
         int Id { get; set; }
-        IAccount Account { get; set; }
+        string Email { get; set; }
+        string Password { get; set; }
         string FirstName { get; set; }
         string Surname { get; set; }
         ISchedule Schedule { get; set; } 
@@ -15,7 +16,8 @@ namespace Models
 
     public class User : IUser, IEntity
     {
-        public virtual IAccount Account { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string Password { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string Surname { get; set; }
         public virtual ISchedule Schedule { get; set; }

@@ -6,11 +6,11 @@ using SpeedyDonkeyApi.Models;
 
 namespace StudyBuddyApi.Tests.Controllers
 {
-    public class GivenTheAccountApiIsCalled : GenericApiControllerTests<Account>
+    public class GivenTheUserApiIsCalled : GenericApiControllerTests<User>
     {
-        private AccountApiController GetController()
+        private UserApiController GetController()
         {
-            var controller = new AccountApiController(
+            var controller = new UserApiController(
                 ActionHandlerOverlordBuilder.BuildObject(), 
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject());
@@ -18,16 +18,16 @@ namespace StudyBuddyApi.Tests.Controllers
             return controller;
         }
 
-        public class WhenItIsAPost : GivenTheAccountApiIsCalled
+        public class WhenItIsAPost : GivenTheUserApiIsCalled
         {
-            private AccountModel _model;
+            private UserModel _model;
 
             [SetUp]
             public void Setup()
             {
                 DependencySetup();
-                SetupActionHandler<CreateAccount>();
-                _model = new AccountModel();
+                SetupActionHandler<CreateUser>();
+                _model = new UserModel();
             }
 
             private void PerformAction()
@@ -39,11 +39,11 @@ namespace StudyBuddyApi.Tests.Controllers
             public void It_should_use_create_account_action()
             {
                 PerformAction();
-                VerifyHandleOfAction<CreateAccount, Account>();
+                VerifyHandleOfAction<CreateUser, User>();
             }
         }
 
-        public class WhenItIsAGetById : GivenTheAccountApiIsCalled
+        public class WhenItIsAGetById : GivenTheUserApiIsCalled
         {
             private int _id;
 
@@ -67,7 +67,7 @@ namespace StudyBuddyApi.Tests.Controllers
             }
         }
 
-        public class WhenItIsAGet : GivenTheAccountApiIsCalled
+        public class WhenItIsAGet : GivenTheUserApiIsCalled
         {
             [SetUp]
             public void Setup()

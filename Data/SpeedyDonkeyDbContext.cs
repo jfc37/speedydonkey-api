@@ -5,7 +5,6 @@ namespace Data
 {
     public interface ISpeedyDonkeyDbContext
     {
-        IDbSet<Account> Accounts { get; set; }
         IDbSet<User> Users { get; set; }
 
         int SaveChanges();
@@ -16,7 +15,6 @@ namespace Data
 
     public class SpeedyDonkeyDbContext : DbContext, ISpeedyDonkeyDbContext
     {
-        public IDbSet<Account> Accounts { get; set; }
         public IDbSet<User> Users { get; set; }
 
         public void SetEntityState(object entity, EntityState state)
@@ -37,7 +35,7 @@ namespace Data
         //    //Not mapping as expected? Are you including the property in the repo?!
 
         //    //0-1 -> 1
-            modelBuilder.Entity<Account>().HasOptional(p => p.User).WithRequired(l => (Account) l.Account);
+            //modelBuilder.Entity<Account>().HasOptional(p => p.User).WithRequired(l => (Account) l.Account);
 
         //    //0-* -> 1-*
         //    modelBuilder.Entity<Professor>().HasMany(p => p.Courses).WithMany(c => c.Professors);

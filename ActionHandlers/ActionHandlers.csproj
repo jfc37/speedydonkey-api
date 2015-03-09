@@ -50,7 +50,6 @@
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
     <Compile Include="CreateHandlers\CreateUserHandler.cs" />
-    <Compile Include="CreateHandlers\CreateAccountHandler.cs" />
     <Compile Include="CreateHandlers\CreateEntityHandler.cs" />
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="IActionHandler.cs" />

@@ -25,10 +25,10 @@ namespace ActionHandlersTests
         }
     }
 
-    public class GivenCreateAccountIsHandled : CreateActionTests<Account>
+    public class GivenCreateUserIsHandled : CreateActionTests<User>
     {
         private MockPasswordHasherBuilder _passwordHasherBuilder;
-        private CreateAccount _action;
+        private CreateUser _action;
 
         [SetUp]
         public void Setup()
@@ -37,12 +37,12 @@ namespace ActionHandlersTests
             _passwordHasherBuilder = new MockPasswordHasherBuilder()
                 .WithHashCreation();
 
-            _action = new CreateAccount(new Account());
+            _action = new CreateUser(new User());
         }
 
-        private CreateAccountHandler GetHandler()
+        private CreateUserHandler GetHandler()
         {
-            return new CreateAccountHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject());
+            return new CreateUserHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject());
         }
 
         private void PerformAction()

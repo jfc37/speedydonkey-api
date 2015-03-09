@@ -19,11 +19,6 @@ namespace SpeedyDonkeyApi
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "AccountApi",
-                routeTemplate: "api/accounts/{id}",
-                defaults: new { controller = "AccountApi", id = RouteParameter.Optional }
-            );
 
             config.Routes.MapHttpRoute(
                 name: "UserApi",
@@ -31,11 +26,6 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "UserApi", id = RouteParameter.Optional }
             );
 
-            config.Routes.MapHttpRoute(
-                name: "UserAccountApi",
-                routeTemplate: "api/accounts/{accountId}/users",
-                defaults: new { controller = "UserApi" }
-            );
 
             //Default to json
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();

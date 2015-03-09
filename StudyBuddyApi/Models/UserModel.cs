@@ -7,19 +7,16 @@ namespace SpeedyDonkeyApi.Models
 {
     public class UserModel : IUser, IApiModel<User>
     {
-        public IAccount Account { get; set; }
+        public string Password { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public ISchedule Schedule { get; set; }
         public IList<IBlock> EnroledBlocks { get; set; }
         public IList<IPass> Passes { get; set; }
         public int Id { get; set; }
+        public string Email { get; set; }
         public string Url { get; set; }
 
-        public UserModel()
-        {
-            Account = new AccountModel();
-        }
 
         public User ToEntity()
         {
@@ -28,7 +25,8 @@ namespace SpeedyDonkeyApi.Models
                 Id = Id,
                 FirstName = FirstName,
                 Surname = Surname,
-                Account = ((IApiModel<Account>) Account).ToEntity()
+                Email = Email,
+                Password = Password
             };
         }
 
@@ -39,8 +37,8 @@ namespace SpeedyDonkeyApi.Models
                 Id = entity.Id,
                 FirstName = entity.FirstName,
                 Surname = entity.Surname,
-                Url = ConstructUrl(request, urlConstructor, entity.Id),
-                Account = (IAccount) new AccountModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Account.Id)
+                Email = entity.Email,
+                Url = ConstructUrl(request, urlConstructor, entity.Id)
             };
         }
 

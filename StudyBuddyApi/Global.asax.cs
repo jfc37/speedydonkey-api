@@ -88,7 +88,7 @@ namespace SpeedyDonkeyApi
         {
             return Fluently.Configure()
                             .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
-                            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<AccountMap>())
+                            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>())
                             .BuildSessionFactory();
         }
 
