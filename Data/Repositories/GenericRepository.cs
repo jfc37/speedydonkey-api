@@ -63,7 +63,12 @@ namespace Data.Repositories
 
         public TEntity Update(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            using (var session = GetSession())
+            {
+                session.Update(entity, entity.Id);
+            }
+
+            return entity;
         }
 
         public void Delete(TEntity entity)

@@ -1,20 +1,25 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.Contracts;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using ActionHandlers;
-using Actions;
 using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
 using Data;
+using Data.Mappings;
 using Data.Repositories;
 using Data.Searches;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 using log4net.Config;
-using SpeedyDonkeyApi.Models;
+using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 using SpeedyDonkeyApi.Services;
 using Validation;
 using Validation.Validators;
+using NHibernate;
 
 namespace SpeedyDonkeyApi
 {
@@ -57,6 +62,8 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<ConditionExpressionHandlerFactory>().As<IConditionExpressionHandlerFactory>();
             builder.RegisterType<QueryModifierFactory>().As<IQueryModifierFactory>();
 
+           //new SessionSetup().BuildSchema();
+
             // Build the container.
             var container = builder.Build();
 
@@ -68,6 +75,31 @@ namespace SpeedyDonkeyApi
 
             //Setup log4net
             XmlConfigurator.Configure();
+        }
+    }
+
+    public class SessionSetup
+    {
+        private readonly IPersistenceConfigurer _persistenceConfigurer;
+        private SchemaExport _schemaExport;
+
+
+        public ISessionFactory GetSessionFactory()
+        {
+            return Fluently.Configure()
+                            .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
+                            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<AccountMap>())
+                            .BuildSessionFactory();
+        }
+
+        public void BuildSchema()
+        {
+            Fluently.Configure()
+                .Database(
+                    MsSqlConfiguration.MsSql2012.ConnectionString(
+                        c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
+                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(false, true, false));
         }
     }
 }

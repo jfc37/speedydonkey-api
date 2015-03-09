@@ -19,5 +19,11 @@ namespace ActionHandlers.CreateHandlers
         {
             action.ActionAgainst.Account = _accountRepository.Get(action.ActionAgainst.Account.Id);
         }
+
+        protected override void PostHandle(ICreateAction<User> action, IEntity result)
+        {
+            action.ActionAgainst.Account.User = action.ActionAgainst;
+            _accountRepository.Update((Account)action.ActionAgainst.Account);
+        }
     }
 }
