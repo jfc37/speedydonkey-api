@@ -32,6 +32,18 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "LevelApi", id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "BlockApi",
+                routeTemplate: "api/blocks/{id}",
+                defaults: new { controller = "BlockApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "LevelBlockApi",
+                routeTemplate: "api/levels/{levelId}/blocks",
+                defaults: new { controller = "BlockApi"}
+            );
+
 
             //Default to json
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();

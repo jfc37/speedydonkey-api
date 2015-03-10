@@ -10,4 +10,8 @@ namespace Data.Repositories
     public class LevelRepository : GenericRepository<Level>
     {
     }
+
+    public class BlockRepository : GenericRepository<Block>
+    {
+    }
 }

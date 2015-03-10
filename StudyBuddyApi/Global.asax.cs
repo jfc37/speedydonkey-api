@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using ActionHandlers;
+using ActionHandlers.CreateHandlers;
+using ActionHandlers.CreateHandlers.Strategies;
 using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
@@ -59,6 +61,9 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<QueryFilterModifier>().As<IQueryModifier>();
             builder.RegisterType<ConditionExpressionHandlerFactory>().As<IConditionExpressionHandlerFactory>();
             builder.RegisterType<QueryModifierFactory>().As<IQueryModifierFactory>();
+            builder.RegisterType<BlockPopulatorStrategyFactory>().As<IBlockPopulatorStrategyFactory>();
+
+
 
            new SessionSetup().BuildSchema();
 

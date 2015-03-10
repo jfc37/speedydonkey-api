@@ -23,6 +23,20 @@ namespace Data.Mappings
             Map(x => x.EndTime);
             Map(x => x.Name);
             Map(x => x.StartTime);
+            HasMany<Block>(x => x.Blocks)
+                .Not.LazyLoad()
+                .Inverse();
+        }
+    }
+    public class BlockMap : ClassMap<Block>
+    {
+        public BlockMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.StartDate);
+            Map(x => x.EndDate);
+            References(x => x.Level)
+                .Class(typeof(Level));
         }
     }
 }

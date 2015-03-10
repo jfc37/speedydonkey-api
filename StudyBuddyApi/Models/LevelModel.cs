@@ -14,6 +14,7 @@ namespace SpeedyDonkeyApi.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int ClassesInBlock { get; set; }
+        public IList<IBlock> Blocks { get; set; }
         public int Id { get; set; }
         public string Url { get; set; }
         public Level ToEntity()
