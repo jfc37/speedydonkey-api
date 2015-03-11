@@ -62,6 +62,7 @@ namespace Data.Mappings
             Map(x => x.EndDate);
             Map(x => x.PassType);
             References(x => x.Owner)
+                .Column("User_id")
                 .Class(typeof(User))
                 .Not.LazyLoad();
         }
