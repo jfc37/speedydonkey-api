@@ -1,4 +1,5 @@
 using Actions;
+using Common;
 using Models;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Controllers;
@@ -13,7 +14,8 @@ namespace StudyBuddyApi.Tests.Controllers
             var controller = new UserApiController(
                 ActionHandlerOverlordBuilder.BuildObject(), 
                 UrlConstructorBuilder.BuildObject(),
-                RepositoryBuilder.BuildObject());
+                RepositoryBuilder.BuildObject(),
+                new CommonInterfaceCloner());
             SetupController(controller);
             return controller;
         }

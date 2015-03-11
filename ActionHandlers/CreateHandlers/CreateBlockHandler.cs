@@ -25,6 +25,7 @@ namespace ActionHandlers.CreateHandlers
         protected override void PreHandle(ICreateAction<Block> action)
         {
             var level = _levelRepository.Get(action.ActionAgainst.Level.Id);
+            //TODO: This check should be a validation error
             var futureBlockAlreadyExists = level.Blocks.Any(x => x.StartDate > DateTime.Now.Date);
             if (futureBlockAlreadyExists)
             {

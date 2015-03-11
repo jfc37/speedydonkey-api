@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace SpeedyDonkeyApi
@@ -52,6 +53,7 @@ namespace SpeedyDonkeyApi
             //Give json some camel casing
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new LowerCaseDelimitedPropertyNamesContractResovler('_');
+            config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
 
             //Add support JSONP
             //var jsonpFormatter = new JsonpMediaTypeFormatter(jsonFormatter);

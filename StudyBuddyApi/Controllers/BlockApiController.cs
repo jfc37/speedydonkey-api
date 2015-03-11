@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using Action;
 using ActionHandlers;
+using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Models;
@@ -13,7 +14,8 @@ namespace SpeedyDonkeyApi.Controllers
         public BlockApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
             IUrlConstructor urlConstructor, 
-            IRepository<Block> repository) : base(actionHandlerOverlord, urlConstructor, repository)
+            IRepository<Block> repository,
+            ICommonInterfaceCloner cloner) : base(actionHandlerOverlord, urlConstructor, repository, cloner)
         {
         }
 

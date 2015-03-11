@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using Models;
 using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class LevelModel : ILevel, IApiModel<Level>
+    public class LevelModel : ApiModel<Level, LevelModel>, ILevel
     {
         public string Name { get; set; }
         public IRoom Room { get; set; }
@@ -15,36 +16,21 @@ namespace SpeedyDonkeyApi.Models
         public DateTime EndTime { get; set; }
         public int ClassesInBlock { get; set; }
         public IList<IBlock> Blocks { get; set; }
-        public int Id { get; set; }
-        public string Url { get; set; }
-        public Level ToEntity()
+
+        protected override string RouteName
         {
-            return new Level
-            {
-                EndTime = EndTime,
-                StartTime = StartTime,
-                Name = Name,
-                Id = Id,
-                ClassesInBlock = ClassesInBlock
-            };
+            get { return "LevelApi"; }
         }
 
-        public IApiModel<Level> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, Level entity)
+        protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Level entity, LevelModel model)
         {
-            return new LevelModel
+            if (entity.Blocks != null)
             {
-                ClassesInBlock = entity.ClassesInBlock,
-                EndTime = entity.EndTime,
-                Id = entity.Id,
-                Name = entity.Name,
-                StartTime = entity.StartTime,
-                Url = urlConstructor.Construct("LevelApi", new { id = entity.Id}, request)
-            };
-        }
-
-        public IApiModel<Level> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id)
-        {
-            throw new NotImplementedException();
+                var blockModel = new BlockModel();
+                model.Blocks = entity.Blocks
+                    .Select(x => (IBlock) blockModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+                    .ToList();
+            }
         }
     }
 }

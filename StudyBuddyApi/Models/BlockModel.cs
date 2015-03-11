@@ -1,47 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using Common;
 using Models;
 using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class BlockModel : IBlock, IApiModel<Block>
+    public class BlockModel : ApiModel<Block, BlockModel>, IBlock
     {
         public IList<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
         public IList<IClass> Classes { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int Id { get; set; }
-        public string Url { get; set; }
 
-        public Block ToEntity()
+
+        protected override string RouteName
         {
-            return new Block
-            {
-                Id = Id,
-                Level = new Level
-                {
-                    Id = Level.Id
-                }
-            };
+            get { return "BlockApi"; }
         }
 
-        public IApiModel<Block> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, Block entity)
+        protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Block entity, BlockModel model)
         {
-            return new BlockModel
+            if (entity.Level != null)
             {
-                Id = entity.Id,
-                StartDate = entity.StartDate,
-                EndDate = entity.EndDate,
-                Url = urlConstructor.Construct("BlockApi", new { id = entity.Id}, request)
-            };
-        }
-
-        public IApiModel<Block> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id)
-        {
-            throw new System.NotImplementedException();
+                model.Level = (ILevel) new LevelModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Level.Id);
+            }
         }
     }
 }

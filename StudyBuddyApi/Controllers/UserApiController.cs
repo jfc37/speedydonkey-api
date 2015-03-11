@@ -2,6 +2,7 @@
 using System.Web.Http;
 using ActionHandlers;
 using Actions;
+using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Models;
@@ -13,8 +14,9 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public UserApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor, 
-            IRepository<User> repository) : base(actionHandlerOverlord, urlConstructor, repository) { }
+            IUrlConstructor urlConstructor,
+            IRepository<User> repository,
+            ICommonInterfaceCloner cloner) : base(actionHandlerOverlord, urlConstructor, repository, cloner) { }
 
         public HttpResponseMessage Post([FromBody] UserModel model)
         {

@@ -51,6 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -64,6 +67,7 @@
     <Compile Include="Builders\LifetimeScopeBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockPasswordHasherBuilder.cs" />
+    <Compile Include="CommonInterfaceClonerTests.cs" />
     <Compile Include="InMemoryDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +83,18 @@
     <ProjectReference Include="..\Action\Actions.csproj">
       <Project>{09f22d3d-6200-41bf-bdee-0f60710fb775}</Project>
       <Name>Actions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{6FDCD6FF-6028-424C-BB2C-326315491190}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StudyBuddyApi\SpeedyDonkeyApi.csproj">
+      <Project>{0ED4CACE-AE54-49D6-9053-F44DE4D7298E}</Project>
+      <Name>SpeedyDonkeyApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>

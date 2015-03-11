@@ -24,8 +24,7 @@ namespace Data.Mappings
             Map(x => x.Name);
             Map(x => x.StartTime);
             HasMany<Block>(x => x.Blocks)
-                .Not.LazyLoad()
-                .Inverse();
+                .Not.LazyLoad();
         }
     }
     public class BlockMap : ClassMap<Block>

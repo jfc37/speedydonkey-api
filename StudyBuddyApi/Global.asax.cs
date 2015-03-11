@@ -8,6 +8,7 @@ using ActionHandlers.CreateHandlers.Strategies;
 using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
+using Common;
 using Data;
 using Data.Mappings;
 using Data.Repositories;
@@ -62,6 +63,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<ConditionExpressionHandlerFactory>().As<IConditionExpressionHandlerFactory>();
             builder.RegisterType<QueryModifierFactory>().As<IQueryModifierFactory>();
             builder.RegisterType<BlockPopulatorStrategyFactory>().As<IBlockPopulatorStrategyFactory>();
+            builder.RegisterType<CommonInterfaceCloner>().As<ICommonInterfaceCloner>();
 
 
 

@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using ActionHandlers;
 using Actions;
+using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Models;
@@ -17,20 +18,23 @@ namespace SpeedyDonkeyApi.Controllers
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
         private readonly IUrlConstructor _urlConstructor;
         private readonly IRepository<TEntity> _repository;
+        private readonly ICommonInterfaceCloner _cloner;
 
         protected GenericController(
             IActionHandlerOverlord actionHandlerOverlord,
             IUrlConstructor urlConstructor,
-            IRepository<TEntity> repository)
+            IRepository<TEntity> repository,
+            ICommonInterfaceCloner cloner)
         {
             _actionHandlerOverlord = actionHandlerOverlord;
             _urlConstructor = urlConstructor;
             _repository = repository;
+            _cloner = cloner;
         }
 
         protected HttpResponseMessage Post<TAction>([FromBody]TModel model, Func<TEntity,TAction> actionCreator) where TAction : IAction<TEntity>
         {
-            var entity = model.ToEntity();
+            var entity = model.ToEntity(_cloner);
             var action = actionCreator(entity);
             ActionReponse<TEntity> result = _actionHandlerOverlord.HandleAction<TAction, TEntity>(action);
             HttpStatusCode responseCode = result.ValidationResult.IsValid
@@ -40,7 +44,7 @@ namespace SpeedyDonkeyApi.Controllers
                 responseCode,
                 new ActionReponse<IApiModel<TEntity>>
                 {
-                    ActionResult = model.CloneFromEntity(Request, _urlConstructor, result.ActionResult),
+                    ActionResult = model.CloneFromEntity(Request, _urlConstructor, result.ActionResult, _cloner),
                     ValidationResult = result.ValidationResult
                 });
         }
@@ -52,13 +56,13 @@ namespace SpeedyDonkeyApi.Controllers
             if (entity == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound);
 
-            var model = new TModel().CloneFromEntity(Request, _urlConstructor, entity);
+            var model = new TModel().CloneFromEntity(Request, _urlConstructor, entity, _cloner);
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
         public HttpResponseMessage Get()
         {
             var allEntities = _repository.GetAll()
-                .Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x))
+                .Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x, _cloner))
                 .ToList();
 
             return !allEntities.Any()
