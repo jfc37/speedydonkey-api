@@ -27,7 +27,13 @@ namespace SpeedyDonkeyApi.Models
         public TEntity ToEntity(ICommonInterfaceCloner cloner)
         {
             var entity = cloner.Clone<TModel, TEntity>(this as TModel);
+            AddChildrenToEntity(entity, cloner);
             return entity;
+        }
+
+        protected virtual void AddChildrenToEntity(TEntity entity, ICommonInterfaceCloner cloner)
+        {
+            
         }
 
         public IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor,

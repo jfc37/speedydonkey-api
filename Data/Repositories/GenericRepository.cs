@@ -59,7 +59,12 @@ namespace Data.Repositories
         {
             using (var session = GetSession())
             {
-                session.Update(entity, entity.Id);
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Update(entity, entity.Id);
+                    session.Flush();
+                    transaction.Commit();
+                }
             }
 
             return entity;

@@ -12,6 +12,10 @@ namespace Data.Mappings
             Map(x => x.Surname);
             Map(x => x.Email);
             Map(x => x.Password);
+            HasManyToMany<Block>(x => x.EnroledBlocks)
+                .Cascade.All()
+                .Table("UsersEnroledBlocks")
+                .Not.LazyLoad();
         }
     }
     public class LevelMap : ClassMap<Level>
@@ -35,7 +39,13 @@ namespace Data.Mappings
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             References(x => x.Level)
-                .Class(typeof(Level));
+                .Class(typeof(Level))
+                .Not.LazyLoad();
+            HasManyToMany<User>(x => x.EnroledStudents)
+                .Cascade.All()
+                .Inverse()
+                .Table("UsersEnroledBlocks")
+                .Not.LazyLoad();
         }
     }
 }

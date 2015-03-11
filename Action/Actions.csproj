@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnrolInBlock.cs" />
     <Compile Include="CreateBlock.cs" />
     <Compile Include="CreateLevel.cs" />
     <Compile Include="CreateUser.cs" />

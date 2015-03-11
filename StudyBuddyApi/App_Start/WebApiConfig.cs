@@ -45,6 +45,12 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "BlockApi"}
             );
 
+            config.Routes.MapHttpRoute(
+                name: "BlockEnrolmentApi",
+                routeTemplate: "api/users/{userId}/blocks/{blockId}",
+                defaults: new { controller = "UserApi"}
+            );
+
 
             //Default to json
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
@@ -53,7 +59,7 @@ namespace SpeedyDonkeyApi
             //Give json some camel casing
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new LowerCaseDelimitedPropertyNamesContractResovler('_');
-            config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+            //config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
 
             //Add support JSONP
             //var jsonpFormatter = new JsonpMediaTypeFormatter(jsonFormatter);

@@ -8,12 +8,22 @@ namespace Data.Tests.Builders
     public class MockRepositoryBuilder<T> : MockBuilder<IRepository<T>> where T : IEntity, new()
     {
         public T CreatedEntity { get; set; }
+        public T UpdatedEntity { get; set; }
 
         public MockRepositoryBuilder<T> WithCreate()
         {
             Mock.Setup(x => x.Create(It.IsAny<T>()))
                 .Returns<T>(x => x)
                 .Callback<T>(x => CreatedEntity = x);
+
+            return this;
+        }
+
+        public MockRepositoryBuilder<T> WithUpdate()
+        {
+            Mock.Setup(x => x.Update(It.IsAny<T>()))
+                .Returns<T>(x => x)
+                .Callback<T>(x => UpdatedEntity = x);
 
             return this;
         }

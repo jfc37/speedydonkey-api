@@ -54,6 +54,7 @@
     <Compile Include="CreateHandlers\CreateUserHandler.cs" />
     <Compile Include="CreateHandlers\CreateEntityHandler.cs" />
     <Compile Include="CreateHandlers\Strategies\BlockPopulatorStrategy.cs" />
+    <Compile Include="EnrolInBlockHandler.cs" />
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="IActionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

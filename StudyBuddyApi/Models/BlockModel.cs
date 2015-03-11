@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using Common;
 using Models;
@@ -26,6 +27,22 @@ namespace SpeedyDonkeyApi.Models
             if (entity.Level != null)
             {
                 model.Level = (ILevel) new LevelModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Level.Id);
+            }
+
+            if (entity.EnroledStudents != null)
+            {
+                var userModel = new UserModel();
+                model.EnroledStudents = entity.EnroledStudents
+                    .Select(x => (IUser)userModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+                    .ToList();
+            }
+        }
+
+        protected override void AddChildrenToEntity(Block entity, ICommonInterfaceCloner cloner)
+        {
+            if (Level != null)
+            {
+                entity.Level = ((LevelModel) Level).ToEntity(cloner);
             }
         }
     }
