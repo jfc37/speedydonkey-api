@@ -58,6 +58,7 @@
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="IActionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchasePassHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Action\Actions.csproj">

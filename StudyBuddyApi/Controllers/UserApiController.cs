@@ -32,7 +32,15 @@ namespace SpeedyDonkeyApi.Controllers
                 Id = userId,
                 EnroledBlocks = new List<IBlock> { new BlockModel { Id = blockId } }
             }, x => new EnrolInBlock(x));
+        }
 
+        public HttpResponseMessage Post(int userId, [FromBody]PassModel pass)
+        {
+            return Post(new UserModel
+            {
+                Id = userId,
+                Passes = new List<IPass> { pass }
+            }, x => new PurchasePass(x));
         }
     }
 }

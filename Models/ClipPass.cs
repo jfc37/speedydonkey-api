@@ -4,4 +4,9 @@
     {
         int ClipsRemaining { get; set; }
     }
+
+    public class ClipPass : Pass, IClipPass
+    {
+        public int ClipsRemaining { get; set; }
+    }
 }

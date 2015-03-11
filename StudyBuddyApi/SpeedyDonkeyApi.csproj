@@ -186,6 +186,7 @@
     <Compile Include="Controllers\BlockApiController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\LevelApiController.cs" />
+    <Compile Include="Controllers\PassApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Models\BlockModel.cs" />
     <Compile Include="Models\IApiModel.cs" />
     <Compile Include="Models\LevelModel.cs" />
+    <Compile Include="Models\PassModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UrlConstructor.cs" />

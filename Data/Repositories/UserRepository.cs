@@ -14,4 +14,8 @@ namespace Data.Repositories
     public class BlockRepository : GenericRepository<Block>
     {
     }
+
+    public class PassRepository : GenericRepository<Pass>
+    {
+    }
 }

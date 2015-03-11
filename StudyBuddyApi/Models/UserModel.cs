@@ -31,6 +31,14 @@ namespace SpeedyDonkeyApi.Models
                     .Select(x => (IBlock) blockModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
                     .ToList();
             }
+
+            if (entity.Passes != null)
+            {
+                var passModel = new PassModel();
+                model.Passes = entity.Passes
+                    .Select(x => (IPass) passModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+                    .ToList();
+            }
         }
 
         protected override void AddChildrenToEntity(User entity, ICommonInterfaceCloner cloner)
@@ -39,6 +47,12 @@ namespace SpeedyDonkeyApi.Models
             {
                 entity.EnroledBlocks = EnroledBlocks
                     .Select(x => (IBlock) ((BlockModel) x).ToEntity(cloner))
+                    .ToList();
+            }
+            if (Passes != null)
+            {
+                entity.Passes = Passes
+                    .Select(x => (IPass) ((PassModel) x).ToEntity(cloner))
                     .ToList();
             }
         }

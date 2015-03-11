@@ -24,8 +24,7 @@ namespace ActionHandlers
             var user = _userRepository.Get(action.ActionAgainst.Id);
             var blockBeingEnroledIn = _blockRepository.Get(action.ActionAgainst.EnroledBlocks.Single().Id);
             AddBlockToUser(user, blockBeingEnroledIn);
-            var updatedUser = _userRepository.Update(user);
-            return updatedUser;
+            return _userRepository.Update(user);
         }
 
         private void AddBlockToUser(User user, Block blockBeingEnroledIn)

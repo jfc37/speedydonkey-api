@@ -17,6 +17,9 @@ namespace Data.Mappings
                 .Table("UsersEnroledBlocks")
                 .AsSet()
                 .Not.LazyLoad();
+            HasMany<Pass>(x => x.Passes)
+                .Not.LazyLoad()
+                .Cascade.All();
         }
     }
     public class LevelMap : ClassMap<Level>
@@ -47,6 +50,19 @@ namespace Data.Mappings
                 .Inverse()
                 .Table("UsersEnroledBlocks")
                 .AsSet()
+                .Not.LazyLoad();
+        }
+    }
+    public class PassMap : ClassMap<Pass>
+    {
+        public PassMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.StartDate);
+            Map(x => x.EndDate);
+            Map(x => x.PassType);
+            References(x => x.Owner)
+                .Class(typeof(User))
                 .Not.LazyLoad();
         }
     }

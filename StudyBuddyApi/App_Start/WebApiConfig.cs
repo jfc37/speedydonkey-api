@@ -51,6 +51,18 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "UserApi"}
             );
 
+            config.Routes.MapHttpRoute(
+                name: "PassApi",
+                routeTemplate: "api/passes/{id}",
+                defaults: new { controller = "PassApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "PassPurchaseApi",
+                routeTemplate: "api/users/{userId}/passes",
+                defaults: new { controller = "UserApi"}
+            );
+
 
             //Default to json
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
