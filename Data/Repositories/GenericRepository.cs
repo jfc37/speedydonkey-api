@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Models;
 using NHibernate;
+using NHibernate.Mapping;
 using NHibernate.Tool.hbm2ddl;
 
 namespace Data.Repositories

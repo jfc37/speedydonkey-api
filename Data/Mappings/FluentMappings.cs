@@ -15,6 +15,7 @@ namespace Data.Mappings
             HasManyToMany<Block>(x => x.EnroledBlocks)
                 .Cascade.All()
                 .Table("UsersEnroledBlocks")
+                .AsSet()
                 .Not.LazyLoad();
         }
     }
@@ -45,6 +46,7 @@ namespace Data.Mappings
                 .Cascade.All()
                 .Inverse()
                 .Table("UsersEnroledBlocks")
+                .AsSet()
                 .Not.LazyLoad();
         }
     }

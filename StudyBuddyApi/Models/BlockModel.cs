@@ -10,7 +10,7 @@ namespace SpeedyDonkeyApi.Models
 {
     public class BlockModel : ApiModel<Block, BlockModel>, IBlock
     {
-        public IList<IUser> EnroledStudents { get; set; }
+        public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
         public IList<IClass> Classes { get; set; }
         public DateTime StartDate { get; set; }

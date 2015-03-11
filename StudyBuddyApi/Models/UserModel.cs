@@ -13,7 +13,7 @@ namespace SpeedyDonkeyApi.Models
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public ISchedule Schedule { get; set; }
-        public IList<IBlock> EnroledBlocks { get; set; }
+        public ICollection<IBlock> EnroledBlocks { get; set; }
         public IList<IPass> Passes { get; set; }
         public string Email { get; set; }
 
