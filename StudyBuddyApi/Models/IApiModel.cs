@@ -56,7 +56,8 @@ namespace SpeedyDonkeyApi.Models
         {
             return new TModel
             {
-                Url = urlConstructor.Construct(RouteName, new {id}, request)
+                Url = urlConstructor.Construct(RouteName, new {id}, request),
+                Id = id
             };
         }
     }
