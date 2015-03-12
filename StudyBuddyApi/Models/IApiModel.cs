@@ -43,6 +43,7 @@ namespace SpeedyDonkeyApi.Models
             var model = cloner.Clone<TEntity, TModel>(entity);
             model.Url = urlConstructor.Construct(RouteName, new {id = entity.Id}, request);
 
+            AddFullChild(request, urlConstructor, entity, model, cloner);
             AddChildUrls(request, urlConstructor, entity, model);
 
             return model;
@@ -51,6 +52,10 @@ namespace SpeedyDonkeyApi.Models
         protected virtual void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity, TModel model)
         {
         }
+
+        protected virtual void AddFullChild(HttpRequestMessage request, IUrlConstructor urlConstructor,
+            TEntity entity, TModel model,
+            ICommonInterfaceCloner cloner) { }
 
         public IApiModel<TEntity> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id)
         {

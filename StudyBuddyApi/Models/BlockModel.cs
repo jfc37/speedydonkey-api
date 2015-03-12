@@ -24,10 +24,10 @@ namespace SpeedyDonkeyApi.Models
 
         protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Block entity, BlockModel model)
         {
-            if (entity.Level != null)
-            {
-                model.Level = (ILevel) new LevelModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Level.Id);
-            }
+            //if (entity.Level != null)
+            //{
+            //    model.Level = (ILevel) new LevelModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Level.Id);
+            //}
 
             if (entity.EnroledStudents != null)
             {
@@ -35,6 +35,15 @@ namespace SpeedyDonkeyApi.Models
                 model.EnroledStudents = entity.EnroledStudents
                     .Select(x => (IUser)userModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
                     .ToList();
+            }
+        }
+
+        protected override void AddFullChild(HttpRequestMessage request, IUrlConstructor urlConstructor, Block entity, BlockModel model,
+            ICommonInterfaceCloner cloner)
+        {
+            if (entity.Level != null)
+            {
+                model.Level = (ILevel)new LevelModel().CloneFromEntity(request, urlConstructor, (Level) entity.Level, cloner);
             }
         }
 
