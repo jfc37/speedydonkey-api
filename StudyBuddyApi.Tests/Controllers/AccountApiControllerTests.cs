@@ -15,7 +15,9 @@ namespace StudyBuddyApi.Tests.Controllers
                 ActionHandlerOverlordBuilder.BuildObject(), 
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                new CommonInterfaceCloner());
+                new CommonInterfaceCloner(),
+                EntitySearchBuilder.BuildObject()
+                );
             SetupController(controller);
             return controller;
         }

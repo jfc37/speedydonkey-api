@@ -7,6 +7,7 @@ using ActionHandlers;
 using Actions;
 using Common;
 using Data.Repositories;
+using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
@@ -19,17 +20,20 @@ namespace SpeedyDonkeyApi.Controllers
         private readonly IUrlConstructor _urlConstructor;
         private readonly IRepository<TEntity> _repository;
         private readonly ICommonInterfaceCloner _cloner;
+        private readonly IEntitySearch<TEntity> _entitySearch;
 
         protected GenericController(
             IActionHandlerOverlord actionHandlerOverlord,
             IUrlConstructor urlConstructor,
             IRepository<TEntity> repository,
-            ICommonInterfaceCloner cloner)
+            ICommonInterfaceCloner cloner,
+            IEntitySearch<TEntity> entitySearch)
         {
             _actionHandlerOverlord = actionHandlerOverlord;
             _urlConstructor = urlConstructor;
             _repository = repository;
             _cloner = cloner;
+            _entitySearch = entitySearch;
         }
 
         protected HttpResponseMessage Post<TAction>([FromBody]TModel model, Func<TEntity,TAction> actionCreator) where TAction : IAction<TEntity>
@@ -68,6 +72,16 @@ namespace SpeedyDonkeyApi.Controllers
             return !allEntities.Any()
                 ? Request.CreateResponse(HttpStatusCode.NotFound)
                 : Request.CreateResponse(HttpStatusCode.OK, allEntities);
+        }
+
+        public HttpResponseMessage Get(string q)
+        {
+            var matchingEntities = _entitySearch.Search(q);
+            if (!matchingEntities.Any())
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                matchingEntities.Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x, _cloner)).ToList());
         }
     }
 }

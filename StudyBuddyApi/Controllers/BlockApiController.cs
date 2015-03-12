@@ -3,6 +3,7 @@ using Action;
 using ActionHandlers;
 using Common;
 using Data.Repositories;
+using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
@@ -15,7 +16,9 @@ namespace SpeedyDonkeyApi.Controllers
             IActionHandlerOverlord actionHandlerOverlord, 
             IUrlConstructor urlConstructor, 
             IRepository<Block> repository,
-            ICommonInterfaceCloner cloner) : base(actionHandlerOverlord, urlConstructor, repository, cloner)
+            ICommonInterfaceCloner cloner,
+            IEntitySearch<Block> entitySearch)
+            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
         {
         }
 

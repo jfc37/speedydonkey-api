@@ -20,17 +20,16 @@ namespace Data.Searches
 
         public IList<T> Search(string q)
         {
-            throw new NotImplementedException();
-            //var searchStatements = _searchQueryParser.ParseQuery(q);
-            //var query = _context.GetSetOfType<T>().AsQueryable();
-           
-            //foreach (var searchStatement in searchStatements)
-            //{
-            //    var queryModifier = _queryModifierFactory.GetModifier(searchStatement.Condition);
-            //    query = queryModifier.ApplyStatementToQuery(searchStatement, query);
-            //}
+            var searchStatements = _searchQueryParser.ParseQuery(q);
+            var query = _context.CreateCriteria<T>().List<T>().AsQueryable();
 
-            //return query.ToList();
+            foreach (var searchStatement in searchStatements)
+            {
+                var queryModifier = _queryModifierFactory.GetModifier(searchStatement.Condition);
+                query = queryModifier.ApplyStatementToQuery(searchStatement, query);
+            }
+
+            return query.ToList();
         }
     }
 }

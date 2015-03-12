@@ -2,6 +2,8 @@
 using System.Web.Http;
 using ActionHandlersTests.Builders.MockBuilders;
 using Actions;
+using Common.Tests.Builders.MockBuilders;
+using Data.Searches;
 using Data.Tests.Builders;
 using Models;
 using Moq;
@@ -11,11 +13,12 @@ using SpeedyDonkeyApi.Tests.Builders.MockBuilders;
 namespace StudyBuddyApi.Tests.Controllers
 {
     [TestFixture]
-    public abstract class GenericApiControllerTests<TEntity> where TEntity : IEntity, new()
+    public abstract class GenericApiControllerTests<TEntity> where TEntity : class, IEntity, new()
     {
         protected MockActionHandlerOverlordBuilder ActionHandlerOverlordBuilder;
         protected MockUrlConstructorBuilder UrlConstructorBuilder;
-        protected MockRepositoryBuilder<TEntity> RepositoryBuilder; 
+        protected MockRepositoryBuilder<TEntity> RepositoryBuilder;
+        protected MockEntitySearch<TEntity> EntitySearchBuilder;
 
         protected void DependencySetup()
         {
@@ -24,6 +27,7 @@ namespace StudyBuddyApi.Tests.Controllers
                 .WithUrlConstruction();
             RepositoryBuilder = new MockRepositoryBuilder<TEntity>()
                 .WithSuccessfulGet();
+            EntitySearchBuilder = new MockEntitySearch<TEntity>();
         }
 
         protected void SetupActionHandler<TAction>() where TAction : IAction<TEntity>
@@ -50,5 +54,9 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             RepositoryBuilder.Mock.Verify(x => x.GetAll(), Times.Once);
         }
+    }
+
+    public class MockEntitySearch<T> : MockBuilder<IEntitySearch<T>> where T : class
+    {
     }
 }
