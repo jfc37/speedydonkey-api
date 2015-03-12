@@ -24,67 +24,49 @@ namespace Data.Repositories
 
     public abstract class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity 
     {
-        private ISession GetSession()
-        {
-            return CreateSessionFactory().OpenSession();
-        }
+        private readonly ISession _session;
 
+        protected GenericRepository(ISession session)
+        {
+            _session = session;
+        }
 
         public IEnumerable<TEntity> GetAll()
         {
-            using (var session = GetSession())
-            {
-                return session.CreateCriteria<TEntity>()
+                return _session.CreateCriteria<TEntity>()
                     .List<TEntity>();
-            }
         }
 
         public TEntity Get(int id)
         {
-            using (var session = GetSession())
-            {
-                return session.Get<TEntity>(id);
-            }
+            return _session.Get<TEntity>(id);
         }
 
         public TEntity Create(TEntity entity)
         {
-            using (var session = GetSession())
-            {
-                session.Save(entity);
-            }
-
+            _session.Save(entity);
             return entity;
         }
 
         public TEntity Update(TEntity entity)
         {
-            using (var session = GetSession())
-            {
-                using (var transaction = session.BeginTransaction())
-                {
-                    session.Update(entity, entity.Id);
-                    session.Flush();
-                    transaction.Commit();
-                }
-            }
-
+            //using (var session = GetSession())
+            //{
+            //    //using (var transaction = session.BeginTransaction())
+            //    //{
+            //    //    session.Update(entity, entity.Id);
+            //    //    session.Flush();
+            //    //    transaction.Commit();
+            //    //}
+            //}
+            _session.Update(entity, entity.Id);
+            _session.Flush();
             return entity;
         }
 
         public void Delete(TEntity entity)
         {
             throw new System.NotImplementedException();
-        }
-
-        private static ISessionFactory CreateSessionFactory()
-        { 
-            return Fluently.Configure()
-               .Database(
-                    MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
-                    .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                    //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(false, true, false))
-                    .BuildSessionFactory();
         }
     }
 }

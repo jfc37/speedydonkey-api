@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Configuration;
+using System.Diagnostics.Contracts;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -33,8 +35,13 @@ namespace SpeedyDonkeyApi
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
+            var dependencyBuilder = new NHibernateDependancySetup();
+
+
             // Create the container builder.
             var builder = new ContainerBuilder();
+            string connectionString = ConfigurationManager.ConnectionStrings["SpeedyDonkeyDbContext"].ConnectionString;
+            dependencyBuilder.AddDependencies(connectionString, builder);
 
             // Register the Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
@@ -67,8 +74,6 @@ namespace SpeedyDonkeyApi
 
 
 
-           new SessionSetup().BuildSchema();
-
             // Build the container.
             var container = builder.Build();
 
@@ -80,34 +85,59 @@ namespace SpeedyDonkeyApi
 
             //Setup log4net
             XmlConfigurator.Configure();
+
+            var sessionSetup = new SessionSetup(connectionString);
+            sessionSetup.BuildSchema();
+        }
+    }
+
+    public class NHibernateDependancySetup
+    {
+        public void AddDependencies(string connectionString, ContainerBuilder builder)
+        {
+            Contract.Requires(connectionString != null); 
+            SessionSetup sessionSetup = new SessionSetup(connectionString);
+            sessionSetup.BuildSchema();
+            var sessionFactory = sessionSetup.GetSessionFactory();
+
+            
+            builder.RegisterInstance(sessionFactory);
+
+            // Either use a session in view model or per instance depending on the context.
+            if (HttpContext.Current != null)
+            {
+                builder.Register(s => s.Resolve<ISessionFactory>().OpenSession()).InstancePerLifetimeScope();
+            }
+            else
+            {
+                builder.Register(s => s.Resolve<ISessionFactory>().OpenSession());
+            }
         }
     }
 
     public class SessionSetup
     {
-        private readonly IPersistenceConfigurer _persistenceConfigurer;
-        private SchemaExport _schemaExport;
+        private readonly FluentConfiguration _fluentConfiguration;
+        public SessionSetup(string connectionString)
+        {
+            IPersistenceConfigurer persistenceConfigurer = MsSqlConfiguration.MsSql2012
+                .ConnectionString(connectionString)
+                .AdoNetBatchSize(10);
 
+            _fluentConfiguration = Fluently.Configure()
+                .Database(persistenceConfigurer)
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>());
+        }
 
         public ISessionFactory GetSessionFactory()
         {
-            return Fluently.Configure()
-                            .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
-                            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>())
-                            .BuildSessionFactory();
+            return _fluentConfiguration.BuildSessionFactory();
         }
 
         public void BuildSchema()
         {
-            var configuration = new Configuration();
-
-            Fluently.Configure(configuration)
-              .Database(
-                   MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("SpeedyDonkeyDbContext")))
-                   .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                   .BuildSessionFactory();
-            var schemaBuilder = new SchemaExport(configuration);
-            schemaBuilder.Execute(false, true, false);
+            var schemaExport = new SchemaExport(_fluentConfiguration.BuildConfiguration());
+            schemaExport.Execute(true, true, false);
         }
     }
 }
