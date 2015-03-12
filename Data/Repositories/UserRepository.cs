@@ -31,4 +31,12 @@ namespace Data.Repositories
         {
         }
     }
+
+    public class ClassRepository : GenericRepository<Class>
+    {
+        public ClassRepository(ISession session)
+            : base(session)
+        {
+        }
+    }
 }

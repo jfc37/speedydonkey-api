@@ -27,7 +27,7 @@ namespace ActionHandlers.CreateHandlers
             return action.ActionAgainst;
         }
 
-        protected virtual void PostHandle(ICreateAction<TEntity> action, IEntity result) { }
+        protected virtual void PostHandle(ICreateAction<TEntity> action, TEntity result) { }
 
         protected virtual void PreHandle(ICreateAction<TEntity> action){ }
     }

@@ -45,11 +45,26 @@ namespace Data.Mappings
             References(x => x.Level)
                 .Class(typeof(Level))
                 .Not.LazyLoad();
+            HasMany<Class>(x => x.Classes)
+                .Not.LazyLoad();
             HasManyToMany<User>(x => x.EnroledStudents)
                 .Cascade.All()
                 .Inverse()
                 .Table("UsersEnroledBlocks")
                 .AsSet()
+                .Not.LazyLoad();
+        }
+    }
+
+    public class ClassMap : ClassMap<Class>
+    {
+        public ClassMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.StartTime);
+            Map(x => x.EndTime);
+            References(x => x.Block)
+                .Class(typeof(Block))
                 .Not.LazyLoad();
         }
     }

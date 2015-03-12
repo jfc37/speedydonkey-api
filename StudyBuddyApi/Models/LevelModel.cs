@@ -16,6 +16,7 @@ namespace SpeedyDonkeyApi.Models
         public DateTime EndTime { get; set; }
         public int ClassesInBlock { get; set; }
         public IList<IBlock> Blocks { get; set; }
+        public int ClassMinutes { get; set; }
 
         protected override string RouteName
         {

@@ -36,6 +36,14 @@ namespace SpeedyDonkeyApi.Models
                     .Select(x => (IUser)userModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
                     .ToList();
             }
+
+            if (entity.Classes != null)
+            {
+                var classModel = new ClassModel();
+                model.Classes = entity.Classes
+                    .Select(x => (IClass)classModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+                    .ToList();
+            }
         }
 
         protected override void AddFullChild(HttpRequestMessage request, IUrlConstructor urlConstructor, Block entity, BlockModel model,

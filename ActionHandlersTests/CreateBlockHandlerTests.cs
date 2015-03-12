@@ -16,12 +16,15 @@ namespace ActionHandlersTests
     {
         protected MockRepositoryBuilder<Block> RepositoryBuilder;
         protected MockRepositoryBuilder<Level> LevelRepositoryBuilder;
+        protected MockRepositoryBuilder<Class> ClassRepositoryBuilder; 
         protected CreateBlock Action;
 
         protected void OverallSetup()
         {
             RepositoryBuilder = new MockRepositoryBuilder<Block>();
             LevelRepositoryBuilder = new MockRepositoryBuilder<Level>();
+            ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
+                .WithCreate();
             Action = new CreateBlock(new Block
             {
                 Level = new Level()
@@ -33,6 +36,7 @@ namespace ActionHandlersTests
             return new CreateBlockHandler(
                 RepositoryBuilder.BuildObject(), 
                 LevelRepositoryBuilder.BuildObject(),
+                ClassRepositoryBuilder.BuildObject(),
                 new BlockPopulatorStrategyFactory());
         }
 
@@ -95,6 +99,24 @@ namespace ActionHandlersTests
             var expectedEndDate = createdBlock.StartDate.AddDays(numberOfClasses*7);
             Assert.AreEqual(expectedEndDate, createdBlock.EndDate);
         }
+
+        [TestCase(1)]
+        [TestCase(6)]
+        [TestCase(8)]
+        public void Then_the_correct_number_of_classes_should_be_created(int numberOfClasses)
+        {
+            LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
+                   .WithGet(new Level
+                   {
+                       StartTime = DateTime.Now,
+                       ClassesInBlock = numberOfClasses,
+                       Blocks = new List<IBlock>()
+                   });
+
+            PerformAction();
+
+            ClassRepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<Class>()), Times.Exactly(numberOfClasses));
+        }
     }
 
     public class WhenLevelAlreadyHasABlockStartingInTheFuture : GivenCreateBlockIsHandled
@@ -121,6 +143,14 @@ namespace ActionHandlersTests
             PerformAction();
 
             RepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<Block>()), Times.Never);
+        }
+
+        [Test]
+        public void Then_no_classes_should_be_created()
+        {
+            PerformAction();
+
+            ClassRepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<Class>()), Times.Never);
         }
     }
 
@@ -175,6 +205,24 @@ namespace ActionHandlersTests
             var createdBlock = RepositoryBuilder.CreatedEntity;
             var expectedStartDate = currentBlockEndDate.AddDays(7);
             Assert.AreEqual(expectedStartDate, createdBlock.StartDate);
+        }
+
+        [TestCase(1)]
+        [TestCase(6)]
+        [TestCase(8)]
+        public void Then_the_correct_number_of_classes_should_be_created(int numberOfClasses)
+        {
+            LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
+                   .WithGet(new Level
+                   {
+                       StartTime = DateTime.Now,
+                       ClassesInBlock = numberOfClasses,
+                       Blocks = new List<IBlock>()
+                   });
+
+            PerformAction();
+
+            ClassRepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<Class>()), Times.Exactly(numberOfClasses));
         }
     }
 }
