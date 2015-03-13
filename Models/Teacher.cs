@@ -5,6 +5,5 @@ namespace Models
     public interface ITeacher : IUser
     {
         IList<IAvailableTime> AvailableTimes { get; set; }
-        ISchedule TeachingSchedule { get; set; } 
     }
 }
