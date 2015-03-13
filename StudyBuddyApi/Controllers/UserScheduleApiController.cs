@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
@@ -22,7 +23,10 @@ namespace SpeedyDonkeyApi.Controllers
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.Get(id);
-            return Request.CreateResponse(new UserScheduleModel().ConvertFromUser(user));
+            var userScheduleModels = new UserScheduleModel().ConvertFromUser(user);
+            return userScheduleModels.Any()
+                ? Request.CreateResponse(userScheduleModels)
+                : Request.CreateResponse(HttpStatusCode.NotFound);
         }
     }
 }
