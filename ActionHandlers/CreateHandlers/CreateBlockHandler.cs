@@ -12,16 +12,19 @@ namespace ActionHandlers.CreateHandlers
     {
         private readonly IRepository<Level> _levelRepository;
         private readonly IRepository<Class> _classRepository;
+        private readonly IRepository<Booking> _bookingRepository;
         private readonly IBlockPopulatorStrategyFactory _blockPopulatorStrategyFactory;
 
         public CreateBlockHandler(
             IRepository<Block> repository, 
             IRepository<Level> levelRepository, 
             IRepository<Class> classRepository, 
+            IRepository<Booking> bookingRepository, 
             IBlockPopulatorStrategyFactory blockPopulatorStrategyFactory) : base(repository)
         {
             _levelRepository = levelRepository;
             _classRepository = classRepository;
+            _bookingRepository = bookingRepository;
             _blockPopulatorStrategyFactory = blockPopulatorStrategyFactory;
         }
 
@@ -52,8 +55,19 @@ namespace ActionHandlers.CreateHandlers
                     Block = result
                 };
                 _classRepository.Create(nextClass);
+                CreateBookingForClass(nextClass, result.Level.Room);
                 classTime = classTime.AddDays(7);
             }
+        }
+
+        private void CreateBookingForClass(Class nextClass, IRoom room)
+        {
+            var booking = new Booking
+            {
+                Event = nextClass,
+                Room = room
+            };
+            _bookingRepository.Create(booking);
         }
     }
 }

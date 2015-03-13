@@ -8,7 +8,7 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class ClassApiController : GenericController<ClassModel, Class>
+    public class ClassApiController : GenericApiController<ClassModel, Class>
     {
         public ClassApiController(
             IActionHandlerOverlord actionHandlerOverlord, 

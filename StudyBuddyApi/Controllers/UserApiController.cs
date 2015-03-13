@@ -13,7 +13,7 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class UserApiController : GenericController<UserModel, User>
+    public class UserApiController : GenericApiController<UserModel, User>
     {
         public UserApiController(
             IActionHandlerOverlord actionHandlerOverlord, 

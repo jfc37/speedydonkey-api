@@ -16,7 +16,8 @@ namespace ActionHandlersTests
     {
         protected MockRepositoryBuilder<Block> RepositoryBuilder;
         protected MockRepositoryBuilder<Level> LevelRepositoryBuilder;
-        protected MockRepositoryBuilder<Class> ClassRepositoryBuilder; 
+        protected MockRepositoryBuilder<Class> ClassRepositoryBuilder;
+        protected MockRepositoryBuilder<Booking> BookingRepositoryBuilder; 
         protected CreateBlock Action;
 
         protected void OverallSetup()
@@ -24,6 +25,8 @@ namespace ActionHandlersTests
             RepositoryBuilder = new MockRepositoryBuilder<Block>();
             LevelRepositoryBuilder = new MockRepositoryBuilder<Level>();
             ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
+                .WithCreate();
+            BookingRepositoryBuilder = new MockRepositoryBuilder<Booking>()
                 .WithCreate();
             Action = new CreateBlock(new Block
             {
@@ -37,6 +40,7 @@ namespace ActionHandlersTests
                 RepositoryBuilder.BuildObject(), 
                 LevelRepositoryBuilder.BuildObject(),
                 ClassRepositoryBuilder.BuildObject(),
+                BookingRepositoryBuilder.BuildObject(),
                 new BlockPopulatorStrategyFactory());
         }
 
@@ -116,6 +120,24 @@ namespace ActionHandlersTests
             PerformAction();
 
             ClassRepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<Class>()), Times.Exactly(numberOfClasses));
+        }
+
+        [TestCase(1)]
+        [TestCase(6)]
+        [TestCase(8)]
+        public void Then_bookings_should_be_created_for_each_class(int numberOfClasses)
+        {
+            LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
+                   .WithGet(new Level
+                   {
+                       StartTime = DateTime.Now,
+                       ClassesInBlock = numberOfClasses,
+                       Blocks = new List<IBlock>()
+                   });
+
+            PerformAction();
+
+            BookingRepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<Booking>()), Times.Exactly(numberOfClasses));
         }
     }
 

@@ -9,7 +9,7 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class PassApiController : GenericController<PassModel, Pass>
+    public class PassApiController : GenericApiController<PassModel, Pass>
     {
         public PassApiController(
             IActionHandlerOverlord actionHandlerOverlord, 

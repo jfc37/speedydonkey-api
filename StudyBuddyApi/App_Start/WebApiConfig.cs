@@ -69,6 +69,12 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "UserApi"}
             );
 
+            config.Routes.MapHttpRoute(
+                name: "BookingApi",
+                routeTemplate: "api/bookings/{id}",
+                defaults: new { controller = "BookingApi", id = RouteParameter.Optional }
+            );
+
 
             //Default to json
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();

@@ -11,7 +11,7 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class LevelApiController : GenericController<LevelModel, Level>
+    public class LevelApiController : GenericApiController<LevelModel, Level>
     {
         public LevelApiController(
             IActionHandlerOverlord actionHandlerOverlord, 

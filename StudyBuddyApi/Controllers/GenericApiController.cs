@@ -14,7 +14,7 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public abstract class GenericController<TModel, TEntity> : BaseApiController where TModel : IApiModel<TEntity>, new() where TEntity : class, IEntity
+    public abstract class GenericApiController<TModel, TEntity> : BaseApiController where TModel : IApiModel<TEntity>, new() where TEntity : class, IEntity
     {
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
         private readonly IUrlConstructor _urlConstructor;
@@ -22,7 +22,7 @@ namespace SpeedyDonkeyApi.Controllers
         private readonly ICommonInterfaceCloner _cloner;
         private readonly IEntitySearch<TEntity> _entitySearch;
 
-        protected GenericController(
+        protected GenericApiController(
             IActionHandlerOverlord actionHandlerOverlord,
             IUrlConstructor urlConstructor,
             IRepository<TEntity> repository,

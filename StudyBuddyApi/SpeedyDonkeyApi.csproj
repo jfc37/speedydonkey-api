@@ -184,8 +184,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BlockApiController.cs" />
+    <Compile Include="Controllers\BookingApiController.cs" />
     <Compile Include="Controllers\ClassApiController.cs" />
-    <Compile Include="Controllers\GenericController.cs" />
+    <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\LevelApiController.cs" />
     <Compile Include="Controllers\PassApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
@@ -196,6 +197,7 @@
     </Compile>
     <Compile Include="GlobalErrorLoggerService.cs" />
     <Compile Include="Models\BlockModel.cs" />
+    <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\IApiModel.cs" />
     <Compile Include="Models\LevelModel.cs" />

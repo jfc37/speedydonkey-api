@@ -10,7 +10,7 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class BlockApiController : GenericController<BlockModel, Block>
+    public class BlockApiController : GenericApiController<BlockModel, Block>
     {
         public BlockApiController(
             IActionHandlerOverlord actionHandlerOverlord, 

@@ -7,9 +7,12 @@ namespace Models
     {
         IRoom Room { get; set; }
         IEvent Event { get; set; }
-        DateTime StartTime { get; set; }
-        DateTime EndTime { get; set; }
-        IList<ITeacher> Teachers { get; set; } 
-        IList<IUser> Students { get; set; } 
+    }
+
+    public class Booking : IBooking, IEntity
+    {
+        public virtual IRoom Room { get; set; }
+        public virtual IEvent Event { get; set; }
+        public virtual int Id { get; set; }
     }
 }

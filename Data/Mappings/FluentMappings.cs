@@ -55,7 +55,6 @@ namespace Data.Mappings
                 .Not.LazyLoad();
         }
     }
-
     public class ClassMap : ClassMap<Class>
     {
         public ClassMap()
@@ -80,6 +79,26 @@ namespace Data.Mappings
                 .Column("User_id")
                 .Class(typeof(User))
                 .Not.LazyLoad();
+        }
+    }
+
+    public class BookingMap : ClassMap<Booking>
+    {
+        public BookingMap()
+        {
+            Id(x => x.Id);
+            References(x => x.Event)
+                .Class(typeof (Class));
+        }
+    }
+
+    public class ScheduleMap : ClassMap<Schedule>
+    {
+        public ScheduleMap()
+        {
+            Id(x => x.Id);
+            References(x => x.Bookings)
+                .Class(typeof(Booking));
         }
     }
 }
