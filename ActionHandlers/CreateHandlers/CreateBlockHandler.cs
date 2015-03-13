@@ -54,8 +54,8 @@ namespace ActionHandlers.CreateHandlers
                     EndTime = classTime.AddMinutes(result.Level.ClassMinutes),
                     Block = result
                 };
-                _classRepository.Create(nextClass);
                 CreateBookingForClass(nextClass, result.Level.Room);
+                _classRepository.Create(nextClass);
                 classTime = classTime.AddDays(7);
             }
         }

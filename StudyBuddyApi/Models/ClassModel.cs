@@ -27,6 +27,11 @@ namespace SpeedyDonkeyApi.Models
             {
                 model.Block = (IBlock)new BlockModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Block.Id);
             }
+
+            //if (entity.Booking!= null)
+            //{
+            //    model.Booking = (IBooking)new BookingModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Booking.Id);
+            //}
         }
     }
 }

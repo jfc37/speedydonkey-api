@@ -15,6 +15,7 @@ namespace ActionHandlersTests
 
         private MockRepositoryBuilder<User> _userRepositoryBuilder;
         private MockRepositoryBuilder<Block> _blockRepositoryBuilder;
+        private MockRepositoryBuilder<Booking> _bookingRepositoryBuilder;
         
         [SetUp]
         public void Setup()
@@ -23,7 +24,10 @@ namespace ActionHandlersTests
                 .WithSuccessfulGet()
                 .WithUpdate();
             _blockRepositoryBuilder = new MockRepositoryBuilder<Block>()
-                .WithSuccessfulGet();
+                .WithGet(new Block
+                {
+                    Classes = new List<IClass>()
+                });
 
             _action = new EnrolInBlock(new User
             {
@@ -36,11 +40,13 @@ namespace ActionHandlersTests
                     }
                 }
             });
+            _bookingRepositoryBuilder = new MockRepositoryBuilder<Booking>()
+                .WithGetAll();
         }
 
         private EnrolInBlockHandler GetHandler()
         {
-            return new EnrolInBlockHandler(_userRepositoryBuilder.BuildObject(), _blockRepositoryBuilder.BuildObject());
+            return new EnrolInBlockHandler(_userRepositoryBuilder.BuildObject(), _blockRepositoryBuilder.BuildObject(), _bookingRepositoryBuilder.BuildObject());
         }
 
         private void PerformAction()
@@ -62,6 +68,30 @@ namespace ActionHandlersTests
             PerformAction();
 
             _blockRepositoryBuilder.Mock.Verify(x => x.Get(_action.ActionAgainst.EnroledBlocks.Single().Id));
+        }
+
+        [TestCase(1)]
+        [TestCase(6)]
+        [TestCase(8)]
+        public void Then_the_users_schedule_should_have_classes_added_to_it(int numberOfClasses)
+        {
+            var classes = new List<IClass>();
+            for (int i = 0; i < numberOfClasses; i++)
+            {
+                classes.Add(new Class{Id = i});
+            }
+            _blockRepositoryBuilder.WithGet(new Block {Classes = classes});
+            _bookingRepositoryBuilder.WithGetAll(classes.Select(x => new Booking{
+                Event = new Class
+                {
+                    Id = x.Id
+                }
+            }));
+
+            PerformAction();
+
+            var updatedUser = _userRepositoryBuilder.UpdatedEntity;
+            Assert.AreEqual(numberOfClasses, updatedUser.Schedule.Count);
         }
     }
 }

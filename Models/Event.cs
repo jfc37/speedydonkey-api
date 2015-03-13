@@ -8,7 +8,7 @@ namespace Models
         int Id { get; set; }
         IList<ITeacher> Teachers { get; set; } 
         IList<ITeacher> RegisteredStudents { get; set; }
-        IBooking Booking { get; set; }
+        //IBooking Booking { get; set; }
         DateTime StartTime { get; set; }
         DateTime EndTime { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Common.Tests.Builders.MockBuilders;
+﻿using System.Collections.Generic;
+using Common.Tests.Builders.MockBuilders;
 using Data.Repositories;
 using Models;
 using Moq;
@@ -44,6 +45,20 @@ namespace Data.Tests.Builders
         {
             Mock.Setup(x => x.Get(It.IsAny<int>()))
                 .Returns(entity);
+            return this;
+        }
+
+        public MockRepositoryBuilder<T> WithGetAll()
+        {
+            Mock.Setup(x => x.GetAll())
+                .Returns(new List<T>());
+            return this;
+        }
+
+        public MockRepositoryBuilder<T> WithGetAll(IEnumerable<T> entities)
+        {
+            Mock.Setup(x => x.GetAll())
+                .Returns(entities);
             return this;
         }
     }

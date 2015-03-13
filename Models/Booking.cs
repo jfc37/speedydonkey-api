@@ -5,6 +5,7 @@ namespace Models
 {
     public interface IBooking
     {
+        int Id { get; set; }
         IRoom Room { get; set; }
         IEvent Event { get; set; }
     }

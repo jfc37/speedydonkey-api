@@ -12,7 +12,7 @@ namespace SpeedyDonkeyApi.Models
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public ISchedule Schedule { get; set; }
+        public IList<IBooking> Schedule { get; set; }
         public ICollection<IBlock> EnroledBlocks { get; set; }
         public IList<IPass> Passes { get; set; }
         public string Email { get; set; }
@@ -37,6 +37,18 @@ namespace SpeedyDonkeyApi.Models
                 var passModel = new PassModel();
                 model.Passes = entity.Passes
                     .Select(x => (IPass) passModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+                    .ToList();
+            }
+        }
+
+        protected override void AddFullChild(HttpRequestMessage request, IUrlConstructor urlConstructor, User entity, UserModel model,
+            ICommonInterfaceCloner cloner)
+        {
+            if (entity.Schedule != null)
+            {
+                var bookingModel = new BookingModel();
+                model.Schedule = entity.Schedule
+                    .Select(x => (IBooking)bookingModel.CloneFromEntity(request, urlConstructor, (Booking) x, cloner))
                     .ToList();
             }
         }

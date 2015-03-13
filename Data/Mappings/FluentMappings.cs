@@ -20,6 +20,12 @@ namespace Data.Mappings
             HasMany<Pass>(x => x.Passes)
                 .Not.LazyLoad()
                 .Cascade.All();
+            HasMany<Booking>(x => x.Schedule)
+                //.Not.Inverse()     //this both options are very
+                //.Not.KeyNullable() //important and works only if set together 
+                //.Not.KeyUpdate()   //to prevent double update
+                .Cascade.All()
+                .Not.LazyLoad();
         }
     }
     public class LevelMap : ClassMap<Level>
@@ -65,6 +71,10 @@ namespace Data.Mappings
             References(x => x.Block)
                 .Class(typeof(Block))
                 .Not.LazyLoad();
+            //References(x => x.Booking)
+            //    .Class(typeof (Booking))
+            //    .Cascade.All()
+            //    .Not.LazyLoad();
         }
     }
     public class PassMap : ClassMap<Pass>
@@ -88,17 +98,20 @@ namespace Data.Mappings
         {
             Id(x => x.Id);
             References(x => x.Event)
-                .Class(typeof (Class));
+                .Class(typeof (Class))
+                .Cascade.All()
+                .Not.LazyLoad();
         }
     }
 
-    public class ScheduleMap : ClassMap<Schedule>
-    {
-        public ScheduleMap()
-        {
-            Id(x => x.Id);
-            References(x => x.Bookings)
-                .Class(typeof(Booking));
-        }
-    }
+    //public class ScheduleMap : ClassMap<Schedule>
+    //{
+    //    public ScheduleMap()
+    //    {
+    //        Id(x => x.Id);
+    //        References(x => x.Bookings)
+    //            .Class(typeof(Booking))
+    //            .Not.LazyLoad();
+    //    }
+    //}
 }

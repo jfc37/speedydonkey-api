@@ -4,6 +4,7 @@ namespace Models
 {
     public interface ISchedule
     {
+        int Id { get; set; }
         IList<IBooking> Bookings { get; set; }
     }
         
