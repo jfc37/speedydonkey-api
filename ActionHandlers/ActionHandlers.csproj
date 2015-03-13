@@ -51,6 +51,7 @@
     <Compile Include="ActionReponse.cs" />
     <Compile Include="CreateHandlers\CreateBlockHandler.cs" />
     <Compile Include="CreateHandlers\CreateLevelHandler.cs" />
+    <Compile Include="CreateHandlers\CreateReferenceDataHandler.cs" />
     <Compile Include="CreateHandlers\CreateUserHandler.cs" />
     <Compile Include="CreateHandlers\CreateEntityHandler.cs" />
     <Compile Include="CreateHandlers\Strategies\BlockPopulatorStrategy.cs" />

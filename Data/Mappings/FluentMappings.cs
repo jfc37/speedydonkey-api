@@ -91,7 +91,6 @@ namespace Data.Mappings
                 .Not.LazyLoad();
         }
     }
-
     public class BookingMap : ClassMap<Booking>
     {
         public BookingMap()
@@ -104,14 +103,15 @@ namespace Data.Mappings
         }
     }
 
-    //public class ScheduleMap : ClassMap<Schedule>
-    //{
-    //    public ScheduleMap()
-    //    {
-    //        Id(x => x.Id);
-    //        References(x => x.Bookings)
-    //            .Class(typeof(Booking))
-    //            .Not.LazyLoad();
-    //    }
-    //}
+    public class ReferenceDataMap : ClassMap<ReferenceData>
+    {
+        public ReferenceDataMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.Type);
+            Map(x => x.Name);
+            Map(x => x.Description);
+            Map(x => x.Value);
+        }
+    }
 }

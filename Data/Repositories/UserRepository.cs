@@ -51,4 +51,12 @@ namespace Data.Repositories
         {
         }
     }
+
+    public class ReferenceDataRepository : GenericRepository<ReferenceData>
+    {
+        public ReferenceDataRepository(ISession session)
+            : base(session)
+        {
+        }
+    }
 }
