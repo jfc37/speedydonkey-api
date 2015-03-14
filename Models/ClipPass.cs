@@ -8,5 +8,10 @@
     public class ClipPass : Pass, IClipPass
     {
         public virtual int ClipsRemaining { get; set; }
+
+        public override bool IsValid()
+        {
+            return ClipsRemaining > 0 && base.IsValid();
+        }
     }
 }

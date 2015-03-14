@@ -19,6 +19,11 @@ namespace SpeedyDonkeyApi.Models
         {
             get { return "PassApi"; }
         }
+        public virtual bool IsValid()
+        {
+            var today = DateTime.Now.Date;
+            return StartDate >= today && today <= EndDate;
+        }
 
         protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Pass entity, PassModel model)
         {
@@ -49,5 +54,9 @@ namespace SpeedyDonkeyApi.Models
     public class ClipPassModel : PassModel, IClipPass
     {
         public int ClipsRemaining { get; set; }
+        public override bool IsValid()
+        {
+            return ClipsRemaining > 0 && base.IsValid();
+        }
     }
 }

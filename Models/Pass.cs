@@ -9,7 +9,7 @@ namespace Models
         DateTime EndDate { get; set; }
         string PassType { get; set; }
         IUser Owner { get; set; }
-
+        bool IsValid();
         //pending passes for when paying in class
         //all passes will have expiry date
 
@@ -28,6 +28,11 @@ namespace Models
         }
 
         public virtual IUser Owner { get; set; }
+        public virtual bool IsValid()
+        {
+            var today = DateTime.Now.Date;
+            return StartDate >= today && today <= EndDate;
+        }
 
         private PassType _passType;
     }
