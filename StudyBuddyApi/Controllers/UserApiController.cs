@@ -27,14 +27,5 @@ namespace SpeedyDonkeyApi.Controllers
         {
             return Post(model, x => new CreateUser(x));
         }
-
-        public HttpResponseMessage Post(int userId, [FromBody]PassModel pass)
-        {
-            return Post(new UserModel
-            {
-                Id = userId,
-                Passes = new List<IPass> { pass }
-            }, x => new PurchasePass(x));
-        }
     }
 }

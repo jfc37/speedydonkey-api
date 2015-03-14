@@ -16,11 +16,11 @@ namespace Data.Repositories
         void Delete(TEntity entity);
     }
 
-    public abstract class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity 
+    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity 
     {
         private readonly ISession _session;
 
-        protected GenericRepository(ISession session)
+        public GenericRepository(ISession session)
         {
             _session = session;
         }

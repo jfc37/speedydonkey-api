@@ -186,6 +186,7 @@
     <Compile Include="Controllers\BlockApiController.cs" />
     <Compile Include="Controllers\BookingApiController.cs" />
     <Compile Include="Controllers\ClassApiController.cs" />
+    <Compile Include="Controllers\DatabaseApiController.cs" />
     <Compile Include="Controllers\EnrolmentApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\LevelApiController.cs" />

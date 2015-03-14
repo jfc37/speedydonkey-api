@@ -87,6 +87,12 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "ReferenceDataApi", id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "DatabaseApi",
+                routeTemplate: "api/database",
+                defaults: new { controller = "DatabaseApi" }
+            );
+
 
             //Default to json
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();

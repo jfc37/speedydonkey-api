@@ -51,16 +51,13 @@ namespace SpeedyDonkeyApi
             builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionHandler<,>)).AsImplementedInterfaces();
 
-            builder.RegisterAssemblyTypes(typeof(IRepository<>).Assembly)
-                .AsClosedTypesOf(typeof(IRepository<>)).AsImplementedInterfaces();
-
             builder.RegisterGeneric(typeof(EntitySearch<>))
                 .As(typeof(IEntitySearch<>))
                 .InstancePerDependency();
 
-            //builder.RegisterGeneric(typeof(GenericRepository<>))
-            //    .As(typeof(IRepository<>))
-            //    .InstancePerDependency();
+            builder.RegisterGeneric(typeof(GenericRepository<>))
+                .As(typeof(IRepository<>))
+                .InstancePerDependency();
 
             builder.RegisterType<ActionHandlerOverlord>().As<IActionHandlerOverlord>();
             builder.RegisterType<ValidatorOverlord>().As<IValidatorOverlord>();
@@ -88,9 +85,6 @@ namespace SpeedyDonkeyApi
 
             //Setup log4net
             XmlConfigurator.Configure();
-
-            var sessionSetup = new SessionSetup(connectionString);
-            sessionSetup.BuildSchema();
         }
     }
 
@@ -100,7 +94,6 @@ namespace SpeedyDonkeyApi
         {
             Contract.Requires(connectionString != null); 
             SessionSetup sessionSetup = new SessionSetup(connectionString);
-            sessionSetup.BuildSchema();
             var sessionFactory = sessionSetup.GetSessionFactory();
 
             
