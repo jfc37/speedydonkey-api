@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using ActionHandlers;
 using ActionHandlers.CreateHandlers.Strategies;
+using ActionHandlers.EnrolmentProcess;
 using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
@@ -72,8 +73,9 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<QueryModifierFactory>().As<IQueryModifierFactory>();
             builder.RegisterType<BlockPopulatorStrategyFactory>().As<IBlockPopulatorStrategyFactory>();
             builder.RegisterType<CommonInterfaceCloner>().As<ICommonInterfaceCloner>();
-
-
+            builder.RegisterType<PassCreatorFactory>().As<IPassCreatorFactory>();
+            builder.RegisterType<UserPassAppender>().As<IUserPassAppender>();
+            builder.RegisterType<BlockEnrolmentService>().As<IBlockEnrolmentService>();
 
             // Build the container.
             var container = builder.Build();

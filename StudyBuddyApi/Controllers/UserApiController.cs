@@ -28,15 +28,6 @@ namespace SpeedyDonkeyApi.Controllers
             return Post(model, x => new CreateUser(x));
         }
 
-        public HttpResponseMessage Post(int userId, int blockId)
-        {
-            return Post(new UserModel
-            {
-                Id = userId,
-                EnroledBlocks = new List<IBlock> { new BlockModel { Id = blockId } }
-            }, x => new EnrolInBlock(x));
-        }
-
         public HttpResponseMessage Post(int userId, [FromBody]PassModel pass)
         {
             return Post(new UserModel

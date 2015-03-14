@@ -2,6 +2,7 @@
 using System.Linq;
 using Action;
 using ActionHandlers;
+using ActionHandlers.EnrolmentProcess;
 using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;
@@ -24,14 +25,17 @@ namespace ActionHandlersTests
                 .WithSuccessfulGet()
                 .WithUpdate();
             _blockRepositoryBuilder = new MockRepositoryBuilder<Block>()
-                .WithGet(new Block
-                {
-                    Classes = new List<IClass>()
+                .WithGetAll(new [] {
+                    new Block
+                    {
+                        Classes = new List<IClass>()
+                    }
                 });
 
             _action = new EnrolInBlock(new User
             {
                 Id = 5,
+                Passes = new List<IPass>(),
                 EnroledBlocks = new List<IBlock>
                 {
                     new Block
@@ -46,7 +50,11 @@ namespace ActionHandlersTests
 
         private EnrolInBlockHandler GetHandler()
         {
-            return new EnrolInBlockHandler(_userRepositoryBuilder.BuildObject(), _blockRepositoryBuilder.BuildObject(), _bookingRepositoryBuilder.BuildObject());
+            return new EnrolInBlockHandler(
+                _userRepositoryBuilder.BuildObject(),
+                new BlockEnrolmentService(_blockRepositoryBuilder.BuildObject(),
+                _bookingRepositoryBuilder.BuildObject()),
+                new UserPassAppender(new PassCreatorFactory()));
         }
 
         private void PerformAction()
@@ -67,7 +75,7 @@ namespace ActionHandlersTests
         {
             PerformAction();
 
-            _blockRepositoryBuilder.Mock.Verify(x => x.Get(_action.ActionAgainst.EnroledBlocks.Single().Id));
+            _blockRepositoryBuilder.Mock.Verify(x => x.GetAll());
         }
 
         [TestCase(1)]
@@ -80,7 +88,11 @@ namespace ActionHandlersTests
             {
                 classes.Add(new Class{Id = i});
             }
-            _blockRepositoryBuilder.WithGet(new Block {Classes = classes});
+            _blockRepositoryBuilder.WithGetAll(new [] {new Block
+            {
+                Id = _action.ActionAgainst.EnroledBlocks.Single().Id,
+                Classes = classes
+            }});
             _bookingRepositoryBuilder.WithGetAll(classes.Select(x => new Booking{
                 Event = new Class
                 {
