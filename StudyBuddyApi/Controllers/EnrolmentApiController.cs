@@ -18,14 +18,16 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
-        public HttpResponseMessage Post([FromBody] EnrolmentModel model)
+        public HttpResponseMessage Post(int id, [FromBody] EnrolmentModel model)
         {
             var user = new UserModel
             {
-                Id = model.UserId,
-                EnroledBlocks = model.BlockIds.Select(x => (IBlock) new BlockModel{Id = x}).ToList(),
-                Passes = model.PassTypes.Select(x => (IPass) new PassModel{PassType = x}).ToList()
+                Id = id
             };
+            if (model.BlockIds != null)
+                user.EnroledBlocks = model.BlockIds.Select(x => (IBlock) new BlockModel {Id = x}).ToList();
+            if (model.PassTypes != null)
+                user.Passes = model.PassTypes.Select(x => (IPass) new PassModel {PassType = x}).ToList();
             return Post(user, x => new EnrolInBlock(x));
         }
     }

@@ -26,14 +26,17 @@ namespace ActionHandlers.EnrolmentProcess
         public User Handle(EnrolInBlock action)
         {
             var user = _userRepository.Get(action.ActionAgainst.Id);
-            _blockEnrolmentService.EnrolInBlocks(user, action.ActionAgainst.EnroledBlocks.Select(x => x.Id).ToList());
+            if (action.ActionAgainst.EnroledBlocks != null)
+            {
+                _blockEnrolmentService.EnrolInBlocks(user, action.ActionAgainst.EnroledBlocks.Select(x => x.Id).ToList());   
+            }
             AddPassToUser(user, action);
             return _userRepository.Update(user);
         }
 
         private void AddPassToUser(User user, EnrolInBlock action)
         {
-            if (action.ActionAgainst.Passes.Any())
+            if (action.ActionAgainst.Passes != null)
             {
                 foreach (var pass in action.ActionAgainst.Passes)
                 {
