@@ -5,20 +5,17 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using ActionHandlers;
-using ActionHandlers.CreateHandlers;
 using ActionHandlers.CreateHandlers.Strategies;
 using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
 using Common;
-using Data;
 using Data.Mappings;
 using Data.Repositories;
 using Data.Searches;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using log4net.Config;
-using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using SpeedyDonkeyApi.Services;
 using Validation;
@@ -59,6 +56,10 @@ namespace SpeedyDonkeyApi
             builder.RegisterGeneric(typeof(EntitySearch<>))
                 .As(typeof(IEntitySearch<>))
                 .InstancePerDependency();
+
+            //builder.RegisterGeneric(typeof(GenericRepository<>))
+            //    .As(typeof(IRepository<>))
+            //    .InstancePerDependency();
 
             builder.RegisterType<ActionHandlerOverlord>().As<IActionHandlerOverlord>();
             builder.RegisterType<ValidatorOverlord>().As<IValidatorOverlord>();

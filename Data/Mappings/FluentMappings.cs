@@ -16,7 +16,7 @@ namespace Data.Mappings
                 .Cascade.All()
                 .Table("UsersEnroledBlocks")
                 .AsSet()
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
             HasMany<Pass>(x => x.Passes)
                 .Not.LazyLoad()
                 .Cascade.All();
@@ -25,7 +25,7 @@ namespace Data.Mappings
                 //.Not.KeyNullable() //important and works only if set together 
                 //.Not.KeyUpdate()   //to prevent double update
                 .Cascade.All()
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
         }
     }
     public class LevelMap : ClassMap<Level>
@@ -38,7 +38,7 @@ namespace Data.Mappings
             Map(x => x.Name);
             Map(x => x.StartTime);
             HasMany<Block>(x => x.Blocks)
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
         }
     }
     public class BlockMap : ClassMap<Block>
@@ -50,15 +50,15 @@ namespace Data.Mappings
             Map(x => x.EndDate);
             References(x => x.Level)
                 .Class(typeof(Level))
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
             HasMany<Class>(x => x.Classes)
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
             HasManyToMany<User>(x => x.EnroledStudents)
                 .Cascade.All()
                 .Inverse()
                 .Table("UsersEnroledBlocks")
                 .AsSet()
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
         }
     }
     public class ClassMap : ClassMap<Class>
@@ -70,11 +70,11 @@ namespace Data.Mappings
             Map(x => x.EndTime);
             References(x => x.Block)
                 .Class(typeof(Block))
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
             //References(x => x.Booking)
             //    .Class(typeof (Booking))
             //    .Cascade.All()
-            //    .Not.LazyLoad();
+            //    ;//.Not.LazyLoad();
         }
     }
     public class PassMap : ClassMap<Pass>
@@ -88,7 +88,7 @@ namespace Data.Mappings
             References(x => x.Owner)
                 .Column("User_id")
                 .Class(typeof(User))
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
         }
     }
     public class BookingMap : ClassMap<Booking>
@@ -99,7 +99,7 @@ namespace Data.Mappings
             References(x => x.Event)
                 .Class(typeof (Class))
                 .Cascade.All()
-                .Not.LazyLoad();
+                ;//.Not.LazyLoad();
         }
     }
 
