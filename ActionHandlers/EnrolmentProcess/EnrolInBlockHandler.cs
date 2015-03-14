@@ -111,7 +111,7 @@ namespace ActionHandlers.EnrolmentProcess
             {
                 EndDate = DateTime.Now.Date.AddDays(6 * 7),
                 StartDate = DateTime.Now.Date,
-                PassType = PassType.Unlimited.ToString(),
+                PassType = PassType.Clip.ToString(),
                 ClipsRemaining = 6
             };
         }

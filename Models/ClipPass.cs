@@ -7,6 +7,6 @@
 
     public class ClipPass : Pass, IClipPass
     {
-        public int ClipsRemaining { get; set; }
+        public virtual int ClipsRemaining { get; set; }
     }
 }

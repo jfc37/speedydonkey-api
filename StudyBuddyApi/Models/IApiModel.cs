@@ -36,7 +36,7 @@ namespace SpeedyDonkeyApi.Models
             
         }
 
-        public IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor,
+        public virtual IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor,
             TEntity entity,
             ICommonInterfaceCloner cloner)
         {

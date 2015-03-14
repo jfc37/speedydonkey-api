@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using Common;
 using Models;
 using SpeedyDonkeyApi.Services;
 
@@ -27,5 +28,26 @@ namespace SpeedyDonkeyApi.Models
                 model.Owner = (IUser) userModel.CreateModelWithOnlyUrl(request, urlConstructor, entity.Owner.Id);
             }
         }
+
+        public override IApiModel<Pass> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, Pass entity,
+            ICommonInterfaceCloner cloner)
+        {
+            if (entity is ClipPass)
+            {
+                var clipPass = (PassModel) base.CloneFromEntity(request, urlConstructor, entity, cloner);
+                var clipPassModel = cloner.Clone<PassModel, ClipPassModel>(clipPass);
+                clipPassModel.ClipsRemaining = ((ClipPass) entity).ClipsRemaining;
+                return clipPassModel;
+            }
+            else
+            {
+                return base.CloneFromEntity(request, urlConstructor, entity, cloner);
+            }
+        }
+    }
+
+    public class ClipPassModel : PassModel, IClipPass
+    {
+        public int ClipsRemaining { get; set; }
     }
 }

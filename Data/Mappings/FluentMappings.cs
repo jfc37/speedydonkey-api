@@ -21,9 +21,6 @@ namespace Data.Mappings
                 .Not.LazyLoad()
                 .Cascade.All();
             HasMany<Booking>(x => x.Schedule)
-                //.Not.Inverse()     //this both options are very
-                //.Not.KeyNullable() //important and works only if set together 
-                //.Not.KeyUpdate()   //to prevent double update
                 .Cascade.All()
                 ;//.Not.LazyLoad();
         }
@@ -91,6 +88,13 @@ namespace Data.Mappings
                 ;//.Not.LazyLoad();
         }
     }
+    public class ClipPassMap : SubclassMap<ClipPass>
+    {
+        public ClipPassMap()
+        {
+            Map(x => x.ClipsRemaining);
+        }
+    }
     public class BookingMap : ClassMap<Booking>
     {
         public BookingMap()
@@ -102,7 +106,6 @@ namespace Data.Mappings
                 ;//.Not.LazyLoad();
         }
     }
-
     public class ReferenceDataMap : ClassMap<ReferenceData>
     {
         public ReferenceDataMap()
