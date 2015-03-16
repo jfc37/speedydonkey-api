@@ -14,13 +14,18 @@ namespace SpeedyDonkeyApi.Models
 
         public IList<UserScheduleModel> ConvertFromUser(User entity)
         {
+            var today = DateTime.Now.Date;
             return entity.Schedule.Select(x => new UserScheduleModel
             {
                 EndTime = x.Event.EndTime,
                 StartTime = x.Event.StartTime,
                 EventId = x.Event.Id,
                 Name = ((Class) x.Event).Block.Level.Name
-            }).ToList();
+            })
+            .Where(x => x.StartTime > today)
+            .OrderBy(x => x.StartTime)
+            .Take(10)
+            .ToList();
         }
     }
 }

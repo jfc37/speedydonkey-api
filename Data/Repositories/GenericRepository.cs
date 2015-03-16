@@ -44,15 +44,6 @@ namespace Data.Repositories
 
         public TEntity Update(TEntity entity)
         {
-            //using (var session = GetSession())
-            //{
-            //    //using (var transaction = session.BeginTransaction())
-            //    //{
-            //    //    session.Update(entity, entity.Id);
-            //    //    session.Flush();
-            //    //    transaction.Commit();
-            //    //}
-            //}
             _session.Update(entity, entity.Id);
             _session.Flush();
             return entity;
