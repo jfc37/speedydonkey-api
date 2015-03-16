@@ -14,7 +14,6 @@ namespace SpeedyDonkeyApi.Models
 
         public IList<UserScheduleModel> ConvertFromUser(User entity)
         {
-            var today = DateTime.Now.Date;
             return entity.Schedule.Select(x => new UserScheduleModel
             {
                 EndTime = x.Event.EndTime,
@@ -22,7 +21,7 @@ namespace SpeedyDonkeyApi.Models
                 EventId = x.Event.Id,
                 Name = ((Class) x.Event).Block.Level.Name
             })
-            .Where(x => x.StartTime > today)
+            .Where(x => x.StartTime > DateTime.Now.AddHours(-1))
             .OrderBy(x => x.StartTime)
             .Take(10)
             .ToList();
