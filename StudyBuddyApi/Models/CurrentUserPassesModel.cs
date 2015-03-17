@@ -18,7 +18,7 @@ namespace SpeedyDonkeyApi.Models
                 return new List<PassModel>();
             var validPasses = user.Passes.Where(x => x.IsValid());
             return
-                validPasses.Select(x => (PassModel) new PassModel().CloneFromEntity(request, urlConstructor, (Pass) x, cloner))
+                validPasses.Select(x => (PassModel) new PassModel().CloneFromEntity(request, urlConstructor, (Pass) x, cloner, false))
                     .ToList();
         }
     }

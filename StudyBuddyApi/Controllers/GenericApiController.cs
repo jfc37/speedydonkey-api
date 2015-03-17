@@ -48,7 +48,7 @@ namespace SpeedyDonkeyApi.Controllers
                 responseCode,
                 new ActionReponse<IApiModel<TEntity>>
                 {
-                    ActionResult = model.CloneFromEntity(Request, _urlConstructor, result.ActionResult, _cloner),
+                    ActionResult = model.CloneFromEntity(Request, _urlConstructor, result.ActionResult, _cloner, false),
                     ValidationResult = result.ValidationResult
                 });
         }
@@ -60,13 +60,13 @@ namespace SpeedyDonkeyApi.Controllers
             if (entity == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound);
 
-            var model = new TModel().CloneFromEntity(Request, _urlConstructor, entity, _cloner);
+            var model = new TModel().CloneFromEntity(Request, _urlConstructor, entity, _cloner, true);
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
         public HttpResponseMessage Get()
         {
             var allEntities = _repository.GetAll()
-                .Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x, _cloner))
+                .Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x, _cloner, false))
                 .ToList();
 
             return !allEntities.Any()
@@ -81,7 +81,7 @@ namespace SpeedyDonkeyApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
 
             return Request.CreateResponse(HttpStatusCode.OK,
-                matchingEntities.Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x, _cloner)).ToList());
+                matchingEntities.Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x, _cloner, false)).ToList());
         }
     }
 }

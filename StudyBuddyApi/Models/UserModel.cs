@@ -22,24 +22,24 @@ namespace SpeedyDonkeyApi.Models
             get { return "UserApi"; }
         }
 
-        protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, User entity, UserModel model)
-        {
-            if (entity.EnroledBlocks != null)
-            {
-                var blockModel = new BlockModel();
-                model.EnroledBlocks = entity.EnroledBlocks
-                    .Select(x => (IBlock) blockModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
-                    .ToList();
-            }
+        //protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, User entity, UserModel model)
+        //{
+        //    if (entity.EnroledBlocks != null)
+        //    {
+        //        var blockModel = new BlockModel();
+        //        model.EnroledBlocks = entity.EnroledBlocks
+        //            .Select(x => (IBlock) blockModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+        //            .ToList();
+        //    }
 
-            if (entity.Passes != null)
-            {
-                var passModel = new PassModel();
-                model.Passes = entity.Passes
-                    .Select(x => (IPass) passModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
-                    .ToList();
-            }
-        }
+        //    if (entity.Passes != null)
+        //    {
+        //        var passModel = new PassModel();
+        //        model.Passes = entity.Passes
+        //            .Select(x => (IPass) passModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+        //            .ToList();
+        //    }
+        //}
 
         protected override void AddFullChild(HttpRequestMessage request, IUrlConstructor urlConstructor, User entity, UserModel model,
             ICommonInterfaceCloner cloner)
@@ -48,7 +48,7 @@ namespace SpeedyDonkeyApi.Models
             {
                 var bookingModel = new BookingModel();
                 model.Schedule = entity.Schedule
-                    .Select(x => (IBooking)bookingModel.CloneFromEntity(request, urlConstructor, (Booking) x, cloner))
+                    .Select(x => (IBooking)bookingModel.CloneFromEntity(request, urlConstructor, (Booking) x, cloner, false))
                     .ToList();
             }
         }
