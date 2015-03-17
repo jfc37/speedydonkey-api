@@ -12,8 +12,8 @@ namespace SpeedyDonkeyApi.Models
 
         TEntity ToEntity(ICommonInterfaceCloner cloner);
 
-        IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity, ICommonInterfaceCloner cloner, bool includeChildren);
-        //IApiModel<TEntity> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id);
+        IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity, ICommonInterfaceCloner cloner);
+        IApiModel<TEntity> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id);
     }
 
     public abstract class ApiModel<TEntity, TModel> : IApiModel<TEntity>
@@ -38,16 +38,13 @@ namespace SpeedyDonkeyApi.Models
 
         public virtual IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor,
             TEntity entity,
-            ICommonInterfaceCloner cloner, bool includeChildren)
+            ICommonInterfaceCloner cloner)
         {
             var model = cloner.Clone<TEntity, TModel>(entity);
             model.Url = urlConstructor.Construct(RouteName, new {id = entity.Id}, request);
 
-            //if (includeChildren)
-            //{
-            //    AddFullChild(request, urlConstructor, entity, model, cloner);
-            //    AddChildUrls(request, urlConstructor, entity, model);   
-            //}
+            AddFullChild(request, urlConstructor, entity, model, cloner);
+            AddChildUrls(request, urlConstructor, entity, model);
 
             return model;
         }
@@ -60,13 +57,13 @@ namespace SpeedyDonkeyApi.Models
             TEntity entity, TModel model,
             ICommonInterfaceCloner cloner) { }
 
-        //public IApiModel<TEntity> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id)
-        //{
-        //    return new TModel
-        //    {
-        //        Url = urlConstructor.Construct(RouteName, new {id}, request),
-        //        Id = id
-        //    };
-        //}
+        public IApiModel<TEntity> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id)
+        {
+            return new TModel
+            {
+                Url = urlConstructor.Construct(RouteName, new {id}, request),
+                Id = id
+            };
+        }
     }
 }

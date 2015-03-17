@@ -23,15 +23,15 @@ namespace SpeedyDonkeyApi.Models
             get { return "LevelApi"; }
         }
 
-        //protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Level entity, LevelModel model)
-        //{
-        //    if (entity.Blocks != null)
-        //    {
-        //        var blockModel = new BlockModel();
-        //        model.Blocks = entity.Blocks
-        //            .Select(x => (IBlock) blockModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
-        //            .ToList();
-        //    }
-        //}
+        protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Level entity, LevelModel model)
+        {
+            if (entity.Blocks != null)
+            {
+                var blockModel = new BlockModel();
+                model.Blocks = entity.Blocks
+                    .Select(x => (IBlock) blockModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+                    .ToList();
+            }
+        }
     }
 }

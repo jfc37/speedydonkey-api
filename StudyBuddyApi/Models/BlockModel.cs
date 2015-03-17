@@ -22,36 +22,36 @@ namespace SpeedyDonkeyApi.Models
             get { return "BlockApi"; }
         }
 
-        //protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Block entity, BlockModel model)
-        //{
-        //    if (entity.Level != null)
-        //    {
-        //        model.Level = (ILevel)new LevelModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Level.Id);
-        //    }
+        protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Block entity, BlockModel model)
+        {
+            //if (entity.Level != null)
+            //{
+            //    model.Level = (ILevel) new LevelModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Level.Id);
+            //}
 
-        //    if (entity.EnroledStudents != null)
-        //    {
-        //        var userModel = new UserModel();
-        //        model.EnroledStudents = entity.EnroledStudents
-        //            .Select(x => (IUser)userModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
-        //            .ToList();
-        //    }
+            if (entity.EnroledStudents != null)
+            {
+                var userModel = new UserModel();
+                model.EnroledStudents = entity.EnroledStudents
+                    .Select(x => (IUser)userModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+                    .ToList();
+            }
 
-        //    if (entity.Classes != null)
-        //    {
-        //        var classModel = new ClassModel();
-        //        model.Classes = entity.Classes
-        //            .Select(x => (IClass)classModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
-        //            .ToList();
-        //    }
-        //}
+            if (entity.Classes != null)
+            {
+                var classModel = new ClassModel();
+                model.Classes = entity.Classes
+                    .Select(x => (IClass)classModel.CreateModelWithOnlyUrl(request, urlConstructor, x.Id))
+                    .ToList();
+            }
+        }
 
         protected override void AddFullChild(HttpRequestMessage request, IUrlConstructor urlConstructor, Block entity, BlockModel model,
             ICommonInterfaceCloner cloner)
         {
             if (entity.Level != null)
             {
-                model.Level = (ILevel)new LevelModel().CloneFromEntity(request, urlConstructor, (Level)entity.Level, cloner, false);
+                model.Level = (ILevel)new LevelModel().CloneFromEntity(request, urlConstructor, (Level) entity.Level, cloner);
             }
         }
 

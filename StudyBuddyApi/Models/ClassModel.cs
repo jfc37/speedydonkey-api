@@ -21,17 +21,17 @@ namespace SpeedyDonkeyApi.Models
         public IList<IUser> ActualStudents { get; set; }
         public IBlock Block { get; set; }
 
-        //protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Class entity, ClassModel model)
-        //{
-        //    if (entity.Block != null)
-        //    {
-        //        model.Block = (IBlock)new BlockModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Block.Id);
-        //    }
+        protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Class entity, ClassModel model)
+        {
+            if (entity.Block != null)
+            {
+                model.Block = (IBlock)new BlockModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Block.Id);
+            }
 
-        //    //if (entity.Booking!= null)
-        //    //{
-        //    //    model.Booking = (IBooking)new BookingModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Booking.Id);
-        //    //}
-        //}
+            //if (entity.Booking!= null)
+            //{
+            //    model.Booking = (IBooking)new BookingModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Booking.Id);
+            //}
+        }
     }
 }
