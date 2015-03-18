@@ -45,6 +45,7 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
+            Map(x => x.Name);
             References(x => x.Level)
                 .Class(typeof(Level))
                 ;//.Not.LazyLoad();
