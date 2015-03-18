@@ -193,6 +193,7 @@
     <Compile Include="Controllers\PassApiController.cs" />
     <Compile Include="Controllers\ReferenceDataApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
+    <Compile Include="Controllers\UserEnroledBlocksApiController.cs" />
     <Compile Include="Controllers\UserPassesApiController.cs" />
     <Compile Include="Controllers\UserScheduleApiController.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Models\BlockModel.cs" />
     <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
+    <Compile Include="Models\UserEnroledBlocksModel.cs" />
     <Compile Include="Models\CurrentUserPassesModel.cs" />
     <Compile Include="Models\EnrolmentModel.cs" />
     <Compile Include="Models\IApiModel.cs" />

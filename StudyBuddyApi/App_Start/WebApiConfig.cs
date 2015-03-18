@@ -76,6 +76,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "UserEnroledBlocksApi",
+                routeTemplate: "api/users/{id}/blocks",
+                defaults: new { controller = "UserEnroledBlocksApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "UserPassesApi",
                 routeTemplate: "api/users/{id}/passes",
                 defaults: new { controller = "UserPassesApi", id = RouteParameter.Optional }
