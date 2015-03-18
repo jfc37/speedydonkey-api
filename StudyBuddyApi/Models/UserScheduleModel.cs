@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Models;
+using NHibernate;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -14,7 +15,8 @@ namespace SpeedyDonkeyApi.Models
 
         public IList<UserScheduleModel> ConvertFromUser(User entity)
         {
-            return entity.Schedule.Select(x => new UserScheduleModel
+            var schedule = entity.Schedule.ToList();
+            var upcomingSchedule = schedule.Select(x => new UserScheduleModel
             {
                 EndTime = x.Event.EndTime,
                 StartTime = x.Event.StartTime,
@@ -25,6 +27,7 @@ namespace SpeedyDonkeyApi.Models
             .OrderBy(x => x.StartTime)
             .Take(10)
             .ToList();
+            return upcomingSchedule;
         }
     }
 }

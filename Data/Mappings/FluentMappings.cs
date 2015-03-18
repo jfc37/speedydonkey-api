@@ -17,7 +17,6 @@ namespace Data.Mappings
                 .Table("UsersEnroledBlocks")
                 .AsSet();
             HasMany<Pass>(x => x.Passes)
-                .Not.LazyLoad()
                 .Cascade.All();
             HasMany<Booking>(x => x.Schedule)
                 .Cascade.All();
@@ -92,7 +91,8 @@ namespace Data.Mappings
             Id(x => x.Id);
             References(x => x.Event)
                 .Class(typeof (Class))
-                .Cascade.All();
+                .Cascade.All()
+                .Not.LazyLoad();
         }
     }
     public class ReferenceDataMap : ClassMap<ReferenceData>
