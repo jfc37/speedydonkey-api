@@ -234,6 +234,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="newrelic\Extensions\CoreInstrumentation.xml" />
+    <Content Include="newrelic\Extensions\CustomInstrumentation.xml" />
     <Content Include="newrelic\Extensions\NewRelic.Collections.dll" />
     <Content Include="newrelic\Extensions\NewRelic.Core.dll" />
     <Content Include="newrelic\Extensions\NewRelic.Dispatchers.dll" />
