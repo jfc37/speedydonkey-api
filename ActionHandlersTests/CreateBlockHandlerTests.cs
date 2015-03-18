@@ -34,7 +34,7 @@ namespace ActionHandlersTests
             });
         }
 
-        protected CreateBlockHandler GetHandler()
+        private CreateBlockHandler GetHandler()
         {
             return new CreateBlockHandler(
                 RepositoryBuilder.BuildObject(), 
@@ -62,7 +62,8 @@ namespace ActionHandlersTests
                 .WithGet(new Level
                 {
                     StartTime = DateTime.Now,
-                    Blocks = new List<IBlock>()
+                    Blocks = new List<IBlock>(),
+                    Name = "My Name"
                 });
         }
 
@@ -82,6 +83,16 @@ namespace ActionHandlersTests
             var createdBlock = RepositoryBuilder.CreatedEntity;
             var level = Action.ActionAgainst.Level;
             Assert.AreEqual(level.StartTime, createdBlock.StartDate);
+        }
+
+        [Test]
+        public void Then_block_should_get_the_level_name()
+        {
+            PerformAction();
+
+            var createdBlock = RepositoryBuilder.CreatedEntity;
+            var level = Action.ActionAgainst.Level;
+            Assert.AreEqual(level.Name, createdBlock.Name);
         }
 
         [TestCase(1)]
@@ -202,6 +213,16 @@ namespace ActionHandlersTests
             PerformAction();
 
             RepositoryBuilder.Mock.Verify(x => x.Create(Action.ActionAgainst), Times.Once);
+        }
+
+        [Test]
+        public void Then_block_should_get_the_level_name()
+        {
+            PerformAction();
+
+            var createdBlock = RepositoryBuilder.CreatedEntity;
+            var level = Action.ActionAgainst.Level;
+            Assert.AreEqual(level.Name, createdBlock.Name);
         }
 
         [TestCase(4)]

@@ -38,7 +38,7 @@ namespace ActionHandlers.CreateHandlers
                 ShouldCreateEntity = false;
                 return;
             }
-
+            action.ActionAgainst.Name = level.Name;
             var populatorStrategy = _blockPopulatorStrategyFactory.GetStrategy(level);
             populatorStrategy.PopulateBlock(action.ActionAgainst, level);
         }
