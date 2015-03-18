@@ -84,6 +84,9 @@
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NewRelic.Api.Agent">
+      <HintPath>..\packages\NewRelic.Azure.WebSites.4.1.134.0\lib\NewRelic.Api.Agent.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -230,9 +233,42 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="newrelic\Extensions\CoreInstrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Collections.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Core.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Dispatchers.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Memoization.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.TransactionContext.Asp.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.TransactionContext.Default.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.TransactionContext.Wcf3.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Asp35.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Asp35.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Mvc3.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.Mvc3.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.NServiceBus.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.NServiceBus.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebApi1.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebApi1.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebApi2.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.Providers.Wrapper.WebApi2.Instrumentation.xml" />
+    <Content Include="newrelic\Extensions\NewRelic.Reflection.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.SystemExtensions.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.SystemInterfaces.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.TypeInstantiation.dll" />
+    <Content Include="newrelic\Extensions\NewRelic.WeakActions.dll" />
+    <Content Include="newrelic\NewRelic.Agent.Core.dll" />
+    <Content Include="newrelic\NewRelic.Agent.Extensions.dll" />
+    <Content Include="newrelic\newrelic.config" />
+    <Content Include="newrelic\Extensions\extension.xsd">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="newrelic\newrelic.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\api-speedydonkey - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\api-speedydonkey - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="newrelic\NewRelic.Profiler.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
