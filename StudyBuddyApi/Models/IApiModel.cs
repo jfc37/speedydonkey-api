@@ -13,7 +13,6 @@ namespace SpeedyDonkeyApi.Models
         TEntity ToEntity(ICommonInterfaceCloner cloner);
 
         IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity, ICommonInterfaceCloner cloner);
-        IApiModel<TEntity> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id);
     }
 
     public abstract class ApiModel<TEntity, TModel> : IApiModel<TEntity>
@@ -43,27 +42,7 @@ namespace SpeedyDonkeyApi.Models
             var model = cloner.Clone<TEntity, TModel>(entity);
             model.Url = urlConstructor.Construct(RouteName, new {id = entity.Id}, request);
 
-            AddFullChild(request, urlConstructor, entity, model, cloner);
-            AddChildUrls(request, urlConstructor, entity, model);
-
             return model;
-        }
-
-        protected virtual void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity, TModel model)
-        {
-        }
-
-        protected virtual void AddFullChild(HttpRequestMessage request, IUrlConstructor urlConstructor,
-            TEntity entity, TModel model,
-            ICommonInterfaceCloner cloner) { }
-
-        public IApiModel<TEntity> CreateModelWithOnlyUrl(HttpRequestMessage request, IUrlConstructor urlConstructor, int id)
-        {
-            return new TModel
-            {
-                Url = urlConstructor.Construct(RouteName, new {id}, request),
-                Id = id
-            };
         }
     }
 }

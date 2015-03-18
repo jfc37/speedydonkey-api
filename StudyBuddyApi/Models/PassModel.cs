@@ -25,15 +25,6 @@ namespace SpeedyDonkeyApi.Models
             return StartDate >= today && today <= EndDate;
         }
 
-        protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Pass entity, PassModel model)
-        {
-            if (entity.Owner != null)
-            {
-                var userModel = new UserModel();
-                model.Owner = (IUser) userModel.CreateModelWithOnlyUrl(request, urlConstructor, entity.Owner.Id);
-            }
-        }
-
         public override IApiModel<Pass> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, Pass entity,
             ICommonInterfaceCloner cloner)
         {

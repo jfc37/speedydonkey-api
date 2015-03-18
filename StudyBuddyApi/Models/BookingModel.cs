@@ -13,13 +13,5 @@ namespace SpeedyDonkeyApi.Models
 
         public IRoom Room { get; set; }
         public IEvent Event { get; set; }
-
-        protected override void AddChildUrls(HttpRequestMessage request, IUrlConstructor urlConstructor, Booking entity, BookingModel model)
-        {
-            if (entity.Event != null)
-            {
-                model.Event = (IEvent) new ClassModel().CreateModelWithOnlyUrl(request, urlConstructor, entity.Event.Id);
-            }
-        }
     }
 }
