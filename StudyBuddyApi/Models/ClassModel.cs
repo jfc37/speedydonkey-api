@@ -18,6 +18,7 @@ namespace SpeedyDonkeyApi.Models
         public IBooking Booking { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public string Name { get; set; }
         public IList<IUser> ActualStudents { get; set; }
         public IBlock Block { get; set; }
     }

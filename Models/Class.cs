@@ -18,6 +18,7 @@ namespace Models
         public virtual IList<ITeacher> RegisteredStudents { get; set; }
         public virtual DateTime StartTime { get; set; }
         public virtual DateTime EndTime { get; set; }
+        public virtual string Name { get; set; }
         public virtual IList<IUser> ActualStudents { get; set; }
         public virtual IBlock Block { get; set; }
     }

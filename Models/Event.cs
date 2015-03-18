@@ -11,5 +11,6 @@ namespace Models
         //IBooking Booking { get; set; }
         DateTime StartTime { get; set; }
         DateTime EndTime { get; set; }
+        string Name { get; set; }
     }
 }

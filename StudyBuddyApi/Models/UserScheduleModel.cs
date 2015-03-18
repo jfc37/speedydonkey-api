@@ -19,7 +19,7 @@ namespace SpeedyDonkeyApi.Models
                 EndTime = x.Event.EndTime,
                 StartTime = x.Event.StartTime,
                 EventId = x.Event.Id,
-                Name = ((Class) x.Event).Block.Level.Name
+                Name = x.Event.Name
             })
             .Where(x => x.StartTime > DateTime.Now.AddHours(-1))
             .OrderBy(x => x.StartTime)
