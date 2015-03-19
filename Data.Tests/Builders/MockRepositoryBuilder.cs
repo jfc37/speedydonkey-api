@@ -36,7 +36,14 @@ namespace Data.Tests.Builders
                 {
                     new T() 
                 });
+            Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
+                .Returns(new []
+                {
+                    new T() 
+                });
             Mock.Setup(x => x.Get(It.IsAny<int>()))
+                .Returns(new T());
+            Mock.Setup(x => x.GetWithChildren(It.IsAny<int>(), It.IsAny<IList<string>>()))
                 .Returns(new T());
             return this;
         }
@@ -52,12 +59,16 @@ namespace Data.Tests.Builders
         {
             Mock.Setup(x => x.GetAll())
                 .Returns(new List<T>());
+            Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
+                .Returns(new List<T>());
             return this;
         }
 
         public MockRepositoryBuilder<T> WithGetAll(IEnumerable<T> entities)
         {
             Mock.Setup(x => x.GetAll())
+                .Returns(entities);
+            Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
                 .Returns(entities);
             return this;
         }

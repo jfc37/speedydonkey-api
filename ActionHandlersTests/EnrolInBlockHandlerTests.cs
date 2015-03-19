@@ -5,6 +5,7 @@ using ActionHandlers;
 using ActionHandlers.EnrolmentProcess;
 using Data.Tests.Builders;
 using Models;
+using Moq;
 using NUnit.Framework;
 
 namespace ActionHandlersTests
@@ -67,7 +68,7 @@ namespace ActionHandlersTests
         {
             PerformAction();
 
-            _userRepositoryBuilder.Mock.Verify(x => x.Get(_action.ActionAgainst.Id));
+            _userRepositoryBuilder.Mock.Verify(x => x.GetWithChildren(_action.ActionAgainst.Id, It.IsAny<IList<string>>()));
         }
 
         [Test]
@@ -75,7 +76,7 @@ namespace ActionHandlersTests
         {
             PerformAction();
 
-            _blockRepositoryBuilder.Mock.Verify(x => x.GetAll());
+            _blockRepositoryBuilder.Mock.Verify(x => x.GetAllWithChildren(It.IsAny<IList<string>>()));
         }
 
         [TestCase(1)]
