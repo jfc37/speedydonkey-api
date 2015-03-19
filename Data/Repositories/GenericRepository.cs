@@ -39,7 +39,12 @@ namespace Data.Repositories
     public interface IRepository<TEntity> where TEntity : IEntity
     {
         IEnumerable<TEntity> GetAll();
+
+        IEnumerable<TEntity> GetAllWithChildren(IList<string> children);
+
         TEntity Get(int id);
+
+        TEntity GetWithChildren(int id, IList<string> children);
 
         TEntity Create(TEntity entity);
 
@@ -63,9 +68,33 @@ namespace Data.Repositories
                     .List<TEntity>();
         }
 
+        public IEnumerable<TEntity> GetAllWithChildren(IList<string> children)
+        {
+            var search = _session.CreateCriteria<TEntity>();
+            foreach (var child in children)
+            {
+                search.SetFetchMode(child, FetchMode.Join);
+            }
+            var completedSearch = search.Future<TEntity>();
+            return completedSearch.ToList();
+        }
+
         public TEntity Get(int id)
         {
             return _session.Get<TEntity>(id);
+        }
+
+        public TEntity GetWithChildren(int id, IList<string> children)
+        {
+            var search = _session.CreateCriteria<TEntity>();
+            foreach (var child in children)
+            {
+                search.SetFetchMode(child, FetchMode.Join);
+            }
+            var completedSearch = search.Future<TEntity>();
+
+            var entity = completedSearch.First(x => x.Id == id);
+            return entity;
         }
 
         public TEntity Create(TEntity entity)

@@ -25,7 +25,7 @@ namespace ActionHandlers.EnrolmentProcess
 
         public void EnrolInBlocks(User user, IList<int> blockIds)
         {
-            var blocksBeingEnroledIn = _blockRepository.GetAll()
+            var blocksBeingEnroledIn = _blockRepository.GetAllWithChildren(new []{"Classes"})
                 .Where(b => blockIds.Any(x => x == b.Id))
                 .ToList();
             AddBlocksToUser(user, blocksBeingEnroledIn);
@@ -38,7 +38,7 @@ namespace ActionHandlers.EnrolmentProcess
             {
                 user.Schedule = new List<IBooking>();
             }
-            var bookings = _bookingRepository.GetAll().Where(x => classes.Select(c => c.Id).Contains(x.Event.Id));
+            var bookings = _bookingRepository.GetAllWithChildren(new []{"Event"}).Where(x => classes.Select(c => c.Id).Contains(x.Event.Id));
             foreach (var booking in bookings)
             {
                 user.Schedule.Add(booking);
