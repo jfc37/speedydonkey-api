@@ -47,8 +47,9 @@ namespace Data.Repositories
                 .SetFetchMode("Schedule.Event", FetchMode.Join)
                 .Future<User>();
             var user = search.First(x => x.Id == id);
+            var timeBefore = DateTime.Now.AddHours(-1);
             return user.Schedule.Select(x => x.Event)
-                .Where(x => x.StartTime > DateTime.Now.AddHours(-1))
+                .Where(x => x.StartTime > timeBefore)
                 .OrderBy(x => x.StartTime)
                 .Take(10).ToList();
         }
