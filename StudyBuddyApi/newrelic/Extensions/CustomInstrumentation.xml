@@ -1,22 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <extension xmlns="urn:newrelic-extension">
   <instrumentation>
-    <!-- instrument CustomInstrumentDemo.Controllers.FirstController.FirstExample and creates metric named Custom/Foo1 -->
-    <tracerFactory metricName="Custom/UserScheduleController">
-      <match assemblyName="SpeedyDonkeyApi" className="SpeedyDonkeyApi.Controllers.UserScheduleApiController">
-        <exactMethodMatcher methodName="Get" />
-      </match>
-    </tracerFactory>
-    <!-- instrument CustomInstrumentDemo.Controllers.FirstController.FirstExample and creates metric named Custom/Foo1 -->
-    <tracerFactory metricName="Custom/UserScheduleController">
-      <match assemblyName="SpeedyDonkeyApi" className="SpeedyDonkeyApi.Controllers.UserScheduleApiController">
-        <exactMethodMatcher methodName="Get" />
-      </match>
-    </tracerFactory>
-    <!-- instrument CustomInstrumentDemo.Controllers.FirstController.FirstExample and creates metric named Custom/Foo1 -->
-    <tracerFactory metricName="Custom/UserScheduleRepository">
-      <match assemblyName="Data" className="Data.Repositories.UserScheduleRepository">
+    <!-- Define the method which triggers the creation of a transaction. -->
+    <tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.BackgroundThreadTracerFactory" metricName="UserSchedule/Repo">
+      <match assemblyName="AssemblyName" className="Data.Repositories.UserScheduleRepository">
         <exactMethodMatcher methodName="Get" />
       </match>
     </tracerFactory>
