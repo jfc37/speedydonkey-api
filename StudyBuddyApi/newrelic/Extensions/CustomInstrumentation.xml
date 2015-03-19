@@ -3,15 +3,15 @@
 <extension xmlns="urn:newrelic-extension">
   <instrumentation>
     <!-- instrument CustomInstrumentDemo.Controllers.FirstController.FirstExample and creates metric named Custom/Foo1 -->
-    <tracerFactory metricName="Custom/UserSchedule">
+    <tracerFactory metricName="Custom/UserScheduleController">
       <match assemblyName="SpeedyDonkeyApi" className="SpeedyDonkeyApi.Controllers.UserScheduleApiController">
         <exactMethodMatcher methodName="Get" />
       </match>
     </tracerFactory>
-    <!-- instrument CustomInstrumentDemo.Controllers.SecondController.SecondExample -->
-    <tracerFactory>
-      <match assemblyName="CustomInstrumentDemo" className="CustomInstrumentDemo.Controllers.SecondController">
-        <exactMethodMatcher methodName="SecondExample" />
+    <!-- instrument CustomInstrumentDemo.Controllers.FirstController.FirstExample and creates metric named Custom/Foo1 -->
+    <tracerFactory metricName="Custom/UserScheduleRepository">
+      <match assemblyName="Data" className="Data.Repositories.UserScheduleRepository">
+        <exactMethodMatcher methodName="Get" />
       </match>
     </tracerFactory>
   </instrumentation>

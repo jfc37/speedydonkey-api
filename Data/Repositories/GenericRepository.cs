@@ -22,32 +22,13 @@ namespace Data.Repositories
 
         public IList<IEvent> Get(int id)
         {
-            //User userAlias = null;
-            //Booking bookingAlias = null;
-            //Event eventAlias = null;
-
-
-            //var events = _session.QueryOver<Event>(() => eventAlias)
-            //    .Future<Event>();
-
-            //var bookings = _session.QueryOver<Booking>(() => bookingAlias)
-            //    .JoinAlias(x => x.Event, () => eventAlias)
-            //    .Future<Booking>();
-
-            //var users = _session.QueryOver<User>(() => userAlias)
-            //    .JoinAlias(x => x.Schedule, () => bookingAlias)
-            //    .Where(x => x.Id == id)
-            //    .Future<User>();
-
-            //var userList = users.ToList();
-
+            var timeBefore = DateTime.Now.AddHours(-1);
 
             var search = _session.CreateCriteria<User>()
                 .SetFetchMode("Schedule", FetchMode.Join)
                 .SetFetchMode("Schedule.Event", FetchMode.Join)
                 .Future<User>();
             var user = search.First(x => x.Id == id);
-            var timeBefore = DateTime.Now.AddHours(-1);
             return user.Schedule.Select(x => x.Event)
                 .Where(x => x.StartTime > timeBefore)
                 .OrderBy(x => x.StartTime)
