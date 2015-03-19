@@ -22,10 +22,31 @@ namespace Data.Repositories
 
         public IList<IEvent> Get(int id)
         {
-            var search = _session.CreateCriteria<User>()
-                .SetFetchMode("Schedule.Event", FetchMode.Eager);
+            //User userAlias = null;
+            //Booking bookingAlias = null;
+            //Event eventAlias = null;
 
-            var user = search.List<User>().Single(x => x.Id == id);
+
+            //var events = _session.QueryOver<Event>(() => eventAlias)
+            //    .Future<Event>();
+
+            //var bookings = _session.QueryOver<Booking>(() => bookingAlias)
+            //    .JoinAlias(x => x.Event, () => eventAlias)
+            //    .Future<Booking>();
+
+            //var users = _session.QueryOver<User>(() => userAlias)
+            //    .JoinAlias(x => x.Schedule, () => bookingAlias)
+            //    .Where(x => x.Id == id)
+            //    .Future<User>();
+
+            //var userList = users.ToList();
+
+
+            var search = _session.CreateCriteria<User>()
+                .SetFetchMode("Schedule", FetchMode.Join)
+                .SetFetchMode("Schedule.Event", FetchMode.Join)
+                .Future<User>();
+            var user = search.First(x => x.Id == id);
             return user.Schedule.Select(x => x.Event)
                 .Where(x => x.StartTime > DateTime.Now.AddHours(-1))
                 .OrderBy(x => x.StartTime)
