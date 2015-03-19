@@ -5,27 +5,35 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Models;
+using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
     public class UserScheduleApiController : ApiController
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly IAdvancedRepository<User, IList<IEvent>> _userRepository;
+        private readonly IUrlConstructor _urlConstructor;
+        private readonly ICommonInterfaceCloner _cloner;
 
-        public UserScheduleApiController(IRepository<User> userRepository)
+        public UserScheduleApiController(
+            IAdvancedRepository<User, IList<IEvent>> userRepository,
+            IUrlConstructor urlConstructor,
+            ICommonInterfaceCloner cloner)
         {
             _userRepository = userRepository;
+            _urlConstructor = urlConstructor;
+            _cloner = cloner;
         }
 
         public HttpResponseMessage Get(int id)
         {
-            var user = _userRepository.Get(id);
-            var userScheduleModels = new UserScheduleModel().ConvertFromUser(user);
-            return userScheduleModels.Any()
-                ? Request.CreateResponse(userScheduleModels)
+            var userSchedule = _userRepository.Get(id);
+            return userSchedule.Any()
+                ? Request.CreateResponse(userSchedule.OfType<Class>().Select(x => new ClassModel().CloneFromEntity(Request, _urlConstructor, x, _cloner)))
                 : Request.CreateResponse(HttpStatusCode.NotFound);
         }
     }

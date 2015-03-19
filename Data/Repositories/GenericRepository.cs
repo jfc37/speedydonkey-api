@@ -1,9 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Models;
 using NHibernate;
 
 namespace Data.Repositories
 {
+    public interface IAdvancedRepository<TEntity, TModel> where TEntity : IEntity
+    {
+        TModel Get(int id);
+    }
+
+    public class UserScheduleRepository : IAdvancedRepository<User, IList<IEvent>>
+    {
+        private readonly ISession _session;
+
+        public UserScheduleRepository(ISession session)
+        {
+            _session = session;
+        }
+
+        public IList<IEvent> Get(int id)
+        {
+            var search = _session.CreateCriteria<User>()
+                .SetFetchMode("Schedule.Event", FetchMode.Eager);
+
+            var user = search.List<User>().Single(x => x.Id == id);
+            return user.Schedule.Select(x => x.Event)
+                .Where(x => x.StartTime > DateTime.Now.AddHours(-1))
+                .OrderBy(x => x.StartTime)
+                .Take(10).ToList();
+        }
+    }
+
     public interface IRepository<TEntity> where TEntity : IEntity
     {
         IEnumerable<TEntity> GetAll();

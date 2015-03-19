@@ -51,6 +51,9 @@ namespace SpeedyDonkeyApi
             builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionHandler<,>)).AsImplementedInterfaces();
 
+            builder.RegisterAssemblyTypes(typeof(UserScheduleRepository).Assembly)
+                .AsClosedTypesOf(typeof(IAdvancedRepository<,>)).AsImplementedInterfaces();
+
             builder.RegisterGeneric(typeof(EntitySearch<>))
                 .As(typeof(IEntitySearch<>))
                 .InstancePerDependency();

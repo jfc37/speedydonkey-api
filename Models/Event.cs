@@ -13,4 +13,14 @@ namespace Models
         DateTime EndTime { get; set; }
         string Name { get; set; }
     }
+
+    public class Event : IEvent, IEntity
+    {
+        public int Id { get; set; }
+        public IList<ITeacher> Teachers { get; set; }
+        public IList<ITeacher> RegisteredStudents { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string Name { get; set; }
+    }
 }
