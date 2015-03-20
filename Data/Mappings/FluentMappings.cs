@@ -18,8 +18,7 @@ namespace Data.Mappings
                 .AsSet();
             HasMany<Pass>(x => x.Passes)
                 .Cascade.All();
-            HasMany<Booking>(x => x.Schedule)
-                .Cascade.All();
+            HasMany<Booking>(x => x.Schedule);
         }
     }
     public class LevelMap : ClassMap<Level>
