@@ -9,9 +9,12 @@ namespace ActionHandlersTests.Builders.MockBuilders
 {
     public class MockActionHandlerOverlordBuilder : MockBuilder<IActionHandlerOverlord>
     {
+        public object PassedInAction { get; private set; }
+
         public MockActionHandlerOverlordBuilder WithNoErrorsOnHandling<TAction, TObject>() where TAction : IAction<TObject>
         {
             Mock.Setup(x => x.HandleAction<TAction, TObject>(It.IsAny<TAction>()))
+                .Callback<TAction>(x => PassedInAction = x)
                 .Returns<TAction>(t => new ActionReponse<TObject>{ActionResult = t.ActionAgainst, ValidationResult = new ValidationResult()});
             return this;
         }
@@ -27,6 +30,7 @@ namespace ActionHandlersTests.Builders.MockBuilders
             };
 
             Mock.Setup(x => x.HandleAction<TAction, TObject>(It.IsAny<TAction>()))
+                .Callback<TAction>(x => PassedInAction = x)
                 .Returns<TAction>(t => new ActionReponse<TObject> { ActionResult = t.ActionAgainst, ValidationResult = validationResult });
             return this;
         }

@@ -12,6 +12,8 @@
 Common.Tests\Common.Tests.csproj
 Global.asax.cs:StudyBuddyApi\SpeedyDonkeyApi.csproj
 GlobalErrorLoggerService.cs:StudyBuddyApi\SpeedyDonkeyApi.csproj
+Mappings\FluentMappings.cs:Data\Data.csproj
+Repositories\GenericRepository.cs:Data\Data.csproj
 SpeedyDonkeyDbContext.cs:Data\Data.csproj
 StudyBuddyApi\SpeedyDonkeyApi.csproj\App_Start
 </MetricsExclusionList>

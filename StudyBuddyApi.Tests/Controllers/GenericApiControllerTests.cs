@@ -35,12 +35,6 @@ namespace StudyBuddyApi.Tests.Controllers
             ActionHandlerOverlordBuilder.WithNoErrorsOnHandling<TAction, TEntity>();
         }
 
-        protected void SetupController(ApiController controller)
-        {
-            controller.Request = new HttpRequestMessage();
-            controller.Configuration = new HttpConfiguration();
-        }
-
         protected void VerifyHandleOfAction<TAction, TEntity>() where TAction : IAction<TEntity>
         {
             ActionHandlerOverlordBuilder.Mock.Verify(x => x.HandleAction<TAction, TEntity>(It.IsAny<TAction>()), Times.Once);
@@ -58,5 +52,14 @@ namespace StudyBuddyApi.Tests.Controllers
 
     public class MockEntitySearch<T> : MockBuilder<IEntitySearch<T>> where T : class
     {
+    }
+
+    public static class ApiControllerSetup
+    {
+        public static void Setup(ApiController controller)
+        {
+            controller.Request = new HttpRequestMessage();
+            controller.Configuration = new HttpConfiguration();
+        }
     }
 }

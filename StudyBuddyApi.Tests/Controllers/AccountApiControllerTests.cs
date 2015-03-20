@@ -18,7 +18,7 @@ namespace StudyBuddyApi.Tests.Controllers
                 new CommonInterfaceCloner(),
                 EntitySearchBuilder.BuildObject()
                 );
-            SetupController(controller);
+            ApiControllerSetup.Setup(controller);
             return controller;
         }
 
