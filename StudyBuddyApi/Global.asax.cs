@@ -125,6 +125,7 @@ namespace SpeedyDonkeyApi
 
             _fluentConfiguration = Fluently.Configure()
                 .Database(persistenceConfigurer)
+                .Diagnostics(x => x.Disable())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>());
         }
 

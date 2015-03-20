@@ -22,45 +22,45 @@ namespace Data.Repositories
 
         public IList<IEvent> Get(int id)
         {
-            var nri = new NewRelicInstrument();
+            //var nri = new NewRelicInstrument();
 
             var timeBefore = DateTime.Now.AddHours(-1);
-            nri.Start("CreateCriteria");
+            //nri.Start("CreateCriteria");
             var search = _session.CreateCriteria<User>()
                 .SetFetchMode("Schedule", FetchMode.Join)
                 .SetFetchMode("Schedule.Event", FetchMode.Join)
                 .Future<User>();
-            nri.Stop();
-            nri.Start("First");
+            //nri.Stop();
+            //nri.Start("First");
             var user = search.First(x => x.Id == id);
-            nri.Stop();
-            nri.Start("SelectWhereOrderByTake");
+            //nri.Stop();
+            //nri.Start("SelectWhereOrderByTake");
             var schedule = user.Schedule.Select(x => x.Event)
                 .Where(x => x.StartTime > timeBefore)
                 .OrderBy(x => x.StartTime)
                 .Take(10).ToList();
-            nri.Stop();
+            //nri.Stop();
             return schedule;
         }
     }
 
-    public class NewRelicInstrument
-    {
-        private DateTime _start;
-        private string _name;
+    //public class NewRelicInstrument
+    //{
+    //    private DateTime _start;
+    //    private string _name;
 
-        public void Start(string name)
-        {
-            _name = name;
-            _start = DateTime.Now;
-        }
+    //    public void Start(string name)
+    //    {
+    //        _name = name;
+    //        _start = DateTime.Now;
+    //    }
 
-        public void Stop()
-        {
-            var ts = DateTime.Now.Subtract(_start);
-            NewRelic.Api.Agent.NewRelic.RecordMetric("Custom/" + _name, (float) ts.TotalMilliseconds);
-        }
-    }
+    //    public void Stop()
+    //    {
+    //        var ts = DateTime.Now.Subtract(_start);
+    //        NewRelic.Api.Agent.NewRelic.RecordMetric("Custom/" + _name, (float) ts.TotalMilliseconds);
+    //    }
+    //}
 
     public interface IRepository<TEntity> where TEntity : IEntity
     {
