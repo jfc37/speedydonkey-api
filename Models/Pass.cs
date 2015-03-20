@@ -31,7 +31,7 @@ namespace Models
         public virtual bool IsValid()
         {
             var today = DateTime.Now.Date;
-            return StartDate >= today && today <= EndDate;
+            return today >= StartDate && today <= EndDate;
         }
 
         private PassType _passType;

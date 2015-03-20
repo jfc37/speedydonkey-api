@@ -6,7 +6,7 @@ using Moq;
 
 namespace Data.Tests.Builders
 {
-    public class MockRepositoryBuilder<T> : MockBuilder<IRepository<T>> where T : IEntity, new()
+    public class MockRepositoryBuilder<T> : MockBuilder<IRepository<T>> where T : class, IEntity, new()
     {
         public T CreatedEntity { get; set; }
         public T UpdatedEntity { get; set; }
@@ -31,27 +31,37 @@ namespace Data.Tests.Builders
 
         public MockRepositoryBuilder<T> WithSuccessfulGet()
         {
+            SetupGet(new T());
+            return this;
+        }
+
+        public MockRepositoryBuilder<T> WithUnsuccessfulGet()
+        {
+            SetupGet(null);
+            return this;
+        }
+
+        private void SetupGet(T response)
+        {
             Mock.Setup(x => x.GetAll())
-                .Returns(new []
+                .Returns(new[]
                 {
-                    new T() 
+                    response
                 });
             Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                .Returns(new []
+                .Returns(new[]
                 {
-                    new T() 
+                    response
                 });
             Mock.Setup(x => x.Get(It.IsAny<int>()))
-                .Returns(new T());
+                .Returns(response);
             Mock.Setup(x => x.GetWithChildren(It.IsAny<int>(), It.IsAny<IList<string>>()))
-                .Returns(new T());
-            return this;
+                .Returns(response);
         }
 
         public MockRepositoryBuilder<T> WithGet(T entity)
         {
-            Mock.Setup(x => x.Get(It.IsAny<int>()))
-                .Returns(entity);
+            SetupGet(entity);
             return this;
         }
 

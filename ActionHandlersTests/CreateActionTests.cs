@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace ActionHandlersTests
 {
     [TestFixture]
-    public abstract class CreateActionTests<TEntity> where TEntity : IEntity, new()
+    public abstract class CreateActionTests<TEntity> where TEntity : class, IEntity, new()
     {
         protected MockRepositoryBuilder<TEntity> RepositoryBuilder;
 

@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreateReferenceData.cs" />
-    <Compile Include="PurchasePass.cs" />
     <Compile Include="EnrolInBlock.cs" />
     <Compile Include="CreateBlock.cs" />
     <Compile Include="CreateLevel.cs" />

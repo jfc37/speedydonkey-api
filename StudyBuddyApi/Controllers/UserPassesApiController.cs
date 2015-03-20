@@ -10,13 +10,32 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class UserPassesApiController : ApiController
+    public class UserPassesApiController : UserPropertyApiController<CurrentUserPassesModel, PassModel>
+    {
+        public UserPassesApiController(
+            IRepository<User> userRepository, 
+            IUrlConstructor urlConstructor, 
+            ICommonInterfaceCloner cloner) : base(userRepository, urlConstructor, cloner)
+        {
+        }
+    }
+    public class UserEnroledBlocksApiController : UserPropertyApiController<UserEnroledBlocksModel, BlockModel>
+    {
+        public UserEnroledBlocksApiController(
+            IRepository<User> userRepository, 
+            IUrlConstructor urlConstructor, 
+            ICommonInterfaceCloner cloner) : base(userRepository, urlConstructor, cloner)
+        {
+        }
+    }
+
+    public abstract class UserPropertyApiController<TViewModel, TModel> : ApiController where TViewModel : IUserView<TModel>, new()
     {
         private readonly IRepository<User> _userRepository;
         private readonly IUrlConstructor _urlConstructor;
         private readonly ICommonInterfaceCloner _cloner;
 
-        public UserPassesApiController(
+        protected UserPropertyApiController(
             IRepository<User> userRepository,
             IUrlConstructor urlConstructor,
             ICommonInterfaceCloner cloner)
@@ -29,7 +48,12 @@ namespace SpeedyDonkeyApi.Controllers
         public HttpResponseMessage Get(int id)
         {
             var user = _userRepository.Get(id);
-            var userScheduleModels = new CurrentUserPassesModel().ConvertFromUser(user, Request, _urlConstructor, _cloner);
+            if (user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            var userScheduleModels = new TViewModel().ConvertFromUser(user, Request, _urlConstructor, _cloner);
             return userScheduleModels.Any()
                 ? Request.CreateResponse(userScheduleModels)
                 : Request.CreateResponse(HttpStatusCode.NotFound);
