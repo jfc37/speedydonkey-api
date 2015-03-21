@@ -30,6 +30,12 @@ namespace SpeedyDonkeyApi.Controllers
         public HttpResponseMessage Get(int id)
         {
             var userSchedule = _userRepository.Get(id);
+
+            if (userSchedule == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
             return userSchedule.Any()
                 ? Request.CreateResponse(userSchedule.OfType<Class>().Select(x => new ClassModel().CloneFromEntity(Request, _urlConstructor, x, _cloner)))
                 : Request.CreateResponse(HttpStatusCode.NotFound);

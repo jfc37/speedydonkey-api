@@ -12,7 +12,7 @@ namespace SpeedyDonkeyApi.Models
         }
 
         public IList<ITeacher> Teachers { get; set; }
-        public IList<ITeacher> RegisteredStudents { get; set; }
+        public IList<IUser> RegisteredStudents { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Name { get; set; }

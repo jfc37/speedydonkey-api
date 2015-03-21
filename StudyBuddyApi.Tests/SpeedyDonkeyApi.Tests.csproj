@@ -113,6 +113,7 @@
     <Compile Include="Builders\MockBuilders\MockUrlConstructorBuilder.cs" />
     <Compile Include="Builders\UrlConstructorBuilder.cs" />
     <Compile Include="Controllers\AccountApiControllerTests.cs" />
+    <Compile Include="Controllers\UserScheduleApiControllerTests.cs" />
     <Compile Include="Controllers\UserPassesApiControllerTests.cs" />
     <Compile Include="Controllers\UserEnroledBlocksApiControllerTests.cs" />
     <Compile Include="Controllers\EnrolmentApiControllerTests.cs" />
