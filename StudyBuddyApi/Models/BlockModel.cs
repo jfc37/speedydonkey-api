@@ -12,7 +12,7 @@ namespace SpeedyDonkeyApi.Models
     {
         public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
-        public IList<IClass> Classes { get; set; }
+        public ICollection<IClass> Classes { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Name { get; set; }

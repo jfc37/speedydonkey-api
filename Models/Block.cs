@@ -7,7 +7,7 @@ namespace Models
     {
         ICollection<IUser> EnroledStudents { get; set; }
         ILevel Level { get; set; }
-        IList<IClass> Classes { get; set; }
+        ICollection<IClass> Classes { get; set; }
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
         string Name { get; set; }
@@ -18,7 +18,7 @@ namespace Models
     {
         public virtual ICollection<IUser> EnroledStudents { get; set; }
         public virtual ILevel Level { get; set; }
-        public virtual IList<IClass> Classes { get; set; }
+        public virtual ICollection<IClass> Classes { get; set; }
         public virtual DateTime StartDate { get; set; }
         public virtual DateTime EndDate { get; set; }
         public virtual string Name { get; set; }

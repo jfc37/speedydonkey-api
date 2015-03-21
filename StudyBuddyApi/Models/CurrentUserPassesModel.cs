@@ -7,11 +7,11 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class CurrentUserPassesModel : IUserView<PassModel>
+    public class CurrentUserPassesModel : IEntityView<User, PassModel>
     {
         public IList<PassModel> CurrentPasses { get; set; }
 
-        public IList<PassModel> ConvertFromUser(User user, HttpRequestMessage request, IUrlConstructor urlConstructor, ICommonInterfaceCloner cloner)
+        public IList<PassModel> ConvertFromEntity(User user, HttpRequestMessage request, IUrlConstructor urlConstructor, ICommonInterfaceCloner cloner)
         {
             if (user.Passes == null)
                 return new List<PassModel>();
@@ -22,9 +22,9 @@ namespace SpeedyDonkeyApi.Models
         }
     }
 
-    public interface IUserView<TModel>
+    public interface IEntityView<TEntity, TModel>
     {
-        IList<TModel> ConvertFromUser(User user, HttpRequestMessage request, IUrlConstructor urlConstructor,
+        IList<TModel> ConvertFromEntity(TEntity user, HttpRequestMessage request, IUrlConstructor urlConstructor,
             ICommonInterfaceCloner cloner);
     }
 }

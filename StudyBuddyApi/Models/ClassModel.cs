@@ -19,7 +19,7 @@ namespace SpeedyDonkeyApi.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Name { get; set; }
-        public IList<IUser> ActualStudents { get; set; }
+        public ICollection<IUser> ActualStudents { get; set; }
         public IBlock Block { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace ActionHandlers.EnrolmentProcess
                 .ToList();
             AddBlocksToUser(user, blocksBeingEnroledIn);
             AddClassesToUserSchedule(user, blocksBeingEnroledIn.SelectMany(x => x.Classes).ToList());
+            AddUserToClassRoll(user, blocksBeingEnroledIn.SelectMany(x => x.Classes).ToList());
         }
 
         private void AddClassesToUserSchedule(User user, IList<IClass> classes)
@@ -42,6 +43,17 @@ namespace ActionHandlers.EnrolmentProcess
             foreach (var booking in bookings)
             {
                 user.Schedule.Add(booking);
+            }
+        }
+
+        private void AddUserToClassRoll(User user, IList<IClass> classes)
+        {
+            foreach (var thisClass in classes)
+            {
+                if (thisClass.RegisteredStudents == null)
+                    thisClass.RegisteredStudents = new List<IUser>();
+
+                thisClass.RegisteredStudents.Add(user);
             }
         }
 

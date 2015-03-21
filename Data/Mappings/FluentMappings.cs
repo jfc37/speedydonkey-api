@@ -21,6 +21,35 @@ namespace Data.Mappings
             HasMany<Booking>(x => x.Schedule);
         }
     }
+    public class ClassMap : ClassMap<Class>
+    {
+        public ClassMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.StartTime);
+            Map(x => x.EndTime);
+            Map(x => x.Name);
+            References(x => x.Block)
+                .Class(typeof (Block));
+            HasManyToMany<User>(x => x.RegisteredStudents)
+                //.Table("ClassRoll")
+                //.AsSet()
+                ;
+        }
+    }
+
+    public class BookingMap : ClassMap<Booking>
+    {
+        public BookingMap()
+        {
+            Id(x => x.Id);
+            References(x => x.Event)
+                .Class(typeof (Class))
+                .Cascade.All()
+                .Not.LazyLoad();
+        }
+    }
+
     public class LevelMap : ClassMap<Level>
     {
         public LevelMap()
@@ -33,6 +62,7 @@ namespace Data.Mappings
             HasMany<Block>(x => x.Blocks);
         }
     }
+
     public class BlockMap : ClassMap<Block>
     {
         public BlockMap()
@@ -43,7 +73,8 @@ namespace Data.Mappings
             Map(x => x.Name);
             References(x => x.Level)
                 .Class(typeof (Level));
-            HasMany<Class>(x => x.Classes);
+            HasMany<Class>(x => x.Classes)
+                .Cascade.All();
             HasManyToMany<User>(x => x.EnroledStudents)
                 .Cascade.All()
                 .Inverse()
@@ -51,18 +82,7 @@ namespace Data.Mappings
                 .AsSet();
         }
     }
-    public class ClassMap : ClassMap<Class>
-    {
-        public ClassMap()
-        {
-            Id(x => x.Id);
-            Map(x => x.StartTime);
-            Map(x => x.EndTime);
-            Map(x => x.Name);
-            References(x => x.Block)
-                .Class(typeof (Block));
-        }
-    }
+
     public class PassMap : ClassMap<Pass>
     {
         public PassMap()
@@ -76,6 +96,7 @@ namespace Data.Mappings
                 .Class(typeof (User));
         }
     }
+
     public class ClipPassMap : SubclassMap<ClipPass>
     {
         public ClipPassMap()
@@ -83,17 +104,7 @@ namespace Data.Mappings
             Map(x => x.ClipsRemaining);
         }
     }
-    public class BookingMap : ClassMap<Booking>
-    {
-        public BookingMap()
-        {
-            Id(x => x.Id);
-            References(x => x.Event)
-                .Class(typeof (Class))
-                .Cascade.All()
-                .Not.LazyLoad();
-        }
-    }
+
     public class ReferenceDataMap : ClassMap<ReferenceData>
     {
         public ReferenceDataMap()

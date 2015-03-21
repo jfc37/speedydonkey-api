@@ -88,6 +88,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "ClassRegisterApi",
+                routeTemplate: "api/classes/{id}/roll",
+                defaults: new { controller = "ClassRollApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "ReferenceDataApi",
                 routeTemplate: "api/reference/{id}",
                 defaults: new { controller = "ReferenceDataApi", id = RouteParameter.Optional }

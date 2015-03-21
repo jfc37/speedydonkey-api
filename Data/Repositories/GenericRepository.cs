@@ -76,7 +76,11 @@ namespace Data.Repositories
                 search.SetFetchMode(child, FetchMode.Join);
             }
             var completedSearch = search.Future<TEntity>();
-            return completedSearch.ToList();
+
+            var blah = completedSearch.GroupBy(x => x.Id).ToList().Select(x => x.ToList().First()).ToList();
+            return blah;
+
+            //return completedSearch.ToList();
         }
 
         public TEntity Get(int id)

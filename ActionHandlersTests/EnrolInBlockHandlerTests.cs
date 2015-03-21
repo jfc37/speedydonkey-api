@@ -106,5 +106,36 @@ namespace ActionHandlersTests
             var updatedUser = _userRepositoryBuilder.UpdatedEntity;
             Assert.AreEqual(numberOfClasses, updatedUser.Schedule.Count);
         }
+
+        [TestCase(1)]
+        [TestCase(6)]
+        [TestCase(8)]
+        public void Then_the_class_rolls_should_include_user(int numberOfClasses)
+        {
+            var classes = new List<IClass>();
+            for (int i = 0; i < numberOfClasses; i++)
+            {
+                classes.Add(new Class{Id = i});
+            }
+            _blockRepositoryBuilder.WithGetAll(new [] {new Block
+            {
+                Id = _action.ActionAgainst.EnroledBlocks.Single().Id,
+                Classes = classes
+            }});
+            _bookingRepositoryBuilder.WithGetAll(classes.Select(x => new Booking{
+                Event = new Class
+                {
+                    Id = x.Id
+                }
+            }));
+
+            PerformAction();
+
+            var updatedUser = _userRepositoryBuilder.UpdatedEntity;
+            foreach (var blockClass in _blockRepositoryBuilder.BuildObject().GetAll().SelectMany(x => x.Classes))
+            {
+                Assert.Contains(updatedUser, blockClass.RegisteredStudents.ToArray());
+            }
+        }
     }
 }
