@@ -1,5 +1,5 @@
 ﻿using System.Net.Http;
-using Actions;
+using Action;
 using Models;
 using SpeedyDonkeyApi.Controllers;
 using SpeedyDonkeyApi.Models;
@@ -7,11 +7,11 @@ using SpeedyDonkeyApi.Models;
 namespace StudyBuddyApi.Tests.Controllers
 {
     #region Get By Id
-    public class UserApiWhenTheEntityDoesntExist : WhenTheEntityDoesntExist<UserModel, User>
+    public class BlockApiWhenTheEntityDoesntExist : WhenTheEntityDoesntExist<BlockModel, Block>
     {
-        protected override GenericApiController<UserModel, User> GetContreteController()
+        protected override GenericApiController<BlockModel, Block> GetContreteController()
         {
-            return new UserApiController(
+            return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
@@ -19,11 +19,11 @@ namespace StudyBuddyApi.Tests.Controllers
                 EntitySearchBuilder.BuildObject());
         }
     }
-    public class UserApiWhenTheEntityExists : WhenTheEntityExists<UserModel, User>
+    public class BlockApiWhenTheEntityExists : WhenTheEntityExists<BlockModel, Block>
     {
-        protected override GenericApiController<UserModel, User> GetContreteController()
+        protected override GenericApiController<BlockModel, Block> GetContreteController()
         {
-            return new UserApiController(
+            return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
@@ -35,11 +35,11 @@ namespace StudyBuddyApi.Tests.Controllers
 
     #region Get All
 
-    public class UserApiWhenSomeEntitiesExists : WhenSomeEntitiesExists<UserModel, User>
+    public class BlockApiWhenSomeEntitiesExists : WhenSomeEntitiesExists<BlockModel, Block>
     {
-        protected override GenericApiController<UserModel, User> GetContreteController()
+        protected override GenericApiController<BlockModel, Block> GetContreteController()
         {
-            return new UserApiController(
+            return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
@@ -48,11 +48,11 @@ namespace StudyBuddyApi.Tests.Controllers
         }
     }
 
-    public class UserApiWhenNoEntitiesExist : WhenNoEntitiesExist<UserModel, User>
+    public class BlockApiWhenNoEntitiesExist : WhenNoEntitiesExist<BlockModel, Block>
     {
-        protected override GenericApiController<UserModel, User> GetContreteController()
+        protected override GenericApiController<BlockModel, Block> GetContreteController()
         {
-            return new UserApiController(
+            return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
@@ -65,11 +65,11 @@ namespace StudyBuddyApi.Tests.Controllers
 
     #region Search
 
-    public class UserApiWhenEntitiesMatchSearch : WhenEntitiesMatchSearch<UserModel, User>
+    public class BlockApiWhenEntitiesMatchSearch : WhenEntitiesMatchSearch<BlockModel, Block>
     {
-        protected override GenericApiController<UserModel, User> GetContreteController()
+        protected override GenericApiController<BlockModel, Block> GetContreteController()
         {
-            return new UserApiController(
+            return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
@@ -78,11 +78,11 @@ namespace StudyBuddyApi.Tests.Controllers
         }
     }
 
-    public class UserApiWhenNoEntitiesMatchSearch : WhenNoEntitiesMatchSearch<UserModel, User>
+    public class BlockApiWhenNoEntitiesMatchSearch : WhenNoEntitiesMatchSearch<BlockModel, Block>
     {
-        protected override GenericApiController<UserModel, User> GetContreteController()
+        protected override GenericApiController<BlockModel, Block> GetContreteController()
         {
-            return new UserApiController(
+            return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
@@ -95,11 +95,12 @@ namespace StudyBuddyApi.Tests.Controllers
 
     #region Post
 
-    public class UserApiWhenRequestIsValid : WhenRequestIsValid<UserModel, User, CreateUser>
+    public class BlockApiWhenRequestIsValid : WhenRequestIsValid<BlockModel, Block, CreateBlock>
     {
-        protected override GenericApiController<UserModel, User> GetContreteController()
+        private int _levelId;
+        protected override GenericApiController<BlockModel, Block> GetContreteController()
         {
-            return new UserApiController(
+            return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
@@ -109,15 +110,17 @@ namespace StudyBuddyApi.Tests.Controllers
 
         protected override HttpResponseMessage PerformAction()
         {
-            return ((UserApiController) GetController()).Post(Model);
+            return ((BlockApiController)GetController()).Post(_levelId);
         }
     }
 
-    public class UserApiWhenRequestIsInvalid : WhenRequestIsInvalid<UserModel, User, CreateUser>
+    public class BlockApiWhenRequestIsInvalid : WhenRequestIsInvalid<BlockModel, Block, CreateBlock>
     {
-        protected override GenericApiController<UserModel, User> GetContreteController()
+        private int _levelId;
+
+        protected override GenericApiController<BlockModel, Block> GetContreteController()
         {
-            return new UserApiController(
+            return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
@@ -127,7 +130,7 @@ namespace StudyBuddyApi.Tests.Controllers
 
         protected override HttpResponseMessage PerformAction()
         {
-            return ((UserApiController)GetController()).Post(Model);
+            return ((BlockApiController)GetController()).Post(_levelId);
         }
     }
 

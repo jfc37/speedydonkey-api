@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Action;
 using ActionHandlersTests.Builders.MockBuilders;
 using Actions;
 using Common;
@@ -245,6 +246,64 @@ namespace StudyBuddyApi.Tests.Controllers
             var response = PerformAction();
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+    }
+
+    #endregion
+
+    #region Post
+
+    public abstract class GivenAPostIsMade<TModel, TEntity, TAction> : GenericApiControllerTests<TModel, TEntity> where TModel : IApiModel<TEntity>, new() where TEntity : class, IEntity, new() where TAction : IAction<TEntity>
+    {
+        protected TModel Model;
+
+        protected abstract HttpResponseMessage PerformAction();
+        [SetUp]
+        public virtual void Setup()
+        {
+            DependencySetup();
+            UrlConstructorBuilder.WithUrlConstruction();
+            ActionHandlerOverlordBuilder.WithNoErrorsOnHandling<TAction, TEntity>();
+            Model = new TModel();
+        }
+    }
+
+    public abstract class WhenRequestIsValid<TModel, TEntity, TAction> : GivenAPostIsMade<TModel, TEntity, TAction> where TModel : IApiModel<TEntity>, new() where TEntity : class, IEntity, new() where TAction : IAction<TEntity>
+    {
+        [SetUp]
+        public override void Setup()
+        {
+            base.Setup();
+            ActionHandlerOverlordBuilder.WithNoErrorsOnHandling<EnrolInBlock, User>();
+        }
+
+        [Test]
+        public void Then_response_should_be_created()
+        {
+            var response = PerformAction();
+
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+        }
+    }
+
+    public abstract class WhenRequestIsInvalid<TModel, TEntity, TAction> : GivenAPostIsMade<TModel, TEntity, TAction>
+        where TModel : IApiModel<TEntity>, new()
+        where TEntity : class, IEntity, new()
+        where TAction : IAction<TEntity>
+    {
+        [SetUp]
+        public override void Setup()
+        {
+            base.Setup();
+            ActionHandlerOverlordBuilder.WithErrorsOnHandling<TAction, TEntity>();
+        }
+
+        [Test]
+        public void Then_response_should_be_bad_request()
+        {
+            var response = PerformAction();
+
+            Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
     }
 

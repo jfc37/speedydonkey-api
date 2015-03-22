@@ -10,6 +10,7 @@
   <FrameworkUtilisationTypeForXUnitV2>UseStaticAnalysis</FrameworkUtilisationTypeForXUnitV2>
   <MetricsExclusionList>
 Common.Tests\Common.Tests.csproj
+Controllers\DatabaseApiController.cs:StudyBuddyApi\SpeedyDonkeyApi.csproj
 Global.asax.cs:StudyBuddyApi\SpeedyDonkeyApi.csproj
 GlobalErrorLoggerService.cs:StudyBuddyApi\SpeedyDonkeyApi.csproj
 Mappings\FluentMappings.cs:Data\Data.csproj
