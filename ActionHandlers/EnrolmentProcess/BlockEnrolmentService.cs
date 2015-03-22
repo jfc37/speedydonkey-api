@@ -25,15 +25,16 @@ namespace ActionHandlers.EnrolmentProcess
 
         public void EnrolInBlocks(User user, IList<int> blockIds)
         {
-            var blocksBeingEnroledIn = _blockRepository.GetAllWithChildren(new []{"Classes"})
-                .Where(b => blockIds.Any(x => x == b.Id))
-                .ToList();
+            var allBlocks = _blockRepository.GetAllWithChildren(new[] {"Classes"});
+            var interestedBlocks = allBlocks.Where(b => blockIds.Any(x => x == b.Id));
+            var blocksBeingEnroledIn = interestedBlocks.ToList();
+
             AddBlocksToUser(user, blocksBeingEnroledIn);
-            AddClassesToUserSchedule(user, blocksBeingEnroledIn.SelectMany(x => x.Classes).ToList());
-            AddUserToClassRoll(user, blocksBeingEnroledIn.SelectMany(x => x.Classes).ToList());
+            AddClassesToUserSchedule(user, blocksBeingEnroledIn.SelectMany(x => x.Classes));
+            AddUserToClassRoll(user, blocksBeingEnroledIn.SelectMany(x => x.Classes));
         }
 
-        private void AddClassesToUserSchedule(User user, IList<IClass> classes)
+        private void AddClassesToUserSchedule(User user, IEnumerable<IClass> classes)
         {
             if (user.Schedule == null)
             {
@@ -46,7 +47,7 @@ namespace ActionHandlers.EnrolmentProcess
             }
         }
 
-        private void AddUserToClassRoll(User user, IList<IClass> classes)
+        private void AddUserToClassRoll(User user, IEnumerable<IClass> classes)
         {
             foreach (var thisClass in classes)
             {
@@ -57,7 +58,7 @@ namespace ActionHandlers.EnrolmentProcess
             }
         }
 
-        private void AddBlocksToUser(User user, IList<Block> blockBeingEnroledIn)
+        private void AddBlocksToUser(User user, IEnumerable<Block> blockBeingEnroledIn)
         {
             if (user.EnroledBlocks == null)
             {

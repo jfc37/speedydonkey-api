@@ -77,10 +77,9 @@ namespace Data.Repositories
             }
             var completedSearch = search.Future<TEntity>();
 
-            var blah = completedSearch.GroupBy(x => x.Id).ToList().Select(x => x.ToList().First()).ToList();
-            return blah;
-
-            //return completedSearch.ToList();
+            var groupedById = completedSearch.GroupBy(x => x.Id);
+            var justTheFirstOfEach = groupedById.Select(x => x.First());
+            return justTheFirstOfEach;
         }
 
         public TEntity Get(int id)
