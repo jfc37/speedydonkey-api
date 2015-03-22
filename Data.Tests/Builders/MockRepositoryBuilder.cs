@@ -43,16 +43,28 @@ namespace Data.Tests.Builders
 
         private void SetupGet(T response)
         {
-            Mock.Setup(x => x.GetAll())
-                .Returns(new[]
+            if (response == null)
+            {
+                Mock.Setup(x => x.GetAll())
+                .Returns(new List<T>());
+                Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
+                    .Returns(new List<T>());
+            }
+            else
+            {
+                Mock.Setup(x => x.GetAll())
+                .Returns(new List<T>
                 {
                     response
                 });
-            Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                .Returns(new[]
+                Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
+                    .Returns(new[]
                 {
                     response
                 });
+            }
+
+            
             Mock.Setup(x => x.Get(It.IsAny<int>()))
                 .Returns(response);
             Mock.Setup(x => x.GetWithChildren(It.IsAny<int>(), It.IsAny<IList<string>>()))

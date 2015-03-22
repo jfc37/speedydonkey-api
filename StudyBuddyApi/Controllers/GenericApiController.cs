@@ -65,13 +65,14 @@ namespace SpeedyDonkeyApi.Controllers
         }
         public HttpResponseMessage Get()
         {
-            var allEntities = _repository.GetAll()
+            var allEntities = _repository.GetAll();
+            if (!allEntities.Any())
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+
+            var allModels = allEntities
                 .Select(x => new TModel().CloneFromEntity(Request, _urlConstructor, x, _cloner))
                 .ToList();
-
-            return !allEntities.Any()
-                ? Request.CreateResponse(HttpStatusCode.NotFound)
-                : Request.CreateResponse(HttpStatusCode.OK, allEntities);
+            return Request.CreateResponse(HttpStatusCode.OK, allModels);
         }
 
         public HttpResponseMessage Get(string q)
