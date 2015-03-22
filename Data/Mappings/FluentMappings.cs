@@ -32,8 +32,9 @@ namespace Data.Mappings
             References(x => x.Block)
                 .Class(typeof (Block));
             HasManyToMany<User>(x => x.RegisteredStudents)
-                //.Table("ClassRoll")
-                //.AsSet()
+                .Cascade.All()
+                .Table("ClassRoll")
+                .AsSet();
                 ;
         }
     }
