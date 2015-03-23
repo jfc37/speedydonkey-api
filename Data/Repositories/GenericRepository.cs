@@ -45,6 +45,7 @@ namespace Data.Repositories
         TEntity Get(int id);
 
         TEntity GetWithChildren(int id, IList<string> children);
+        TEntity GetWithChildren(int id, params string[] children);
 
         TEntity Create(TEntity entity);
 
@@ -98,6 +99,11 @@ namespace Data.Repositories
 
             var entity = completedSearch.First(x => x.Id == id);
             return entity;
+        }
+
+        public TEntity GetWithChildren(int id, params string[] children)
+        {
+            return GetWithChildren(id, children.ToList());
         }
 
         public TEntity Create(TEntity entity)

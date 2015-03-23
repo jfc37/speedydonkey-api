@@ -59,6 +59,7 @@
     <Compile Include="Builders\MockBuilders\MockValidatorOverlordBuilder.cs" />
     <Compile Include="Builders\ValidationResultBuilder.cs" />
     <Compile Include="Builders\ValidatorOverlordBuilder.cs" />
+    <Compile Include="EnrolInBlockValidatorTests.cs" />
     <Compile Include="FluentConverterTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidatorOverlordTestFixture.cs" />

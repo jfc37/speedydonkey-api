@@ -63,6 +63,7 @@
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="ValidatorOverlord.cs" />
+    <Compile Include="Validators\EnrolInBlockValidator.cs" />
     <Compile Include="Validators\IActionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
