@@ -20,7 +20,7 @@ namespace Common
                 var propertiesToCopy = commonInterface.GetProperties();
                 foreach (var propertyInfo in propertiesToCopy)
                 {
-                    if (!propertyInfo.PropertyType.IsInterface)
+                    if (!propertyInfo.PropertyType.IsInterface && propertyInfo.CanWrite)
                         propertyInfo.SetValue(clone, propertyInfo.GetValue(cloneFrom));
                 }
             }

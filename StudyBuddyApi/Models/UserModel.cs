@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using Common;
@@ -12,6 +13,7 @@ namespace SpeedyDonkeyApi.Models
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
+        public string FullName { get { return String.Format("{0} {1}", FirstName, Surname); } }
         public IList<IBooking> Schedule { get; set; }
         public ICollection<IBlock> EnroledBlocks { get; set; }
         public IList<IPass> Passes { get; set; }
