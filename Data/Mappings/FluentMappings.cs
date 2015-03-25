@@ -35,7 +35,10 @@ namespace Data.Mappings
                 .Cascade.All()
                 .Table("ClassRoll")
                 .AsSet();
-                ;
+            HasManyToMany<User>(x => x.ActualStudents)
+                .Cascade.All()
+                .Table("ClassAttendance")
+                .AsSet();
         }
     }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using Common;
 using Models;
 using SpeedyDonkeyApi.Services;
 
@@ -21,5 +23,15 @@ namespace SpeedyDonkeyApi.Models
         public string Name { get; set; }
         public ICollection<IUser> ActualStudents { get; set; }
         public IBlock Block { get; set; }
+
+        protected override void AddChildrenToEntity(Class entity, ICommonInterfaceCloner cloner)
+        {
+            if (ActualStudents != null)
+            {
+                entity.ActualStudents = ActualStudents
+                    .Select(x => (IUser)((UserModel)x).ToEntity(cloner))
+                    .ToList();
+            }
+        }
     }
 }

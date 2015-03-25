@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using ActionHandlersTests.Builders.MockBuilders;
 using Common;
 using Data.Tests.Builders;
 using Models;
@@ -17,13 +18,15 @@ namespace StudyBuddyApi.Tests.Controllers
         protected MockUrlConstructorBuilder UrlConstructorBuilder;
         protected MockRepositoryBuilder<User> RepositoryBuilder;
         protected ICommonInterfaceCloner Cloner;
+        protected MockActionHandlerOverlordBuilder ActionHandlerOverlordBuilder;
 
         protected UserEnroledBlocksApiController GetController()
         {
             var controller = new UserEnroledBlocksApiController(
                 RepositoryBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
-                Cloner);
+                Cloner,
+                ActionHandlerOverlordBuilder.BuildObject());
             ApiControllerSetup.Setup(controller);
             return controller;
         }
@@ -35,6 +38,7 @@ namespace StudyBuddyApi.Tests.Controllers
                 .WithUrlConstruction();
             RepositoryBuilder = new MockRepositoryBuilder<User>();
             Cloner = new CommonInterfaceCloner();
+            ActionHandlerOverlordBuilder = new MockActionHandlerOverlordBuilder();
         }
     }
 

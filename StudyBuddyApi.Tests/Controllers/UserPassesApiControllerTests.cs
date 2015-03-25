@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using ActionHandlersTests.Builders.MockBuilders;
 using Common;
 using Data.Tests.Builders;
 using Models;
@@ -18,13 +19,15 @@ namespace StudyBuddyApi.Tests.Controllers
         protected MockUrlConstructorBuilder UrlConstructorBuilder;
         protected MockRepositoryBuilder<User> RepositoryBuilder;
         protected ICommonInterfaceCloner Cloner;
+        protected MockActionHandlerOverlordBuilder ActionHandlerOverlordBuilder;
 
         protected UserPassesApiController GetController()
         {
             var controller = new UserPassesApiController(
                 RepositoryBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
-                Cloner);
+                Cloner,
+                ActionHandlerOverlordBuilder.BuildObject());
             ApiControllerSetup.Setup(controller);
             return controller;
         }
@@ -36,6 +39,7 @@ namespace StudyBuddyApi.Tests.Controllers
                 .WithUrlConstruction();
             RepositoryBuilder = new MockRepositoryBuilder<User>();
             Cloner = new CommonInterfaceCloner();
+            ActionHandlerOverlordBuilder = new MockActionHandlerOverlordBuilder();
         }
 
         public class GivenAGetIsMade : UserPassesApiControllerTests

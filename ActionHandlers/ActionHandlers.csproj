@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
+    <Compile Include="ClassCheckIn\RemoveStudentFromClassHandler.cs" />
+    <Compile Include="ClassCheckIn\CheckStudentIntoClassHandler.cs" />
     <Compile Include="CreateHandlers\CreateBlockHandler.cs" />
     <Compile Include="CreateHandlers\CreateLevelHandler.cs" />
     <Compile Include="CreateHandlers\CreateReferenceDataHandler.cs" />

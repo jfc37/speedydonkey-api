@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RemoveStudentFromClass.cs" />
+    <Compile Include="CheckStudentIntoClass.cs" />
     <Compile Include="CreateReferenceData.cs" />
     <Compile Include="EnrolInBlock.cs" />
     <Compile Include="CreateBlock.cs" />

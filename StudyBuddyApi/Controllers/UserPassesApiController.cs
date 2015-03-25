@@ -1,7 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Action;
+using ActionHandlers;
+using Actions;
 using Common;
 using Data.Repositories;
 using Models;
@@ -15,7 +20,9 @@ namespace SpeedyDonkeyApi.Controllers
         public UserPassesApiController(
             IRepository<User> entityRepository, 
             IUrlConstructor urlConstructor, 
-            ICommonInterfaceCloner cloner) : base(entityRepository, urlConstructor, cloner)
+            ICommonInterfaceCloner cloner,
+            IActionHandlerOverlord actionHandlerOverlord)
+            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
         }
     }
@@ -23,8 +30,10 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public UserEnroledBlocksApiController(
             IRepository<User> entityRepository, 
-            IUrlConstructor urlConstructor, 
-            ICommonInterfaceCloner cloner) : base(entityRepository, urlConstructor, cloner)
+            IUrlConstructor urlConstructor,
+            ICommonInterfaceCloner cloner,
+            IActionHandlerOverlord actionHandlerOverlord)
+            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
         }
     }
@@ -33,8 +42,9 @@ namespace SpeedyDonkeyApi.Controllers
         public ClassRollApiController(
             IRepository<Class> entityRepository,
             IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner)
-            : base(entityRepository, urlConstructor, cloner)
+            ICommonInterfaceCloner cloner,
+            IActionHandlerOverlord actionHandlerOverlord)
+            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
         }
     }
@@ -43,9 +53,36 @@ namespace SpeedyDonkeyApi.Controllers
         public ClassAttendanceApiController(
             IRepository<Class> entityRepository,
             IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner)
-            : base(entityRepository, urlConstructor, cloner)
+            ICommonInterfaceCloner cloner,
+            IActionHandlerOverlord actionHandlerOverlord)
+            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
+        }
+
+        public HttpResponseMessage Post(int id, int studentId)
+        {
+            var classModel = new ClassModel
+            {
+                Id = id,
+                ActualStudents = new List<IUser>
+                {
+                    new UserModel {Id = studentId}
+                }
+            };
+            return PerformAction<CheckStudentIntoClass, ClassModel, Class>(classModel, x => new CheckStudentIntoClass(x));
+        }
+
+        public HttpResponseMessage Delete(int id, int studentId)
+        {
+            var classModel = new ClassModel
+            {
+                Id = id,
+                ActualStudents = new List<IUser>
+                {
+                    new UserModel {Id = studentId}
+                }
+            };
+            return PerformAction<RemoveStudentFromClass, ClassModel, Class>(classModel, x => new RemoveStudentFromClass(x));
         }
     }
 
@@ -54,15 +91,18 @@ namespace SpeedyDonkeyApi.Controllers
         private readonly IRepository<TEntity> _entityRepository;
         private readonly IUrlConstructor _urlConstructor;
         private readonly ICommonInterfaceCloner _cloner;
+        private readonly IActionHandlerOverlord _actionHandlerOverlord;
 
         protected EntityPropertyApiController(
             IRepository<TEntity> entityRepository,
             IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner)
+            ICommonInterfaceCloner cloner,
+            IActionHandlerOverlord actionHandlerOverlord)
         {
             _entityRepository = entityRepository;
             _urlConstructor = urlConstructor;
             _cloner = cloner;
+            _actionHandlerOverlord = actionHandlerOverlord;
         }
 
         public HttpResponseMessage Get(int id)
@@ -77,6 +117,26 @@ namespace SpeedyDonkeyApi.Controllers
             return userScheduleModels.Any()
                 ? Request.CreateResponse(userScheduleModels)
                 : Request.CreateResponse(HttpStatusCode.NotFound);
+        }
+
+        protected HttpResponseMessage PerformAction<TAction, TActionModel, TActionEntity>([FromBody]TActionModel model, Func<TActionEntity, TAction> actionCreator)
+            where TAction : IAction<TActionEntity>
+            where TActionModel : IApiModel<TActionEntity>, new()
+            where TActionEntity : class, IEntity
+        {
+            var entity = model.ToEntity(_cloner);
+            var action = actionCreator(entity);
+            ActionReponse<TActionEntity> result = _actionHandlerOverlord.HandleAction<TAction, TActionEntity>(action);
+            HttpStatusCode responseCode = result.ValidationResult.IsValid
+                ? HttpStatusCode.Created
+                : HttpStatusCode.BadRequest;
+            return Request.CreateResponse(
+                responseCode,
+                new ActionReponse<IApiModel<TActionEntity>>
+                {
+                    ActionResult = model.CloneFromEntity(Request, _urlConstructor, result.ActionResult, _cloner),
+                    ValidationResult = result.ValidationResult
+                });
         }
     }
 }
