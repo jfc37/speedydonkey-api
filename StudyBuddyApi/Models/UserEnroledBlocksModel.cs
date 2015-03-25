@@ -24,10 +24,22 @@ namespace SpeedyDonkeyApi.Models
         public IList<UserModel> ConvertFromEntity(Class theClass, HttpRequestMessage request, IUrlConstructor urlConstructor,
             ICommonInterfaceCloner cloner)
         {
-            if (theClass.RegisteredStudents == null) 
+            if (theClass.RegisteredStudents == null)
                 return new List<UserModel>();
 
             return theClass.RegisteredStudents.Select(x => (UserModel)new UserModel().CloneFromEntity(request, urlConstructor, (User)x, cloner))
+                    .ToList();
+        }
+    }
+    public class ClassAttendanceModel : IEntityView<Class, UserModel>
+    {
+        public IList<UserModel> ConvertFromEntity(Class theClass, HttpRequestMessage request, IUrlConstructor urlConstructor,
+            ICommonInterfaceCloner cloner)
+        {
+            if (theClass.ActualStudents == null)
+                return new List<UserModel>();
+
+            return theClass.ActualStudents.Select(x => (UserModel)new UserModel().CloneFromEntity(request, urlConstructor, (User)x, cloner))
                     .ToList();
         }
     }

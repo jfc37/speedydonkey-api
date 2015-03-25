@@ -112,6 +112,7 @@
     <Compile Include="Builders\MockBuilders\MockPrincipalBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockUrlConstructorBuilder.cs" />
     <Compile Include="Builders\UrlConstructorBuilder.cs" />
+    <Compile Include="Controllers\ClassAttendanceApiControllerTests.cs" />
     <Compile Include="Controllers\ClassRollApiControllerTests.cs" />
     <Compile Include="Controllers\BlockApiControllerTests.cs" />
     <Compile Include="Controllers\BookingApiControllerTests.cs" />

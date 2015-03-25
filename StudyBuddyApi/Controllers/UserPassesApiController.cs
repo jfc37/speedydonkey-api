@@ -38,6 +38,16 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
     }
+    public class ClassAttendanceApiController : EntityPropertyApiController<ClassAttendanceModel, UserModel, Class>
+    {
+        public ClassAttendanceApiController(
+            IRepository<Class> entityRepository,
+            IUrlConstructor urlConstructor,
+            ICommonInterfaceCloner cloner)
+            : base(entityRepository, urlConstructor, cloner)
+        {
+        }
+    }
 
     public abstract class EntityPropertyApiController<TViewModel, TModel, TEntity> : ApiController where TViewModel : IEntityView<TEntity, TModel>, new() where TEntity : class, IEntity
     {
