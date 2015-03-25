@@ -76,6 +76,35 @@ namespace Data.Tests
                 var filteredResults = queryableWithFilter.ToList();
                 Assert.IsEmpty(filteredResults);
             }
+            [Test]
+            public void It_should_be_case_insensitive()
+            {
+                _userCollectionSearchingOver = new[]
+                {
+                    new User {Email = "Tim"},
+                    new User {Email = "john"},
+                    new User {Email = "TIMMY"},
+                    new User {Email = "jess"}
+                };
+
+                var filterDescriptor = GetFilterDescriptor();
+
+                var queryable = _userCollectionSearchingOver.AsQueryable();
+                var searchStatement = new SearchStatement
+                {
+                    Condition = SearchKeyWords.Contains,
+                    Element = SearchElements.Email,
+                    Value = "tIm"
+                };
+                var queryableWithFilter = filterDescriptor.ApplyStatementToQuery(searchStatement, queryable);
+
+                var filteredResults = queryableWithFilter.ToList();
+                Assert.AreEqual(2, filteredResults.Count);
+                foreach (var result in filteredResults)
+                {
+                    Assert.IsTrue(result.Email.ToLower().Contains("tim"));
+                }
+            }
         }
         public class Given_a_valid_equals_search : QueryFilterModifierTestFixture
         {

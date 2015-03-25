@@ -1,6 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Globalization;
+using System.Linq.Expressions;
 using System.Reflection;
 using Common;
+using NHibernate.Linq.Visitors.ResultOperatorProcessors;
 
 namespace Data.Searches
 {
@@ -23,8 +26,9 @@ namespace Data.Searches
         public Expression GetExpression(string value, MemberExpression propertyOrField)
         {
             MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-            var someValue = Expression.Constant(value, typeof(string));
-            var containsMethodExp = Expression.Call(propertyOrField, method, someValue);
+            var someValue = Expression.Constant(value.ToLower(), typeof(string));
+            Expression toLowerCall = Expression.Call(propertyOrField, typeof(string).GetMethod("ToLower", Type.EmptyTypes));
+            var containsMethodExp = Expression.Call(toLowerCall, method, someValue);
             return containsMethodExp;
         }
     }
