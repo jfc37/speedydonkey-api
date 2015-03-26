@@ -24,11 +24,23 @@ namespace SpeedyDonkeyApi.Models
         public IList<UserModel> ConvertFromEntity(Class theClass, HttpRequestMessage request, IUrlConstructor urlConstructor,
             ICommonInterfaceCloner cloner)
         {
+            var classRoll = new List<UserModel>();
             if (theClass.RegisteredStudents == null)
-                return new List<UserModel>();
+                return classRoll;
 
-            return theClass.RegisteredStudents.Select(x => (UserModel)new UserModel().CloneFromEntity(request, urlConstructor, (User)x, cloner))
-                    .ToList();
+            foreach (var student in theClass.RegisteredStudents)
+            {
+                var studentModel = (UserModel)new UserModel().CloneFromEntity(request, urlConstructor, (User)student, cloner);
+                if (student.Passes != null)
+                {
+                    studentModel.Passes =
+                        student.Passes.Where(x => x.IsValid())
+                            .Select(x => (IPass)new PassModel().CloneFromEntity(request, urlConstructor, (Pass)x, cloner))
+                            .ToList();
+                }
+                classRoll.Add(studentModel);
+            }
+            return classRoll;
         }
     }
     public class ClassAttendanceModel : IEntityView<Class, UserModel>
@@ -36,11 +48,23 @@ namespace SpeedyDonkeyApi.Models
         public IList<UserModel> ConvertFromEntity(Class theClass, HttpRequestMessage request, IUrlConstructor urlConstructor,
             ICommonInterfaceCloner cloner)
         {
+            var attendance = new List<UserModel>();
             if (theClass.ActualStudents == null)
-                return new List<UserModel>();
+                return attendance;
 
-            return theClass.ActualStudents.Select(x => (UserModel)new UserModel().CloneFromEntity(request, urlConstructor, (User)x, cloner))
-                    .ToList();
+            foreach (var student in theClass.ActualStudents)
+            {
+                var studentModel = (UserModel) new UserModel().CloneFromEntity(request, urlConstructor, (User) student, cloner);
+                if (student.Passes != null)
+                {
+                    studentModel.Passes =
+                        student.Passes.Where(x => x.IsValid())
+                            .Select(x => (IPass)new PassModel().CloneFromEntity(request, urlConstructor, (Pass)x, cloner))
+                            .ToList();   
+                }
+                attendance.Add(studentModel);
+            }
+            return attendance;
         }
     }
 }
