@@ -16,6 +16,11 @@ namespace SpeedyDonkeyApi.Models
         public string PaymentStatus { get; set; }
         public IUser Owner { get; set; }
 
+        public bool Valid
+        {
+            get { return IsValid(); }
+        }
+
         protected override string RouteName
         {
             get { return "PassApi"; }
