@@ -33,5 +33,16 @@ namespace SpeedyDonkeyApi.Models
                     .ToList();
             }
         }
+
+        protected override void AddChildrenToModel(Class entity, ClassModel model)
+        {
+            if (entity.Block != null)
+            {
+                model.Block = new BlockModel
+                {
+                    Id = entity.Block.Id
+                };   
+            }
+        }
     }
 }
