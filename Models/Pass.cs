@@ -8,11 +8,9 @@ namespace Models
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
         string PassType { get; set; }
+        string PaymentStatus { get; set; }
         IUser Owner { get; set; }
         bool IsValid();
-        //pending passes for when paying in class
-        //all passes will have expiry date
-
     }
 
     public class Pass : IPass, IEntity
@@ -24,7 +22,13 @@ namespace Models
         public virtual string PassType
         {
             get { return _passType.ToString(); }
-            set { _passType = (PassType) Enum.Parse(typeof (PassType), value, true); }
+            set { _passType = (PassType)Enum.Parse(typeof(PassType), value, true); }
+        }
+
+        public virtual string PaymentStatus
+        {
+            get { return _paymentStatus.ToString(); }
+            set { _paymentStatus = (PassPaymentStatus)Enum.Parse(typeof(PassPaymentStatus), value, true); }
         }
 
         public virtual IUser Owner { get; set; }
@@ -35,6 +39,7 @@ namespace Models
         }
 
         private PassType _passType;
+        private PassPaymentStatus _paymentStatus;
     }
 
     public enum PassType
@@ -42,5 +47,12 @@ namespace Models
         Invalid,
         Unlimited,
         Clip
+    }
+
+    public enum PassPaymentStatus
+    {
+        Invalid,
+        Pending,
+        Paid
     }
 }

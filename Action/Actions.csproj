@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPassToUser.cs" />
     <Compile Include="RemoveStudentFromClass.cs" />
     <Compile Include="CheckStudentIntoClass.cs" />
     <Compile Include="CreateReferenceData.cs" />

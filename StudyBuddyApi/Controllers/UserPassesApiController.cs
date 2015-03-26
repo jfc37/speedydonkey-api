@@ -17,6 +17,8 @@ namespace SpeedyDonkeyApi.Controllers
 {
     public class UserPassesApiController : EntityPropertyApiController<CurrentUserPassesModel, PassModel, User>
     {
+        private readonly ICommonInterfaceCloner _cloner;
+
         public UserPassesApiController(
             IRepository<User> entityRepository, 
             IUrlConstructor urlConstructor, 
@@ -24,6 +26,17 @@ namespace SpeedyDonkeyApi.Controllers
             IActionHandlerOverlord actionHandlerOverlord)
             : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
+            _cloner = cloner;
+        }
+
+        public HttpResponseMessage Post(int id, IList<PassModel> pass)
+        {
+            var userModel = new UserModel
+            {
+                Id = id,
+                Passes = pass.Select(x => (IPass) x).ToList()
+            };
+            return PerformAction<AddPassToUser, UserModel, User>(userModel, x => new AddPassToUser(x));
         }
     }
     public class UserEnroledBlocksApiController : EntityPropertyApiController<UserEnroledBlocksModel, BlockModel, User>

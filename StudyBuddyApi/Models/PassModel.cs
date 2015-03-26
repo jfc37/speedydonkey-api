@@ -13,6 +13,7 @@ namespace SpeedyDonkeyApi.Models
         public DateTime EndDate { get; set; }
 
         public string PassType { get; set; }
+        public string PaymentStatus { get; set; }
         public IUser Owner { get; set; }
 
         protected override string RouteName

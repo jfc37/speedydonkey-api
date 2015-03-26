@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Action;
+using ActionHandlers.UserPasses;
 using Data.Repositories;
 using Models;
 
@@ -40,32 +41,9 @@ namespace ActionHandlers.EnrolmentProcess
             {
                 foreach (var pass in action.ActionAgainst.Passes)
                 {
-                    _userPassAppender.AddPassToUser(user, pass.PassType);
+                    _userPassAppender.AddPassToUser(user, pass);
                 }
             }
-        }
-    }
-
-    public interface IUserPassAppender
-    {
-        void AddPassToUser(User user, string passType);
-    }
-
-    public class UserPassAppender : IUserPassAppender
-    {
-        private readonly IPassCreatorFactory _passCreatorFactory;
-
-        public UserPassAppender(IPassCreatorFactory passCreatorFactory)
-        {
-            _passCreatorFactory = passCreatorFactory;
-        }
-
-        public void AddPassToUser(User user, string passType)
-        {
-            if (user.Passes == null)
-                user.Passes = new List<IPass>();
-
-            user.Passes.Add(_passCreatorFactory.Get(passType).CreatePass());
         }
     }
 
@@ -101,7 +79,8 @@ namespace ActionHandlers.EnrolmentProcess
             {
                 EndDate = DateTime.Now.Date.AddDays(6 * 7),
                 StartDate = DateTime.Now.Date,
-                PassType = PassType.Unlimited.ToString()
+                PassType = PassType.Unlimited.ToString(),
+                PaymentStatus = PassPaymentStatus.Pending.ToString()
             };
         }
     }

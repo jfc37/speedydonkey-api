@@ -3,6 +3,7 @@ using System.Linq;
 using Action;
 using ActionHandlers;
 using ActionHandlers.EnrolmentProcess;
+using ActionHandlers.UserPasses;
 using Data.Tests.Builders;
 using Models;
 using Moq;

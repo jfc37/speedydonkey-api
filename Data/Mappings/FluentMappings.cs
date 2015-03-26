@@ -95,6 +95,7 @@ namespace Data.Mappings
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.PassType);
+            Map(x => x.PaymentStatus);
             References(x => x.Owner)
                 .Column("User_id")
                 .Class(typeof (User));

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using ActionHandlers;
 using ActionHandlers.CreateHandlers.Strategies;
 using ActionHandlers.EnrolmentProcess;
+using ActionHandlers.UserPasses;
 using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
