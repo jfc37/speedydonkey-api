@@ -46,7 +46,8 @@ namespace Models
     {
         Invalid,
         Unlimited,
-        Clip
+        Clip,
+        Single
     }
 
     public enum PassPaymentStatus

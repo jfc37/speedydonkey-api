@@ -60,7 +60,10 @@ namespace ActionHandlers.EnrolmentProcess
                 return new UnlimitedPassCreator();
 
             if (passType == PassType.Clip.ToString())
-                return new ClipPassCreator();
+                return new ClipPassCreator(6);
+
+            if (passType == PassType.Single.ToString())
+                return new ClipPassCreator(1);
 
             throw new ArgumentException(String.Format("Don't know how to create passes of type {0}", passType));
         }
@@ -87,6 +90,13 @@ namespace ActionHandlers.EnrolmentProcess
 
     public class ClipPassCreator : IPassCreator
     {
+        private readonly int _numberofClips;
+
+        public ClipPassCreator(int numberOfClips)
+        {
+            _numberofClips = numberOfClips;
+        }
+
         public IPass CreatePass()
         {
             return new ClipPass
@@ -94,7 +104,7 @@ namespace ActionHandlers.EnrolmentProcess
                 EndDate = DateTime.Now.Date.AddDays(6 * 7),
                 StartDate = DateTime.Now.Date,
                 PassType = PassType.Clip.ToString(),
-                ClipsRemaining = 6
+                ClipsRemaining = _numberofClips
             };
         }
     }
