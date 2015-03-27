@@ -36,7 +36,7 @@ namespace SpeedyDonkeyApi.Controllers
             _entitySearch = entitySearch;
         }
 
-        protected HttpResponseMessage Post<TAction>([FromBody]TModel model, Func<TEntity,TAction> actionCreator) where TAction : IAction<TEntity>
+        protected HttpResponseMessage PerformAction<TAction>([FromBody]TModel model, Func<TEntity,TAction> actionCreator) where TAction : IAction<TEntity>
         {
             var entity = model.ToEntity(_cloner);
             var action = actionCreator(entity);

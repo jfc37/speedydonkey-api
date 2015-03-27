@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddPassToUser.cs" />
+    <Compile Include="UpdatePass.cs" />
     <Compile Include="RemoveStudentFromClass.cs" />
     <Compile Include="CheckStudentIntoClass.cs" />
     <Compile Include="CreateReferenceData.cs" />

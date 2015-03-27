@@ -25,7 +25,7 @@ namespace SpeedyDonkeyApi.Controllers
 
         public HttpResponseMessage Post([FromBody] LevelModel model)
         {
-            return Post(model, x => new CreateLevel(x));
+            return PerformAction(model, x => new CreateLevel(x));
         }
     }
 }

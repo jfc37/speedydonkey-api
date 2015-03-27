@@ -23,7 +23,7 @@ namespace SpeedyDonkeyApi.Controllers
 
         public HttpResponseMessage Post([FromBody] UserModel model)
         {
-            return Post(model, x => new CreateUser(x));
+            return PerformAction(model, x => new CreateUser(x));
         }
     }
 }

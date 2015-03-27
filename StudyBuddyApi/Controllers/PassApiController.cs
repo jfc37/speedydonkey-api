@@ -1,4 +1,6 @@
-﻿using ActionHandlers;
+﻿using System.Net.Http;
+using Action;
+using ActionHandlers;
 using Common;
 using Data.Repositories;
 using Data.Searches;
@@ -18,6 +20,12 @@ namespace SpeedyDonkeyApi.Controllers
             IEntitySearch<Pass> entitySearch)
             : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
         {
+        }
+
+        public HttpResponseMessage Put(int id, PassModel model)
+        {
+            model.Id = id;
+            return PerformAction(model, x => new UpdatePass(x));
         }
     }
 }

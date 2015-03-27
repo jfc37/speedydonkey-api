@@ -93,7 +93,7 @@ namespace StudyBuddyApi.Tests.Controllers
 
     #endregion
 
-    #region Post
+    #region PerformAction
 
     public class UserApiWhenRequestIsValid : WhenRequestIsValid<UserModel, User, CreateUser>
     {

@@ -152,41 +152,6 @@ namespace ActionHandlersTests
         }
     }
 
-    public class WhenLevelAlreadyHasABlockStartingInTheFuture : GivenCreateBlockIsHandled
-    {
-        [SetUp]
-        public void Setup()
-        {
-            OverallSetup();
-            LevelRepositoryBuilder = new MockRepositoryBuilder<Level>().WithGet(new Level
-            {
-                Blocks = new[]
-                {
-                    new Block
-                    {
-                        StartDate = DateTime.Now.AddDays(1)
-                    }
-                }
-            });
-        }
-
-        [Test]
-        public void Then_no_new_block_should_be_created()
-        {
-            PerformAction();
-
-            RepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<Block>()), Times.Never);
-        }
-
-        [Test]
-        public void Then_no_classes_should_be_created()
-        {
-            PerformAction();
-
-            ClassRepositoryBuilder.Mock.Verify(x => x.Create(It.IsAny<Class>()), Times.Never);
-        }
-    }
-
     public class WhenLevelHasABlockCurrentlyInProgress : GivenCreateBlockIsHandled
     {
         [SetUp]

@@ -24,7 +24,7 @@ namespace SpeedyDonkeyApi.Controllers
 
         public HttpResponseMessage Post(int levelId)
         {
-            return Post(new BlockModel {Level = new LevelModel {Id = levelId}}, x => new CreateBlock(x));
+            return PerformAction(new BlockModel {Level = new LevelModel {Id = levelId}}, x => new CreateBlock(x));
         }
     }
 }

@@ -34,7 +34,7 @@ namespace SpeedyDonkeyApi.Controllers
                     pass.PaymentStatus = PassPaymentStatus.Pending.ToString();
                 }
             }
-            return Post(user, x => new EnrolInBlock(x));
+            return PerformAction(user, x => new EnrolInBlock(x));
         }
     }
 }

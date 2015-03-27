@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Action;
+﻿using Action;
 using ActionHandlers.CreateHandlers.Strategies;
 using Actions;
 using Data.Repositories;
@@ -31,13 +29,6 @@ namespace ActionHandlers.CreateHandlers
         protected override void PreHandle(ICreateAction<Block> action)
         {
             var level = _levelRepository.Get(action.ActionAgainst.Level.Id);
-            //TODO: This check should be a validation error
-            var futureBlockAlreadyExists = level.Blocks.Any(x => x.StartDate > DateTime.Now.Date);
-            if (futureBlockAlreadyExists)
-            {
-                ShouldCreateEntity = false;
-                return;
-            }
             action.ActionAgainst.Name = level.Name;
             var populatorStrategy = _blockPopulatorStrategyFactory.GetStrategy(level);
             populatorStrategy.PopulateBlock(action.ActionAgainst, level);

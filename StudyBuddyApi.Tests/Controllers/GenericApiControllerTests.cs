@@ -251,7 +251,7 @@ namespace StudyBuddyApi.Tests.Controllers
 
     #endregion
 
-    #region Post
+    #region PerformAction
 
     public abstract class GivenAPostIsMade<TModel, TEntity, TAction> : GenericApiControllerTests<TModel, TEntity> where TModel : IApiModel<TEntity>, new() where TEntity : class, IEntity, new() where TAction : IAction<TEntity>
     {

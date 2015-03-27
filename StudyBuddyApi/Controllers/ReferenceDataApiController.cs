@@ -24,7 +24,7 @@ namespace SpeedyDonkeyApi.Controllers
 
         public HttpResponseMessage Post([FromBody]ReferenceDataModel model)
         {
-            return Post(model, x => new CreateReferenceData(x));
+            return PerformAction(model, x => new CreateReferenceData(x));
         }
     }
 }

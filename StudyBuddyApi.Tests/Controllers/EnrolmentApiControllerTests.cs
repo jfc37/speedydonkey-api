@@ -7,7 +7,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace StudyBuddyApi.Tests.Controllers
 {
-    #region Post
+    #region PerformAction
 
     public class EnrolmentApiWhenRequestIsValid : WhenRequestIsValid<UserModel, User, EnrolInBlock>
     {
