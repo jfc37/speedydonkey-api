@@ -40,16 +40,16 @@ namespace ActionHandlers.CreateHandlers
 
     public class UpdateEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> where TAction : ICrudAction<TEntity> where TEntity : IEntity
     {
-        private readonly IRepository<TEntity> _clipPassRepository;
+        private readonly IRepository<TEntity> _clipRepository;
 
-        public UpdateEntityHandler(IRepository<TEntity> clipPassRepository)
+        public UpdateEntityHandler(IRepository<TEntity> clipRepository)
         {
-            _clipPassRepository = clipPassRepository;
+            _clipRepository = clipRepository;
         }
 
         protected override TEntity PerformAction(TAction action)
         {
-            return _clipPassRepository.Update(action.ActionAgainst);
+            return _clipRepository.Update(action.ActionAgainst);
         }
     }
 }
