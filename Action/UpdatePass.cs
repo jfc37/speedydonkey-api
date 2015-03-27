@@ -3,7 +3,7 @@ using Models;
 
 namespace Action
 {
-    public class UpdatePass : ICreateAction<Pass>
+    public class UpdatePass : ICrudAction<Pass>
     {
         public UpdatePass(Pass pass)
         {
@@ -11,5 +11,14 @@ namespace Action
         }
 
         public Pass ActionAgainst { get; set; }
+    }
+    public class UpdateClipPass : ICrudAction<ClipPass>
+    {
+        public UpdateClipPass(ClipPass pass)
+        {
+            ActionAgainst = pass;
+        }
+
+        public ClipPass ActionAgainst { get; set; }
     }
 }

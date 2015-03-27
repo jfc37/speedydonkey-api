@@ -53,7 +53,7 @@
     <Compile Include="CreateLevel.cs" />
     <Compile Include="CreateUser.cs" />
     <Compile Include="IAction.cs" />
-    <Compile Include="ICreateAction.cs" />
+    <Compile Include="ICrudAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using Models;
 
 namespace Action
 {
-    public class CreateReferenceData : ICreateAction<ReferenceData>
+    public class CreateReferenceData : ICrudAction<ReferenceData>
     {
         public CreateReferenceData(ReferenceData referenceData)
         {

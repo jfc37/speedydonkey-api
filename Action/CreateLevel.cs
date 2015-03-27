@@ -3,7 +3,7 @@ using Models;
 
 namespace Action
 {
-    public class CreateLevel : ICreateAction<Level>
+    public class CreateLevel : ICrudAction<Level>
     {
         public CreateLevel(Level level)
         {

@@ -31,6 +31,17 @@ namespace SpeedyDonkeyApi.Models
             return StartDate >= today && today <= EndDate;
         }
 
+        public override Pass ToEntity(ICommonInterfaceCloner cloner)
+        {
+            if (this is ClipPassModel)
+            {
+                var entity = cloner.Clone<ClipPassModel, ClipPass>(this as ClipPassModel);
+                AddChildrenToEntity(entity, cloner);
+                return entity;
+            }
+            return base.ToEntity(cloner);
+        }
+
         public override IApiModel<Pass> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, Pass entity,
             ICommonInterfaceCloner cloner)
         {

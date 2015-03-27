@@ -4,7 +4,26 @@ using Models;
 
 namespace ActionHandlers.CreateHandlers
 {
-    public class CreateEntityHandler<TAction, TEntity> : IActionHandler<TAction, TEntity> where TAction : ICreateAction<TEntity> where TEntity : IEntity
+    public abstract class CrudEntityHandler<TAction, TEntity> : IActionHandler<TAction, TEntity>
+        where TAction : ICrudAction<TEntity>
+        where TEntity : IEntity
+    {
+        public TEntity Handle(TAction action)
+        {
+            PreHandle(action);
+            var result = PerformAction(action);
+            PostHandle(action, result);
+            return result;
+        }
+
+        protected abstract TEntity PerformAction(TAction action);
+
+        protected virtual void PostHandle(ICrudAction<TEntity> action, TEntity result) { }
+
+        protected virtual void PreHandle(ICrudAction<TEntity> action) { }
+    }
+
+    public class CreateEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> where TAction : ICrudAction<TEntity> where TEntity : IEntity
     {
         private readonly IRepository<TEntity> _repository;
 
@@ -13,16 +32,24 @@ namespace ActionHandlers.CreateHandlers
             _repository = repository;
         }
 
-        public TEntity Handle(TAction action)
+        protected override TEntity PerformAction(TAction action)
         {
-            PreHandle(action);
-            var result = _repository.Create(action.ActionAgainst);
-            PostHandle(action, result);
-            return result; 
+            return _repository.Create(action.ActionAgainst);
+        }
+    }
+
+    public class UpdateEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> where TAction : ICrudAction<TEntity> where TEntity : IEntity
+    {
+        private readonly IRepository<TEntity> _clipPassRepository;
+
+        public UpdateEntityHandler(IRepository<TEntity> clipPassRepository)
+        {
+            _clipPassRepository = clipPassRepository;
         }
 
-        protected virtual void PostHandle(ICreateAction<TEntity> action, TEntity result) { }
-
-        protected virtual void PreHandle(ICreateAction<TEntity> action){ }
+        protected override TEntity PerformAction(TAction action)
+        {
+            return _clipPassRepository.Update(action.ActionAgainst);
+        }
     }
 }

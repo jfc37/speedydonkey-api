@@ -26,7 +26,7 @@ namespace ActionHandlers.CreateHandlers
             _blockPopulatorStrategyFactory = blockPopulatorStrategyFactory;
         }
 
-        protected override void PreHandle(ICreateAction<Block> action)
+        protected override void PreHandle(ICrudAction<Block> action)
         {
             var level = _levelRepository.Get(action.ActionAgainst.Level.Id);
             action.ActionAgainst.Name = level.Name;
@@ -34,7 +34,7 @@ namespace ActionHandlers.CreateHandlers
             populatorStrategy.PopulateBlock(action.ActionAgainst, level);
         }
 
-        protected override void PostHandle(ICreateAction<Block> action, Block result)
+        protected override void PostHandle(ICrudAction<Block> action, Block result)
         {
             var classTime = result.StartDate;
             while (classTime < result.EndDate)

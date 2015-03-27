@@ -15,7 +15,7 @@ namespace ActionHandlers.CreateHandlers
             _passwordHasher = passwordHasher;
         }
 
-        protected override void PreHandle(ICreateAction<User> action)
+        protected override void PreHandle(ICrudAction<User> action)
         {
             action.ActionAgainst.Password = _passwordHasher.CreateHash(action.ActionAgainst.Password);
         }

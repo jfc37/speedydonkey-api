@@ -3,7 +3,7 @@ using Models;
 
 namespace Action
 {
-    public class CreateBlock : ICreateAction<Block>
+    public class CreateBlock : ICrudAction<Block>
     {
         public CreateBlock(Block block)
         {

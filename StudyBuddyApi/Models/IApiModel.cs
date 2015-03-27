@@ -23,7 +23,7 @@ namespace SpeedyDonkeyApi.Models
         public string Url { get; set; }
         protected abstract string RouteName { get; }
 
-        public TEntity ToEntity(ICommonInterfaceCloner cloner)
+        public virtual TEntity ToEntity(ICommonInterfaceCloner cloner)
         {
             var entity = cloner.Clone<TModel, TEntity>(this as TModel);
             AddChildrenToEntity(entity, cloner);
