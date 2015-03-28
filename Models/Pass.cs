@@ -42,6 +42,8 @@ namespace Models
         private PassPaymentStatus _paymentStatus;
 
         public virtual void PayForClass() { }
+
+        public virtual void RefundForClass() { }
     }
 
     public enum PassType

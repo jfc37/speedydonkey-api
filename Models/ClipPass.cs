@@ -18,5 +18,10 @@
         {
             ClipsRemaining = ClipsRemaining - 1;
         }
+
+        public override void RefundForClass()
+        {
+            ClipsRemaining = ClipsRemaining + 1;
+        }
     }
 }

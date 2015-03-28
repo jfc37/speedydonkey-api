@@ -35,5 +35,20 @@ namespace Models
                 .OrderBy(x => x.EndDate)
                 .FirstOrDefault();
         }
+
+        public virtual IPass GetPassToRefund()
+        {
+            if (Passes.Any(x => x.IsValid()))
+            {
+                return Passes.Where(x => x.IsValid())
+                    .OrderBy(x => x.EndDate)
+                    .FirstOrDefault();
+            }
+            else
+            {
+                return Passes.OrderByDescending(x => x.EndDate)
+                    .FirstOrDefault();
+            }
+        }
     }
 }
