@@ -29,6 +29,7 @@ namespace Data.Mappings
             Map(x => x.StartTime);
             Map(x => x.EndTime);
             Map(x => x.Name);
+            Map(x => x.NumberOfVisitors);
             References(x => x.Block)
                 .Class(typeof (Block));
             HasManyToMany<User>(x => x.RegisteredStudents)

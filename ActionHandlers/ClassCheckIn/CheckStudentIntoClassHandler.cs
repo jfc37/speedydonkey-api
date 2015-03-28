@@ -22,12 +22,22 @@ namespace ActionHandlers.ClassCheckIn
             var user = _userRepository.Get(action.ActionAgainst.ActualStudents.Single().Id);
             UpdatePass(user);
             var theClass = _classRepository.Get(action.ActionAgainst.Id);
-            theClass.ActualStudents = theClass.ActualStudents ?? new List<IUser>();
-
-            theClass.ActualStudents.Add(user);
+            AddStudentToClassAttendance(theClass, user);
             _classRepository.Update(theClass);
 
             return theClass;
+        }
+
+        private static void AddStudentToClassAttendance(Class theClass, User user)
+        {
+            if (user.FullName == "Full Swing Visitor")
+                theClass.NumberOfVisitors++;
+            else
+            {
+                theClass.ActualStudents = theClass.ActualStudents ?? new List<IUser>();
+                theClass.ActualStudents.Add(user);
+            }
+
         }
 
         private void UpdatePass(User user)

@@ -23,6 +23,7 @@ namespace SpeedyDonkeyApi.Models
         public string Name { get; set; }
         public ICollection<IUser> ActualStudents { get; set; }
         public IBlock Block { get; set; }
+        public int NumberOfVisitors { get; set; }
 
         protected override void AddChildrenToEntity(Class entity, ICommonInterfaceCloner cloner)
         {

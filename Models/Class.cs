@@ -7,6 +7,7 @@ namespace Models
     {
         ICollection<IUser> ActualStudents { get; set; }
         IBlock Block { get; set; }
+        int NumberOfVisitors { get; set; }
 
         //has a set of notices
     }
@@ -21,5 +22,6 @@ namespace Models
         public virtual string Name { get; set; }
         public virtual ICollection<IUser> ActualStudents { get; set; }
         public virtual IBlock Block { get; set; }
+        public virtual int NumberOfVisitors { get; set; }
     }
 }
