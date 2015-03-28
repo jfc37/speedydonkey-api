@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Models
 {
@@ -27,5 +28,12 @@ namespace Models
         public virtual ICollection<IBlock> EnroledBlocks { get; set; }
         public virtual IList<IPass> Passes { get; set; }
         public virtual int Id { get; set; }
+
+        public virtual IPass GetPassToUse()
+        {
+            return Passes.Where(x => x.IsValid())
+                .OrderBy(x => x.EndDate)
+                .FirstOrDefault();
+        }
     }
 }

@@ -13,5 +13,10 @@
         {
             return ClipsRemaining > 0 && base.IsValid();
         }
+
+        public override void PayForClass()
+        {
+            ClipsRemaining = ClipsRemaining - 1;
+        }
     }
 }

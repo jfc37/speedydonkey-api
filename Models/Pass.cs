@@ -40,6 +40,8 @@ namespace Models
 
         private PassType _passType;
         private PassPaymentStatus _paymentStatus;
+
+        public virtual void PayForClass() { }
     }
 
     public enum PassType

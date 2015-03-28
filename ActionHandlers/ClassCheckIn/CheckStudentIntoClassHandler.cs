@@ -20,12 +20,20 @@ namespace ActionHandlers.ClassCheckIn
         public Class Handle(CheckStudentIntoClass action)
         {
             var user = _userRepository.Get(action.ActionAgainst.ActualStudents.Single().Id);
+            UpdatePass(user);
             var theClass = _classRepository.Get(action.ActionAgainst.Id);
             theClass.ActualStudents = theClass.ActualStudents ?? new List<IUser>();
+
             theClass.ActualStudents.Add(user);
             _classRepository.Update(theClass);
 
             return theClass;
+        }
+
+        private void UpdatePass(User user)
+        {
+            var passToUse = user.GetPassToUse();
+            ((Pass) passToUse).PayForClass(); 
         }
     }
 }
