@@ -9,6 +9,7 @@ using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -74,6 +75,7 @@ namespace SpeedyDonkeyApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, allModels);
         }
 
+        [ClaimsAuthorise(Claim = Claim.EntitySearch)]
         public HttpResponseMessage Get(string q)
         {
             var matchingEntities = _entitySearch.Search(q);

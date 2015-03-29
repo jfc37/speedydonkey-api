@@ -6,6 +6,7 @@ using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -23,6 +24,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
+        [ClaimsAuthorise(Claim = Claim.CreateLevel)]
         public HttpResponseMessage Post([FromBody] LevelModel model)
         {
             return PerformAction(model, x => new CreateLevel(x));

@@ -5,6 +5,7 @@ using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -22,6 +23,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
+        [ClaimsAuthorise(Claim = Claim.CreateNewBlock)]
         public HttpResponseMessage Post(int levelId)
         {
             return PerformAction(new BlockModel {Level = new LevelModel {Id = levelId}}, x => new CreateBlock(x));

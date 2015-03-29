@@ -6,6 +6,7 @@ using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -22,6 +23,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
+        [ClaimsAuthorise(Claim = Claim.CreateReferenceData)]
         public HttpResponseMessage Post([FromBody]ReferenceDataModel model)
         {
             return PerformAction(model, x => new CreateReferenceData(x));

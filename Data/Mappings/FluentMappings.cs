@@ -12,6 +12,7 @@ namespace Data.Mappings
             Map(x => x.Surname);
             Map(x => x.Email);
             Map(x => x.Password);
+            Map(x => x.Claims);
             HasManyToMany<Block>(x => x.EnroledBlocks)
                 .Cascade.All()
                 .Table("UsersEnroledBlocks")

@@ -209,9 +209,9 @@
     <Compile Include="Controllers\PassApiController.cs" />
     <Compile Include="Controllers\ReferenceDataApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
-    <Compile Include="Controllers\UserEnroledBlocksApiController.cs" />
     <Compile Include="Controllers\UserPassesApiController.cs" />
     <Compile Include="Controllers\UserScheduleApiController.cs" />
+    <Compile Include="Filter\ClaimsAuthorise.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
     <Compile Include="Global.asax.cs">

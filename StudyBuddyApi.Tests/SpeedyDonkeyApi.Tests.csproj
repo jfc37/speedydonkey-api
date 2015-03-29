@@ -109,6 +109,7 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClaimsAttributeTests.cs" />
     <Compile Include="Builders\HttpActionContextBuilder.cs" />
     <Compile Include="Builders\HttpRequestMessageBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockDependencyResolverBuilder.cs" />

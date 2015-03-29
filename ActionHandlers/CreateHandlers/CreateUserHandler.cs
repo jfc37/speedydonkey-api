@@ -1,4 +1,6 @@
-﻿using Actions;
+﻿using System;
+using System.Linq;
+using Actions;
 using Data.Repositories;
 using Models;
 
@@ -18,6 +20,9 @@ namespace ActionHandlers.CreateHandlers
         protected override void PreHandle(ICrudAction<User> action)
         {
             action.ActionAgainst.Password = _passwordHasher.CreateHash(action.ActionAgainst.Password);
+            var allClaims = Enum.GetValues(typeof(Claim)).Cast<Claim>().ToList();
+            allClaims.Remove(Claim.Invalid);
+            action.ActionAgainst.Claims = String.Join(",", allClaims);
         }
     }
 }

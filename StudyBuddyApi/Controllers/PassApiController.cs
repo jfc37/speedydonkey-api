@@ -5,6 +5,7 @@ using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -25,6 +26,7 @@ namespace SpeedyDonkeyApi.Controllers
             _cloner = cloner;
         }
 
+        [ClaimsAuthorise(Claim = Claim.UpdatePass)]
         public HttpResponseMessage Put(int id, ClipPassModel model)
         {
             model.Id = id;
