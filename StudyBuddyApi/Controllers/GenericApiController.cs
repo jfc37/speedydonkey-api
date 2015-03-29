@@ -52,7 +52,6 @@ namespace SpeedyDonkeyApi.Controllers
                     ValidationResult = result.ValidationResult
                 });
         }
-
         public HttpResponseMessage Get(int id)
         {
             var entity = _repository.Get(id);

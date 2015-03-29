@@ -150,6 +150,19 @@ namespace SpeedyDonkeyApi.Tests
 
             Assert.IsNull(_httpActionContextBuilder.Build().Response);
         }
+
+        [Test]
+        public void It_should_be_authenticated_when_allow_anonymous_is_present()
+        {
+            _httpActionContextBuilder.WithAllowAnonymous();
+
+            var authoriseFilter = GetBasicAuthAuthoriseAttribute();
+            _httpActionContextBuilder.WithAllowAnonymous();
+
+            authoriseFilter.OnAuthorization(_httpActionContextBuilder.Build());
+
+            Assert.IsNull(_httpActionContextBuilder.Build().Response);
+        }
     }
 
     public class MockEntitySearchBuilder<T> : MockBuilder<IEntitySearch<T>> where T : class

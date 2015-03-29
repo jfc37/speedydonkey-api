@@ -22,6 +22,9 @@ namespace SpeedyDonkeyApi.Filter
             if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
                 return;
 
+            if (actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any())
+                return;
+
             var authHeader = actionContext.Request.Headers.Authorization;
             if (authHeader != null)
             {

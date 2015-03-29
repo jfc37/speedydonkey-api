@@ -21,6 +21,7 @@ namespace SpeedyDonkeyApi.Controllers
             IEntitySearch<User> entitySearch)
             : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
 
+        [AllowAnonymous]
         public HttpResponseMessage Post([FromBody] UserModel model)
         {
             return PerformAction(model, x => new CreateUser(x));
