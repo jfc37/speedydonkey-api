@@ -22,7 +22,7 @@ namespace SpeedyDonkeyApi.Filter
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             var claims = GetClaimsForUser(actionContext);
-            if  (!claims.Contains(Claim.ToString()))
+            if  (claims == null || !claims.Contains(Claim.ToString()))
                 HandleUnauthorised(actionContext);
         }
         
