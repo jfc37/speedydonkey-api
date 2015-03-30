@@ -7,6 +7,16 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
+    public class UserClaimsModel : IEntityView<User, string>
+    {
+        public IList<string> ConvertFromEntity(User user, HttpRequestMessage request, IUrlConstructor urlConstructor, ICommonInterfaceCloner cloner)
+        {
+            if (user.Claims == null)
+                return new List<string>();
+            return
+                user.Claims.Split(',').ToList();
+        }
+    }
     public class CurrentUserPassesModel : IEntityView<User, PassModel>
     {
         public IList<PassModel> CurrentPasses { get; set; }

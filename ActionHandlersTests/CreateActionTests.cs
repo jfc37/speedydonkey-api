@@ -37,7 +37,7 @@ namespace ActionHandlersTests
             _passwordHasherBuilder = new MockPasswordHasherBuilder()
                 .WithHashCreation();
 
-            _action = new CreateUser(new User());
+            _action = new CreateUser(new User{Email = "saran@fullswing.co.nz"});
         }
 
         private CreateUserHandler GetHandler()

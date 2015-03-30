@@ -16,10 +16,19 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    public class UserClaimsApiController : EntityPropertyApiController<UserClaimsModel, string, User>
+    {
+        public UserClaimsApiController(
+            IRepository<User> entityRepository, 
+            IUrlConstructor urlConstructor, 
+            ICommonInterfaceCloner cloner,
+            IActionHandlerOverlord actionHandlerOverlord)
+            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+        {
+        }
+    }
     public class UserPassesApiController : EntityPropertyApiController<CurrentUserPassesModel, PassModel, User>
     {
-        private readonly ICommonInterfaceCloner _cloner;
-
         public UserPassesApiController(
             IRepository<User> entityRepository, 
             IUrlConstructor urlConstructor, 
@@ -27,7 +36,6 @@ namespace SpeedyDonkeyApi.Controllers
             IActionHandlerOverlord actionHandlerOverlord)
             : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
-            _cloner = cloner;
         }
 
         public HttpResponseMessage Post(int id, IList<PassModel> pass)
