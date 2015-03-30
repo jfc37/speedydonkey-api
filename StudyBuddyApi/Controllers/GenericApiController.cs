@@ -75,7 +75,6 @@ namespace SpeedyDonkeyApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, allModels);
         }
 
-        [ClaimsAuthorise(Claim = Claim.EntitySearch)]
         public HttpResponseMessage Get(string q)
         {
             var matchingEntities = _entitySearch.Search(q);
