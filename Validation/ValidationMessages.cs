@@ -9,5 +9,12 @@
         public const string IncorrectNumberOfAttendees = "You can only add attendance for one student at a time";
         public const string NoValidPasses = "Please purchase a pass before attending the class";
         public const string AlreadyAttendingClass = "You are already attending this class";
+        public const string MissingPassword = "Please enter a password";
+        public const string PasswordTooShort = "Please enter a password atleast 7 characters long";
+        public const string MissingEmail = "Please enter an email address";
+        public const string InvalidEmail = "Please enter a valid email address";
+        public const string MissingFirstName = "Please enter a first name";
+        public const string MissingSurname = "Please enter a surname";
+        public const string DuplicateEmail = "Email address has already been registered";
     }
 }

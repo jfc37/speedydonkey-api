@@ -60,6 +60,7 @@
     <Compile Include="Builders\ValidationResultBuilder.cs" />
     <Compile Include="Builders\ValidatorOverlordBuilder.cs" />
     <Compile Include="CheckStudentIntoClassValidatorTests.cs" />
+    <Compile Include="CreateUserValidatorTests.cs" />
     <Compile Include="EnrolInBlockValidatorTests.cs" />
     <Compile Include="FluentConverterTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
