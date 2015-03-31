@@ -5,50 +5,55 @@ using System.Net.Http.Headers;
 using System.Reflection.Emit;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using System.Web.Http.Dependencies;
 using NSubstitute;
 
 namespace SpeedyDonkeyApi.Tests.Builders
 {
     public class HttpActionContextBuilder
     {
+        private HttpControllerDescriptor _controllerDescriptor;
+        private HttpActionDescriptor _actionDescriptor;
+        private AuthenticationHeaderValue _authorisation;
         private HttpActionContext _httpActionContext;
 
         public HttpActionContextBuilder()
         {
             var attributes = new Collection<AllowAnonymousAttribute>();
 
-            var controllerDescriptor = Substitute.For<HttpControllerDescriptor>();
-            controllerDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Returns(attributes);
+            _controllerDescriptor = Substitute.For<HttpControllerDescriptor>();
+            _controllerDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Returns(attributes);
 
-            var controllerContext = new HttpControllerContext
-            {
-                Request = new HttpRequestMessage(),
-                ControllerDescriptor = controllerDescriptor
-            };
-
-            var actionDescriptor = Substitute.For<HttpActionDescriptor>();
-            actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>()
+            _actionDescriptor = Substitute.For<HttpActionDescriptor>();
+            _actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>()
                 .Returns(attributes);
-
-
-            _httpActionContext = new HttpActionContext(controllerContext, actionDescriptor);
-
         }
 
         public HttpActionContextBuilder WithNoAuthorisationHeader()
         {
-            _httpActionContext.ControllerContext.Request.Headers.Authorization = null;
+            _authorisation = null;
             return this;
         }
 
         public HttpActionContext Build()
         {
+            if (_httpActionContext == null)
+            {
+                var controllerContext = new HttpControllerContext
+                {
+                    Request = new HttpRequestMessage(),
+                    ControllerDescriptor = _controllerDescriptor
+                };
+                controllerContext.Request.Headers.Authorization = _authorisation;
+
+                _httpActionContext = new HttpActionContext(controllerContext, _actionDescriptor);
+            }
             return _httpActionContext;
         }
 
         public HttpActionContextBuilder WithAuthorisationHeader(AuthenticationHeaderValue authenticationHeaderValue)
         {
-            _httpActionContext.ControllerContext.Request.Headers.Authorization = authenticationHeaderValue;
+            _authorisation = authenticationHeaderValue;
             return this;
         }
 
@@ -59,20 +64,21 @@ namespace SpeedyDonkeyApi.Tests.Builders
                 new AllowAnonymousAttribute()
             };
 
-            var controllerDescriptor = Substitute.For<HttpControllerDescriptor>();
-            controllerDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Returns(attributes);
-
-            var controllerContext = new HttpControllerContext
-            {
-                Request = new HttpRequestMessage(),
-                ControllerDescriptor = controllerDescriptor
-            };
-
-            var actionDescriptor = Substitute.For<HttpActionDescriptor>();
-            actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>()
+            _controllerDescriptor = Substitute.For<HttpControllerDescriptor>();
+            _controllerDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Returns(attributes);
+            
+            _actionDescriptor = Substitute.For<HttpActionDescriptor>();
+            _actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>()
                 .Returns(attributes);
 
-            _httpActionContext = new HttpActionContext(controllerContext, actionDescriptor);
+            return this;
+        }
+
+        public HttpActionContextBuilder WithDependencyResolver(IDependencyResolver dependencyResolver)
+        {
+            //var requestSubstitute = Substitute.For<HttpRequestMessage>();
+            //requestSubstitute.GetDependencyScope().Returns(dependencyResolver);
+            //_httpActionContext.Request = requestSubstitute;
             return this;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Action;
+using Common;
 using Data.Repositories;
 using FluentValidation;
 using Models;
@@ -11,16 +12,29 @@ namespace Validation.Validators
     {
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Block> _blockRepository;
+        private readonly ICurrentUser _currentUser;
 
-        public EnrolInBlockValidator(IRepository<User> userRepository, IRepository<Block> blockRepository)
+        public EnrolInBlockValidator(IRepository<User> userRepository, IRepository<Block> blockRepository, ICurrentUser currentUser)
         {
             _userRepository = userRepository;
             _blockRepository = blockRepository;
+            _currentUser = currentUser;
             When(x => x.EnroledBlocks != null, () =>
             {
-                RuleFor(x => x.EnroledBlocks).Must(NotAlreadyBeEnroled).WithMessage(ValidationMessages.AlreadyEnroledInBlock);
-                RuleFor(x => x.EnroledBlocks).Must(BeExistingBlocks).WithMessage(ValidationMessages.InvalidBlock);
+                RuleFor(x => x.EnroledBlocks).Must(NotAlreadyBeEnroled)
+                    .WithMessage(ValidationMessages.AlreadyEnroledInBlock)
+                    .Must(BeExistingBlocks).WithMessage(ValidationMessages.InvalidBlock);
+                RuleFor(x => x.Id).Must(BeAllowedToEnrol).WithMessage(ValidationMessages.InvalidUserToEnrol);
             });
+        }
+
+        private bool BeAllowedToEnrol(int userIdBeingEnroled)
+        {
+            if (userIdBeingEnroled == _currentUser.Id)
+                return true;
+
+            var user = _userRepository.Get(_currentUser.Id);
+            return user.Claims != null && user.Claims.Contains(Claim.EnrolOtherIntoBlock.ToString());
         }
 
         private bool BeExistingBlocks(ICollection<IBlock> blocks)

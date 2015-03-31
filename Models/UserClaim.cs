@@ -11,6 +11,7 @@ namespace Models
         CreateLevel,
         UpdatePass,
         CreateReferenceData,
-        CheckStudentIntoClass
+        CheckStudentIntoClass,
+        EnrolOtherIntoBlock
     }
 }

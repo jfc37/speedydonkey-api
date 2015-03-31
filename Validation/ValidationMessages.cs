@@ -16,5 +16,6 @@
         public const string MissingFirstName = "Please enter a first name";
         public const string MissingSurname = "Please enter a surname";
         public const string DuplicateEmail = "Email address has already been registered";
+        public const string InvalidUserToEnrol = "You do not have permission to enrol other students into blocks";
     }
 }

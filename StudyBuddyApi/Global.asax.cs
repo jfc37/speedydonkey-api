@@ -77,6 +77,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<PassCreatorFactory>().As<IPassCreatorFactory>();
             builder.RegisterType<UserPassAppender>().As<IUserPassAppender>();
             builder.RegisterType<BlockEnrolmentService>().As<IBlockEnrolmentService>();
+            builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
 
             // Build the container.
             var container = builder.Build();

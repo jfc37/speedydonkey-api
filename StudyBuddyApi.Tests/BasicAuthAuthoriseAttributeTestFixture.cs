@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
+using Common;
 using Common.Tests.Builders.MockBuilders;
 using Data.Searches;
 using Models;
@@ -26,17 +27,19 @@ namespace SpeedyDonkeyApi.Tests
         [SetUp]
         public void Setup()
         {
-            _httpActionContextBuilder = new HttpActionContextBuilder();
             _principalBuilder = new MockPrincipalBuilder();
             _entitySearchBuilder = new MockEntitySearchBuilder<User>()
                 .WithEntity(new User{Email = "email", Password = "password"});
             _passwordHasherBuilder = new MockPasswordHasherBuilder();
             _dependencyResolverBuilder = new MockDependencyResolverBuilder()
                 .WithService(_entitySearchBuilder.BuildObject())
-                .WithService(_passwordHasherBuilder.BuildObject());
+                .WithService(_passwordHasherBuilder.BuildObject())
+                .WithService((ICurrentUser) new CurrentUser());
             _principalBuilder
                .WithNoLoggedOnUser()
                .BuildObject();
+            _httpActionContextBuilder = new HttpActionContextBuilder()
+                .WithDependencyResolver(_dependencyResolverBuilder.BuildObject());
 
             string credentials = string.Format("{0}:{1}", "username", "password");
             string encodedCredentials = Convert.ToBase64String(Encoding.GetEncoding("iso-8859-1").GetBytes(credentials));

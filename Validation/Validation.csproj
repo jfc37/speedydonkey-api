@@ -73,6 +73,10 @@
       <Project>{09F22D3D-6200-41BF-BDEE-0F60710FB775}</Project>
       <Name>Actions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{0A9770C7-4D7D-445E-94EB-A01A00061E9F}</Project>
       <Name>Data</Name>

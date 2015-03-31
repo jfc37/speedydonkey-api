@@ -9,9 +9,12 @@ using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using System.Web.Mvc;
 using ActionHandlers;
+using Common;
 using Data.Searches;
 using Models;
+using AllowAnonymousAttribute = System.Web.Http.AllowAnonymousAttribute;
 
 namespace SpeedyDonkeyApi.Filter
 {
@@ -34,7 +37,7 @@ namespace SpeedyDonkeyApi.Filter
                     var username = credentials[0];
                     var password = credentials[1];
 
-                    if (AreCredentialsCorrect(username, password))
+                    if (AreCredentialsCorrect(username, password, actionContext))
                     {
                         var principal = new GenericPrincipal(new GenericIdentity(username), null);
                         Thread.CurrentPrincipal = principal;
@@ -65,7 +68,7 @@ namespace SpeedyDonkeyApi.Filter
             return split;
         }
 
-        private bool AreCredentialsCorrect(string username, string password)
+        private bool AreCredentialsCorrect(string username, string password, HttpActionContext actionContext)
         {
             if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
@@ -74,6 +77,9 @@ namespace SpeedyDonkeyApi.Filter
                 var user = userSearch.Search(q).SingleOrDefault();
                 if (user != null)
                 {
+                    //var currentUser = (ICurrentUser) actionContext.Request.GetDependencyScope().GetService(typeof (ICurrentUser));
+                    //currentUser.Id = user.Id;
+
                     var passwordHasher = (IPasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IPasswordHasher));
                     return passwordHasher.ValidatePassword(password, user.Password);
                 }
