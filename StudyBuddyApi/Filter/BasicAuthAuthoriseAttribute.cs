@@ -77,8 +77,8 @@ namespace SpeedyDonkeyApi.Filter
                 var user = userSearch.Search(q).SingleOrDefault();
                 if (user != null)
                 {
-                    //var currentUser = (ICurrentUser) actionContext.Request.GetDependencyScope().GetService(typeof (ICurrentUser));
-                    //currentUser.Id = user.Id;
+                    var currentUser = (ICurrentUser) actionContext.Request.GetDependencyScope().GetService(typeof (ICurrentUser));
+                    currentUser.Id = user.Id;
 
                     var passwordHasher = (IPasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IPasswordHasher));
                     return passwordHasher.ValidatePassword(password, user.Password);
