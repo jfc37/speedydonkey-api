@@ -5,7 +5,7 @@ namespace Models
     public enum Claim
     {
         Invalid,
-        EntitySearch,
+        AnyUserData,
         CreateNewBlock,
         DeleteDatabase,
         CreateLevel,

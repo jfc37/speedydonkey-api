@@ -6,6 +6,7 @@ using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -25,6 +26,18 @@ namespace SpeedyDonkeyApi.Controllers
         public HttpResponseMessage Post([FromBody] UserModel model)
         {
             return PerformAction(model, x => new CreateUser(x));
+        }
+
+        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        public override HttpResponseMessage Get()
+        {
+            return base.Get();
+        }
+
+        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        public override HttpResponseMessage Get(string q)
+        {
+            return base.Get(q);
         }
     }
 }

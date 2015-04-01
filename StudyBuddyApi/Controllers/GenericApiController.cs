@@ -53,7 +53,7 @@ namespace SpeedyDonkeyApi.Controllers
                     ValidationResult = result.ValidationResult
                 });
         }
-        public HttpResponseMessage Get(int id)
+        public virtual HttpResponseMessage Get(int id)
         {
             var entity = _repository.Get(id);
 
@@ -63,7 +63,7 @@ namespace SpeedyDonkeyApi.Controllers
             var model = new TModel().CloneFromEntity(Request, _urlConstructor, entity, _cloner);
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
-        public HttpResponseMessage Get()
+        public virtual HttpResponseMessage Get()
         {
             var allEntities = _repository.GetAll();
             if (!allEntities.Any())
@@ -75,7 +75,7 @@ namespace SpeedyDonkeyApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, allModels);
         }
 
-        public HttpResponseMessage Get(string q)
+        public virtual HttpResponseMessage Get(string q)
         {
             var matchingEntities = _entitySearch.Search(q);
             if (!matchingEntities.Any())
