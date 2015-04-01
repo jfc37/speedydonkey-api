@@ -1,4 +1,5 @@
-﻿using Action;
+﻿using System;
+using Action;
 using Common;
 using Data.Repositories;
 using FluentValidation;
@@ -29,8 +30,7 @@ namespace Validation.Validators
                 return true;
 
             var user = _userRepository.Get(_currentUser.Id);
-            return user.Claims.Contains(Claim.EnrolOtherIntoBlock.ToString());
-            return false;
+            return !String.IsNullOrWhiteSpace(user.Claims) && user.Claims.Contains(Claim.EnrolOtherIntoBlock.ToString());
         }
 
         private bool BeExistingUser(int id)
