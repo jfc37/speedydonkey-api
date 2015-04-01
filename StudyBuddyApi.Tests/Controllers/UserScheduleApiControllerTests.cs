@@ -26,7 +26,8 @@ namespace StudyBuddyApi.Tests.Controllers
             var controller = new UserScheduleApiController(
                 RepositoryBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
-                Cloner);
+                Cloner,
+                new CurrentUser());
             ApiControllerSetup.Setup(controller);
             return controller;
         }

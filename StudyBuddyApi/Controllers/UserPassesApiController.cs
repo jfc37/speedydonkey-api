@@ -18,24 +18,54 @@ namespace SpeedyDonkeyApi.Controllers
 {
     public class UserClaimsApiController : EntityPropertyApiController<UserClaimsModel, string, User>
     {
+        private readonly ICurrentUser _currentUser;
+
         public UserClaimsApiController(
             IRepository<User> entityRepository, 
             IUrlConstructor urlConstructor, 
             ICommonInterfaceCloner cloner,
-            IActionHandlerOverlord actionHandlerOverlord)
+            IActionHandlerOverlord actionHandlerOverlord,
+            ICurrentUser currentUser)
             : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
+            _currentUser = currentUser;
+        }
+
+        public HttpResponseMessage Get()
+        {
+            return Get(_currentUser.Id);
+        }
+
+        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        public override HttpResponseMessage Get(int id)
+        {
+            return base.Get(id);
         }
     }
     public class UserPassesApiController : EntityPropertyApiController<CurrentUserPassesModel, PassModel, User>
     {
+        private readonly ICurrentUser _currentUser;
+
         public UserPassesApiController(
             IRepository<User> entityRepository, 
             IUrlConstructor urlConstructor, 
             ICommonInterfaceCloner cloner,
-            IActionHandlerOverlord actionHandlerOverlord)
+            IActionHandlerOverlord actionHandlerOverlord,
+            ICurrentUser currentUser)
             : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
+            _currentUser = currentUser;
+        }
+
+        public HttpResponseMessage Get()
+        {
+            return Get(_currentUser.Id);
+        }
+
+        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        public override HttpResponseMessage Get(int id)
+        {
+            return base.Get(id);
         }
 
         public HttpResponseMessage Post(int id, IList<PassModel> pass)
@@ -50,13 +80,28 @@ namespace SpeedyDonkeyApi.Controllers
     }
     public class UserEnroledBlocksApiController : EntityPropertyApiController<UserEnroledBlocksModel, BlockModel, User>
     {
+        private readonly ICurrentUser _currentUser;
+
         public UserEnroledBlocksApiController(
             IRepository<User> entityRepository, 
             IUrlConstructor urlConstructor,
             ICommonInterfaceCloner cloner,
-            IActionHandlerOverlord actionHandlerOverlord)
+            IActionHandlerOverlord actionHandlerOverlord,
+            ICurrentUser currentUser)
             : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
+            _currentUser = currentUser;
+        }
+
+        public HttpResponseMessage Get()
+        {
+            return Get(_currentUser.Id);
+        }
+
+        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        public override HttpResponseMessage Get(int id)
+        {
+            return base.Get(id);
         }
     }
     public class ClassRollApiController : EntityPropertyApiController<ClassRegisterModel, UserModel, Class>
@@ -131,7 +176,7 @@ namespace SpeedyDonkeyApi.Controllers
             _actionHandlerOverlord = actionHandlerOverlord;
         }
 
-        public HttpResponseMessage Get(int id)
+        public virtual HttpResponseMessage Get(int id)
         {
             var entity = _entityRepository.Get(id);
             if (entity == null)

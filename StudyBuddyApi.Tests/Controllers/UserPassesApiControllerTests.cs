@@ -27,7 +27,8 @@ namespace StudyBuddyApi.Tests.Controllers
                 RepositoryBuilder.BuildObject(),
                 UrlConstructorBuilder.BuildObject(),
                 Cloner,
-                ActionHandlerOverlordBuilder.BuildObject());
+                ActionHandlerOverlordBuilder.BuildObject(),
+                new CurrentUser());
             ApiControllerSetup.Setup(controller);
             return controller;
         }
