@@ -11,7 +11,7 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class UserScheduleApiController : ApiController
+    public class UserScheduleApiController : BaseApiController
     {
         private readonly IAdvancedRepository<User, IList<IEvent>> _userRepository;
         private readonly IUrlConstructor _urlConstructor;

@@ -110,7 +110,9 @@ namespace SpeedyDonkeyApi.Controllers
         }
     }
 
-    public abstract class EntityPropertyApiController<TViewModel, TModel, TEntity> : ApiController where TViewModel : IEntityView<TEntity, TModel>, new() where TEntity : class, IEntity
+    public abstract class EntityPropertyApiController<TViewModel, TModel, TEntity> : BaseApiController
+        where TViewModel : IEntityView<TEntity, TModel>, new()
+        where TEntity : class, IEntity
     {
         private readonly IRepository<TEntity> _entityRepository;
         private readonly IUrlConstructor _urlConstructor;
