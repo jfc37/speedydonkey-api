@@ -16,6 +16,7 @@ namespace SpeedyDonkeyApi.Tests.Builders
         private HttpActionDescriptor _actionDescriptor;
         private AuthenticationHeaderValue _authorisation;
         private HttpActionContext _httpActionContext;
+        private HttpRequestMessage _requestSubstitute;
 
         public HttpActionContextBuilder()
         {
@@ -27,6 +28,8 @@ namespace SpeedyDonkeyApi.Tests.Builders
             _actionDescriptor = Substitute.For<HttpActionDescriptor>();
             _actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>()
                 .Returns(attributes);
+
+            _requestSubstitute = new HttpRequestMessage();
         }
 
         public HttpActionContextBuilder WithNoAuthorisationHeader()
@@ -41,7 +44,7 @@ namespace SpeedyDonkeyApi.Tests.Builders
             {
                 var controllerContext = new HttpControllerContext
                 {
-                    Request = new HttpRequestMessage(),
+                    Request = _requestSubstitute,
                     ControllerDescriptor = _controllerDescriptor
                 };
                 controllerContext.Request.Headers.Authorization = _authorisation;
@@ -71,14 +74,6 @@ namespace SpeedyDonkeyApi.Tests.Builders
             _actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>()
                 .Returns(attributes);
 
-            return this;
-        }
-
-        public HttpActionContextBuilder WithDependencyResolver(IDependencyResolver dependencyResolver)
-        {
-            //var requestSubstitute = Substitute.For<HttpRequestMessage>();
-            //requestSubstitute.GetDependencyScope().Returns(dependencyResolver);
-            //_httpActionContext.Request = requestSubstitute;
             return this;
         }
     }

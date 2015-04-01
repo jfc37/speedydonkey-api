@@ -8,6 +8,7 @@ using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi
 {
@@ -131,16 +132,16 @@ namespace SpeedyDonkeyApi
             //var jsonpFormatter = new JsonpMediaTypeFormatter(jsonFormatter);
             //config.Formatters.Insert(0, jsonpFormatter);
 
-            //#if !DEBUG
-            ////Force HTTPS on entire API
-            //config.Filters.Add(new RequireHttpsAttribute());
-            //#endif
+            #if !DEBUG
+            //Force HTTPS on entire API
+            config.Filters.Add(new RequireHttpsAttribute());
+            #endif
 
             config.Services.Add(typeof(IExceptionLogger), new GlobalErrorLoggerService());
 
 
             //Specify values as appropriate (origins,headers,methods)
-            var cors = new EnableCorsAttribute("http://spa-speedydonkey.azurewebsites.net,http://localhost:7300", "*", "GET, POST, PUT, DELETE");
+            var cors = new EnableCorsAttribute("https://spa-speedydonkey.azurewebsites.net,http://localhost:7300", "*", "GET, POST, PUT, DELETE");
             config.EnableCors(cors);
         }
     }

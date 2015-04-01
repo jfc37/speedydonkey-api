@@ -38,8 +38,7 @@ namespace SpeedyDonkeyApi.Tests
             _principalBuilder
                .WithNoLoggedOnUser()
                .BuildObject();
-            _httpActionContextBuilder = new HttpActionContextBuilder()
-                .WithDependencyResolver(_dependencyResolverBuilder.BuildObject());
+            _httpActionContextBuilder = new HttpActionContextBuilder();
 
             string credentials = string.Format("{0}:{1}", "username", "password");
             string encodedCredentials = Convert.ToBase64String(Encoding.GetEncoding("iso-8859-1").GetBytes(credentials));

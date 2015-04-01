@@ -77,8 +77,7 @@ namespace SpeedyDonkeyApi.Filter
                 var user = userSearch.Search(q).SingleOrDefault();
                 if (user != null)
                 {
-                    var currentUser = (ICurrentUser) actionContext.Request.GetDependencyScope().GetService(typeof (ICurrentUser));
-                    currentUser.Id = user.Id;
+                    SetCurrentUser(actionContext, user);
 
                     var passwordHasher = (IPasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IPasswordHasher));
                     return passwordHasher.ValidatePassword(password, user.Password);
@@ -86,6 +85,18 @@ namespace SpeedyDonkeyApi.Filter
             }
 
             return false;
+        }
+
+        private void SetCurrentUser(HttpActionContext actionContext, User user)
+        {
+            try
+            {
+                var currentUser = (ICurrentUser)actionContext.Request.GetDependencyScope().GetService(typeof(ICurrentUser));
+                currentUser.Id = user.Id;
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void HandleUnauthorised(HttpActionContext actionContext)
