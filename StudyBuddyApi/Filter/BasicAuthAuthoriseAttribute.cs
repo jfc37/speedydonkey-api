@@ -73,13 +73,15 @@ namespace SpeedyDonkeyApi.Filter
             if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
                 var q = String.Format("{0}{1}{2}{3}{4}", SearchElements.Email, SearchSyntax.Seperator, SearchKeyWords.Equals, SearchSyntax.Seperator, username);
-                var userSearch = (IEntitySearch<User>)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IEntitySearch<User>));
+                //var userSearch = (IEntitySearch<User>)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IEntitySearch<User>));
+                var userSearch = (IEntitySearch<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IEntitySearch<User>));
                 var user = userSearch.Search(q).SingleOrDefault();
                 if (user != null)
                 {
                     SetCurrentUser(actionContext, user);
 
-                    var passwordHasher = (IPasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IPasswordHasher));
+                    //var passwordHasher = (IPasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IPasswordHasher));
+                    var passwordHasher = (IPasswordHasher)actionContext.Request.GetDependencyScope().GetService(typeof(IPasswordHasher));
                     return passwordHasher.ValidatePassword(password, user.Password);
                 }
             }

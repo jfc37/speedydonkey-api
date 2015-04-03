@@ -110,8 +110,8 @@ namespace SpeedyDonkeyApi
             builder.Register(s => s.Resolve<ISessionFactory>().OpenSession())
                 //.InstancePerDependency()
                 //.SingleInstance()
-                //.InstancePerRequest()
-                .InstancePerLifetimeScope()
+                .InstancePerRequest()
+                //.InstancePerLifetimeScope()
                 //.InstancePerMatchingLifetimeScope()
                 ;
             //}
