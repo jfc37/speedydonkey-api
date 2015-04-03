@@ -148,8 +148,8 @@ namespace ActionHandlersTests
             LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
                    .WithGet(new Level
                    {
-                       StartTime = DateTime.Now,
-                       EndTime = DateTime.Now.AddHours(1),
+                       StartTime = LevelStartTime,
+                       EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
                        Blocks = new List<IBlock>()
                    });
