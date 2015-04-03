@@ -30,7 +30,7 @@ namespace ActionHandlers.CreateHandlers.Strategies
         {
             block.Level = level;
             block.StartDate = level.StartTime;
-            block.EndDate = level.StartTime.AddDays(level.ClassesInBlock * 7);
+            block.EndDate = level.EndTime.AddDays(level.ClassesInBlock * 7);
         }
     }
 

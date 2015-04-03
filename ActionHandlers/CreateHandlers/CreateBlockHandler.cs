@@ -37,12 +37,13 @@ namespace ActionHandlers.CreateHandlers
         protected override void PostHandle(ICrudAction<Block> action, Block result)
         {
             var classTime = result.StartDate;
-            while (classTime < result.EndDate)
+            var timeSpan = result.EndDate.Subtract(result.StartDate);
+            while (classTime < result.EndDate.Date)
             {
                 var nextClass = new Class
                 {
                     StartTime = classTime,
-                    EndTime = classTime.AddMinutes(result.Level.ClassMinutes),
+                    EndTime = classTime.AddMinutes(timeSpan.TotalMinutes),
                     Block = result,
                     Name = result.Name
                 };

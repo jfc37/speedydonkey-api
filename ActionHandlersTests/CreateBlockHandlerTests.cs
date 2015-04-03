@@ -19,9 +19,13 @@ namespace ActionHandlersTests
         protected MockRepositoryBuilder<Class> ClassRepositoryBuilder;
         protected MockRepositoryBuilder<Booking> BookingRepositoryBuilder; 
         protected CreateBlock Action;
+        protected DateTime LevelStartTime;
+        protected DateTime LevelEndTime;
 
         protected void OverallSetup()
         {
+            LevelStartTime = DateTime.Now;
+            LevelEndTime = LevelStartTime.AddHours(1);
             RepositoryBuilder = new MockRepositoryBuilder<Block>();
             LevelRepositoryBuilder = new MockRepositoryBuilder<Level>();
             ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
@@ -62,6 +66,7 @@ namespace ActionHandlersTests
                 .WithGet(new Level
                 {
                     StartTime = DateTime.Now,
+                    EndTime = DateTime.Now.AddHours(1),
                     Blocks = new List<IBlock>(),
                     Name = "My Name"
                 });
@@ -103,7 +108,8 @@ namespace ActionHandlersTests
             LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
                    .WithGet(new Level
                    {
-                       StartTime = DateTime.Now,
+                       StartTime = LevelStartTime,
+                       EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
                        Blocks = new List<IBlock>()
                    });
@@ -111,7 +117,7 @@ namespace ActionHandlersTests
             PerformAction();
 
             var createdBlock = RepositoryBuilder.CreatedEntity;
-            var expectedEndDate = createdBlock.StartDate.AddDays(numberOfClasses*7);
+            var expectedEndDate = LevelStartTime.AddHours(1).AddDays(numberOfClasses*7);
             Assert.AreEqual(expectedEndDate, createdBlock.EndDate);
         }
 
@@ -123,7 +129,8 @@ namespace ActionHandlersTests
             LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
                    .WithGet(new Level
                    {
-                       StartTime = DateTime.Now,
+                       StartTime = LevelStartTime,
+                       EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
                        Blocks = new List<IBlock>()
                    });
@@ -142,6 +149,7 @@ namespace ActionHandlersTests
                    .WithGet(new Level
                    {
                        StartTime = DateTime.Now,
+                       EndTime = DateTime.Now.AddHours(1),
                        ClassesInBlock = numberOfClasses,
                        Blocks = new List<IBlock>()
                    });
@@ -223,7 +231,8 @@ namespace ActionHandlersTests
             LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
                    .WithGet(new Level
                    {
-                       StartTime = DateTime.Now,
+                       StartTime = LevelStartTime,
+                       EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
                        Blocks = new List<IBlock>()
                    });
