@@ -19,6 +19,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using log4net.Config;
 using NHibernate.Tool.hbm2ddl;
+using Notification;
 using SpeedyDonkeyApi.Services;
 using Validation;
 using Validation.Validators;
@@ -77,6 +78,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<PassCreatorFactory>().As<IPassCreatorFactory>();
             builder.RegisterType<UserPassAppender>().As<IUserPassAppender>();
             builder.RegisterType<BlockEnrolmentService>().As<IBlockEnrolmentService>();
+            builder.RegisterType<MailSender>().As<IMailSender>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
 
             // Build the container.

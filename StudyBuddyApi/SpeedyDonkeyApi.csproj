@@ -329,6 +329,10 @@
       <Project>{6fdcd6ff-6028-424c-bb2c-326315491190}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Notification\Notification.csproj">
+      <Project>{01A83567-4346-45F7-8322-563F700C7AD8}</Project>
+      <Name>Notification</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>
       <Name>Validation</Name>
