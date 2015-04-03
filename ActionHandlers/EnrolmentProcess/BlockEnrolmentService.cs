@@ -7,7 +7,7 @@ namespace ActionHandlers.EnrolmentProcess
 {
     public interface IBlockEnrolmentService
     {
-        void EnrolInBlocks(User user, IList<int> blockIds);
+        IList<Block> EnrolInBlocks(User user, IList<int> blockIds);
     }
 
     public class BlockEnrolmentService : IBlockEnrolmentService
@@ -23,7 +23,7 @@ namespace ActionHandlers.EnrolmentProcess
             _bookingRepository = bookingRepository;
         }
 
-        public void EnrolInBlocks(User user, IList<int> blockIds)
+        public IList<Block> EnrolInBlocks(User user, IList<int> blockIds)
         {
             var allBlocks = _blockRepository.GetAllWithChildren(new[] {"Classes"});
             var interestedBlocks = allBlocks.Where(b => blockIds.Any(x => x == b.Id));
@@ -32,6 +32,8 @@ namespace ActionHandlers.EnrolmentProcess
             AddBlocksToUser(user, blocksBeingEnroledIn);
             AddClassesToUserSchedule(user, blocksBeingEnroledIn.SelectMany(x => x.Classes));
             AddUserToClassRoll(user, blocksBeingEnroledIn.SelectMany(x => x.Classes));
+
+            return blocksBeingEnroledIn;
         }
 
         private void AddClassesToUserSchedule(User user, IEnumerable<IClass> classes)

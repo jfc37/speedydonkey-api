@@ -5,6 +5,8 @@ using Action;
 using ActionHandlers.UserPasses;
 using Data.Repositories;
 using Models;
+using Notification;
+using Notification.Notifications;
 
 namespace ActionHandlers.EnrolmentProcess
 {
@@ -13,26 +15,41 @@ namespace ActionHandlers.EnrolmentProcess
         private readonly IRepository<User> _userRepository;
         private readonly IBlockEnrolmentService _blockEnrolmentService;
         private readonly IUserPassAppender _userPassAppender;
+        private readonly IPostOffice _postOffice;
 
-        public EnrolInBlockHandler(
-            IRepository<User> userRepository,
-            IBlockEnrolmentService blockEnrolmentService,
-            IUserPassAppender userPassAppender)
+        public EnrolInBlockHandler(IRepository<User> userRepository, IBlockEnrolmentService blockEnrolmentService, IUserPassAppender userPassAppender, IPostOffice postOffice)
         {
             _userRepository = userRepository;
             _blockEnrolmentService = blockEnrolmentService;
             _userPassAppender = userPassAppender;
+            _postOffice = postOffice;
         }
 
         public User Handle(EnrolInBlock action)
         {
+            IList<Block> blocks = new List<Block>();
             var user = _userRepository.GetWithChildren(action.ActionAgainst.Id, new List<string> { "EnroledBlocks", "EnroledBlocks.Classes" });
             if (action.ActionAgainst.EnroledBlocks != null)
             {
-                _blockEnrolmentService.EnrolInBlocks(user, action.ActionAgainst.EnroledBlocks.Select(x => x.Id).ToList());   
+                blocks = _blockEnrolmentService.EnrolInBlocks(user, action.ActionAgainst.EnroledBlocks.Select(x => x.Id).ToList());   
             }
             AddPassToUser(user, action);
+            SendEmail(user, blocks);
             return _userRepository.Update(user);
+        }
+
+        private void SendEmail(User user, IList<Block> blocksBeingEnroledIn)
+        {
+            var userNotication = new User
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                Surname = user.Surname,
+                EnroledBlocks = blocksBeingEnroledIn.Select(x => (IBlock) x).ToList(),
+                Passes = null
+            };
+            var notification = new UserEnroledInBlock(userNotication);
+            _postOffice.Send(notification);
         }
 
         private void AddPassToUser(User user, EnrolInBlock action)

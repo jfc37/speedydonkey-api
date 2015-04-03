@@ -4,17 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DB29D7D9-8144-4DC4-A5EC-F22E49305D0F}</ProjectGuid>
+    <ProjectGuid>{E60D9FFE-EBE3-42F6-981C-6BFD426E9E2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Tests</RootNamespace>
-    <AssemblyName>Common.Tests</AssemblyName>
+    <RootNamespace>Notification.Tests</RootNamespace>
+    <AssemblyName>Notification.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,25 +33,13 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentValidation, Version=5.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq, Version=4.2.1409.1722, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,29 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\LifetimeScopeBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockBuilder.cs" />
-    <Compile Include="Builders\MockBuilders\MockPasswordHasherBuilder.cs" />
-    <Compile Include="CommonInterfaceClonerTests.cs" />
-    <Compile Include="InMemoryDbSet.cs" />
+    <Compile Include="Builders\MockPostOfficeBuilder.cs" />
+    <Compile Include="PostOfficeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserRegisteredHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ActionHandlers\ActionHandlers.csproj">
-      <Project>{aa37b17d-755f-420c-aeb8-cce08da6d30e}</Project>
-      <Name>ActionHandlers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Action\Actions.csproj">
-      <Project>{09f22d3d-6200-41bf-bdee-0f60710fb775}</Project>
-      <Name>Actions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
-      <Name>Common</Name>
+    <ProjectReference Include="..\Common.Tests\Common.Tests.csproj">
+      <Project>{DB29D7D9-8144-4DC4-A5EC-F22E49305D0F}</Project>
+      <Name>Common.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{6FDCD6FF-6028-424C-BB2C-326315491190}</Project>
@@ -96,14 +66,10 @@
       <Project>{01A83567-4346-45F7-8322-563F700C7AD8}</Project>
       <Name>Notification</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StudyBuddyApi\SpeedyDonkeyApi.csproj">
-      <Project>{0ED4CACE-AE54-49D6-9053-F44DE4D7298E}</Project>
-      <Name>SpeedyDonkeyApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Validation\Validation.csproj">
-      <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>
-      <Name>Validation</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

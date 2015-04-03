@@ -7,6 +7,8 @@ using ActionHandlers.UserPasses;
 using Data.Tests.Builders;
 using Models;
 using Moq;
+using Notification.Notifications;
+using Notification.Tests.Builders;
 using NUnit.Framework;
 
 namespace ActionHandlersTests
@@ -19,6 +21,7 @@ namespace ActionHandlersTests
         private MockRepositoryBuilder<User> _userRepositoryBuilder;
         private MockRepositoryBuilder<Block> _blockRepositoryBuilder;
         private MockRepositoryBuilder<Booking> _bookingRepositoryBuilder;
+        private MockPostOfficeBuilder _postOfficeBuilder;
         
         [SetUp]
         public void Setup()
@@ -48,6 +51,8 @@ namespace ActionHandlersTests
             });
             _bookingRepositoryBuilder = new MockRepositoryBuilder<Booking>()
                 .WithGetAll();
+            _postOfficeBuilder = new MockPostOfficeBuilder()
+                .WithSending();
         }
 
         private EnrolInBlockHandler GetHandler()
@@ -56,7 +61,8 @@ namespace ActionHandlersTests
                 _userRepositoryBuilder.BuildObject(),
                 new BlockEnrolmentService(_blockRepositoryBuilder.BuildObject(),
                 _bookingRepositoryBuilder.BuildObject()),
-                new UserPassAppender(new PassCreatorFactory()));
+                new UserPassAppender(new PassCreatorFactory()),
+                _postOfficeBuilder.BuildObject());
         }
 
         private void PerformAction()
@@ -137,6 +143,14 @@ namespace ActionHandlersTests
             {
                 Assert.Contains(updatedUser, blockClass.RegisteredStudents.ToArray());
             }
+        }
+
+        [Test]
+        public void Then_it_should_send_out_an_email()
+        {
+            PerformAction();
+
+            _postOfficeBuilder.Mock.Verify(x => x.Send(It.IsAny<UserEnroledInBlock>()));
         }
     }
 }

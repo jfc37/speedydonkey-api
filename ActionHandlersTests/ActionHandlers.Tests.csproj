@@ -91,6 +91,14 @@
       <Project>{6FDCD6FF-6028-424C-BB2C-326315491190}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Notification.Tests\Notification.Tests.csproj">
+      <Project>{E60D9FFE-EBE3-42F6-981C-6BFD426E9E2D}</Project>
+      <Name>Notification.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notification\Notification.csproj">
+      <Project>{01A83567-4346-45F7-8322-563F700C7AD8}</Project>
+      <Name>Notification</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Validation.Tests\Validation.Tests.csproj">
       <Project>{AA5978F2-45DA-470C-B499-602A9E98A2AC}</Project>
       <Name>Validation.Tests</Name>

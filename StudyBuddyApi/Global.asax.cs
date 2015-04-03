@@ -20,6 +20,7 @@ using FluentNHibernate.Cfg.Db;
 using log4net.Config;
 using NHibernate.Tool.hbm2ddl;
 using Notification;
+using Notification.NotificationHandlers;
 using SpeedyDonkeyApi.Services;
 using Validation;
 using Validation.Validators;
@@ -53,6 +54,9 @@ namespace SpeedyDonkeyApi
             builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionHandler<,>)).AsImplementedInterfaces();
 
+            builder.RegisterAssemblyTypes(typeof(PostOffice).Assembly)
+                .AsClosedTypesOf(typeof(INotificationHandler<>)).AsImplementedInterfaces();
+
             builder.RegisterAssemblyTypes(typeof(UserScheduleRepository).Assembly)
                 .AsClosedTypesOf(typeof(IAdvancedRepository<,>)).AsImplementedInterfaces();
 
@@ -78,7 +82,8 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<PassCreatorFactory>().As<IPassCreatorFactory>();
             builder.RegisterType<UserPassAppender>().As<IUserPassAppender>();
             builder.RegisterType<BlockEnrolmentService>().As<IBlockEnrolmentService>();
-            builder.RegisterType<MailSender>().As<IMailSender>();
+            builder.RegisterType<PostOffice>().As<IPostOffice>();
+            builder.RegisterType<MailMan>().As<IMailMan>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
 
             // Build the container.

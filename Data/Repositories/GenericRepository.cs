@@ -103,15 +103,23 @@ namespace Data.Repositories
 
         public TEntity Create(TEntity entity)
         {
-            _session.Save(entity);
-            return entity;
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Save(entity);
+                transaction.Commit();
+                return entity;
+            }
         }
 
         public TEntity Update(TEntity entity)
         {
-            _session.Update(entity, entity.Id);
-            _session.Flush();
-            return entity;
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Update(entity, entity.Id);
+                _session.Flush();
+                transaction.Commit();
+                return entity;
+            }
         }
 
         public void Delete(TEntity entity)

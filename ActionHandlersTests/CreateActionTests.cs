@@ -4,6 +4,9 @@ using Common.Tests.Builders.MockBuilders;
 using Data.Tests.Builders;
 using Models;
 using Moq;
+using Notification;
+using Notification.Notifications;
+using Notification.Tests.Builders;
 using NUnit.Framework;
 
 namespace ActionHandlersTests
@@ -28,6 +31,7 @@ namespace ActionHandlersTests
     public class GivenCreateUserIsHandled : CreateActionTests<User>
     {
         private MockPasswordHasherBuilder _passwordHasherBuilder;
+        private MockPostOfficeBuilder _postOfficeBuilder;
         private CreateUser _action;
 
         [SetUp]
@@ -36,13 +40,14 @@ namespace ActionHandlersTests
             SetupDependencies();
             _passwordHasherBuilder = new MockPasswordHasherBuilder()
                 .WithHashCreation();
-
+            _postOfficeBuilder = new MockPostOfficeBuilder()
+                .WithSending();
             _action = new CreateUser(new User{Email = "saran@fullswing.co.nz"});
         }
 
         private CreateUserHandler GetHandler()
         {
-            return new CreateUserHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject());
+            return new CreateUserHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject(), _postOfficeBuilder.BuildObject());
         }
 
         private void PerformAction()
@@ -64,6 +69,14 @@ namespace ActionHandlersTests
             PerformAction();
 
             CheckCreateWasCalled();
+        }
+
+        [Test]
+        public void It_should_send_confirmation_email()
+        {
+            PerformAction();
+
+            _postOfficeBuilder.Mock.Verify(x => x.Send(It.IsAny<UserRegistered>()), Times.Once);
         }
     }
 }
