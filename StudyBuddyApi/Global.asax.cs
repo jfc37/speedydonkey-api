@@ -107,7 +107,7 @@ namespace SpeedyDonkeyApi
             // Either use a session in view model or per instance depending on the context.
             //if (HttpContext.Current != null)
             //{
-                builder.Register(s => s.Resolve<ISessionFactory>().OpenSession()).InstancePerLifetimeScope();
+                builder.Register(s => s.Resolve<ISessionFactory>().OpenSession()).InstancePerDependency();
             //}
             //else
             //{
