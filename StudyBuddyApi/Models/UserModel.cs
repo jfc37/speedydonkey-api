@@ -39,5 +39,10 @@ namespace SpeedyDonkeyApi.Models
                     .ToList();
             }
         }
+
+        protected override void SanitiseModel(UserModel model)
+        {
+            model.Password = null;
+        }
     }
 }

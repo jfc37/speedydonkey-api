@@ -42,7 +42,13 @@ namespace SpeedyDonkeyApi.Models
             var model = cloner.Clone<TEntity, TModel>(entity);
             model.Url = urlConstructor.Construct(RouteName, new {id = entity.Id}, request);
             AddChildrenToModel(entity, model);
+            SanitiseModel(model);
             return model;
+        }
+
+        protected virtual void SanitiseModel(TModel model)
+        {
+            
         }
 
         protected virtual void AddChildrenToModel(TEntity entity, TModel model) { }
