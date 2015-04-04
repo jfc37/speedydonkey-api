@@ -46,6 +46,7 @@ namespace Validation.Tests
                     {
                         StartDate = DateTime.Now.AddDays(-1),
                         EndDate = DateTime.Now.AddDays(1),
+                        PaymentStatus = PassPaymentStatus.Paid.ToString()
                     }
                 }
             };
@@ -112,6 +113,17 @@ namespace Validation.Tests
             Assert.IsFalse(result.IsValid);
             var error = result.Errors.Single();
             Assert.AreEqual(ValidationMessages.NoValidPasses, error.ErrorMessage);
+        }
+        [Test]
+        public void When_user_doesnt_have_a_paid_for_pass_then_it_should_return_an_error()
+        {
+            _retrievedUser.Passes.Single().PaymentStatus = PassPaymentStatus.Pending.ToString();
+
+            var result = PerforAction();
+
+            Assert.IsFalse(result.IsValid);
+            var error = result.Errors.Single();
+            Assert.AreEqual(ValidationMessages.NoPaidForPasses, error.ErrorMessage);
         }
         [Test]
         public void When_user_is_already_attending_the_class_then_it_should_return_an_error()

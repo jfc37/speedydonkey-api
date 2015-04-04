@@ -25,6 +25,7 @@ namespace Validation.Validators
                 .Must(OnlyAddSingleStudent).WithMessage(ValidationMessages.IncorrectNumberOfAttendees)
                 .Must(BeExistingUser).WithMessage(ValidationMessages.InvalidUser)
                 .Must(HaveAValidPass).WithMessage(ValidationMessages.NoValidPasses)
+                .Must(HavePaidForAPass).WithMessage(ValidationMessages.NoPaidForPasses)
                 .Must(NotAlreadyBeAttendingClass).WithMessage(ValidationMessages.AlreadyAttendingClass)
                 ;
         }
@@ -42,6 +43,12 @@ namespace Validation.Validators
         {
             var user = GetUser(users);
             return user.Passes != null && user.Passes.Any(x => x.IsValid());
+        }
+
+        private bool HavePaidForAPass(ICollection<IUser> users)
+        {
+            var user = GetUser(users);
+            return user.Passes != null && user.Passes.Any(x => x.PaymentStatus == PassPaymentStatus.Paid.ToString());
         }
 
         private bool OnlyAddSingleStudent(ICollection<IUser> users)
