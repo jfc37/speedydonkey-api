@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Common.Tests.Builders;
 using Notification.NotificationHandlers;
 using Notification.Notifications;
@@ -69,6 +70,8 @@ namespace Notification.Tests
         public string EmailTo { get; private set; }
         public string Subject { get; private set; }
         public string EmailBody { get; set; }
+        public string TemplateName { get { return "New User"; } }
+        public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
     }
 
     internal class TestNotificationHandler : INotificationHandler<TestNotification>

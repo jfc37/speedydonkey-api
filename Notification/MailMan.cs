@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Mandrill;
 using Notification.Notifications;
 
@@ -17,16 +18,27 @@ namespace Notification
         {
             MandrillApi api = new MandrillApi(ApiKey);
 
-            api.SendMessageAsync(new EmailMessage
+            var templateContents = notification.TemplateContent.Select(x => new TemplateContent
+            {
+                name = x.Key,
+                content = x.Value
+            }).ToList();
+
+            var emailMessage = new EmailMessage
             {
                 from_email = EmailAddress,
                 to = new List<EmailAddress>
                 {
                     new EmailAddress(EmailAddress)
                 },
-                text = notification.EmailBody,
-                subject = notification.Subject
-            });
+                subject = notification.Subject,
+                merge_language = "handlebars"
+            };
+            foreach (var templateContent in notification.TemplateContent)
+            {
+                emailMessage.AddGlobalVariable(templateContent.Key, templateContent.Value);
+            }
+            api.SendMessageAsync(emailMessage, notification.TemplateName, templateContents);
         }
     }
 }

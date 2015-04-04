@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Models;
@@ -10,6 +11,8 @@ namespace Notification.Notifications
         public string EmailTo { get; private set; }
         public string Subject { get { return "Block Enrolment Confirmation"; } }
         public string EmailBody { get; set; }
+        public string TemplateName { get { return "Block Enrolment"; } }
+        public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
         IUser User { get; set; }
 
         public UserEnroledInBlock(IUser user)
@@ -17,15 +20,15 @@ namespace Notification.Notifications
             EmailTo = user.Email;
             User = user;
 
-            var sb = new StringBuilder(String.Format("Hello {0},", user.FullName));
+            TemplateContent = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("first_name", user.FirstName),
+                new KeyValuePair<string, string>("surname", user.Surname)
+            };
             if (user.EnroledBlocks != null && user.EnroledBlocks.Any())
-                sb.AppendLine(String.Format("You have enrolled in the following: {0}", String.Join(",", user.EnroledBlocks.Select(x => x.Name))));
-
-            if (user.Passes != null && user.Passes.Any())
-                sb.AppendLine(String.Format("You have purchased the following passes: {0}", String.Join(",", user.Passes.Select(x => x.PassType))));
-
-
-            EmailBody = sb.ToString();
+            {
+                TemplateContent.Add(new KeyValuePair<string, string>("blocks", String.Join(",", user.EnroledBlocks.Select(x => x.Name))));
+            }
         }
     }
 }

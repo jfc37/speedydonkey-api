@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Models;
 
 namespace Notification.Notifications
@@ -7,7 +8,8 @@ namespace Notification.Notifications
     {
         public string EmailTo { get; private set; }
         public string Subject { get { return "Welcome to Full Swing!"; } }
-        public string EmailBody { get; set; }
+        public string TemplateName { get { return "New User"; } }
+        public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
         IUser User { get; set; }
 
         public UserRegistered(IUser user)
@@ -15,7 +17,11 @@ namespace Notification.Notifications
             EmailTo = user.Email;
             User = user;
 
-            EmailBody = String.Format("Hello {0}, welcome to Full Swing!", user.FullName);
+            TemplateContent = new[]
+            {
+                new KeyValuePair<string, string>("first_name", user.FirstName),
+                new KeyValuePair<string, string>("surname", user.Surname),
+            };
         }
     }
 }

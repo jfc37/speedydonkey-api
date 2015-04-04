@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MailSender.cs" />
+    <Compile Include="MailMan.cs" />
     <Compile Include="NotificationHandlers\INotificationHandler.cs" />
     <Compile Include="NotificationHandlers\UserEnroledInBlockHandler.cs" />
     <Compile Include="NotificationHandlers\UserRegisteredHandler.cs" />
