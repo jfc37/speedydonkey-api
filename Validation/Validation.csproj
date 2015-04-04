@@ -65,6 +65,7 @@
     <Compile Include="ValidatorOverlord.cs" />
     <Compile Include="Validators\CheckStudentIntoClassValidator.cs" />
     <Compile Include="Validators\AddPassToUserValidator.cs" />
+    <Compile Include="Validators\ActivateUserValidator.cs" />
     <Compile Include="Validators\UpdatePassValidator.cs" />
     <Compile Include="Validators\CreateUserValidator.cs" />
     <Compile Include="Validators\EnrolInBlockValidator.cs" />

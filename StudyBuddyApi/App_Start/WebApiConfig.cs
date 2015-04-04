@@ -35,6 +35,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "UserActivationApi",
+                routeTemplate: "api/users/activation/{id}",
+                defaults: new { controller = "UserActivationApi" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "LevelApi",
                 routeTemplate: "api/levels/{id}",
                 defaults: new { controller = "LevelApi", id = RouteParameter.Optional }

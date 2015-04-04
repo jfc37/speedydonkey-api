@@ -31,6 +31,7 @@ namespace SpeedyDonkeyApi.Controllers
             _currentUser = currentUser;
         }
 
+        [ActiveUserRequired]
         public HttpResponseMessage Get()
         {
             return Get(_currentUser.Id);

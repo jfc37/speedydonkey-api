@@ -10,9 +10,9 @@ namespace Notification.Notifications
         public string Subject { get { return "Welcome to Full Swing!"; } }
         public string TemplateName { get { return "New User"; } }
         public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
-        IUser User { get; set; }
+        User User { get; set; }
 
-        public UserRegistered(IUser user)
+        public UserRegistered(User user)
         {
             EmailTo = user.Email;
             User = user;
@@ -21,6 +21,7 @@ namespace Notification.Notifications
             {
                 new KeyValuePair<string, string>("first_name", user.FirstName),
                 new KeyValuePair<string, string>("surname", user.Surname),
+                new KeyValuePair<string, string>("activiation", String.Format("https://spa-speedydonkey.azurewebsites.net/#/account/{0}/activate", user.ActivationKey)), 
             };
         }
     }

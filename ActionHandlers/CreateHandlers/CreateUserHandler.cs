@@ -24,10 +24,15 @@ namespace ActionHandlers.CreateHandlers
             action.ActionAgainst.Password = _passwordHasher.CreateHash(action.ActionAgainst.Password);
             if (action.ActionAgainst.Email.EndsWith("fullswing.co.nz"))
             {
-                var allClaims = Enum.GetValues(typeof(Claim)).Cast<Claim>().ToList();
+                var allClaims = Enum.GetValues(typeof (Claim)).Cast<Claim>().ToList();
                 allClaims.Remove(Claim.Invalid);
-                action.ActionAgainst.Claims = String.Join(",", allClaims);   
+                action.ActionAgainst.Claims = String.Join(",", allClaims);
+                action.ActionAgainst.Status = UserStatus.Active;
             }
+            else
+                action.ActionAgainst.Status = UserStatus.Unactiviated;
+
+            action.ActionAgainst.ActivationKey = Guid.NewGuid();
         }
 
         protected override void PostHandle(ICrudAction<User> action, User result)

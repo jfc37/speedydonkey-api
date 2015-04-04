@@ -2,6 +2,7 @@
 using Common;
 using Data.Repositories;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -26,6 +27,7 @@ namespace SpeedyDonkeyApi.Controllers
             _cloner = cloner;
         }
 
+        [ActiveUserRequired]
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(new UserModel().CloneFromEntity(Request, _urlConstructor, _repository.Get(_currentUser.Id), _cloner));

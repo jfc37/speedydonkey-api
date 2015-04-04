@@ -22,5 +22,6 @@
         public const string CannotChangePassType = "You can non change the type of pass";
         public const string ProvidePasses = "Provide passes to add";
         public const string CannotAddPassForAnother = "You don't have permission to add passes to another student";
+        public const string BadActivationKey = "Bad activiation key";
     }
 }
