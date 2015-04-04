@@ -21,7 +21,7 @@ namespace Notification.Notifications
             {
                 new KeyValuePair<string, string>("first_name", user.FirstName),
                 new KeyValuePair<string, string>("surname", user.Surname),
-                new KeyValuePair<string, string>("activiation", String.Format("https://spa-speedydonkey.azurewebsites.net/#/account/{0}/activate", user.ActivationKey)), 
+                new KeyValuePair<string, string>("activation", String.Format("https://spa-speedydonkey.azurewebsites.net/#/account/{0}/activate", user.ActivationKey)), 
             };
         }
     }
