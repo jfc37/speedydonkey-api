@@ -56,6 +56,7 @@
     <Compile Include="ActionHandlerOverlordTestFixture.cs" />
     <Compile Include="Builders\ActionHandlerOverlordBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockActionHandlerOverlordBuilder.cs" />
+    <Compile Include="CheckStudentIntoClassHandlerTests.cs" />
     <Compile Include="CreateActionTests.cs" />
     <Compile Include="CreateBlockHandlerTests.cs" />
     <Compile Include="EnrolInBlockHandlerTests.cs" />

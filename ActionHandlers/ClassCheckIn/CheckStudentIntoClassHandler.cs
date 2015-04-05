@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Action;
 using Data.Repositories;
@@ -36,8 +37,27 @@ namespace ActionHandlers.ClassCheckIn
 
         private void UpdatePass(User user)
         {
-            var passToUse = user.GetPassToUse();
-            ((Pass) passToUse).PayForClass(); 
+            var passToUse = (Pass)user.GetPassToUse();
+            passToUse.PayForClass();
+
+            if (passToUse is ClipPass)
+                MakeNextPassValid(user);
+        }
+
+        private void MakeNextPassValid(User user)
+        {
+            var nextPass = user.Passes
+                .OfType<Pass>()
+                .Where(x => x.IsFuturePass())
+                .OrderBy(x => x.StartDate)
+                .FirstOrDefault();
+
+            if (nextPass != null)
+            {
+                var expiryPeriod = nextPass.EndDate.Subtract(nextPass.StartDate);
+                nextPass.StartDate = DateTime.Now.Date;
+                nextPass.EndDate = nextPass.StartDate.Add(expiryPeriod);
+            }
         }
     }
 }
