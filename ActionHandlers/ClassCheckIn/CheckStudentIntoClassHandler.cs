@@ -28,16 +28,10 @@ namespace ActionHandlers.ClassCheckIn
             return theClass;
         }
 
-        private static void AddStudentToClassAttendance(Class theClass, User user)
+        private void AddStudentToClassAttendance(Class theClass, User user)
         {
-            if (user.FullName == "Full Swing Visitor")
-                theClass.NumberOfVisitors++;
-            else
-            {
-                theClass.ActualStudents = theClass.ActualStudents ?? new List<IUser>();
-                theClass.ActualStudents.Add(user);
-            }
-
+            theClass.ActualStudents = theClass.ActualStudents ?? new List<IUser>();
+            theClass.ActualStudents.Add(user);
         }
 
         private void UpdatePass(User user)
