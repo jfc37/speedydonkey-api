@@ -61,6 +61,7 @@
     <Compile Include="EnrolInBlockHandlerTests.cs" />
     <Compile Include="PasswordHasherTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserPassAppenderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActionHandlers\ActionHandlers.csproj">

@@ -88,17 +88,17 @@ namespace ActionHandlers.EnrolmentProcess
 
     public interface IPassCreator
     {
-        IPass CreatePass();
+        IPass CreatePass(DateTime startDate);
     }
 
     public class UnlimitedPassCreator : IPassCreator
     {
-        public IPass CreatePass()
+        public IPass CreatePass(DateTime startDate)
         {
             return new Pass
             {
-                EndDate = DateTime.Now.Date.AddDays(6 * 7),
-                StartDate = DateTime.Now.Date,
+                EndDate = startDate.Date.AddDays(6 * 7),
+                StartDate = startDate.Date,
                 PassType = PassType.Unlimited.ToString(),
                 PaymentStatus = PassPaymentStatus.Pending.ToString()
             };
@@ -114,12 +114,12 @@ namespace ActionHandlers.EnrolmentProcess
             _numberofClips = numberOfClips;
         }
 
-        public IPass CreatePass()
+        public IPass CreatePass(DateTime startDate)
         {
             return new ClipPass
             {
-                EndDate = DateTime.Now.Date.AddDays(6 * 7),
-                StartDate = DateTime.Now.Date,
+                EndDate = startDate.Date.AddDays(6 * 7),
+                StartDate = startDate.Date,
                 PassType = PassType.Clip.ToString(),
                 ClipsRemaining = _numberofClips
             };

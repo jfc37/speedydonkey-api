@@ -44,6 +44,12 @@ namespace Models
         public virtual void PayForClass() { }
 
         public virtual void RefundForClass() { }
+
+        public virtual bool IsFuturePass()
+        {
+            var today = DateTime.Now.Date;
+            return today < StartDate;
+        }
     }
 
     public enum PassType

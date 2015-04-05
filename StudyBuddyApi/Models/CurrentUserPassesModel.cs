@@ -25,9 +25,9 @@ namespace SpeedyDonkeyApi.Models
         {
             if (user.Passes == null)
                 return new List<PassModel>();
-            var validPasses = user.Passes.Where(x => x.IsValid());
+            var validPasses = user.Passes.OfType<Pass>().Where(x => x.IsValid() || x.IsFuturePass());
             return
-                validPasses.Select(x => (PassModel) new PassModel().CloneFromEntity(request, urlConstructor, (Pass) x, cloner))
+                validPasses.Select(x => (PassModel) new PassModel().CloneFromEntity(request, urlConstructor, x, cloner))
                     .ToList();
         }
     }
