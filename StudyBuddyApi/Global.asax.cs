@@ -12,6 +12,7 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
 using Common;
+using Data;
 using Data.Mappings;
 using Data.Repositories;
 using Data.Searches;
@@ -85,6 +86,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<PostOffice>().As<IPostOffice>();
             builder.RegisterType<MailMan>().As<IMailMan>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
+            builder.RegisterType<ActivityLogger>().As<IActivityLogger>().InstancePerLifetimeScope();
 
             // Build the container.
             var container = builder.Build();

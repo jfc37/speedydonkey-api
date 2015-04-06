@@ -3,6 +3,20 @@ using Models;
 
 namespace Data.Mappings
 {
+    public class ActivityLogMap : ClassMap<ActivityLog>
+    {
+        public ActivityLogMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.PerformingUserId);
+            Map(x => x.Session);
+            Map(x => x.DateTimeStamp);
+            Map(x => x.ActivityText);
+            Map(x => x.ActivityType);
+            Map(x => x.ActivityGroup);
+        }
+    }
+
     public class UserMap : ClassMap<User>
     {
         public UserMap()
