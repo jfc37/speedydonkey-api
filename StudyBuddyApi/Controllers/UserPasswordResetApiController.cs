@@ -21,7 +21,7 @@ namespace SpeedyDonkeyApi.Controllers
         }
 
         [AllowAnonymous]
-        public HttpResponseMessage Post(string email)
+        public HttpResponseMessage Post([FromBody]string email)
         {
             var user = new User
             {
@@ -33,7 +33,7 @@ namespace SpeedyDonkeyApi.Controllers
         }
 
         [AllowAnonymous]
-        public HttpResponseMessage Put(Guid key, string password)
+        public HttpResponseMessage Put([FromBody]Guid key, [FromBody]string password)
         {
             var user = new User
             {
