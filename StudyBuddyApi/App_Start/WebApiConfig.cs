@@ -37,12 +37,12 @@ namespace SpeedyDonkeyApi
             config.Routes.MapHttpRoute(
                 name: "UserActivationApi",
                 routeTemplate: "api/users/activation/{id}",
-                defaults: new { controller = "UserActivationApi" }
+                defaults: new { controller = "UserActivationApi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "UserPasswordResetApi",
-                routeTemplate: "api/users/password/reset",
+                routeTemplate: "api/users/password/reset/{id}",
                 defaults: new { controller = "UserPasswordResetApi" }
             );
 

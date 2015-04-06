@@ -8,6 +8,7 @@ using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Models;
+using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -21,11 +22,11 @@ namespace SpeedyDonkeyApi.Controllers
         }
 
         [AllowAnonymous]
-        public HttpResponseMessage Post([FromBody]string email)
+        public HttpResponseMessage Post([FromBody]UserModel userModel)
         {
             var user = new User
             {
-                Email = email
+                Email = userModel.Email
             };
             var forgottenPassword = new ForgottenPassword(user);
             _actionHandlerOverlord.HandleAction<ForgottenPassword, User>(forgottenPassword);
@@ -33,12 +34,12 @@ namespace SpeedyDonkeyApi.Controllers
         }
 
         [AllowAnonymous]
-        public HttpResponseMessage Put([FromBody]Guid key, [FromBody]string password)
+        public HttpResponseMessage Put([FromBody]UserModel userModel, Guid id)
         {
             var user = new User
             {
-                ActivationKey = key,
-                Password = password
+                ActivationKey = id,
+                Password = userModel.Password
             };
             var resetPassword = new ResetPassword(user);
             var response = _actionHandlerOverlord.HandleAction<ResetPassword, User>(resetPassword);

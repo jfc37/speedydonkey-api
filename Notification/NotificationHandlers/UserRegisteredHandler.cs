@@ -8,4 +8,11 @@ namespace Notification.NotificationHandlers
         {
         }
     }
+    public class UserForgotPasswordHandler : NotificationHandler<UserForgotPassword>
+    {
+        public UserForgotPasswordHandler(IMailMan mailMan)
+            : base(mailMan)
+        {
+        }
+    }
 }
