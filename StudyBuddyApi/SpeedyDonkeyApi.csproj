@@ -209,6 +209,7 @@
     <Compile Include="Controllers\LevelApiController.cs" />
     <Compile Include="Controllers\PassApiController.cs" />
     <Compile Include="Controllers\ReferenceDataApiController.cs" />
+    <Compile Include="Controllers\UserPasswordResetApiController.cs" />
     <Compile Include="Controllers\UserActivationApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserPassesApiController.cs" />

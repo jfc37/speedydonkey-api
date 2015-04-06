@@ -57,6 +57,7 @@
     <Compile Include="NotificationHandlers\UserRegisteredHandler.cs" />
     <Compile Include="Notifications\INotification.cs" />
     <Compile Include="Notifications\UserEnroledInBlock.cs" />
+    <Compile Include="Notifications\UserForgotPassword.cs" />
     <Compile Include="Notifications\UserRegistered.cs" />
     <Compile Include="PostOffice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

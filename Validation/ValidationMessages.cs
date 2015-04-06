@@ -23,5 +23,6 @@
         public const string ProvidePasses = "Provide passes to add";
         public const string CannotAddPassForAnother = "You don't have permission to add passes to another student";
         public const string BadActivationKey = "Bad activiation key";
+        public const string BadPasswordResetKey = "Bad password reset key";
     }
 }

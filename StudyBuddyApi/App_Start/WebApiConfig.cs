@@ -41,6 +41,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "UserPasswordResetApi",
+                routeTemplate: "api/users/password/reset",
+                defaults: new { controller = "UserPasswordResetApi" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "LevelApi",
                 routeTemplate: "api/levels/{id}",
                 defaults: new { controller = "LevelApi", id = RouteParameter.Optional }

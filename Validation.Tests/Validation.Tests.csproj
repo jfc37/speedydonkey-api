@@ -62,6 +62,8 @@
     <Compile Include="CheckStudentIntoClassValidatorTests.cs" />
     <Compile Include="AddPassToUserValidatorTests.cs" />
     <Compile Include="CreateUserValidatorTests.cs" />
+    <Compile Include="ResetPasswordValidatorTests.cs" />
+    <Compile Include="ForgottenPasswordValidatorTests.cs" />
     <Compile Include="UpdatePassValidatorTests.cs" />
     <Compile Include="EnrolInBlockValidatorTests.cs" />
     <Compile Include="FluentConverterTestFixture.cs" />
