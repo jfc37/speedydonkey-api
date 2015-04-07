@@ -85,6 +85,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<BlockEnrolmentService>().As<IBlockEnrolmentService>();
             builder.RegisterType<PostOffice>().As<IPostOffice>();
             builder.RegisterType<MailMan>().As<IMailMan>();
+            builder.RegisterType<AppSettings>().As<IAppSettings>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
             builder.RegisterType<ActivityLogger>().As<IActivityLogger>().InstancePerLifetimeScope();
 

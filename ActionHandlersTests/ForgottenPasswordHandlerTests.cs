@@ -2,6 +2,7 @@
 using Action;
 using ActionHandlers;
 using Data.Tests.Builders;
+using Data.Tests.Builders.MockBuilders;
 using Models;
 using Moq;
 using Notification.Notifications;
@@ -15,6 +16,7 @@ namespace ActionHandlersTests
     {
         protected MockRepositoryBuilder<User> RepositoryBuilder;
         protected MockPostOfficeBuilder PostOfficeBuilder;
+        protected MockAppSettingsBuilder AppSettingsBuilder;
         protected ForgottenPassword Action;
         protected User UserInDatabase;
 
@@ -32,11 +34,14 @@ namespace ActionHandlersTests
 
             PostOfficeBuilder = new MockPostOfficeBuilder()
                 .WithSending();
+
+            AppSettingsBuilder = new MockAppSettingsBuilder()
+                .WithAllSettings();
         }
 
         private ForgottenPasswordHandler GetHandler()
         {
-            return new ForgottenPasswordHandler(RepositoryBuilder.BuildObject(), PostOfficeBuilder.BuildObject());
+            return new ForgottenPasswordHandler(RepositoryBuilder.BuildObject(), PostOfficeBuilder.BuildObject(), AppSettingsBuilder.BuildObject());
         }
 
         protected User PerformAction()
