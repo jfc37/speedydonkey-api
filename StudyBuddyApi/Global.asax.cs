@@ -85,6 +85,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<BlockEnrolmentService>().As<IBlockEnrolmentService>();
             builder.RegisterType<PostOffice>().As<IPostOffice>();
             builder.RegisterType<MailMan>().As<IMailMan>();
+            builder.RegisterType<AppSettings>().As<IAppSettings>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
             builder.RegisterType<ActivityLogger>().As<IActivityLogger>().InstancePerLifetimeScope();
 
@@ -110,24 +111,9 @@ namespace SpeedyDonkeyApi
             SessionSetup sessionSetup = new SessionSetup(connectionString);
             var sessionFactory = sessionSetup.GetSessionFactory();
 
-            
             builder.RegisterInstance(sessionFactory);
-
-            // Either use a session in view model or per instance depending on the context.
-            //if (HttpContext.Current != null)
-            //{
             builder.Register(s => s.Resolve<ISessionFactory>().OpenSession())
-                //.InstancePerDependency()
-                //.SingleInstance()
-                .InstancePerRequest()
-                //.InstancePerLifetimeScope()
-                //.InstancePerMatchingLifetimeScope()
-                ;
-            //}
-            //else
-            //{
-            //    builder.Register(s => s.Resolve<ISessionFactory>().OpenSession());
-            //}
+                .InstancePerRequest();
         }
     }
 
