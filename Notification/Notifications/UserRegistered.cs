@@ -12,7 +12,7 @@ namespace Notification.Notifications
         public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
         User User { get; set; }
 
-        public UserRegistered(User user)
+        public UserRegistered(User user, string websiteUrl)
         {
             EmailTo = user.Email;
             User = user;
@@ -21,7 +21,7 @@ namespace Notification.Notifications
             {
                 new KeyValuePair<string, string>("first_name", user.FirstName),
                 new KeyValuePair<string, string>("surname", user.Surname),
-                new KeyValuePair<string, string>("activation", String.Format("https://spa-speedydonkey.azurewebsites.net/#/account/{0}/activate", user.ActivationKey)), 
+                new KeyValuePair<string, string>("activation", String.Format("{0}/#/account/{1}/activate", websiteUrl, user.ActivationKey)), 
             };
         }
     }

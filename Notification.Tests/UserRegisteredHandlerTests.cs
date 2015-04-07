@@ -16,7 +16,7 @@ namespace Notification.Tests
         [SetUp]
         public void Setup()
         {
-            _notification = new UserRegistered(new User());
+            _notification = new UserRegistered(new User(), "blah");
             _mailManBuilder = new MockMailManBuilder()
                 .WithSending();
         }
