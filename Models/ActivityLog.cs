@@ -15,7 +15,8 @@ namespace Models
 
     public enum ActivityGroup
     {
-        DatabaseAccess
+        DatabaseAccess,
+        PerformAction
     }
 
     public enum ActivityType
@@ -25,6 +26,9 @@ namespace Models
         GetById,
         GetByIdWithChildren,
         Create,
-        Update
+        Update,
+        Successful,
+        Beginning,
+        FailedValidation
     }
 }

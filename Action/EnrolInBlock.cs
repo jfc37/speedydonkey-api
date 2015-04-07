@@ -1,4 +1,6 @@
-﻿using Actions;
+﻿using System;
+using System.Linq;
+using Actions;
 using Models;
 
 namespace Action
@@ -11,5 +13,12 @@ namespace Action
         }
 
         public User ActionAgainst { get; set; }
+        public string LogText
+        {
+            get
+            {
+                return String.Format("Enrol user {0} into block {1}", ActionAgainst.Id, ActionAgainst.EnroledBlocks.Single().Id);
+            }
+        }
     }
 }

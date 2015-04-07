@@ -7,5 +7,6 @@
     public interface IAction<TObject>
     {
         TObject ActionAgainst { get; set; }
+        string LogText { get; }
     }
 }

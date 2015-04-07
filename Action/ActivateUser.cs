@@ -1,4 +1,5 @@
-﻿using Actions;
+﻿using System;
+using Actions;
 using Models;
 
 namespace Action
@@ -11,5 +12,12 @@ namespace Action
         }
 
         public User ActionAgainst { get; set; }
+        public string LogText
+        {
+            get
+            {
+                return String.Format("Activate user {0}", ActionAgainst.Id);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Actions;
+﻿using System;
+using Actions;
 using Models;
 
 namespace Action
@@ -11,5 +12,12 @@ namespace Action
         }
 
         public Level ActionAgainst { get; set; }
+        public string LogText
+        {
+            get
+            {
+                return String.Format("Create level {0}", ActionAgainst.Name);
+            }
+        }
     }
 }

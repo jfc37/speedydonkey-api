@@ -1,4 +1,5 @@
-﻿using Actions;
+﻿using System;
+using Actions;
 using Models;
 
 namespace Action
@@ -11,6 +12,13 @@ namespace Action
         }
 
         public Pass ActionAgainst { get; set; }
+        public string LogText
+        {
+            get
+            {
+                return String.Format("Update pass {0}", ActionAgainst.Id);
+            }
+        }
     }
     public class UpdateClipPass : ICrudAction<ClipPass>
     {
@@ -20,5 +28,12 @@ namespace Action
         }
 
         public ClipPass ActionAgainst { get; set; }
+        public string LogText
+        {
+            get
+            {
+                return String.Format("Update clip pass {0}", ActionAgainst.Id);
+            }
+        }
     }
 }

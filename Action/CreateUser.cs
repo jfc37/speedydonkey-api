@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using System;
+using Models;
 
 namespace Actions
 {
@@ -10,5 +11,12 @@ namespace Actions
         }
 
         public User ActionAgainst { get; set; }
+        public string LogText
+        {
+            get
+            {
+                return String.Format("Create user {0}", ActionAgainst.FullName);
+            }
+        }
     }
 }

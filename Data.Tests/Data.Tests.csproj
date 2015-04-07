@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\EntitySearcherBuilder.cs" />
+    <Compile Include="Builders\MockBuilders\MockActivityLoggerBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockQueryModifierFactoryBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockSearchBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockSearchStatementParseBuilder.cs" />
