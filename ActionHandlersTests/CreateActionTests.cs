@@ -2,6 +2,7 @@
 using Actions;
 using Common.Tests.Builders.MockBuilders;
 using Data.Tests.Builders;
+using Data.Tests.Builders.MockBuilders;
 using Models;
 using Moq;
 using Notification;
@@ -15,11 +16,15 @@ namespace ActionHandlersTests
     public abstract class CreateActionTests<TEntity> where TEntity : class, IEntity, new()
     {
         protected MockRepositoryBuilder<TEntity> RepositoryBuilder;
+        protected MockAppSettingsBuilder AppSettingsBuilder;
 
         protected void SetupDependencies()
         {
             RepositoryBuilder = new MockRepositoryBuilder<TEntity>()
                 .WithCreate();
+
+            AppSettingsBuilder = new MockAppSettingsBuilder()
+                .WithAllSettings();
         }
 
         protected void CheckCreateWasCalled()
@@ -47,7 +52,7 @@ namespace ActionHandlersTests
 
         private CreateUserHandler GetHandler()
         {
-            return new CreateUserHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject(), _postOfficeBuilder.BuildObject());
+            return new CreateUserHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject(), _postOfficeBuilder.BuildObject(), AppSettingsBuilder.BuildObject());
         }
 
         private void PerformAction()

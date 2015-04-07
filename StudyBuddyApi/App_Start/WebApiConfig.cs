@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http.Formatting;
@@ -177,7 +178,11 @@ namespace SpeedyDonkeyApi
 
 
             //Specify values as appropriate (origins,headers,methods)
-            var cors = new EnableCorsAttribute("https://spa-speedydonkey.azurewebsites.net,http://localhost:7300", "*", "GET, POST, PUT, DELETE");
+            var websiteUrl = ConfigurationManager.AppSettings.Get("WebsiteUrl");
+            websiteUrl = "https://" + websiteUrl;
+            if (websiteUrl == "https://spa-speedydonkey.azurewebsites.net")
+                websiteUrl = "https://spa-speedydonkey.azurewebsites.net,http://localhost:7300";
+            var cors = new EnableCorsAttribute(websiteUrl, "*", "*");
             config.EnableCors(cors);
         }
     }

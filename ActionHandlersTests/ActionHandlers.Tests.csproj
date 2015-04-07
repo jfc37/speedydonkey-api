@@ -79,6 +79,10 @@
       <Project>{DB29D7D9-8144-4DC4-A5EC-F22E49305D0F}</Project>
       <Name>Common.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Tests\Data.Tests.csproj">
       <Project>{AAA73E0B-C1BC-4467-992A-C5DC84255949}</Project>
       <Name>Data.Tests</Name>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Actions;
+using Common;
 using Data.Repositories;
 using Models;
 using Notification;
@@ -12,11 +13,13 @@ namespace ActionHandlers.CreateHandlers
     {
         private readonly IPasswordHasher _passwordHasher;
         private readonly IPostOffice _postOffice;
+        private readonly IAppSettings _appSettings;
 
-        public CreateUserHandler(IRepository<User> repository, IPasswordHasher passwordHasher, IPostOffice postOffice) : base(repository)
+        public CreateUserHandler(IRepository<User> repository, IPasswordHasher passwordHasher, IPostOffice postOffice, IAppSettings appSettings) : base(repository)
         {
             _passwordHasher = passwordHasher;
             _postOffice = postOffice;
+            _appSettings = appSettings;
         }
 
         protected override void PreHandle(ICrudAction<User> action)
@@ -37,7 +40,7 @@ namespace ActionHandlers.CreateHandlers
 
         protected override void PostHandle(ICrudAction<User> action, User result)
         {
-            var userRegistered = new UserRegistered(result);
+            var userRegistered = new UserRegistered(result, _appSettings.GetWebsiteUrl());
             _postOffice.Send(userRegistered);
         }
     }
