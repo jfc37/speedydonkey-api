@@ -110,24 +110,9 @@ namespace SpeedyDonkeyApi
             SessionSetup sessionSetup = new SessionSetup(connectionString);
             var sessionFactory = sessionSetup.GetSessionFactory();
 
-            
             builder.RegisterInstance(sessionFactory);
-
-            // Either use a session in view model or per instance depending on the context.
-            //if (HttpContext.Current != null)
-            //{
             builder.Register(s => s.Resolve<ISessionFactory>().OpenSession())
-                //.InstancePerDependency()
-                //.SingleInstance()
-                .InstancePerRequest()
-                //.InstancePerLifetimeScope()
-                //.InstancePerMatchingLifetimeScope()
-                ;
-            //}
-            //else
-            //{
-            //    builder.Register(s => s.Resolve<ISessionFactory>().OpenSession());
-            //}
+                .InstancePerRequest();
         }
     }
 
