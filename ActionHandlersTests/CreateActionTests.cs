@@ -1,5 +1,7 @@
-﻿using ActionHandlers.CreateHandlers;
+﻿using System;
+using ActionHandlers.CreateHandlers;
 using Actions;
+using Common;
 using Common.Tests.Builders.MockBuilders;
 using Data.Tests.Builders;
 using Data.Tests.Builders.MockBuilders;
@@ -82,6 +84,37 @@ namespace ActionHandlersTests
             PerformAction();
 
             _postOfficeBuilder.Mock.Verify(x => x.Send(It.IsAny<UserRegistered>()), Times.Once);
+        }
+
+        public class WhenEmailIsAnAdminEmailAddress : GivenCreateUserIsHandled
+        {
+
+            [Test]
+            public void Then_the_user_should_have_special_claims()
+            {
+                _action.ActionAgainst.Email = "admin@email.com";
+                AppSettingsBuilder.WithSetting(AppSettingKey.AdminEmailWhitelist, String.Format("|{0}|", _action.ActionAgainst.Email));
+                AppSettingsBuilder.WithSetting(AppSettingKey.AutoActivateAdmin, "true");
+
+                PerformAction();
+
+                Assert.IsNotNullOrEmpty(_action.ActionAgainst.Claims);
+            }
+        }
+
+        public class WhenEmailIsNotAnAdminEmailAddress : GivenCreateUserIsHandled
+        {
+
+            [Test]
+            public void Then_the_user_should_have_no_special_claims()
+            {
+                _action.ActionAgainst.Email = "someemail@email.com";
+                AppSettingsBuilder.WithSetting(AppSettingKey.AdminEmailWhitelist, "|someadmin@email.com|");
+
+                PerformAction();
+
+                Assert.IsNullOrEmpty(_action.ActionAgainst.Claims);
+            }
         }
     }
 }
