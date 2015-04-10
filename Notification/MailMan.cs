@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Common;
 using Mandrill;
 using Notification.Notifications;
 
@@ -11,12 +13,16 @@ namespace Notification
     }
     public class MailMan : IMailMan
     {
-        private const string EmailAddress = "speedydonkeydaddy@gmail.com";
-        private const string ApiKey = "C4BfEL5RxHgoM3ynsq-S6g";
+        private readonly IAppSettings _appSettings;
+
+        public MailMan(IAppSettings appSettings)
+        {
+            _appSettings = appSettings;
+        }
 
         public void Send(INotification notification)
         {
-            MandrillApi api = new MandrillApi(ApiKey);
+            MandrillApi api = new MandrillApi(_appSettings.GetSetting(AppSettingKey.MandrillApiKey));
 
             var templateContents = notification.TemplateContent.Select(x => new TemplateContent
             {
@@ -26,10 +32,10 @@ namespace Notification
 
             var emailMessage = new EmailMessage
             {
-                from_email = EmailAddress,
+                from_email = _appSettings.GetSetting(AppSettingKey.TestEmailAccount),
                 to = new List<EmailAddress>
                 {
-                    new EmailAddress(EmailAddress)
+                    new EmailAddress(GetEmailTo(notification.EmailTo))
                 },
                 subject = notification.Subject,
                 merge_language = "handlebars"
@@ -39,6 +45,14 @@ namespace Notification
                 emailMessage.AddGlobalVariable(templateContent.Key, templateContent.Value);
             }
             api.SendMessageAsync(emailMessage, notification.TemplateName, templateContents);
+        }
+
+        private string GetEmailTo(string realEmail)
+        {
+            if (Convert.ToBoolean(_appSettings.GetSetting(AppSettingKey.UseRealEmail)))
+                return realEmail;
+
+            return _appSettings.GetSetting(AppSettingKey.TestEmailAccount);
         }
     }
 }
