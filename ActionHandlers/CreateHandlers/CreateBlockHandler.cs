@@ -38,7 +38,7 @@ namespace ActionHandlers.CreateHandlers
         {
             var classTime = result.StartDate;
             var timeSpan = result.EndDate.Subtract(result.StartDate);
-            while (classTime < result.EndDate.Date)
+            for (int classNumber = 0; classNumber < action.ActionAgainst.Level.ClassesInBlock; classNumber++)
             {
                 var nextClass = new Class
                 {
@@ -49,7 +49,6 @@ namespace ActionHandlers.CreateHandlers
                 };
                 CreateBookingForClass(nextClass, result.Level.Room);
                 _classRepository.Create(nextClass);
-                classTime = classTime.AddDays(7);
             }
         }
 
