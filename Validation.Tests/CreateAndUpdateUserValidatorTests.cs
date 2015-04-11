@@ -9,7 +9,7 @@ using Validation.Validators;
 namespace Validation.Tests
 {
     [TestFixture]
-    public class CreateUserValidatorTests
+    public class CreateAndUpdateUserValidatorTests
     {
         private User _user;
         private MockRepositoryBuilder<User> _userRepositoryBuilder;
@@ -113,14 +113,26 @@ namespace Validation.Tests
         }
 
         [Test]
-        public void When_email_is_not_unique_then_error_should_be_returned()
+        public void When_email_is_used_by_another_user_then_error_should_be_returned()
         {
-            _userRepositoryBuilder.WithGet(new User {Email = _user.Email});
+            _user.Id = 10;
+            _userRepositoryBuilder.WithGet(new User {Email = _user.Email, Id = 11});
 
             var result = PerforAction();
 
             Assert.IsFalse(result.IsValid);
             Assert.AreEqual(ValidationMessages.DuplicateEmail, result.Errors.Single().ErrorMessage);
+        }
+
+        [Test]
+        public void When_email_is_used_by_this_user_then_no_errors_should_be_returned()
+        {
+            _user.Id = 10;
+            _userRepositoryBuilder.WithGet(new User {Email = _user.Email, Id = _user.Id});
+
+            var result = PerforAction();
+
+            Assert.IsTrue(result.IsValid);
         }
     }
 }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpdateUser.cs" />
     <Compile Include="ResetPassword.cs" />
     <Compile Include="ForgottenPassword.cs" />
     <Compile Include="AddPassToUser.cs" />

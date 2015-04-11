@@ -6,7 +6,7 @@ using Models;
 
 namespace Validation.Validators
 {
-    public class CreateUserValidator : AbstractValidator<User>, IActionValidator<CreateUser, User>
+    public class CreateUserValidator : AbstractValidator<User>, IActionValidator<CreateUser, User>, IActionValidator<UpdateUser, User>
     {
         private readonly IRepository<User> _userRepository;
 
@@ -34,9 +34,11 @@ namespace Validation.Validators
                 .NotEmpty().WithMessage(ValidationMessages.MissingSurname);
         }
 
-        private bool BeUnique(string email)
+        private bool BeUnique(User user, string email)
         {
-            return _userRepository.GetAll().All(x => x.Email != email);
+            return _userRepository.GetAll()
+                .Where(x => x.Id != user.Id)
+                .All(x => x.Email != email);
         }
     }
 }
