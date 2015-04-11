@@ -25,7 +25,8 @@ namespace ActionHandlers.CreateHandlers
         protected override void PreHandle(ICrudAction<User> action)
         {
             action.ActionAgainst.Password = _passwordHasher.CreateHash(action.ActionAgainst.Password);
-            action.ActionAgainst.Status = UserStatus.Unactiviated;
+            
+            action.ActionAgainst.Status = GetUserStatus();
             action.ActionAgainst.ActivationKey = Guid.NewGuid();
 
             if (IsEmailOnAdminWhitelist(action.ActionAgainst.Email))
@@ -38,6 +39,11 @@ namespace ActionHandlers.CreateHandlers
                     action.ActionAgainst.Status = UserStatus.Active;
             }
 
+        }
+
+        private UserStatus GetUserStatus()
+        {
+            return Convert.ToBoolean(_appSettings.GetSetting(AppSettingKey.AutoActivateUser)) ? UserStatus.Active : UserStatus.Unactiviated;
         }
 
         private bool IsEmailOnAdminWhitelist(string email)

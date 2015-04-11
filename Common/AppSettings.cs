@@ -29,6 +29,7 @@ namespace Common
         TestEmailAccount,
         UseRealEmail,
         AdminEmailWhitelist,
-        AutoActivateAdmin
+        AutoActivateAdmin,
+        AutoActivateUser
     }
 }
