@@ -1,6 +1,7 @@
 ﻿using Action;
 using ActionHandlers.CreateHandlers;
 using Actions;
+using Common;
 using Data.Repositories;
 using Models;
 
@@ -10,8 +11,8 @@ namespace ActionHandlers.UpdateHandlers
     {
         private readonly IRepository<Pass> _repository;
 
-        public UpdatePassHandler(IRepository<Pass> repository)
-            : base(repository)
+        public UpdatePassHandler(IRepository<Pass> repository, ICommonInterfaceCloner cloner)
+            : base(repository, cloner)
         {
             _repository = repository;
         }

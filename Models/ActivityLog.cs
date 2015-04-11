@@ -16,7 +16,8 @@ namespace Models
     public enum ActivityGroup
     {
         DatabaseAccess,
-        PerformAction
+        PerformAction,
+        Error
     }
 
     public enum ActivityType
@@ -29,6 +30,7 @@ namespace Models
         Update,
         Successful,
         Beginning,
-        FailedValidation
+        FailedValidation,
+        Unhandled
     }
 }

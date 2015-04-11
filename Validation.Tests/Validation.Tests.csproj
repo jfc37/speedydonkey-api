@@ -61,7 +61,7 @@
     <Compile Include="Builders\ValidatorOverlordBuilder.cs" />
     <Compile Include="CheckStudentIntoClassValidatorTests.cs" />
     <Compile Include="AddPassToUserValidatorTests.cs" />
-    <Compile Include="CreateUserValidatorTests.cs" />
+    <Compile Include="CreateAndUpdateUserValidatorTests.cs" />
     <Compile Include="ResetPasswordValidatorTests.cs" />
     <Compile Include="ForgottenPasswordValidatorTests.cs" />
     <Compile Include="UpdatePassValidatorTests.cs" />
