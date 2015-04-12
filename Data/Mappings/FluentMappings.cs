@@ -113,6 +113,7 @@ namespace Data.Mappings
             Map(x => x.EndDate);
             Map(x => x.PassType);
             Map(x => x.PaymentStatus);
+            Map(x => x.Cost);
             References(x => x.Owner)
                 .Column("User_id")
                 .Class(typeof (User));

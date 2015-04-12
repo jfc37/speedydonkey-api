@@ -9,6 +9,7 @@ namespace Models
         DateTime EndDate { get; set; }
         string PassType { get; set; }
         string PaymentStatus { get; set; }
+        decimal Cost { get; set; }
         IUser Owner { get; set; }
         bool IsValid();
     }
@@ -30,6 +31,8 @@ namespace Models
             get { return _paymentStatus.ToString(); }
             set { _paymentStatus = (PassPaymentStatus)Enum.Parse(typeof(PassPaymentStatus), value, true); }
         }
+
+        public virtual decimal Cost { get; set; }
 
         public virtual IUser Owner { get; set; }
         public virtual bool IsValid()
