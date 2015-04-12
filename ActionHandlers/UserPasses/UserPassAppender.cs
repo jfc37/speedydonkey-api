@@ -28,6 +28,7 @@ namespace ActionHandlers.UserPasses
             var startDate = validPasses.Any() ? validPasses.Max(x => x.EndDate).AddDays(1).Date : DateTime.Now.Date;
             var createdPass = _passCreatorFactory.Get(pass.PassType).CreatePass(startDate);
             createdPass.PaymentStatus = pass.PaymentStatus;
+            createdPass.Cost = pass.Cost;
 
 
             user.Passes.Add(createdPass);
