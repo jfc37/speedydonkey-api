@@ -11,7 +11,7 @@ namespace Data.Tests.Builders.MockBuilders
             Mock.Setup(x => x.GetWebsiteUrl())
                 .Returns("https://something.com");
             Mock.Setup(x => x.GetSetting(It.IsAny<AppSettingKey>()))
-                .Returns("blah x2");
+                .Returns("true");
             return this;
         }
 
