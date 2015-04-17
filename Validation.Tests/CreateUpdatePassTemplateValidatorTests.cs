@@ -1,36 +1,28 @@
-﻿using System.Linq;
-using Models;
+﻿using Models;
 using NUnit.Framework;
 using Validation.Validators;
 
 namespace Validation.Tests
 {
     [TestFixture]
-    public class CreatePassTemplateValidatorTests
+    public class CreateUpdatePassTemplateValidatorTests : ValidatorTests<CreateUpdatePassTemplateValidator, PassTemplate>
     {
-        private PassTemplate _passTemplate;
-
         [SetUp]
         public void Setup()
         {
-            _passTemplate = new PassTemplate
+            Parameter = new PassTemplate
             {
                 Description = "description",
                 PassType = PassType.Clip.ToString()
             };
         }
 
-        private CreateUpdatePassTemplateValidator GetValidator()
+        protected override CreateUpdatePassTemplateValidator GetValidator()
         {
             return new CreateUpdatePassTemplateValidator();
         }
 
-        private FluentValidation.Results.ValidationResult PerformAction()
-        {
-            return GetValidator().Validate(_passTemplate);
-        }
-
-        public class ThereIsNoValidationErrors : CreatePassTemplateValidatorTests
+        public class ThereIsNoValidationErrors : CreateUpdatePassTemplateValidatorTests
         {
             [Test]
             public void When_all_inputs_are_correct()
@@ -41,18 +33,13 @@ namespace Validation.Tests
             }
         }
 
-        public class ThereIsAValidationError : CreatePassTemplateValidatorTests
+        public class ThereIsAValidationError : CreateUpdatePassTemplateValidatorTests
         {
-            private void ExpectValidationError(FluentValidation.Results.ValidationResult result, string expectedMessage)
-            {
-                Assert.IsFalse(result.IsValid);
-                Assert.AreEqual(expectedMessage, result.Errors.Single().ErrorMessage);
-            }
 
             [Test]
             public void When_description_is_missing()
             {
-                _passTemplate.Description = "";
+                Parameter.Description = "";
 
                 var result = PerformAction();
 
@@ -62,7 +49,7 @@ namespace Validation.Tests
             [Test]
             public void When_pass_type_is_missing()
             {
-                _passTemplate.PassType = "";
+                Parameter.PassType = "";
 
                 var result = PerformAction();
 
@@ -72,7 +59,7 @@ namespace Validation.Tests
             [Test]
             public void When_pass_type_is_invalid()
             {
-                _passTemplate.PassType = "bad";
+                Parameter.PassType = "bad";
 
                 var result = PerformAction();
 
@@ -82,7 +69,7 @@ namespace Validation.Tests
             [Test]
             public void When_cost_is_negative()
             {
-                _passTemplate.Cost = -1;
+                Parameter.Cost = -1;
 
                 var result = PerformAction();
 
@@ -92,7 +79,7 @@ namespace Validation.Tests
             [Test]
             public void When_weeks_valid_for_is_negative()
             {
-                _passTemplate.WeeksValidFor = -1;
+                Parameter.WeeksValidFor = -1;
 
                 var result = PerformAction();
 
@@ -102,14 +89,12 @@ namespace Validation.Tests
             [Test]
             public void When_classes_valid_for_is_negative()
             {
-                _passTemplate.ClassesValidFor = -1;
+                Parameter.ClassesValidFor = -1;
 
                 var result = PerformAction();
 
                 ExpectValidationError(result, ValidationMessages.NegativeNumber);
             }
         }
-
-
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Models;
 using NHibernate;
 
 namespace Data.Searches
 {
-    public class EntitySearch<T> : IEntitySearch<T> where T : class
+    public class EntitySearch<T> : IEntitySearch<T> where T : class, IDatabaseEntity
     {
         private readonly ISession _context;
         private readonly ISearchQueryParser _searchQueryParser;
@@ -29,7 +30,14 @@ namespace Data.Searches
                 query = queryModifier.ApplyStatementToQuery(searchStatement, query);
             }
 
+            query = SanatiseResults(query);
+
             return GetListFromQueryable(query);
+        }
+
+        private IQueryable<T> SanatiseResults(IQueryable<T> query)
+        {
+            return query.Where(x => !x.Deleted);
         }
 
         private static IList<T> GetListFromQueryable(IQueryable<T> query)

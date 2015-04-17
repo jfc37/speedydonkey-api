@@ -12,9 +12,10 @@ namespace Models
         bool AvailableForPurchase { get; set; }
     }
 
-    public class PassTemplate : IPassTemplate
+    public class PassTemplate : IPassTemplate, IDatabaseEntity
     {
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
         public virtual string Description { get; set; }
         public virtual string PassType { get; set; }
         public virtual decimal Cost { get; set; }

@@ -28,5 +28,6 @@
         public const string MissingPassType = "Please select a pass type";
         public const string InvalidPassType = "Pass type selected is invalid";
         public const string NegativeNumber = "Please enter a positive number";
+        public const string InvalidPassTemplate = "Pass template doesn't exist";
     }
 }

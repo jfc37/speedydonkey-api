@@ -11,9 +11,10 @@ namespace Models
         //has a set of notices
     }
 
-    public class Class : IClass, IEntity
+    public class Class : IClass, IEntity, IDatabaseEntity
     {
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
         public virtual IList<ITeacher> Teachers { get; set; }
         public virtual ICollection<IUser> RegisteredStudents { get; set; }
         public virtual DateTime StartTime { get; set; }

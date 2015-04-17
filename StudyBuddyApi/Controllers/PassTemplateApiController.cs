@@ -35,5 +35,15 @@ namespace SpeedyDonkeyApi.Controllers
             model.Id = id;
             return PerformAction(model, x => new UpdatePassTemplate(x));
         }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Delete(int id)
+        {
+            var model = new PassTemplateModel
+            {
+                Id = id
+            };
+            return PerformAction(model, x => new DeletePassTemplate(x));
+        }
     }
 }
