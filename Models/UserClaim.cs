@@ -12,6 +12,8 @@ namespace Models
         UpdatePass,
         CreateReferenceData,
         CheckStudentIntoClass,
-        EnrolOtherIntoBlock
+        EnrolOtherIntoBlock,
+        Admin,
+        Teacher
     }
 }

@@ -150,6 +150,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "PassTemplateApi",
+                routeTemplate: "api/passtemplate/{id}",
+                defaults: new { controller = "PassTemplateApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DatabaseApi",
                 routeTemplate: "api/database",
                 defaults: new { controller = "DatabaseApi" }

@@ -54,6 +54,7 @@
     <Compile Include="Event.cs" />
     <Compile Include="Pass.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="PassTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReferenceData.cs" />
     <Compile Include="Room.cs" />

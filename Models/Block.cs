@@ -14,7 +14,7 @@ namespace Models
         int Id { get; set; }
     }
 
-    public class Block : IBlock, IEntity
+    public class Block : IBlock, IEntity, IDatabaseEntity
     {
         public virtual ICollection<IUser> EnroledStudents { get; set; }
         public virtual ILevel Level { get; set; }
@@ -23,5 +23,6 @@ namespace Models
         public virtual DateTime EndDate { get; set; }
         public virtual string Name { get; set; }
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
     }
 }

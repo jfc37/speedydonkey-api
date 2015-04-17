@@ -14,9 +14,10 @@ namespace Models
         bool IsValid();
     }
 
-    public class Pass : IPass, IEntity
+    public class Pass : IPass, IEntity, IDatabaseEntity
     {
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
         public virtual DateTime StartDate { get; set; }
         public virtual DateTime EndDate { get; set; }
 

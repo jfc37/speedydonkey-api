@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeletePassTemplate.cs" />
+    <Compile Include="UpdatePassTemplate.cs" />
+    <Compile Include="CreatePassTemplate.cs" />
     <Compile Include="UpdateUser.cs" />
     <Compile Include="ResetPassword.cs" />
     <Compile Include="ForgottenPassword.cs" />

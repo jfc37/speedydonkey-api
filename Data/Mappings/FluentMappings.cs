@@ -3,6 +3,7 @@ using Models;
 
 namespace Data.Mappings
 {
+
     public class ActivityLogMap : ClassMap<ActivityLog>
     {
         public ActivityLogMap()
@@ -22,6 +23,7 @@ namespace Data.Mappings
         public UserMap()
         {
             Id(x => x.Id);
+            Map(x => x.Deleted);
             Map(x => x.FirstName);
             Map(x => x.Surname);
             Map(x => x.Email);
@@ -43,6 +45,7 @@ namespace Data.Mappings
         public ClassMap()
         {
             Id(x => x.Id);
+            Map(x => x.Deleted);
             Map(x => x.StartTime);
             Map(x => x.EndTime);
             Map(x => x.Name);
@@ -64,6 +67,7 @@ namespace Data.Mappings
         public BookingMap()
         {
             Id(x => x.Id);
+            Map(x => x.Deleted);
             References(x => x.Event)
                 .Class(typeof (Class))
                 .Cascade.All()
@@ -76,6 +80,7 @@ namespace Data.Mappings
         public LevelMap()
         {
             Id(x => x.Id);
+            Map(x => x.Deleted);
             Map(x => x.ClassesInBlock);
             Map(x => x.EndTime);
             Map(x => x.Name);
@@ -89,6 +94,7 @@ namespace Data.Mappings
         public BlockMap()
         {
             Id(x => x.Id);
+            Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.Name);
@@ -109,6 +115,7 @@ namespace Data.Mappings
         public PassMap()
         {
             Id(x => x.Id);
+            Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.PassType);
@@ -133,10 +140,26 @@ namespace Data.Mappings
         public ReferenceDataMap()
         {
             Id(x => x.Id);
+            Map(x => x.Deleted);
             Map(x => x.Type);
             Map(x => x.Name);
             Map(x => x.Description);
             Map(x => x.Value);
+        }
+    }
+
+    public class PassTemplateMap : ClassMap<PassTemplate>
+    {
+        public PassTemplateMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.Deleted);
+            Map(x => x.ClassesValidFor);
+            Map(x => x.Cost);
+            Map(x => x.Description);
+            Map(x => x.PassType);
+            Map(x => x.WeeksValidFor);
+            Map(x => x.AvailableForPurchase);
         }
     }
 }
