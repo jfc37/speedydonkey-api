@@ -139,4 +139,18 @@ namespace Data.Mappings
             Map(x => x.Value);
         }
     }
+
+    public class PassTemplateMap : ClassMap<PassTemplate>
+    {
+        public PassTemplateMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.ClassesValidFor);
+            Map(x => x.Cost);
+            Map(x => x.Description);
+            Map(x => x.PassType);
+            Map(x => x.WeeksValidFor);
+            Map(x => x.AvailableForPurchase);
+        }
+    }
 }
