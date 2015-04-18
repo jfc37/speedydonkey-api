@@ -40,6 +40,12 @@ namespace SpeedyDonkeyApi.Controllers
             return base.Get(id);
         }
 
+        [ActiveUserRequired]
+        public HttpResponseMessage Post(int passTemplateId, [FromBody]PassModel pass)
+        {
+            return Post(_currentUser.Id, passTemplateId, pass);
+        }
+
         public HttpResponseMessage Post(int userId, int passTemplateId, [FromBody]PassModel pass)
         {
             var userModel = new UserModel
