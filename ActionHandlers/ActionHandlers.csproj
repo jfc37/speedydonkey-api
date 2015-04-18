@@ -72,7 +72,8 @@
     <Compile Include="UpdateHandlers\UpdatePassTemplateHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateUserHandler.cs" />
     <Compile Include="UpdateHandlers\UpdatePassHandler.cs" />
-    <Compile Include="UserPasses\AddPassToUserHandler.cs" />
+    <Compile Include="UserPasses\PassCreator.cs" />
+    <Compile Include="UserPasses\PurchasePassHandler.cs" />
     <Compile Include="UserPasses\UserPassAppender.cs" />
   </ItemGroup>
   <ItemGroup>

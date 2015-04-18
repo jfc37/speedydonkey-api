@@ -60,7 +60,7 @@
     <Compile Include="Builders\ValidationResultBuilder.cs" />
     <Compile Include="Builders\ValidatorOverlordBuilder.cs" />
     <Compile Include="CheckStudentIntoClassValidatorTests.cs" />
-    <Compile Include="AddPassToUserValidatorTests.cs" />
+    <Compile Include="PurchasePassValidatorTests.cs" />
     <Compile Include="CreateAndUpdateUserValidatorTests.cs" />
     <Compile Include="CreateUpdatePassTemplateValidatorTests.cs" />
     <Compile Include="DeletePassTemplateValidatorTests.cs" />

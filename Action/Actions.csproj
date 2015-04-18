@@ -49,7 +49,7 @@
     <Compile Include="UpdateUser.cs" />
     <Compile Include="ResetPassword.cs" />
     <Compile Include="ForgottenPassword.cs" />
-    <Compile Include="AddPassToUser.cs" />
+    <Compile Include="PurchasePass.cs" />
     <Compile Include="ActivateUser.cs" />
     <Compile Include="UpdatePass.cs" />
     <Compile Include="RemoveStudentFromClass.cs" />

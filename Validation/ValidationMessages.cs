@@ -29,5 +29,6 @@
         public const string InvalidPassType = "Pass type selected is invalid";
         public const string NegativeNumber = "Please enter a positive number";
         public const string InvalidPassTemplate = "Pass template doesn't exist";
+        public const string CannontAddPaidPass = "You don't have permission to add a pass already paid for";
     }
 }

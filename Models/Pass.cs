@@ -24,13 +24,13 @@ namespace Models
         public virtual string PassType
         {
             get { return _passType.ToString(); }
-            set { _passType = (PassType)Enum.Parse(typeof(PassType), value, true); }
+            set { Enum.TryParse(value, true, out _passType); }
         }
 
         public virtual string PaymentStatus
         {
             get { return _paymentStatus.ToString(); }
-            set { _paymentStatus = (PassPaymentStatus)Enum.Parse(typeof(PassPaymentStatus), value, true); }
+            set { Enum.TryParse(value, true, out _paymentStatus); }
         }
 
         public virtual decimal Cost { get; set; }
@@ -60,8 +60,7 @@ namespace Models
     {
         Invalid,
         Unlimited,
-        Clip,
-        Single
+        Clip
     }
 
     public enum PassPaymentStatus

@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Web.Http;
-using Action;
 using ActionHandlers;
 using Common;
 using Data.Repositories;
@@ -13,11 +9,11 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class UserPassesApiController : EntityPropertyApiController<CurrentUserPassesModel, PassModel, User>
+    public class UserClaimsApiController : EntityPropertyApiController<UserClaimsModel, string, User>
     {
         private readonly ICurrentUser _currentUser;
 
-        public UserPassesApiController(
+        public UserClaimsApiController(
             IRepository<User> entityRepository, 
             IUrlConstructor urlConstructor, 
             ICommonInterfaceCloner cloner,
@@ -38,17 +34,6 @@ namespace SpeedyDonkeyApi.Controllers
         public override HttpResponseMessage Get(int id)
         {
             return base.Get(id);
-        }
-
-        public HttpResponseMessage Post(int userId, int passTemplateId, [FromBody]PassModel pass)
-        {
-            var userModel = new UserModel
-            {
-                Id = userId,
-                Passes = new List<IPass>{pass}
-            };
-            var user = userModel.ToEntity(Cloner);
-            return PerformAction<PurchasePass, UserModel, User>(userModel, new PurchasePass(user){ PassTemplateId = passTemplateId});
         }
     }
 }
