@@ -5,9 +5,9 @@ using Models;
 
 namespace Validation.Validators
 {
-    public class CreateUpdateLevelValidator : AbstractValidator<Level>, IActionValidator<CreateLevel, Level>
+    public class CreateLevelValidator : AbstractValidator<Level>, IActionValidator<CreateLevel, Level>
     {
-        public CreateUpdateLevelValidator()
+        public CreateLevelValidator()
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
 

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UpdateLevel.cs" />
     <Compile Include="DeletePassTemplate.cs" />
     <Compile Include="UpdatePassTemplate.cs" />
     <Compile Include="CreatePassTemplate.cs" />

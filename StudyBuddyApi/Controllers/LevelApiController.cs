@@ -29,5 +29,12 @@ namespace SpeedyDonkeyApi.Controllers
         {
             return PerformAction(model, x => new CreateLevel(x));
         }
+
+        [ClaimsAuthorise(Claim = Claim.CreateLevel)]
+        public HttpResponseMessage Put(int id,  [FromBody] LevelModel model)
+        {
+            model.Id = id;
+            return PerformAction(model, x => new UpdateLevel(x));
+        }
     }
 }

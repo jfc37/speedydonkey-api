@@ -6,7 +6,7 @@ using Validation.Validators;
 namespace Validation.Tests
 {
     [TestFixture]
-    public class CreateUpdateLevelValidatorTests : ValidatorTests<CreateUpdateLevelValidator, Level>
+    public class CreateLevelValidatorTests : ValidatorTests<CreateLevelValidator, Level>
     {
         [SetUp]
         public void Setup()
@@ -21,12 +21,12 @@ namespace Validation.Tests
             };
         }
 
-        protected override CreateUpdateLevelValidator GetValidator()
+        protected override CreateLevelValidator GetValidator()
         {
-            return new CreateUpdateLevelValidator();
+            return new CreateLevelValidator();
         }
 
-        public class ThereIsNoValidationErrors : CreateUpdateLevelValidatorTests
+        public class ThereIsNoValidationErrors : CreateLevelValidatorTests
         {
             [Test]
             public void When_all_inputs_are_correct()
@@ -37,7 +37,7 @@ namespace Validation.Tests
             }
         }
 
-        public class ThereIsAValidationError : CreateUpdateLevelValidatorTests
+        public class ThereIsAValidationError : CreateLevelValidatorTests
         {
             [Test]
             public void When_name_is_missing()

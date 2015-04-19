@@ -36,5 +36,6 @@
         public const string EndTimeGreaterThanStartTime = "Please enter an end time greater than the start time";
         public const string InvalidClassMinutes = "Please enter class minutes";
         public const string InvalidClassesInBlock = "Please enter number of classes in a block";
+        public const string InvalidLevel = "Level doesn't exist";
     }
 }
