@@ -82,6 +82,7 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.Deleted);
             Map(x => x.ClassesInBlock);
+            Map(x => x.ClassMinutes);
             Map(x => x.EndTime);
             Map(x => x.Name);
             Map(x => x.StartTime);

@@ -30,5 +30,11 @@
         public const string NegativeNumber = "Please enter a positive number";
         public const string InvalidPassTemplate = "Pass template doesn't exist";
         public const string CannontAddPaidPass = "You don't have permission to add a pass already paid for";
+        public const string MissingName = "Please enter a name";
+        public const string MissingStartTime = "Please enter a start time";
+        public const string MissingEndTime = "Please enter an end time";
+        public const string EndTimeGreaterThanStartTime = "Please enter an end time greater than the start time";
+        public const string InvalidClassMinutes = "Please enter class minutes";
+        public const string InvalidClassesInBlock = "Please enter number of classes in a block";
     }
 }

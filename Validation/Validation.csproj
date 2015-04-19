@@ -63,6 +63,7 @@
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="ValidatorOverlord.cs" />
+    <Compile Include="Validators\CreateUpdateLevelValidator.cs" />
     <Compile Include="Validators\DeletePassTemplateValidator.cs" />
     <Compile Include="Validators\CreateUpdatePassTemplateValidator.cs" />
     <Compile Include="Validators\ResetPasswordValidator.cs" />
