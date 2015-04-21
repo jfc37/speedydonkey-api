@@ -34,5 +34,12 @@ namespace SpeedyDonkeyApi.Controllers
         {
             return PerformAction(new BlockModel(), x => new GenerateBlocksForAllLevels(x));
         }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Delete(int id)
+        {
+            var model = new BlockModel {Id = id};
+            return PerformAction(model, x => new DeleteBlock(x));
+        }
     }
 }

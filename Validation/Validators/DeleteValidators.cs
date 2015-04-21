@@ -38,4 +38,12 @@ namespace Validation.Validators
         {
         }
     }
+
+    public class DeleteBlockValidator : DeleteValidator<Block>, IActionValidator<DeleteBlock, Block>
+    {
+        public DeleteBlockValidator(IRepository<Block> repository)
+            : base(repository)
+        {
+        }
+    }
 }

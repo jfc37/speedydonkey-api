@@ -17,4 +17,11 @@ namespace ActionHandlers.DeleteHandlers
         {
         }
     }
+    public class DeleteBlockHandler : DeleteEntityHandler<DeleteBlock, Block>
+    {
+        public DeleteBlockHandler(IRepository<Block> repository)
+            : base(repository)
+        {
+        }
+    }
 }
