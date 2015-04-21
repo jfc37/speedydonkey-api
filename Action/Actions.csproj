@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenerateBlocksForAllLevels.cs" />
     <Compile Include="DeleteLevel.cs" />
     <Compile Include="UpdateLevel.cs" />
     <Compile Include="DeletePassTemplate.cs" />

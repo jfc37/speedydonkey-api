@@ -60,6 +60,7 @@
     <Compile Include="CreateActionTests.cs" />
     <Compile Include="CreateBlockHandlerTests.cs" />
     <Compile Include="EnrolInBlockHandlerTests.cs" />
+    <Compile Include="GenerateBlocksForAllLevelsHandlerTests.cs" />
     <Compile Include="ResetPasswordHandlerTests.cs" />
     <Compile Include="ForgottenPasswordHandlerTests.cs" />
     <Compile Include="PasswordHasherTestFixture.cs" />

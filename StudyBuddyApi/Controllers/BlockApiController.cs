@@ -23,10 +23,16 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
-        [ClaimsAuthorise(Claim = Claim.CreateNewBlock)]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post(int levelId)
         {
             return PerformAction(new BlockModel {Level = new LevelModel {Id = levelId}}, x => new CreateBlock(x));
+        }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Post()
+        {
+            return PerformAction(new BlockModel(), x => new GenerateBlocksForAllLevels(x));
         }
     }
 }

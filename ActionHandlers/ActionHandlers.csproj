@@ -52,6 +52,7 @@
     <Compile Include="CreateHandlers\CreatePassTemplateHandler.cs" />
     <Compile Include="DeleteHandlers\DeleteEntityHandler.cs" />
     <Compile Include="DeleteHandlers\DeleteHandlers.cs" />
+    <Compile Include="GenerateBlocksForAllLevelsHandler.cs" />
     <Compile Include="ResetPasswordHandler.cs" />
     <Compile Include="ForgottenPasswordHandler.cs" />
     <Compile Include="ActivateUserHandler.cs" />
