@@ -10,10 +10,11 @@ namespace Models
         IEvent Event { get; set; }
     }
 
-    public class Booking : IBooking, IEntity
+    public class Booking : IBooking, IEntity, IDatabaseEntity
     {
         public virtual IRoom Room { get; set; }
         public virtual IEvent Event { get; set; }
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
     }
 }

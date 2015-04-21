@@ -63,10 +63,15 @@
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="ValidatorOverlord.cs" />
+    <Compile Include="Validators\UpdateBlockValidator.cs" />
+    <Compile Include="Validators\UpdateLevelValidator.cs" />
+    <Compile Include="Validators\CreateLevelValidator.cs" />
+    <Compile Include="Validators\DeleteValidators.cs" />
+    <Compile Include="Validators\CreateUpdatePassTemplateValidator.cs" />
     <Compile Include="Validators\ResetPasswordValidator.cs" />
     <Compile Include="Validators\ForgottenPasswordValidator.cs" />
     <Compile Include="Validators\CheckStudentIntoClassValidator.cs" />
-    <Compile Include="Validators\AddPassToUserValidator.cs" />
+    <Compile Include="Validators\PurchasePassValidator.cs" />
     <Compile Include="Validators\ActivateUserValidator.cs" />
     <Compile Include="Validators\UpdatePassValidator.cs" />
     <Compile Include="Validators\CreateUserValidator.cs" />

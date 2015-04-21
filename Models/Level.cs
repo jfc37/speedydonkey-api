@@ -18,7 +18,7 @@ namespace Models
         //Date of final block ending
     }
 
-    public class Level : ILevel, IEntity
+    public class Level : ILevel, IEntity, IDatabaseEntity
     {
         public virtual string Name { get; set; }
         public virtual IRoom Room { get; set; }
@@ -29,5 +29,6 @@ namespace Models
         public virtual IList<IBlock> Blocks { get; set; }
         public virtual int ClassMinutes { get; set; }
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
     }
 }

@@ -14,22 +14,23 @@ namespace Models
         bool IsValid();
     }
 
-    public class Pass : IPass, IEntity
+    public class Pass : IPass, IEntity, IDatabaseEntity
     {
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
         public virtual DateTime StartDate { get; set; }
         public virtual DateTime EndDate { get; set; }
 
         public virtual string PassType
         {
             get { return _passType.ToString(); }
-            set { _passType = (PassType)Enum.Parse(typeof(PassType), value, true); }
+            set { Enum.TryParse(value, true, out _passType); }
         }
 
         public virtual string PaymentStatus
         {
             get { return _paymentStatus.ToString(); }
-            set { _paymentStatus = (PassPaymentStatus)Enum.Parse(typeof(PassPaymentStatus), value, true); }
+            set { Enum.TryParse(value, true, out _paymentStatus); }
         }
 
         public virtual decimal Cost { get; set; }
@@ -59,8 +60,7 @@ namespace Models
     {
         Invalid,
         Unlimited,
-        Clip,
-        Single
+        Clip
     }
 
     public enum PassPaymentStatus

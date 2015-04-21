@@ -202,13 +202,19 @@
     <Compile Include="Controllers\BlockApiController.cs" />
     <Compile Include="Controllers\BookingApiController.cs" />
     <Compile Include="Controllers\ClassApiController.cs" />
+    <Compile Include="Controllers\ClassAttendanceApiController.cs" />
+    <Compile Include="Controllers\ClassRollApiController.cs" />
     <Compile Include="Controllers\CurrentUserApiController.cs" />
     <Compile Include="Controllers\DatabaseApiController.cs" />
     <Compile Include="Controllers\EnrolmentApiController.cs" />
+    <Compile Include="Controllers\EntityPropertyApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\LevelApiController.cs" />
     <Compile Include="Controllers\PassApiController.cs" />
+    <Compile Include="Controllers\PassTemplateApiController.cs" />
     <Compile Include="Controllers\ReferenceDataApiController.cs" />
+    <Compile Include="Controllers\UserClaimsApiController.cs" />
+    <Compile Include="Controllers\UserEnroledBlocksApiController.cs" />
     <Compile Include="Controllers\UserPasswordResetApiController.cs" />
     <Compile Include="Controllers\UserActivationApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
@@ -226,6 +232,7 @@
     <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\EventModel.cs" />
+    <Compile Include="Models\PassTemplateModel.cs" />
     <Compile Include="Models\UserEnroledBlocksModel.cs" />
     <Compile Include="Models\CurrentUserPassesModel.cs" />
     <Compile Include="Models\EnrolmentModel.cs" />

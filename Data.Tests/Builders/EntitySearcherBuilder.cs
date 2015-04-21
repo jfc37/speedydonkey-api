@@ -1,9 +1,10 @@
 using Data.Searches;
+using Models;
 using NHibernate;
 
 namespace Data.Tests.Builders
 {
-    public class EntitySearcherBuilder<T> where T : class
+    public class EntitySearcherBuilder<T> where T : class, IDatabaseEntity
     {
         private ISession _context;
         private ISearchQueryParser _searchQueryParser;

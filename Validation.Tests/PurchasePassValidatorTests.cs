@@ -10,7 +10,7 @@ using Validation.Validators;
 namespace Validation.Tests
 {
     [TestFixture]
-    public class AddPassToUserValidatorTests
+    public class PurchasePassValidatorTests
     {
         private User _user;
         private MockRepositoryBuilder<User> _userRepositoryBuilder;
@@ -27,14 +27,17 @@ namespace Validation.Tests
                 Id = 1,
                 Passes = new List<IPass>
                 {
-                    new Pass()
+                    new Pass
+                    {
+                        PaymentStatus = PassPaymentStatus.Pending.ToString()
+                    }
                 }
             };
         }
 
-        private AddPassToUserValidator GetValidator()
+        private PurchasePassValidator GetValidator()
         {
-            return new AddPassToUserValidator(
+            return new PurchasePassValidator(
                 _userRepositoryBuilder.BuildObject(), _currentUser);
         }
 
@@ -83,6 +86,18 @@ namespace Validation.Tests
 
             Assert.IsFalse(result.IsValid);
             Assert.AreEqual(ValidationMessages.CannotAddPassForAnother, result.Errors.Single().ErrorMessage);
+        }
+
+        [Test]
+        public void When_user_doesnt_have_permission_to_pass_payment_status_then_error_should_be_returned()
+        {
+            _user.Passes.Single().PaymentStatus = PassPaymentStatus.Paid.ToString();
+            _userRepositoryBuilder.WithGet(new User {Claims = ""});
+
+            var result = PerforAction();
+
+            Assert.IsFalse(result.IsValid);
+            Assert.AreEqual(ValidationMessages.CannontAddPaidPass, result.Errors.Single().ErrorMessage);
         }
     }
 }

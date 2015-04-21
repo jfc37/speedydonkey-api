@@ -60,6 +60,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "GenerateAllBlocksApi",
+                routeTemplate: "api/levels/all/blocks",
+                defaults: new { controller = "BlockApi" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "LevelBlockApi",
                 routeTemplate: "api/levels/{levelId}/blocks",
                 defaults: new { controller = "BlockApi"}
@@ -81,6 +87,18 @@ namespace SpeedyDonkeyApi
                 name: "PassApi",
                 routeTemplate: "api/passes/{id}",
                 defaults: new { controller = "PassApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "CurrentUserPassPurchaseApi",
+                routeTemplate: "api/users/current/passtemplates/{passTemplateId}",
+                defaults: new { controller = "UserPassesApi" }
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "PassPurchaseApi",
+                routeTemplate: "api/users/{userId}/passtemplates/{passTemplateId}",
+                defaults: new { controller = "UserPassesApi" }
             );
 
             config.Routes.MapHttpRoute(
@@ -147,6 +165,12 @@ namespace SpeedyDonkeyApi
                 name: "ReferenceDataApi",
                 routeTemplate: "api/reference/{id}",
                 defaults: new { controller = "ReferenceDataApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "PassTemplateApi",
+                routeTemplate: "api/passtemplate/{id}",
+                defaults: new { controller = "PassTemplateApi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

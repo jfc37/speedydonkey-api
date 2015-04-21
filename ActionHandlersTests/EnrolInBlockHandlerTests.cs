@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Action;
-using ActionHandlers;
 using ActionHandlers.EnrolmentProcess;
-using ActionHandlers.UserPasses;
 using Data.Tests.Builders;
 using Models;
 using Moq;
@@ -61,7 +59,6 @@ namespace ActionHandlersTests
                 _userRepositoryBuilder.BuildObject(),
                 new BlockEnrolmentService(_blockRepositoryBuilder.BuildObject(),
                 _bookingRepositoryBuilder.BuildObject()),
-                new UserPassAppender(new PassCreatorFactory()),
                 _postOfficeBuilder.BuildObject());
         }
 

@@ -13,6 +13,7 @@ namespace ActionHandlersTests
     {
         protected User User;
         protected Pass Pass;
+        protected PassTemplate PassTemplate;
 
         private UserPassAppender GetUserPassAppender()
         {
@@ -21,7 +22,7 @@ namespace ActionHandlersTests
 
         protected void PerformAction()
         {
-            GetUserPassAppender().AddPassToUser(User, Pass);
+            GetUserPassAppender().AddPassToUser(User, Pass, PassTemplate);
         }
     }
 
@@ -31,10 +32,11 @@ namespace ActionHandlersTests
         public void Setup()
         {
             User = new User();
-            Pass = new Pass
+            PassTemplate = new PassTemplate
             {
                 PassType = PassType.Unlimited.ToString()
             };
+            Pass = new Pass();
         }
 
         [Test]
@@ -68,10 +70,11 @@ namespace ActionHandlersTests
                     }
                 }
             };
-            Pass = new Pass
+            PassTemplate = new PassTemplate
             {
                 PassType = PassType.Unlimited.ToString()
             };
+            Pass = new Pass();
         }
 
         [Test]
@@ -102,10 +105,11 @@ namespace ActionHandlersTests
                     _existingPass
                 }
             };
-            Pass = new Pass
+            PassTemplate = new PassTemplate
             {
                 PassType = PassType.Unlimited.ToString()
             };
+            Pass = new Pass();
         }
 
         [Test]
@@ -144,10 +148,11 @@ namespace ActionHandlersTests
                     _pendingPass
                 }
             };
-            Pass = new Pass
+            PassTemplate = new PassTemplate
             {
                 PassType = PassType.Unlimited.ToString()
             };
+            Pass = new Pass();
         }
         [Test]
         public void Then_the_new_pass_should_start_the_day_the_pending_pass_expires()
@@ -157,6 +162,66 @@ namespace ActionHandlersTests
             var expectedStartDate = _pendingPass.EndDate.AddDays(1).Date;
             var newPass = User.Passes.Single(x => x.StartDate == User.Passes.Max(y => y.StartDate));
             Assert.AreEqual(expectedStartDate, newPass.StartDate);
+        }
+    }
+
+    public class GivenSomePassTemplate : UserPassAppenderTests
+    {
+        [SetUp]
+        public void Setup()
+        {
+            User = new User();
+            PassTemplate = new PassTemplate
+            {
+                PassType = PassType.Unlimited.ToString()
+            };
+            Pass = new Pass();
+        }
+
+        [Test]
+        public void Then_the_new_pass_should_be_the_same_type()
+        {
+            PassTemplate.PassType = PassType.Clip.ToString();
+
+            PerformAction();
+
+            var newPass = User.Passes.Single();
+            Assert.AreEqual(PassTemplate.PassType, newPass.PassType);
+        }
+
+        [Test]
+        public void Then_the_new_pass_should_be_valid_for_the_same_number_of_classes()
+        {
+            PassTemplate.PassType = PassType.Clip.ToString();
+            PassTemplate.ClassesValidFor = 8;
+
+            PerformAction();
+
+            var newPass = (ClipPass) User.Passes.Single();
+            Assert.AreEqual(PassTemplate.ClassesValidFor, newPass.ClipsRemaining);
+        }
+
+        [Test]
+        public void Then_the_new_pass_should_be_valid_for_the_same_number_of_weeks()
+        {
+            PassTemplate.WeeksValidFor = 3;
+
+            PerformAction();
+
+            var newPass = User.Passes.Single();
+            var daysBeforeExpiry = newPass.EndDate.Subtract(newPass.StartDate).Days;
+            Assert.AreEqual(PassTemplate.WeeksValidFor * 7, daysBeforeExpiry);
+        }
+
+        [Test]
+        public void Then_the_new_pass_should_be_the_same_cost()
+        {
+            PassTemplate.Cost = 36;
+
+            PerformAction();
+
+            var newPass = User.Passes.Single();
+            Assert.AreEqual(PassTemplate.Cost, newPass.Cost);
         }
     }
 }

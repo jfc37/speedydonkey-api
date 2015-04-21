@@ -49,6 +49,7 @@ namespace ActionHandlers.CreateHandlers
                 };
                 CreateBookingForClass(nextClass, result.Level.Room);
                 _classRepository.Create(nextClass);
+                classTime = classTime.AddDays(7);
             }
         }
 

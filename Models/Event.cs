@@ -14,9 +14,10 @@ namespace Models
         string Name { get; set; }
     }
 
-    public class Event : IEvent, IEntity
+    public class Event : IEvent, IEntity, IDatabaseEntity
     {
         public int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
         public IList<ITeacher> Teachers { get; set; }
         public ICollection<IUser> RegisteredStudents { get; set; }
         public DateTime StartTime { get; set; }

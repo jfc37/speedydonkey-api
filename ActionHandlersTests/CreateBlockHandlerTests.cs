@@ -117,7 +117,7 @@ namespace ActionHandlersTests
             PerformAction();
 
             var createdBlock = RepositoryBuilder.CreatedEntity;
-            var expectedEndDate = LevelStartTime.AddHours(1).AddDays(numberOfClasses*7);
+            var expectedEndDate = LevelStartTime.AddDays(numberOfClasses*7);
             Assert.AreEqual(expectedEndDate, createdBlock.EndDate);
         }
 

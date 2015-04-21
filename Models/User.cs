@@ -17,7 +17,7 @@ namespace Models
         IList<IPass> Passes { get; set; }  
     }
 
-    public class User : IUser, IEntity
+    public class User : IUser, IEntity, IDatabaseEntity
     {
         public virtual UserStatus Status { get; set; }
         public virtual Guid ActivationKey { get; set; }
@@ -30,6 +30,7 @@ namespace Models
         public virtual ICollection<IBlock> EnroledBlocks { get; set; }
         public virtual IList<IPass> Passes { get; set; }
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
         public virtual string Claims { get; set; } 
 
         public virtual IPass GetPassToUse()
