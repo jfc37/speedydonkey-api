@@ -24,17 +24,24 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
-        [ClaimsAuthorise(Claim = Claim.CreateLevel)]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post([FromBody] LevelModel model)
         {
             return PerformAction(model, x => new CreateLevel(x));
         }
 
-        [ClaimsAuthorise(Claim = Claim.CreateLevel)]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Put(int id,  [FromBody] LevelModel model)
         {
             model.Id = id;
             return PerformAction(model, x => new UpdateLevel(x));
+        }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Delete(int id)
+        {
+            var model = new LevelModel{ Id = id};
+            return PerformAction(model, x => new DeleteLevel(x));
         }
     }
 }

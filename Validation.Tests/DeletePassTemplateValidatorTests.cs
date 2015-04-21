@@ -43,7 +43,7 @@ namespace Validation.Tests
 
                 var result = PerformAction();
 
-                ExpectValidationError(result, ValidationMessages.InvalidPassTemplate);
+                ExpectValidationError(result, ValidationMessages.InvalidItemToDelete);
             }
         }
     }
