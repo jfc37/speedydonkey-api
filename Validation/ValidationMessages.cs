@@ -3,7 +3,7 @@
     public static class ValidationMessages
     {
         public const string AlreadyEnroledInBlock = "You are already enroled in a selected block";
-        public const string InvalidBlock = "You are trying to enrol in a block that doesn't exist";
+        public const string InvalidBlock = "Block doesn't exist";
         public const string InvalidClass = "You are trying to attend a class that doesn't exist";
         public const string InvalidUser = "User does not exist";
         public const string InvalidPass = "Pass does not exist";

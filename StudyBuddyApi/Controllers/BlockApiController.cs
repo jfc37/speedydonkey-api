@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common;
@@ -33,6 +34,13 @@ namespace SpeedyDonkeyApi.Controllers
         public HttpResponseMessage Post()
         {
             return PerformAction(new BlockModel(), x => new GenerateBlocksForAllLevels(x));
+        }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Put(int id, [FromBody] BlockModel model)
+        {
+            model.Id = id;
+            return PerformAction(model, x => new UpdateBlock(x));
         }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
