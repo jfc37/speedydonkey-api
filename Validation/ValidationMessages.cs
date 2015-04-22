@@ -4,7 +4,7 @@
     {
         public const string AlreadyEnroledInBlock = "You are already enroled in a selected block";
         public const string InvalidBlock = "Block doesn't exist";
-        public const string InvalidClass = "You are trying to attend a class that doesn't exist";
+        public const string InvalidClass = "Class doesn't exist";
         public const string InvalidUser = "User does not exist";
         public const string InvalidPass = "Pass does not exist";
         public const string IncorrectNumberOfAttendees = "You can only add attendance for one student at a time";

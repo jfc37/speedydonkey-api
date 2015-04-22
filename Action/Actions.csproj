@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeleteClass.cs" />
+    <Compile Include="UpdateClass.cs" />
     <Compile Include="UpdateBlock.cs" />
     <Compile Include="DeleteBlock.cs" />
     <Compile Include="GenerateBlocksForAllLevels.cs" />

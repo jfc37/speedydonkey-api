@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common;
@@ -20,6 +21,13 @@ namespace SpeedyDonkeyApi.Controllers
             ICommonInterfaceCloner cloner, 
             IEntitySearch<Class> entitySearch) : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
         {
+        }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Put(int id, [FromBody] ClassModel model)
+        {
+            model.Id = id;
+            return PerformAction(model, x => new UpdateClass(x));
         }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
