@@ -24,4 +24,11 @@ namespace ActionHandlers.DeleteHandlers
         {
         }
     }
+    public class DeleteClassHandler : DeleteEntityHandler<DeleteClass, Class>
+    {
+        public DeleteClassHandler(IRepository<Class> repository)
+            : base(repository)
+        {
+        }
+    }
 }

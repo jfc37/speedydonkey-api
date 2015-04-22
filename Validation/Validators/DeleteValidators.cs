@@ -46,4 +46,12 @@ namespace Validation.Validators
         {
         }
     }
+
+    public class DeleteClassValidator : DeleteValidator<Class>, IActionValidator<DeleteClass, Class>
+    {
+        public DeleteClassValidator(IRepository<Class> repository)
+            : base(repository)
+        {
+        }
+    }
 }
