@@ -28,5 +28,14 @@ namespace SpeedyDonkeyApi.Controllers
             var model = new UserModel{Id = id};
             return PerformAction(model, x => new SetAsTeacher(x));
         }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public override HttpResponseMessage Get()
+        {
+            var q = "claims_cont_teacher";
+            return Get(q);
+        }
+
+
     }
 }
