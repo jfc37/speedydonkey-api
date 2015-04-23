@@ -25,7 +25,8 @@ namespace ActionHandlers.CreateHandlers
         protected override void PreHandle(ICrudAction<User> action)
         {
             action.ActionAgainst.Password = _passwordHasher.CreateHash(action.ActionAgainst.Password);
-            
+            action.ActionAgainst.Claims = "";
+
             action.ActionAgainst.Status = GetUserStatus();
             action.ActionAgainst.ActivationKey = Guid.NewGuid();
 

@@ -4,7 +4,7 @@
     {
         public const string AlreadyEnroledInBlock = "You are already enroled in a selected block";
         public const string InvalidBlock = "Block doesn't exist";
-        public const string InvalidClass = "You are trying to attend a class that doesn't exist";
+        public const string InvalidClass = "Class doesn't exist";
         public const string InvalidUser = "User does not exist";
         public const string InvalidPass = "Pass does not exist";
         public const string IncorrectNumberOfAttendees = "You can only add attendance for one student at a time";
@@ -29,7 +29,7 @@
         public const string InvalidPassType = "Pass type selected is invalid";
         public const string NegativeNumber = "Please enter a positive number";
         public const string InvalidPassTemplate = "Pass template doesn't exist";
-        public const string InvalidItemToDelete = "Item trying to delete doesn't exist";
+        public const string ItemDoesntExist = "Item doesn't exist";
         public const string CannontAddPaidPass = "You don't have permission to add a pass already paid for";
         public const string MissingName = "Please enter a name";
         public const string MissingStartTime = "Please enter a start time";
