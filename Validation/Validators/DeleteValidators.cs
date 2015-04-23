@@ -1,21 +1,22 @@
 ﻿using Action;
+using Actions;
 using Data.Repositories;
 using FluentValidation;
 using Models;
 
 namespace Validation.Validators
 {
-    public abstract class DeleteValidator<TEntity> : AbstractValidator<TEntity> where TEntity : IEntity
+    public abstract class PreExistingValidator<TEntity> : AbstractValidator<TEntity> where TEntity : IEntity
     {
         private readonly IRepository<TEntity> _repository;
 
-        protected DeleteValidator(IRepository<TEntity> repository)
+        protected PreExistingValidator(IRepository<TEntity> repository)
         {
             _repository = repository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(x => x.Id)
-                .Must(Exist).WithMessage(ValidationMessages.InvalidItemToDelete);
+                .Must(Exist).WithMessage(ValidationMessages.ItemDoesntExist);
         }
 
         private bool Exist(int id)
@@ -24,14 +25,14 @@ namespace Validation.Validators
         }
     }
 
-    public class DeletePassTemplateValidator : DeleteValidator<PassTemplate>, IActionValidator<DeletePassTemplate, PassTemplate>
+    public class DeletePassTemplateValidator : PreExistingValidator<PassTemplate>, IActionValidator<DeletePassTemplate, PassTemplate>
     {
         public DeletePassTemplateValidator(IRepository<PassTemplate> repository) : base(repository)
         {
         }
     }
 
-    public class DeleteLevelValidator : DeleteValidator<Level>, IActionValidator<DeleteLevel, Level>
+    public class DeleteLevelValidator : PreExistingValidator<Level>, IActionValidator<DeleteLevel, Level>
     {
         public DeleteLevelValidator(IRepository<Level> repository)
             : base(repository)
@@ -39,7 +40,7 @@ namespace Validation.Validators
         }
     }
 
-    public class DeleteBlockValidator : DeleteValidator<Block>, IActionValidator<DeleteBlock, Block>
+    public class DeleteBlockValidator : PreExistingValidator<Block>, IActionValidator<DeleteBlock, Block>
     {
         public DeleteBlockValidator(IRepository<Block> repository)
             : base(repository)
@@ -47,9 +48,17 @@ namespace Validation.Validators
         }
     }
 
-    public class DeleteClassValidator : DeleteValidator<Class>, IActionValidator<DeleteClass, Class>
+    public class DeleteClassValidator : PreExistingValidator<Class>, IActionValidator<DeleteClass, Class>
     {
         public DeleteClassValidator(IRepository<Class> repository)
+            : base(repository)
+        {
+        }
+    }
+
+    public class SetAsTeacherValidator : PreExistingValidator<User>, IActionValidator<SetAsTeacher, User>
+    {
+        public SetAsTeacherValidator(IRepository<User> repository)
             : base(repository)
         {
         }
