@@ -41,5 +41,24 @@ namespace ActionHandlersTests
 
             Assert.IsNotNull(_userInDatabase.TeachingConcerns);
         }
+
+        [Test]
+        public void Then_the_user_should_have_teacher_claim()
+        {
+            PerformAction();
+
+            Assert.IsTrue(_userInDatabase.Claims.Contains(Claim.Teacher.ToString()));
+        }
+
+        [Test]
+        public void Then_previous_claims_shouldnt_be_overriden()
+        {
+            _userInDatabase.Claims = Claim.Admin.ToString();
+
+            PerformAction();
+
+            Assert.IsTrue(_userInDatabase.Claims.Contains(Claim.Admin.ToString()));
+            Assert.IsTrue(_userInDatabase.Claims.Contains(Claim.Teacher.ToString()));
+        }
     }
 }
