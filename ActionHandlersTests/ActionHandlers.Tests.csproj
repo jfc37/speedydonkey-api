@@ -61,6 +61,7 @@
     <Compile Include="CreateBlockHandlerTests.cs" />
     <Compile Include="EnrolInBlockHandlerTests.cs" />
     <Compile Include="GenerateBlocksForAllLevelsHandlerTests.cs" />
+    <Compile Include="RemoveAsTeacherHandlerTests.cs" />
     <Compile Include="SetAsTeacherHandlerTests.cs" />
     <Compile Include="ResetPasswordHandlerTests.cs" />
     <Compile Include="ForgottenPasswordHandlerTests.cs" />

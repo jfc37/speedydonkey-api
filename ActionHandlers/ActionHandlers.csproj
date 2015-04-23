@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
+    <Compile Include="RemoveAsTeacherHandler.cs" />
     <Compile Include="SetAsTeacherHandler.cs" />
     <Compile Include="CreateHandlers\CreatePassTemplateHandler.cs" />
     <Compile Include="DeleteHandlers\DeleteEntityHandler.cs" />

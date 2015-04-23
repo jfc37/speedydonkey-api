@@ -63,4 +63,12 @@ namespace Validation.Validators
         {
         }
     }
+
+    public class RemoveAsTeacherValidator : PreExistingValidator<User>, IActionValidator<RemoveAsTeacher, User>
+    {
+        public RemoveAsTeacherValidator(IRepository<User> repository)
+            : base(repository)
+        {
+        }
+    }
 }

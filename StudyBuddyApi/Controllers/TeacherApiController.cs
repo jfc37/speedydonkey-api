@@ -36,6 +36,13 @@ namespace SpeedyDonkeyApi.Controllers
             return Get(q);
         }
 
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Delete(int id)
+        {
+            var model = new UserModel { Id = id };
+            return PerformAction(model, x => new RemoveAsTeacher(x));
+        }
+
 
     }
 }
