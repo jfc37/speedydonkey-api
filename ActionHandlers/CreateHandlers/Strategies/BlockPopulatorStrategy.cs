@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Models;
 
@@ -31,6 +32,9 @@ namespace ActionHandlers.CreateHandlers.Strategies
             block.Level = level;
             block.StartDate = level.StartTime;
             block.EndDate = level.StartTime.AddDays(level.ClassesInBlock * 7);
+
+            if (level.Teachers != null)
+                block.Teachers = new List<IUser>(level.Teachers);
         }
     }
 
@@ -44,6 +48,9 @@ namespace ActionHandlers.CreateHandlers.Strategies
             block.Level = level;
             block.StartDate = latestBlock.EndDate.AddDays(7);
             block.EndDate = block.StartDate.AddDays(level.ClassesInBlock * 7);
+
+            if (level.Teachers != null)
+                block.Teachers = new List<IUser>(level.Teachers);
         }
     }
 }

@@ -124,7 +124,8 @@ namespace Data.Mappings
                 .Inverse()
                 .Table("UsersEnroledBlocks")
                 .AsSet();
-            HasMany<User>(x => x.Teachers);
+            HasManyToMany<User>(x => x.Teachers)
+                .Table("BlockTeacher");
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Common;
 using Models;
 
@@ -24,9 +25,15 @@ namespace SpeedyDonkeyApi.Models
         protected override void AddChildrenToEntity(Block entity, ICommonInterfaceCloner cloner)
         {
             if (Level != null)
-            {
                 entity.Level = ((LevelModel) Level).ToEntity(cloner);
-            }
+
+            if (Teachers != null && Teachers.Any())
+                entity.Teachers = Teachers;
+        }
+
+        protected override void AddChildrenToModel(Block entity, BlockModel model)
+        {
+            model.Teachers = entity.Teachers;
         }
     }
 }
