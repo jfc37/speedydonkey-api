@@ -7,7 +7,7 @@ namespace Models
     {
         string Name { get; set; }
         IRoom Room { get; set; }
-        IList<ITeacher> Teachers { get; set; }
+        IList<IUser> Teachers { get; set; }
         DateTime StartTime { get; set; }
         DateTime EndTime { get; set; }
         int ClassesInBlock { get; set; }
@@ -22,7 +22,7 @@ namespace Models
     {
         public virtual string Name { get; set; }
         public virtual IRoom Room { get; set; }
-        public virtual IList<ITeacher> Teachers { get; set; }
+        public virtual IList<IUser> Teachers { get; set; }
         public virtual DateTime StartTime { get; set; }
         public virtual DateTime EndTime { get; set; }
         public virtual int ClassesInBlock { get; set; }

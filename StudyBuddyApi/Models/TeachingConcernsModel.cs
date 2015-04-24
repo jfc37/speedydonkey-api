@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using System.Collections.Generic;
+using Models;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -8,5 +9,7 @@ namespace SpeedyDonkeyApi.Models
         {
             get { return "TeachingConcernsApi"; }
         }
+
+        public IList<IEvent> EventsRun { get; set; }
     }
 }

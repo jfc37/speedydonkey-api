@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Action;
 using Data.Repositories;
 using FluentValidation;
@@ -9,10 +11,12 @@ namespace Validation.Validators
     public class UpdateLevelValidator : AbstractValidator<Level>, IActionValidator<UpdateLevel, Level>
     {
         private readonly IRepository<Level> _repository;
+        private readonly IRepository<User> _userRepository;
 
-        public UpdateLevelValidator(IRepository<Level> repository)
+        public UpdateLevelValidator(IRepository<Level> repository, IRepository<User> userRepository)
         {
             _repository = repository;
+            _userRepository = userRepository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(x => x.Name)
@@ -33,11 +37,25 @@ namespace Validation.Validators
 
             RuleFor(x => x.Id)
                 .Must(Exist).WithMessage(ValidationMessages.InvalidLevel);
+
+            When(x => x.Teachers != null && x.Teachers.Any(), () => RuleFor(x => x.Teachers)
+                .Must(BeExistingTeachers).WithMessage(ValidationMessages.InvalidTeachers));
         }
 
         private bool Exist(int id)
         {
             return _repository.Get(id) != null;
+        }
+
+        private bool BeExistingTeachers(IList<IUser> teachers)
+        {
+            foreach (var teacher in teachers)
+            {
+                var savedTeacher = _userRepository.Get(teacher.Id);
+                if (savedTeacher == null || !savedTeacher.Claims.Contains(Claim.Teacher.ToString()) || savedTeacher.TeachingConcerns == null)
+                    return false;
+            }
+            return true;
         }
     }
 }

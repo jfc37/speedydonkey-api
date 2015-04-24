@@ -72,6 +72,7 @@ namespace Data.Mappings
                 .Cascade.All()
                 .Table("ClassAttendance")
                 .AsSet();
+            HasMany<User>(x => x.Teachers);
         }
     }
 
@@ -100,6 +101,8 @@ namespace Data.Mappings
             Map(x => x.Name);
             Map(x => x.StartTime);
             HasMany<Block>(x => x.Blocks);
+            HasManyToMany<User>(x => x.Teachers)
+                .Table("LevelTeacher");
         }
     }
 
@@ -121,6 +124,7 @@ namespace Data.Mappings
                 .Inverse()
                 .Table("UsersEnroledBlocks")
                 .AsSet();
+            HasMany<User>(x => x.Teachers);
         }
     }
 

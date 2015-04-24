@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using Common;
 using Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
     public class BlockModel : ApiModel<Block, BlockModel>, IBlock
     {
+        public IList<IUser> Teachers { get; set; }
         public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
         public ICollection<IClass> Classes { get; set; }

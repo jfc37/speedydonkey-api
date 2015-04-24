@@ -38,5 +38,6 @@
         public const string InvalidClassMinutes = "Please enter class minutes";
         public const string InvalidClassesInBlock = "Please enter number of classes in a block";
         public const string InvalidLevel = "Level doesn't exist";
+        public const string InvalidTeachers = "Teachers selected are invalid";
     }
 }
