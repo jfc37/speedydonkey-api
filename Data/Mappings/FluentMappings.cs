@@ -72,7 +72,8 @@ namespace Data.Mappings
                 .Cascade.All()
                 .Table("ClassAttendance")
                 .AsSet();
-            HasMany<User>(x => x.Teachers);
+            HasManyToMany<User>(x => x.Teachers)
+                .Table("ClassTeacher");
         }
     }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Action;
 using ActionHandlers.CreateHandlers;
 using ActionHandlers.CreateHandlers.Strategies;
-using Data.Repositories;
 using Data.Tests.Builders;
 using Models;
 using Moq;
@@ -22,12 +21,15 @@ namespace ActionHandlersTests
         protected DateTime LevelStartTime;
         protected DateTime LevelEndTime;
 
-        protected void OverallSetup()
+        [SetUp]
+        public virtual void Setup()
         {
             LevelStartTime = DateTime.Now;
             LevelEndTime = LevelStartTime.AddHours(1);
-            RepositoryBuilder = new MockRepositoryBuilder<Block>();
-            LevelRepositoryBuilder = new MockRepositoryBuilder<Level>();
+            RepositoryBuilder = new MockRepositoryBuilder<Block>()
+                .WithCreate();
+            LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
+                .WithGet(GetStandardLevel());
             ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
                 .WithCreate();
             BookingRepositoryBuilder = new MockRepositoryBuilder<Booking>()
@@ -36,6 +38,16 @@ namespace ActionHandlersTests
             {
                 Level = new Level()
             });
+        }
+
+        protected Level GetStandardLevel()
+        {
+            return new Level
+            {
+                Blocks = new List<IBlock>(), 
+                Teachers = new List<IUser>{ new User()},
+                ClassesInBlock = 1
+            };
         }
 
         private CreateBlockHandler GetHandler()
@@ -52,24 +64,39 @@ namespace ActionHandlersTests
         {
             GetHandler().Handle(Action);
         }
+
+        [Test]
+        public void Then_block_has_teachers_associated_with_level()
+        {
+            PerformAction();
+
+            Assert.IsNotEmpty(Action.ActionAgainst.Teachers);
+            Assert.AreEqual(1, Action.ActionAgainst.Teachers.Count);
+        }
+
+        [Test]
+        public void Then_classes_has_teachers_associated_with_level()
+        {
+            PerformAction();
+
+            Assert.IsNotEmpty(ClassRepositoryBuilder.CreatedEntity.Teachers);
+            Assert.AreEqual(1, ClassRepositoryBuilder.CreatedEntity.Teachers.Count);
+        }
     }
 
     public class WhenLevelDoesntHaveAnyBlocks : GivenCreateBlockIsHandled
     {
-        [SetUp]
-        public void Setup()
+        public override void Setup()
         {
-            OverallSetup();
+            base.Setup();
+            var level = GetStandardLevel();
+            level.StartTime = DateTime.Now;
+            level.EndTime = DateTime.Now.AddHours(1);
+            level.Name = "My Name";
             RepositoryBuilder = new MockRepositoryBuilder<Block>()
                 .WithCreate();
             LevelRepositoryBuilder = new MockRepositoryBuilder<Level>()
-                .WithGet(new Level
-                {
-                    StartTime = DateTime.Now,
-                    EndTime = DateTime.Now.AddHours(1),
-                    Blocks = new List<IBlock>(),
-                    Name = "My Name"
-                });
+                .WithGet(level);
         }
 
         [Test]
@@ -111,7 +138,11 @@ namespace ActionHandlersTests
                        StartTime = LevelStartTime,
                        EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
-                       Blocks = new List<IBlock>()
+                       Blocks = new List<IBlock>(),
+                       Teachers = new[]
+                        {
+                            new User()
+                        }
                    });
 
             PerformAction();
@@ -132,7 +163,11 @@ namespace ActionHandlersTests
                        StartTime = LevelStartTime,
                        EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
-                       Blocks = new List<IBlock>()
+                       Blocks = new List<IBlock>(),
+                       Teachers = new[]
+                        {
+                            new User()
+                        }
                    });
 
             PerformAction();
@@ -151,7 +186,11 @@ namespace ActionHandlersTests
                        StartTime = LevelStartTime,
                        EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
-                       Blocks = new List<IBlock>()
+                       Blocks = new List<IBlock>(),
+                       Teachers = new[]
+                        {
+                            new User()
+                        }
                    });
 
             PerformAction();
@@ -162,22 +201,20 @@ namespace ActionHandlersTests
 
     public class WhenLevelHasABlockCurrentlyInProgress : GivenCreateBlockIsHandled
     {
-        [SetUp]
-        public void Setup()
+        public override void Setup()
         {
-            OverallSetup();
-            RepositoryBuilder.WithCreate();
-            LevelRepositoryBuilder.WithGet(new Level
+            base.Setup();
+            var level = GetStandardLevel();
+            level.Blocks = new[]
             {
-                Blocks = new[]
+                new Block
                 {
-                    new Block
-                    {
-                        StartDate = DateTime.Now.AddMonths(-1),
-                        EndDate = DateTime.Now.AddDays(4)
-                    }
+                    StartDate = DateTime.Now.AddMonths(-1),
+                    EndDate = DateTime.Now.AddDays(4)
                 }
-            });
+            };
+            RepositoryBuilder.WithCreate();
+            LevelRepositoryBuilder.WithGet(level);
         }
 
         [Test]
@@ -213,6 +250,10 @@ namespace ActionHandlersTests
                         StartDate = DateTime.Now.AddMonths(-1),
                         EndDate = currentBlockEndDate
                     }
+                },
+                Teachers = new[]
+                {
+                    new User()
                 }
             });
 
@@ -234,7 +275,11 @@ namespace ActionHandlersTests
                        StartTime = LevelStartTime,
                        EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
-                       Blocks = new List<IBlock>()
+                       Blocks = new List<IBlock>(),
+                       Teachers = new[]
+                        {
+                            new User()
+                        }
                    });
 
             PerformAction();

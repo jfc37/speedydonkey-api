@@ -41,8 +41,9 @@ namespace SpeedyDonkeyApi.Models
                 model.Block = new BlockModel
                 {
                     Id = entity.Block.Id
-                };   
+                };
             }
+            model.Teachers = entity.Teachers;
         }
     }
 }
