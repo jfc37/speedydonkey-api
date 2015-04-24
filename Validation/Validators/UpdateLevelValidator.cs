@@ -38,8 +38,9 @@ namespace Validation.Validators
             RuleFor(x => x.Id)
                 .Must(Exist).WithMessage(ValidationMessages.InvalidLevel);
 
-            When(x => x.Teachers != null && x.Teachers.Any(), () => RuleFor(x => x.Teachers)
-                .Must(BeExistingTeachers).WithMessage(ValidationMessages.InvalidTeachers));
+            RuleFor(x => x.Teachers)
+                .NotEmpty().WithMessage(ValidationMessages.TeachersRequired)
+                .Must(BeExistingTeachers).WithMessage(ValidationMessages.InvalidTeachers);
         }
 
         private bool Exist(int id)

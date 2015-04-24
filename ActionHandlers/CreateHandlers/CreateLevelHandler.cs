@@ -18,11 +18,8 @@ namespace ActionHandlers.CreateHandlers
 
         protected override void PreHandle(ICrudAction<Level> action)
         {
-            if (action.ActionAgainst.Teachers != null)
-            {
-                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _userRepository.Get(teacher.Id)).Cast<IUser>().ToList();
-                action.ActionAgainst.Teachers = actualTeachers;
-            }
+            var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _userRepository.Get(teacher.Id)).Cast<IUser>().ToList();
+            action.ActionAgainst.Teachers = actualTeachers;
         }
     }
 }

@@ -15,7 +15,9 @@ namespace Validation.Tests
         [SetUp]
         public void Setup()
         {
-            UserRepositoryBuilder = new MockRepositoryBuilder<User>();
+            var teacher = new User{Id = 1, Claims = Claim.Teacher.ToString(), TeachingConcerns = new TeachingConcerns()};
+            UserRepositoryBuilder = new MockRepositoryBuilder<User>()
+                .WithGet(teacher);
 
             Parameter = new Level
             {
@@ -23,7 +25,8 @@ namespace Validation.Tests
                 StartTime = DateTime.Now.AddYears(-1),
                 EndTime = DateTime.Now.AddYears(1),
                 ClassMinutes = 60,
-                ClassesInBlock = 6
+                ClassesInBlock = 6,
+                Teachers = new IUser[]{ teacher}
             };
         }
 
@@ -104,6 +107,17 @@ namespace Validation.Tests
                 var result = PerformAction();
 
                 ExpectValidationError(result, ValidationMessages.InvalidClassesInBlock);
+            }
+
+            [Test]
+            public void When_no_teachers_are_included()
+            {
+                Parameter.Teachers = null;
+                UserRepositoryBuilder.WithUnsuccessfulGet();
+
+                var result = PerformAction();
+
+                ExpectValidationError(result, ValidationMessages.TeachersRequired);
             }
 
             [Test]
