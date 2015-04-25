@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using Common;
 using Models;
+using Newtonsoft.Json;
 
 namespace SpeedyDonkeyApi.Models
 {
     public class BlockModel : ApiModel<Block, BlockModel>, IBlock
     {
+        public BlockModel()
+        {
+            
+        }
+        
+        [JsonConstructor]
+        public BlockModel(List<User> teachers)
+        {
+            if (teachers != null)
+                Teachers = teachers.OfType<IUser>().ToList();
+        }
         public IList<IUser> Teachers { get; set; }
         public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
