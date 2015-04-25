@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Data.Repositories;
 using Data.Tests.Builders;
 using Models;
@@ -11,21 +12,29 @@ namespace Validation.Tests
     public class UpdateBlockValidatorTests : ValidatorTests<UpdateBlockValidator, Block>
     {
         private MockRepositoryBuilder<Block> _repositoryBuilder;
+        private MockRepositoryBuilder<User> _userRepositoryBuilder;
 
         [SetUp]
         public void Setup()
         {
             _repositoryBuilder = new MockRepositoryBuilder<Block>()
                 .WithSuccessfulGet();
+            _userRepositoryBuilder = new MockRepositoryBuilder<User>()
+                .WithGet(new User
+                {
+                    Claims = Claim.Teacher.ToString(),
+                    TeachingConcerns = new TeachingConcerns()
+                });
             Parameter = new Block
             {
-                Name = "name"
+                Name = "name",
+                Teachers = new List<IUser> { new User { Id = 1 } }
             };
         }
 
         protected override UpdateBlockValidator GetValidator()
         {
-            return new UpdateBlockValidator(_repositoryBuilder.BuildObject());
+            return new UpdateBlockValidator(_repositoryBuilder.BuildObject(), _userRepositoryBuilder.BuildObject());
         }
 
         public class ThereIsNoValidationErrors : UpdateBlockValidatorTests
