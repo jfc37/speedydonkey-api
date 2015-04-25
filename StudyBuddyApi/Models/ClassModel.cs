@@ -4,12 +4,24 @@ using System.Linq;
 using System.Net.Http;
 using Common;
 using Models;
+using Newtonsoft.Json;
 using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
     public class ClassModel : ApiModel<Class, ClassModel>, IClass
     {
+        public ClassModel()
+        {
+            
+        }
+        
+        [JsonConstructor]
+        public ClassModel(List<User> teachers)
+        {
+            if (teachers != null)
+                Teachers = teachers.OfType<IUser>().ToList();
+        }
         protected override string RouteName
         {
             get { return "ClassApi"; }
@@ -32,6 +44,9 @@ namespace SpeedyDonkeyApi.Models
                     .Select(x => (IUser)((UserModel)x).ToEntity(cloner))
                     .ToList();
             }
+
+            if (Teachers != null && Teachers.Any())
+                entity.Teachers = Teachers;
         }
 
         protected override void AddChildrenToModel(Class entity, ClassModel model)
