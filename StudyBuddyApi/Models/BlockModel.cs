@@ -20,7 +20,7 @@ namespace SpeedyDonkeyApi.Models
             if (teachers != null)
                 Teachers = teachers.OfType<ITeacher>().ToList();
         }
-        public IList<ITeacher> Teachers { get; set; }
+        public ICollection<ITeacher> Teachers { get; set; }
         public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
         public ICollection<IClass> Classes { get; set; }
