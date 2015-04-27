@@ -30,13 +30,6 @@ namespace SpeedyDonkeyApi.Controllers
         }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public override HttpResponseMessage Get()
-        {
-            var q = "claims_cont_teacher";
-            return Get(q);
-        }
-
-        [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
             var model = new TeacherModel { Id = id };
