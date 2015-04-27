@@ -65,6 +65,9 @@ namespace ActionHandlers
             toUser.EnroledBlocks = new List<IBlock>(fromUser.EnroledBlocks);
             toUser.Passes = new List<IPass>(fromUser.Passes);
             toUser.Schedule = new List<IBooking>(fromUser.Schedule);
+            toUser.Claims = fromUser.Claims;
+            toUser.ActivationKey = fromUser.ActivationKey;
+            toUser.Status = fromUser.Status;
         }
 
         private void AddTeacherClaim(User userToMakeTeacher)
