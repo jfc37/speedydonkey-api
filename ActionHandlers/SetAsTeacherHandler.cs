@@ -7,7 +7,7 @@ using Models;
 
 namespace ActionHandlers
 {
-    public class SetAsTeacherHandler : IActionHandler<SetAsTeacher, User>
+    public class SetAsTeacherHandler : IActionHandler<SetAsTeacher, Teacher>
     {
         private readonly ITeacherStudentConverter _teacherStudentConverter;
 
@@ -16,7 +16,7 @@ namespace ActionHandlers
             _teacherStudentConverter = teacherStudentConverter;
         }
 
-        public User Handle(SetAsTeacher action)
+        public Teacher Handle(SetAsTeacher action)
         {
             return _teacherStudentConverter.ToTeacher(action.ActionAgainst.Id);
         }

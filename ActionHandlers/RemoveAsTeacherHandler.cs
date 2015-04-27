@@ -3,7 +3,7 @@ using Models;
 
 namespace ActionHandlers
 {
-    public class RemoveAsTeacherHandler : IActionHandler<RemoveAsTeacher, User>
+    public class RemoveAsTeacherHandler : IActionHandler<RemoveAsTeacher, Teacher>
     {
         private readonly ITeacherStudentConverter _teacherStudentConverter;
 
@@ -12,9 +12,10 @@ namespace ActionHandlers
             _teacherStudentConverter = teacherStudentConverter;
         }
 
-        public User Handle(RemoveAsTeacher action)
+        public Teacher Handle(RemoveAsTeacher action)
         {
-            return _teacherStudentConverter.ToStudent(action.ActionAgainst.Id);
+            _teacherStudentConverter.ToStudent(action.ActionAgainst.Id);
+            return action.ActionAgainst;
         }
     }
 }

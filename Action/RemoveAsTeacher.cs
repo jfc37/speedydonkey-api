@@ -3,14 +3,14 @@ using Models;
 
 namespace Actions
 {
-    public class RemoveAsTeacher : ICrudAction<User>
+    public class RemoveAsTeacher : ICrudAction<Teacher>
     {
-        public RemoveAsTeacher(User user)
+        public RemoveAsTeacher(Teacher user)
         {
             ActionAgainst = user;
         }
 
-        public User ActionAgainst { get; set; }
+        public Teacher ActionAgainst { get; set; }
         public string LogText
         {
             get
