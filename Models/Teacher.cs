@@ -8,11 +8,11 @@ namespace Models
 {
     public interface ITeacher : IUser, IEntity, IDatabaseEntity
     {
-        IList<IClass> Classes { get; set; } 
+        ICollection<IClass> Classes { get; set; } 
     }
 
     public class Teacher : User, ITeacher
     {
-        public virtual IList<IClass> Classes { get; set; }
+        public virtual ICollection<IClass> Classes { get; set; }
     }
 }

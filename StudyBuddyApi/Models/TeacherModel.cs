@@ -11,7 +11,7 @@ namespace SpeedyDonkeyApi.Models
             get { return "TeacherApi"; }
         }
 
-        public IList<IClass> Classes { get; set; }
+        public ICollection<IClass> Classes { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
