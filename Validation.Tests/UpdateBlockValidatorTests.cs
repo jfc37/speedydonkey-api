@@ -12,18 +12,17 @@ namespace Validation.Tests
     public class UpdateBlockValidatorTests : ValidatorTests<UpdateBlockValidator, Block>
     {
         private MockRepositoryBuilder<Block> _repositoryBuilder;
-        private MockRepositoryBuilder<User> _userRepositoryBuilder;
+        private MockRepositoryBuilder<Teacher> _teacherRepositoryBuilder;
 
         [SetUp]
         public void Setup()
         {
             _repositoryBuilder = new MockRepositoryBuilder<Block>()
                 .WithSuccessfulGet();
-            _userRepositoryBuilder = new MockRepositoryBuilder<User>()
-                .WithGet(new User
+            _teacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
+                .WithGet(new Teacher
                 {
-                    Claims = Claim.Teacher.ToString(),
-                    TeachingConcerns = new TeachingConcerns()
+                    Claims = Claim.Teacher.ToString()
                 });
             Parameter = new Block
             {
@@ -34,7 +33,7 @@ namespace Validation.Tests
 
         protected override UpdateBlockValidator GetValidator()
         {
-            return new UpdateBlockValidator(_repositoryBuilder.BuildObject(), _userRepositoryBuilder.BuildObject());
+            return new UpdateBlockValidator(_repositoryBuilder.BuildObject(), _teacherRepositoryBuilder.BuildObject());
         }
 
         public class ThereIsNoValidationErrors : UpdateBlockValidatorTests

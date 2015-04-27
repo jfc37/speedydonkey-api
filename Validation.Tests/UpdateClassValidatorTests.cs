@@ -12,15 +12,14 @@ namespace Validation.Tests
     public class UpdateClassValidatorTests : ValidatorTests<UpdateClassValidator, Class>
     {
         private MockRepositoryBuilder<Class> _repositoryBuilder;
-        private MockRepositoryBuilder<User> _userRepositoryBuilder;
+        private MockRepositoryBuilder<Teacher> _teacherRepositoryBuilder;
 
         [SetUp]
         public void Setup()
         {
             var teacher = new Teacher()
             {
-                Claims = Claim.Teacher.ToString(),
-                TeachingConcerns = new TeachingConcerns()
+                Claims = Claim.Teacher.ToString()
             };
             _repositoryBuilder = new MockRepositoryBuilder<Class>()
                 .WithSuccessfulGet();
@@ -34,13 +33,13 @@ namespace Validation.Tests
                     teacher
                 }
             };
-            _userRepositoryBuilder = new MockRepositoryBuilder<User>()
+            _teacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
                 .WithGet(teacher);
         }
 
         protected override UpdateClassValidator GetValidator()
         {
-            return new UpdateClassValidator(_repositoryBuilder.BuildObject(), _userRepositoryBuilder.BuildObject());
+            return new UpdateClassValidator(_repositoryBuilder.BuildObject(), _teacherRepositoryBuilder.BuildObject());
         }
 
         public class ThereIsNoValidationErrors : UpdateClassValidatorTests

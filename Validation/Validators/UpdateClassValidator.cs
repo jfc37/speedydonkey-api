@@ -10,12 +10,12 @@ namespace Validation.Validators
     public class UpdateClassValidator : AbstractValidator<Class>, IActionValidator<UpdateClass, Class>
     {
         private readonly IRepository<Class> _repository;
-        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Teacher> _teacherRepository;
 
-        public UpdateClassValidator(IRepository<Class> repository, IRepository<User> userRepository)
+        public UpdateClassValidator(IRepository<Class> repository, IRepository<Teacher> teacherRepository)
         {
             _repository = repository;
-            _userRepository = userRepository;
+            _teacherRepository = teacherRepository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(x => x.Name)
@@ -45,8 +45,8 @@ namespace Validation.Validators
         {
             foreach (var teacher in teachers)
             {
-                var savedTeacher = _userRepository.Get(teacher.Id);
-                if (savedTeacher == null || !savedTeacher.Claims.Contains(Claim.Teacher.ToString()) || savedTeacher.TeachingConcerns == null)
+                var savedTeacher = _teacherRepository.Get(teacher.Id);
+                if (savedTeacher == null || !savedTeacher.Claims.Contains(Claim.Teacher.ToString()))
                     return false;
             }
             return true;

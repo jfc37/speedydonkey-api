@@ -19,15 +19,6 @@ namespace Data.Mappings
         }
     }
 
-    public class TeachingConcernsMap : ClassMap<TeachingConcerns>
-    {
-        public TeachingConcernsMap()
-        {
-            Id(x => x.Id);
-            Map(x => x.Deleted);
-        }
-    }
-
     public class UserMap : ClassMap<User>
     {
         public UserMap()

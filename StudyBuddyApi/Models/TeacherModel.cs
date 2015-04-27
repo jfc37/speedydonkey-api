@@ -20,7 +20,6 @@ namespace SpeedyDonkeyApi.Models
         public IList<IBooking> Schedule { get; set; }
         public ICollection<IBlock> EnroledBlocks { get; set; }
         public IList<IPass> Passes { get; set; }
-        public ITeachingConcerns TeachingConcerns { get; set; }
         public bool Deleted { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace Models
         IList<IBooking> Schedule { get; set; } 
         ICollection<IBlock> EnroledBlocks { get; set; }
         IList<IPass> Passes { get; set; }
-        ITeachingConcerns TeachingConcerns { get; set; }
     }
 
     public class User : IUser, IDatabaseEntity
@@ -29,7 +28,6 @@ namespace Models
         public virtual IList<IBooking> Schedule { get; set; }
         public virtual ICollection<IBlock> EnroledBlocks { get; set; }
         public virtual IList<IPass> Passes { get; set; }
-        public virtual ITeachingConcerns TeachingConcerns { get; set; }
         public virtual int Id { get; set; }
         public  virtual bool Deleted { get; set; }
         public virtual string Claims { get; set; } 

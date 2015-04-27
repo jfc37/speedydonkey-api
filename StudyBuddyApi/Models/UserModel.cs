@@ -17,7 +17,6 @@ namespace SpeedyDonkeyApi.Models
         public IList<IBooking> Schedule { get; set; }
         public ICollection<IBlock> EnroledBlocks { get; set; }
         public IList<IPass> Passes { get; set; }
-        public ITeachingConcerns TeachingConcerns { get; set; }
         public string Email { get; set; }
 
         protected override string RouteName
@@ -44,17 +43,6 @@ namespace SpeedyDonkeyApi.Models
         protected override void SanitiseModel(UserModel model)
         {
             model.Password = null;
-        }
-
-        protected override void AddChildrenToModel(User entity, UserModel model)
-        {
-            if (entity.TeachingConcerns != null)
-            {
-                model.TeachingConcerns = new TeachingConcernsModel
-                {
-                    Id = entity.TeachingConcerns.Id
-                };
-            }
         }
     }
 }

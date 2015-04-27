@@ -10,13 +10,13 @@ namespace Validation.Tests
     [TestFixture]
     public class CreateLevelValidatorTests : ValidatorTests<CreateLevelValidator, Level>
     {
-        protected MockRepositoryBuilder<User> UserRepositoryBuilder;
+        protected MockRepositoryBuilder<Teacher> TeacherRepositoryBuilder;
         
         [SetUp]
         public void Setup()
         {
-            var teacher = new Teacher{Id = 1, Claims = Claim.Teacher.ToString(), TeachingConcerns = new TeachingConcerns()};
-            UserRepositoryBuilder = new MockRepositoryBuilder<User>()
+            var teacher = new Teacher{Id = 1, Claims = Claim.Teacher.ToString()};
+            TeacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
                 .WithGet(teacher);
 
             Parameter = new Level
@@ -32,7 +32,7 @@ namespace Validation.Tests
 
         protected override CreateLevelValidator GetValidator()
         {
-            return new CreateLevelValidator(UserRepositoryBuilder.BuildObject());
+            return new CreateLevelValidator(TeacherRepositoryBuilder.BuildObject());
         }
 
         public class ThereIsNoValidationErrors : CreateLevelValidatorTests
@@ -113,7 +113,7 @@ namespace Validation.Tests
             public void When_no_teachers_are_included()
             {
                 Parameter.Teachers = null;
-                UserRepositoryBuilder.WithUnsuccessfulGet();
+                TeacherRepositoryBuilder.WithUnsuccessfulGet();
 
                 var result = PerformAction();
 
@@ -124,7 +124,7 @@ namespace Validation.Tests
             public void When_teachers_dont_exist()
             {
                 Parameter.Teachers = new List<ITeacher> { new Teacher(){ Id = 1 } };
-                UserRepositoryBuilder.WithUnsuccessfulGet();
+                TeacherRepositoryBuilder.WithUnsuccessfulGet();
 
                 var result = PerformAction();
 
@@ -136,7 +136,7 @@ namespace Validation.Tests
             {
                 var user = new Teacher{Claims = ""};
                 Parameter.Teachers = new List<ITeacher> { user };
-                UserRepositoryBuilder.WithGet(user);
+                TeacherRepositoryBuilder.WithGet(user);
 
                 var result = PerformAction();
 
