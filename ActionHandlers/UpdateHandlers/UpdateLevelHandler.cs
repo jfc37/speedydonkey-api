@@ -10,14 +10,14 @@ namespace ActionHandlers.UpdateHandlers
     public class UpdateLevelHandler : IActionHandler<UpdateLevel, Level>
     {
         private readonly IRepository<Level> _repository;
-        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Teacher> _teacherRepository;
         private readonly ICommonInterfaceCloner _cloner;
 
         public UpdateLevelHandler(
-            IRepository<Level> repository, IRepository<User> userRepository, ICommonInterfaceCloner cloner)
+            IRepository<Level> repository, IRepository<Teacher> teacherRepository, ICommonInterfaceCloner cloner)
         {
             _repository = repository;
-            _userRepository = userRepository;
+            _teacherRepository = teacherRepository;
             _cloner = cloner;
         }
 
@@ -28,7 +28,7 @@ namespace ActionHandlers.UpdateHandlers
 
             if (HasTeachersChanged(originalEntity.Teachers, action.ActionAgainst.Teachers))
             {
-                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _userRepository.Get(teacher.Id)).Cast<IUser>().ToList();
+                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).Cast<ITeacher>().ToList();
                 originalEntity.Teachers = actualTeachers;
             }
 
@@ -36,7 +36,7 @@ namespace ActionHandlers.UpdateHandlers
 
         }
 
-        private bool HasTeachersChanged(IList<IUser> orginal, IList<IUser> updated)
+        private bool HasTeachersChanged(IList<ITeacher> orginal, IList<ITeacher> updated)
         {
             var orginalIds = orginal.Select(x => x.Id);
             var updatedIds = updated.Select(x => x.Id);

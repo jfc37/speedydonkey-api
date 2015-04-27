@@ -9,14 +9,14 @@ namespace ActionHandlers.UpdateHandlers
     public class UpdateBlockHandler : IActionHandler<UpdateBlock, Block>
     {
         private readonly IRepository<Block> _repository;
-        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Teacher> _teacherRepository;
 
         public UpdateBlockHandler(
             IRepository<Block> repository,
-            IRepository<User> userRepository)
+            IRepository<Teacher> teacherRepository)
         {
             _repository = repository;
-            _userRepository = userRepository;
+            _teacherRepository = teacherRepository;
         }
 
         public Block Handle(UpdateBlock action)
@@ -26,14 +26,14 @@ namespace ActionHandlers.UpdateHandlers
 
             if (HasTeachersChanged(block.Teachers, action.ActionAgainst.Teachers))
             {
-                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _userRepository.Get(teacher.Id)).Cast<IUser>().ToList();
+                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).Cast<ITeacher>().ToList();
                 block.Teachers = actualTeachers;
             }
             _repository.Update(block);
             return block;
         }
 
-        private bool HasTeachersChanged(IList<IUser> orginal, IList<IUser> updated)
+        private bool HasTeachersChanged(IList<ITeacher> orginal, IList<ITeacher> updated)
         {
             var orginalIds = orginal.Select(x => x.Id);
             var updatedIds = updated.Select(x => x.Id);

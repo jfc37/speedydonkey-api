@@ -47,7 +47,7 @@ namespace ActionHandlers.CreateHandlers
                     EndTime = classTime.AddMinutes(timeSpan.TotalMinutes),
                     Block = result,
                     Name = result.Name + " - Week " + classNumber,
-                    Teachers = new List<IUser>(result.Level.Teachers)
+                    Teachers = new List<ITeacher>(result.Level.Teachers)
                 };
                 CreateBookingForClass(nextClass, result.Level.Room);
                 _classRepository.Create(nextClass);

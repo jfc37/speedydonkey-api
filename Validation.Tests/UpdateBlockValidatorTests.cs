@@ -28,7 +28,7 @@ namespace Validation.Tests
             Parameter = new Block
             {
                 Name = "name",
-                Teachers = new List<IUser> { new User { Id = 1 } }
+                Teachers = new List<ITeacher> { new Teacher(){ Id = 1 } }
             };
         }
 

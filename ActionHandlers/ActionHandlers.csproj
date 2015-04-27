@@ -71,6 +71,7 @@
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="IActionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeacherStudentConverter.cs" />
     <Compile Include="UpdateHandlers\UpdateClassHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateEntityHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateBlockHandler.cs" />

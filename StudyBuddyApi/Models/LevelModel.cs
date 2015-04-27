@@ -17,15 +17,15 @@ namespace SpeedyDonkeyApi.Models
         }
         
         [JsonConstructor]
-        public LevelModel(List<User> teachers)
+        public LevelModel(List<Teacher> teachers)
         {
             if (teachers != null)
-                Teachers = teachers.OfType<IUser>().ToList();
+                Teachers = teachers.OfType<ITeacher>().ToList();
         }
 
         public string Name { get; set; }
         public IRoom Room { get; set; }
-        public IList<IUser> Teachers { get; set; }
+        public IList<ITeacher> Teachers { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int ClassesInBlock { get; set; }

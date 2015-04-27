@@ -48,7 +48,7 @@ namespace Validation.Validators
             return _repository.Get(id) != null;
         }
 
-        private bool BeExistingTeachers(IList<IUser> teachers)
+        private bool BeExistingTeachers(IList<ITeacher> teachers)
         {
             foreach (var teacher in teachers)
             {

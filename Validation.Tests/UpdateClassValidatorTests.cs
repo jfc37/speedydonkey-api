@@ -17,7 +17,7 @@ namespace Validation.Tests
         [SetUp]
         public void Setup()
         {
-            var teacher = new User
+            var teacher = new Teacher()
             {
                 Claims = Claim.Teacher.ToString(),
                 TeachingConcerns = new TeachingConcerns()
@@ -29,7 +29,7 @@ namespace Validation.Tests
                 Name = "name",
                 EndTime = DateTime.Now.AddMinutes(60),
                 StartTime = DateTime.Now.AddMinutes(40),
-                Teachers = new List<IUser>
+                Teachers = new List<ITeacher>
                 {
                     teacher
                 }

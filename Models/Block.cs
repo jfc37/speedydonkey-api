@@ -5,7 +5,7 @@ namespace Models
 {
     public interface IBlock
     {
-        IList<IUser> Teachers { get; set; }
+        IList<ITeacher> Teachers { get; set; }
         ICollection<IUser> EnroledStudents { get; set; }
         ILevel Level { get; set; }
         ICollection<IClass> Classes { get; set; }
@@ -17,7 +17,7 @@ namespace Models
 
     public class Block : IBlock, IEntity, IDatabaseEntity
     {
-        public virtual IList<IUser> Teachers { get; set; }
+        public virtual IList<ITeacher> Teachers { get; set; }
         public virtual ICollection<IUser> EnroledStudents { get; set; }
         public virtual ILevel Level { get; set; }
         public virtual ICollection<IClass> Classes { get; set; }

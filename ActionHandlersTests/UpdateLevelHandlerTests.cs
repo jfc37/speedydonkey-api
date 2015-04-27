@@ -13,14 +13,14 @@ namespace ActionHandlersTests
     public class GivenUpdateLevelHandlerIsCalled
     {
         private MockRepositoryBuilder<Level> _levelRepositoryBuilder;
-        private MockRepositoryBuilder<User> _userRepositoryBuilder;
+        private MockRepositoryBuilder<Teacher> _teacherRepositoryBuilder;
         private ICommonInterfaceCloner _cloner;
         private UpdateLevel _action;
         private Level _savedLevel;
 
         private void PerformAction()
         {
-            new UpdateLevelHandler(_levelRepositoryBuilder.BuildObject(), _userRepositoryBuilder.BuildObject(), _cloner)
+            new UpdateLevelHandler(_levelRepositoryBuilder.BuildObject(), _teacherRepositoryBuilder.BuildObject(), _cloner)
                 .Handle(_action);
         }
 
@@ -29,12 +29,12 @@ namespace ActionHandlersTests
         {
             _savedLevel = new Level
             {
-                Teachers = new List<IUser>{new User() }
+                Teachers = new List<ITeacher> { new Teacher() }
             };
             _levelRepositoryBuilder = new MockRepositoryBuilder<Level>()
                 .WithGet(_savedLevel)
                 .WithUpdate();
-            _userRepositoryBuilder = new MockRepositoryBuilder<User>()
+            _teacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
                 .WithSuccessfulGet();
             _cloner = new CommonInterfaceCloner();
             _action = new UpdateLevel(_savedLevel);
@@ -55,7 +55,7 @@ namespace ActionHandlersTests
             {
                 PerformAction();
 
-                _userRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.Never);
+                _teacherRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.Never);
             }
         }
 
@@ -65,12 +65,12 @@ namespace ActionHandlersTests
             public void Then_teachers_are_retrieved()
             {
                 _action.ActionAgainst = new Level();
-                _action.ActionAgainst.Teachers = new List<IUser>(_savedLevel.Teachers);
-                _action.ActionAgainst.Teachers.Add(new User{Id = 2});
+                _action.ActionAgainst.Teachers = new List<ITeacher>(_savedLevel.Teachers);
+                _action.ActionAgainst.Teachers.Add(new Teacher{Id = 2});
 
                 PerformAction();
 
-                _userRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
+                _teacherRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
             }
         }
 
@@ -81,16 +81,16 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Level
                 {
-                    Teachers = new List<IUser>
+                    Teachers = new List<ITeacher>
                     {
-                        new User {Id = 1}
+                        new Teacher{Id = 1}
                     }
                 };
-                _savedLevel.Teachers.Add(new User { Id = 2 });
+                _savedLevel.Teachers.Add(new Teacher{ Id = 2 });
 
                 PerformAction();
 
-                _userRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
+                _teacherRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
             }
         }
 
@@ -101,15 +101,15 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Level
                 {
-                    Teachers = new List<IUser>
+                    Teachers = new List<ITeacher>
                     {
-                        new User {Id = 2}
+                        new Teacher{Id = 2}
                     }
                 };
 
                 PerformAction();
 
-                _userRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
+                _teacherRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
             }
         }
     }

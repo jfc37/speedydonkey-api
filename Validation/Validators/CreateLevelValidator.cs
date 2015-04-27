@@ -38,7 +38,7 @@ namespace Validation.Validators
                 .Must(BeExistingTeachers).WithMessage(ValidationMessages.InvalidTeachers);
         }
 
-        private bool BeExistingTeachers(IList<IUser> teachers)
+        private bool BeExistingTeachers(IList<ITeacher> teachers)
         {
             foreach (var teacher in teachers)
             {

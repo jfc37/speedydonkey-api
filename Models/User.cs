@@ -4,9 +4,8 @@ using System.Linq;
 
 namespace Models
 {
-    public interface IUser
+    public interface IUser : IEntity
     {
-        int Id { get; set; }
         string Email { get; set; }
         string Password { get; set; }
         string FirstName { get; set; }
@@ -18,8 +17,9 @@ namespace Models
         ITeachingConcerns TeachingConcerns { get; set; }
     }
 
-    public class User : IUser, IEntity, IDatabaseEntity
+    public class User : IUser, IDatabaseEntity
     {
+
         public virtual UserStatus Status { get; set; }
         public virtual Guid ActivationKey { get; set; }
         public virtual string Email { get; set; }

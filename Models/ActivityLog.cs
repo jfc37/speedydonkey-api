@@ -30,6 +30,7 @@ namespace Models
         Create,
         Update,
         Delete,
+        PermanentDelete,
         Successful,
         Beginning,
         FailedValidation,

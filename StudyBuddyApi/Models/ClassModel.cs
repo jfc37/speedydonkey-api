@@ -17,17 +17,17 @@ namespace SpeedyDonkeyApi.Models
         }
         
         [JsonConstructor]
-        public ClassModel(List<User> teachers)
+        public ClassModel(List<Teacher> teachers)
         {
             if (teachers != null)
-                Teachers = teachers.OfType<IUser>().ToList();
+                Teachers = teachers.OfType<ITeacher>().ToList();
         }
         protected override string RouteName
         {
             get { return "ClassApi"; }
         }
 
-        public IList<IUser> Teachers { get; set; }
+        public IList<ITeacher> Teachers { get; set; }
         public ICollection<IUser> RegisteredStudents { get; set; }
         public IBooking Booking { get; set; }
         public DateTime StartTime { get; set; }

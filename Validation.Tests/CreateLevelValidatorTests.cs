@@ -15,7 +15,7 @@ namespace Validation.Tests
         [SetUp]
         public void Setup()
         {
-            var teacher = new User{Id = 1, Claims = Claim.Teacher.ToString(), TeachingConcerns = new TeachingConcerns()};
+            var teacher = new Teacher{Id = 1, Claims = Claim.Teacher.ToString(), TeachingConcerns = new TeachingConcerns()};
             UserRepositoryBuilder = new MockRepositoryBuilder<User>()
                 .WithGet(teacher);
 
@@ -26,7 +26,7 @@ namespace Validation.Tests
                 EndTime = DateTime.Now.AddYears(1),
                 ClassMinutes = 60,
                 ClassesInBlock = 6,
-                Teachers = new IUser[]{ teacher}
+                Teachers = new ITeacher[]{ teacher}
             };
         }
 
@@ -123,7 +123,7 @@ namespace Validation.Tests
             [Test]
             public void When_teachers_dont_exist()
             {
-                Parameter.Teachers = new List<IUser>{ new User{Id = 1}};
+                Parameter.Teachers = new List<ITeacher> { new Teacher(){ Id = 1 } };
                 UserRepositoryBuilder.WithUnsuccessfulGet();
 
                 var result = PerformAction();
@@ -134,8 +134,8 @@ namespace Validation.Tests
             [Test]
             public void When_proposed_teacher_isnt_set_up_as_a_teacher()
             {
-                var user = new User{Claims = ""};
-                Parameter.Teachers = new List<IUser> { user };
+                var user = new Teacher{Claims = ""};
+                Parameter.Teachers = new List<ITeacher> { user };
                 UserRepositoryBuilder.WithGet(user);
 
                 var result = PerformAction();

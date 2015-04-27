@@ -13,13 +13,13 @@ namespace ActionHandlersTests
     public class UpdateBlockHandlerTests
     {
         private MockRepositoryBuilder<Block> _repositoryBuilder;
-        private MockRepositoryBuilder<User> _userRepositoryBuilder;
+        private MockRepositoryBuilder<Teacher> _teacherRepositoryBuilder;
         private UpdateBlock _action;
         private Block _existingBlock;
 
         private void PerformAction()
         {
-            new UpdateBlockHandler(_repositoryBuilder.BuildObject(), _userRepositoryBuilder.BuildObject()).Handle(_action);
+            new UpdateBlockHandler(_repositoryBuilder.BuildObject(), _teacherRepositoryBuilder.BuildObject()).Handle(_action);
         }
 
         [SetUp]
@@ -30,19 +30,19 @@ namespace ActionHandlersTests
                 Name = "old",
                 StartDate = DateTime.MaxValue,
                 EndDate = DateTime.MaxValue,
-                Teachers = new List<IUser> { new User { Id = 1} }
+                Teachers = new List<ITeacher> { new Teacher{ Id = 1 } }
             };
             _action = new UpdateBlock(new Block
             {
                 Name = "new",
                 StartDate = DateTime.MinValue,
                 EndDate = DateTime.MinValue,
-                Teachers = new List<IUser> { new User { Id = 1 } }
+                Teachers = new List<ITeacher> { new Teacher { Id = 1 } }
             });
             _repositoryBuilder = new MockRepositoryBuilder<Block>()
                 .WithGet(_existingBlock)
                 .WithUpdate();
-            _userRepositoryBuilder = new MockRepositoryBuilder<User>()
+            _teacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
                 .WithSuccessfulGet();
         }
 
@@ -72,7 +72,7 @@ namespace ActionHandlersTests
             {
                 PerformAction();
 
-                _userRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.Never);
+                _teacherRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.Never);
             }
         }
 
@@ -82,12 +82,12 @@ namespace ActionHandlersTests
             public void Then_teachers_are_retrieved()
             {
                 _action.ActionAgainst = new Block();
-                _action.ActionAgainst.Teachers = new List<IUser>(_existingBlock.Teachers);
-                _action.ActionAgainst.Teachers.Add(new User { Id = 2 });
+                _action.ActionAgainst.Teachers = new List<ITeacher>(_existingBlock.Teachers);
+                _action.ActionAgainst.Teachers.Add(new Teacher{ Id = 2 });
 
                 PerformAction();
 
-                _userRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
+                _teacherRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
             }
         }
 
@@ -98,16 +98,16 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Block
                 {
-                    Teachers = new List<IUser>
+                    Teachers = new List<ITeacher>
                     {
-                        new User {Id = 1}
+                        new Teacher{Id = 1}
                     }
                 };
-                _existingBlock.Teachers.Add(new User { Id = 2 });
+                _existingBlock.Teachers.Add(new Teacher { Id = 2 });
 
                 PerformAction();
 
-                _userRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
+                _teacherRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
             }
         }
 
@@ -118,15 +118,15 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Block
                 {
-                    Teachers = new List<IUser>
+                    Teachers = new List<ITeacher>
                     {
-                        new User {Id = 2}
+                        new Teacher{Id = 2}
                     }
                 };
 
                 PerformAction();
 
-                _userRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
+                _teacherRepositoryBuilder.Mock.Verify(x => x.Get(It.IsAny<int>()), Times.AtLeastOnce);
             }
         }
     }

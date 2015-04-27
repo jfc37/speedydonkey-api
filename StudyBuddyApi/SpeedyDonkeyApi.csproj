@@ -234,6 +234,7 @@
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\PassTemplateModel.cs" />
+    <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\TeachingConcernsModel.cs" />
     <Compile Include="Models\UserEnroledBlocksModel.cs" />
     <Compile Include="Models\CurrentUserPassesModel.cs" />

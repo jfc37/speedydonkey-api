@@ -15,12 +15,12 @@ namespace SpeedyDonkeyApi.Models
         }
         
         [JsonConstructor]
-        public BlockModel(List<User> teachers)
+        public BlockModel(List<Teacher> teachers)
         {
             if (teachers != null)
-                Teachers = teachers.OfType<IUser>().ToList();
+                Teachers = teachers.OfType<ITeacher>().ToList();
         }
-        public IList<IUser> Teachers { get; set; }
+        public IList<ITeacher> Teachers { get; set; }
         public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
         public ICollection<IClass> Classes { get; set; }

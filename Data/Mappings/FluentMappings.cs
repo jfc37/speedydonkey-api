@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
 using Models;
+using NHibernate.Mapping;
 
 namespace Data.Mappings
 {
@@ -47,10 +48,14 @@ namespace Data.Mappings
             HasMany<Pass>(x => x.Passes)
                 .Cascade.All();
             HasMany<Booking>(x => x.Schedule);
-            References(x => x.TeachingConcerns)
-                .Class(typeof(TeachingConcerns))
-                .Cascade.All()
-                .Not.LazyLoad();
+        }
+    }
+
+    public class TeacherMap : SubclassMap<Teacher>
+    {
+        public TeacherMap()
+        {
+            HasManyToMany<Class>(x => x.Classes);
         }
     }
     public class ClassMap : ClassMap<Class>

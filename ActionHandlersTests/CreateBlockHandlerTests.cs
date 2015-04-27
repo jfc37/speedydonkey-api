@@ -44,8 +44,8 @@ namespace ActionHandlersTests
         {
             return new Level
             {
-                Blocks = new List<IBlock>(), 
-                Teachers = new List<IUser>{ new User()},
+                Blocks = new List<IBlock>(),
+                Teachers = new List<ITeacher> { new Teacher() },
                 ClassesInBlock = 1
             };
         }
@@ -141,7 +141,7 @@ namespace ActionHandlersTests
                        Blocks = new List<IBlock>(),
                        Teachers = new[]
                         {
-                            new User()
+                            new Teacher(), 
                         }
                    });
 
@@ -166,7 +166,7 @@ namespace ActionHandlersTests
                        Blocks = new List<IBlock>(),
                        Teachers = new[]
                         {
-                            new User()
+                            new Teacher(), 
                         }
                    });
 
@@ -189,7 +189,7 @@ namespace ActionHandlersTests
                        Blocks = new List<IBlock>(),
                        Teachers = new[]
                         {
-                            new User()
+                            new Teacher(), 
                         }
                    });
 
@@ -253,7 +253,7 @@ namespace ActionHandlersTests
                 },
                 Teachers = new[]
                 {
-                    new User()
+                    new Teacher(), 
                 }
             });
 
@@ -278,7 +278,7 @@ namespace ActionHandlersTests
                        Blocks = new List<IBlock>(),
                        Teachers = new[]
                         {
-                            new User()
+                            new Teacher(), 
                         }
                    });
 
