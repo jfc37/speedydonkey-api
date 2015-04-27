@@ -46,7 +46,8 @@ namespace Data.Mappings
     {
         public TeacherMap()
         {
-            HasManyToMany<Class>(x => x.Classes);
+            HasManyToMany<Class>(x => x.Classes)
+                .AsSet();
         }
     }
     public class ClassMap : ClassMap<Class>
@@ -69,7 +70,8 @@ namespace Data.Mappings
                 .Table("ClassAttendance")
                 .AsSet();
             HasManyToMany<User>(x => x.Teachers)
-                .Table("ClassTeacher");
+                .Table("ClassTeacher")
+                .AsSet();
         }
     }
 
@@ -123,7 +125,8 @@ namespace Data.Mappings
                 .Table("UsersEnroledBlocks")
                 .AsSet();
             HasManyToMany<User>(x => x.Teachers)
-                .Table("BlockTeacher");
+                .Table("BlockTeacher")
+                .AsSet();
         }
     }
 
