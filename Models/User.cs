@@ -10,7 +10,6 @@ namespace Models
         string Password { get; set; }
         string FirstName { get; set; }
         string Surname { get; set; }
-        string FullName { get; }
         IList<IBooking> Schedule { get; set; } 
         ICollection<IBlock> EnroledBlocks { get; set; }
         IList<IPass> Passes { get; set; }
