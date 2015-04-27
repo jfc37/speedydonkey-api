@@ -99,7 +99,8 @@ namespace Data.Mappings
             Map(x => x.StartTime);
             HasMany<Block>(x => x.Blocks);
             HasManyToMany<User>(x => x.Teachers)
-                .Table("LevelTeacher");
+                .Table("LevelTeacher")
+                .AsSet();
         }
     }
 

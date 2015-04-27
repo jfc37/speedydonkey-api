@@ -25,7 +25,7 @@ namespace SpeedyDonkeyApi.Models
 
         public string Name { get; set; }
         public IRoom Room { get; set; }
-        public IList<ITeacher> Teachers { get; set; }
+        public ICollection<ITeacher> Teachers { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int ClassesInBlock { get; set; }
