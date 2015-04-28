@@ -1,4 +1,5 @@
-﻿using Action;
+﻿using System.Collections.Generic;
+using Action;
 using ActionHandlers.CreateHandlers.Strategies;
 using Actions;
 using Data.Repositories;
@@ -38,14 +39,15 @@ namespace ActionHandlers.CreateHandlers
         {
             var classTime = result.StartDate;
             var timeSpan = result.Level.EndTime.TimeOfDay.Subtract(result.Level.StartTime.TimeOfDay);
-            for (int classNumber = 0; classNumber < action.ActionAgainst.Level.ClassesInBlock; classNumber++)
+            for (int classNumber = 1; classNumber <= action.ActionAgainst.Level.ClassesInBlock; classNumber++)
             {
                 var nextClass = new Class
                 {
                     StartTime = classTime,
                     EndTime = classTime.AddMinutes(timeSpan.TotalMinutes),
                     Block = result,
-                    Name = result.Name
+                    Name = result.Name + " - Week " + classNumber,
+                    Teachers = new List<ITeacher>(result.Level.Teachers)
                 };
                 CreateBookingForClass(nextClass, result.Level.Room);
                 _classRepository.Create(nextClass);

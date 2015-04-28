@@ -1,35 +1,21 @@
-﻿using System;
-using System.Linq;
-using Action;
-using Actions;
-using Data.Repositories;
+﻿using Actions;
 using Models;
 
 namespace ActionHandlers
 {
-    public class RemoveAsTeacherHandler : IActionHandler<RemoveAsTeacher, User>
+    public class RemoveAsTeacherHandler : IActionHandler<RemoveAsTeacher, Teacher>
     {
-        private readonly IRepository<User> _repository;
+        private readonly ITeacherStudentConverter _teacherStudentConverter;
 
-        public RemoveAsTeacherHandler(IRepository<User> repository)
+        public RemoveAsTeacherHandler(ITeacherStudentConverter teacherStudentConverter)
         {
-            _repository = repository;
+            _teacherStudentConverter = teacherStudentConverter;
         }
 
-        public User Handle(RemoveAsTeacher action)
+        public Teacher Handle(RemoveAsTeacher action)
         {
-            var userToRemoveAsTeacher = _repository.Get(action.ActionAgainst.Id);
-            userToRemoveAsTeacher.TeachingConcerns = null;
-            RemoveTeacherClaim(userToRemoveAsTeacher);
-            _repository.Update(userToRemoveAsTeacher);
-
-            return userToRemoveAsTeacher;
-        }
-
-        private void RemoveTeacherClaim(User userToMakeTeacher)
-        {
-            if (!String.IsNullOrWhiteSpace(userToMakeTeacher.Claims))
-                userToMakeTeacher.Claims = userToMakeTeacher.Claims.Replace(Claim.Teacher.ToString(), "");
+            _teacherStudentConverter.ToStudent(action.ActionAgainst.Id);
+            return action.ActionAgainst;
         }
     }
 }

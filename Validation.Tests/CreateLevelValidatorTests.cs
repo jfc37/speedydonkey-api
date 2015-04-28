@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;
 using Validation.Validators;
@@ -8,22 +10,29 @@ namespace Validation.Tests
     [TestFixture]
     public class CreateLevelValidatorTests : ValidatorTests<CreateLevelValidator, Level>
     {
+        protected MockRepositoryBuilder<Teacher> TeacherRepositoryBuilder;
+        
         [SetUp]
         public void Setup()
         {
+            var teacher = new Teacher{Id = 1, Claims = Claim.Teacher.ToString()};
+            TeacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
+                .WithGet(teacher);
+
             Parameter = new Level
             {
                 Name = "name",
                 StartTime = DateTime.Now.AddYears(-1),
                 EndTime = DateTime.Now.AddYears(1),
                 ClassMinutes = 60,
-                ClassesInBlock = 6
+                ClassesInBlock = 6,
+                Teachers = new ITeacher[]{ teacher}
             };
         }
 
         protected override CreateLevelValidator GetValidator()
         {
-            return new CreateLevelValidator();
+            return new CreateLevelValidator(TeacherRepositoryBuilder.BuildObject());
         }
 
         public class ThereIsNoValidationErrors : CreateLevelValidatorTests
@@ -98,6 +107,40 @@ namespace Validation.Tests
                 var result = PerformAction();
 
                 ExpectValidationError(result, ValidationMessages.InvalidClassesInBlock);
+            }
+
+            [Test]
+            public void When_no_teachers_are_included()
+            {
+                Parameter.Teachers = null;
+                TeacherRepositoryBuilder.WithUnsuccessfulGet();
+
+                var result = PerformAction();
+
+                ExpectValidationError(result, ValidationMessages.TeachersRequired);
+            }
+
+            [Test]
+            public void When_teachers_dont_exist()
+            {
+                Parameter.Teachers = new List<ITeacher> { new Teacher(){ Id = 1 } };
+                TeacherRepositoryBuilder.WithUnsuccessfulGet();
+
+                var result = PerformAction();
+
+                ExpectValidationError(result, ValidationMessages.InvalidTeachers);
+            }
+
+            [Test]
+            public void When_proposed_teacher_isnt_set_up_as_a_teacher()
+            {
+                var user = new Teacher{Claims = ""};
+                Parameter.Teachers = new List<ITeacher> { user };
+                TeacherRepositoryBuilder.WithGet(user);
+
+                var result = PerformAction();
+
+                ExpectValidationError(result, ValidationMessages.InvalidTeachers);
             }
         }
     }

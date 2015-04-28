@@ -51,6 +51,8 @@ namespace Data.Repositories
         TEntity Update(TEntity entity);
 
         void Delete(int id);
+
+        void PermanentDelete(int id);
     }
 
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity , IDatabaseEntity
@@ -139,6 +141,18 @@ namespace Data.Repositories
             entity.Deleted = true;
             Update(entity);
             Log(ActivityType.Delete, String.Format("Id: {0}", entity.Id));
+        }
+
+        public void PermanentDelete(int id)
+        {
+            var entity = Get(id);
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Delete(entity);
+                _session.Flush();
+                transaction.Commit();
+            }
+            Log(ActivityType.PermanentDelete, String.Format("Id: {0}", entity.Id));
         }
 
         private void Log(ActivityType activityType, string extraDetails = "")

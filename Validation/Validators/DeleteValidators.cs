@@ -24,6 +24,24 @@ namespace Validation.Validators
             return _repository.Get(id) != null;
         }
     }
+    public abstract class OtherPreExistingValidator<TEntity, TOtherEntity> : AbstractValidator<TEntity> where TEntity : IEntity where TOtherEntity : IEntity
+    {
+        private readonly IRepository<TOtherEntity> _repository;
+
+        protected OtherPreExistingValidator(IRepository<TOtherEntity> repository)
+        {
+            _repository = repository;
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
+            RuleFor(x => x.Id)
+                .Must(Exist).WithMessage(ValidationMessages.ItemDoesntExist);
+        }
+
+        private bool Exist(int id)
+        {
+            return _repository.Get(id) != null;
+        }
+    }
 
     public class DeletePassTemplateValidator : PreExistingValidator<PassTemplate>, IActionValidator<DeletePassTemplate, PassTemplate>
     {
@@ -56,7 +74,7 @@ namespace Validation.Validators
         }
     }
 
-    public class SetAsTeacherValidator : PreExistingValidator<User>, IActionValidator<SetAsTeacher, User>
+    public class SetAsTeacherValidator : OtherPreExistingValidator<Teacher, User>, IActionValidator<SetAsTeacher, Teacher>
     {
         public SetAsTeacherValidator(IRepository<User> repository)
             : base(repository)
@@ -64,9 +82,9 @@ namespace Validation.Validators
         }
     }
 
-    public class RemoveAsTeacherValidator : PreExistingValidator<User>, IActionValidator<RemoveAsTeacher, User>
+    public class RemoveAsTeacherValidator : PreExistingValidator<Teacher>, IActionValidator<RemoveAsTeacher, Teacher>
     {
-        public RemoveAsTeacherValidator(IRepository<User> repository)
+        public RemoveAsTeacherValidator(IRepository<Teacher> repository)
             : base(repository)
         {
         }

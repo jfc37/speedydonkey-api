@@ -12,34 +12,27 @@ using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class TeacherApiController : GenericApiController<UserModel, User>
+    public class TeacherApiController : GenericApiController<TeacherModel, Teacher>
     {
         public TeacherApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
             IUrlConstructor urlConstructor,
-            IRepository<User> repository,
+            IRepository<Teacher> repository,
             ICommonInterfaceCloner cloner,
-            IEntitySearch<User> entitySearch)
+            IEntitySearch<Teacher> entitySearch)
             : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post(int id)
         {
-            var model = new UserModel{Id = id};
+            var model = new TeacherModel{Id = id};
             return PerformAction(model, x => new SetAsTeacher(x));
-        }
-
-        [ClaimsAuthorise(Claim = Claim.Admin)]
-        public override HttpResponseMessage Get()
-        {
-            var q = "claims_cont_teacher";
-            return Get(q);
         }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
-            var model = new UserModel { Id = id };
+            var model = new TeacherModel { Id = id };
             return PerformAction(model, x => new RemoveAsTeacher(x));
         }
 

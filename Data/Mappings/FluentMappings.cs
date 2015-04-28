@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
 using Models;
+using NHibernate.Mapping;
 
 namespace Data.Mappings
 {
@@ -15,15 +16,6 @@ namespace Data.Mappings
             Map(x => x.ActivityText);
             Map(x => x.ActivityType);
             Map(x => x.ActivityGroup);
-        }
-    }
-
-    public class TeachingConcernsMap : ClassMap<TeachingConcerns>
-    {
-        public TeachingConcernsMap()
-        {
-            Id(x => x.Id);
-            Map(x => x.Deleted);
         }
     }
 
@@ -47,10 +39,15 @@ namespace Data.Mappings
             HasMany<Pass>(x => x.Passes)
                 .Cascade.All();
             HasMany<Booking>(x => x.Schedule);
-            References(x => x.TeachingConcerns)
-                .Class(typeof(TeachingConcerns))
-                .Cascade.All()
-                .Not.LazyLoad();
+        }
+    }
+
+    public class TeacherMap : SubclassMap<Teacher>
+    {
+        public TeacherMap()
+        {
+            HasManyToMany<Class>(x => x.Classes)
+                .AsSet();
         }
     }
     public class ClassMap : ClassMap<Class>
@@ -71,6 +68,9 @@ namespace Data.Mappings
             HasManyToMany<User>(x => x.ActualStudents)
                 .Cascade.All()
                 .Table("ClassAttendance")
+                .AsSet();
+            HasManyToMany<User>(x => x.Teachers)
+                .Table("ClassTeacher")
                 .AsSet();
         }
     }
@@ -100,6 +100,9 @@ namespace Data.Mappings
             Map(x => x.Name);
             Map(x => x.StartTime);
             HasMany<Block>(x => x.Blocks);
+            HasManyToMany<User>(x => x.Teachers)
+                .Table("LevelTeacher")
+                .AsSet();
         }
     }
 
@@ -120,6 +123,9 @@ namespace Data.Mappings
                 .Cascade.All()
                 .Inverse()
                 .Table("UsersEnroledBlocks")
+                .AsSet();
+            HasManyToMany<User>(x => x.Teachers)
+                .Table("BlockTeacher")
                 .AsSet();
         }
     }

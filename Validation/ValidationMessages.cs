@@ -28,7 +28,6 @@
         public const string MissingPassType = "Please select a pass type";
         public const string InvalidPassType = "Pass type selected is invalid";
         public const string NegativeNumber = "Please enter a positive number";
-        public const string InvalidPassTemplate = "Pass template doesn't exist";
         public const string ItemDoesntExist = "Item doesn't exist";
         public const string CannontAddPaidPass = "You don't have permission to add a pass already paid for";
         public const string MissingName = "Please enter a name";
@@ -38,5 +37,7 @@
         public const string InvalidClassMinutes = "Please enter class minutes";
         public const string InvalidClassesInBlock = "Please enter number of classes in a block";
         public const string InvalidLevel = "Level doesn't exist";
+        public const string InvalidTeachers = "Teachers selected are invalid";
+        public const string TeachersRequired = "Please select at least one teacher";
     }
 }
