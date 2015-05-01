@@ -16,6 +16,7 @@ namespace SpeedyDonkeyApi.Models
         public string PaymentStatus { get; set; }
         public decimal Cost { get; set; }
         public IUser Owner { get; set; }
+        public IPassStatistic PassStatistic { get; set; }
 
         public bool Valid
         {

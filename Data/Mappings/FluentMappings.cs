@@ -1,6 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
 using Models;
-using NHibernate.Mapping;
 
 namespace Data.Mappings
 {
@@ -78,6 +77,9 @@ namespace Data.Mappings
             HasManyToMany<User>(x => x.Teachers)
                 .Table("ClassTeacher")
                 .AsSet();
+            HasManyToMany<PassStatistic>(x => x.PassStatistics)
+                .Table("ClassPassStatistic")
+                .AsSet();
         }
     }
 
@@ -142,6 +144,21 @@ namespace Data.Mappings
         }
     }
 
+    public class PassStatisticMap : ClassMap<PassStatistic>
+    {
+        public PassStatisticMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.Deleted);
+            Map(x => x.CostPerClass);
+            Map(x => x.NumberOfClassesAttended);
+            References<Pass>(x => x.Pass)
+                .Column("Pass_id");
+        }
+    }
+
     public class PassMap : ClassMap<Pass>
     {
         public PassMap()
@@ -158,6 +175,9 @@ namespace Data.Mappings
             References(x => x.Owner)
                 .Column("User_id")
                 .Class(typeof (User));
+            References(x => x.PassStatistic)
+                .Cascade.All()
+                .Class(typeof (PassStatistic));
         }
     }
 

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Action;
 using ActionHandlers.ClassCheckIn;
-using Data.Repositories;
 using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;
@@ -25,7 +23,13 @@ namespace ActionHandlersTests
         {
             UserInDatabase = new User
             {
-                Passes = new List<IPass>()
+                Passes = new List<IPass>
+                {
+                    new Pass
+                    {
+                        PassStatistic = new PassStatistic()
+                    }
+                }
             };
             ClassInDatabase = new Class();
             ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
@@ -62,7 +66,8 @@ namespace ActionHandlersTests
             UserInDatabase.Passes.Add(new Pass
             {
                 StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(1)
+                EndDate = DateTime.Now.AddDays(1),
+                PassStatistic = new PassStatistic()
             });
         }
 
@@ -89,7 +94,8 @@ namespace ActionHandlersTests
             {
                 ClipsRemaining = ClipsBeforeCheckIn,
                 StartDate = DateTime.Now.AddDays(-1),
-                EndDate = DateTime.Now.AddDays(1)
+                EndDate = DateTime.Now.AddDays(1),
+                PassStatistic = new PassStatistic()
             });
         }
 
@@ -119,12 +125,14 @@ namespace ActionHandlersTests
             {
                 ClipsRemaining = ClipsBeforeCheckIn,
                 StartDate = today.AddDays(-1),
-                EndDate = today.AddDays(5)
+                EndDate = today.AddDays(5),
+                PassStatistic = new PassStatistic()
             });
             _nextPass = new Pass
             {
                 StartDate = today.AddDays(6),
-                EndDate = today.AddDays(16)
+                EndDate = today.AddDays(16),
+                PassStatistic = new PassStatistic()
             };
             _expiryPeriod = _nextPass.EndDate.Subtract(_nextPass.StartDate);
             UserInDatabase.Passes.Add(_nextPass);

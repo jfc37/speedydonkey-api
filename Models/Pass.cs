@@ -10,6 +10,7 @@ namespace Models
         string PaymentStatus { get; set; }
         decimal Cost { get; set; }
         IUser Owner { get; set; }
+        IPassStatistic PassStatistic { get; set; }
         bool IsValid();
     }
 
@@ -37,6 +38,8 @@ namespace Models
         public virtual decimal Cost { get; set; }
 
         public virtual IUser Owner { get; set; }
+        public virtual IPassStatistic PassStatistic { get; set; }
+
         public virtual bool IsValid()
         {
             var today = DateTime.Now.Date;
@@ -46,9 +49,17 @@ namespace Models
         private PassType _passType;
         private PassPaymentStatus _paymentStatus;
 
-        public virtual void PayForClass() { }
+        public virtual void PayForClass()
+        {
+            PassStatistic.NumberOfClassesAttended++;
+            PassStatistic.CostPerClass = Cost/PassStatistic.NumberOfClassesAttended;
+        }
 
-        public virtual void RefundForClass() { }
+        public virtual void RefundForClass()
+        {
+            PassStatistic.NumberOfClassesAttended--;
+            PassStatistic.CostPerClass = Cost / PassStatistic.NumberOfClassesAttended;
+        }
 
         public virtual bool IsFuturePass()
         {

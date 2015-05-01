@@ -67,4 +67,21 @@ namespace SpeedyDonkeyApi.Models
             return attendance;
         }
     }
+    public class ClassPassStaticsticsModel : IEntityView<Class, PassStatisticModel>
+    {
+        public IList<PassStatisticModel> ConvertFromEntity(Class theClass, HttpRequestMessage request, IUrlConstructor urlConstructor,
+            ICommonInterfaceCloner cloner)
+        {
+            var passStatistics = new List<PassStatisticModel>();
+            if (theClass.PassStatistics == null)
+                return passStatistics;
+
+            foreach (var passStatistic in theClass.PassStatistics)
+            {
+                var passStatisticModel = (PassStatisticModel)new PassStatisticModel().CloneFromEntity(request, urlConstructor, (PassStatistic)passStatistic, cloner);
+                passStatistics.Add(passStatisticModel);
+            }
+            return passStatistics;
+        }
+    }
 }
