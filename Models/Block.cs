@@ -17,6 +17,8 @@ namespace Models
 
     public class Block : IBlock, IEntity, IDatabaseEntity
     {
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual ICollection<ITeacher> Teachers { get; set; }
         public virtual ICollection<IUser> EnroledStudents { get; set; }
         public virtual ILevel Level { get; set; }

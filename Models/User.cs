@@ -29,6 +29,8 @@ namespace Models
         public virtual ICollection<IBlock> EnroledBlocks { get; set; }
         public virtual IList<IPass> Passes { get; set; }
         public virtual int Id { get; set; }
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public  virtual bool Deleted { get; set; }
         public virtual string Claims { get; set; } 
 

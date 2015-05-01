@@ -2,9 +2,8 @@
 
 namespace Models
 {
-    public interface IPass
+    public interface IPass : IEntity
     {
-        int Id { get; set; }
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
         string PassType { get; set; }
@@ -14,9 +13,11 @@ namespace Models
         bool IsValid();
     }
 
-    public class Pass : IPass, IEntity, IDatabaseEntity
+    public class Pass : IPass, IDatabaseEntity
     {
         public virtual int Id { get; set; }
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public  virtual bool Deleted { get; set; }
         public virtual DateTime StartDate { get; set; }
         public virtual DateTime EndDate { get; set; }

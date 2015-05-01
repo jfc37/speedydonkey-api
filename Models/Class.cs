@@ -13,6 +13,8 @@ namespace Models
 
     public class Class : IClass, IEntity, IDatabaseEntity
     {
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual int Id { get; set; }
         public  virtual bool Deleted { get; set; }
         public virtual ICollection<ITeacher> Teachers { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Action;
 using ActionHandlers.CreateHandlers.Strategies;
 using Actions;
@@ -47,7 +48,8 @@ namespace ActionHandlers.CreateHandlers
                     EndTime = classTime.AddMinutes(timeSpan.TotalMinutes),
                     Block = result,
                     Name = result.Name + " - Week " + classNumber,
-                    Teachers = new List<ITeacher>(result.Level.Teachers)
+                    Teachers = new List<ITeacher>(result.Level.Teachers),
+                    CreatedDateTime = DateTime.Now
                 };
                 CreateBookingForClass(nextClass, result.Level.Room);
                 _classRepository.Create(nextClass);

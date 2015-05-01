@@ -29,6 +29,8 @@ namespace Models
         public virtual IList<IBlock> Blocks { get; set; }
         public virtual int ClassMinutes { get; set; }
         public virtual int Id { get; set; }
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public  virtual bool Deleted { get; set; }
     }
 }

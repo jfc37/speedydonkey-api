@@ -10,6 +10,8 @@ namespace Data.Mappings
         public ActivityLogMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.PerformingUserId);
             Map(x => x.Session);
             Map(x => x.DateTimeStamp);
@@ -24,6 +26,8 @@ namespace Data.Mappings
         public UserMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.FirstName);
             Map(x => x.Surname);
@@ -55,6 +59,8 @@ namespace Data.Mappings
         public ClassMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.StartTime);
             Map(x => x.EndTime);
@@ -80,6 +86,8 @@ namespace Data.Mappings
         public BookingMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             References(x => x.Event)
                 .Class(typeof (Class))
@@ -93,6 +101,8 @@ namespace Data.Mappings
         public LevelMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.ClassesInBlock);
             Map(x => x.ClassMinutes);
@@ -111,6 +121,8 @@ namespace Data.Mappings
         public BlockMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
@@ -135,6 +147,8 @@ namespace Data.Mappings
         public PassMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
@@ -160,6 +174,8 @@ namespace Data.Mappings
         public ReferenceDataMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.Type);
             Map(x => x.Name);
@@ -173,6 +189,8 @@ namespace Data.Mappings
         public PassTemplateMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.ClassesValidFor);
             Map(x => x.Cost);

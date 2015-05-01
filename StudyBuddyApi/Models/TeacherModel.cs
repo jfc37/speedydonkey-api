@@ -21,5 +21,7 @@ namespace SpeedyDonkeyApi.Models
         public ICollection<IBlock> EnroledBlocks { get; set; }
         public IList<IPass> Passes { get; set; }
         public bool Deleted { get; set; }
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
     }
 }

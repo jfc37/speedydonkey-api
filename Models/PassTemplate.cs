@@ -15,6 +15,8 @@ namespace Models
     public class PassTemplate : IPassTemplate, IDatabaseEntity
     {
         public virtual int Id { get; set; }
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public  virtual bool Deleted { get; set; }
         public virtual string Description { get; set; }
         public virtual string PassType { get; set; }

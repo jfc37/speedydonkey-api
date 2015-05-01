@@ -58,6 +58,9 @@ namespace SpeedyDonkeyApi.Models
                 return base.CloneFromEntity(request, urlConstructor, entity, cloner);
             }
         }
+
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
     }
 
     public class ClipPassModel : PassModel, IClipPass
