@@ -31,6 +31,7 @@ namespace Common
         AdminEmailWhitelist,
         AutoActivateAdmin,
         AutoActivateUser,
+        FromEmail,
         AllowDatabaseDelete
     }
 }

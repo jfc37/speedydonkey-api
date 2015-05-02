@@ -32,7 +32,7 @@ namespace Notification
 
             var emailMessage = new EmailMessage
             {
-                from_email = _appSettings.GetSetting(AppSettingKey.TestEmailAccount),
+                from_email = _appSettings.GetSetting(AppSettingKey.FromEmail),
                 to = new List<EmailAddress>
                 {
                     new EmailAddress(GetEmailTo(notification.EmailTo))
