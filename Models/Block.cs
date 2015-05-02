@@ -5,6 +5,7 @@ namespace Models
 {
     public interface IBlock
     {
+        ICollection<ITeacher> Teachers { get; set; }
         ICollection<IUser> EnroledStudents { get; set; }
         ILevel Level { get; set; }
         ICollection<IClass> Classes { get; set; }
@@ -14,8 +15,11 @@ namespace Models
         int Id { get; set; }
     }
 
-    public class Block : IBlock, IEntity
+    public class Block : IBlock, IEntity, IDatabaseEntity
     {
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
+        public virtual ICollection<ITeacher> Teachers { get; set; }
         public virtual ICollection<IUser> EnroledStudents { get; set; }
         public virtual ILevel Level { get; set; }
         public virtual ICollection<IClass> Classes { get; set; }
@@ -23,5 +27,6 @@ namespace Models
         public virtual DateTime EndDate { get; set; }
         public virtual string Name { get; set; }
         public virtual int Id { get; set; }
+        public  virtual bool Deleted { get; set; }
     }
 }

@@ -88,6 +88,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<AppSettings>().As<IAppSettings>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
             builder.RegisterType<ActivityLogger>().As<IActivityLogger>().InstancePerLifetimeScope();
+            builder.RegisterType<TeacherStudentConverter>().As<ITeacherStudentConverter>().InstancePerLifetimeScope();
 
             // Build the container.
             var container = builder.Build();

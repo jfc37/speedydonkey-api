@@ -68,7 +68,7 @@ namespace Data.Tests
                 _sessionBuilder.WithEntities<User>(new List<User>
                 {
                     new User {Email = usernameSearch},
-                    new User {Email = "timmy"}
+                    new Teacher {Email = "timmy"}
                 });
 
                 PerformSearch();

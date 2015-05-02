@@ -30,6 +30,8 @@ namespace Common
         UseRealEmail,
         AdminEmailWhitelist,
         AutoActivateAdmin,
-        AutoActivateUser
+        AutoActivateUser,
+        FromEmail,
+        AllowDatabaseDelete
     }
 }

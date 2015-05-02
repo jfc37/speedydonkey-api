@@ -1,8 +1,12 @@
-﻿using ActionHandlers;
+﻿using System.Net.Http;
+using System.Web.Http;
+using Action;
+using ActionHandlers;
 using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -17,6 +21,20 @@ namespace SpeedyDonkeyApi.Controllers
             ICommonInterfaceCloner cloner, 
             IEntitySearch<Class> entitySearch) : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
         {
+        }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Put(int id, [FromBody] ClassModel model)
+        {
+            model.Id = id;
+            return PerformAction(model, x => new UpdateClass(x));
+        }
+
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public HttpResponseMessage Delete(int id)
+        {
+            var model = new ClassModel { Id = id };
+            return PerformAction(model, x => new DeleteClass(x));
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-using Action;
-using Models;
+﻿using Models;
 using SpeedyDonkeyApi.Controllers;
 using SpeedyDonkeyApi.Models;
 

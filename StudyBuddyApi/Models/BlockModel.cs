@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using Common;
 using Models;
-using SpeedyDonkeyApi.Services;
+using Newtonsoft.Json;
 
 namespace SpeedyDonkeyApi.Models
 {
     public class BlockModel : ApiModel<Block, BlockModel>, IBlock
     {
+        public BlockModel()
+        {
+            
+        }
+        
+        [JsonConstructor]
+        public BlockModel(List<Teacher> teachers)
+        {
+            if (teachers != null)
+                Teachers = teachers.OfType<ITeacher>().ToList();
+        }
+        public ICollection<ITeacher> Teachers { get; set; }
         public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
         public ICollection<IClass> Classes { get; set; }
@@ -26,9 +37,15 @@ namespace SpeedyDonkeyApi.Models
         protected override void AddChildrenToEntity(Block entity, ICommonInterfaceCloner cloner)
         {
             if (Level != null)
-            {
                 entity.Level = ((LevelModel) Level).ToEntity(cloner);
-            }
+
+            if (Teachers != null && Teachers.Any())
+                entity.Teachers = Teachers;
+        }
+
+        protected override void AddChildrenToModel(Block entity, BlockModel model)
+        {
+            model.Teachers = entity.Teachers;
         }
     }
 }

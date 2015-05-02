@@ -4,21 +4,20 @@ using System.Linq;
 
 namespace Models
 {
-    public interface IUser
+    public interface IUser : IEntity
     {
-        int Id { get; set; }
         string Email { get; set; }
         string Password { get; set; }
         string FirstName { get; set; }
         string Surname { get; set; }
-        string FullName { get; }
         IList<IBooking> Schedule { get; set; } 
         ICollection<IBlock> EnroledBlocks { get; set; }
-        IList<IPass> Passes { get; set; }  
+        IList<IPass> Passes { get; set; }
     }
 
-    public class User : IUser, IEntity
+    public class User : IUser, IDatabaseEntity
     {
+
         public virtual UserStatus Status { get; set; }
         public virtual Guid ActivationKey { get; set; }
         public virtual string Email { get; set; }
@@ -30,6 +29,9 @@ namespace Models
         public virtual ICollection<IBlock> EnroledBlocks { get; set; }
         public virtual IList<IPass> Passes { get; set; }
         public virtual int Id { get; set; }
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
+        public  virtual bool Deleted { get; set; }
         public virtual string Claims { get; set; } 
 
         public virtual IPass GetPassToUse()

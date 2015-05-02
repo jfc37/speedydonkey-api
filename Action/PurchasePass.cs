@@ -4,19 +4,20 @@ using Models;
 
 namespace Action
 {
-    public class AddPassToUser : IAction<User>
+    public class PurchasePass : IAction<User>
     {
-        public AddPassToUser(User user)
+        public PurchasePass(User user)
         {
             ActionAgainst = user;
         }
 
         public User ActionAgainst { get; set; }
+        public int PassTemplateId { get; set; }
         public string LogText
         {
             get
             {
-                return String.Format("Add pass to user {0}", ActionAgainst.Id);
+                return String.Format("Purchase pass for user {0}", ActionAgainst.Id);
             }
         }
     }

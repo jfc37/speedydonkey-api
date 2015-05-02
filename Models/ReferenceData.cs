@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using System;
+
+namespace Models
 {
     public interface IReferenceData
     {
@@ -9,9 +11,12 @@
         string Value { get; set; }
     }
 
-    public class ReferenceData : IReferenceData, IEntity
+    public class ReferenceData : IReferenceData, IEntity, IDatabaseEntity
     {
         public virtual int Id { get; set; }
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
+        public  virtual bool Deleted { get; set; }
         public virtual string Type { get; set; }
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }

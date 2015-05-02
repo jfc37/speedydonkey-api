@@ -8,7 +8,7 @@ namespace ActionHandlers.UserPasses
 {
     public interface IUserPassAppender
     {
-        void AddPassToUser(User user, IPass pass);
+        void AddPassToUser(User user, IPass pass, PassTemplate passTemplate);
     }
     public class UserPassAppender : IUserPassAppender
     {
@@ -19,17 +19,17 @@ namespace ActionHandlers.UserPasses
             _passCreatorFactory = passCreatorFactory;
         }
 
-        public void AddPassToUser(User user, IPass pass)
+        public void AddPassToUser(User user, IPass pass, PassTemplate passTemplate)
         {
             if (user.Passes == null)
                 user.Passes = new List<IPass>();
 
             var validPasses = user.Passes.OfType<Pass>().Where(x => x.IsValid() || x.IsFuturePass()).ToList();
             var startDate = validPasses.Any() ? validPasses.Max(x => x.EndDate).AddDays(1).Date : DateTime.Now.Date;
-            var createdPass = _passCreatorFactory.Get(pass.PassType).CreatePass(startDate);
+            var createdPass = _passCreatorFactory.Get(passTemplate.PassType).CreatePass(startDate, passTemplate);
             createdPass.PaymentStatus = pass.PaymentStatus;
-            createdPass.Cost = pass.Cost;
-
+            createdPass.CreatedDateTime = DateTime.Now;
+            createdPass.PassStatistic = new PassStatistic{CreatedDateTime = DateTime.Now};
 
             user.Passes.Add(createdPass);
         }

@@ -3,8 +3,8 @@
     public static class ValidationMessages
     {
         public const string AlreadyEnroledInBlock = "You are already enroled in a selected block";
-        public const string InvalidBlock = "You are trying to enrol in a block that doesn't exist";
-        public const string InvalidClass = "You are trying to attend a class that doesn't exist";
+        public const string InvalidBlock = "Block doesn't exist";
+        public const string InvalidClass = "Class doesn't exist";
         public const string InvalidUser = "User does not exist";
         public const string InvalidPass = "Pass does not exist";
         public const string IncorrectNumberOfAttendees = "You can only add attendance for one student at a time";
@@ -24,5 +24,20 @@
         public const string CannotAddPassForAnother = "You don't have permission to add passes to another student";
         public const string BadActivationKey = "Bad activiation key";
         public const string BadPasswordResetKey = "Bad password reset key";
+        public const string MissingDescription = "Please enter a description";
+        public const string MissingPassType = "Please select a pass type";
+        public const string InvalidPassType = "Pass type selected is invalid";
+        public const string NegativeNumber = "Please enter a positive number";
+        public const string ItemDoesntExist = "Item doesn't exist";
+        public const string CannontAddPaidPass = "You don't have permission to add a pass already paid for";
+        public const string MissingName = "Please enter a name";
+        public const string MissingStartTime = "Please enter a start time";
+        public const string MissingEndTime = "Please enter an end time";
+        public const string EndTimeGreaterThanStartTime = "Please enter an end time greater than the start time";
+        public const string InvalidClassMinutes = "Please enter class minutes";
+        public const string InvalidClassesInBlock = "Please enter number of classes in a block";
+        public const string InvalidLevel = "Level doesn't exist";
+        public const string InvalidTeachers = "Teachers selected are invalid";
+        public const string TeachersRequired = "Please select at least one teacher";
     }
 }
