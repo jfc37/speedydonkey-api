@@ -39,7 +39,7 @@ namespace Common
                 var propertiesToCopy = commonInterface.GetProperties();
                 foreach (var propertyInfo in propertiesToCopy)
                 {
-                    if (!propertyInfo.PropertyType.IsInterface && propertyInfo.CanWrite)
+                    if (!propertyInfo.PropertyType.IsInterface && propertyInfo.CanWrite && propertyInfo.Name != "CreatedDateTime")
                         propertyInfo.SetValue(copyTo, propertyInfo.GetValue(copyFrom));
                 }
             }

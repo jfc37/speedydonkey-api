@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using System;
+using Models;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -15,5 +16,7 @@ namespace SpeedyDonkeyApi.Models
         public int WeeksValidFor { get; set; }
         public int ClassesValidFor { get; set; }
         public bool AvailableForPurchase { get; set; }
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
     }
 }

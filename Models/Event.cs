@@ -15,6 +15,8 @@ namespace Models
 
     public class Event : IEvent, IEntity, IDatabaseEntity
     {
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public int Id { get; set; }
         public  virtual bool Deleted { get; set; }
         public ICollection<ITeacher> Teachers { get; set; }

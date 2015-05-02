@@ -40,6 +40,7 @@ namespace Data
 
         private void Create(ActivityLog entity)
         {
+            entity.CreatedDateTime = DateTime.Now;
             using (var transaction = _dbSession.BeginTransaction())
             {
                 _dbSession.Save(entity);

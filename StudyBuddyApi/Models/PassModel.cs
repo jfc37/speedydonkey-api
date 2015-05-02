@@ -16,6 +16,7 @@ namespace SpeedyDonkeyApi.Models
         public string PaymentStatus { get; set; }
         public decimal Cost { get; set; }
         public IUser Owner { get; set; }
+        public IPassStatistic PassStatistic { get; set; }
 
         public bool Valid
         {
@@ -58,6 +59,9 @@ namespace SpeedyDonkeyApi.Models
                 return base.CloneFromEntity(request, urlConstructor, entity, cloner);
             }
         }
+
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
     }
 
     public class ClipPassModel : PassModel, IClipPass

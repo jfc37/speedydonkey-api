@@ -21,27 +21,31 @@ namespace ActionHandlers.ClassCheckIn
         public Class Handle(CheckStudentIntoClass action)
         {
             var user = _userRepository.Get(action.ActionAgainst.ActualStudents.Single().Id);
-            UpdatePass(user);
+            var pass = UpdatePass(user);
             var theClass = _classRepository.Get(action.ActionAgainst.Id);
-            AddStudentToClassAttendance(theClass, user);
+            AddStudentToClassAttendance(theClass, user, pass.PassStatistic);
             _classRepository.Update(theClass);
 
             return theClass;
         }
 
-        private void AddStudentToClassAttendance(Class theClass, User user)
+        private void AddStudentToClassAttendance(Class theClass, User user, IPassStatistic passStatistic)
         {
             theClass.ActualStudents = theClass.ActualStudents ?? new List<IUser>();
             theClass.ActualStudents.Add(user);
+            theClass.PassStatistics = theClass.PassStatistics ?? new List<IPassStatistic>();
+            theClass.PassStatistics.Add(passStatistic);
         }
 
-        private void UpdatePass(User user)
+        private Pass UpdatePass(User user)
         {
             var passToUse = (Pass)user.GetPassToUse();
             passToUse.PayForClass();
 
             if (passToUse is ClipPass)
                 MakeNextPassValid(user);
+
+            return passToUse;
         }
 
         private void MakeNextPassValid(User user)

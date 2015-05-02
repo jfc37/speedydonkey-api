@@ -1,6 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
 using Models;
-using NHibernate.Mapping;
 
 namespace Data.Mappings
 {
@@ -10,6 +9,8 @@ namespace Data.Mappings
         public ActivityLogMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.PerformingUserId);
             Map(x => x.Session);
             Map(x => x.DateTimeStamp);
@@ -24,6 +25,8 @@ namespace Data.Mappings
         public UserMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.FirstName);
             Map(x => x.Surname);
@@ -55,6 +58,8 @@ namespace Data.Mappings
         public ClassMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.StartTime);
             Map(x => x.EndTime);
@@ -72,6 +77,9 @@ namespace Data.Mappings
             HasManyToMany<User>(x => x.Teachers)
                 .Table("ClassTeacher")
                 .AsSet();
+            HasManyToMany<PassStatistic>(x => x.PassStatistics)
+                .Table("ClassPassStatistic")
+                .AsSet();
         }
     }
 
@@ -80,6 +88,8 @@ namespace Data.Mappings
         public BookingMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             References(x => x.Event)
                 .Class(typeof (Class))
@@ -93,6 +103,8 @@ namespace Data.Mappings
         public LevelMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.ClassesInBlock);
             Map(x => x.ClassMinutes);
@@ -111,6 +123,8 @@ namespace Data.Mappings
         public BlockMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
@@ -130,11 +144,28 @@ namespace Data.Mappings
         }
     }
 
+    public class PassStatisticMap : ClassMap<PassStatistic>
+    {
+        public PassStatisticMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.Deleted);
+            Map(x => x.CostPerClass);
+            Map(x => x.NumberOfClassesAttended);
+            References<Pass>(x => x.Pass)
+                .Column("Pass_id");
+        }
+    }
+
     public class PassMap : ClassMap<Pass>
     {
         public PassMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
@@ -144,6 +175,9 @@ namespace Data.Mappings
             References(x => x.Owner)
                 .Column("User_id")
                 .Class(typeof (User));
+            References(x => x.PassStatistic)
+                .Cascade.All()
+                .Class(typeof (PassStatistic));
         }
     }
 
@@ -160,6 +194,8 @@ namespace Data.Mappings
         public ReferenceDataMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.Type);
             Map(x => x.Name);
@@ -173,6 +209,8 @@ namespace Data.Mappings
         public PassTemplateMap()
         {
             Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             Map(x => x.ClassesValidFor);
             Map(x => x.Cost);

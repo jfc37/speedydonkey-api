@@ -114,6 +114,7 @@ namespace Data.Repositories
 
         public TEntity Create(TEntity entity)
         {
+            entity.CreatedDateTime = DateTime.Now;
             using (var transaction = _session.BeginTransaction())
             {
                 _session.Save(entity);
@@ -125,6 +126,7 @@ namespace Data.Repositories
 
         public TEntity Update(TEntity entity)
         {
+            entity.LastUpdatedDateTime = DateTime.Now;
             using (var transaction = _session.BeginTransaction())
             {
                 _session.Update(entity, entity.Id);
