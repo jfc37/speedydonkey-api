@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Models;
@@ -45,7 +46,8 @@ namespace ActionHandlers.CreateHandlers.Strategies
                 .OrderByDescending(x => x.StartDate)
                 .First();
             block.Level = level;
-            block.StartDate = latestBlock.EndDate.AddDays(7);
+            var startDate = latestBlock.EndDate.AddDays(7);
+            block.StartDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, latestBlock.StartDate.Hour, latestBlock.StartDate.Minute, latestBlock.StartDate.Second);
             block.EndDate = block.StartDate.AddDays(level.ClassesInBlock * 7).AddMinutes(level.ClassMinutes);
 
             block.Teachers = new List<ITeacher>(level.Teachers);
