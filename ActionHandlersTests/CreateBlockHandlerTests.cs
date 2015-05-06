@@ -238,7 +238,7 @@ namespace ActionHandlersTests
         [TestCase(4)]
         [TestCase(7)]
         [TestCase(12)]
-        public void Then_block_should_start_the_week_after_current_block_finishes(int daysUntilFinish)
+        public void Then_block_should_have_start_date_the_week_after_current_block_finishes(int daysUntilFinish)
         {
             var currentBlockEndDate = DateTime.Now.AddDays(daysUntilFinish);
             LevelRepositoryBuilder.WithGet(new Level
@@ -261,7 +261,36 @@ namespace ActionHandlersTests
 
             var createdBlock = RepositoryBuilder.CreatedEntity;
             var expectedStartDate = currentBlockEndDate.AddDays(7);
-            Assert.AreEqual(expectedStartDate, createdBlock.StartDate);
+            Assert.AreEqual(expectedStartDate.Date, createdBlock.StartDate.Date);
+        }
+
+        [TestCase(4)]
+        [TestCase(7)]
+        [TestCase(12)]
+        public void Then_block_should_start_time_the_same_as_current_block(int daysUntilFinish)
+        {
+            var currentBlockStartDate = DateTime.Now.AddMonths(-1);
+            LevelRepositoryBuilder.WithGet(new Level
+            {
+                Blocks = new[]
+                {
+                    new Block
+                    {
+                        StartDate = currentBlockStartDate,
+                        EndDate = DateTime.Now.AddDays(daysUntilFinish)
+                    }
+                },
+                Teachers = new[]
+                {
+                    new Teacher(), 
+                }
+            });
+
+            PerformAction();
+
+            var createdBlock = RepositoryBuilder.CreatedEntity;
+            Assert.AreEqual(currentBlockStartDate.Hour, createdBlock.StartDate.Hour);
+            Assert.AreEqual(currentBlockStartDate.Minute, createdBlock.StartDate.Minute);
         }
 
         [TestCase(1)]

@@ -59,7 +59,15 @@ namespace SpeedyDonkeyApi.Models
                     Id = entity.Block.Id
                 };
             }
-            model.Teachers = entity.Teachers;
+            if (entity.Teachers != null)
+            {
+                model.Teachers = entity.Teachers.Select(x => (ITeacher)new TeacherModel
+                {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    Surname = x.Surname
+                }).ToList();
+            }
         }
     }
 }

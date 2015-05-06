@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public interface ITeacher : IUser, IEntity, IDatabaseEntity
+    public interface ITeacher : IUser, IEntity
     {
         ICollection<IClass> Classes { get; set; } 
     }
