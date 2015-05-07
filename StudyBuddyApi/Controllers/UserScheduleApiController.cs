@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -47,8 +48,14 @@ namespace SpeedyDonkeyApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return userSchedule.Any()
-                ? Request.CreateResponse(userSchedule.OfType<Class>().Select(x => new ClassModel().CloneFromEntity(Request, _urlConstructor, x, _cloner)))
+            var today = DateTime.Now.Date;
+            var nextWeek = today.AddDays(7);
+            var thisWeeksSchedule = userSchedule
+                .Where(x => x.StartTime > today && x.StartTime < nextWeek)
+                .ToList();
+
+            return thisWeeksSchedule.Any()
+                ? Request.CreateResponse(thisWeeksSchedule.OfType<Class>().Select(x => new ClassModel().CloneFromEntity(Request, _urlConstructor, x, _cloner)))
                 : Request.CreateResponse(HttpStatusCode.NotFound);
         }
     }
