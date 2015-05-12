@@ -13,6 +13,15 @@ namespace SpeedyDonkeyApi.Models
         public DateTime EndDate { get; set; }
 
         public string PassType { get; set; }
+
+        public string PassNumber
+        {
+            get
+            {
+                return String.Format("{0}{1}", CreatedDateTime.ToString("yy"), Id.ToString("D4"));
+            }
+        }
+
         public string PaymentStatus { get; set; }
         public decimal Cost { get; set; }
         public IUser Owner { get; set; }
