@@ -110,7 +110,7 @@ namespace StudyBuddyApi.Tests.Controllers
                     base.Setup();
                     RepositoryBuilder.WithGet(new List<IEvent>
                     {
-                        new Class()
+                        new Class{StartTime = DateTime.Now}
                     });
                 }
 
