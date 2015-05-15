@@ -197,6 +197,12 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "DatabaseApi" }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "ActivityLogApi",
+                routeTemplate: "api/activitylog",
+                defaults: new { controller = "ActivityLogApi" }
+            );
+
 
             //Default to json
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();

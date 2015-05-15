@@ -216,6 +216,7 @@
     <Compile Include="Controllers\PassTemplateApiController.cs" />
     <Compile Include="Controllers\ReferenceDataApiController.cs" />
     <Compile Include="Controllers\TeacherApiController.cs" />
+    <Compile Include="Controllers\ActivityLogApiController.cs" />
     <Compile Include="Controllers\UserClaimsApiController.cs" />
     <Compile Include="Controllers\UserEnroledBlocksApiController.cs" />
     <Compile Include="Controllers\UserPasswordResetApiController.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Models\LevelModel.cs" />
     <Compile Include="Models\PassModel.cs" />
     <Compile Include="Models\ReferenceDataModel.cs" />
+    <Compile Include="Models\ActivityLogModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserScheduleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
