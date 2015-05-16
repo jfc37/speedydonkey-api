@@ -7,7 +7,28 @@ namespace SpeedyDonkeyApi.Models
     public class ProfitReportModel
     {
         public IList<PassProfitReport> PassProfitReports { get; set; }
-        public IList<BlockProfitReport> BlockProfitReports { get; set; } 
+
+        public int TotalPassesSold
+        {
+            get { return PassProfitReports.Sum(x => x.TotalSold); }
+        }
+
+        public decimal TotalPassRevenue
+        {
+            get { return PassProfitReports.Sum(x => x.TotalRevenue); }
+        }
+
+        public IList<BlockProfitReport> BlockProfitReports { get; set; }
+
+        public int TotalBlockAttendance
+        {
+            get { return BlockProfitReports.Sum(x => x.TotalAttendance); }
+        }
+
+        public decimal TotalBlockRevenue
+        {
+            get { return BlockProfitReports.Sum(x => x.TotalRevenue); }
+        }
 
         public ProfitReportModel Populate(IList<Pass> passesBought, List<Block> blocksWithInPeriod, IList<Pass> unlimitedPasses)
         {
@@ -21,13 +42,17 @@ namespace SpeedyDonkeyApi.Models
                 }).ToList(),
                 BlockProfitReports = blocksWithInPeriod.Select(x => new BlockProfitReport(x.Classes.Select(c => new ClassProfitReport
                 {
+                    Name = c.Name,
                     TotalNumberOfTeachers = c.Teachers.Count,
                     TotalAttendance = c.ActualStudents.Count,
                     Revenue = c.PassStatistics.Where(ps => ps.Pass.PassType != PassType.Unlimited.ToString())
                         .Sum(ps => ps.CostPerClass) + 
                         unlimitedPasses.Where(p => p.StartDate <= c.StartTime && p.EndDate >= c.StartTime)
                         .Sum(p => p.PassStatistic.CostPerClass)
-                }).ToList())).ToList()
+                }).ToList())
+                {
+                    Name = x.Name
+                }).ToList()
             };
 
             return model;
@@ -49,6 +74,8 @@ namespace SpeedyDonkeyApi.Models
             ClassProfitReports = classProfitReports;
         }
 
+        public string Name { get; set; }
+
         public IList<ClassProfitReport> ClassProfitReports { get; set; }
 
         public int TotalAttendance
@@ -69,6 +96,7 @@ namespace SpeedyDonkeyApi.Models
 
     public class ClassProfitReport
     {
+        public string Name { get; set; }
         public int TotalAttendance { get; set; }
         public int TotalNumberOfTeachers { get; set; }
         public decimal Revenue { get; set; }
