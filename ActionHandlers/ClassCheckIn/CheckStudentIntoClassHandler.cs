@@ -23,6 +23,7 @@ namespace ActionHandlers.ClassCheckIn
             var user = _userRepository.Get(action.ActionAgainst.ActualStudents.Single().Id);
             var pass = UpdatePass(user);
             var theClass = _classRepository.Get(action.ActionAgainst.Id);
+            pass.PassStatistic.Pass = pass;
             AddStudentToClassAttendance(theClass, user, pass.PassStatistic);
             _classRepository.Update(theClass);
 

@@ -172,6 +172,7 @@ namespace Data.Mappings
             Map(x => x.PassType);
             Map(x => x.PaymentStatus);
             Map(x => x.Cost);
+            Map(x => x.Description);
             References(x => x.Owner)
                 .Column("User_id")
                 .Class(typeof (User));

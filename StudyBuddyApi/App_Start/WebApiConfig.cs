@@ -192,6 +192,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "ProfitReport",
+                routeTemplate: "api/report/profit",
+                defaults: new { controller = "ProfitReportApi" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DatabaseApi",
                 routeTemplate: "api/database",
                 defaults: new { controller = "DatabaseApi" }

@@ -208,6 +208,7 @@
     <Compile Include="Controllers\CurrentUserApiController.cs" />
     <Compile Include="Controllers\DatabaseApiController.cs" />
     <Compile Include="Controllers\EnrolmentApiController.cs" />
+    <Compile Include="Controllers\ProfitReportApiController.cs" />
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\LevelApiController.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\PassStatisticModel.cs" />
     <Compile Include="Models\PassTemplateModel.cs" />
+    <Compile Include="Models\ProfitReportModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\UserEnroledBlocksModel.cs" />
     <Compile Include="Models\CurrentUserPassesModel.cs" />
