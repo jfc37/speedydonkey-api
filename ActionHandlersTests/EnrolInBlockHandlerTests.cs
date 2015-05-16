@@ -57,8 +57,6 @@ namespace ActionHandlersTests
         {
             return new EnrolInBlockHandler(
                 _userRepositoryBuilder.BuildObject(),
-                new BlockEnrolmentService(_blockRepositoryBuilder.BuildObject(),
-                _bookingRepositoryBuilder.BuildObject()),
                 _postOfficeBuilder.BuildObject());
         }
 

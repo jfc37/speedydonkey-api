@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Data.Repositories;
@@ -42,9 +43,14 @@ namespace ActionHandlers.EnrolmentProcess
             {
                 user.Schedule = new List<IBooking>();
             }
-            var bookings = _bookingRepository.GetAllWithChildren(new []{"Event"}).Where(x => classes.Select(c => c.Id).Contains(x.Event.Id));
+            var bookings = classes.Select(x => new Booking
+            {
+                CreatedDateTime = DateTime.Now,
+                Event = x
+            }).ToList();
             foreach (var booking in bookings)
             {
+                _bookingRepository.Create(booking);
                 user.Schedule.Add(booking);
             }
         }
