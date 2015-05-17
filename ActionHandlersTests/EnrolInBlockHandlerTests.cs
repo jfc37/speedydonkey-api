@@ -48,6 +48,7 @@ namespace ActionHandlersTests
                 }
             });
             _bookingRepositoryBuilder = new MockRepositoryBuilder<Booking>()
+                .WithCreate()
                 .WithGetAll();
             _postOfficeBuilder = new MockPostOfficeBuilder()
                 .WithSending();
@@ -57,6 +58,7 @@ namespace ActionHandlersTests
         {
             return new EnrolInBlockHandler(
                 _userRepositoryBuilder.BuildObject(),
+                new BlockEnrolmentService(_blockRepositoryBuilder.BuildObject(), _bookingRepositoryBuilder.BuildObject()), 
                 _postOfficeBuilder.BuildObject());
         }
 
