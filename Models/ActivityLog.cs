@@ -2,7 +2,17 @@
 
 namespace Models
 {
-    public class ActivityLog : IEntity, IDatabaseEntity
+    public interface IActivityLog : IEntity
+    {
+        Guid Session { get; set; }
+        int PerformingUserId { get; set; }
+        DateTime DateTimeStamp { get; set; }
+        ActivityGroup ActivityGroup { get; set; }
+        ActivityType ActivityType { get; set; }
+        string ActivityText { get; set; }
+    }
+
+    public class ActivityLog : IDatabaseEntity, IActivityLog
     {
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }

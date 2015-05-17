@@ -29,7 +29,6 @@ namespace ActionHandlers.UserPasses
             var createdPass = _passCreatorFactory.Get(passTemplate.PassType).CreatePass(startDate, passTemplate);
             createdPass.PaymentStatus = pass.PaymentStatus;
             createdPass.CreatedDateTime = DateTime.Now;
-            createdPass.PassStatistic = new PassStatistic{CreatedDateTime = DateTime.Now};
 
             user.Passes.Add(createdPass);
         }

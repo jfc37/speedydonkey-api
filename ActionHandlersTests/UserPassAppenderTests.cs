@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ActionHandlers.EnrolmentProcess;
 using ActionHandlers.UserPasses;
+using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;
 
@@ -14,10 +14,11 @@ namespace ActionHandlersTests
         protected User User;
         protected Pass Pass;
         protected PassTemplate PassTemplate;
+        protected MockRepositoryBuilder<Class> ClassRepositoryBuilder; 
 
         private UserPassAppender GetUserPassAppender()
         {
-            return new UserPassAppender(new PassCreatorFactory());
+            return new UserPassAppender(new PassCreatorFactory(ClassRepositoryBuilder.BuildObject()));
         }
 
         protected void PerformAction()
@@ -37,6 +38,8 @@ namespace ActionHandlersTests
                 PassType = PassType.Unlimited.ToString()
             };
             Pass = new Pass();
+            ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
+                .WithGetAll();
         }
 
         [Test]
@@ -75,6 +78,8 @@ namespace ActionHandlersTests
                 PassType = PassType.Unlimited.ToString()
             };
             Pass = new Pass();
+            ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
+                .WithGetAll();
         }
 
         [Test]
@@ -110,6 +115,8 @@ namespace ActionHandlersTests
                 PassType = PassType.Unlimited.ToString()
             };
             Pass = new Pass();
+            ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
+                .WithGetAll();
         }
 
         [Test]
@@ -153,6 +160,8 @@ namespace ActionHandlersTests
                 PassType = PassType.Unlimited.ToString()
             };
             Pass = new Pass();
+            ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
+                .WithGetAll();
         }
         [Test]
         public void Then_the_new_pass_should_start_the_day_the_pending_pass_expires()
@@ -176,6 +185,8 @@ namespace ActionHandlersTests
                 PassType = PassType.Unlimited.ToString()
             };
             Pass = new Pass();
+            ClassRepositoryBuilder = new MockRepositoryBuilder<Class>()
+                .WithGetAll();
         }
 
         [Test]
