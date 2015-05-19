@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Data.Repositories;
 using Models;
 
 namespace ActionHandlers.UserPasses
@@ -10,10 +12,17 @@ namespace ActionHandlers.UserPasses
 
     public class PassCreatorFactory : IPassCreatorFactory
     {
+        private readonly IRepository<Class> _classRepository;
+
+        public PassCreatorFactory(IRepository<Class> classRepository)
+        {
+            _classRepository = classRepository;
+        }
+
         public IPassCreator Get(string passType)
         {
             if (passType.ToLower() == PassType.Unlimited.ToString().ToLower())
-                return new UnlimitedPassCreator();
+                return new UnlimitedPassCreator(_classRepository);
 
             if (passType.ToLower() == PassType.Clip.ToString().ToLower())
                 return new ClipPassCreator();
@@ -37,16 +46,34 @@ namespace ActionHandlers.UserPasses
             pass.EndDate = startDate.AddDays(passTemplate.WeeksValidFor * 7);
             pass.Cost = passTemplate.Cost;
             pass.PassType = passTemplate.PassType;
+            pass.Description = passTemplate.Description;
+            pass.PassStatistic = new PassStatistic{ CreatedDateTime = DateTime.Now };
         }
     }
 
     public class UnlimitedPassCreator : PassCreator
     {
+        private readonly IRepository<Class> _repository;
+
+        public UnlimitedPassCreator(IRepository<Class> repository)
+        {
+            _repository = repository;
+        }
+
         public override IPass CreatePass(DateTime startDate, PassTemplate passTemplate)
         {
             var pass = new Pass();
 
             PopulatePass(pass, startDate, passTemplate);
+
+            if (pass.Cost > 0)
+            {
+                var numberOfClassesAvailableForPass = _repository.GetAll().Where(x => pass.StartDate <= x.StartTime && x.StartTime <= pass.EndDate).Count();
+                if (numberOfClassesAvailableForPass == 0)
+                    pass.PassStatistic.CostPerClass = 0;
+                else
+                    pass.PassStatistic.CostPerClass = pass.Cost / numberOfClassesAvailableForPass;   
+            }
 
             return pass;
         }
