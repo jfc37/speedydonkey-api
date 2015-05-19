@@ -39,7 +39,7 @@ namespace SpeedyDonkeyApi.Models
         public virtual bool IsValid()
         {
             var today = DateTime.Now.Date;
-            return StartDate >= today && today <= EndDate;
+            return StartDate <= today && today <= EndDate;
         }
 
         public override Pass ToEntity(ICommonInterfaceCloner cloner)
