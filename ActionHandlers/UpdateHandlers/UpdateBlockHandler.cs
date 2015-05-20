@@ -23,13 +23,16 @@ namespace ActionHandlers.UpdateHandlers
         {
             var block = _repository.Get(action.ActionAgainst.Id);
             block.Name = action.ActionAgainst.Name;
-            block.StartDate = action.ActionAgainst.StartDate;
-            block.EndDate = action.ActionAgainst.EndDate;
+
+            var startDateDifference = block.StartDate.Subtract(action.ActionAgainst.StartDate);
+            var endDateDifference = block.EndDate.Subtract(action.ActionAgainst.EndDate);
             foreach (var theClass in block.Classes)
             {
-                theClass.StartTime = action.ActionAgainst.StartDate;
-                theClass.EndTime = action.ActionAgainst.EndDate;
+                theClass.StartTime = theClass.StartTime.Subtract(startDateDifference);
+                theClass.EndTime = theClass.EndTime.Subtract(endDateDifference);
             }
+            block.StartDate = action.ActionAgainst.StartDate;
+            block.EndDate = action.ActionAgainst.EndDate;
 
             if (HasTeachersChanged(block.Teachers, action.ActionAgainst.Teachers))
             {
