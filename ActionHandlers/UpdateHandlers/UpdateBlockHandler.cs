@@ -23,12 +23,24 @@ namespace ActionHandlers.UpdateHandlers
         {
             var block = _repository.Get(action.ActionAgainst.Id);
             block.Name = action.ActionAgainst.Name;
+            block.StartDate = action.ActionAgainst.StartDate;
+            block.EndDate = action.ActionAgainst.EndDate;
+            foreach (var theClass in block.Classes)
+            {
+                theClass.StartTime = action.ActionAgainst.StartDate;
+                theClass.EndTime = action.ActionAgainst.EndDate;
+            }
 
             if (HasTeachersChanged(block.Teachers, action.ActionAgainst.Teachers))
             {
                 var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).Cast<ITeacher>().ToList();
                 block.Teachers = actualTeachers;
+                foreach (var theClass in block.Classes)
+                {
+                    theClass.Teachers = block.Teachers;
+                }
             }
+
             _repository.Update(block);
             return block;
         }

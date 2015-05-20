@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Action;
 using ActionHandlers.UpdateHandlers;
 using Data.Tests.Builders;
@@ -30,7 +31,8 @@ namespace ActionHandlersTests
                 Name = "old",
                 StartDate = DateTime.MaxValue,
                 EndDate = DateTime.MaxValue,
-                Teachers = new List<ITeacher> { new Teacher{ Id = 1 } }
+                Teachers = new List<ITeacher> { new Teacher{ Id = 1 } },
+                Classes = new Collection<IClass>()
             };
             _action = new UpdateBlock(new Block
             {
@@ -53,16 +55,6 @@ namespace ActionHandlersTests
 
             _repositoryBuilder.Mock.Verify(x => x.Update(It.IsAny<Block>()));
             Assert.AreEqual("new", _repositoryBuilder.UpdatedEntity.Name);
-        }
-
-        [Test]
-        public void It_should_not_update_any_other_fields()
-        {
-            PerformAction();
-
-            _repositoryBuilder.Mock.Verify(x => x.Update(It.IsAny<Block>()));
-            Assert.AreNotEqual(_action.ActionAgainst.EndDate, _repositoryBuilder.UpdatedEntity.EndDate);
-            Assert.AreNotEqual(_action.ActionAgainst.StartDate, _repositoryBuilder.UpdatedEntity.StartDate);
         }
 
         public class WhenThereHasBeenNoChangeInTeachers : UpdateBlockHandlerTests
