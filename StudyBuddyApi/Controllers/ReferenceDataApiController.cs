@@ -23,7 +23,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
-        [ClaimsAuthorise(Claim = Claim.CreateReferenceData)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Post([FromBody]ReferenceDataModel model)
         {
             return PerformAction(model, x => new CreateReferenceData(x));

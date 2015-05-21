@@ -28,13 +28,13 @@ namespace SpeedyDonkeyApi.Controllers
             return PerformAction(model, x => new CreateUser(x));
         }
 
-        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public override HttpResponseMessage Get()
         {
             return base.Get();
         }
 
-        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public override HttpResponseMessage Get(string q)
         {
             return base.Get(q);

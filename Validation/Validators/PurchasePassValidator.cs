@@ -43,7 +43,7 @@ namespace Validation.Validators
                 return true;
 
             var user = _userRepository.Get(_currentUser.Id);
-            return !String.IsNullOrWhiteSpace(user.Claims) && user.Claims.Contains(Claim.EnrolOtherIntoBlock.ToString());
+            return !String.IsNullOrWhiteSpace(user.Claims) && user.Claims.Contains(Claim.Teacher.ToString());
         }
 
         private bool BeExistingUser(int id)
