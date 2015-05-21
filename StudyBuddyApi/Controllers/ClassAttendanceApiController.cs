@@ -22,7 +22,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
-        [ClaimsAuthorise(Claim = Claim.CheckStudentIntoClass)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Post(int id, int studentId)
         {
             var classModel = new ClassModel
@@ -36,7 +36,7 @@ namespace SpeedyDonkeyApi.Controllers
             return PerformAction<CheckStudentIntoClass, ClassModel, Class>(classModel, x => new CheckStudentIntoClass(x));
         }
 
-        [ClaimsAuthorise(Claim = Claim.CheckStudentIntoClass)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Delete(int id, int studentId)
         {
             var classModel = new ClassModel

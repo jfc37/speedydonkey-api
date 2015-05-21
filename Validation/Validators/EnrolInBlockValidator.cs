@@ -34,7 +34,7 @@ namespace Validation.Validators
                 return true;
 
             var user = _userRepository.Get(_currentUser.Id);
-            return user.Claims != null && user.Claims.Contains(Claim.EnrolOtherIntoBlock.ToString());
+            return user.Claims != null && user.Claims.Contains(Claim.Teacher.ToString());
         }
 
         private bool BeExistingBlocks(ICollection<IBlock> blocks)
