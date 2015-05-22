@@ -57,7 +57,7 @@ namespace ActionHandlers
             user.Passes.Clear();
             user.EnroledBlocks.Clear();
             user.Schedule.Clear();
-            _studentRepository.PermanentDelete(user.Id);
+            _studentRepository.Delete(user.Id);
         }
 
         private void CopyProperties(User fromUser, User toUser)

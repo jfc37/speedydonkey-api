@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Web.Http;
+using Action;
 using ActionHandlers;
 using Actions;
 using Common;
@@ -38,6 +39,17 @@ namespace SpeedyDonkeyApi.Controllers
         public override HttpResponseMessage Get(string q)
         {
             return base.Get(q);
+        }
+
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public HttpResponseMessage Delete(int id)
+        {
+            var model = new UserModel
+            {
+                Id = id
+            };
+
+            return PerformAction(model, x => new DeleteUser(x));
         }
     }
 }
