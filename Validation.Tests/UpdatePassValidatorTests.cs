@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Common;
+﻿using System.Linq;
 using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;
@@ -50,18 +48,6 @@ namespace Validation.Tests
 
             Assert.IsFalse(result.IsValid);
             Assert.AreEqual(ValidationMessages.InvalidPass, result.Errors.Single().ErrorMessage);
-        }
-
-        [Test]
-        public void When_the_pass_type_changes_then_a_validation_error_should_be_returned()
-        {
-            _savedPass.PassType = PassType.Clip.ToString();
-            _pass.PassType = PassType.Unlimited.ToString();
-
-            var result = PerforAction();
-
-            Assert.IsFalse(result.IsValid);
-            Assert.AreEqual(ValidationMessages.CannotChangePassType, result.Errors.Single().ErrorMessage);
         }
     }
 }
