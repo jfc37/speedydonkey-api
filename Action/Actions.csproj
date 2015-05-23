@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeleteUser.cs" />
     <Compile Include="RemoveAsTeacher.cs" />
     <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="DeleteLevel.cs" />
     <Compile Include="UpdateLevel.cs" />
     <Compile Include="DeletePassTemplate.cs" />
+    <Compile Include="DeletePass.cs" />
     <Compile Include="UpdatePassTemplate.cs" />
     <Compile Include="CreatePassTemplate.cs" />
     <Compile Include="UpdateUser.cs" />

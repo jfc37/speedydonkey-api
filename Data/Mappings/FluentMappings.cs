@@ -36,11 +36,10 @@ namespace Data.Mappings
             Map(x => x.Status);
             Map(x => x.ActivationKey);
             HasManyToMany<Block>(x => x.EnroledBlocks)
-                .Cascade.All()
                 .Table("UsersEnroledBlocks")
                 .AsSet();
             HasMany<Pass>(x => x.Passes)
-                .Cascade.All();
+                .Cascade.SaveUpdate();
             HasMany<Booking>(x => x.Schedule);
         }
     }
@@ -67,11 +66,9 @@ namespace Data.Mappings
             References(x => x.Block)
                 .Class(typeof (Block));
             HasManyToMany<User>(x => x.RegisteredStudents)
-                .Cascade.All()
                 .Table("ClassRoll")
                 .AsSet();
             HasManyToMany<User>(x => x.ActualStudents)
-                .Cascade.All()
                 .Table("ClassAttendance")
                 .AsSet();
             HasManyToMany<User>(x => x.Teachers)
@@ -93,7 +90,7 @@ namespace Data.Mappings
             Map(x => x.Deleted);
             References(x => x.Event)
                 .Class(typeof (Class))
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .Not.LazyLoad();
         }
     }
@@ -131,12 +128,11 @@ namespace Data.Mappings
             Map(x => x.Name);
             References(x => x.Level)
                 .Class(typeof (Level));
-            HasMany<Class>(x => x.Classes)
-                .Cascade.All();
+            HasMany<Class>(x => x.Classes);
             HasManyToMany<User>(x => x.EnroledStudents)
-                .Cascade.All()
                 .Inverse()
                 .Table("UsersEnroledBlocks")
+                .Cascade.SaveUpdate()
                 .AsSet();
             HasManyToMany<User>(x => x.Teachers)
                 .Table("BlockTeacher")
@@ -177,8 +173,8 @@ namespace Data.Mappings
                 .Column("User_id")
                 .Class(typeof (User));
             References(x => x.PassStatistic)
-                .Cascade.All()
-                .Class(typeof (PassStatistic));
+                .Class(typeof (PassStatistic))
+                .Cascade.All();
         }
     }
 

@@ -22,7 +22,7 @@ namespace Validation.Tests
             _userRepositoryBuilder = new MockRepositoryBuilder<User>().WithGet(new User
             {
                 EnroledBlocks = new List<IBlock>(),
-                Claims = Claim.EnrolOtherIntoBlock.ToString()
+                Claims = Claim.Teacher.ToString()
             });
             _blockRepositoryBuilder = new MockRepositoryBuilder<Block>().WithGetAll(new List<Block>
             {

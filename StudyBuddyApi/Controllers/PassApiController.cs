@@ -27,7 +27,7 @@ namespace SpeedyDonkeyApi.Controllers
             _cloner = cloner;
         }
 
-        [ClaimsAuthorise(Claim = Claim.UpdatePass)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Put(int id, ClipPassModel model)
         {
             model.Id = id;
@@ -39,6 +39,17 @@ namespace SpeedyDonkeyApi.Controllers
             }
 
             return PerformAction(model, x => new UpdatePass(x));
+        }
+
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public HttpResponseMessage Delete(int id)
+        {
+            var model = new PassModel
+            {
+                Id = id
+            };
+
+            return PerformAction(model, x => new DeletePass(x));
         }
     }
 }

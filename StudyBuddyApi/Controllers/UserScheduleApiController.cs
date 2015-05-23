@@ -38,7 +38,7 @@ namespace SpeedyDonkeyApi.Controllers
             return Get(_currentUser.Id);
         }
 
-        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Get(int id)
         {
             var userSchedule = _userRepository.Get(id);

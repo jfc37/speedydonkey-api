@@ -30,7 +30,7 @@ namespace SpeedyDonkeyApi.Controllers
             return Get(_currentUser.Id);
         }
 
-        [ClaimsAuthorise(Claim = Claim.AnyUserData)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public override HttpResponseMessage Get(int id)
         {
             return base.Get(id);

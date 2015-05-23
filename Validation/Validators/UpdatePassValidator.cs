@@ -18,18 +18,11 @@ namespace Validation.Validators
             CascadeMode = CascadeMode.StopOnFirstFailure;
             RuleFor(x => x.Id)
                 .Must(BeExisting).WithMessage(ValidationMessages.InvalidPass);
-            When(x => BeExisting(x.Id), () => RuleFor(x => x.PassType)
-                .Must(NotBeChanged).WithMessage(ValidationMessages.CannotChangePassType));
         }
 
         private bool BeExisting(int id)
         {
             return GetSavedPass(id) != null;
-        }
-
-        private bool NotBeChanged(Pass pass, string passType)
-        {
-            return pass.PassType == GetSavedPass(pass.Id).PassType;
         }
 
         private Pass GetSavedPass(int id)
