@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;
@@ -18,7 +19,11 @@ namespace Validation.Tests
         {
             _savedPass = new Pass();
             _passRepositoryBuilder = new MockRepositoryBuilder<Pass>().WithGet(_savedPass);
-            _pass = new Pass();
+            _pass = new Pass
+            {
+                StartDate = DateTime.Now.AddDays(-1),
+                EndDate = DateTime.Now.AddDays(2),
+            };
         }
 
         private UpdatePassValidator GetValidator()
