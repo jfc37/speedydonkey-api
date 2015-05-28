@@ -32,7 +32,7 @@ namespace ActionHandlers.CreateHandlers.Strategies
         {
             block.Level = level;
             block.StartDate = level.StartTime;
-            block.EndDate = level.StartTime.AddDays(level.ClassesInBlock * 7).AddMinutes(level.ClassMinutes);
+            block.EndDate = level.StartTime.AddDays((level.ClassesInBlock - 1) * 7).AddMinutes(level.ClassMinutes);
 
             block.Teachers = new List<ITeacher>(level.Teachers);
         }
@@ -48,7 +48,7 @@ namespace ActionHandlers.CreateHandlers.Strategies
             block.Level = level;
             var startDate = latestBlock.EndDate.AddDays(7);
             block.StartDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, latestBlock.StartDate.Hour, latestBlock.StartDate.Minute, latestBlock.StartDate.Second);
-            block.EndDate = block.StartDate.AddDays(level.ClassesInBlock * 7).AddMinutes(level.ClassMinutes);
+            block.EndDate = block.StartDate.AddDays((level.ClassesInBlock - 1) * 7).AddMinutes(level.ClassMinutes);
 
             block.Teachers = new List<ITeacher>(level.Teachers);
         }
