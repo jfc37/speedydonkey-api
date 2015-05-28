@@ -1,6 +1,5 @@
-﻿using System.Linq;
+﻿using System;
 using Action;
-using Actions;
 using Data.Repositories;
 using FluentValidation;
 using Models;
@@ -18,6 +17,25 @@ namespace Validation.Validators
             CascadeMode = CascadeMode.StopOnFirstFailure;
             RuleFor(x => x.Id)
                 .Must(BeExisting).WithMessage(ValidationMessages.InvalidPass);
+
+            RuleFor(x => x.EndDate)
+                .GreaterThan(x => x.StartDate).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime)
+                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage(ValidationMessages.MissingEndTime);
+
+            RuleFor(x => x.StartDate)
+                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage(ValidationMessages.MissingStartTime);
+
+            RuleFor(x => x.Id)
+                .Must(NotBeNegativeClassesRemaining).WithMessage(ValidationMessages.InvalidClipsRemaining);
+        }
+
+        private bool NotBeNegativeClassesRemaining(Pass pass, int id)
+        {
+            var clipPass = pass as IClipPass;
+            if (clipPass == null)
+                return true;
+
+            return clipPass.ClipsRemaining >= 0;
         }
 
         private bool BeExisting(int id)
