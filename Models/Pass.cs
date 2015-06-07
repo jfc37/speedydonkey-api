@@ -45,8 +45,7 @@ namespace Models
         public virtual bool IsValid()
         {
             var today = DateTime.Now.Date;
-            var isPaidFor = _paymentStatus == PassPaymentStatus.Paid;
-            return isPaidFor && today >= StartDate && today <= EndDate;
+            return today >= StartDate && today <= EndDate;
         }
 
         private PassType _passType;
