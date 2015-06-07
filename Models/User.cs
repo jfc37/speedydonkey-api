@@ -36,7 +36,7 @@ namespace Models
 
         public virtual IPass GetPassToUse()
         {
-            return Passes.Where(x => x.IsValid() && x.PaymentStatus == PassPaymentStatus.Paid.ToString())
+            return Passes.Where(x => x.IsValid())
                 .OrderBy(x => x.EndDate)
                 .FirstOrDefault();
         }
@@ -45,7 +45,7 @@ namespace Models
         {
             if (Passes.Any(x => x.IsValid()))
             {
-                return Passes.Where(x => x.IsValid() && x.PaymentStatus == PassPaymentStatus.Paid.ToString())
+                return Passes.Where(x => x.IsValid())
                     .OrderBy(x => x.EndDate)
                     .FirstOrDefault();
             }
