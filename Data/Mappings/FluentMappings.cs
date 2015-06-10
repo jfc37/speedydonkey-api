@@ -32,7 +32,7 @@ namespace Data.Mappings
             Map(x => x.ShowUntil);
             Map(x => x.Type);
             Map(x => x.NotifyAll);
-            HasMany<Block>(x => x.Receivers);
+            HasManyToMany<Block>(x => x.Receivers);
         }
     }
 
