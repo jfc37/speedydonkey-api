@@ -55,5 +55,8 @@ namespace SpeedyDonkeyApi.Models
                 }).ToList();
             }
         }
+
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
     }
 }

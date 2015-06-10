@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Models
 {
-    public interface IBlock
+    public interface IBlock : IEntity
     {
         ICollection<ITeacher> Teachers { get; set; }
         ICollection<IUser> EnroledStudents { get; set; }
@@ -15,7 +15,7 @@ namespace Models
         int Id { get; set; }
     }
 
-    public class Block : IBlock, IEntity, IDatabaseEntity
+    public class Block : IBlock, IDatabaseEntity
     {
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }

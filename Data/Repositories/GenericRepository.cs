@@ -68,8 +68,7 @@ namespace Data.Repositories
         {
             Log(ActivityType.GetAll);
             return _session.CreateCriteria<TEntity>()
-                .List<TEntity>()
-                .Where(x => !x.Deleted);
+                .List<TEntity>();
         }
 
         public IEnumerable<TEntity> GetAllWithChildren(IList<string> children)

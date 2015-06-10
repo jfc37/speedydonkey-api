@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Action;
 using Common;
 using Data.Repositories;
@@ -26,7 +25,7 @@ namespace ActionHandlers.UpdateHandlers
             var originalEntity = _repository.Get(action.ActionAgainst.Id);
             _cloner.Copy(action.ActionAgainst, originalEntity);
 
-            if (HasTeachersChanged(originalEntity.Teachers, action.ActionAgainst.Teachers))
+            if (originalEntity.Teachers.DoesNotHaveSameItems(action.ActionAgainst.Teachers))
             {
                 var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).Cast<ITeacher>().ToList();
                 originalEntity.Teachers = actualTeachers;
@@ -34,16 +33,6 @@ namespace ActionHandlers.UpdateHandlers
 
             return _repository.Update(originalEntity);
 
-        }
-
-        private bool HasTeachersChanged(ICollection<ITeacher> orginal, ICollection<ITeacher> updated)
-        {
-            var orginalIds = orginal.Select(x => x.Id);
-            var updatedIds = updated.Select(x => x.Id);
-            var hasSameNumber = orginalIds.Count() == updatedIds.Count();
-            var areSameIds = orginalIds.All(x => updatedIds.Contains(x));
-
-            return !hasSameNumber || !areSameIds;
         }
     }
 }

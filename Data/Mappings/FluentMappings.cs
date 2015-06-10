@@ -20,6 +20,22 @@ namespace Data.Mappings
         }
     }
 
+    public class AnnouncementMap : ClassMap<Announcement>
+    {
+        public AnnouncementMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.Message);
+            Map(x => x.ShowFrom);
+            Map(x => x.ShowUntil);
+            Map(x => x.Type);
+            Map(x => x.NotifyAll);
+            HasMany<Block>(x => x.Receivers);
+        }
+    }
+
     public class UserMap : ClassMap<User>
     {
         public UserMap()

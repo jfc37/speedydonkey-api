@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityLog.cs" />
+    <Compile Include="Announcement.cs" />
     <Compile Include="AvailableTime.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Booking.cs" />
