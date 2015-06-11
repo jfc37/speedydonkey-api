@@ -219,6 +219,7 @@
     <Compile Include="Controllers\ReferenceDataApiController.cs" />
     <Compile Include="Controllers\TeacherApiController.cs" />
     <Compile Include="Controllers\ActivityLogApiController.cs" />
+    <Compile Include="Controllers\UserAnnouncementApiController.cs" />
     <Compile Include="Controllers\UserClaimsApiController.cs" />
     <Compile Include="Controllers\UserEnroledBlocksApiController.cs" />
     <Compile Include="Controllers\UserPasswordResetApiController.cs" />

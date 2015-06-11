@@ -32,7 +32,9 @@ namespace Data.Mappings
             Map(x => x.ShowUntil);
             Map(x => x.Type);
             Map(x => x.NotifyAll);
-            HasManyToMany<Block>(x => x.Receivers);
+            HasManyToMany<Block>(x => x.Receivers)
+                .Table("BlockToAnnouncement")
+                .AsSet();
         }
     }
 
@@ -152,6 +154,9 @@ namespace Data.Mappings
                 .AsSet();
             HasManyToMany<User>(x => x.Teachers)
                 .Table("BlockTeacher")
+                .AsSet();
+            HasManyToMany<Announcement>(x => x.Announcements)
+                .Table("BlockToAnnouncement")
                 .AsSet();
         }
     }

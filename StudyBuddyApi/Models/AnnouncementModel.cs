@@ -50,7 +50,7 @@ namespace SpeedyDonkeyApi.Models
         public DateTime CreatedDateTime { get; set; }
         public DateTime? LastUpdatedDateTime { get; set; }
         public string Message { get; set; }
-        public IEnumerable<IBlock> Receivers { get; set; }
+        public ICollection<IBlock> Receivers { get; set; }
         public string Type { get; set; }
         public DateTime? ShowFrom { get; set; }
         public DateTime? ShowUntil { get; set; }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Models;
 
 namespace Common
 {
@@ -18,6 +17,11 @@ namespace Common
         public static bool HasSameItems<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare) where T : IEntity
         {
             return !instance.DoesNotHaveSameItems(toCompare);  
+        }
+
+        public static bool NotAny<T>(this IEnumerable<T> instatnce)
+        {
+            return !instatnce.Any();
         }
     }
 }

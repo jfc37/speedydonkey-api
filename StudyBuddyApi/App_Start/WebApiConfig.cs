@@ -108,6 +108,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "CurrentUserAnnouncementsApi",
+                routeTemplate: "api/users/current/announcements",
+                defaults: new { controller = "UserAnnouncementApi" }
+                );
+
+            config.Routes.MapHttpRoute(
                 name: "CurrentUserPassPurchaseApi",
                 routeTemplate: "api/users/current/passtemplates/{passTemplateId}",
                 defaults: new { controller = "UserPassesApi" }
