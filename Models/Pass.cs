@@ -3,7 +3,7 @@ using Common;
 
 namespace Models
 {
-    public interface IPass : IEntity
+    public interface IPass : IEntity, INotable
     {
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
@@ -67,6 +67,8 @@ namespace Models
             var today = DateTime.Now.Date;
             return today < StartDate;
         }
+
+        public virtual string Note { get; set; }
     }
 
     public enum PassType

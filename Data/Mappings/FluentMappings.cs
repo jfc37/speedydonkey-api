@@ -53,6 +53,7 @@ namespace Data.Mappings
             Map(x => x.Claims);
             Map(x => x.Status);
             Map(x => x.ActivationKey);
+            Map(x => x.Note);
             HasManyToMany<Block>(x => x.EnroledBlocks)
                 .Table("UsersEnroledBlocks")
                 .AsSet();
@@ -190,6 +191,7 @@ namespace Data.Mappings
             Map(x => x.PaymentStatus);
             Map(x => x.Cost);
             Map(x => x.Description);
+            Map(x => x.Note);
             References(x => x.Owner)
                 .Column("User_id")
                 .Class(typeof (User));
