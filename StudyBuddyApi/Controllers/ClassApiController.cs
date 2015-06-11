@@ -23,7 +23,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
-        [ClaimsAuthorise(Claim = Claim.Admin)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Put(int id, [FromBody] ClassModel model)
         {
             model.Id = id;
