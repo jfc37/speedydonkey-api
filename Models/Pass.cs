@@ -18,6 +18,15 @@ namespace Models
 
     public class Pass : IPass, IDatabaseEntity
     {
+        public Pass()
+        {
+            
+        }
+
+        public Pass(int id)
+        {
+            Id = id;
+        }
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }

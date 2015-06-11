@@ -222,6 +222,7 @@
     <Compile Include="Controllers\UserAnnouncementApiController.cs" />
     <Compile Include="Controllers\UserClaimsApiController.cs" />
     <Compile Include="Controllers\UserEnroledBlocksApiController.cs" />
+    <Compile Include="Controllers\PassNoteApiController.cs" />
     <Compile Include="Controllers\UserNoteApiController.cs" />
     <Compile Include="Controllers\UserPasswordResetApiController.cs" />
     <Compile Include="Controllers\UserActivationApiController.cs" />

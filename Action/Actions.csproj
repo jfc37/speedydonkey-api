@@ -49,6 +49,7 @@
     <Compile Include="RemoveAsTeacher.cs" />
     <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />
+    <Compile Include="UpdatePassNote.cs" />
     <Compile Include="UpdateUserNote.cs" />
     <Compile Include="UpdateClass.cs" />
     <Compile Include="UpdateBlock.cs" />
