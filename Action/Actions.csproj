@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateAnnouncement.cs" />
+    <Compile Include="DeleteAnnouncement.cs" />
     <Compile Include="DeleteUser.cs" />
     <Compile Include="RemoveAsTeacher.cs" />
     <Compile Include="SetAsTeacher.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="DeleteBlock.cs" />
     <Compile Include="GenerateBlocksForAllLevels.cs" />
     <Compile Include="DeleteLevel.cs" />
+    <Compile Include="UpdateAnnouncement.cs" />
     <Compile Include="UpdateLevel.cs" />
     <Compile Include="DeletePassTemplate.cs" />
     <Compile Include="DeletePass.cs" />
@@ -75,6 +78,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{6FDCD6FF-6028-424C-BB2C-326315491190}</Project>
       <Name>Models</Name>

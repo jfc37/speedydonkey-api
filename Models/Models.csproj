@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityLog.cs" />
+    <Compile Include="Announcement.cs" />
     <Compile Include="AvailableTime.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Booking.cs" />
@@ -62,6 +63,12 @@
     <Compile Include="Teacher.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserClaim.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

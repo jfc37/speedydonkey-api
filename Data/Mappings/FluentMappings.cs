@@ -20,6 +20,24 @@ namespace Data.Mappings
         }
     }
 
+    public class AnnouncementMap : ClassMap<Announcement>
+    {
+        public AnnouncementMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.Message);
+            Map(x => x.ShowFrom);
+            Map(x => x.ShowUntil);
+            Map(x => x.Type);
+            Map(x => x.NotifyAll);
+            HasManyToMany<Block>(x => x.Receivers)
+                .Table("BlockToAnnouncement")
+                .AsSet();
+        }
+    }
+
     public class UserMap : ClassMap<User>
     {
         public UserMap()
@@ -136,6 +154,9 @@ namespace Data.Mappings
                 .AsSet();
             HasManyToMany<User>(x => x.Teachers)
                 .Table("BlockTeacher")
+                .AsSet();
+            HasManyToMany<Announcement>(x => x.Announcements)
+                .Table("BlockToAnnouncement")
                 .AsSet();
         }
     }

@@ -36,6 +36,12 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "AnnouncementApi",
+                routeTemplate: "api/announcements/{id}",
+                defaults: new { controller = "AnnouncementApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "TeacherApi",
                 routeTemplate: "api/teachers/{id}",
                 defaults: new { controller = "TeacherApi", id = RouteParameter.Optional }
@@ -100,6 +106,12 @@ namespace SpeedyDonkeyApi
                 routeTemplate: "api/passes/{id}",
                 defaults: new { controller = "PassApi", id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "CurrentUserAnnouncementsApi",
+                routeTemplate: "api/users/current/announcements",
+                defaults: new { controller = "UserAnnouncementApi" }
+                );
 
             config.Routes.MapHttpRoute(
                 name: "CurrentUserPassPurchaseApi",

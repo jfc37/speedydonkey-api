@@ -12,6 +12,7 @@ namespace SpeedyDonkeyApi.Models
 
         TEntity ToEntity(ICommonInterfaceCloner cloner);
 
+        IApiModel<TEntity> CloneFromEntity(TEntity entity, ICommonInterfaceCloner cloner);
         IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity, ICommonInterfaceCloner cloner);
     }
 
@@ -33,6 +34,14 @@ namespace SpeedyDonkeyApi.Models
         protected virtual void AddChildrenToEntity(TEntity entity, ICommonInterfaceCloner cloner)
         {
             
+        }
+
+        public virtual IApiModel<TEntity> CloneFromEntity(TEntity entity, ICommonInterfaceCloner cloner)
+        {
+            var model = cloner.Clone<TEntity, TModel>(entity);
+            AddChildrenToModel(entity, model);
+            SanitiseModel(model);
+            return model;
         }
 
         public virtual IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor,

@@ -49,6 +49,9 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="CommonInterfaceCloner.cs" />
     <Compile Include="CurrentUser.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Extensions\DateExtensions.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryableExtensions.cs" />
     <Compile Include="StringExtensions.cs" />
