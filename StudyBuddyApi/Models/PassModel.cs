@@ -72,6 +72,7 @@ namespace SpeedyDonkeyApi.Models
 
         public DateTime CreatedDateTime { get; set; }
         public DateTime? LastUpdatedDateTime { get; set; }
+        public string Note { get; set; }
     }
 
     public class ClipPassModel : PassModel, IClipPass

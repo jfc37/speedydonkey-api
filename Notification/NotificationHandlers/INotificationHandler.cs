@@ -7,11 +7,11 @@ namespace Notification.NotificationHandlers
         void Handle(T notification);
     }
 
-    public abstract class NotificationHandler<T> : INotificationHandler<T> where T : INotification
+    public class NotificationHandler<T> : INotificationHandler<T> where T : INotification
     {
         private readonly IMailMan _mailMan;
 
-        protected NotificationHandler(IMailMan mailMan)
+        public NotificationHandler(IMailMan mailMan)
         {
             _mailMan = mailMan;
         }

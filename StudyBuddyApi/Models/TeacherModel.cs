@@ -22,5 +22,6 @@ namespace SpeedyDonkeyApi.Models
         public IList<IPass> Passes { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? LastUpdatedDateTime { get; set; }
+        public string Note { get; set; }
     }
 }

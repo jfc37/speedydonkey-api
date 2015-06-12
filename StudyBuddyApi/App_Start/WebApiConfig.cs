@@ -36,6 +36,24 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
+                name: "UserNoteApi",
+                routeTemplate: "api/users/{id}/notes",
+                defaults: new { controller = "UserNoteApi" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "PassNoteApi",
+                routeTemplate: "api/passes/{id}/notes",
+                defaults: new { controller = "PassNoteApi" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "AnnouncementApi",
+                routeTemplate: "api/announcements/{id}",
+                defaults: new { controller = "AnnouncementApi", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "TeacherApi",
                 routeTemplate: "api/teachers/{id}",
                 defaults: new { controller = "TeacherApi", id = RouteParameter.Optional }
@@ -100,6 +118,12 @@ namespace SpeedyDonkeyApi
                 routeTemplate: "api/passes/{id}",
                 defaults: new { controller = "PassApi", id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "CurrentUserAnnouncementsApi",
+                routeTemplate: "api/users/current/announcements",
+                defaults: new { controller = "UserAnnouncementApi" }
+                );
 
             config.Routes.MapHttpRoute(
                 name: "CurrentUserPassPurchaseApi",
@@ -235,7 +259,7 @@ namespace SpeedyDonkeyApi
             var websiteUrl = ConfigurationManager.AppSettings.Get("WebsiteUrl");
             websiteUrl = "https://" + websiteUrl;
             if (websiteUrl == "https://spa-speedydonkey.azurewebsites.net")
-                websiteUrl = "https://spa-speedydonkey.azurewebsites.net,http://localhost:7300";
+                websiteUrl = "https://spa-speedydonkey.azurewebsites.net,http://localhost:7300,http://localhost:3000";
             var cors = new EnableCorsAttribute(websiteUrl, "*", "*");
             config.EnableCors(cors);
         }

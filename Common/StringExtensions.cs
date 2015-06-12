@@ -5,6 +5,11 @@ namespace Common
 {
     public static class StringExtensions
     {
+        public static bool EqualsEnum<TEnum>(this string instance, TEnum toCompare) where TEnum : struct
+        {
+            return instance.Equals(toCompare.ToString(), StringComparison.InvariantCultureIgnoreCase);
+        }
+
         public static object ConvertToType(this string someString, Type returnType)
         {
             var typeConverter = TypeDescriptor.GetConverter(returnType);

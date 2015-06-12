@@ -24,6 +24,7 @@ namespace SpeedyDonkeyApi.Models
         public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
         public ICollection<IClass> Classes { get; set; }
+        public ICollection<IAnnouncement> Announcements { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Name { get; set; }
@@ -55,5 +56,8 @@ namespace SpeedyDonkeyApi.Models
                 }).ToList();
             }
         }
+
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
     }
 }
