@@ -21,9 +21,9 @@ namespace Notification.Tests
                 .WithSending();
         }
 
-        private UserRegisteredHandler GetHandler()
+        private NotificationHandler<UserRegistered> GetHandler()
         {
-            return new UserRegisteredHandler(_mailManBuilder.BuildObject());
+            return new NotificationHandler<UserRegistered>(_mailManBuilder.BuildObject());
         }
         private void PerformAction()
         {

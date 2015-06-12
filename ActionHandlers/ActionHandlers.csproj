@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
+    <Compile Include="CreateHandlers\CreateAnnouncementHandler.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />
     <Compile Include="SetAsTeacherHandler.cs" />
     <Compile Include="CreateHandlers\CreatePassTemplateHandler.cs" />
@@ -72,9 +73,12 @@
     <Compile Include="IActionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeacherStudentConverter.cs" />
+    <Compile Include="UpdateHandlers\UpdatePassNoteHandler.cs" />
+    <Compile Include="UpdateHandlers\UpdateUserNoteHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateClassHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateEntityHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateBlockHandler.cs" />
+    <Compile Include="UpdateHandlers\UpdateAnnouncementHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateLevelHandler.cs" />
     <Compile Include="UpdateHandlers\UpdatePassTemplateHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateUserHandler.cs" />

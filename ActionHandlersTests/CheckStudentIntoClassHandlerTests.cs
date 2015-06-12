@@ -67,7 +67,8 @@ namespace ActionHandlersTests
             {
                 StartDate = DateTime.Now.AddDays(-1),
                 EndDate = DateTime.Now.AddDays(1),
-                PassStatistic = new PassStatistic()
+                PassStatistic = new PassStatistic(),
+                PaymentStatus = PassPaymentStatus.Paid.ToString()
             });
         }
 
@@ -95,7 +96,8 @@ namespace ActionHandlersTests
                 ClipsRemaining = ClipsBeforeCheckIn,
                 StartDate = DateTime.Now.AddDays(-1),
                 EndDate = DateTime.Now.AddDays(1),
-                PassStatistic = new PassStatistic()
+                PassStatistic = new PassStatistic(),
+                PaymentStatus = PassPaymentStatus.Paid.ToString()
             });
         }
 
@@ -126,7 +128,8 @@ namespace ActionHandlersTests
                 ClipsRemaining = ClipsBeforeCheckIn,
                 StartDate = today.AddDays(-1),
                 EndDate = today.AddDays(5),
-                PassStatistic = new PassStatistic()
+                PassStatistic = new PassStatistic(),
+                PaymentStatus = PassPaymentStatus.Paid.ToString()
             });
             _nextPass = new Pass
             {

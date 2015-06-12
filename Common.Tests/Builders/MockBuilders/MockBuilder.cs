@@ -8,7 +8,7 @@ namespace Common.Tests.Builders.MockBuilders
 
         protected MockBuilder()
         {
-            Mock = new Mock<T>(MockBehavior.Strict);
+            Mock = new Mock<T>(MockBehavior.Loose);
         }
 
         public T BuildObject()

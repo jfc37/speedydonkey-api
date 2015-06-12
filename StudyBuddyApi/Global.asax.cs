@@ -55,9 +55,6 @@ namespace SpeedyDonkeyApi
             builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionHandler<,>)).AsImplementedInterfaces();
 
-            builder.RegisterAssemblyTypes(typeof(PostOffice).Assembly)
-                .AsClosedTypesOf(typeof(INotificationHandler<>)).AsImplementedInterfaces();
-
             builder.RegisterAssemblyTypes(typeof(UserScheduleRepository).Assembly)
                 .AsClosedTypesOf(typeof(IAdvancedRepository<,>)).AsImplementedInterfaces();
 
@@ -67,6 +64,10 @@ namespace SpeedyDonkeyApi
 
             builder.RegisterGeneric(typeof(GenericRepository<>))
                 .As(typeof(IRepository<>))
+                .InstancePerDependency();
+
+            builder.RegisterGeneric(typeof(NotificationHandler<>))
+                .As(typeof(INotificationHandler<>))
                 .InstancePerDependency();
 
             builder.RegisterType<ActionHandlerOverlord>().As<IActionHandlerOverlord>();

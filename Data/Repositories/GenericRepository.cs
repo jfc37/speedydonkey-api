@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 using Models;
 using NHibernate;
 
@@ -68,8 +69,7 @@ namespace Data.Repositories
         {
             Log(ActivityType.GetAll);
             return _session.CreateCriteria<TEntity>()
-                .List<TEntity>()
-                .Where(x => !x.Deleted);
+                .List<TEntity>();
         }
 
         public IEnumerable<TEntity> GetAllWithChildren(IList<string> children)

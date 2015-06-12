@@ -106,4 +106,11 @@ namespace ActionHandlers.DeleteHandlers
         {
         }
     }
+    public class DeleteAnnouncementHandler : DeleteEntityHandler<DeleteAnnouncement, Announcement>
+    {
+        public DeleteAnnouncementHandler(IRepository<Announcement> repository)
+            : base(repository)
+        {
+        }
+    }
 }
