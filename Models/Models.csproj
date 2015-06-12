@@ -53,6 +53,7 @@
     <Compile Include="ClipPass.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="INotable.cs" />
     <Compile Include="Pass.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="PassStatistic.cs" />

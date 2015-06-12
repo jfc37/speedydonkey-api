@@ -5,7 +5,7 @@ using Common;
 
 namespace Models
 {
-    public interface IUser : IEntity
+    public interface IUser : IEntity, INotable
     {
         string Email { get; set; }
         string Password { get; set; }
@@ -18,6 +18,14 @@ namespace Models
 
     public class User : IUser, IDatabaseEntity
     {
+        public User()
+        {
+            
+        }
+        public User(int id)
+        {
+            Id = id;
+        }
 
         public virtual UserStatus Status { get; set; }
         public virtual Guid ActivationKey { get; set; }
@@ -56,6 +64,8 @@ namespace Models
                     .FirstOrDefault();
             }
         }
+
+        public virtual string Note { get; set; }
     }
 
     public enum UserStatus

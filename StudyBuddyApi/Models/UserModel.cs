@@ -46,5 +46,7 @@ namespace SpeedyDonkeyApi.Models
         {
             model.Password = null;
         }
+
+        public string Note { get; set; }
     }
 }
