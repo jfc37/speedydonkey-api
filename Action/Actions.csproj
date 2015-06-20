@@ -46,6 +46,7 @@
     <Compile Include="CreateAnnouncement.cs" />
     <Compile Include="DeleteAnnouncement.cs" />
     <Compile Include="DeleteUser.cs" />
+    <Compile Include="OnlinePayment\BeginOnlinePayment.cs" />
     <Compile Include="RemoveAsTeacher.cs" />
     <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />

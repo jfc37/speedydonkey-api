@@ -4,17 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6FDCD6FF-6028-424C-BB2C-326315491190}</ProjectGuid>
+    <ProjectGuid>{16EE1C93-463A-4CB5-B63B-8F894A7B0CDE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Models</RootNamespace>
-    <AssemblyName>Models</AssemblyName>
+    <RootNamespace>OnlinePayment</RootNamespace>
+    <AssemblyName>OnlinePayment</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,8 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCoreSDK">
+      <HintPath>..\packages\PayPalCoreSDK.1.6.1\lib\net45\PayPalCoreSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalMerchantSDK">
+      <HintPath>..\packages\PayPalMerchantSDK.2.15.117\lib\net20\PayPalMerchantSDK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,27 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityLog.cs" />
-    <Compile Include="Announcement.cs" />
-    <Compile Include="AvailableTime.cs" />
-    <Compile Include="Block.cs" />
-    <Compile Include="Booking.cs" />
-    <Compile Include="Class.cs" />
-    <Compile Include="ClipPass.cs" />
-    <Compile Include="IEntity.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="INotable.cs" />
-    <Compile Include="Pass.cs" />
-    <Compile Include="Level.cs" />
-    <Compile Include="PassStatistic.cs" />
-    <Compile Include="PassTemplate.cs" />
-    <Compile Include="PendingOnlinePayment.cs" />
+    <Compile Include="ExpressCheckout.cs" />
+    <Compile Include="Extensions\ErrorTypeExtensions.cs" />
+    <Compile Include="Extensions\SetExpressCheckoutResponseTypeExtensions.cs" />
+    <Compile Include="Models\ExpressCheckoutResponse.cs" />
+    <Compile Include="Models\PaymentDetails.cs" />
+    <Compile Include="Models\PaypalError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReferenceData.cs" />
-    <Compile Include="Room.cs" />
-    <Compile Include="Teacher.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserClaim.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

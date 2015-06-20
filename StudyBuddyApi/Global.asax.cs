@@ -22,6 +22,7 @@ using log4net.Config;
 using NHibernate.Tool.hbm2ddl;
 using Notification;
 using Notification.NotificationHandlers;
+using OnlinePayment;
 using SpeedyDonkeyApi.Services;
 using Validation;
 using Validation.Validators;
@@ -87,6 +88,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<PostOffice>().As<IPostOffice>();
             builder.RegisterType<MailMan>().As<IMailMan>();
             builder.RegisterType<AppSettings>().As<IAppSettings>();
+            builder.RegisterType<ExpressCheckout>().As<IExpressCheckout>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
             builder.RegisterType<ActivityLogger>().As<IActivityLogger>().InstancePerLifetimeScope();
             builder.RegisterType<TeacherStudentConverter>().As<ITeacherStudentConverter>().InstancePerLifetimeScope();

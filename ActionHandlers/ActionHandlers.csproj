@@ -50,6 +50,7 @@
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
     <Compile Include="CreateHandlers\CreateAnnouncementHandler.cs" />
+    <Compile Include="OnlinePayments\BeginOnlinePaymentHandler.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />
     <Compile Include="SetAsTeacherHandler.cs" />
     <Compile Include="CreateHandlers\CreatePassTemplateHandler.cs" />
@@ -107,6 +108,10 @@
     <ProjectReference Include="..\Notification\Notification.csproj">
       <Project>{01A83567-4346-45F7-8322-563F700C7AD8}</Project>
       <Name>Notification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlinePayment\OnlinePayment.csproj">
+      <Project>{16EE1C93-463A-4CB5-B63B-8F894A7B0CDE}</Project>
+      <Name>OnlinePayment</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>
