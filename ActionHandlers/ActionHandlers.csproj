@@ -50,6 +50,9 @@
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
     <Compile Include="CreateHandlers\CreateAnnouncementHandler.cs" />
+    <Compile Include="IActionHandlerWithResult.cs" />
+    <Compile Include="OnlinePayments\CompleteOnlinePaymentHandler.cs" />
+    <Compile Include="OnlinePayments\ConfirmOnlinePaymentHandler.cs" />
     <Compile Include="OnlinePayments\BeginOnlinePaymentHandler.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />
     <Compile Include="SetAsTeacherHandler.cs" />

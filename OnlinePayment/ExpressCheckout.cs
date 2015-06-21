@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Common.Extensions;
 using OnlinePayment.Extensions;
 using OnlinePayment.Models;
@@ -7,13 +8,63 @@ using PayPal.PayPalAPIInterfaceService.Model;
 
 namespace OnlinePayment
 {
+    public static class GetExpressCheckoutDetailsResponseTypeExtensions
+    {
+        public static GetExpressCheckoutResponse ToResponse(this GetExpressCheckoutDetailsResponseType instance)
+        {
+            return new GetExpressCheckoutResponse
+            {
+                Token = instance.GetExpressCheckoutDetailsResponseDetails.Token,
+                Errors = instance.Errors.Select(x => x.ToPaypalError()),
+                Status = instance.Ack.ToString(),
+                PayerId = instance.GetExpressCheckoutDetailsResponseDetails.PayerInfo.PayerID
+            };
+        }
+    }
+    public static class DoExpressCheckoutDetailsResponseTypeExtensions
+    {
+        public static DoExpressCheckoutResponse ToResponse(this DoExpressCheckoutPaymentResponseType instance)
+        {
+            return new DoExpressCheckoutResponse
+            {
+                Errors = instance.Errors.Select(x => x.ToPaypalError()),
+                Status = instance.Ack.ToString()
+            };
+        }
+    }
+
+    public class GetExpressCheckoutResponse
+    {
+        public string Token { get; set; }
+        public IEnumerable<PaypalError> Errors { get; set; }
+        public string Status { get; set; }
+        public string PayerId { get; set; }
+    }
+
+    public class DoExpressCheckoutResponse
+    {
+        public string Token { get; set; }
+        public IEnumerable<PaypalError> Errors { get; set; }
+        public string Status { get; set; }
+        public string PayerId { get; set; }
+    }
+
+    public class DoExpressCheckoutRequest
+    {
+        public string Token { get; set; }
+        public decimal Amount { get; set; }
+        public string PayerId { get; set; }
+    }
+
     public interface IExpressCheckout
     {
-        ExpressCheckoutResponse Set(PaymentDetails details);
+        SetExpressCheckoutResponse Set(PaymentDetails details);
+        GetExpressCheckoutResponse Get(string token);
+        DoExpressCheckoutResponse Do(DoExpressCheckoutRequest request);
     }
     public class ExpressCheckout : IExpressCheckout
     {
-        public ExpressCheckoutResponse Set(PaymentDetails details)
+        public SetExpressCheckoutResponse Set(PaymentDetails details)
         {
             var request = GetSetRequest(details);
 
@@ -21,6 +72,39 @@ namespace OnlinePayment
             var service = new PayPalAPIInterfaceServiceService(GetConfig());
             SetExpressCheckoutResponseType setECResponse = service.SetExpressCheckout(wrapper);
             return setECResponse.ToResponse();
+        }
+
+        public GetExpressCheckoutResponse Get(string token)
+        {
+            var request = new GetExpressCheckoutDetailsRequestType {Version = "104.0", Token = token};
+            var wrapper = new GetExpressCheckoutDetailsReq {GetExpressCheckoutDetailsRequest = request};
+
+            var service = new PayPalAPIInterfaceServiceService(GetConfig());
+            GetExpressCheckoutDetailsResponseType ecResponse = service.GetExpressCheckoutDetails(wrapper);
+
+            return ecResponse.ToResponse();
+        }
+
+        public DoExpressCheckoutResponse Do(DoExpressCheckoutRequest details)
+        {
+            var paymentDetail = new PaymentDetailsType();
+            paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
+            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToString());
+
+            var request = new DoExpressCheckoutPaymentRequestType {Version = "104.0"};
+            var requestDetails = new DoExpressCheckoutPaymentRequestDetailsType
+            {
+                PaymentDetails = paymentDetail.ToList(),
+                Token = details.Token,
+                PayerID = details.PayerId
+            };
+            request.DoExpressCheckoutPaymentRequestDetails = requestDetails;
+
+            var wrapper = new DoExpressCheckoutPaymentReq {DoExpressCheckoutPaymentRequest = request};
+            var service = new PayPalAPIInterfaceServiceService(GetConfig());
+            var doECResponse = service.DoExpressCheckoutPayment(wrapper);
+
+            return doECResponse.ToResponse();
         }
 
         private static SetExpressCheckoutRequestType GetSetRequest(PaymentDetails details)

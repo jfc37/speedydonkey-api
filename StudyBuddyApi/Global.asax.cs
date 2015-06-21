@@ -7,9 +7,11 @@ using System.Web.Mvc;
 using ActionHandlers;
 using ActionHandlers.CreateHandlers.Strategies;
 using ActionHandlers.EnrolmentProcess;
+using ActionHandlers.OnlinePayments;
 using ActionHandlers.UserPasses;
 using Autofac;
 using Autofac.Core;
+using Autofac.Features.ResolveAnything;
 using Autofac.Integration.WebApi;
 using Common;
 using Data;
@@ -49,9 +51,14 @@ namespace SpeedyDonkeyApi
             // Register the Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
+            builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
+
             // Register other dependencies.
             builder.RegisterAssemblyTypes(typeof(ValidatorOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionValidator<,>)).AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
+                .AsClosedTypesOf(typeof(IActionHandlerWithResult<,,>)).AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionHandler<,>)).AsImplementedInterfaces();
@@ -92,6 +99,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
             builder.RegisterType<ActivityLogger>().As<IActivityLogger>().InstancePerLifetimeScope();
             builder.RegisterType<TeacherStudentConverter>().As<ITeacherStudentConverter>().InstancePerLifetimeScope();
+            builder.RegisterType<PaymentDetailsRetriever>().As<IPaymentDetailsRetriever>().InstancePerLifetimeScope();
 
             // Build the container.
             var container = builder.Build();

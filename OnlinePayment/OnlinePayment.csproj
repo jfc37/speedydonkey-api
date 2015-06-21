@@ -51,7 +51,7 @@
     <Compile Include="ExpressCheckout.cs" />
     <Compile Include="Extensions\ErrorTypeExtensions.cs" />
     <Compile Include="Extensions\SetExpressCheckoutResponseTypeExtensions.cs" />
-    <Compile Include="Models\ExpressCheckoutResponse.cs" />
+    <Compile Include="Models\SetExpressCheckoutResponse.cs" />
     <Compile Include="Models\PaymentDetails.cs" />
     <Compile Include="Models\PaypalError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

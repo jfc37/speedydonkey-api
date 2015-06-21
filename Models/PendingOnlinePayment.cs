@@ -11,7 +11,7 @@ namespace Models
         int UserId { get; set; }
     }
 
-    public class PendingOnlinePayment : IPendingOnlinePayment
+    public class PendingOnlinePayment : IPendingOnlinePayment, IDatabaseEntity
     {
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
@@ -20,5 +20,15 @@ namespace Models
         public virtual int TemplateId { get; set; }
         public virtual string Token { get; set; }
         public virtual int UserId { get; set; }
+        public virtual bool Deleted { get; set; }
+        public virtual string PayerId { get; set; }
+        public virtual decimal Amount { get; set; }
+        public virtual OnlinePaymentStatus Status { get; set; }
+    }
+
+    public enum OnlinePaymentStatus
+    {
+        Pending,
+        Complete
     }
 }
