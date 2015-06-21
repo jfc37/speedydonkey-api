@@ -23,7 +23,7 @@ namespace StudyBuddyApi.Tests.Controllers
                 var controller = new PayPalApiController(actionHandlerOverlord.BuildObject(), new CurrentUser());
                 controller.ModelState.AddModelError("1", "1");
 
-                var response = controller.Post(new PayPalBeginViewModel());
+                var response = controller.Begin(new PayPalBeginViewModel());
 
                 Assert.IsInstanceOf<InvalidModelStateResult>(response);
             }
@@ -42,7 +42,7 @@ namespace StudyBuddyApi.Tests.Controllers
 
                 var controller = new PayPalApiController(actionHandlerOverlord.BuildObject(), new CurrentUser());
 
-                var response = controller.Post(new PayPalBeginViewModel());
+                var response = controller.Begin(new PayPalBeginViewModel());
 
                 Assert.IsInstanceOf<InvalidModelStateResult>(response);
             }
@@ -55,7 +55,7 @@ namespace StudyBuddyApi.Tests.Controllers
 
                 var controller = new PayPalApiController(actionHandlerOverlord.BuildObject(), new CurrentUser());
 
-                var response = controller.Post(new PayPalBeginViewModel());
+                var response = controller.Begin(new PayPalBeginViewModel());
 
                 Assert.IsInstanceOf<OkNegotiatedContentResult<ActionReponse<PendingOnlinePayment>>>(response);
             }
