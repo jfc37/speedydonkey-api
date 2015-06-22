@@ -28,7 +28,7 @@ namespace ActionHandlers.OnlinePayments
 
         public SetExpressCheckoutResponse Handle(BeginOnlinePayment action)
         {
-            var paymentDetails = _paymentDetailsRetriever.GetDetails(action.ActionAgainst);
+            var paymentDetails = _paymentDetailsRetriever.GetDetails(action);
             
             var result = _expressCheckout.Set(paymentDetails);
 
@@ -42,7 +42,7 @@ namespace ActionHandlers.OnlinePayments
 
     public interface IPaymentDetailsRetriever : IAutoRegistered
     {
-        PaymentDetails GetDetails(PendingOnlinePayment pendingOnlinePayment);
+        PaymentDetails GetDetails(BeginOnlinePayment beginOnlinePayment);
     }
 
     public class PaymentDetailsRetriever : IPaymentDetailsRetriever
@@ -54,15 +54,15 @@ namespace ActionHandlers.OnlinePayments
             _repository = repository;
         }
 
-        public PaymentDetails GetDetails(PendingOnlinePayment pendingOnlinePayment)
+        public PaymentDetails GetDetails(BeginOnlinePayment beginOnlinePayment)
         {
-            var template = _repository.Get(pendingOnlinePayment.TemplateId);
+            var template = _repository.Get(beginOnlinePayment.ActionAgainst.TemplateId);
             return new PaymentDetails
             {
                 Amount = template.Cost,
                 BuyerEmail = "placid.joe@gmail.com",
-                CancelUrl = "https://spa-speedydonkey.azurewebsites.net/cancel",
-                ReturnUrl = "https://spa-speedydonkey.azurewebsites.net/return",
+                CancelUrl = beginOnlinePayment.CancelUrl,
+                ReturnUrl = beginOnlinePayment.ReturnUrl,
                 Description = "Pass"
             };
         }
