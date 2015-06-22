@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Common.Extensions;
 using OnlinePayment.Extensions;
@@ -8,6 +9,14 @@ using PayPal.PayPalAPIInterfaceService.Model;
 
 namespace OnlinePayment
 {
+    public static class DecimalExtensions
+    {
+        public static string ToCurrencyString(this decimal instance)
+        {
+            return instance.ToString("N2");
+        }
+    }
+
     public static class GetExpressCheckoutDetailsResponseTypeExtensions
     {
         public static GetExpressCheckoutResponse ToResponse(this GetExpressCheckoutDetailsResponseType instance)
@@ -89,7 +98,7 @@ namespace OnlinePayment
         {
             var paymentDetail = new PaymentDetailsType();
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
-            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToString());
+            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToCurrencyString());
 
             var request = new DoExpressCheckoutPaymentRequestType {Version = "104.0"};
             var requestDetails = new DoExpressCheckoutPaymentRequestDetailsType
@@ -138,7 +147,7 @@ namespace OnlinePayment
             var paymentDetail = new PaymentDetailsType();
             var paymentItem = new PaymentDetailsItemType();
             paymentItem.Name = details.Description;
-            paymentItem.Amount = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToString());
+            paymentItem.Amount = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToCurrencyString());
             paymentItem.Quantity = 1;
             paymentItem.ItemCategory = ItemCategoryType.DIGITAL;
             var paymentItems = new List<PaymentDetailsItemType>();
@@ -146,7 +155,7 @@ namespace OnlinePayment
             paymentDetail.PaymentDetailsItem = paymentItems;
 
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
-            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToString());
+            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToCurrencyString());
 
             return paymentDetail.ToList();
         }
