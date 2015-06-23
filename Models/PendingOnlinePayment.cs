@@ -6,6 +6,7 @@ namespace Models
     public interface IPendingOnlinePayment : IEntity
     {
         string ItemType { get; set; }
+        string Description { get; set; }
         int TemplateId { get; set; }
         string Token { get; set; }
         int UserId { get; set; }
@@ -17,6 +18,7 @@ namespace Models
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual string ItemType { get; set; }
+        public virtual string Description { get; set; }
         public virtual int TemplateId { get; set; }
         public virtual string Token { get; set; }
         public virtual int UserId { get; set; }

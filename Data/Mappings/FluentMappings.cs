@@ -18,6 +18,7 @@ namespace Data.Mappings
             Map(x => x.PayerId);
             Map(x => x.Amount);
             Map(x => x.Status);
+            Map(x => x.Description);
         }
     }
 

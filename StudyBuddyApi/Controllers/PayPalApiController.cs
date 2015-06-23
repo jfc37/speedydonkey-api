@@ -23,8 +23,8 @@ namespace SpeedyDonkeyApi.Controllers
         [Route("api/paypal/begin")]
         public IHttpActionResult Begin(PayPalBeginViewModel model)
         {
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
             var response = _actionHandlerOverlord.HandleAction<BeginOnlinePayment, PendingOnlinePayment, SetExpressCheckoutResponse>(model.ToAction(_currentUser));
 
@@ -37,8 +37,8 @@ namespace SpeedyDonkeyApi.Controllers
         [Route("api/paypal/confirm")]
         public IHttpActionResult Confirm(PayPalConfirmViewModel model)
         {
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
             var response = _actionHandlerOverlord.HandleAction<ConfirmOnlinePayment, PendingOnlinePayment, GetExpressCheckoutResponse>(new ConfirmOnlinePayment(model.Token));
 
@@ -50,8 +50,8 @@ namespace SpeedyDonkeyApi.Controllers
         [Route("api/paypal/complete")]
         public IHttpActionResult Complete(PayPalConfirmViewModel model)
         {
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
             var response = _actionHandlerOverlord.HandleAction<CompleteOnlinePayment, PendingOnlinePayment, DoExpressCheckoutResponse>(new CompleteOnlinePayment(model.Token));
 

@@ -35,6 +35,7 @@ namespace ActionHandlers.OnlinePayments
             action.ActionAgainst.Token = result.Token;
             action.ActionAgainst.UserId = _currentUser.Id;
             action.ActionAgainst.Amount = paymentDetails.Amount;
+            action.ActionAgainst.Description = paymentDetails.Description;
             _repository.Create(action.ActionAgainst);
             return result;
         }
@@ -63,7 +64,7 @@ namespace ActionHandlers.OnlinePayments
                 BuyerEmail = "placid.joe@gmail.com",
                 CancelUrl = beginOnlinePayment.CancelUrl,
                 ReturnUrl = beginOnlinePayment.ReturnUrl,
-                Description = "Pass"
+                Description = template.Description
             };
         }
     }

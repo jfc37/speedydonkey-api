@@ -35,6 +35,7 @@ namespace ActionHandlers.OnlinePayments
             pendingOnlinePayment.PayerId = result.PayerId;
             _repository.Update(pendingOnlinePayment);
 
+            result.Description = pendingOnlinePayment.Description;
             return result;
         }
     }

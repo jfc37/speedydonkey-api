@@ -2,6 +2,7 @@
 using Action;
 using Action.OnlinePayment;
 using Common;
+using Common.Extensions;
 using Data.Repositories;
 using Models;
 using OnlinePayment;
@@ -45,13 +46,7 @@ namespace ActionHandlers.OnlinePayments
 
             _purchasePassHandler.Handle(new PurchasePass(new User(_currentUser.Id)
             {
-                Passes = new[]
-                {
-                    new Pass
-                    {
-                        PaymentStatus = PassPaymentStatus.Paid.ToString()
-                    },
-                }
+                Passes = new Pass { PaymentStatus = PassPaymentStatus.Paid.ToString()}.ToList<IPass>()
             })
             {
                 PassTemplateId = pendingOnlinePayment.TemplateId

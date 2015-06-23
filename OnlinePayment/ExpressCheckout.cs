@@ -48,6 +48,7 @@ namespace OnlinePayment
         public IEnumerable<PaypalError> Errors { get; set; }
         public string Status { get; set; }
         public string PayerId { get; set; }
+        public string Description { get; set; }
     }
 
     public class DoExpressCheckoutResponse
