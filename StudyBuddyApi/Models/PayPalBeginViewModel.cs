@@ -10,7 +10,7 @@ namespace SpeedyDonkeyApi.Models
         [Required]
         public int TemplateId { get; set; }
 
-        [Required]
+        //[Required]
         public string ItemType { get; set; }
 
         [Required]
