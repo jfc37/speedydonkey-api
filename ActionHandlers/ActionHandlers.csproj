@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
+    <Compile Include="Calculations\ExpressCheckoutTotalCalculation.cs" />
+    <Compile Include="Calculations\ExpressCheckoutFeeCalculation.cs" />
     <Compile Include="CreateHandlers\CreateAnnouncementHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
     <Compile Include="OnlinePayments\CompleteOnlinePaymentHandler.cs" />

@@ -1,4 +1,5 @@
 ﻿using Action.OnlinePayment;
+using ActionHandlers.Calculations;
 using Common;
 using Data.Repositories;
 using Models;
@@ -58,9 +59,12 @@ namespace ActionHandlers.OnlinePayments
         public PaymentDetails GetDetails(BeginOnlinePayment beginOnlinePayment)
         {
             var template = _repository.Get(beginOnlinePayment.ActionAgainst.TemplateId);
+            var paymentTotal = new ExpressCheckoutTotalCalculation(template.Cost)
+                .Calculate()
+                .Result();
             return new PaymentDetails
             {
-                Amount = template.Cost,
+                Amount = paymentTotal,
                 BuyerEmail = "placid.joe@gmail.com",
                 CancelUrl = beginOnlinePayment.CancelUrl,
                 ReturnUrl = beginOnlinePayment.ReturnUrl,

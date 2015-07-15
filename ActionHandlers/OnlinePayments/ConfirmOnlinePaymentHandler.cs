@@ -36,6 +36,7 @@ namespace ActionHandlers.OnlinePayments
             _repository.Update(pendingOnlinePayment);
 
             result.Description = pendingOnlinePayment.Description;
+            result.Amount = pendingOnlinePayment.Amount;
             return result;
         }
     }

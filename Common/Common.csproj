@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Calculations\CalculationResult.cs" />
+    <Compile Include="Calculations\ICalculation.cs" />
     <Compile Include="CommonInterfaceCloner.cs" />
     <Compile Include="CurrentUser.cs" />
     <Compile Include="EnumerableExtensions.cs" />

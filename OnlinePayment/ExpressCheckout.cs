@@ -49,6 +49,7 @@ namespace OnlinePayment
         public string Status { get; set; }
         public string PayerId { get; set; }
         public string Description { get; set; }
+        public decimal Amount { get; set; }
     }
 
     public class DoExpressCheckoutResponse
@@ -124,6 +125,11 @@ namespace OnlinePayment
             var ecDetails = new SetExpressCheckoutRequestDetailsType();
             ecDetails.ReturnURL = details.ReturnUrl;
             ecDetails.CancelURL = details.CancelUrl;
+            ecDetails.NoShipping = "1";
+            ecDetails.ReqConfirmShipping = "0";
+            ecDetails.SolutionType = SolutionTypeType.SOLE;
+            ecDetails.LandingPage = LandingPageType.BILLING;
+
             ecDetails.PaymentDetails = paymentDetails;
 
             var request = new SetExpressCheckoutRequestType();
@@ -150,14 +156,14 @@ namespace OnlinePayment
             paymentItem.Name = details.Description;
             paymentItem.Amount = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToCurrencyString());
             paymentItem.Quantity = 1;
-            paymentItem.ItemCategory = ItemCategoryType.DIGITAL;
+            //paymentItem.ItemCategory = ItemCategoryType.DIGITAL;
             var paymentItems = new List<PaymentDetailsItemType>();
             paymentItems.Add(paymentItem);
             paymentDetail.PaymentDetailsItem = paymentItems;
 
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
             paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToCurrencyString());
-
+            //paymentDetail.ShippingMethod = ShippingServiceCodeType.DOWNLOAD;
             return paymentDetail.ToList();
         }
     }
