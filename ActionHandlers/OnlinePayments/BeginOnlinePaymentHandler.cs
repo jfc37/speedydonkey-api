@@ -42,7 +42,7 @@ namespace ActionHandlers.OnlinePayments
         }
     }
 
-    public interface IPaymentDetailsRetriever : IAutoRegistered
+    public interface IPaymentDetailsRetriever
     {
         PaymentDetails GetDetails(BeginOnlinePayment beginOnlinePayment);
     }

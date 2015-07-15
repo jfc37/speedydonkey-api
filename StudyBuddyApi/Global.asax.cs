@@ -78,28 +78,23 @@ namespace SpeedyDonkeyApi
                 .As(typeof(INotificationHandler<>))
                 .InstancePerDependency();
 
-            builder.RegisterType<ActionHandlerOverlord>().As<IActionHandlerOverlord>();
-            builder.RegisterType<ValidatorOverlord>().As<IValidatorOverlord>();
+            var assemblies = new[]
+            {
+                typeof (ExpressCheckout).Assembly,
+                typeof (ActionHandlerOverlord).Assembly,
+                typeof (ValidatorOverlord).Assembly,
+                typeof (UrlConstructor).Assembly,
+                typeof (SearchQueryParser).Assembly,
+                typeof (CommonInterfaceCloner).Assembly,
+                typeof (PostOffice).Assembly,
+
+            };
+            builder.RegisterAssemblyTypes(assemblies)
+                .AsImplementedInterfaces();
+
             builder.RegisterType<Container>().As<IContainer>();
-            builder.RegisterType<UrlConstructor>().As<IUrlConstructor>();
-            builder.RegisterType<PasswordHasher>().As<IPasswordHasher>();
-            builder.RegisterType<SearchQueryParser>().As<ISearchQueryParser>();
-            builder.RegisterType<QueryFilterModifier>().As<IQueryModifier>();
-            builder.RegisterType<ConditionExpressionHandlerFactory>().As<IConditionExpressionHandlerFactory>();
-            builder.RegisterType<QueryModifierFactory>().As<IQueryModifierFactory>();
-            builder.RegisterType<BlockPopulatorStrategyFactory>().As<IBlockPopulatorStrategyFactory>();
-            builder.RegisterType<CommonInterfaceCloner>().As<ICommonInterfaceCloner>();
-            builder.RegisterType<PassCreatorFactory>().As<IPassCreatorFactory>();
-            builder.RegisterType<UserPassAppender>().As<IUserPassAppender>();
-            builder.RegisterType<BlockEnrolmentService>().As<IBlockEnrolmentService>();
-            builder.RegisterType<PostOffice>().As<IPostOffice>();
-            builder.RegisterType<MailMan>().As<IMailMan>();
-            builder.RegisterType<AppSettings>().As<IAppSettings>();
-            builder.RegisterType<ExpressCheckout>().As<IExpressCheckout>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
             builder.RegisterType<ActivityLogger>().As<IActivityLogger>().InstancePerLifetimeScope();
-            builder.RegisterType<TeacherStudentConverter>().As<ITeacherStudentConverter>().InstancePerLifetimeScope();
-            builder.RegisterType<PaymentDetailsRetriever>().As<IPaymentDetailsRetriever>().InstancePerLifetimeScope();
 
             // Build the container.
             var container = builder.Build();
