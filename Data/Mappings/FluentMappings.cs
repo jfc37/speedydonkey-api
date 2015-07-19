@@ -38,6 +38,18 @@ namespace Data.Mappings
         }
     }
 
+    public class RegistrationMap : ClassMap<Registration>
+    {
+        public RegistrationMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.OnlinePaymentStatus);
+            Map(x => x.RegistationId);
+        }
+    }
+
     public class AnnouncementMap : ClassMap<Announcement>
     {
         public AnnouncementMap()

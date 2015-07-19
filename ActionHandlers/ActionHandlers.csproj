@@ -52,6 +52,7 @@
     <Compile Include="Calculations\ExpressCheckoutTotalCalculation.cs" />
     <Compile Include="Calculations\ExpressCheckoutFeeCalculation.cs" />
     <Compile Include="CreateHandlers\CreateAnnouncementHandler.cs" />
+    <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
     <Compile Include="OnlinePayments\CompleteOnlinePaymentHandler.cs" />
     <Compile Include="OnlinePayments\ConfirmOnlinePaymentHandler.cs" />

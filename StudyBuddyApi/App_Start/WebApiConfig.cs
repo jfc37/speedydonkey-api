@@ -23,6 +23,12 @@ namespace SpeedyDonkeyApi
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "RegistrationApi",
+                routeTemplate: "api/windy-lindy/registration/{registrationNumber}",
+                defaults: new { controller = "RegistrationApi", registrationNumber = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "CurrentUserApi",
                 routeTemplate: "api/users/current",
                 defaults: new { controller = "CurrentUserApi" }
