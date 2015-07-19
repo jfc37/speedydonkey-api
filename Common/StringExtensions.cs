@@ -15,5 +15,10 @@ namespace Common
             var typeConverter = TypeDescriptor.GetConverter(returnType);
             return typeConverter.ConvertFromInvariantString(someString);
         }
+
+        public static string FormatWith(this string instance, params object[] parameters)
+        {
+            return String.Format(instance, parameters);
+        }
     }
 }

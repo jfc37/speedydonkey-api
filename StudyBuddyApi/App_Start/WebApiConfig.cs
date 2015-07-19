@@ -22,7 +22,6 @@ namespace SpeedyDonkeyApi
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-
             config.Routes.MapHttpRoute(
                 name: "CurrentUserApi",
                 routeTemplate: "api/users/current",

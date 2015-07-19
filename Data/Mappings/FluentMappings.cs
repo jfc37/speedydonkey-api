@@ -4,6 +4,24 @@ using Models;
 namespace Data.Mappings
 {
 
+    public class PendingOnlinePaymentMap : ClassMap<PendingOnlinePayment>
+    {
+        public PendingOnlinePaymentMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.ItemType);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.TemplateId);
+            Map(x => x.Token);
+            Map(x => x.UserId);
+            Map(x => x.PayerId);
+            Map(x => x.Amount);
+            Map(x => x.Status);
+            Map(x => x.Description);
+        }
+    }
+
     public class ActivityLogMap : ClassMap<ActivityLog>
     {
         public ActivityLogMap()

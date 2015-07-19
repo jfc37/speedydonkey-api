@@ -111,9 +111,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Cors">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.2\lib\net45\System.Web.Cors.dll</HintPath>
@@ -127,16 +127,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.Cors">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.2\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -209,6 +209,7 @@
     <Compile Include="Controllers\DatabaseApiController.cs" />
     <Compile Include="Controllers\EnrolmentApiController.cs" />
     <Compile Include="Controllers\AnnouncementApiController.cs" />
+    <Compile Include="Controllers\PayPalApiController.cs" />
     <Compile Include="Controllers\ProfitReportApiController.cs" />
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserPassesApiController.cs" />
     <Compile Include="Controllers\UserScheduleApiController.cs" />
+    <Compile Include="Controllers\ValidationResultExtensions.cs" />
     <Compile Include="Filter\ActiveUserRequired.cs" />
     <Compile Include="Filter\ClaimsAuthorise.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
@@ -244,6 +246,8 @@
     <Compile Include="Models\AnnouncementModel.cs" />
     <Compile Include="Models\PassStatisticModel.cs" />
     <Compile Include="Models\PassTemplateModel.cs" />
+    <Compile Include="Models\PayPalBeginViewModel.cs" />
+    <Compile Include="Models\PayPalConfirmViewModel.cs" />
     <Compile Include="Models\ProfitReportModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\UserEnroledBlocksModel.cs" />
@@ -356,6 +360,10 @@
     <ProjectReference Include="..\Notification\Notification.csproj">
       <Project>{01A83567-4346-45F7-8322-563F700C7AD8}</Project>
       <Name>Notification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlinePayment\OnlinePayment.csproj">
+      <Project>{16EE1C93-463A-4CB5-B63B-8F894A7B0CDE}</Project>
+      <Name>OnlinePayment</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>
