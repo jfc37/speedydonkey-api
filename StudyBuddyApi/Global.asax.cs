@@ -24,7 +24,8 @@ using log4net.Config;
 using NHibernate.Tool.hbm2ddl;
 using Notification;
 using Notification.NotificationHandlers;
-using OnlinePayment;
+using OnlinePayments;
+using OnlinePayments.PaymentMethods.PayPal;
 using SpeedyDonkeyApi.Services;
 using Validation;
 using Validation.Validators;
@@ -65,6 +66,9 @@ namespace SpeedyDonkeyApi
 
             builder.RegisterAssemblyTypes(typeof(UserScheduleRepository).Assembly)
                 .AsClosedTypesOf(typeof(IAdvancedRepository<,>)).AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(typeof(PayPayPaymentStrategy).Assembly)
+                .AsClosedTypesOf(typeof(IStartPaymentStrategy<,>)).AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(EntitySearch<>))
                 .As(typeof(IEntitySearch<>))

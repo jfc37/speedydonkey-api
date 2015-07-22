@@ -1,7 +1,7 @@
-using OnlinePayment.Models;
+using OnlinePayments.Models;
 using PayPal.PayPalAPIInterfaceService.Model;
 
-namespace OnlinePayment.Extensions
+namespace OnlinePayments.Extensions
 {
     public static class ErrorTypeExtensions
     {

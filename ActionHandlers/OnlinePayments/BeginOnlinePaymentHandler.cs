@@ -3,12 +3,12 @@ using ActionHandlers.Calculations;
 using Common;
 using Data.Repositories;
 using Models;
-using OnlinePayment;
-using OnlinePayment.Models;
+using OnlinePayments;
+using OnlinePayments.Models;
 
 namespace ActionHandlers.OnlinePayments
 {
-    public class BeginOnlinePaymentHandler : IActionHandlerWithResult<BeginOnlinePayment, PendingOnlinePayment, SetExpressCheckoutResponse>
+    public class BeginOnlinePaymentHandler : IActionHandlerWithResult<BeginOnlinePayment, PendingOnlinePayment, StartPayPalPaymentResponse>
     {
         private readonly IExpressCheckout _expressCheckout;
         private readonly IPaymentDetailsRetriever _paymentDetailsRetriever;
@@ -27,7 +27,7 @@ namespace ActionHandlers.OnlinePayments
             _currentUser = currentUser;
         }
 
-        public SetExpressCheckoutResponse Handle(BeginOnlinePayment action)
+        public StartPayPalPaymentResponse Handle(BeginOnlinePayment action)
         {
             var paymentDetails = _paymentDetailsRetriever.GetDetails(action);
             

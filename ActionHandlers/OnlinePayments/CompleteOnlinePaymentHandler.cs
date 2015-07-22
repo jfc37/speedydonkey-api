@@ -5,8 +5,7 @@ using Common;
 using Common.Extensions;
 using Data.Repositories;
 using Models;
-using OnlinePayment;
-using OnlinePayment.Models;
+using OnlinePayments;
 
 namespace ActionHandlers.OnlinePayments
 {

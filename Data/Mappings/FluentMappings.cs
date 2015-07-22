@@ -1,8 +1,36 @@
 ﻿using FluentNHibernate.Mapping;
 using Models;
+using Models.OnlinePayments;
 
 namespace Data.Mappings
 {
+
+    public class OnlinePaymentMap : ClassMap<OnlinePayment>
+    {
+        public OnlinePaymentMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.ItemType);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.Description);
+            Map(x => x.Fee);
+            Map(x => x.ItemId);
+            Map(x => x.PaymentMethod);
+            Map(x => x.Price);
+        }
+    }
+
+    public class PayPalPaymentMap : SubclassMap<PayPalPayment>
+    {
+        public PayPalPaymentMap()
+        {
+            Map(x => x.ReturnUrl);
+            Map(x => x.CancelUrl);
+            Map(x => x.BuyerEmail);
+            Map(x => x.Token);
+        }
+    }
 
     public class PendingOnlinePaymentMap : ClassMap<PendingOnlinePayment>
     {
@@ -113,7 +141,7 @@ namespace Data.Mappings
             Map(x => x.EndTime);
             Map(x => x.Name);
             References(x => x.Block)
-                .Class(typeof (Block));
+                .Class(typeof(Block));
             HasManyToMany<User>(x => x.RegisteredStudents)
                 .Table("ClassRoll")
                 .AsSet();
@@ -138,7 +166,7 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             References(x => x.Event)
-                .Class(typeof (Class))
+                .Class(typeof(Class))
                 .Cascade.SaveUpdate()
                 .Not.LazyLoad();
         }
@@ -176,7 +204,7 @@ namespace Data.Mappings
             Map(x => x.EndDate);
             Map(x => x.Name);
             References(x => x.Level)
-                .Class(typeof (Level));
+                .Class(typeof(Level));
             HasMany<Class>(x => x.Classes);
             HasManyToMany<User>(x => x.EnroledStudents)
                 .Inverse()
@@ -224,9 +252,9 @@ namespace Data.Mappings
             Map(x => x.Note);
             References(x => x.Owner)
                 .Column("User_id")
-                .Class(typeof (User));
+                .Class(typeof(User));
             References(x => x.PassStatistic)
-                .Class(typeof (PassStatistic))
+                .Class(typeof(PassStatistic))
                 .Cascade.All();
         }
     }

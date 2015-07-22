@@ -1,4 +1,4 @@
-namespace OnlinePayment.Models
+namespace OnlinePayments.Models
 {
     public class PaypalError
     {

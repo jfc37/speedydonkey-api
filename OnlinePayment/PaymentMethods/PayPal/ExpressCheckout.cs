@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Common.Extensions;
-using OnlinePayment.Extensions;
-using OnlinePayment.Models;
+using Models.OnlinePayments;
+using OnlinePayments.Extensions;
+using OnlinePayments.Models;
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
 
-namespace OnlinePayment
+namespace OnlinePayments
 {
     public static class DecimalExtensions
     {
@@ -69,17 +69,28 @@ namespace OnlinePayment
 
     public interface IExpressCheckout
     {
-        SetExpressCheckoutResponse Set(PaymentDetails details);
+        StartPayPalPaymentResponse Set(PaymentDetails details);
         GetExpressCheckoutResponse Get(string token);
         DoExpressCheckoutResponse Do(DoExpressCheckoutRequest request);
+        StartPayPalPaymentResponse Set(PayPalPayment payment);
     }
     public class ExpressCheckout : IExpressCheckout
     {
-        public SetExpressCheckoutResponse Set(PaymentDetails details)
+        public StartPayPalPaymentResponse Set(PaymentDetails details)
         {
             var request = GetSetRequest(details);
 
             var wrapper = new SetExpressCheckoutReq {SetExpressCheckoutRequest = request};
+            var service = new PayPalAPIInterfaceServiceService(GetConfig());
+            SetExpressCheckoutResponseType setECResponse = service.SetExpressCheckout(wrapper);
+            return setECResponse.ToResponse();
+        }
+
+        public StartPayPalPaymentResponse Set(PayPalPayment payment)
+        {
+            var request = GetSetRequest(payment);
+
+            var wrapper = new SetExpressCheckoutReq { SetExpressCheckoutRequest = request };
             var service = new PayPalAPIInterfaceServiceService(GetConfig());
             SetExpressCheckoutResponseType setECResponse = service.SetExpressCheckout(wrapper);
             return setECResponse.ToResponse();
@@ -118,6 +129,26 @@ namespace OnlinePayment
             return doECResponse.ToResponse();
         }
 
+        private static SetExpressCheckoutRequestType GetSetRequest(PayPalPayment payment)
+        {
+            var paymentDetails = GetPaymentDetails(payment);
+
+            var ecDetails = new SetExpressCheckoutRequestDetailsType();
+            ecDetails.ReturnURL = payment.ReturnUrl;
+            ecDetails.CancelURL = payment.CancelUrl;
+            ecDetails.NoShipping = "1";
+            ecDetails.ReqConfirmShipping = "0";
+            ecDetails.SolutionType = SolutionTypeType.SOLE;
+            ecDetails.LandingPage = LandingPageType.BILLING;
+
+            ecDetails.PaymentDetails = paymentDetails;
+
+            var request = new SetExpressCheckoutRequestType();
+            request.Version = "104.0";
+            request.SetExpressCheckoutRequestDetails = ecDetails;
+            return request;
+        }
+
         private static SetExpressCheckoutRequestType GetSetRequest(PaymentDetails details)
         {
             var paymentDetails = GetPaymentDetails(details);
@@ -147,6 +178,24 @@ namespace OnlinePayment
             paypalConfig.Add("mode", "sandbox");
 
             return paypalConfig;
+        }
+
+        private static List<PaymentDetailsType> GetPaymentDetails(PayPalPayment payment)
+        {
+            var paymentDetail = new PaymentDetailsType();
+            var paymentItem = new PaymentDetailsItemType();
+            paymentItem.Name = payment.Description;
+            paymentItem.Amount = new BasicAmountType(CurrencyCodeType.NZD, payment.Price.ToCurrencyString());
+            paymentItem.Quantity = 1;
+            //paymentItem.ItemCategory = ItemCategoryType.DIGITAL;
+            var paymentItems = new List<PaymentDetailsItemType>();
+            paymentItems.Add(paymentItem);
+            paymentDetail.PaymentDetailsItem = paymentItems;
+
+            paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
+            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, payment.Price.ToCurrencyString());
+            //paymentDetail.ShippingMethod = ShippingServiceCodeType.DOWNLOAD;
+            return paymentDetail.ToList();
         }
 
         private static List<PaymentDetailsType> GetPaymentDetails(PaymentDetails details)

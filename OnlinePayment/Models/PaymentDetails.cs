@@ -1,5 +1,8 @@
-namespace OnlinePayment.Models
+using System;
+
+namespace OnlinePayments.Models
 {
+    [Obsolete]
     public class PaymentDetails
     {
         public string ReturnUrl { get; set; }

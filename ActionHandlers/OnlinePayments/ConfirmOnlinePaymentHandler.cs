@@ -2,7 +2,7 @@
 using Action.OnlinePayment;
 using Data.Repositories;
 using Models;
-using OnlinePayment;
+using OnlinePayments;
 
 namespace ActionHandlers.OnlinePayments
 {

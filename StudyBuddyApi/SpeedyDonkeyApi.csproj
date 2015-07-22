@@ -209,6 +209,7 @@
     <Compile Include="Controllers\DatabaseApiController.cs" />
     <Compile Include="Controllers\EnrolmentApiController.cs" />
     <Compile Include="Controllers\AnnouncementApiController.cs" />
+    <Compile Include="Controllers\OnlinePayments\OnlinePaymentApiController.cs" />
     <Compile Include="Controllers\PayPalApiController.cs" />
     <Compile Include="Controllers\ProfitReportApiController.cs" />
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
@@ -232,10 +233,12 @@
     <Compile Include="Controllers\UserPassesApiController.cs" />
     <Compile Include="Controllers\UserScheduleApiController.cs" />
     <Compile Include="Controllers\ValidationResultExtensions.cs" />
+    <Compile Include="Extensions\Models\PayPayRequestModelExtensions.cs" />
     <Compile Include="Filter\ActiveUserRequired.cs" />
     <Compile Include="Filter\ClaimsAuthorise.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
+    <Compile Include="Filter\ValidateModelStateAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -245,6 +248,8 @@
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
+    <Compile Include="Models\OnlinePayments\OnlinePaymentRequestModel.cs" />
+    <Compile Include="Models\OnlinePayments\PayPayRequestModel.cs" />
     <Compile Include="Models\PassStatisticModel.cs" />
     <Compile Include="Models\PassTemplateModel.cs" />
     <Compile Include="Models\PayPalBeginViewModel.cs" />
@@ -363,9 +368,9 @@
       <Project>{01A83567-4346-45F7-8322-563F700C7AD8}</Project>
       <Name>Notification</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OnlinePayment\OnlinePayment.csproj">
+    <ProjectReference Include="..\OnlinePayment\OnlinePayments.csproj">
       <Project>{16EE1C93-463A-4CB5-B63B-8F894A7B0CDE}</Project>
-      <Name>OnlinePayment</Name>
+      <Name>OnlinePayments</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>
