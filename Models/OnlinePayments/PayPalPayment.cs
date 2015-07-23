@@ -6,6 +6,7 @@
         public virtual string CancelUrl { get; set; }
         public virtual string BuyerEmail { get; set; }
         public virtual string Token { get; set; }
+        public virtual string PayerId { get; set; }
     }
 
     public interface IStartOnlinePaymentResponse

@@ -29,7 +29,7 @@
 //            var response = _actionHandlerOverlord.HandleAction<BeginOnlinePayment, PendingOnlinePayment, StartPayPalPaymentResponse>(model.ToAction(_currentUser));
 
 //            return response.ValidationResult.IsValid
-//                ? (IHttpActionResult) Ok(response)
+//                ? (IHttpActionResult)Ok(response)
 //                : BadRequest(response.ValidationResult.ToModelState());
 
 //        }
@@ -40,11 +40,11 @@
 //            if (!ModelState.IsValid)
 //                return BadRequest(ModelState);
 
-//            var response = _actionHandlerOverlord.HandleAction<ConfirmOnlinePayment, PendingOnlinePayment, GetExpressCheckoutResponse>(new ConfirmOnlinePayment(model.Token));
+//            var response = _actionHandlerOverlord.HandleAction<ConfirmOnlinePayment, PendingOnlinePayment, PayPalConfirmResponse>(new ConfirmOnlinePayment(model.Token));
 
 //            return response.ValidationResult.IsValid
 //                ? (IHttpActionResult)Ok(response)
-//                : BadRequest(response.ValidationResult.ToModelState());   
+//                : BadRequest(response.ValidationResult.ToModelState());
 //        }
 
 //        [Route("api/paypal/complete")]
@@ -57,7 +57,7 @@
 
 //            return response.ValidationResult.IsValid
 //                ? (IHttpActionResult)Ok(response)
-//                : BadRequest(response.ValidationResult.ToModelState());   
+//                : BadRequest(response.ValidationResult.ToModelState());
 //        }
 
 //    }

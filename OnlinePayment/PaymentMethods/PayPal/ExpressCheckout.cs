@@ -19,9 +19,9 @@ namespace OnlinePayments
 
     public static class GetExpressCheckoutDetailsResponseTypeExtensions
     {
-        public static GetExpressCheckoutResponse ToResponse(this GetExpressCheckoutDetailsResponseType instance)
+        public static PayPalConfirmResponse ToResponse(this GetExpressCheckoutDetailsResponseType instance)
         {
-            return new GetExpressCheckoutResponse
+            return new PayPalConfirmResponse
             {
                 Token = instance.GetExpressCheckoutDetailsResponseDetails.Token,
                 Errors = instance.Errors.Select(x => x.ToPaypalError()),
@@ -42,7 +42,7 @@ namespace OnlinePayments
         }
     }
 
-    public class GetExpressCheckoutResponse
+    public class PayPalConfirmResponse
     {
         public string Token { get; set; }
         public IEnumerable<PaypalError> Errors { get; set; }
@@ -70,7 +70,7 @@ namespace OnlinePayments
     public interface IExpressCheckout
     {
         StartPayPalPaymentResponse Set(PaymentDetails details);
-        GetExpressCheckoutResponse Get(string token);
+        PayPalConfirmResponse Get(string token);
         DoExpressCheckoutResponse Do(DoExpressCheckoutRequest request);
         StartPayPalPaymentResponse Set(PayPalPayment payment);
     }
@@ -96,7 +96,7 @@ namespace OnlinePayments
             return setECResponse.ToResponse();
         }
 
-        public GetExpressCheckoutResponse Get(string token)
+        public PayPalConfirmResponse Get(string token)
         {
             var request = new GetExpressCheckoutDetailsRequestType {Version = "104.0", Token = token};
             var wrapper = new GetExpressCheckoutDetailsReq {GetExpressCheckoutDetailsRequest = request};

@@ -26,7 +26,13 @@ namespace SpeedyDonkeyApi
             config.Routes.MapHttpRoute(
                 name: "BlahApi",
                 routeTemplate: "api/online-payment/paypal/begin",
-                defaults: new { controller = "PayPalApi" }
+                defaults: new { controller = "PayPalApi", action = "begin" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "BlahBlahApi",
+                routeTemplate: "api/online-payment/paypal/confirm",
+                defaults: new { controller = "PayPalApi", action = "confirm" }
             );
 
             config.Routes.MapHttpRoute(

@@ -6,7 +6,7 @@ using OnlinePayments;
 
 namespace ActionHandlers.OnlinePayments
 {
-    public class ConfirmOnlinePaymentHandler : IActionHandlerWithResult<ConfirmOnlinePayment, PendingOnlinePayment, GetExpressCheckoutResponse>
+    public class ConfirmOnlinePaymentHandler : IActionHandlerWithResult<ConfirmOnlinePayment, PendingOnlinePayment, PayPalConfirmResponse>
     {
         private readonly IExpressCheckout _expressCheckout;
         private readonly IRepository<PendingOnlinePayment> _repository;
@@ -19,7 +19,7 @@ namespace ActionHandlers.OnlinePayments
             _repository = repository;
         }
 
-        public GetExpressCheckoutResponse Handle(ConfirmOnlinePayment action)
+        public PayPalConfirmResponse Handle(ConfirmOnlinePayment action)
         {
             var result = _expressCheckout.Get(action.ActionAgainst.Token);
 

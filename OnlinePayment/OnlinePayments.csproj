@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPaymentStepStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\ExpressCheckout.cs" />
     <Compile Include="Extensions\ErrorTypeExtensions.cs" />
     <Compile Include="Extensions\SetExpressCheckoutResponseTypeExtensions.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="PaymentFeeStrategies\IPaymentFeeStrategyFactory.cs" />
     <Compile Include="PaymentFeeStrategies\NoFeeStrategy.cs" />
     <Compile Include="PaymentFeeStrategies\PaymentFeeStrategyFactory.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalConfirmStepStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalFeeCalculation.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalFeeStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPayPaymentStrategy.cs" />
