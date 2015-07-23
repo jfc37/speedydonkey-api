@@ -1,10 +1,23 @@
+using Data.Repositories;
+using Models;
+using Models.OnlinePayments;
+using Validation.Validators.OnlinePayments;
+
 namespace OnlinePayments.ItemStrategies.WindyLindy
 {
     public class WindyLindyValidationStrategy : IItemValidationStrategy
     {
-        public bool IsValid()
+        private readonly IWindyLindyRegistrationValidator _validator;
+
+        public WindyLindyValidationStrategy(IWindyLindyRegistrationValidator validator)
         {
-            return true;
+            _validator = validator;
+        }
+
+        public bool IsValid(OnlinePayment onlinePayment)
+        {
+            return _validator.Validate(onlinePayment)
+                .IsValid;
         }
     }
 }

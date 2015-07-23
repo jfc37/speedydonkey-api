@@ -24,8 +24,8 @@ namespace OnlinePayments
 
         public TResponse Begin<TPayment, TResponse>(TPayment payment, IStartPaymentStrategy<TPayment, TResponse> paymentStrategy) where TPayment : OnlinePayment where TResponse : IStartOnlinePaymentResponse
         {
-            var itemStrategy = _itemStrategyFactory.GetStrategy(payment.ItemType);
-            if (!itemStrategy.GetValidationStrategy().IsValid())
+            var itemStrategy = _itemStrategyFactory.GetStrategy(payment);
+            if (!itemStrategy.GetValidationStrategy().IsValid(payment))
                 throw new Exception();
 
             var populatedOnlinePayment = PopulateOnlinePayment(payment, itemStrategy);

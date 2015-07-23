@@ -1,7 +1,9 @@
-﻿namespace OnlinePayments.ItemStrategies
+﻿using Models.OnlinePayments;
+
+namespace OnlinePayments.ItemStrategies
 {
     public interface IItemValidationStrategy
     {
-        bool IsValid();
+        bool IsValid(OnlinePayment onlinePayment);
     }
 }

@@ -10,7 +10,7 @@ namespace SpeedyDonkeyApi.Models.OnlinePayments
         public OnlinePaymentItem? ItemType { get; set; }
 
         [Required]
-        public int ItemId { get; set; }
+        public string ItemId { get; set; }
 
         public abstract PaymentMethod PaymentMethod { get; }
     }

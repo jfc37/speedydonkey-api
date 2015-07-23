@@ -4,6 +4,6 @@ namespace OnlinePayments.ItemStrategies
 {
     public interface IItemStrategyFactory
     {
-        IItemStrategy GetStrategy(OnlinePaymentItem itemType);
+        IItemStrategy GetStrategy(OnlinePayment onlinePayment);
     }
 }

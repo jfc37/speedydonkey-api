@@ -59,10 +59,14 @@
   <ItemGroup>
     <Compile Include="FluentConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\IRule.cs" />
+    <Compile Include="Rules\IsStringAValidGuidRule.cs" />
     <Compile Include="ValidationError.cs" />
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="ValidatorOverlord.cs" />
+    <Compile Include="Validators\OnlinePayments\IWindyLindyRegistrationValidator.cs" />
+    <Compile Include="Validators\OnlinePayments\WindyLindyRegistrationValidator.cs" />
     <Compile Include="Validators\UpdateClassValidator.cs" />
     <Compile Include="Validators\UpdateBlockValidator.cs" />
     <Compile Include="Validators\UpdateLevelValidator.cs" />

@@ -2,6 +2,6 @@
 {
     public interface IItemPriceStrategy
     {
-        decimal GetPrice(int itemId);
+        decimal GetPrice(string itemId);
     }
 }

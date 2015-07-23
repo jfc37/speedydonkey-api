@@ -7,15 +7,15 @@ namespace OnlinePayments.ItemStrategies
 {
     public class ItemStrategyFactory : IItemStrategyFactory
     {
-        public IItemStrategy GetStrategy(OnlinePaymentItem itemType)
+        public IItemStrategy GetStrategy(OnlinePayment onlinePayment)
         {
-            switch (itemType)
+            switch (onlinePayment.ItemType)
             {
                 case OnlinePaymentItem.WindyLindy:
-                    return new WindyLindyRegistrationStrategy();
+                    return new WindyLindyRegistrationStrategy(onlinePayment);
 
                 default:
-                    throw new ArgumentException("Don't have any strategies for item type: {0}".FormatWith(itemType));
+                    throw new ArgumentException("Don't have any strategies for item type: {0}".FormatWith(onlinePayment.ItemType));
             }
         }
     }
