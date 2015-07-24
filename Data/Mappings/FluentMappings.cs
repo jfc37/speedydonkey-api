@@ -77,6 +77,7 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.OnlinePaymentStatus);
             Map(x => x.RegistationId);
+            Map(x => x.Amount);
         }
     }
 
