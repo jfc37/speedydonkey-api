@@ -1,6 +1,6 @@
 using Common.Calculations;
 
-namespace OnlinePayments.PaymentFeeStrategies
+namespace OnlinePayments.PaymentMethods.PayPal
 {
     public class PayPalFeeCalculation : ICalculation<decimal>
     {

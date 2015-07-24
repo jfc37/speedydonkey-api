@@ -1,5 +1,5 @@
 using Models.OnlinePayments;
-using OnlinePayments.Models;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 
 namespace OnlinePayments.PaymentMethods.PayPal
 {

@@ -1,6 +1,7 @@
 using System;
 using Common;
 using Models.OnlinePayments;
+using OnlinePayments.PaymentMethods.PayPal;
 
 namespace OnlinePayments.PaymentFeeStrategies
 {

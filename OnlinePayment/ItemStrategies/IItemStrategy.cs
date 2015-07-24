@@ -2,8 +2,7 @@
 {
     public interface IItemStrategy
     {
-        IItemPriceStrategy GetPriceStrategy();
-        IItemValidationStrategy GetValidationStrategy();
-        IItemDescriptionStrategy GetDescriptionStrategy();
+        decimal GetPrice();
+        string GetDescription();
     }
 }

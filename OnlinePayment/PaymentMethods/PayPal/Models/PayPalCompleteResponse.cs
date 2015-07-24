@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using OnlinePayments.Models;
 
 namespace OnlinePayments.PaymentMethods.PayPal.Models
 {

@@ -5,7 +5,7 @@ using Common;
 using Common.Extensions;
 using Data.Repositories;
 using Models;
-using OnlinePayments;
+using OnlinePayments.PaymentMethods.PayPal;
 using OnlinePayments.PaymentMethods.PayPal.Models;
 
 namespace ActionHandlers.OnlinePayments

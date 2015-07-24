@@ -1,6 +1,7 @@
 using Models.OnlinePayments;
+using OnlinePayments.PaymentFeeStrategies;
 
-namespace OnlinePayments.PaymentFeeStrategies
+namespace OnlinePayments.PaymentMethods.PayPal
 {
     public class PayPalFeeStrategy : IPaymentFeeStrategy
     {

@@ -54,6 +54,7 @@
     <Compile Include="IEntity.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="INotable.cs" />
+    <Compile Include="OnlinePayments\IStartOnlinePaymentResponse.cs" />
     <Compile Include="OnlinePayments\OnlinePayment.cs" />
     <Compile Include="OnlinePayments\PayPalPayment.cs" />
     <Compile Include="Pass.cs" />

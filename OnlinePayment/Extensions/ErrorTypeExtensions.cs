@@ -1,4 +1,5 @@
 using OnlinePayments.Models;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 using PayPal.PayPalAPIInterfaceService.Model;
 
 namespace OnlinePayments.Extensions

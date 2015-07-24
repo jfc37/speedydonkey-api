@@ -1,24 +1,23 @@
 using Data.Repositories;
 using Models;
 using Models.OnlinePayments;
-using Validation.Validators.OnlinePayments;
+using Validation.Rules;
 
 namespace OnlinePayments.ItemStrategies.WindyLindy
 {
-    public class WindyLindyValidationStrategy : IItemValidationStrategy
+    public class WindyLindyValidationStrategy : ITypedItemValidationStrategy<Registration>
     {
-        private readonly IWindyLindyRegistrationValidator _validator;
+        private readonly IRepository<Registration> _repository;
 
-        public WindyLindyValidationStrategy(IWindyLindyRegistrationValidator validator)
+        public WindyLindyValidationStrategy(IRepository<Registration> repository)
         {
-            _validator = validator;
+            _repository = repository;
         }
 
-        public bool IsValid(OnlinePayment onlinePayment)
+        public bool IsValid(string itemId)
         {
-            return true;
-            return _validator.Validate(onlinePayment)
-                .IsValid;
+            return new IsThereARegistrationWithMatchingRegistrationNumber(_repository, itemId)
+                .IsValid();
         }
     }
 }

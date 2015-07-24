@@ -5,6 +5,8 @@ using Data.Repositories;
 using Models;
 using OnlinePayments;
 using OnlinePayments.Models;
+using OnlinePayments.PaymentMethods.PayPal;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 
 namespace ActionHandlers.OnlinePayments
 {

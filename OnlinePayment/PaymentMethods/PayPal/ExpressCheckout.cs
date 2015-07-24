@@ -8,7 +8,7 @@ using OnlinePayments.PaymentMethods.PayPal.Models;
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
 
-namespace OnlinePayments
+namespace OnlinePayments.PaymentMethods.PayPal
 {
     public static class DecimalExtensions
     {

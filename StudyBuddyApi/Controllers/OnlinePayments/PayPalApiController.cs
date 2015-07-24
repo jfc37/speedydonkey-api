@@ -1,7 +1,6 @@
 ﻿using System.Web.Http;
 using Models.OnlinePayments;
 using OnlinePayments;
-using OnlinePayments.Models;
 using OnlinePayments.PaymentMethods.PayPal.Models;
 using SpeedyDonkeyApi.Extensions.Models;
 using SpeedyDonkeyApi.Filter;
@@ -32,7 +31,7 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         [ValidationActionFilter]
         public IHttpActionResult Post([FromBody] PayPayRequestModel model)
         {
-            var response = _onlinePaymentManager.Begin(model.ToRequest(), _startPaymentStrategy);
+            var response = _onlinePaymentManager.Begin(model.ToRequest(), _startPaymentStrategy, new StartPayPalPaymentResponseCreator());
 
             return Ok(response);
 

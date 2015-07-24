@@ -1,5 +1,5 @@
 using System.Linq;
-using OnlinePayments.Models;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 using PayPal.PayPalAPIInterfaceService.Model;
 
 namespace OnlinePayments.Extensions
@@ -12,7 +12,10 @@ namespace OnlinePayments.Extensions
             {
                 Token = instance.Token,
                 Status = instance.Ack.GetValueOrDefault().ToString(),
-                Errors = instance.Errors.Select(x => ErrorTypeExtensions.ToPaypalError(x))
+                Errors = instance
+                    .Errors
+                    .Select(x => x.ToPaypalError())
+                    .ToList()
             };
         }
     }

@@ -8,11 +8,4 @@
         public virtual string Token { get; set; }
         public virtual string PayerId { get; set; }
     }
-
-    public interface IStartOnlinePaymentResponse
-    {
-        bool IsValid { get; }
-
-    }
-
 }

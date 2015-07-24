@@ -12,7 +12,7 @@ namespace OnlinePayments.ItemStrategies
             switch (onlinePayment.ItemType)
             {
                 case OnlinePaymentItem.WindyLindy:
-                    return new WindyLindyRegistrationStrategy(onlinePayment);
+                    return new WindyLindyStrategy(onlinePayment);
 
                 default:
                     throw new ArgumentException("Don't have any strategies for item type: {0}".FormatWith(onlinePayment.ItemType));
