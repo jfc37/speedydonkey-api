@@ -16,6 +16,7 @@ namespace Models.OnlinePayments
         public virtual decimal Fee { get; set; }
         public virtual decimal Total { get { return Price + Fee; } }
         public virtual string Description { get; set; }
+        public virtual OnlinePaymentStatus PaymentStatus { get; set; }
     }
 
     public enum OnlinePaymentItem

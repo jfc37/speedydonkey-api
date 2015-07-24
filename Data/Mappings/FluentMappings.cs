@@ -18,6 +18,7 @@ namespace Data.Mappings
             Map(x => x.ItemId);
             Map(x => x.PaymentMethod);
             Map(x => x.Price);
+            Map(x => x.PaymentStatus);
         }
     }
 

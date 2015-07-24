@@ -209,7 +209,7 @@
     <Compile Include="Controllers\DatabaseApiController.cs" />
     <Compile Include="Controllers\EnrolmentApiController.cs" />
     <Compile Include="Controllers\AnnouncementApiController.cs" />
-    <Compile Include="Controllers\OnlinePayments\OnlinePaymentApiController.cs" />
+    <Compile Include="Controllers\OnlinePayments\PayPalApiController.cs" />
     <Compile Include="Controllers\PayPalApiController.cs" />
     <Compile Include="Controllers\ProfitReportApiController.cs" />
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
@@ -249,6 +249,7 @@
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
     <Compile Include="Models\OnlinePayments\OnlinePaymentRequestModel.cs" />
+    <Compile Include="Models\OnlinePayments\PayPayCompleteModel.cs" />
     <Compile Include="Models\OnlinePayments\PayPayConfirmModel.cs" />
     <Compile Include="Models\OnlinePayments\PayPayRequestModel.cs" />
     <Compile Include="Models\PassStatisticModel.cs" />

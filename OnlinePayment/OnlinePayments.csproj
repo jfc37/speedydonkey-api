@@ -68,6 +68,9 @@
     <Compile Include="ItemStrategies\IItemStrategyFactory.cs" />
     <Compile Include="ItemStrategies\IItemValidationStrategy.cs" />
     <Compile Include="ItemStrategies\ItemStrategyFactory.cs" />
+    <Compile Include="PaymentMethods\PayPal\Models\PayPalCompleteRequest.cs" />
+    <Compile Include="PaymentMethods\PayPal\Models\PayPalCompleteResponse.cs" />
+    <Compile Include="PaymentMethods\PayPal\Models\PayPalConfirmResponse.cs" />
     <Compile Include="PaymentMethods\PayPal\Models\StartPayPalPaymentResponse.cs" />
     <Compile Include="Models\PaymentDetails.cs" />
     <Compile Include="PaymentMethods\PayPal\Models\PaypalError.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="PaymentFeeStrategies\IPaymentFeeStrategyFactory.cs" />
     <Compile Include="PaymentFeeStrategies\NoFeeStrategy.cs" />
     <Compile Include="PaymentFeeStrategies\PaymentFeeStrategyFactory.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalCompleteStepStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalConfirmStepStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalFeeCalculation.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalFeeStrategy.cs" />

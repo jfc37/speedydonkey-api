@@ -4,6 +4,7 @@ using Common.Extensions;
 using Models.OnlinePayments;
 using OnlinePayments.Extensions;
 using OnlinePayments.Models;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
 
@@ -32,9 +33,9 @@ namespace OnlinePayments
     }
     public static class DoExpressCheckoutDetailsResponseTypeExtensions
     {
-        public static DoExpressCheckoutResponse ToResponse(this DoExpressCheckoutPaymentResponseType instance)
+        public static PayPalCompleteResponse ToResponse(this DoExpressCheckoutPaymentResponseType instance)
         {
-            return new DoExpressCheckoutResponse
+            return new PayPalCompleteResponse
             {
                 Errors = instance.Errors.Select(x => x.ToPaypalError()),
                 Status = instance.Ack.ToString()
@@ -42,36 +43,11 @@ namespace OnlinePayments
         }
     }
 
-    public class PayPalConfirmResponse
-    {
-        public string Token { get; set; }
-        public IEnumerable<PaypalError> Errors { get; set; }
-        public string Status { get; set; }
-        public string PayerId { get; set; }
-        public string Description { get; set; }
-        public decimal Amount { get; set; }
-    }
-
-    public class DoExpressCheckoutResponse
-    {
-        public string Token { get; set; }
-        public IEnumerable<PaypalError> Errors { get; set; }
-        public string Status { get; set; }
-        public string PayerId { get; set; }
-    }
-
-    public class DoExpressCheckoutRequest
-    {
-        public string Token { get; set; }
-        public decimal Amount { get; set; }
-        public string PayerId { get; set; }
-    }
-
     public interface IExpressCheckout
     {
         StartPayPalPaymentResponse Set(PaymentDetails details);
         PayPalConfirmResponse Get(string token);
-        DoExpressCheckoutResponse Do(DoExpressCheckoutRequest request);
+        PayPalCompleteResponse Do(PayPalCompleteRequest request);
         StartPayPalPaymentResponse Set(PayPalPayment payment);
     }
     public class ExpressCheckout : IExpressCheckout
@@ -107,7 +83,7 @@ namespace OnlinePayments
             return ecResponse.ToResponse();
         }
 
-        public DoExpressCheckoutResponse Do(DoExpressCheckoutRequest details)
+        public PayPalCompleteResponse Do(PayPalCompleteRequest details)
         {
             var paymentDetail = new PaymentDetailsType();
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;

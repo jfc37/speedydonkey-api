@@ -1,6 +1,7 @@
 using System.Linq;
 using Data.Repositories;
 using Models.OnlinePayments;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 
 namespace OnlinePayments.PaymentMethods.PayPal
 {
@@ -22,6 +23,8 @@ namespace OnlinePayments.PaymentMethods.PayPal
             var result = _expressCheckout.Get(token);
 
             var onlinePayment = _repository.GetAll().Single(x => x.Token == token);
+            onlinePayment.PayerId = result.PayerId;
+            _repository.Update(onlinePayment);
 
             result.Description = onlinePayment.Description;
             result.Amount = onlinePayment.Price;

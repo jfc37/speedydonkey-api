@@ -6,10 +6,11 @@ using Common.Extensions;
 using Data.Repositories;
 using Models;
 using OnlinePayments;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 
 namespace ActionHandlers.OnlinePayments
 {
-    public class CompleteOnlinePaymentHandler : IActionHandlerWithResult<CompleteOnlinePayment, PendingOnlinePayment, DoExpressCheckoutResponse>
+    public class CompleteOnlinePaymentHandler : IActionHandlerWithResult<CompleteOnlinePayment, PendingOnlinePayment, PayPalCompleteResponse>
     {
         private readonly IExpressCheckout _expressCheckout;
         private readonly IPaymentDetailsRetriever _paymentDetailsRetriever;
@@ -31,7 +32,7 @@ namespace ActionHandlers.OnlinePayments
             _purchasePassHandler = purchasePassHandler;
         }
 
-        public DoExpressCheckoutResponse Handle(CompleteOnlinePayment action)
+        public PayPalCompleteResponse Handle(CompleteOnlinePayment action)
         {
             var pendingOnlinePayment = _repository.GetAll().Single(x => x.Token == action.ActionAgainst.Token);
             var request = pendingOnlinePayment.ToDoExpressCheckoutRequest();
@@ -57,9 +58,9 @@ namespace ActionHandlers.OnlinePayments
 
     public static class PendingOnlinePaymentExtensions
     {
-        public static DoExpressCheckoutRequest ToDoExpressCheckoutRequest(this PendingOnlinePayment instance)
+        public static PayPalCompleteRequest ToDoExpressCheckoutRequest(this PendingOnlinePayment instance)
         {
-            return new DoExpressCheckoutRequest
+            return new PayPalCompleteRequest
             {
                 Amount = instance.Amount,
                 Token = instance.Token,

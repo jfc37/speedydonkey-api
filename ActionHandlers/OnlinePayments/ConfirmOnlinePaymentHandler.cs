@@ -3,6 +3,7 @@ using Action.OnlinePayment;
 using Data.Repositories;
 using Models;
 using OnlinePayments;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 
 namespace ActionHandlers.OnlinePayments
 {

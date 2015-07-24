@@ -53,7 +53,7 @@
 //            if (!ModelState.IsValid)
 //                return BadRequest(ModelState);
 
-//            var response = _actionHandlerOverlord.HandleAction<CompleteOnlinePayment, PendingOnlinePayment, DoExpressCheckoutResponse>(new CompleteOnlinePayment(model.Token));
+//            var response = _actionHandlerOverlord.HandleAction<CompleteOnlinePayment, PendingOnlinePayment, PayPalCompleteResponse>(new CompleteOnlinePayment(model.Token));
 
 //            return response.ValidationResult.IsValid
 //                ? (IHttpActionResult)Ok(response)

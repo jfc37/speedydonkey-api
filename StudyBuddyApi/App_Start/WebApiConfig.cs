@@ -10,7 +10,6 @@ using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi
 {
@@ -18,22 +17,8 @@ namespace SpeedyDonkeyApi
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-
             // Web API routes
             config.MapHttpAttributeRoutes();
-
-            config.Routes.MapHttpRoute(
-                name: "BlahApi",
-                routeTemplate: "api/online-payment/paypal/begin",
-                defaults: new { controller = "PayPalApi", action = "begin" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BlahBlahApi",
-                routeTemplate: "api/online-payment/paypal/confirm",
-                defaults: new { controller = "PayPalApi", action = "confirm" }
-            );
 
             config.Routes.MapHttpRoute(
                 name: "RegistrationApi",
