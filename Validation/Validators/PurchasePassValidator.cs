@@ -12,7 +12,6 @@ namespace Validation.Validators
     public class PurchasePassValidator : AbstractValidator<User>, IActionValidator<PurchasePass, User>
     {
         private readonly IRepository<User> _userRepository;
-        private readonly IRepository<PassTemplate> _passTemplateRepository;
         private readonly ICurrentUser _currentUser;
 
         public PurchasePassValidator(IRepository<User> userRepository, ICurrentUser currentUser)

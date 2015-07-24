@@ -10,6 +10,7 @@ using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi
 {

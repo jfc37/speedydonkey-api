@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common;
@@ -14,7 +13,6 @@ namespace SpeedyDonkeyApi.Controllers
 {
     public class PassApiController : GenericApiController<PassModel, Pass>
     {
-        private readonly ICommonInterfaceCloner _cloner;
 
         public PassApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
@@ -24,7 +22,6 @@ namespace SpeedyDonkeyApi.Controllers
             IEntitySearch<Pass> entitySearch)
             : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
         {
-            _cloner = cloner;
         }
 
         [ClaimsAuthorise(Claim = Claim.Teacher)]
