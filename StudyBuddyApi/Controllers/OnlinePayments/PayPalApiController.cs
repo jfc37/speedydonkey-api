@@ -4,10 +4,11 @@ using OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal.Models;
 using SpeedyDonkeyApi.Extensions.Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models.OnlinePayments;
+using SpeedyDonkeyApi.Models.OnlinePayments.PayPal;
 
 namespace SpeedyDonkeyApi.Controllers.OnlinePayments
 {
+    [RoutePrefix("api/online-payment/paypal")]
     public class PayPalApiController : ApiController
     {
         private readonly IOnlinePaymentManager _onlinePaymentManager;
@@ -27,17 +28,17 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
             _completeStrategy = completeStrategy;
         }
 
-        [Route("api/online-payment/paypal/begin")]
+        [Route("begin")]
         [ValidationActionFilter]
         public IHttpActionResult Post([FromBody] PayPayRequestModel model)
         {
-            var response = _onlinePaymentManager.Begin(model.ToRequest(), _startPaymentStrategy, new StartPayPalPaymentResponseCreator());
+            var response = _onlinePaymentManager.Begin(model.ToRequest(), _startPaymentStrategy, new ResponseCreator<StartPayPalPaymentResponse>());
 
             return Ok(response);
 
         }
 
-        [Route("api/online-payment/paypal/confirm")]
+        [Route("confirm")]
         [ValidationActionFilter]
         public IHttpActionResult Post([FromBody] PayPayConfirmModel model)
         {
@@ -47,7 +48,7 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
 
         }
 
-        [Route("api/online-payment/paypal/complete")]
+        [Route("complete")]
         [ValidationActionFilter]
         public IHttpActionResult Post([FromBody] PayPayCompleteModel model)
         {

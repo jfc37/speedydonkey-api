@@ -1,6 +1,4 @@
-﻿using Models.OnlinePayments;
-
-namespace OnlinePayments
+﻿namespace OnlinePayments
 {
     public interface IResponseCreator<T>
     {

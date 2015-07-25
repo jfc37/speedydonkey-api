@@ -57,6 +57,7 @@
     <Compile Include="ItemStrategies\ItemValidationStrategyFactory.cs" />
     <Compile Include="ItemStrategies\ITypedItemValidationStrategy.cs" />
     <Compile Include="ItemStrategies\WindyLindy\WindyLindyValidationStrategy.cs" />
+    <Compile Include="PaymentMethods\BankDeposit\BankDepositPaymentStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\ExpressCheckout.cs" />
     <Compile Include="Extensions\ErrorTypeExtensions.cs" />
     <Compile Include="Extensions\SetExpressCheckoutResponseTypeExtensions.cs" />
@@ -84,7 +85,7 @@
     <Compile Include="PaymentMethods\PayPal\PayPalFeeStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPayPaymentStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartPayPalPaymentResponseCreator.cs" />
+    <Compile Include="ResponseCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

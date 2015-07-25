@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SpeedyDonkeyApi.Models.OnlinePayments
+namespace SpeedyDonkeyApi.Models.OnlinePayments.PayPal
 {
     public class PayPayCompleteModel
     {

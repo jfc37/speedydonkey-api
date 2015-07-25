@@ -1,4 +1,6 @@
-﻿namespace Models.OnlinePayments
+﻿using System.Linq;
+
+namespace Models.OnlinePayments
 {
     public interface IStartOnlinePaymentResponse
     {

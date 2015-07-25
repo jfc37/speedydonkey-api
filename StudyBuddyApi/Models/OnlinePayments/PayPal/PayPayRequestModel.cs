@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Models.OnlinePayments;
 
-namespace SpeedyDonkeyApi.Models.OnlinePayments
+namespace SpeedyDonkeyApi.Models.OnlinePayments.PayPal
 {
     public class PayPayRequestModel : OnlinePaymentRequestModel
     {

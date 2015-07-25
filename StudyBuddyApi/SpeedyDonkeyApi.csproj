@@ -209,6 +209,7 @@
     <Compile Include="Controllers\DatabaseApiController.cs" />
     <Compile Include="Controllers\EnrolmentApiController.cs" />
     <Compile Include="Controllers\AnnouncementApiController.cs" />
+    <Compile Include="Controllers\OnlinePayments\BankDepositApiController.cs" />
     <Compile Include="Controllers\OnlinePayments\PayPalApiController.cs" />
     <Compile Include="Controllers\PayPalApiController.cs" />
     <Compile Include="Controllers\ProfitReportApiController.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Controllers\UserPassesApiController.cs" />
     <Compile Include="Controllers\UserScheduleApiController.cs" />
     <Compile Include="Controllers\ValidationResultExtensions.cs" />
+    <Compile Include="Extensions\Models\OnlinePaymentRequestModelExtensions.cs" />
     <Compile Include="Extensions\Models\PayPayRequestModelExtensions.cs" />
     <Compile Include="Filter\ActiveUserRequired.cs" />
     <Compile Include="Filter\ClaimsAuthorise.cs" />
@@ -248,10 +250,11 @@
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
+    <Compile Include="Models\OnlinePayments\BankDeposit\BankDepositRequestModel.cs" />
     <Compile Include="Models\OnlinePayments\OnlinePaymentRequestModel.cs" />
-    <Compile Include="Models\OnlinePayments\PayPayCompleteModel.cs" />
-    <Compile Include="Models\OnlinePayments\PayPayConfirmModel.cs" />
-    <Compile Include="Models\OnlinePayments\PayPayRequestModel.cs" />
+    <Compile Include="Models\OnlinePayments\PayPal\PayPayCompleteModel.cs" />
+    <Compile Include="Models\OnlinePayments\PayPal\PayPayConfirmModel.cs" />
+    <Compile Include="Models\OnlinePayments\PayPal\PayPayRequestModel.cs" />
     <Compile Include="Models\PassStatisticModel.cs" />
     <Compile Include="Models\PassTemplateModel.cs" />
     <Compile Include="Models\PayPalBeginViewModel.cs" />
