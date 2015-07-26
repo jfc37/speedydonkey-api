@@ -41,6 +41,7 @@ namespace Data.Mappings
             Map(x => x.CancellationUrl);
             Map(x => x.FailureUrl);
             Map(x => x.SuccessUrl);
+            Map(x => x.Token);
         }
     }
 

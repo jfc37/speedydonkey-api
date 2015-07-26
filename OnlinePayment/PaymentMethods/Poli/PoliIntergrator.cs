@@ -4,6 +4,7 @@ using System.Net;
 using Common;
 using Common.Extensions;
 using Models.OnlinePayments;
+using Newtonsoft.Json;
 using OnlinePayments.PaymentMethods.PayPal;
 using OnlinePayments.PaymentMethods.Poli.Models;
 
@@ -34,6 +35,8 @@ namespace OnlinePayments.PaymentMethods.Poli
     public interface IPoliIntergrator
     {
         StartPoliPaymentResponse InitiateTransaction(PoliPayment payment);
+
+        PoliCompleteResponse GetTransaction(string token);
     }
     public class PoliIntergrator : IPoliIntergrator
     {
@@ -48,7 +51,7 @@ namespace OnlinePayments.PaymentMethods.Poli
         {
             var json = System.Text.Encoding.UTF8.GetBytes(payment.ToInitiateTransactionRequest(_appSettings));
             
-            var myRequest = CreateWebRequest(json);
+            var myRequest = CreatePostRequest(json);
             SendRequest(myRequest, json);
 
             var poliResponse = new StartPoliPaymentResponse();
@@ -84,6 +87,41 @@ namespace OnlinePayments.PaymentMethods.Poli
             return poliResponse;
         }
 
+        public PoliCompleteResponse GetTransaction(string token)
+        {
+            var poliResponse = new PoliCompleteResponse();
+            var myRequest = CreateGetRequest(token);
+
+            var response = (HttpWebResponse)myRequest.GetResponse();
+            var data = response.GetResponseStream();
+            var streamRead = new StreamReader(data);
+            Char[] readBuff = new Char[response.ContentLength];
+            int count = streamRead.Read(readBuff, 0, (int)response.ContentLength);
+            while (count > 0)
+            {
+                var outputData = new String(readBuff, 0, count);
+                Console.Write(outputData);
+                count = streamRead.Read(readBuff, 0, (int)response.ContentLength);
+                dynamic latest = JsonConvert.DeserializeObject(outputData);
+                poliResponse = new PoliCompleteResponse(latest);
+            }
+            response.Close();
+            data.Close();
+            streamRead.Close();
+
+            return poliResponse;
+        }
+
+        private WebRequest CreateGetRequest(string token)
+        {
+            var myRequest = WebRequest.Create
+                ("{0}/GetTransaction?token={1}".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl),
+                    HttpUtility.UrlEncode(token)));
+            myRequest.Method = "GET";
+            myRequest.Headers.Add("Authorization", "Basic " + GetAuthorisation());
+            return myRequest;
+        }
+
         private static void SendRequest(WebRequest myRequest, byte[] json)
         {
             Stream dataStream = myRequest.GetRequestStream();
@@ -91,15 +129,20 @@ namespace OnlinePayments.PaymentMethods.Poli
             dataStream.Close();
         }
 
-        private WebRequest CreateWebRequest(byte[] json)
+        private WebRequest CreatePostRequest(byte[] json)
         {
-            var auth = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(_appSettings.GetSetting(AppSettingKey.PoliAuthorisation)));
-            var myRequest = WebRequest.Create(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl));
+            var auth = GetAuthorisation();
+            var myRequest = WebRequest.Create("{0}/Initiate".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl)));
             myRequest.Method = "POST";
             myRequest.ContentType = "application/json";
             myRequest.Headers.Add("Authorization", "Basic " + auth);
             myRequest.ContentLength = json.Length;
             return myRequest;
+        }
+
+        private string GetAuthorisation()
+        {
+            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(_appSettings.GetSetting(AppSettingKey.PoliAuthorisation)));
         }
     }
 }

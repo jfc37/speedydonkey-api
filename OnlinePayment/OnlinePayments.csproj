@@ -83,7 +83,9 @@
     <Compile Include="PaymentMethods\PayPal\PayPalFeeCalculation.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalFeeStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalPaymentStrategy.cs" />
+    <Compile Include="PaymentMethods\Poli\Models\PoliCompleteResponse.cs" />
     <Compile Include="PaymentMethods\Poli\Models\StartPoliPaymentResponse.cs" />
+    <Compile Include="PaymentMethods\Poli\PoliCompleteStepStrategy.cs" />
     <Compile Include="PaymentMethods\Poli\PoliFeeCalculation.cs" />
     <Compile Include="PaymentMethods\Poli\PoliFeeStrategy.cs" />
     <Compile Include="PaymentMethods\Poli\PoliIntergrator.cs" />

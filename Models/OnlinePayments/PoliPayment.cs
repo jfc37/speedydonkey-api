@@ -5,5 +5,6 @@
         public virtual string SuccessUrl { get; set; }
         public virtual string FailureUrl { get; set; }
         public virtual string CancellationUrl { get; set; }
+        public virtual string Token { get; set; }
     }
 }

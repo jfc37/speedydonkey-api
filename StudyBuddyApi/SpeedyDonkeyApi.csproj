@@ -255,6 +255,7 @@
     <Compile Include="Models\OnlinePayments\PayPal\PayPalCompleteModel.cs" />
     <Compile Include="Models\OnlinePayments\PayPal\PayPalConfirmModel.cs" />
     <Compile Include="Models\OnlinePayments\PayPal\PayPalRequestModel.cs" />
+    <Compile Include="Models\OnlinePayments\Poli\PoliCompleteModel.cs" />
     <Compile Include="Models\OnlinePayments\Poli\PoliRequestModel.cs" />
     <Compile Include="Models\PassStatisticModel.cs" />
     <Compile Include="Models\PassTemplateModel.cs" />
