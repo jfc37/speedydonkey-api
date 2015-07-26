@@ -57,6 +57,7 @@
     <Compile Include="OnlinePayments\IStartOnlinePaymentResponse.cs" />
     <Compile Include="OnlinePayments\OnlinePayment.cs" />
     <Compile Include="OnlinePayments\PayPalPayment.cs" />
+    <Compile Include="OnlinePayments\PoliPayment.cs" />
     <Compile Include="OnlinePayments\StartBankDepositPaymentResponse.cs" />
     <Compile Include="Pass.cs" />
     <Compile Include="Level.cs" />

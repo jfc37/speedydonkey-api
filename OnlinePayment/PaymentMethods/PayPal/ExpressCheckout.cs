@@ -92,7 +92,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
             var request = new DoExpressCheckoutPaymentRequestType {Version = "104.0"};
             var requestDetails = new DoExpressCheckoutPaymentRequestDetailsType
             {
-                PaymentDetails = paymentDetail.ToList(),
+                PaymentDetails = paymentDetail.PutIntoList(),
                 Token = details.Token,
                 PayerID = details.PayerId
             };
@@ -171,7 +171,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
             paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, payment.Price.ToCurrencyString());
             //paymentDetail.ShippingMethod = ShippingServiceCodeType.DOWNLOAD;
-            return paymentDetail.ToList();
+            return paymentDetail.PutIntoList();
         }
 
         private static List<PaymentDetailsType> GetPaymentDetails(PaymentDetails details)
@@ -189,7 +189,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
             paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToCurrencyString());
             //paymentDetail.ShippingMethod = ShippingServiceCodeType.DOWNLOAD;
-            return paymentDetail.ToList();
+            return paymentDetail.PutIntoList();
         }
     }
 }

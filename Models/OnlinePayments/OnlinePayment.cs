@@ -28,6 +28,7 @@ namespace Models.OnlinePayments
     public enum PaymentMethod
     {
         BankDeposit,
-        PayPal
+        PayPal,
+        Poli
     }
 }

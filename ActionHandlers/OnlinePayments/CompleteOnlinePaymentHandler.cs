@@ -46,7 +46,7 @@ namespace ActionHandlers.OnlinePayments
 
             _purchasePassHandler.Handle(new PurchasePass(new User(_currentUser.Id)
             {
-                Passes = new Pass { PaymentStatus = PassPaymentStatus.Paid.ToString()}.ToList<IPass>()
+                Passes = new Pass { PaymentStatus = PassPaymentStatus.Paid.ToString()}.PutIntoList<IPass>()
             })
             {
                 PassTemplateId = pendingOnlinePayment.TemplateId

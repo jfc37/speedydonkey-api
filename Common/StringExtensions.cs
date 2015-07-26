@@ -20,5 +20,15 @@ namespace Common
         {
             return String.Format(instance, parameters);
         }
+
+        public static bool IsNullOrWhiteSpace(this string instance)
+        {
+            return String.IsNullOrWhiteSpace(instance);
+        }
+
+        public static bool IsNotNullOrWhiteSpace(this string instance)
+        {
+            return !instance.IsNullOrWhiteSpace();
+        }
     }
 }

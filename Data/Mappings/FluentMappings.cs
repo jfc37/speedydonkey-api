@@ -34,6 +34,16 @@ namespace Data.Mappings
         }
     }
 
+    public class PoliPaymentMap : SubclassMap<PoliPayment>
+    {
+        public PoliPaymentMap()
+        {
+            Map(x => x.CancellationUrl);
+            Map(x => x.FailureUrl);
+            Map(x => x.SuccessUrl);
+        }
+    }
+
     public class PendingOnlinePaymentMap : ClassMap<PendingOnlinePayment>
     {
         public PendingOnlinePaymentMap()

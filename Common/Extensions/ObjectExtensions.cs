@@ -10,9 +10,14 @@ namespace Common.Extensions
             return JsonConvert.SerializeObject(instance);
         }
 
-        public static List<T> ToList<T>(this T instance)
+        public static List<T> PutIntoList<T>(this T instance)
         {
             return new List<T> {instance};
+        }
+
+        public static bool IsNotNull(this object instance)
+        {
+            return instance != null;
         }
     }
 }

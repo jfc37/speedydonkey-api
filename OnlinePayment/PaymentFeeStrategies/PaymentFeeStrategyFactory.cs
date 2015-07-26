@@ -2,6 +2,7 @@ using System;
 using Common;
 using Models.OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal;
+using OnlinePayments.PaymentMethods.Poli;
 
 namespace OnlinePayments.PaymentFeeStrategies
 {
@@ -13,8 +14,8 @@ namespace OnlinePayments.PaymentFeeStrategies
             {
                 case PaymentMethod.PayPal:
                     return new PayPalFeeStrategy();
-                case PaymentMethod.BankDeposit:
-                    return new NoFeeStrategy();
+                case PaymentMethod.Poli:
+                    return new PoliFeeStrategy();
                 default:
                     throw new ArgumentException("Don't have strategy for payment method: {0}".FormatWith(paymentMethod));
             }

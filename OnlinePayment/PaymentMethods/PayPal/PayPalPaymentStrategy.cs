@@ -3,11 +3,11 @@ using OnlinePayments.PaymentMethods.PayPal.Models;
 
 namespace OnlinePayments.PaymentMethods.PayPal
 {
-    public class PayPayPaymentStrategy : IStartPaymentStrategy<PayPalPayment, StartPayPalPaymentResponse>
+    public class PayPalPaymentStrategy : IStartPaymentStrategy<PayPalPayment, StartPayPalPaymentResponse>
     {
         private readonly IExpressCheckout _expressCheckout;
 
-        public PayPayPaymentStrategy(IExpressCheckout expressCheckout)
+        public PayPalPaymentStrategy(IExpressCheckout expressCheckout)
         {
             _expressCheckout = expressCheckout;
         }

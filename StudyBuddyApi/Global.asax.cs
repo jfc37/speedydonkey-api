@@ -67,7 +67,7 @@ namespace SpeedyDonkeyApi
             builder.RegisterAssemblyTypes(typeof(UserScheduleRepository).Assembly)
                 .AsClosedTypesOf(typeof(IAdvancedRepository<,>)).AsImplementedInterfaces();
 
-            builder.RegisterAssemblyTypes(typeof(PayPayPaymentStrategy).Assembly)
+            builder.RegisterAssemblyTypes(typeof(PayPalPaymentStrategy).Assembly)
                 .AsClosedTypesOf(typeof(IStartPaymentStrategy<,>)).AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(EntitySearch<>))

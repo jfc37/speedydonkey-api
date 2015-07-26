@@ -2,7 +2,7 @@
 
 namespace SpeedyDonkeyApi.Models.OnlinePayments.PayPal
 {
-    public class PayPayCompleteModel
+    public class PayPalCompleteModel
     {
         [Required]
         public string Token { get; set; }

@@ -3,9 +3,9 @@ using SpeedyDonkeyApi.Models.OnlinePayments.PayPal;
 
 namespace SpeedyDonkeyApi.Extensions.Models
 {
-    public static class PayPayRequestModelExtensions
+    public static class PayPalRequestModelExtensions
     {
-        public static PayPalPayment ToRequest(this PayPayRequestModel instance)
+        public static PayPalPayment ToRequest(this PayPalRequestModel instance)
         {
             return new PayPalPayment
             {
@@ -13,7 +13,8 @@ namespace SpeedyDonkeyApi.Extensions.Models
                 CancelUrl = instance.CancelUrl,
                 BuyerEmail = instance.BuyerEmail,
                 ItemId = instance.ItemId,
-                ItemType = instance.ItemType.GetValueOrDefault()
+                ItemType = instance.ItemType.GetValueOrDefault(),
+                PaymentMethod = PaymentMethod.PayPal
             };
         }
     }

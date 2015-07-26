@@ -3,7 +3,7 @@ using Models.OnlinePayments;
 
 namespace SpeedyDonkeyApi.Models.OnlinePayments.PayPal
 {
-    public class PayPayRequestModel : OnlinePaymentRequestModel
+    public class PayPalRequestModel : OnlinePaymentRequestModel
     {
         [Required]
         public string ReturnUrl { get; set; }
