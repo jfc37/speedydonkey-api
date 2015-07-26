@@ -115,8 +115,8 @@ namespace OnlinePayments.PaymentMethods.Poli
         private WebRequest CreateGetRequest(string token)
         {
             var myRequest = WebRequest.Create
-                ("{0}/GetTransaction?token={1}".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl),
-                    HttpUtility.UrlEncode(token)));
+                ("{0}/GetTransaction?token={1}".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl)));
+                    //HttpUtility.UrlEncode(token)));
             myRequest.Method = "GET";
             myRequest.Headers.Add("Authorization", "Basic " + GetAuthorisation());
             return myRequest;
