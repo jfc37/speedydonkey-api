@@ -30,5 +30,20 @@ namespace Common
         {
             return !instance.IsNullOrWhiteSpace();
         }
+
+        public static bool IsSameAs(this string instance, string compare)
+        {
+            return instance.Equals(compare, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public static bool IsNotSameAs(this string instance, string compare)
+        {
+            return !instance.IsSameAs(compare);
+        }
+
+        public static bool NotEquals(this object instance, object compare)
+        {
+            return !instance.Equals(compare);
+        }
     }
 }
