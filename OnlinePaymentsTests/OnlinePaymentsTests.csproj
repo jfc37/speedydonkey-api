@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculations\PoliFeeCalculationTests.cs" />
+    <Compile Include="Calculations\PayPalFeeCalculationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindyLindy\WindyLindyValidationStrategyTests.cs" />
   </ItemGroup>

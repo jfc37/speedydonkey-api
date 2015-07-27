@@ -24,6 +24,8 @@ namespace Validation.Rules
                 return false;
 
             var registrationGuid = Guid.Parse(_registrationNumber);
+            var blah = _repository.GetAll().ToArray()[0];
+
             return _repository
                 .GetAll()
                 .Any(x => x.RegistationId == registrationGuid);

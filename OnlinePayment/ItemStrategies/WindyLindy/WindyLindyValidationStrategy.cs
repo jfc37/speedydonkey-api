@@ -1,6 +1,5 @@
 using Data.Repositories;
 using Models;
-using Models.OnlinePayments;
 using Validation.Rules;
 
 namespace OnlinePayments.ItemStrategies.WindyLindy
