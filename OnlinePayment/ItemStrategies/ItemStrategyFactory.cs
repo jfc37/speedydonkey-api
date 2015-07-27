@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Common.Extensions;
 using Models.OnlinePayments;
 using OnlinePayments.ItemStrategies.WindyLindy;
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Common;
+using Common.Extensions;
 
 namespace Models.OnlinePayments
 {

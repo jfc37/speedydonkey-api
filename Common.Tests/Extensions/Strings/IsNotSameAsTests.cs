@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Common.Extensions;
+using NUnit.Framework;
 
 namespace Common.Tests.Extensions.Strings
 {

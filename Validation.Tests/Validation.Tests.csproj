@@ -63,7 +63,11 @@
     <Compile Include="Builders\ValidationResultBuilder.cs" />
     <Compile Include="Builders\ValidatorOverlordBuilder.cs" />
     <Compile Include="CheckStudentIntoClassValidatorTests.cs" />
+    <Compile Include="Rules\AreUsersExistingTeachersRuleTests.cs" />
+    <Compile Include="Rules\DoesUserHaveClaimRuleTests.cs" />
     <Compile Include="Rules\IsAValidGuidRuleTests.cs" />
+    <Compile Include="Rules\IsThereARegistrationWithMatchingRegistrationNumberTests.cs" />
+    <Compile Include="Rules\IsUserMissingClaimRuleTests.cs" />
     <Compile Include="UpdateClassValidatorTests.cs" />
     <Compile Include="UpdateBlockValidatorTests.cs" />
     <Compile Include="CreateLevelValidatorTests.cs" />

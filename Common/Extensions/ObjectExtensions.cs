@@ -15,9 +15,14 @@ namespace Common.Extensions
             return new List<T> {instance};
         }
 
+        public static bool IsNull(this object instance)
+        {
+            return instance == null;
+        }
+
         public static bool IsNotNull(this object instance)
         {
-            return instance != null;
+            return !instance.IsNull();
         }
     }
 }
