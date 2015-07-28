@@ -68,6 +68,7 @@
     <Compile Include="Builders\MockBuilders\MockBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockPasswordHasherBuilder.cs" />
     <Compile Include="CommonInterfaceClonerTests.cs" />
+    <Compile Include="Extensions\Decimals\ToCurrencyStringTests.cs" />
     <Compile Include="Extensions\Strings\IsNotSameAsTests.cs" />
     <Compile Include="Extensions\Strings\IsSameAsTests.cs" />
     <Compile Include="InMemoryDbSet.cs" />

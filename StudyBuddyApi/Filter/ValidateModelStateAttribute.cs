@@ -5,7 +5,7 @@ using System.Web.Http.Filters;
 
 namespace SpeedyDonkeyApi.Filter
 {
-    public class ValidationActionFilter : ActionFilterAttribute
+    public class ValidateModelActionFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {

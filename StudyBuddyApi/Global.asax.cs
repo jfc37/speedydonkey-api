@@ -26,6 +26,7 @@ using Notification;
 using Notification.NotificationHandlers;
 using OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Services;
 using Validation;
 using Validation.Validators;
@@ -40,6 +41,8 @@ namespace SpeedyDonkeyApi
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            GlobalConfiguration.Configuration.Filters.Add(new NullModelActionFilter());
+            GlobalConfiguration.Configuration.Filters.Add(new ValidateModelActionFilter());
 
             var dependencyBuilder = new NHibernateDependancySetup();
 

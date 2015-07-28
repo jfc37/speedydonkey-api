@@ -1,10 +1,8 @@
 ﻿using System.Web.Http;
 using Models.OnlinePayments;
 using OnlinePayments;
-using OnlinePayments.PaymentMethods.PayPal.Models;
 using OnlinePayments.PaymentMethods.Poli.Models;
 using SpeedyDonkeyApi.Extensions.Models;
-using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models.OnlinePayments.Poli;
 
 namespace SpeedyDonkeyApi.Controllers.OnlinePayments
@@ -27,7 +25,6 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         }
 
         [Route("begin")]
-        [ValidationActionFilter]
         public IHttpActionResult Post([FromBody] PoliRequestModel model)
         {
             var response = _onlinePaymentManager.Begin(model.ToRequest(), _startPaymentStrategy, new ResponseCreator<StartPoliPaymentResponse>());
@@ -37,7 +34,6 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         }
 
         [Route("complete")]
-        [ValidationActionFilter]
         public IHttpActionResult Post([FromBody] PoliCompleteModel model)
         {
             var response = _completeStrategy.PerformStep(model.Token);

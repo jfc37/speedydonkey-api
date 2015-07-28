@@ -60,6 +60,8 @@
     <Compile Include="FluentConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\AreUsersExistingTeachersRule.cs" />
+    <Compile Include="Rules\DateIsNotTooFarInThePastRule.cs" />
+    <Compile Include="Rules\DoesIdExist.cs" />
     <Compile Include="Rules\DoesUserHaveClaimRule.cs" />
     <Compile Include="Rules\IRule.cs" />
     <Compile Include="Rules\IsStringAValidGuidRule.cs" />

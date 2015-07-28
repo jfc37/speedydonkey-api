@@ -239,6 +239,7 @@
     <Compile Include="Extensions\Models\PayPalRequestModelExtensions.cs" />
     <Compile Include="Filter\ActiveUserRequired.cs" />
     <Compile Include="Filter\ClaimsAuthorise.cs" />
+    <Compile Include="Filter\NullModelActionFilter.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />

@@ -10,14 +10,6 @@ using PayPal.PayPalAPIInterfaceService.Model;
 
 namespace OnlinePayments.PaymentMethods.PayPal
 {
-    public static class DecimalExtensions
-    {
-        public static string ToCurrencyString(this decimal instance)
-        {
-            return instance.ToString("N2");
-        }
-    }
-
     public static class GetExpressCheckoutDetailsResponseTypeExtensions
     {
         public static PayPalConfirmResponse ToResponse(this GetExpressCheckoutDetailsResponseType instance)
@@ -135,7 +127,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
             ecDetails.NoShipping = "1";
             ecDetails.ReqConfirmShipping = "0";
             ecDetails.SolutionType = SolutionTypeType.SOLE;
-            ecDetails.LandingPage = LandingPageType.BILLING;
+            ecDetails.LandingPage = LandingPageType.LOGIN;
 
             ecDetails.PaymentDetails = paymentDetails;
 
@@ -163,14 +155,12 @@ namespace OnlinePayments.PaymentMethods.PayPal
             paymentItem.Name = payment.Description;
             paymentItem.Amount = new BasicAmountType(CurrencyCodeType.NZD, payment.Price.ToCurrencyString());
             paymentItem.Quantity = 1;
-            //paymentItem.ItemCategory = ItemCategoryType.DIGITAL;
             var paymentItems = new List<PaymentDetailsItemType>();
             paymentItems.Add(paymentItem);
             paymentDetail.PaymentDetailsItem = paymentItems;
 
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
             paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, payment.Price.ToCurrencyString());
-            //paymentDetail.ShippingMethod = ShippingServiceCodeType.DOWNLOAD;
             return paymentDetail.PutIntoList();
         }
 
@@ -181,14 +171,12 @@ namespace OnlinePayments.PaymentMethods.PayPal
             paymentItem.Name = details.Description;
             paymentItem.Amount = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToCurrencyString());
             paymentItem.Quantity = 1;
-            //paymentItem.ItemCategory = ItemCategoryType.DIGITAL;
             var paymentItems = new List<PaymentDetailsItemType>();
             paymentItems.Add(paymentItem);
             paymentDetail.PaymentDetailsItem = paymentItems;
 
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
             paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, details.Amount.ToCurrencyString());
-            //paymentDetail.ShippingMethod = ShippingServiceCodeType.DOWNLOAD;
             return paymentDetail.PutIntoList();
         }
     }

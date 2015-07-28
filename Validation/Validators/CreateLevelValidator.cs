@@ -20,10 +20,10 @@ namespace Validation.Validators
                 .NotEmpty().WithMessage(ValidationMessages.MissingName);
 
             RuleFor(x => x.StartTime)
-                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage(ValidationMessages.MissingStartTime);
+                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingStartTime);
 
             RuleFor(x => x.EndTime)
-                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage(ValidationMessages.MissingEndTime)
+                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingEndTime)
                 .GreaterThan(x => x.StartTime).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime);
 
             RuleFor(x => x.ClassMinutes)

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Action;
 using Common;
 using Data.Repositories;
 using FluentValidation;
 using Models;
+using Validation.Rules;
 
 namespace Validation.Validators
 {
@@ -20,7 +20,7 @@ namespace Validation.Validators
             _currentUser = currentUser;
             CascadeMode = CascadeMode.StopOnFirstFailure;
             RuleFor(x => x.Id)
-                .Must(BeExistingUser).WithMessage(ValidationMessages.InvalidUser)
+                .Must(x => new DoesIdExist<User>(userRepository, x).IsValid()).WithMessage(ValidationMessages.InvalidUser)
                 .Must(HavePermissionToAddPass).WithMessage(ValidationMessages.CannotAddPassForAnother);
 
             RuleFor(x => x.Passes).NotEmpty().WithMessage(ValidationMessages.ProvidePasses)
@@ -33,7 +33,8 @@ namespace Validation.Validators
                 return true;
 
             var retrievedUser = _userRepository.Get(_currentUser.Id);
-            return !String.IsNullOrWhiteSpace(retrievedUser.Claims) && retrievedUser.Claims.Contains(Claim.Teacher.ToString());
+            return new DoesUserHaveClaimRule(retrievedUser, Claim.Teacher)
+                .IsValid();
         }
 
         private bool HavePermissionToAddPass(int id)
@@ -42,12 +43,8 @@ namespace Validation.Validators
                 return true;
 
             var user = _userRepository.Get(_currentUser.Id);
-            return !String.IsNullOrWhiteSpace(user.Claims) && user.Claims.Contains(Claim.Teacher.ToString());
-        }
-
-        private bool BeExistingUser(int id)
-        {
-            return _userRepository.Get(id) != null;
+            return new DoesUserHaveClaimRule(user, Claim.Teacher)
+                .IsValid();
         }
     }
 }
