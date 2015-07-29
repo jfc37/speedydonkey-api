@@ -67,6 +67,7 @@
     <Compile Include="Rules\DateIsNotTooFarInThePastRuleTests.cs" />
     <Compile Include="Rules\DoesIdExistTests.cs" />
     <Compile Include="Rules\DoesUserHaveClaimRuleTests.cs" />
+    <Compile Include="Rules\HasExactlyOneInSetTests.cs" />
     <Compile Include="Rules\IsAValidGuidRuleTests.cs" />
     <Compile Include="Rules\IsThereARegistrationWithMatchingRegistrationNumberTests.cs" />
     <Compile Include="Rules\IsUserMissingClaimRuleTests.cs" />

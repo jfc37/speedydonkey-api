@@ -63,6 +63,7 @@
     <Compile Include="Rules\DateIsNotTooFarInThePastRule.cs" />
     <Compile Include="Rules\DoesIdExist.cs" />
     <Compile Include="Rules\DoesUserHaveClaimRule.cs" />
+    <Compile Include="Rules\HasExactlyOneInSetRule.cs" />
     <Compile Include="Rules\IRule.cs" />
     <Compile Include="Rules\IsStringAValidGuidRule.cs" />
     <Compile Include="Rules\IsThereARegistrationWithMatchingRegistrationNumber.cs" />

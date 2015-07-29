@@ -23,7 +23,7 @@ namespace Validation.Validators
             RuleFor(x => x.Id).Must(x => new DoesIdExist<Class>(classRepository, x).IsValid()).WithMessage(ValidationMessages.InvalidClass);
             RuleFor(x => x.ActualStudents)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .Must(OnlyAddSingleStudent).WithMessage(ValidationMessages.IncorrectNumberOfAttendees)
+                .Must(x => new HasExactlyOneInSetRule(x).IsValid()).WithMessage(ValidationMessages.IncorrectNumberOfAttendees)
                 .Must(BeExistingUser).WithMessage(ValidationMessages.InvalidUser)
                 .Must(HaveAValidPass).WithMessage(ValidationMessages.NoValidPasses)
                 .Must(HavePaidForAPass).WithMessage(ValidationMessages.NoPaidForPasses)
@@ -49,11 +49,6 @@ namespace Validation.Validators
         {
             var user = GetUser(users);
             return user.Passes != null && user.Passes.Any(x => x.PaymentStatus == PassPaymentStatus.Paid.ToString());
-        }
-
-        private bool OnlyAddSingleStudent(ICollection<IUser> users)
-        {
-            return users.Count == 1;
         }
 
         private bool BeExistingUser(ICollection<IUser> users)
