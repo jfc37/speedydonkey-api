@@ -14,6 +14,8 @@ namespace OnlinePayments.PaymentMethods.PayPal
 
         public StartPayPalPaymentResponse StartPayment(PayPalPayment payment)
         {
+            payment.ReturnUrl = payment.ReturnUrl.Replace("{referenceNumber}", payment.ReferenceNumber.ToString());
+
             var response = _expressCheckout.Set(payment);
             payment.Token = response.Token;
             response.ReferenceNumber = payment.ReferenceNumber;
@@ -21,4 +23,5 @@ namespace OnlinePayments.PaymentMethods.PayPal
             return response;
         }
     }
+
 }
