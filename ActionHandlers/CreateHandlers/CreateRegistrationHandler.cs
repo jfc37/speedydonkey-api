@@ -2,6 +2,7 @@
 using Actions;
 using Data.Repositories;
 using Models;
+using Models.OnlinePayments;
 
 namespace ActionHandlers.CreateHandlers
 {
@@ -15,7 +16,7 @@ namespace ActionHandlers.CreateHandlers
         protected override void PreHandle(ICrudAction<Registration> action)
         {
             action.ActionAgainst.RegistationId = Guid.NewGuid();
-            action.ActionAgainst.OnlinePaymentStatus = OnlinePaymentStatus.Pending;
+            action.ActionAgainst.PaymentStatus = OnlinePaymentStatus.Pending;
             action.ActionAgainst.Amount = new decimal(199.99);
         }
     }

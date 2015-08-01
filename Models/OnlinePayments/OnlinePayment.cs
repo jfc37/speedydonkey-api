@@ -17,6 +17,8 @@ namespace Models.OnlinePayments
         public virtual decimal Total { get { return Price + Fee; } }
         public virtual string Description { get; set; }
         public virtual OnlinePaymentStatus PaymentStatus { get; set; }
+        public virtual Guid ReferenceNumber { get; set; }
+        public virtual int InitiatedBy { get; set; }
     }
 
     public enum OnlinePaymentItem
@@ -30,5 +32,11 @@ namespace Models.OnlinePayments
         BankDeposit,
         PayPal,
         Poli
+    }
+
+    public enum OnlinePaymentStatus
+    {
+        Pending,
+        Complete
     }
 }

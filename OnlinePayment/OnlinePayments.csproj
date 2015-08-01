@@ -56,7 +56,10 @@
     <Compile Include="IResponseCreator.cs" />
     <Compile Include="ItemStrategies\IItemValidationStrategyFactory.cs" />
     <Compile Include="ItemStrategies\ItemValidationStrategyFactory.cs" />
+    <Compile Include="ItemStrategies\ITypedItemStrategy.cs" />
     <Compile Include="ItemStrategies\ITypedItemValidationStrategy.cs" />
+    <Compile Include="ItemStrategies\Pass\PassStrategy.cs" />
+    <Compile Include="ItemStrategies\Pass\PassValidationStrategy.cs" />
     <Compile Include="ItemStrategies\WindyLindy\WindyLindyValidationStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\ExpressCheckout.cs" />
     <Compile Include="Extensions\ErrorTypeExtensions.cs" />

@@ -45,5 +45,21 @@ namespace Common.Extensions
         {
             return !instance.Equals(compare);
         }
+
+        public static bool IsInt(this string instance)
+        {
+            int output;
+            return int.TryParse(instance, out output);
+        }
+
+        public static bool IsNotInt(this string instance)
+        {
+            return !instance.IsInt();
+        }
+
+        public static int ToInt(this string instance)
+        {
+            return int.Parse(instance);
+        }
     }
 }

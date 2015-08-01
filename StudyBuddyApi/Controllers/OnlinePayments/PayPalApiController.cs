@@ -3,7 +3,6 @@ using Models.OnlinePayments;
 using OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal.Models;
 using SpeedyDonkeyApi.Extensions.Models;
-using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models.OnlinePayments.PayPal;
 
 namespace SpeedyDonkeyApi.Controllers.OnlinePayments
@@ -29,7 +28,6 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         }
 
         [Route("begin")]
-        [ValidateModelActionFilter]
         public IHttpActionResult Post([FromBody] PayPalRequestModel model)
         {
             var response = _onlinePaymentManager.Begin(model.ToRequest(), _startPaymentStrategy, new ResponseCreator<StartPayPalPaymentResponse>());
@@ -39,7 +37,6 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         }
 
         [Route("confirm")]
-        [ValidateModelActionFilter]
         public IHttpActionResult Post([FromBody] PayPalConfirmModel model)
         {
             var response = _confirmStrategy.PerformStep(model.Token);
@@ -49,7 +46,6 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         }
 
         [Route("complete")]
-        [ValidateModelActionFilter]
         public IHttpActionResult Post([FromBody] PayPalCompleteModel model)
         {
             var response = _completeStrategy.PerformStep(model.Token);

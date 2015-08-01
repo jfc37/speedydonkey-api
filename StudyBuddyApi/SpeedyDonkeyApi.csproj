@@ -211,7 +211,6 @@
     <Compile Include="Controllers\AnnouncementApiController.cs" />
     <Compile Include="Controllers\OnlinePayments\PoliApiController.cs" />
     <Compile Include="Controllers\OnlinePayments\PayPalApiController.cs" />
-    <Compile Include="Controllers\PayPalApiController.cs" />
     <Compile Include="Controllers\ProfitReportApiController.cs" />
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
@@ -242,6 +241,7 @@
     <Compile Include="Filter\NullModelActionFilter.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
+    <Compile Include="Filter\CurrentUserAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -260,8 +260,6 @@
     <Compile Include="Models\OnlinePayments\Poli\PoliRequestModel.cs" />
     <Compile Include="Models\PassStatisticModel.cs" />
     <Compile Include="Models\PassTemplateModel.cs" />
-    <Compile Include="Models\PayPalBeginViewModel.cs" />
-    <Compile Include="Models\PayPalConfirmViewModel.cs" />
     <Compile Include="Models\ProfitReportModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\UserEnroledBlocksModel.cs" />

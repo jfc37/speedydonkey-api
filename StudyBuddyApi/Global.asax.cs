@@ -5,10 +5,6 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using ActionHandlers;
-using ActionHandlers.CreateHandlers.Strategies;
-using ActionHandlers.EnrolmentProcess;
-using ActionHandlers.OnlinePayments;
-using ActionHandlers.UserPasses;
 using Autofac;
 using Autofac.Core;
 using Autofac.Features.ResolveAnything;
@@ -43,6 +39,7 @@ namespace SpeedyDonkeyApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalConfiguration.Configuration.Filters.Add(new NullModelActionFilter());
             GlobalConfiguration.Configuration.Filters.Add(new ValidateModelActionFilter());
+            GlobalConfiguration.Configuration.Filters.Add(new CurrentUserActionFilter());
 
             var dependencyBuilder = new NHibernateDependancySetup();
 

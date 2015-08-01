@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="FluentConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleRunners\AllRulesAreValidRunner.cs" />
+    <Compile Include="RuleRunners\IRuleRunner.cs" />
     <Compile Include="Rules\AreUsersExistingTeachersRule.cs" />
     <Compile Include="Rules\DateIsNotTooFarInThePastRule.cs" />
     <Compile Include="Rules\DoesIdExist.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Rules\IRule.cs" />
     <Compile Include="Rules\IsStringAValidGuidRule.cs" />
     <Compile Include="Rules\IsThereARegistrationWithMatchingRegistrationNumber.cs" />
+    <Compile Include="Rules\IsUserLoggedInRule.cs" />
     <Compile Include="Rules\IsUserMissingClaimRule.cs" />
     <Compile Include="ValidationError.cs" />
     <Compile Include="ValidationMessages.cs" />

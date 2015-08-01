@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Models.OnlinePayments;
 
 namespace Models
 {
@@ -7,7 +8,7 @@ namespace Models
     {
         Guid RegistationId { get; set; }
         decimal Amount { get; set; }
-        string PaymentStatus { get; }
+        OnlinePaymentStatus PaymentStatus { get; }
 
     }
 
@@ -19,14 +20,9 @@ namespace Models
         public virtual Guid RegistationId { get; set; }
         public virtual decimal Amount { get; set; }
 
-        public virtual string PaymentStatus
-        {
-            get { return OnlinePaymentStatus.ToString(); }
-        }
-
         public virtual bool Deleted { get; set; }
 
-        public virtual OnlinePaymentStatus OnlinePaymentStatus { get; set; }
+        public virtual OnlinePaymentStatus PaymentStatus { get; set; }
     }
 
 }

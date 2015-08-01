@@ -2,7 +2,7 @@
 {
     public interface IItemStrategy
     {
-        decimal GetPrice();
-        string GetDescription();
+        decimal GetPrice(string itemId);
+        string GetDescription(string itemId);
     }
 }

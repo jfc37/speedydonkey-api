@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Models.OnlinePayments;
@@ -10,6 +11,7 @@ namespace OnlinePayments.PaymentMethods.PayPal.Models
         public string Token { get; set; }
         public List<PaypalError> Errors { get; set; }
         public bool IsValid { get { return !Errors.Any(); } }
+        public Guid ReferenceNumber { get; set; }
 
         public StartPayPalPaymentResponse()
         {

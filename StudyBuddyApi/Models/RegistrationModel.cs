@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Net.Http;
-using Common;
 using Models;
-using SpeedyDonkeyApi.Services;
+using Models.OnlinePayments;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -18,7 +16,7 @@ namespace SpeedyDonkeyApi.Models
         public DateTime? LastUpdatedDateTime { get; set; }
         public Guid RegistationId { get; set; }
         public decimal Amount { get; set; }
-        public string PaymentStatus { get; set; }
+        public OnlinePaymentStatus PaymentStatus { get; set; }
 
     }
 }

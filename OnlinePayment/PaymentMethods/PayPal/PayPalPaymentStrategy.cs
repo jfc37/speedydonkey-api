@@ -16,6 +16,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
         {
             var response = _expressCheckout.Set(payment);
             payment.Token = response.Token;
+            response.ReferenceNumber = payment.ReferenceNumber;
 
             return response;
         }

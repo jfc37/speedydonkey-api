@@ -11,12 +11,12 @@ namespace OnlinePayments.ItemStrategies.WindyLindy
             _onlinePayment = onlinePayment;
         }
 
-        public decimal GetPrice()
+        public decimal GetPrice(string itemId)
         {
             return new decimal(199.99);
         }
 
-        public string GetDescription()
+        public string GetDescription(string itemId)
         {
             return "Full Pass";
         }

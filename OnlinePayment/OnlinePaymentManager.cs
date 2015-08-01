@@ -1,4 +1,6 @@
-﻿using Data.Repositories;
+﻿using System;
+using Common;
+using Data.Repositories;
 using Models.OnlinePayments;
 using OnlinePayments.ItemStrategies;
 using OnlinePayments.PaymentFeeStrategies;
@@ -11,17 +13,20 @@ namespace OnlinePayments
         private readonly IPaymentFeeStrategyFactory _feeStrategyFactory;
         private readonly IRepository<OnlinePayment> _repository;
         private readonly IItemValidationStrategyFactory _validationStrategyFactory;
+        private readonly ICurrentUser _currentUser;
 
         public OnlinePaymentManager(
             IItemStrategyFactory itemStrategyFactory,
             IPaymentFeeStrategyFactory feeStrategyFactory,
             IRepository<OnlinePayment> repository,
-            IItemValidationStrategyFactory validationStrategyFactory)
+            IItemValidationStrategyFactory validationStrategyFactory,
+            ICurrentUser currentUser)
         {
             _itemStrategyFactory = itemStrategyFactory;
             _feeStrategyFactory = feeStrategyFactory;
             _repository = repository;
             _validationStrategyFactory = validationStrategyFactory;
+            _currentUser = currentUser;
         }
 
         public TResponse Begin<TPayment, TResponse>(
@@ -58,14 +63,17 @@ namespace OnlinePayments
         {
             var strategy = _itemStrategyFactory.GetStrategy(payment);
             payment.Price = strategy
-                .GetPrice();
+                .GetPrice(payment.ItemId);
 
             payment.Description = strategy
-                .GetDescription();
+                .GetDescription(payment.ItemId);
 
             payment.Fee = _feeStrategyFactory
                 .GetPaymentFeeStrategy(payment.PaymentMethod)
                 .GetFee(payment);
+
+            payment.InitiatedBy = _currentUser.Id;
+            payment.ReferenceNumber = Guid.NewGuid();
 
             return payment;
         }

@@ -13,6 +13,7 @@ namespace OnlinePayments.PaymentMethods.Poli.Models
         public string Token { get; set; }
         public List<string> Errors { get; set; }
         public bool IsValid { get { return Errors.NotAny(); } }
+        public Guid ReferenceNumber { get; set; }
 
         public StartPoliPaymentResponse(dynamic latest)
         {

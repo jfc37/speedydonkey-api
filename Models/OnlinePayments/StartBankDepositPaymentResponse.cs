@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Common;
 using Common.Extensions;
 
@@ -8,6 +9,7 @@ namespace Models.OnlinePayments
     {
         public List<string> Errors { get; set; } 
         public bool IsValid { get { return Errors.NotAny(); } }
+        public Guid ReferenceNumber { get; set; }
 
         public StartBankDepositPaymentResponse()
         {
