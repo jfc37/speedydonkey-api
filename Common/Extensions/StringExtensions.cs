@@ -61,5 +61,10 @@ namespace Common.Extensions
         {
             return int.Parse(instance);
         }
+
+        public static Guid ToGuid(this string instance)
+        {
+            return Guid.Parse(instance);
+        }
     }
 }

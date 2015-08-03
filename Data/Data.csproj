@@ -64,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityLogger.cs" />
+    <Compile Include="CodeChunks\GetRegistrationFromRegistrationNumber.cs" />
+    <Compile Include="CodeChunks\GetStartDateForUsersPurchasedPass.cs" />
+    <Compile Include="CodeChunks\ICodeChunk.cs" />
     <Compile Include="Mappings\FluentMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />

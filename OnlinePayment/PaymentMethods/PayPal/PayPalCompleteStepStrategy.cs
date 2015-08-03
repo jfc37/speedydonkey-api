@@ -6,7 +6,7 @@ using OnlinePayments.PaymentMethods.PayPal.Models;
 
 namespace OnlinePayments.PaymentMethods.PayPal
 {
-    public class PayPalCompleteStepStrategy : IPaymentStepStrategy<string, PayPalCompleteResponse>
+    public class PayPalCompleteStepStrategy : ICompletePaymentStrategy<string, PayPalCompleteResponse, PayPalPayment>
     {
         private readonly IExpressCheckout _expressCheckout;
         private readonly IRepository<PayPalPayment> _repository;
@@ -19,7 +19,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
             _repository = repository;
         }
 
-        public PayPalCompleteResponse PerformStep(string token)
+        public PayPalCompleteResponse CompletePayment(string token)
         {
             var onlinePayment = _repository
                 .GetAll()
@@ -35,6 +35,14 @@ namespace OnlinePayments.PaymentMethods.PayPal
             }
 
             return result;
+        }
+
+        public PayPalPayment GetCompletedPayment(string token)
+        {
+            var onlinePayment = _repository
+                .GetAll()
+                .Single(x => x.Token == token);
+            return onlinePayment;
         }
     }
 }

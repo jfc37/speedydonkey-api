@@ -52,6 +52,27 @@ namespace OnlinePayments
             return response;
         }
 
+        public TResponse Complete<TPaymentId, TPayment, TResponse>(
+            TPaymentId payment, 
+            ICompletePaymentStrategy<TPaymentId, TResponse, TPayment> paymentStrategy) 
+            where TPayment : OnlinePayment 
+            where TResponse : ICompleteOnlinePaymentResponse
+        {
+            var completeResponse = paymentStrategy.CompletePayment(payment);
+            if (completeResponse.IsValid)
+            {
+                var completedPayment = paymentStrategy.GetCompletedPayment(payment);
+                completedPayment.PaymentStatus = OnlinePaymentStatus.Complete;
+                _repository.Update(completedPayment);
+
+
+                var strategy = _itemStrategyFactory.GetStrategy(completedPayment);
+                strategy.CompletePurchase(completedPayment);
+            }
+
+            return completeResponse;
+        }
+
         private bool IsItemValidToPurchase(OnlinePayment payment)
         {
             var validationStrategy = _validationStrategyFactory.GetStrategy(payment.ItemType);

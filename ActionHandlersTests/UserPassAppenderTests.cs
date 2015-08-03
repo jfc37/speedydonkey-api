@@ -23,7 +23,7 @@ namespace ActionHandlersTests
 
         protected void PerformAction()
         {
-            GetUserPassAppender().AddPassToUser(User, Pass, PassTemplate);
+            GetUserPassAppender().AddPassToUser(User, Pass.PaymentStatus, PassTemplate);
         }
     }
 

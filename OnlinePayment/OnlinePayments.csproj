@@ -101,6 +101,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ActionHandlers\ActionHandlers.csproj">
+      <Project>{AA37B17D-755F-420C-AEB8-CCE08DA6D30E}</Project>
+      <Name>ActionHandlers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
       <Name>Common</Name>

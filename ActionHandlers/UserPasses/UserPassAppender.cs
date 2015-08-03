@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using ActionHandlers.EnrolmentProcess;
+using Data.CodeChunks;
 using Models;
 
 namespace ActionHandlers.UserPasses
 {
     public interface IUserPassAppender
     {
-        void AddPassToUser(User user, IPass pass, PassTemplate passTemplate);
+        void AddPassToUser(User user, string paymentStatus, PassTemplate passTemplate);
     }
     public class UserPassAppender : IUserPassAppender
     {
@@ -19,15 +18,15 @@ namespace ActionHandlers.UserPasses
             _passCreatorFactory = passCreatorFactory;
         }
 
-        public void AddPassToUser(User user, IPass pass, PassTemplate passTemplate)
+        public void AddPassToUser(User user, string paymentStatus, PassTemplate passTemplate)
         {
             if (user.Passes == null)
                 user.Passes = new List<IPass>();
 
-            var validPasses = user.Passes.OfType<Pass>().Where(x => x.IsValid() || x.IsFuturePass()).ToList();
-            var startDate = validPasses.Any() ? validPasses.Max(x => x.EndDate).AddDays(1).Date : DateTime.Now.Date;
+            var startDate = new GetStartDateForUsersPurchasedPass(user)
+                .Do();
             var createdPass = _passCreatorFactory.Get(passTemplate.PassType).CreatePass(startDate, passTemplate);
-            createdPass.PaymentStatus = pass.PaymentStatus;
+            createdPass.PaymentStatus = paymentStatus;
             createdPass.CreatedDateTime = DateTime.Now;
 
             user.Passes.Add(createdPass);

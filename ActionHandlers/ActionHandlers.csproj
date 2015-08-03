@@ -112,10 +112,6 @@
       <Project>{01A83567-4346-45F7-8322-563F700C7AD8}</Project>
       <Name>Notification</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OnlinePayment\OnlinePayments.csproj">
-      <Project>{16EE1C93-463A-4CB5-B63B-8F894A7B0CDE}</Project>
-      <Name>OnlinePayments</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>
       <Name>Validation</Name>

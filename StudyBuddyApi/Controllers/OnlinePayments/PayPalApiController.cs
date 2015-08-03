@@ -13,13 +13,13 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         private readonly IOnlinePaymentManager _onlinePaymentManager;
         private readonly IStartPaymentStrategy<PayPalPayment, StartPayPalPaymentResponse> _startPaymentStrategy;
         private readonly IPaymentStepStrategy<string, PayPalConfirmResponse> _confirmStrategy;
-        private readonly IPaymentStepStrategy<string, PayPalCompleteResponse> _completeStrategy;
+        private readonly ICompletePaymentStrategy<string, PayPalCompleteResponse, PayPalPayment> _completeStrategy;
 
         public PayPalApiController(
             IOnlinePaymentManager onlinePaymentManager, 
             IStartPaymentStrategy<PayPalPayment, StartPayPalPaymentResponse> startPaymentStrategy,
             IPaymentStepStrategy<string, PayPalConfirmResponse> confirmStrategy,
-            IPaymentStepStrategy<string, PayPalCompleteResponse> completeStrategy)
+            ICompletePaymentStrategy<string, PayPalCompleteResponse, PayPalPayment> completeStrategy)
         {
             _onlinePaymentManager = onlinePaymentManager;
             _startPaymentStrategy = startPaymentStrategy;
@@ -48,7 +48,7 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         [Route("complete")]
         public IHttpActionResult Post([FromBody] PayPalCompleteModel model)
         {
-            var response = _completeStrategy.PerformStep(model.Token);
+            var response = _onlinePaymentManager.Complete(model.Token, _completeStrategy);
 
             return Ok(response);
 

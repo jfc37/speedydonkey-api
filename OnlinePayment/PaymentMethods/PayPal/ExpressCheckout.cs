@@ -29,7 +29,9 @@ namespace OnlinePayments.PaymentMethods.PayPal
         {
             return new PayPalCompleteResponse
             {
-                Errors = instance.Errors.Select(x => x.ToPaypalError()),
+                Errors = instance.Errors
+                    .Select(x => x.ToPaypalError())
+                    .ToList(),
                 Status = instance.Ack.ToString()
             };
         }

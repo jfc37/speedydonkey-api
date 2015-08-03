@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Models.OnlinePayments
 {
@@ -7,6 +6,13 @@ namespace Models.OnlinePayments
     {
         bool IsValid { get; }
         Guid ReferenceNumber { get; set; }
+
+        void AddError(string errorMessage);
+    }
+
+    public interface ICompleteOnlinePaymentResponse
+    {
+        bool IsValid { get; }
 
         void AddError(string errorMessage);
     }
