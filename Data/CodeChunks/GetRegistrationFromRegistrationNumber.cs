@@ -5,6 +5,9 @@ using Models;
 
 namespace Data.CodeChunks
 {
+    /// <summary>
+    /// Gets the registration with a given registration number
+    /// </summary>
     public class GetRegistrationFromRegistrationNumber : ICodeChunk<Registration>
     {
         private readonly IRepository<Registration> _repository;
@@ -19,7 +22,7 @@ namespace Data.CodeChunks
         public Registration Do()
         {
             return _repository.GetAll()
-                .SingleOrDefault(x => x.RegistationId == _registrationNumber);
+                .Single(x => x.RegistationId == _registrationNumber);
         }
     }
 }

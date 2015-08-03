@@ -25,7 +25,10 @@ namespace ActionHandlers.UserPasses
 
             var startDate = new GetStartDateForUsersPurchasedPass(user)
                 .Do();
-            var createdPass = _passCreatorFactory.Get(passTemplate.PassType).CreatePass(startDate, passTemplate);
+            var createdPass = _passCreatorFactory
+                .Get(passTemplate.PassType)
+                .CreatePass(startDate, passTemplate);
+
             createdPass.PaymentStatus = paymentStatus;
             createdPass.CreatedDateTime = DateTime.Now;
 

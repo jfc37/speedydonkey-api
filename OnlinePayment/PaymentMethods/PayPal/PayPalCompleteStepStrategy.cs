@@ -1,5 +1,4 @@
 using System.Linq;
-using Common.Extensions;
 using Data.Repositories;
 using Models.OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal.Models;
@@ -27,12 +26,6 @@ namespace OnlinePayments.PaymentMethods.PayPal
             var request = new PayPalCompleteRequest(onlinePayment);
 
             var result = _expressCheckout.Do(request);
-
-            if (result.Errors.NotAny())
-            {
-                onlinePayment.PaymentStatus = OnlinePaymentStatus.Complete;
-                _repository.Update(onlinePayment);
-            }
 
             return result;
         }
