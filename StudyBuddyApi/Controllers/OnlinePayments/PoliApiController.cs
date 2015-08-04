@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Web;
+using System.Web.Http;
 using Models.OnlinePayments;
 using OnlinePayments;
 using OnlinePayments.PaymentMethods.Poli.Models;
@@ -12,12 +13,12 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
     {
         private readonly IOnlinePaymentManager _onlinePaymentManager;
         private readonly IStartPaymentStrategy<PoliPayment, StartPoliPaymentResponse> _startPaymentStrategy;
-        private readonly IPaymentStepStrategy<string, PoliCompleteResponse> _completeStrategy;
+        private readonly ICompletePaymentStrategy<string, PoliCompleteResponse, PoliPayment> _completeStrategy;
 
         public PoliApiController(
             IOnlinePaymentManager onlinePaymentManager,
             IStartPaymentStrategy<PoliPayment, StartPoliPaymentResponse> startPaymentStrategy,
-            IPaymentStepStrategy<string, PoliCompleteResponse> completeStrategy)
+            ICompletePaymentStrategy<string, PoliCompleteResponse, PoliPayment> completeStrategy)
         {
             _onlinePaymentManager = onlinePaymentManager;
             _startPaymentStrategy = startPaymentStrategy;
@@ -36,7 +37,8 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         [Route("complete")]
         public IHttpActionResult Post([FromBody] PoliCompleteModel model)
         {
-            var response = _completeStrategy.PerformStep(model.Token);
+            var decodedToken = HttpUtility.UrlDecode(model.Token);
+            var response = _onlinePaymentManager.Complete(decodedToken, _completeStrategy);
 
             return Ok(response);
 

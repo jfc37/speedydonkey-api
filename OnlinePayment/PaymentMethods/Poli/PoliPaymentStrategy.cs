@@ -16,6 +16,8 @@ namespace OnlinePayments.PaymentMethods.Poli
         {
             var response = _poliIntergrator.InitiateTransaction(payment);
 
+            payment.PoliId = response.PoliId;
+            payment.Token = response.Token;
             return response;
         }
     }

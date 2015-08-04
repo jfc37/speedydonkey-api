@@ -6,7 +6,6 @@ using Common;
 using Common.Extensions;
 using Models.OnlinePayments;
 using Newtonsoft.Json;
-using OnlinePayments.PaymentMethods.PayPal;
 using OnlinePayments.PaymentMethods.Poli.Models;
 
 namespace OnlinePayments.PaymentMethods.Poli
@@ -71,7 +70,7 @@ namespace OnlinePayments.PaymentMethods.Poli
                     var outputData = new String(readBuff, 0, count);
                     Console.Write(outputData);
                     count = streamRead.Read(readBuff, 0, (int)response.ContentLength);
-                    dynamic latest = Newtonsoft.Json.JsonConvert.DeserializeObject(outputData);
+                    dynamic latest = JsonConvert.DeserializeObject(outputData);
                     poliResponse = new StartPoliPaymentResponse(latest);
                 }
             }
