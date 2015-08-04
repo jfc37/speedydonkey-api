@@ -20,8 +20,10 @@ namespace OnlinePayments.PaymentMethods.Poli.Models
             PoliId = latest.TransactionRefNo;
             RedirectUrl = latest.NavigateURL;
 
-            if (latest.ErrorMessage.IsNotNullOrWhiteSpace())
+            if (latest.ErrorMessage.HasValues)
                 Errors = latest.ErrorMessage.PutIntoList();
+            else
+                Errors = new List<string>();
         }
 
         public StartPoliPaymentResponse()
