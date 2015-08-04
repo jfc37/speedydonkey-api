@@ -37,8 +37,7 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         [Route("complete")]
         public IHttpActionResult Post([FromBody] PoliCompleteModel model)
         {
-            var decodedToken = HttpUtility.UrlDecode(model.Token);
-            var response = _onlinePaymentManager.Complete(decodedToken, _completeStrategy);
+            var response = _onlinePaymentManager.Complete(model.Token, _completeStrategy);
 
             return Ok(response);
 
