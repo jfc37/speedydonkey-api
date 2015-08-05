@@ -103,6 +103,20 @@ namespace OnlinePayments.PaymentMethods.Poli
                     poliResponse = new StartPoliPaymentResponse(latest);
                 }
             }
+            catch (WebException exception)
+            {
+                var webResponse = exception.Response as HttpWebResponse;
+
+                if (webResponse.IsNotNull() && webResponse.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    poliResponse = new StartPoliPaymentResponse();
+                    poliResponse.AddError("Bad Request");
+                }
+                else
+                {
+                    throw;
+                }
+            }
             finally
             {
                 if (response.IsNotNull())
@@ -140,9 +154,11 @@ namespace OnlinePayments.PaymentMethods.Poli
                     poliResponse = JsonConvert.DeserializeObject<GetTransactionResponse>(outputData);
                 }
             }
-            catch (HttpException exception)
+            catch (WebException exception)
             {
-                if (exception.GetHttpCode() == (int) HttpStatusCode.BadGateway)
+                var webResponse = exception.Response as HttpWebResponse;
+
+                if (webResponse.IsNotNull() && webResponse.StatusCode == HttpStatusCode.BadRequest)
                 {
                     poliResponse = new GetTransactionResponse();
                     poliResponse.ErrorMessage = "Bad Request";
