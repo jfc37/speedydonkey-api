@@ -22,7 +22,7 @@ namespace OnlinePayments.PaymentMethods.Poli
         {
             var result = _poliIntergrator.GetTransaction(token);
 
-            return result;
+            return result.ToPoliCompleteResponse();
         }
 
         public PoliPayment GetCompletedPayment(string token)
@@ -32,6 +32,14 @@ namespace OnlinePayments.PaymentMethods.Poli
                 .Single(x => x.Token == token);
 
             return onlinePayment;
+        }
+
+        public PoliCompleteResponse GetPaymentAlreadyCompleteResponse()
+        {
+            return new PoliCompleteResponse
+            {
+                Status = "Already Completed"
+            };
         }
     }
 }

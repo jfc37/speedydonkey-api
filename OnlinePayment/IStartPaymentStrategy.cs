@@ -14,5 +14,6 @@ namespace OnlinePayments
     {
         TResponse CompletePayment(TPaymentId payment);
         TPayment GetCompletedPayment(TPaymentId payment);
+        TResponse GetPaymentAlreadyCompleteResponse();
     }
 }

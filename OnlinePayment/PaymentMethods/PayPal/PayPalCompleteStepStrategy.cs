@@ -37,5 +37,13 @@ namespace OnlinePayments.PaymentMethods.PayPal
                 .Single(x => x.Token == token);
             return onlinePayment;
         }
+
+        public PayPalCompleteResponse GetPaymentAlreadyCompleteResponse()
+        {
+            return new PayPalCompleteResponse
+            {
+                Status = "Already Completed"
+            };
+        }
     }
 }

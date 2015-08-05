@@ -6,22 +6,6 @@ namespace OnlinePayments.PaymentMethods.Poli.Models
 {
     public class PoliCompleteResponse : ICompleteOnlinePaymentResponse
     {
-        public PoliCompleteResponse(dynamic latest)
-        {
-            Errors = new List<string>();
-            Status = latest.TransactionStatusCode;
-
-            if (latest.ErrorMessage.HasValues)
-                Errors.Add(latest.ErrorMessage);
-
-            //if (Status.IsNotSameAs("Completed"))
-            //    Errors.Add("Transaction not completed");
-
-            //if (latest.PaymentAmount.NotEquals(latest.AmountPaid))
-            //    Errors.Add("Different amount paid");
-
-        }
-
         public PoliCompleteResponse()
         {
             Errors = new List<string>();

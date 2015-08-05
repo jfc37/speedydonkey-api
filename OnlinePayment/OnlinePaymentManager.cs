@@ -58,6 +58,11 @@ namespace OnlinePayments
             where TPayment : OnlinePayment 
             where TResponse : ICompleteOnlinePaymentResponse
         {
+            if (HasPaymentAlreadyBeenCompleted(payment, paymentStrategy))
+            {
+                return paymentStrategy.GetPaymentAlreadyCompleteResponse();
+            }
+
             var completeResponse = paymentStrategy.CompletePayment(payment);
             if (completeResponse.IsValid)
             {
@@ -71,6 +76,17 @@ namespace OnlinePayments
             }
 
             return completeResponse;
+        }
+
+        private bool HasPaymentAlreadyBeenCompleted<TPaymentId, TPayment, TResponse>(
+            TPaymentId payment,
+            ICompletePaymentStrategy<TPaymentId, TResponse, TPayment> paymentStrategy)
+            where TPayment : OnlinePayment
+            where TResponse : ICompleteOnlinePaymentResponse
+
+        {
+            var paymentBeingCompleted = paymentStrategy.GetCompletedPayment(payment);
+            return paymentBeingCompleted.PaymentStatus == OnlinePaymentStatus.Complete;
         }
 
         private bool IsItemValidToPurchase(OnlinePayment payment)

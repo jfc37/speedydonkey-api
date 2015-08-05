@@ -10,6 +10,35 @@ using OnlinePayments.PaymentMethods.Poli.Models;
 
 namespace OnlinePayments.PaymentMethods.Poli
 {
+    public static class GetTransactionResponseExtensions
+    {
+        public static PoliCompleteResponse ToPoliCompleteResponse(this GetTransactionResponse instance)
+        {
+            var response = new PoliCompleteResponse
+            {
+                Status = instance.TransactionStatusCode
+            };
+
+            if (instance.ErrorMessage.IsNotNullOrWhiteSpace())
+                response.AddError(instance.ErrorMessage);
+            if (instance.AmountPaid.NotEquals(instance.PaymentAmount))
+                response.AddError("Expected {0} to be paid, but was actually {1}".FormatWith(instance.PaymentAmount, instance.AmountPaid));
+
+            return response;
+        }
+    }
+
+    public class GetTransactionResponse
+    {
+        public string TransactionRefNo { get; set; }
+        public string CurrencyCode { get; set; }
+        public decimal PaymentAmount { get; set; }
+        public decimal AmountPaid { get; set; }
+        public string TransactionStatusCode { get; set; }
+        public string ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+    }
+
     public static class PoliPaymentExtensions
     {
         public static string ToInitiateTransactionRequest(this PoliPayment instance, IAppSettings appSettings)
@@ -36,7 +65,7 @@ namespace OnlinePayments.PaymentMethods.Poli
     {
         StartPoliPaymentResponse InitiateTransaction(PoliPayment payment);
 
-        PoliCompleteResponse GetTransaction(string token);
+        GetTransactionResponse GetTransaction(string token);
     }
     public class PoliIntergrator : IPoliIntergrator
     {
@@ -87,28 +116,51 @@ namespace OnlinePayments.PaymentMethods.Poli
             return poliResponse;
         }
 
-        public PoliCompleteResponse GetTransaction(string token)
+        public GetTransactionResponse GetTransaction(string token)
         {
-            var poliResponse = new PoliCompleteResponse();
-            var myRequest = CreateGetRequest(token);
+            var poliResponse = new GetTransactionResponse();
+            HttpWebResponse response = null;
+            Stream data = null;
+            StreamReader streamRead = null;
 
-            var response = (HttpWebResponse)myRequest.GetResponse();
-            var data = response.GetResponseStream();
-            var streamRead = new StreamReader(data);
-            Char[] readBuff = new Char[response.ContentLength];
-            int count = streamRead.Read(readBuff, 0, (int)response.ContentLength);
-            while (count > 0)
+            try
             {
-                var outputData = new String(readBuff, 0, count);
-                Console.Write(outputData);
-                count = streamRead.Read(readBuff, 0, (int)response.ContentLength);
-                dynamic latest = JsonConvert.DeserializeObject(outputData);
-                poliResponse = new PoliCompleteResponse(latest);
-            }
-            response.Close();
-            data.Close();
-            streamRead.Close();
+                var myRequest = CreateGetRequest(token);
 
+                response = (HttpWebResponse) myRequest.GetResponse();
+                data = response.GetResponseStream();
+                streamRead = new StreamReader(data);
+                Char[] readBuff = new Char[response.ContentLength];
+                int count = streamRead.Read(readBuff, 0, (int) response.ContentLength);
+                while (count > 0)
+                {
+                    var outputData = new String(readBuff, 0, count);
+                    Console.Write(outputData);
+                    count = streamRead.Read(readBuff, 0, (int) response.ContentLength);
+                    poliResponse = JsonConvert.DeserializeObject<GetTransactionResponse>(outputData);
+                }
+            }
+            catch (HttpException exception)
+            {
+                if (exception.GetHttpCode() == (int) HttpStatusCode.BadGateway)
+                {
+                    poliResponse = new GetTransactionResponse();
+                    poliResponse.ErrorMessage = "Bad Request";
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            finally
+            {
+                if (response.IsNotNull())
+                    response.Close();
+                if (data.IsNotNull())
+                    data.Close();
+                if (streamRead.IsNotNull())
+                    streamRead.Close();
+            }
             return poliResponse;
         }
 
