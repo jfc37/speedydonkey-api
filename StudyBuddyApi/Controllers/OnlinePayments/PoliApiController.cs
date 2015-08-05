@@ -1,5 +1,8 @@
 ﻿using System.Web;
 using System.Web.Http;
+using Common.Extensions;
+using Data;
+using Models;
 using Models.OnlinePayments;
 using OnlinePayments;
 using OnlinePayments.PaymentMethods.Poli.Models;
@@ -14,15 +17,18 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
         private readonly IOnlinePaymentManager _onlinePaymentManager;
         private readonly IStartPaymentStrategy<PoliPayment, StartPoliPaymentResponse> _startPaymentStrategy;
         private readonly ICompletePaymentStrategy<string, PoliCompleteResponse, PoliPayment> _completeStrategy;
+        private readonly IActivityLogger _logger;
 
         public PoliApiController(
             IOnlinePaymentManager onlinePaymentManager,
             IStartPaymentStrategy<PoliPayment, StartPoliPaymentResponse> startPaymentStrategy,
-            ICompletePaymentStrategy<string, PoliCompleteResponse, PoliPayment> completeStrategy)
+            ICompletePaymentStrategy<string, PoliCompleteResponse, PoliPayment> completeStrategy,
+            IActivityLogger logger)
         {
             _onlinePaymentManager = onlinePaymentManager;
             _startPaymentStrategy = startPaymentStrategy;
             _completeStrategy = completeStrategy;
+            _logger = logger;
         }
 
         [Route("begin")]
@@ -34,9 +40,22 @@ namespace SpeedyDonkeyApi.Controllers.OnlinePayments
 
         }
 
+        [Route("nudge")]
+        public IHttpActionResult Post([FromBody] PoliNudgeModel model)
+        {
+            _logger.Log(ActivityGroup.PerformAction, ActivityType.Payment, "Poli Nudge for token".FormatWith(model.Token));
+
+            var response = _onlinePaymentManager.Complete(model.Token, _completeStrategy);
+
+            return Ok(response);
+
+        }
+
         [Route("complete")]
         public IHttpActionResult Post([FromBody] PoliCompleteModel model)
         {
+            _logger.Log(ActivityGroup.PerformAction, ActivityType.Payment, "Poli Complete for token".FormatWith(model.Token));
+
             var response = _onlinePaymentManager.Complete(model.Token, _completeStrategy);
 
             return Ok(response);
