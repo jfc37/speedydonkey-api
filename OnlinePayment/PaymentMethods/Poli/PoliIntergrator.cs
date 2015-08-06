@@ -52,7 +52,7 @@ namespace OnlinePayments.PaymentMethods.Poli
                 SuccessURL = instance.SuccessUrl,
                 FailureURL = instance.FailureUrl,
                 CancellationURL = instance.CancellationUrl,
-                NotificationURL = "{0}/online-payment/poli/nudge".FormatWith(appSettings.GetApiUrl())
+                NotificationURL = "{0}/api/online-payment/poli/nudge".FormatWith(appSettings.GetApiUrl())
             };
 
             var requestAsJson = request.ToJson();
