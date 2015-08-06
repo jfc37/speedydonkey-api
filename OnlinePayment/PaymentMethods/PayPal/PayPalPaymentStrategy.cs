@@ -1,3 +1,4 @@
+using Data.CodeChunks;
 using Models.OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal.Models;
 
@@ -14,7 +15,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
 
         public StartPayPalPaymentResponse StartPayment(PayPalPayment payment)
         {
-            payment.ReturnUrl = payment.ReturnUrl.Replace("{referenceNumber}", payment.ReferenceNumber.ToString());
+            payment.ReturnUrl = new ReferenceNumberPlaceholderReplacement(payment.ReturnUrl, payment.ReferenceNumber).Do();
 
             var response = _expressCheckout.Set(payment);
             payment.Token = response.Token;

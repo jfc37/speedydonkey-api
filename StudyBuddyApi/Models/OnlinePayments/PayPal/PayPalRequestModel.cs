@@ -11,9 +11,6 @@ namespace SpeedyDonkeyApi.Models.OnlinePayments.PayPal
         [Required]
         public string CancelUrl { get; set; }
 
-        [Required]
-        public string BuyerEmail { get; set; }
-
         public override PaymentMethod PaymentMethod
         {
             get { return PaymentMethod.PayPal; }

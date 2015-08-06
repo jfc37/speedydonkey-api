@@ -11,7 +11,6 @@ namespace SpeedyDonkeyApi.Extensions.Models
             {
                 ReturnUrl = instance.ReturnUrl,
                 CancelUrl = instance.CancelUrl,
-                BuyerEmail = instance.BuyerEmail,
                 ItemId = instance.ItemId,
                 ItemType = instance.ItemType.GetValueOrDefault(),
                 PaymentMethod = PaymentMethod.PayPal

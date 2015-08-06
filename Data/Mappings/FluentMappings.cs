@@ -30,7 +30,6 @@ namespace Data.Mappings
         {
             Map(x => x.ReturnUrl);
             Map(x => x.CancelUrl);
-            Map(x => x.BuyerEmail);
             Map(x => x.Token);
             Map(x => x.PayerId);
         }
