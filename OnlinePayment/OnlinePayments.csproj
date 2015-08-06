@@ -52,6 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeChunks\GetDoExpressCheckoutPaymentReq.cs" />
+    <Compile Include="CodeChunks\GetExpressCheckoutDetailsReqFromPayment.cs" />
+    <Compile Include="CodeChunks\GetPaymentDetailsItemTypeFromPayment.cs" />
+    <Compile Include="CodeChunks\GetPayPalAPIInterfaceServiceService.cs" />
+    <Compile Include="CodeChunks\GetPayPalPaymentDetailsFromPayment.cs" />
+    <Compile Include="CodeChunks\GetSetExpressCheckoutReqFromPayment.cs" />
+    <Compile Include="CodeChunks\GetSetExpressCheckoutRequestDetailsTypeFromPayment.cs" />
+    <Compile Include="CodeChunks\GetSetExpressCheckoutRequestTypeFromPayment.cs" />
     <Compile Include="IPaymentStepStrategy.cs" />
     <Compile Include="IResponseCreator.cs" />
     <Compile Include="ItemStrategies\IItemValidationStrategyFactory.cs" />
@@ -72,17 +80,20 @@
     <Compile Include="ItemStrategies\IItemStrategyFactory.cs" />
     <Compile Include="ItemStrategies\IItemValidationStrategy.cs" />
     <Compile Include="ItemStrategies\ItemStrategyFactory.cs" />
+    <Compile Include="PaymentMethods\PayPal\Extensions\DoExpressCheckoutDetailsResponseTypeExtensions.cs" />
+    <Compile Include="PaymentMethods\PayPal\Extensions\GetExpressCheckoutDetailsResponseTypeExtensions.cs" />
+    <Compile Include="PaymentMethods\PayPal\IExpressCheckout.cs" />
     <Compile Include="PaymentMethods\PayPal\Models\PayPalCompleteRequest.cs" />
     <Compile Include="PaymentMethods\PayPal\Models\PayPalCompleteResponse.cs" />
     <Compile Include="PaymentMethods\PayPal\Models\PayPalConfirmResponse.cs" />
     <Compile Include="PaymentMethods\PayPal\Models\StartPayPalPaymentResponse.cs" />
-    <Compile Include="Models\PaymentDetails.cs" />
     <Compile Include="PaymentMethods\PayPal\Models\PaypalError.cs" />
     <Compile Include="OnlinePaymentManager.cs" />
     <Compile Include="PaymentFeeStrategies\IPaymentFeeStrategyFactory.cs" />
     <Compile Include="PaymentFeeStrategies\NoFeeStrategy.cs" />
     <Compile Include="PaymentFeeStrategies\PaymentFeeStrategyFactory.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalCompleteStepStrategy.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalConfig.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalConfirmStepStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalFeeCalculation.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalFeeStrategy.cs" />
@@ -122,7 +133,9 @@
       <Name>Validation</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

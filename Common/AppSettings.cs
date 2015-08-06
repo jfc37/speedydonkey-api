@@ -41,7 +41,14 @@ namespace Common
         AutoActivateUser,
         FromEmail,
         AllowDatabaseDelete,
+
+        PayPalUsername,
+        PayPalPassword,
+        PayPalSignature,
+        PayPalMode,
+
+
         PoliAuthorisation,
-        PoliInitiateUrl
+        PoliInitiateUrl,
     }
 }
