@@ -24,6 +24,8 @@ namespace OnlinePayments.PaymentMethods.Poli
 
             payment.PoliId = response.PoliId;
             payment.Token = response.Token;
+
+            response.ReferenceNumber = payment.ReferenceNumber;
             return response;
         }
     }

@@ -26,9 +26,9 @@ namespace OnlinePayments.PaymentMethods.Poli
             var myRequest = CreatePostRequest(json);
             SendRequest(myRequest, json);
 
-            var poliResponse = new GetResponseFromHttpRequest<StartPoliPaymentResponse>(myRequest).Do();
+            var poliResponse = new GetResponseFromHttpRequest<InitiatePoliTransaction>(myRequest).Do();
 
-            return poliResponse;
+            return poliResponse.ToResponse();
         }
 
         public GetTransactionResponse GetTransaction(string token)

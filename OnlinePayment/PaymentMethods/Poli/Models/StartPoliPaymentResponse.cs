@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
-using Common;
 using Common.Extensions;
 using Models.OnlinePayments;
 
@@ -15,25 +13,6 @@ namespace OnlinePayments.PaymentMethods.Poli.Models
         public List<string> Errors { get; set; }
         public bool IsValid { get { return Errors.NotAny(); } }
         public Guid ReferenceNumber { get; set; }
-
-        public StartPoliPaymentResponse(dynamic latest)
-        {
-            PoliId = latest.TransactionRefNo;
-            RedirectUrl = latest.NavigateURL;
-            Token = GetTokenFromUrl(RedirectUrl);
-
-            if (latest.ErrorMessage.HasValues)
-                Errors = latest.ErrorMessage.PutIntoList();
-            else
-                Errors = new List<string>();
-        }
-
-        private string GetTokenFromUrl(string navigateUrl)
-        {
-            var uri = new Uri(navigateUrl);
-            var query = HttpUtility.ParseQueryString(uri.Query);
-            return query.Get("token");
-        }
 
         public StartPoliPaymentResponse()
         {

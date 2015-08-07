@@ -102,9 +102,11 @@
     <Compile Include="PaymentMethods\PayPal\PayPalFeeStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalPaymentStrategy.cs" />
     <Compile Include="PaymentMethods\Poli\Extensions\GetTransactionResponseExtensions.cs" />
+    <Compile Include="PaymentMethods\Poli\Extensions\InitiatePoliTransactionExtensions.cs" />
     <Compile Include="PaymentMethods\Poli\Extensions\PoliPaymentExtensions.cs" />
     <Compile Include="PaymentMethods\Poli\IPoliIntergrator.cs" />
     <Compile Include="PaymentMethods\Poli\Models\GetTransactionResponse.cs" />
+    <Compile Include="PaymentMethods\Poli\Models\InitiatePoliTransaction.cs" />
     <Compile Include="PaymentMethods\Poli\Models\PoliCompleteResponse.cs" />
     <Compile Include="PaymentMethods\Poli\Models\StartPoliPaymentResponse.cs" />
     <Compile Include="PaymentMethods\Poli\PoliCompleteStepStrategy.cs" />
