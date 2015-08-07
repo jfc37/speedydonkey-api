@@ -52,11 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeChunks\CreateWebRequestForPoli.cs" />
     <Compile Include="CodeChunks\GetDoExpressCheckoutPaymentReq.cs" />
     <Compile Include="CodeChunks\GetExpressCheckoutDetailsReqFromPayment.cs" />
     <Compile Include="CodeChunks\GetPaymentDetailsItemTypeFromPayment.cs" />
     <Compile Include="CodeChunks\GetPayPalAPIInterfaceServiceService.cs" />
     <Compile Include="CodeChunks\GetPayPalPaymentDetailsFromPayment.cs" />
+    <Compile Include="CodeChunks\GetPoliAuthorisation.cs" />
+    <Compile Include="CodeChunks\GetResponseFromHttpRequest.cs" />
     <Compile Include="CodeChunks\GetSetExpressCheckoutReqFromPayment.cs" />
     <Compile Include="CodeChunks\GetSetExpressCheckoutRequestDetailsTypeFromPayment.cs" />
     <Compile Include="CodeChunks\GetSetExpressCheckoutRequestTypeFromPayment.cs" />
@@ -98,6 +101,10 @@
     <Compile Include="PaymentMethods\PayPal\PayPalFeeCalculation.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalFeeStrategy.cs" />
     <Compile Include="PaymentMethods\PayPal\PayPalPaymentStrategy.cs" />
+    <Compile Include="PaymentMethods\Poli\Extensions\GetTransactionResponseExtensions.cs" />
+    <Compile Include="PaymentMethods\Poli\Extensions\PoliPaymentExtensions.cs" />
+    <Compile Include="PaymentMethods\Poli\IPoliIntergrator.cs" />
+    <Compile Include="PaymentMethods\Poli\Models\GetTransactionResponse.cs" />
     <Compile Include="PaymentMethods\Poli\Models\PoliCompleteResponse.cs" />
     <Compile Include="PaymentMethods\Poli\Models\StartPoliPaymentResponse.cs" />
     <Compile Include="PaymentMethods\Poli\PoliCompleteStepStrategy.cs" />

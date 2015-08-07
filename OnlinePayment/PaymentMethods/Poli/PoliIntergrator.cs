@@ -1,72 +1,15 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Web;
 using Common;
 using Common.Extensions;
 using Models.OnlinePayments;
-using Newtonsoft.Json;
+using OnlinePayments.CodeChunks;
+using OnlinePayments.PaymentMethods.Poli.Extensions;
 using OnlinePayments.PaymentMethods.Poli.Models;
 
 namespace OnlinePayments.PaymentMethods.Poli
 {
-    public static class GetTransactionResponseExtensions
-    {
-        public static PoliCompleteResponse ToPoliCompleteResponse(this GetTransactionResponse instance)
-        {
-            var response = new PoliCompleteResponse
-            {
-                Status = instance.TransactionStatusCode
-            };
-
-            if (instance.ErrorMessage.IsNotNullOrWhiteSpace())
-                response.AddError(instance.ErrorMessage);
-            if (instance.AmountPaid.NotEquals(instance.PaymentAmount))
-                response.AddError("Expected {0} to be paid, but was actually {1}".FormatWith(instance.PaymentAmount, instance.AmountPaid));
-
-            return response;
-        }
-    }
-
-    public class GetTransactionResponse
-    {
-        public string TransactionRefNo { get; set; }
-        public string CurrencyCode { get; set; }
-        public decimal PaymentAmount { get; set; }
-        public decimal AmountPaid { get; set; }
-        public string TransactionStatusCode { get; set; }
-        public string ErrorCode { get; set; }
-        public string ErrorMessage { get; set; }
-    }
-
-    public static class PoliPaymentExtensions
-    {
-        public static string ToInitiateTransactionRequest(this PoliPayment instance, IAppSettings appSettings)
-        {
-            var request = new
-            {
-                Amount = instance.Total.ToCurrencyString(),
-                CurrencyCode = "NZD",
-                MerchantReference = "{0}{1}".FormatWith(instance.ItemType, instance.ItemId),
-                MerchantHomepageURL = appSettings.GetWebsiteUrl(),
-                SuccessURL = instance.SuccessUrl,
-                FailureURL = instance.FailureUrl,
-                CancellationURL = instance.CancellationUrl,
-                NotificationURL = "{0}/api/online-payment/poli/nudge".FormatWith(appSettings.GetApiUrl())
-            };
-
-            var requestAsJson = request.ToJson();
-
-            return requestAsJson;
-        }
-    }
-
-    public interface IPoliIntergrator
-    {
-        StartPoliPaymentResponse InitiateTransaction(PoliPayment payment);
-
-        GetTransactionResponse GetTransaction(string token);
-    }
     public class PoliIntergrator : IPoliIntergrator
     {
         private readonly IAppSettings _appSettings;
@@ -83,110 +26,26 @@ namespace OnlinePayments.PaymentMethods.Poli
             var myRequest = CreatePostRequest(json);
             SendRequest(myRequest, json);
 
-            var poliResponse = new StartPoliPaymentResponse();
-            HttpWebResponse response = null;
-            Stream data = null;
-            StreamReader streamRead = null;
-            try
-            {
-                response = (HttpWebResponse)myRequest.GetResponse();
-                data = response.GetResponseStream();
-                streamRead = new StreamReader(data);
-                Char[] readBuff = new Char[response.ContentLength];
-                int count = streamRead.Read(readBuff, 0, (int)response.ContentLength);
-                while (count > 0)
-                {
-                    var outputData = new String(readBuff, 0, count);
-                    Console.Write(outputData);
-                    count = streamRead.Read(readBuff, 0, (int)response.ContentLength);
-                    dynamic latest = JsonConvert.DeserializeObject(outputData);
-                    poliResponse = new StartPoliPaymentResponse(latest);
-                }
-            }
-            catch (WebException exception)
-            {
-                var webResponse = exception.Response as HttpWebResponse;
-
-                if (webResponse.IsNotNull() && webResponse.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    poliResponse = new StartPoliPaymentResponse();
-                    poliResponse.AddError("Bad Request");
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            finally
-            {
-                if (response.IsNotNull())
-                    response.Close();
-                if (data.IsNotNull())
-                    data.Close();
-                if (streamRead.IsNotNull())
-                    streamRead.Close();   
-            }
+            var poliResponse = new GetResponseFromHttpRequest<StartPoliPaymentResponse>(myRequest).Do();
 
             return poliResponse;
         }
 
         public GetTransactionResponse GetTransaction(string token)
         {
-            var poliResponse = new GetTransactionResponse();
-            HttpWebResponse response = null;
-            Stream data = null;
-            StreamReader streamRead = null;
+            var myRequest = CreateGetRequest(token);
 
-            try
-            {
-                var myRequest = CreateGetRequest(token);
-
-                response = (HttpWebResponse) myRequest.GetResponse();
-                data = response.GetResponseStream();
-                streamRead = new StreamReader(data);
-                Char[] readBuff = new Char[response.ContentLength];
-                int count = streamRead.Read(readBuff, 0, (int) response.ContentLength);
-                while (count > 0)
-                {
-                    var outputData = new String(readBuff, 0, count);
-                    Console.Write(outputData);
-                    count = streamRead.Read(readBuff, 0, (int) response.ContentLength);
-                    poliResponse = JsonConvert.DeserializeObject<GetTransactionResponse>(outputData);
-                }
-            }
-            catch (WebException exception)
-            {
-                var webResponse = exception.Response as HttpWebResponse;
-
-                if (webResponse.IsNotNull() && webResponse.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    poliResponse = new GetTransactionResponse();
-                    poliResponse.ErrorMessage = "Bad Request";
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            finally
-            {
-                if (response.IsNotNull())
-                    response.Close();
-                if (data.IsNotNull())
-                    data.Close();
-                if (streamRead.IsNotNull())
-                    streamRead.Close();
-            }
+            var poliResponse = new GetResponseFromHttpRequest<GetTransactionResponse>(myRequest).Do();
             return poliResponse;
         }
 
         private WebRequest CreateGetRequest(string token)
         {
-            var myRequest = WebRequest.Create
-                ("{0}/GetTransaction?token={1}".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl), HttpUtility.UrlEncode(token)));
-            myRequest.Method = "GET";
-            myRequest.Headers.Add("Authorization", "Basic " + GetAuthorisation());
-            return myRequest;
+            var url = "{0}/GetTransaction?token={1}".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl), HttpUtility.UrlEncode(token));
+            var request = new CreateWebRequestForPoli(_appSettings, url).Do();
+            request.Method = "GET";
+            
+            return request;
         }
 
         private static void SendRequest(WebRequest myRequest, byte[] json)
@@ -198,18 +57,13 @@ namespace OnlinePayments.PaymentMethods.Poli
 
         private WebRequest CreatePostRequest(byte[] json)
         {
-            var auth = GetAuthorisation();
-            var myRequest = WebRequest.Create("{0}/Initiate".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl)));
-            myRequest.Method = "POST";
-            myRequest.ContentType = "application/json";
-            myRequest.Headers.Add("Authorization", "Basic " + auth);
-            myRequest.ContentLength = json.Length;
-            return myRequest;
-        }
+            var url = "{0}/Initiate".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl));
+            var request = new CreateWebRequestForPoli(_appSettings, url).Do();
 
-        private string GetAuthorisation()
-        {
-            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(_appSettings.GetSetting(AppSettingKey.PoliAuthorisation)));
+            request.Method = "POST";
+            request.ContentType = "application/json";
+            request.ContentLength = json.Length;
+            return request;
         }
     }
 }

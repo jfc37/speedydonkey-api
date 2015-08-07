@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Data.Repositories;
 using Models.OnlinePayments;
+using OnlinePayments.PaymentMethods.Poli.Extensions;
 using OnlinePayments.PaymentMethods.Poli.Models;
 
 namespace OnlinePayments.PaymentMethods.Poli
