@@ -19,7 +19,7 @@ namespace OnlinePayments.CodeChunks
         public WebRequest Do()
         {
             var auth = new GetPoliAuthorisation(_appSettings).Do();
-            var request = WebRequest.Create("{0}/Initiate".FormatWith(_appSettings.GetSetting(AppSettingKey.PoliInitiateUrl)));
+            var request = WebRequest.Create(_url);
             request.Headers.Add("Authorization", "Basic " + auth);
             return request;
         }
