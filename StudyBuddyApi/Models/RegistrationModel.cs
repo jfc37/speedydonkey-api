@@ -19,37 +19,37 @@ namespace SpeedyDonkeyApi.Models
         public Guid RegistationId { get; set; }
         public decimal Amount { get; set; }
         public OnlinePaymentStatus PaymentStatus { get; set; }
-        
-        [Required]
+
+        //[Required]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         public string Surname { get; set; }
 
-        [Required]
-        [EmailAddress]
+        //[Required]
+        //[EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        //[Required]
         public string Phone { get; set; }
 
-        [Required]
+        //[Required]
         public string CountryOfResidence { get; set; }
 
-        [Required]
+        //[Required]
         public string EmergancyContactName { get; set; }
 
-        [Required]
+        //[Required]
         public string EmergancyContactNumber { get; set; }
         public bool Over18 { get; set; }
         public bool FullPass { get; set; }
-        [Required]
+        //[Required]
         public Style Style { get; set; }
-        [Required]
+        //[Required]
         public DanceLevel LindyLevel { get; set; }
-        [Required]
+        //[Required]
         public DanceLevel BalboaLevel { get; set; }
-        [Required]
+        //[Required]
         public DanceLevel BluesLevel { get; set; }
         public List<string> Classes { get; set; }
         public List<string> Events { get; set; }
