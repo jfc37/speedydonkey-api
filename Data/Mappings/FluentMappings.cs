@@ -73,6 +73,34 @@ namespace Data.Mappings
             Map(x => x.PaymentStatus);
             Map(x => x.RegistationId);
             Map(x => x.Amount);
+            Map(x => x.BalboaLevel);
+            Map(x => x.BluesLevel);
+            Map(x => x.CountryOfResidence);
+            Map(x => x.Email);
+            Map(x => x.EmergancyContactName);
+            Map(x => x.EmergancyContactNumber);
+            Map(x => x.FirstName);
+            Map(x => x.FullPass);
+            Map(x => x.LindyLevel);
+            Map(x => x.Over18);
+            Map(x => x.Phone);
+            Map(x => x.Style);
+            Map(x => x.Surname);
+            HasMany<CompetitionRegistration>(x => x.Competitions);
+            Map(x => x.Classes);
+            Map(x => x.Events);
+        }
+    }
+
+    public class CompetitionRegistrationMap : ClassMap<CompetitionRegistration>
+    {
+        public CompetitionRegistrationMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.PartnerName);
+            Map(x => x.Type);
         }
     }
 
