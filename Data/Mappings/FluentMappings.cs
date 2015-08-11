@@ -109,9 +109,11 @@ namespace Data.Mappings
 
             HasMany(x => x.Classes)
                 .KeyColumn("ClassId")
+                .AsSet()
                 .Table("RegistrationClass").Element("ClassKey");
             HasMany(x => x.Events)
                 .KeyColumn("EventId")
+                .AsSet()
                 .Table("RegistrationEvent").Element("EventKey");
         }
     }
