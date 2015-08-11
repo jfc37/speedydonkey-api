@@ -1,4 +1,3 @@
-using System.Linq;
 using Common.Extensions;
 using Data.CodeChunks;
 using Data.Repositories;
@@ -18,21 +17,30 @@ namespace OnlinePayments.ItemStrategies.WindyLindy
 
         public decimal GetPrice(string itemId)
         {
-            return new decimal(199.99);
+            return GetRegistration(itemId)
+                .Amount;
         }
 
         public string GetDescription(string itemId)
         {
-            return "Full Pass";
+            var registration = GetRegistration(itemId);
+            return registration.FullPass.GetValueOrDefault()
+                ? "Full Windy Lindy Pass" 
+                : "Partial Windy Lindy Pass";
         }
 
         public void CompletePurchase(OnlinePayment completedPayment)
         {
-            var registration = new GetRegistrationFromRegistrationNumber(_repository, completedPayment.ItemId.ToGuid())
-                    .Do();
+            var registration = GetRegistration(completedPayment.ItemId);
 
             registration.PaymentStatus = OnlinePaymentStatus.Complete;
             _repository.Update(registration);
+        }
+
+        private Registration GetRegistration(string itemId)
+        {
+            return new GetRegistrationFromRegistrationNumber(_repository, itemId.ToGuid())
+                .Do();
         }
     }
 }
