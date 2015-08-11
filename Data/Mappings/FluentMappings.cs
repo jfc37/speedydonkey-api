@@ -77,30 +77,42 @@ namespace Data.Mappings
             Map(x => x.BluesLevel);
             Map(x => x.CountryOfResidence);
             Map(x => x.Email);
-            Map(x => x.EmergancyContactName);
-            Map(x => x.EmergancyContactNumber);
+            Map(x => x.EmergencyContactPerson);
+            Map(x => x.EmergencyContactNumber);
             Map(x => x.FirstName);
             Map(x => x.FullPass);
             Map(x => x.LindyLevel);
             Map(x => x.Over18);
-            Map(x => x.Phone);
-            Map(x => x.Style);
+            Map(x => x.PhoneNumber);
+            Map(x => x.DanceRole);
             Map(x => x.Surname);
-            HasMany<CompetitionRegistration>(x => x.Competitions);
-            Map(x => x.Classes);
-            Map(x => x.Events);
-        }
-    }
 
-    public class CompetitionRegistrationMap : ClassMap<CompetitionRegistration>
-    {
-        public CompetitionRegistrationMap()
-        {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
-            Map(x => x.PartnerName);
-            Map(x => x.Type);
+            Map(x => x.Balboa);
+            Map(x => x.BalboaPartner);
+            Map(x => x.Hellzapoppin);
+            Map(x => x.HellzapoppinPartner);
+            Map(x => x.JackAndJill);
+            Map(x => x.Novice);
+            Map(x => x.NovicePartner);
+            Map(x => x.ShowcaseCouple);
+            Map(x => x.ShowcaseCouplePartner);
+            Map(x => x.ShowcaseTeam);
+            Map(x => x.ShowcaseTeamPartner);
+            Map(x => x.SoloJazz);
+            Map(x => x.StrictlyLindy);
+            Map(x => x.StrictlyLindyPartner);
+
+            Map(x => x.PerformAtGrammy);
+            Map(x => x.Aerials);
+            Map(x => x.AerialsPartner);
+            Map(x => x.TermsAndConditions);
+
+            HasMany(x => x.Classes)
+                .KeyColumn("ClassId")
+                .Table("RegistrationClass").Element("ClassKey");
+            HasMany(x => x.Events)
+                .KeyColumn("EventId")
+                .Table("RegistrationEvent").Element("EventKey");
         }
     }
 

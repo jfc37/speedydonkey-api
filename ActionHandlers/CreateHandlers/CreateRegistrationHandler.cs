@@ -17,7 +17,6 @@ namespace ActionHandlers.CreateHandlers
         {
             action.ActionAgainst.RegistationId = Guid.NewGuid();
             action.ActionAgainst.PaymentStatus = OnlinePaymentStatus.Pending;
-            action.ActionAgainst.Amount = new decimal(199.99);
         }
     }
 }

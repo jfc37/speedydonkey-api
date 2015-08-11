@@ -26,7 +26,7 @@ namespace Models
         SuperGod
     }
 
-    public enum Style
+    public enum DanceRole
     {
         Lead,
         Follow
@@ -41,37 +41,38 @@ namespace Models
         string FirstName { get; set; }
         string Surname { get; set; }
         string Email { get; set; }
-        string Phone { get; set; }
+        string PhoneNumber { get; set; }
         string CountryOfResidence { get; set; }
-        string EmergancyContactName { get; set; }
-        string EmergancyContactNumber { get; set; }
-        bool Over18 { get; set; }
-        bool FullPass { get; set; }
-        Style Style { get; set; }
-        DanceLevel LindyLevel { get; set; }
-        DanceLevel BalboaLevel { get; set; }
-        DanceLevel BluesLevel { get; set; }
-        List<string> Classes { get; set; }
-        List<string> Events { get; set; }
-        List<ICompetitionRegistration> Competitions { get; set; }
+        string EmergencyContactPerson { get; set; }
+        string EmergencyContactNumber { get; set; }
+        bool? Over18 { get; set; }
+        bool? FullPass { get; set; }
+        DanceRole? DanceRole { get; set; }
+        DanceLevel? LindyLevel { get; set; }
+        DanceLevel? BalboaLevel { get; set; }
+        DanceLevel? BluesLevel { get; set; }
+        IList<string> Classes { get; set; }
+        IList<string> Events { get; set; }
 
+        bool Novice { get; set; }
+        string NovicePartner { get; set; }
+        bool Balboa { get; set; }
+        string BalboaPartner { get; set; }
+        bool Hellzapoppin { get; set; }
+        string HellzapoppinPartner { get; set; }
+        bool JackAndJill { get; set; }
+        bool ShowcaseCouple { get; set; }
+        string ShowcaseCouplePartner { get; set; }
+        bool ShowcaseTeam { get; set; }
+        string ShowcaseTeamPartner { get; set; }
+        bool SoloJazz { get; set; }
+        bool StrictlyLindy { get; set; }
+        string StrictlyLindyPartner { get; set; }
 
-    }
-
-    public interface ICompetitionRegistration : IEntity
-    {
-        CompetitionType Type { get; set; }
-        string PartnerName { get; set; }
-    }
-
-    public class CompetitionRegistration : ICompetitionRegistration, IDatabaseEntity
-    {
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
-        public virtual CompetitionType Type { get; set; }
-        public virtual string PartnerName { get; set; }
-        public virtual bool Deleted { get; set; }
+        bool PerformAtGrammy { get; set; }
+        bool Aerials { get; set; }
+        string AerialsPartner { get; set; }
+        bool TermsAndConditions { get; set; }
     }
 
     public class Registration : IRegistration, IDatabaseEntity
@@ -88,19 +89,36 @@ namespace Models
         public virtual string FirstName { get; set; }
         public virtual string Surname { get; set; }
         public virtual string Email { get; set; }
-        public virtual string Phone { get; set; }
+        public virtual string PhoneNumber { get; set; }
         public virtual string CountryOfResidence { get; set; }
-        public virtual string EmergancyContactName { get; set; }
-        public virtual string EmergancyContactNumber { get; set; }
-        public virtual bool Over18 { get; set; }
-        public virtual bool FullPass { get; set; }
-        public virtual Style Style { get; set; }
-        public virtual DanceLevel LindyLevel { get; set; }
-        public virtual DanceLevel BalboaLevel { get; set; }
-        public virtual DanceLevel BluesLevel { get; set; }
-        public virtual List<string> Classes { get; set; }
-        public virtual List<string> Events { get; set; }
-        public virtual List<ICompetitionRegistration> Competitions { get; set; }
+        public virtual string EmergencyContactPerson { get; set; }
+        public virtual string EmergencyContactNumber { get; set; }
+        public virtual bool? Over18 { get; set; }
+        public virtual bool? FullPass { get; set; }
+        public virtual DanceRole? DanceRole { get; set; }
+        public virtual DanceLevel? LindyLevel { get; set; }
+        public virtual DanceLevel? BalboaLevel { get; set; }
+        public virtual DanceLevel? BluesLevel { get; set; }
+        public virtual IList<string> Classes { get; set; }
+        public virtual IList<string> Events { get; set; }
+        public virtual bool Novice { get; set; }
+        public virtual string NovicePartner { get; set; }
+        public virtual bool Balboa { get; set; }
+        public virtual string BalboaPartner { get; set; }
+        public virtual bool Hellzapoppin { get; set; }
+        public virtual string HellzapoppinPartner { get; set; }
+        public virtual bool JackAndJill { get; set; }
+        public virtual bool ShowcaseCouple { get; set; }
+        public virtual string ShowcaseCouplePartner { get; set; }
+        public virtual bool ShowcaseTeam { get; set; }
+        public virtual string ShowcaseTeamPartner { get; set; }
+        public virtual bool SoloJazz { get; set; }
+        public virtual bool StrictlyLindy { get; set; }
+        public virtual string StrictlyLindyPartner { get; set; }
+        public virtual bool PerformAtGrammy { get; set; }
+        public virtual bool Aerials { get; set; }
+        public virtual string AerialsPartner { get; set; }
+        public virtual bool TermsAndConditions { get; set; }
     }
 
 }

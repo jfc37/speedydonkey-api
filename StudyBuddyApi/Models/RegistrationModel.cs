@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Common;
 using Models;
 using Models.OnlinePayments;
 
@@ -19,40 +20,84 @@ namespace SpeedyDonkeyApi.Models
         public Guid RegistationId { get; set; }
         public decimal Amount { get; set; }
         public OnlinePaymentStatus PaymentStatus { get; set; }
-
-        //[Required]
+        
+        [Required]
         public string FirstName { get; set; }
 
-        //[Required]
+        [Required]
         public string Surname { get; set; }
 
-        //[Required]
-        //[EmailAddress]
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        //[Required]
-        public string Phone { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
 
-        //[Required]
+        [Required]
         public string CountryOfResidence { get; set; }
 
-        //[Required]
-        public string EmergancyContactName { get; set; }
+        [Required]
+        public string EmergencyContactPerson { get; set; }
 
-        //[Required]
-        public string EmergancyContactNumber { get; set; }
-        public bool Over18 { get; set; }
-        public bool FullPass { get; set; }
-        //[Required]
-        public Style Style { get; set; }
-        //[Required]
-        public DanceLevel LindyLevel { get; set; }
-        //[Required]
-        public DanceLevel BalboaLevel { get; set; }
-        //[Required]
-        public DanceLevel BluesLevel { get; set; }
-        public List<string> Classes { get; set; }
-        public List<string> Events { get; set; }
-        public List<ICompetitionRegistration> Competitions { get; set; }
+        [Required]
+        public string EmergencyContactNumber { get; set; }
+
+        [Required]
+        public bool? Over18 { get; set; }
+
+        [Required]
+        public bool? FullPass { get; set; }
+        [Required]
+        public DanceRole? DanceRole { get; set; }
+        [Required]
+        public DanceLevel? LindyLevel { get; set; }
+        [Required]
+        public DanceLevel? BalboaLevel { get; set; }
+        [Required]
+        public DanceLevel? BluesLevel { get; set; }
+        
+        public IList<string> Classes { get; set; }
+        public IList<string> Events { get; set; }
+
+        [Required]
+        public bool Novice { get; set; }
+        public string NovicePartner { get; set; }
+
+        [Required]
+        public bool Balboa { get; set; }
+        public string BalboaPartner { get; set; }
+
+        [Required]
+        public bool Hellzapoppin { get; set; }
+        public string HellzapoppinPartner { get; set; }
+
+        [Required]
+        public bool JackAndJill { get; set; }
+
+        [Required]
+        public bool ShowcaseCouple { get; set; }
+        public string ShowcaseCouplePartner { get; set; }
+
+        [Required]
+        public bool ShowcaseTeam { get; set; }
+        public string ShowcaseTeamPartner { get; set; }
+
+        [Required]
+        public bool SoloJazz { get; set; }
+
+        [Required]
+        public bool StrictlyLindy { get; set; }
+        public string StrictlyLindyPartner { get; set; }
+        public bool PerformAtGrammy { get; set; }
+        public bool Aerials { get; set; }
+        public string AerialsPartner { get; set; }
+        public bool TermsAndConditions { get; set; }
+
+        protected override void AddChildrenToEntity(Registration entity, ICommonInterfaceCloner cloner)
+        {
+            entity.Classes = Classes;
+            entity.Events = Events;
+        }
     }
 }
