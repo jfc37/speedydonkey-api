@@ -56,9 +56,9 @@ namespace SpeedyDonkeyApi.Models
         public DanceLevel? BalboaLevel { get; set; }
         [Required]
         public DanceLevel? BluesLevel { get; set; }
-        
-        public IList<string> Classes { get; set; }
-        public IList<string> Events { get; set; }
+
+        public ICollection<string> Classes { get; set; }
+        public ICollection<string> Events { get; set; }
 
         [Required]
         public bool Novice { get; set; }

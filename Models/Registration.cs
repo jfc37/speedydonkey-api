@@ -51,8 +51,8 @@ namespace Models
         DanceLevel? LindyLevel { get; set; }
         DanceLevel? BalboaLevel { get; set; }
         DanceLevel? BluesLevel { get; set; }
-        IList<string> Classes { get; set; }
-        IList<string> Events { get; set; }
+        ICollection<string> Classes { get; set; }
+        ICollection<string> Events { get; set; }
 
         bool Novice { get; set; }
         string NovicePartner { get; set; }
@@ -99,8 +99,8 @@ namespace Models
         public virtual DanceLevel? LindyLevel { get; set; }
         public virtual DanceLevel? BalboaLevel { get; set; }
         public virtual DanceLevel? BluesLevel { get; set; }
-        public virtual IList<string> Classes { get; set; }
-        public virtual IList<string> Events { get; set; }
+        public virtual ICollection<string> Classes { get; set; }
+        public virtual ICollection<string> Events { get; set; }
         public virtual bool Novice { get; set; }
         public virtual string NovicePartner { get; set; }
         public virtual bool Balboa { get; set; }
