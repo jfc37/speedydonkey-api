@@ -27,7 +27,7 @@ namespace OnlinePayments.CodeChunks
             var paymentDetail = new PaymentDetailsType();
             paymentDetail.PaymentDetailsItem = paymentItems;
             paymentDetail.PaymentAction = PaymentActionCodeType.SALE;
-            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, _payment.Price.ToCurrencyString());
+            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.NZD, _payment.Total.ToCurrencyString());
 
             return paymentDetail.PutIntoList();
         }
