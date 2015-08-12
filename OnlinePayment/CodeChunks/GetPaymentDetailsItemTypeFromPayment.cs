@@ -18,7 +18,7 @@ namespace OnlinePayments.CodeChunks
         {
             var paymentItem = new PaymentDetailsItemType();
             paymentItem.Name = _payment.Description;
-            paymentItem.Amount = new BasicAmountType(CurrencyCodeType.NZD, _payment.Price.ToCurrencyString());
+            paymentItem.Amount = new BasicAmountType(CurrencyCodeType.NZD, _payment.Total.ToCurrencyString());
             paymentItem.Quantity = 1;
 
             return paymentItem;
