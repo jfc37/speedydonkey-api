@@ -93,7 +93,7 @@ namespace ActionHandlers.CreateHandlers
 
         private decimal GetPartialPassPrice()
         {
-            var classesPrice = new WindyLindyClassesPriceCalculation(_registration.Events).Calculate();
+            var classesPrice = new WindyLindyClassesPriceCalculation(_registration.Classes).Calculate();
             var eventsPrice = new WindyLindyEventsPriceCalculation(_registration.Events).Calculate();
 
             var totalPrice = classesPrice.Result() + eventsPrice.Result();

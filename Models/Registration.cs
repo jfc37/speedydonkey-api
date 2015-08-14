@@ -20,10 +20,9 @@ namespace Models
     public enum DanceLevel
     {
         Beginner,
-        Panda,
-        Avocado,
-        Expert,
-        SuperGod
+        Intermediate,
+        Advanced,
+        AdvancedPlus
     }
 
     public enum DanceRole

@@ -3,16 +3,22 @@ using Data.CodeChunks;
 using Data.Repositories;
 using Models;
 using Models.OnlinePayments;
+using Notification.NotificationHandlers;
+using Notification.Notifications;
 
 namespace OnlinePayments.ItemStrategies.WindyLindy
 {
     public class WindyLindyStrategy : ITypedItemStrategy<Registration>
     {
         private readonly IRepository<Registration> _repository;
+        private readonly INotificationHandler<WindyLindyRegistrationCompletion> _notificationHandler;
 
-        public WindyLindyStrategy(IRepository<Registration> repository)
+        public WindyLindyStrategy(
+            IRepository<Registration> repository, 
+            INotificationHandler<WindyLindyRegistrationCompletion> notificationHandler)
         {
             _repository = repository;
+            _notificationHandler = notificationHandler;
         }
 
         public decimal GetPrice(string itemId)
@@ -35,6 +41,8 @@ namespace OnlinePayments.ItemStrategies.WindyLindy
 
             registration.PaymentStatus = OnlinePaymentStatus.Complete;
             _repository.Update(registration);
+
+            _notificationHandler.Handle(new WindyLindyRegistrationCompletion(registration));
         }
 
         private Registration GetRegistration(string itemId)

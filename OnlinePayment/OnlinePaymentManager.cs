@@ -70,7 +70,6 @@ namespace OnlinePayments
                 completedPayment.PaymentStatus = OnlinePaymentStatus.Complete;
                 _repository.Update(completedPayment);
 
-
                 var strategy = _itemStrategyFactory.GetStrategy(completedPayment);
                 strategy.CompletePurchase(completedPayment);
             }
