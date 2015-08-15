@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common;
+using Common.Extensions;
 using Models.OnlinePayments;
 
 namespace Models
@@ -42,6 +43,7 @@ namespace Models
         string Email { get; set; }
         string PhoneNumber { get; set; }
         string CountryOfResidence { get; set; }
+        string City { get; set; }
         string EmergencyContactPerson { get; set; }
         string EmergencyContactNumber { get; set; }
         bool? Over18 { get; set; }
@@ -51,7 +53,7 @@ namespace Models
         DanceLevel? BalboaLevel { get; set; }
         DanceLevel? BluesLevel { get; set; }
         ICollection<string> Classes { get; set; }
-        ICollection<string> Events { get; set; }
+        ICollection<WindyLindyEvents> Events { get; set; }
 
         bool Novice { get; set; }
         string NovicePartner { get; set; }
@@ -71,7 +73,20 @@ namespace Models
         bool PerformAtGrammy { get; set; }
         bool Aerials { get; set; }
         string AerialsPartner { get; set; }
+        string AerialsTeachers { get; set; }
         bool TermsAndConditions { get; set; }
+    }
+
+    public enum WindyLindyEvents
+    {
+        Heats,
+        GrammyAwards,
+        RockStarsBall,
+        GroupiesPrivateParty,
+        HardRockBusTour,
+        BackStageParty,
+        SundayNightAfterParty,
+        GroupiesGoodbyeJam
     }
 
     public class Registration : IRegistration, IDatabaseEntity
@@ -90,6 +105,7 @@ namespace Models
         public virtual string Email { get; set; }
         public virtual string PhoneNumber { get; set; }
         public virtual string CountryOfResidence { get; set; }
+        public virtual string City { get; set; }
         public virtual string EmergencyContactPerson { get; set; }
         public virtual string EmergencyContactNumber { get; set; }
         public virtual bool? Over18 { get; set; }
@@ -99,7 +115,7 @@ namespace Models
         public virtual DanceLevel? BalboaLevel { get; set; }
         public virtual DanceLevel? BluesLevel { get; set; }
         public virtual ICollection<string> Classes { get; set; }
-        public virtual ICollection<string> Events { get; set; }
+        public virtual ICollection<WindyLindyEvents> Events { get; set; }
         public virtual bool Novice { get; set; }
         public virtual string NovicePartner { get; set; }
         public virtual bool Balboa { get; set; }
@@ -117,6 +133,7 @@ namespace Models
         public virtual bool PerformAtGrammy { get; set; }
         public virtual bool Aerials { get; set; }
         public virtual string AerialsPartner { get; set; }
+        public virtual string AerialsTeachers { get; set; }
         public virtual bool TermsAndConditions { get; set; }
     }
 
@@ -128,6 +145,43 @@ namespace Models
                 ? "Full Pass"
                 : "Individual Event Pass";
         }
+    }
+
+    public static class WindyLindyEventExtensions
+    {
+        public static decimal GetPrice(this WindyLindyEvents instance)
+        {
+            switch (instance)
+            {
+                case WindyLindyEvents.Heats:
+                    return 10;
+
+                case WindyLindyEvents.GrammyAwards:
+                    return 20;
+
+                case WindyLindyEvents.RockStarsBall:
+                    return 60;
+
+                case WindyLindyEvents.GroupiesPrivateParty:
+                    return 25;
+
+                case WindyLindyEvents.HardRockBusTour:
+                    return 30;
+
+                case WindyLindyEvents.BackStageParty:
+                    return 60;
+
+                case WindyLindyEvents.SundayNightAfterParty:
+                    return 10;
+
+                case WindyLindyEvents.GroupiesGoodbyeJam:
+                    return 25;
+
+                default:
+                    throw new ArgumentException("Don't have a price for windy lindy event: {0}".FormatWith(instance));
+
+            }
+        } 
     }
 
 }

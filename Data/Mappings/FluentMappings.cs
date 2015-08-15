@@ -75,6 +75,7 @@ namespace Data.Mappings
             Map(x => x.Amount);
             Map(x => x.BalboaLevel);
             Map(x => x.BluesLevel);
+            Map(x => x.City);
             Map(x => x.CountryOfResidence);
             Map(x => x.Email);
             Map(x => x.EmergencyContactPerson);
@@ -105,6 +106,7 @@ namespace Data.Mappings
             Map(x => x.PerformAtGrammy);
             Map(x => x.Aerials);
             Map(x => x.AerialsPartner);
+            Map(x => x.AerialsTeachers);
             Map(x => x.TermsAndConditions);
 
             HasMany(x => x.Classes)

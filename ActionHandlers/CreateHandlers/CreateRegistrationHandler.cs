@@ -60,7 +60,7 @@ namespace ActionHandlers.CreateHandlers
     /// </summary>
     public class WindyLindyFullPassPriceCalculation : ICalculation<decimal>
     {
-        private const decimal FullPassPrice = 299.99m;
+        private const decimal FullPassPrice = 390m;
 
         public CalculationResult<decimal> Calculate()
         {
@@ -106,7 +106,7 @@ namespace ActionHandlers.CreateHandlers
     /// </summary>
     public class WindyLindyClassesPriceCalculation : ICalculation<decimal>
     {
-        private const decimal PerClassPrice = 30;
+        private const decimal PerClassPrice = 40;
         private readonly IEnumerable<string> _classes;
 
         public WindyLindyClassesPriceCalculation(IEnumerable<string> classes)
@@ -129,10 +129,9 @@ namespace ActionHandlers.CreateHandlers
     /// </summary>
     public class WindyLindyEventsPriceCalculation : ICalculation<decimal>
     {
-        private const decimal PerClassPrice = 80;
-        private readonly IEnumerable<string> _events;
+        private readonly IEnumerable<WindyLindyEvents> _events;
 
-        public WindyLindyEventsPriceCalculation(IEnumerable<string> events)
+        public WindyLindyEventsPriceCalculation(IEnumerable<WindyLindyEvents> events)
         {
             _events = events;
         }
@@ -142,7 +141,8 @@ namespace ActionHandlers.CreateHandlers
             if (_events.IsNull())
                 return new CalculationResult<decimal>(0);
 
-            var result = _events.Count()* PerClassPrice;
+            var result = _events.Sum(windyLindyEvent => windyLindyEvent.GetPrice());
+
             return new CalculationResult<decimal>(result);
         }
     }

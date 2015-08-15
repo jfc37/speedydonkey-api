@@ -38,6 +38,9 @@ namespace SpeedyDonkeyApi.Models
         public string CountryOfResidence { get; set; }
 
         [Required]
+        public string City { get; set; }
+
+        [Required]
         public string EmergencyContactPerson { get; set; }
 
         [Required]
@@ -58,7 +61,7 @@ namespace SpeedyDonkeyApi.Models
         public DanceLevel? BluesLevel { get; set; }
 
         public ICollection<string> Classes { get; set; }
-        public ICollection<string> Events { get; set; }
+        public ICollection<WindyLindyEvents> Events { get; set; }
 
         [Required]
         public bool Novice { get; set; }
@@ -92,6 +95,7 @@ namespace SpeedyDonkeyApi.Models
         public bool PerformAtGrammy { get; set; }
         public bool Aerials { get; set; }
         public string AerialsPartner { get; set; }
+        public string AerialsTeachers { get; set; }
         public bool TermsAndConditions { get; set; }
 
         protected override void AddChildrenToEntity(Registration entity, ICommonInterfaceCloner cloner)
