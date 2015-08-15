@@ -19,6 +19,8 @@ namespace Notification.Notifications
             TemplateContent = new[]
             {
                 new KeyValuePair<string, string>("pass_type", registration.GetDescription()),
+                new KeyValuePair<string, string>("items", "[{'name': 'hello' }, {'name': 'hello 2'}]"),
+
             };
         }
     }
