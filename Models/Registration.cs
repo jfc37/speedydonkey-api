@@ -125,8 +125,8 @@ namespace Models
         public static string GetDescription(this IRegistration instance)
         {
             return instance.FullPass.GetValueOrDefault()
-                ? "Full Windy Lindy Pass"
-                : "Partial Windy Lindy Pass";
+                ? "Full Pass"
+                : "Individual Event Pass";
         }
     }
 

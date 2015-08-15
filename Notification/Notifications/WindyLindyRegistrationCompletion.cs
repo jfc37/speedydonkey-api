@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Models;
+using Newtonsoft.Json;
 
 namespace Notification.Notifications
 {
@@ -18,9 +19,7 @@ namespace Notification.Notifications
 
             TemplateContent = new[]
             {
-                new KeyValuePair<string, string>("pass_type", registration.GetDescription()),
-                new KeyValuePair<string, string>("items", "[{'name': 'hello' }, {'name': 'hello 2'}]"),
-
+                new KeyValuePair<string, string>("pass_type", registration.GetDescription())
             };
         }
     }
