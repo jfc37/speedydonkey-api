@@ -30,9 +30,7 @@ namespace OnlinePayments.ItemStrategies.WindyLindy
         public string GetDescription(string itemId)
         {
             var registration = GetRegistration(itemId);
-            return registration.FullPass.GetValueOrDefault()
-                ? "Full Windy Lindy Pass" 
-                : "Partial Windy Lindy Pass";
+            return registration.GetDescription();
         }
 
         public void CompletePurchase(OnlinePayment completedPayment)

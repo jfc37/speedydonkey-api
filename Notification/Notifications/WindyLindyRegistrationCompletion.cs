@@ -18,8 +18,7 @@ namespace Notification.Notifications
 
             TemplateContent = new[]
             {
-                new KeyValuePair<string, string>("first_name", registration.FirstName),
-                new KeyValuePair<string, string>("surname", registration.Surname),
+                new KeyValuePair<string, string>("pass_type", registration.GetDescription()),
             };
         }
     }
