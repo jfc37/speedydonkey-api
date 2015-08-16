@@ -14,7 +14,6 @@ namespace Models
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
         string Name { get; set; }
-        int Id { get; set; }
     }
 
     public class Block : IBlock, IDatabaseEntity

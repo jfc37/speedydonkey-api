@@ -29,7 +29,7 @@ namespace ActionHandlers.UserPasses
 
             var user = _userRepository.Get(action.ActionAgainst.Id);
             var pass = action.ActionAgainst.Passes.Single();
-            _userPassAppender.AddPassToUser(user, pass, passTemplate);
+            _userPassAppender.AddPassToUser(user, pass.PaymentStatus, passTemplate);
             return _userRepository.Update(user);
         }
     }

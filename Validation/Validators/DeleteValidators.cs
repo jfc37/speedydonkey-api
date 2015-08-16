@@ -4,43 +4,28 @@ using Common;
 using Data.Repositories;
 using FluentValidation;
 using Models;
+using Validation.Rules;
 
 namespace Validation.Validators
 {
     public abstract class PreExistingValidator<TEntity> : AbstractValidator<TEntity> where TEntity : IEntity
     {
-        private readonly IRepository<TEntity> _repository;
-
         protected PreExistingValidator(IRepository<TEntity> repository)
         {
-            _repository = repository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(x => x.Id)
-                .Must(Exist).WithMessage(ValidationMessages.ItemDoesntExist);
-        }
-
-        private bool Exist(int id)
-        {
-            return _repository.Get(id) != null;
+                .Must(x => new DoesIdExist<TEntity>(repository, x).IsValid()).WithMessage(ValidationMessages.ItemDoesntExist);
         }
     }
     public abstract class OtherPreExistingValidator<TEntity, TOtherEntity> : AbstractValidator<TEntity> where TEntity : IEntity where TOtherEntity : IEntity
     {
-        private readonly IRepository<TOtherEntity> _repository;
-
         protected OtherPreExistingValidator(IRepository<TOtherEntity> repository)
         {
-            _repository = repository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(x => x.Id)
-                .Must(Exist).WithMessage(ValidationMessages.ItemDoesntExist);
-        }
-
-        private bool Exist(int id)
-        {
-            return _repository.Get(id) != null;
+                .Must(x => new DoesIdExist<TOtherEntity>(repository, x).IsValid()).WithMessage(ValidationMessages.ItemDoesntExist);
         }
     }
 

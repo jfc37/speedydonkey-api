@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Common
+namespace Common.Extensions
 {
     public static class QueryableExtensions
     {

@@ -4,6 +4,7 @@ using Action;
 using Data.Repositories;
 using FluentValidation;
 using Models;
+using Validation.Rules;
 
 namespace Validation.Validators
 {
@@ -19,15 +20,14 @@ namespace Validation.Validators
 
             ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
 
-            RuleFor(x => x.Id).Must(BeExistingClass).WithMessage(ValidationMessages.InvalidClass);
+            RuleFor(x => x.Id).Must(x => new DoesIdExist<Class>(classRepository, x).IsValid()).WithMessage(ValidationMessages.InvalidClass);
             RuleFor(x => x.ActualStudents)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .Must(OnlyAddSingleStudent).WithMessage(ValidationMessages.IncorrectNumberOfAttendees)
+                .Must(x => new HasExactlyOneInSetRule(x).IsValid()).WithMessage(ValidationMessages.IncorrectNumberOfAttendees)
                 .Must(BeExistingUser).WithMessage(ValidationMessages.InvalidUser)
                 .Must(HaveAValidPass).WithMessage(ValidationMessages.NoValidPasses)
                 .Must(HavePaidForAPass).WithMessage(ValidationMessages.NoPaidForPasses)
-                .Must(NotAlreadyBeAttendingClass).WithMessage(ValidationMessages.AlreadyAttendingClass)
-                ;
+                .Must(NotAlreadyBeAttendingClass).WithMessage(ValidationMessages.AlreadyAttendingClass);
         }
 
         private bool NotAlreadyBeAttendingClass(Class theClass, ICollection<IUser> users)
@@ -51,11 +51,6 @@ namespace Validation.Validators
             return user.Passes != null && user.Passes.Any(x => x.PaymentStatus == PassPaymentStatus.Paid.ToString());
         }
 
-        private bool OnlyAddSingleStudent(ICollection<IUser> users)
-        {
-            return users.Count == 1;
-        }
-
         private bool BeExistingUser(ICollection<IUser> users)
         {
             var user = GetUser(users);
@@ -66,12 +61,6 @@ namespace Validation.Validators
         {
             var user = _userRepository.Get(users.Single().Id);
             return user;
-        }
-
-        private bool BeExistingClass(int id)
-        {
-            var theClass = GetClass(id);
-            return theClass != null;
         }
 
         private Class GetClass(int id)

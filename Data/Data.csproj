@@ -64,6 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityLogger.cs" />
+    <Compile Include="CodeChunks\GetBlockEndDate.cs" />
+    <Compile Include="CodeChunks\GetCostPerClassForUnlimitedPass.cs" />
+    <Compile Include="CodeChunks\GetPayPalConfig.cs" />
+    <Compile Include="CodeChunks\GetPopulatedPassFromPassTemplate.cs" />
+    <Compile Include="CodeChunks\GetRegistrationFromRegistrationNumber.cs" />
+    <Compile Include="CodeChunks\GetStartDateForUsersPurchasedPass.cs" />
+    <Compile Include="CodeChunks\ICodeChunk.cs" />
+    <Compile Include="CodeChunks\ReferenceNumberPlaceholderReplacement.cs" />
     <Compile Include="Mappings\FluentMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />

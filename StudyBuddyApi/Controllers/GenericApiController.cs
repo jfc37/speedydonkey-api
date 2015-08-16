@@ -8,8 +8,6 @@ using Actions;
 using Common;
 using Data.Repositories;
 using Data.Searches;
-using Models;
-using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -17,11 +15,11 @@ namespace SpeedyDonkeyApi.Controllers
 {
     public abstract class GenericApiController<TModel, TEntity> : BaseApiController where TModel : IApiModel<TEntity>, new() where TEntity : class, IEntity
     {
-        private readonly IActionHandlerOverlord _actionHandlerOverlord;
-        private readonly IUrlConstructor _urlConstructor;
-        private readonly IRepository<TEntity> _repository;
-        private readonly ICommonInterfaceCloner _cloner;
-        private readonly IEntitySearch<TEntity> _entitySearch;
+        protected readonly IActionHandlerOverlord _actionHandlerOverlord;
+        protected readonly IUrlConstructor _urlConstructor;
+        protected readonly IRepository<TEntity> _repository;
+        protected readonly ICommonInterfaceCloner _cloner;
+        protected readonly IEntitySearch<TEntity> _entitySearch;
 
         protected GenericApiController(
             IActionHandlerOverlord actionHandlerOverlord,

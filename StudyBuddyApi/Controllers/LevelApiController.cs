@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -7,7 +6,6 @@ using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
-using Newtonsoft.Json;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;

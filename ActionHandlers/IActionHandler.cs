@@ -6,9 +6,9 @@ namespace ActionHandlers
     /// The handler of an action, with it's returning result
     /// </summary>
     /// <typeparam name="TAction"></typeparam>
-    /// <typeparam name="TResult"></typeparam>
-    public interface IActionHandler<in TAction, TResult> where TAction : IAction<TResult>
+    /// <typeparam name="TObject"></typeparam>
+    public interface IActionHandler<in TAction, out TObject> where TAction : IAction<TObject>
     {
-        TResult Handle(TAction action);
+        TObject Handle(TAction action);
     }
 }
