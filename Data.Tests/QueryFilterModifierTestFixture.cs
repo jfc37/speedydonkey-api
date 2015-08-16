@@ -204,7 +204,7 @@ namespace Data.Tests
         //        };
         //        var queryableWithFilter = filterDescriptor.ApplyStatementToQuery(searchStatement, queryable);
 
-        //        var filteredResults = queryableWithFilter.ToList();
+        //        var filteredResults = queryableWithFilter.PutIntoList();
         //        var matchingAssignment = filteredResults.Single();
         //        Assert.Greater(matchingAssignment.FinalMarkPercentage, 55);
         //    }
@@ -229,7 +229,7 @@ namespace Data.Tests
         //        };
         //        var queryableWithFilter = filterDescriptor.ApplyStatementToQuery(searchStatement, queryable);
 
-        //        var filteredResults = queryableWithFilter.ToList();
+        //        var filteredResults = queryableWithFilter.PutIntoList();
         //        var matchingAssignment = filteredResults.Single();
         //        Assert.Greater(matchingAssignment.StartDate, DateTime.Today);
         //    }
@@ -254,7 +254,7 @@ namespace Data.Tests
         //        };
         //        var queryableWithFilter = filterDescriptor.ApplyStatementToQuery(searchStatement, queryable);
 
-        //        var filteredResults = queryableWithFilter.ToList();
+        //        var filteredResults = queryableWithFilter.PutIntoList();
         //        Assert.IsEmpty(filteredResults);
         //    }
         //}
@@ -281,7 +281,7 @@ namespace Data.Tests
         //        };
         //        var queryableWithFilter = filterDescriptor.ApplyStatementToQuery(searchStatement, queryable);
 
-        //        var filteredResults = queryableWithFilter.ToList();
+        //        var filteredResults = queryableWithFilter.PutIntoList();
         //        var matchingAssignment = filteredResults.Single();
         //        Assert.Less(matchingAssignment.FinalMarkPercentage, 55);
         //    }
@@ -306,7 +306,7 @@ namespace Data.Tests
         //        };
         //        var queryableWithFilter = filterDescriptor.ApplyStatementToQuery(searchStatement, queryable);
 
-        //        var filteredResults = queryableWithFilter.ToList();
+        //        var filteredResults = queryableWithFilter.PutIntoList();
         //        var matchingAssignment = filteredResults.Single();
         //        Assert.Less(matchingAssignment.StartDate, DateTime.Today);
         //    }
@@ -331,7 +331,7 @@ namespace Data.Tests
         //        };
         //        var queryableWithFilter = filterDescriptor.ApplyStatementToQuery(searchStatement, queryable);
 
-        //        var filteredResults = queryableWithFilter.ToList();
+        //        var filteredResults = queryableWithFilter.PutIntoList();
         //        Assert.IsEmpty(filteredResults);
         //    }
         //}

@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using SpeedyDonkeyApi.Filter;
 
@@ -17,11 +18,14 @@ namespace SpeedyDonkeyApi
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            config.Routes.MapHttpRoute(
+                name: "RegistrationApi",
+                routeTemplate: "api/windy-lindy/registration/{registrationNumber}",
+                defaults: new { controller = "RegistrationApi", registrationNumber = RouteParameter.Optional }
+            );
 
             config.Routes.MapHttpRoute(
                 name: "CurrentUserApi",
@@ -238,14 +242,15 @@ namespace SpeedyDonkeyApi
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/javascript"));
 
+            //Serialise enums to strings
+            JsonSerializerSettings jsonSetting = new JsonSerializerSettings();
+            jsonSetting.Converters.Add(new StringEnumConverter());
+            config.Formatters.JsonFormatter.SerializerSettings = jsonSetting;
+
             //Give json some camel casing
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new LowerCaseDelimitedPropertyNamesContractResovler('_');
-            //config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
 
-            //Add support JSONP
-            //var jsonpFormatter = new JsonpMediaTypeFormatter(jsonFormatter);
-            //config.Formatters.Insert(0, jsonpFormatter);
 
             #if !DEBUG
             //Force HTTPS on entire API

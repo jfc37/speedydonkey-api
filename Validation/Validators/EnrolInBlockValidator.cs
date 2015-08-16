@@ -2,9 +2,11 @@
 using System.Linq;
 using Action;
 using Common;
+using Common.Extensions;
 using Data.Repositories;
 using FluentValidation;
 using Models;
+using Validation.Rules;
 
 namespace Validation.Validators
 {
@@ -19,7 +21,7 @@ namespace Validation.Validators
             _userRepository = userRepository;
             _blockRepository = blockRepository;
             _currentUser = currentUser;
-            When(x => x.EnroledBlocks != null, () =>
+            When(x => x.EnroledBlocks.IsNotNull(), () =>
             {
                 RuleFor(x => x.EnroledBlocks).Must(NotAlreadyBeEnroled)
                     .WithMessage(ValidationMessages.AlreadyEnroledInBlock)
@@ -34,12 +36,15 @@ namespace Validation.Validators
                 return true;
 
             var user = _userRepository.Get(_currentUser.Id);
-            return user.Claims != null && user.Claims.Contains(Claim.Teacher.ToString());
+            return new DoesUserHaveClaimRule(user, Claim.Teacher)
+                .IsValid();
         }
 
         private bool BeExistingBlocks(ICollection<IBlock> blocks)
         {
-            return _blockRepository.GetAll().Select(x => x.Id).Intersect(blocks.Select(x => x.Id)).Count() == blocks.Count;
+            return _blockRepository.GetAll()
+                .Select(x => x.Id)
+                .Intersect(blocks.Select(x => x.Id)).Count() == blocks.Count;
         }
 
         private bool NotAlreadyBeEnroled(User user, ICollection<IBlock> blocksBeingEnroledIn)

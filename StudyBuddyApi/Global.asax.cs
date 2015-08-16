@@ -5,11 +5,9 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using ActionHandlers;
-using ActionHandlers.CreateHandlers.Strategies;
-using ActionHandlers.EnrolmentProcess;
-using ActionHandlers.UserPasses;
 using Autofac;
 using Autofac.Core;
+using Autofac.Features.ResolveAnything;
 using Autofac.Integration.WebApi;
 using Common;
 using Data;
@@ -22,6 +20,9 @@ using log4net.Config;
 using NHibernate.Tool.hbm2ddl;
 using Notification;
 using Notification.NotificationHandlers;
+using OnlinePayments;
+using OnlinePayments.PaymentMethods.PayPal;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Services;
 using Validation;
 using Validation.Validators;
@@ -36,6 +37,9 @@ namespace SpeedyDonkeyApi
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            GlobalConfiguration.Configuration.Filters.Add(new NullModelActionFilter());
+            GlobalConfiguration.Configuration.Filters.Add(new ValidateModelActionFilter());
+            GlobalConfiguration.Configuration.Filters.Add(new CurrentUserActionFilter());
 
             var dependencyBuilder = new NHibernateDependancySetup();
 
@@ -48,15 +52,23 @@ namespace SpeedyDonkeyApi
             // Register the Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
+            builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
+
             // Register other dependencies.
             builder.RegisterAssemblyTypes(typeof(ValidatorOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionValidator<,>)).AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
+                .AsClosedTypesOf(typeof(IActionHandlerWithResult<,,>)).AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionHandler<,>)).AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(typeof(UserScheduleRepository).Assembly)
                 .AsClosedTypesOf(typeof(IAdvancedRepository<,>)).AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(typeof(PayPalPaymentStrategy).Assembly)
+                .AsClosedTypesOf(typeof(IStartPaymentStrategy<,>)).AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(EntitySearch<>))
                 .As(typeof(IEntitySearch<>))
@@ -70,26 +82,23 @@ namespace SpeedyDonkeyApi
                 .As(typeof(INotificationHandler<>))
                 .InstancePerDependency();
 
-            builder.RegisterType<ActionHandlerOverlord>().As<IActionHandlerOverlord>();
-            builder.RegisterType<ValidatorOverlord>().As<IValidatorOverlord>();
+            var assemblies = new[]
+            {
+                typeof (ExpressCheckout).Assembly,
+                typeof (ActionHandlerOverlord).Assembly,
+                typeof (ValidatorOverlord).Assembly,
+                typeof (UrlConstructor).Assembly,
+                typeof (SearchQueryParser).Assembly,
+                typeof (CommonInterfaceCloner).Assembly,
+                typeof (PostOffice).Assembly,
+
+            };
+            builder.RegisterAssemblyTypes(assemblies)
+                .AsImplementedInterfaces();
+
             builder.RegisterType<Container>().As<IContainer>();
-            builder.RegisterType<UrlConstructor>().As<IUrlConstructor>();
-            builder.RegisterType<PasswordHasher>().As<IPasswordHasher>();
-            builder.RegisterType<SearchQueryParser>().As<ISearchQueryParser>();
-            builder.RegisterType<QueryFilterModifier>().As<IQueryModifier>();
-            builder.RegisterType<ConditionExpressionHandlerFactory>().As<IConditionExpressionHandlerFactory>();
-            builder.RegisterType<QueryModifierFactory>().As<IQueryModifierFactory>();
-            builder.RegisterType<BlockPopulatorStrategyFactory>().As<IBlockPopulatorStrategyFactory>();
-            builder.RegisterType<CommonInterfaceCloner>().As<ICommonInterfaceCloner>();
-            builder.RegisterType<PassCreatorFactory>().As<IPassCreatorFactory>();
-            builder.RegisterType<UserPassAppender>().As<IUserPassAppender>();
-            builder.RegisterType<BlockEnrolmentService>().As<IBlockEnrolmentService>();
-            builder.RegisterType<PostOffice>().As<IPostOffice>();
-            builder.RegisterType<MailMan>().As<IMailMan>();
-            builder.RegisterType<AppSettings>().As<IAppSettings>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
             builder.RegisterType<ActivityLogger>().As<IActivityLogger>().InstancePerLifetimeScope();
-            builder.RegisterType<TeacherStudentConverter>().As<ITeacherStudentConverter>().InstancePerLifetimeScope();
 
             // Build the container.
             var container = builder.Build();

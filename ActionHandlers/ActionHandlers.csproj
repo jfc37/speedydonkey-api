@@ -49,7 +49,11 @@
   <ItemGroup>
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
+    <Compile Include="Calculations\ExpressCheckoutTotalCalculation.cs" />
+    <Compile Include="Calculations\ExpressCheckoutFeeCalculation.cs" />
     <Compile Include="CreateHandlers\CreateAnnouncementHandler.cs" />
+    <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
+    <Compile Include="IActionHandlerWithResult.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />
     <Compile Include="SetAsTeacherHandler.cs" />
     <Compile Include="CreateHandlers\CreatePassTemplateHandler.cs" />
@@ -114,6 +118,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

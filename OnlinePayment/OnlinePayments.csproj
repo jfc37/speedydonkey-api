@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16EE1C93-463A-4CB5-B63B-8F894A7B0CDE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlinePayments</RootNamespace>
+    <AssemblyName>OnlinePayments</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCoreSDK">
+      <HintPath>..\packages\PayPalCoreSDK.1.6.1\lib\net45\PayPalCoreSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalMerchantSDK">
+      <HintPath>..\packages\PayPalMerchantSDK.2.15.117\lib\net20\PayPalMerchantSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeChunks\CreateWebRequestForPoli.cs" />
+    <Compile Include="CodeChunks\GetDoExpressCheckoutPaymentReq.cs" />
+    <Compile Include="CodeChunks\GetExpressCheckoutDetailsReqFromPayment.cs" />
+    <Compile Include="CodeChunks\GetPaymentDetailsItemTypeFromPayment.cs" />
+    <Compile Include="CodeChunks\GetPayPalAPIInterfaceServiceService.cs" />
+    <Compile Include="CodeChunks\GetPayPalPaymentDetailsFromPayment.cs" />
+    <Compile Include="CodeChunks\GetPoliAuthorisation.cs" />
+    <Compile Include="CodeChunks\GetResponseFromHttpRequest.cs" />
+    <Compile Include="CodeChunks\GetSetExpressCheckoutReqFromPayment.cs" />
+    <Compile Include="CodeChunks\GetSetExpressCheckoutRequestDetailsTypeFromPayment.cs" />
+    <Compile Include="CodeChunks\GetSetExpressCheckoutRequestTypeFromPayment.cs" />
+    <Compile Include="IPaymentStepStrategy.cs" />
+    <Compile Include="IResponseCreator.cs" />
+    <Compile Include="ItemStrategies\IItemValidationStrategyFactory.cs" />
+    <Compile Include="ItemStrategies\ItemValidationStrategyFactory.cs" />
+    <Compile Include="ItemStrategies\ITypedItemStrategy.cs" />
+    <Compile Include="ItemStrategies\ITypedItemValidationStrategy.cs" />
+    <Compile Include="ItemStrategies\Pass\PassStrategy.cs" />
+    <Compile Include="ItemStrategies\Pass\PassValidationStrategy.cs" />
+    <Compile Include="ItemStrategies\WindyLindy\WindyLindyValidationStrategy.cs" />
+    <Compile Include="PaymentMethods\PayPal\ExpressCheckout.cs" />
+    <Compile Include="Extensions\ErrorTypeExtensions.cs" />
+    <Compile Include="Extensions\SetExpressCheckoutResponseTypeExtensions.cs" />
+    <Compile Include="IStartPaymentStrategy.cs" />
+    <Compile Include="ItemStrategies\WindyLindy\WindyLindyStrategy.cs" />
+    <Compile Include="PaymentFeeStrategies\IPaymentFeeStrategy.cs" />
+    <Compile Include="IOnlinePaymentManager.cs" />
+    <Compile Include="ItemStrategies\IItemStrategy.cs" />
+    <Compile Include="ItemStrategies\IItemStrategyFactory.cs" />
+    <Compile Include="ItemStrategies\IItemValidationStrategy.cs" />
+    <Compile Include="ItemStrategies\ItemStrategyFactory.cs" />
+    <Compile Include="PaymentMethods\PayPal\Extensions\DoExpressCheckoutDetailsResponseTypeExtensions.cs" />
+    <Compile Include="PaymentMethods\PayPal\Extensions\GetExpressCheckoutDetailsResponseTypeExtensions.cs" />
+    <Compile Include="PaymentMethods\PayPal\IExpressCheckout.cs" />
+    <Compile Include="PaymentMethods\PayPal\Models\PayPalCompleteRequest.cs" />
+    <Compile Include="PaymentMethods\PayPal\Models\PayPalCompleteResponse.cs" />
+    <Compile Include="PaymentMethods\PayPal\Models\PayPalConfirmResponse.cs" />
+    <Compile Include="PaymentMethods\PayPal\Models\StartPayPalPaymentResponse.cs" />
+    <Compile Include="PaymentMethods\PayPal\Models\PaypalError.cs" />
+    <Compile Include="OnlinePaymentManager.cs" />
+    <Compile Include="PaymentFeeStrategies\IPaymentFeeStrategyFactory.cs" />
+    <Compile Include="PaymentFeeStrategies\NoFeeStrategy.cs" />
+    <Compile Include="PaymentFeeStrategies\PaymentFeeStrategyFactory.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalCompleteStepStrategy.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalConfig.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalConfirmStepStrategy.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalFeeCalculation.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalFeeStrategy.cs" />
+    <Compile Include="PaymentMethods\PayPal\PayPalPaymentStrategy.cs" />
+    <Compile Include="PaymentMethods\Poli\Extensions\GetTransactionResponseExtensions.cs" />
+    <Compile Include="PaymentMethods\Poli\Extensions\InitiatePoliTransactionExtensions.cs" />
+    <Compile Include="PaymentMethods\Poli\Extensions\PoliPaymentExtensions.cs" />
+    <Compile Include="PaymentMethods\Poli\IPoliIntergrator.cs" />
+    <Compile Include="PaymentMethods\Poli\Models\GetTransactionResponse.cs" />
+    <Compile Include="PaymentMethods\Poli\Models\InitiatePoliTransaction.cs" />
+    <Compile Include="PaymentMethods\Poli\Models\PoliCompleteResponse.cs" />
+    <Compile Include="PaymentMethods\Poli\Models\StartPoliPaymentResponse.cs" />
+    <Compile Include="PaymentMethods\Poli\PoliCompleteStepStrategy.cs" />
+    <Compile Include="PaymentMethods\Poli\PoliFeeCalculation.cs" />
+    <Compile Include="PaymentMethods\Poli\PoliFeeStrategy.cs" />
+    <Compile Include="PaymentMethods\Poli\PoliIntergrator.cs" />
+    <Compile Include="PaymentMethods\Poli\PoliPaymentStrategy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseCreator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ActionHandlers\ActionHandlers.csproj">
+      <Project>{AA37B17D-755F-420C-AEB8-CCE08DA6D30E}</Project>
+      <Name>ActionHandlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{0A9770C7-4D7D-445E-94EB-A01A00061E9F}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{6fdcd6ff-6028-424c-bb2c-326315491190}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notification\Notification.csproj">
+      <Project>{01A83567-4346-45F7-8322-563F700C7AD8}</Project>
+      <Name>Notification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Validation\Validation.csproj">
+      <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>
+      <Name>Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Linq;
+using Common.Extensions;
+using Data.CodeChunks;
 using Data.Repositories;
 using Models;
 
@@ -21,10 +22,10 @@ namespace ActionHandlers.UserPasses
 
         public IPassCreator Get(string passType)
         {
-            if (passType.ToLower() == PassType.Unlimited.ToString().ToLower())
+            if (passType.EqualsEnum(PassType.Unlimited))
                 return new UnlimitedPassCreator(_classRepository);
 
-            if (passType.ToLower() == PassType.Clip.ToString().ToLower())
+            if (passType.EqualsEnum(PassType.Clip))
                 return new ClipPassCreator();
 
             throw new ArgumentException(String.Format("Don't know how to create passes of type {0}", passType));
@@ -42,11 +43,8 @@ namespace ActionHandlers.UserPasses
 
         protected void PopulatePass(IPass pass, DateTime startDate, PassTemplate passTemplate)
         {
-            pass.StartDate = startDate;
-            pass.EndDate = startDate.AddDays(passTemplate.WeeksValidFor * 7);
-            pass.Cost = passTemplate.Cost;
-            pass.PassType = passTemplate.PassType;
-            pass.Description = passTemplate.Description;
+            pass = new GetPopulatedPassFromPassTemplate(pass, startDate, passTemplate).Do();
+
             pass.PassStatistic = new PassStatistic{ CreatedDateTime = DateTime.Now };
         }
     }
@@ -68,11 +66,7 @@ namespace ActionHandlers.UserPasses
 
             if (pass.Cost > 0)
             {
-                var numberOfClassesAvailableForPass = _repository.GetAll().Where(x => pass.StartDate <= x.StartTime && x.StartTime <= pass.EndDate).Count();
-                if (numberOfClassesAvailableForPass == 0)
-                    pass.PassStatistic.CostPerClass = 0;
-                else
-                    pass.PassStatistic.CostPerClass = pass.Cost / numberOfClassesAvailableForPass;   
+                pass.PassStatistic.CostPerClass = new GetCostPerClassForUnlimitedPass(_repository, pass).Do(); 
             }
 
             return pass;

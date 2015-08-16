@@ -7,7 +7,6 @@ using Data.Tests.Builders;
 using Data.Tests.Builders.MockBuilders;
 using Models;
 using Moq;
-using Notification;
 using Notification.Notifications;
 using Notification.Tests.Builders;
 using NUnit.Framework;

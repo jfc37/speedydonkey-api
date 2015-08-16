@@ -2,11 +2,11 @@
 
 namespace Common.Tests.Builders.MockBuilders
 {
-    public abstract class MockBuilder<T> where T : class
+    public class MockBuilder<T> where T : class
     {
         public Mock<T> Mock { get; private set; }
 
-        protected MockBuilder()
+        public MockBuilder()
         {
             Mock = new Mock<T>(MockBehavior.Loose);
         }
