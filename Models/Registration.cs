@@ -36,7 +36,7 @@ namespace Models
     {
         Guid RegistationId { get; set; }
         decimal Amount { get; set; }
-        OnlinePaymentStatus PaymentStatus { get; }
+        OnlinePaymentStatus PaymentStatus { get; set; }
 
         string FirstName { get; set; }
         string Surname { get; set; }
