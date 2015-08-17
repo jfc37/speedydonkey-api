@@ -9,6 +9,7 @@ using Data.CodeChunks;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 using SpeedyDonkeyApi.Services;
 
@@ -41,6 +42,13 @@ namespace SpeedyDonkeyApi.Controllers
 
             var model = new RegistrationModel().CloneFromEntity(Request, _urlConstructor, entity, _cloner);
             return Request.CreateResponse(HttpStatusCode.OK, model);
+        }
+
+        [Route("api/windy-lindy/registrations")]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public override HttpResponseMessage Get()
+        {
+            return base.Get();
         }
     }
 }
