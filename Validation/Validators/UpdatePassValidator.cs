@@ -3,6 +3,7 @@ using Action;
 using Data.Repositories;
 using FluentValidation;
 using Models;
+using Validation.Rules;
 
 namespace Validation.Validators
 {
@@ -16,14 +17,14 @@ namespace Validation.Validators
             _repository = repository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
             RuleFor(x => x.Id)
-                .Must(BeExisting).WithMessage(ValidationMessages.InvalidPass);
+                .Must(x => new DoesIdExist<Pass>(repository, x).IsValid()).WithMessage(ValidationMessages.InvalidPass);
 
             RuleFor(x => x.EndDate)
                 .GreaterThan(x => x.StartDate).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime)
-                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage(ValidationMessages.MissingEndTime);
+                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingEndTime);
 
             RuleFor(x => x.StartDate)
-                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage(ValidationMessages.MissingStartTime);
+                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingStartTime);
 
             RuleFor(x => x.Id)
                 .Must(NotBeNegativeClassesRemaining).WithMessage(ValidationMessages.InvalidClipsRemaining);
@@ -36,11 +37,6 @@ namespace Validation.Validators
                 return true;
 
             return clipPass.ClipsRemaining >= 0;
-        }
-
-        private bool BeExisting(int id)
-        {
-            return GetSavedPass(id) != null;
         }
 
         private Pass GetSavedPass(int id)

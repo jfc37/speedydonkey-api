@@ -5,6 +5,7 @@ namespace Common
     public interface IAppSettings
     {
         string GetWebsiteUrl();
+        string GetApiUrl();
         string GetSetting(AppSettingKey key);
     }
 
@@ -13,6 +14,13 @@ namespace Common
         public string GetWebsiteUrl()
         {
             var websiteUrl = ConfigurationManager.AppSettings.Get("WebsiteUrl");
+            websiteUrl = "https://" + websiteUrl;
+            return websiteUrl;
+        }
+
+        public string GetApiUrl()
+        {
+            var websiteUrl = ConfigurationManager.AppSettings.Get("ApiUrl");
             websiteUrl = "https://" + websiteUrl;
             return websiteUrl;
         }
@@ -32,6 +40,15 @@ namespace Common
         AutoActivateAdmin,
         AutoActivateUser,
         FromEmail,
-        AllowDatabaseDelete
+        AllowDatabaseDelete,
+
+        PayPalUsername,
+        PayPalPassword,
+        PayPalSignature,
+        PayPalMode,
+
+
+        PoliAuthorisation,
+        PoliInitiateUrl,
     }
 }

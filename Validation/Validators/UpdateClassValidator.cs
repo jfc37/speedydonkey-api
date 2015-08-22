@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Action;
+﻿using Action;
 using Data.Repositories;
 using FluentValidation;
 using Models;
+using Validation.Rules;
 
 namespace Validation.Validators
 {
@@ -22,34 +21,18 @@ namespace Validation.Validators
                 .NotEmpty().WithMessage(ValidationMessages.MissingName);
 
             RuleFor(x => x.Id)
-                .Must(Exist).WithMessage(ValidationMessages.InvalidClass);
+                .Must(x => new DoesIdExist<Class>(repository, x).IsValid()).WithMessage(ValidationMessages.InvalidClass);
 
             RuleFor(x => x.EndTime)
                 .GreaterThan(x => x.StartTime).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime)
-                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage(ValidationMessages.MissingEndTime);
+                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingEndTime);
 
             RuleFor(x => x.StartTime)
-                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage(ValidationMessages.MissingStartTime);
+                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingStartTime);
 
             RuleFor(x => x.Teachers)
                 .NotEmpty().WithMessage(ValidationMessages.TeachersRequired)
-                .Must(BeExistingTeachers).WithMessage(ValidationMessages.InvalidTeachers);
-        }
-
-        private bool Exist(int id)
-        {
-            return _repository.Get(id) != null;
-        }
-
-        private bool BeExistingTeachers(ICollection<ITeacher> teachers)
-        {
-            foreach (var teacher in teachers)
-            {
-                var savedTeacher = _teacherRepository.Get(teacher.Id);
-                if (savedTeacher == null || !savedTeacher.Claims.Contains(Claim.Teacher.ToString()))
-                    return false;
-            }
-            return true;
+                .Must(x => new AreUsersExistingTeachersRule(x, _teacherRepository).IsValid()).WithMessage(ValidationMessages.InvalidTeachers);
         }
     }
 }

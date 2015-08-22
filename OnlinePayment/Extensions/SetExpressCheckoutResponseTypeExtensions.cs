@@ -1,18 +1,21 @@
 using System.Linq;
-using OnlinePayment.Models;
+using OnlinePayments.PaymentMethods.PayPal.Models;
 using PayPal.PayPalAPIInterfaceService.Model;
 
-namespace OnlinePayment.Extensions
+namespace OnlinePayments.Extensions
 {
     public static class SetExpressCheckoutResponseTypeExtensions
     {
-        public static SetExpressCheckoutResponse ToResponse(this SetExpressCheckoutResponseType instance)
+        public static StartPayPalPaymentResponse ToResponse(this SetExpressCheckoutResponseType instance)
         {
-            return new SetExpressCheckoutResponse
+            return new StartPayPalPaymentResponse
             {
                 Token = instance.Token,
                 Status = instance.Ack.GetValueOrDefault().ToString(),
-                Errors = instance.Errors.Select(x => ErrorTypeExtensions.ToPaypalError(x))
+                Errors = instance
+                    .Errors
+                    .Select(x => x.ToPaypalError())
+                    .ToList()
             };
         }
     }

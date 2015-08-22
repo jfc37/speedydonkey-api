@@ -47,6 +47,7 @@ namespace Models
         Successful,
         Beginning,
         FailedValidation,
-        Unhandled
+        Unhandled,
+        Payment
     }
 }

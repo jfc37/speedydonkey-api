@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
 using Common;
+using Common.Extensions;
 using NHibernate.Linq.Visitors.ResultOperatorProcessors;
 
 namespace Data.Searches

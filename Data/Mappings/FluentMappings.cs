@@ -1,24 +1,49 @@
 ﻿using FluentNHibernate.Mapping;
 using Models;
+using Models.OnlinePayments;
 
 namespace Data.Mappings
 {
 
-    public class PendingOnlinePaymentMap : ClassMap<PendingOnlinePayment>
+    public class OnlinePaymentMap : ClassMap<OnlinePayment>
     {
-        public PendingOnlinePaymentMap()
+        public OnlinePaymentMap()
         {
             Id(x => x.Id);
             Map(x => x.ItemType);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.TemplateId);
-            Map(x => x.Token);
-            Map(x => x.UserId);
-            Map(x => x.PayerId);
-            Map(x => x.Amount);
-            Map(x => x.Status);
             Map(x => x.Description);
+            Map(x => x.Fee);
+            Map(x => x.ItemId);
+            Map(x => x.PaymentMethod);
+            Map(x => x.Price);
+            Map(x => x.PaymentStatus);
+            Map(x => x.ReferenceNumber);
+            Map(x => x.InitiatedBy);
+        }
+    }
+
+    public class PayPalPaymentMap : SubclassMap<PayPalPayment>
+    {
+        public PayPalPaymentMap()
+        {
+            Map(x => x.ReturnUrl);
+            Map(x => x.CancelUrl);
+            Map(x => x.Token);
+            Map(x => x.PayerId);
+        }
+    }
+
+    public class PoliPaymentMap : SubclassMap<PoliPayment>
+    {
+        public PoliPaymentMap()
+        {
+            Map(x => x.CancellationUrl);
+            Map(x => x.FailureUrl);
+            Map(x => x.SuccessUrl);
+            Map(x => x.PoliId);
+            Map(x => x.Token);
         }
     }
 
@@ -35,6 +60,65 @@ namespace Data.Mappings
             Map(x => x.ActivityText);
             Map(x => x.ActivityType);
             Map(x => x.ActivityGroup);
+        }
+    }
+
+    public class RegistrationMap : ClassMap<Registration>
+    {
+        public RegistrationMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.PaymentStatus);
+            Map(x => x.RegistationId);
+            Map(x => x.Amount);
+            Map(x => x.BalboaLevel);
+            Map(x => x.BluesLevel);
+            Map(x => x.City);
+            Map(x => x.CountryOfResidence);
+            Map(x => x.Email);
+            Map(x => x.EmergencyContactPerson);
+            Map(x => x.EmergencyContactNumber);
+            Map(x => x.FirstName);
+            Map(x => x.FullPass);
+            Map(x => x.LindyLevel);
+            Map(x => x.Over18);
+            Map(x => x.PhoneNumber);
+            Map(x => x.DanceRole);
+            Map(x => x.Surname);
+
+            Map(x => x.Balboa);
+            Map(x => x.BalboaPartner);
+            Map(x => x.Hellzapoppin);
+            Map(x => x.HellzapoppinPartner);
+            Map(x => x.JackAndJill);
+            Map(x => x.Novice);
+            Map(x => x.NovicePartner);
+            Map(x => x.ShowcaseCouple);
+            Map(x => x.ShowcaseCouplePartner);
+            Map(x => x.ShowcaseTeam);
+            Map(x => x.ShowcaseTeamPartner);
+            Map(x => x.SoloJazz);
+            Map(x => x.StrictlyLindy);
+            Map(x => x.StrictlyLindyPartner);
+
+            Map(x => x.PerformAtGrammy);
+            Map(x => x.Aerials);
+            Map(x => x.AerialsPartner);
+            Map(x => x.AerialsTeachers);
+            Map(x => x.TermsAndConditions);
+
+            HasMany(x => x.Classes)
+                .KeyColumn("ClassId")
+                .Table("RegistrationClass")
+                .Element("ClassKey")
+                .AsSet();
+            HasMany(x => x.Events)
+                .KeyColumn("EventId")
+                .Table("RegistrationEvent")
+                .Element("EventKey")
+                .AsSet();
         }
     }
 
@@ -101,7 +185,7 @@ namespace Data.Mappings
             Map(x => x.EndTime);
             Map(x => x.Name);
             References(x => x.Block)
-                .Class(typeof (Block));
+                .Class(typeof(Block));
             HasManyToMany<User>(x => x.RegisteredStudents)
                 .Table("ClassRoll")
                 .AsSet();
@@ -126,7 +210,7 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.Deleted);
             References(x => x.Event)
-                .Class(typeof (Class))
+                .Class(typeof(Class))
                 .Cascade.SaveUpdate()
                 .Not.LazyLoad();
         }
@@ -164,7 +248,7 @@ namespace Data.Mappings
             Map(x => x.EndDate);
             Map(x => x.Name);
             References(x => x.Level)
-                .Class(typeof (Level));
+                .Class(typeof(Level));
             HasMany<Class>(x => x.Classes);
             HasManyToMany<User>(x => x.EnroledStudents)
                 .Inverse()
@@ -212,9 +296,9 @@ namespace Data.Mappings
             Map(x => x.Note);
             References(x => x.Owner)
                 .Column("User_id")
-                .Class(typeof (User));
+                .Class(typeof(User));
             References(x => x.PassStatistic)
-                .Class(typeof (PassStatistic))
+                .Class(typeof(PassStatistic))
                 .Cascade.All();
         }
     }

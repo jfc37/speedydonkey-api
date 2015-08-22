@@ -37,6 +37,9 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="FizzWare.NBuilder">
+      <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation, Version=5.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
@@ -60,6 +63,14 @@
     <Compile Include="Builders\ValidationResultBuilder.cs" />
     <Compile Include="Builders\ValidatorOverlordBuilder.cs" />
     <Compile Include="CheckStudentIntoClassValidatorTests.cs" />
+    <Compile Include="Rules\AreUsersExistingTeachersRuleTests.cs" />
+    <Compile Include="Rules\DateIsNotTooFarInThePastRuleTests.cs" />
+    <Compile Include="Rules\DoesIdExistTests.cs" />
+    <Compile Include="Rules\DoesUserHaveClaimRuleTests.cs" />
+    <Compile Include="Rules\HasExactlyOneInSetTests.cs" />
+    <Compile Include="Rules\IsAValidGuidRuleTests.cs" />
+    <Compile Include="Rules\IsThereARegistrationWithMatchingRegistrationNumberTests.cs" />
+    <Compile Include="Rules\IsUserMissingClaimRuleTests.cs" />
     <Compile Include="UpdateClassValidatorTests.cs" />
     <Compile Include="UpdateBlockValidatorTests.cs" />
     <Compile Include="CreateLevelValidatorTests.cs" />
