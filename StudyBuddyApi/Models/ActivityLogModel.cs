@@ -7,12 +7,6 @@ namespace SpeedyDonkeyApi.Models
 {
     public class ActivityLogModel : ApiModel<ActivityLog, ActivityLogModel>, IActivityLog
     {
-
-        protected override string RouteName
-        {
-            get { return "ActivityLogApi"; }
-        }
-
         public DateTime CreatedDateTime { get; set; }
         public DateTime? LastUpdatedDateTime { get; set; }
         public Guid Session { get; set; }

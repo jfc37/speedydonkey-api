@@ -9,8 +9,8 @@ namespace ActionHandlers.UpdateHandlers
     {
         private readonly IPasswordHasher _passwordHasher;
 
-        public UpdateUserHandler(IRepository<User> repository, IPasswordHasher passwordHasher, ICommonInterfaceCloner cloner)
-            : base(repository, cloner)
+        public UpdateUserHandler(IRepository<User> repository, IPasswordHasher passwordHasher)
+            : base(repository)
         {
             _passwordHasher = passwordHasher;
         }

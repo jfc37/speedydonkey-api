@@ -34,7 +34,7 @@ namespace Validation.Validators
 
             RuleFor(x => x.Teachers)
                 .NotEmpty().WithMessage(ValidationMessages.TeachersRequired)
-                .Must(x => new AreUsersExistingTeachersRule(x, _teacherRepository).IsValid()).WithMessage(ValidationMessages.InvalidTeachers);
+                .Must(x => new AreTeachersValidRule(x, _teacherRepository).IsValid()).WithMessage(ValidationMessages.InvalidTeachers);
         }
     }
 }

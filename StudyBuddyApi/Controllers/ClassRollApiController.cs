@@ -3,7 +3,6 @@ using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -11,10 +10,8 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public ClassRollApiController(
             IRepository<Class> entityRepository,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(entityRepository, actionHandlerOverlord)
         {
         }
     }

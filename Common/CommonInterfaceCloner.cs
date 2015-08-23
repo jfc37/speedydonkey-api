@@ -2,12 +2,7 @@
 
 namespace Common
 {
-    public interface ICommonInterfaceCloner
-    {
-        TCloneTo Clone<TCloneFrom, TCloneTo>(TCloneFrom cloneFrom) where TCloneTo : new();
-        TCopyTo Copy<TCopyFrom, TCopyTo>(TCopyFrom copyFrom, TCopyTo copyTo);
-    }
-    public class CommonInterfaceCloner : ICommonInterfaceCloner
+    public class CommonInterfaceCloner
     {
         public TCloneTo Clone<TCloneFrom, TCloneTo>(TCloneFrom cloneFrom) where TCloneTo : new()
         {

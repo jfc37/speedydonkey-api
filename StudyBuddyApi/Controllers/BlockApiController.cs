@@ -8,7 +8,6 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -16,11 +15,9 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public BlockApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor, 
             IRepository<Block> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Block> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
 

@@ -7,7 +7,6 @@ using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -15,10 +14,8 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public ClassAttendanceApiController(
             IRepository<Class> entityRepository,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(entityRepository, actionHandlerOverlord)
         {
         }
 

@@ -22,8 +22,8 @@ using Notification;
 using Notification.NotificationHandlers;
 using OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal;
+using SpeedyDonkeyApi.Extensions.Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Services;
 using Validation;
 using Validation.Validators;
 using NHibernate;
@@ -87,7 +87,7 @@ namespace SpeedyDonkeyApi
                 typeof (ExpressCheckout).Assembly,
                 typeof (ActionHandlerOverlord).Assembly,
                 typeof (ValidatorOverlord).Assembly,
-                typeof (UrlConstructor).Assembly,
+                typeof (OnlinePaymentRequestModelExtensions).Assembly,
                 typeof (SearchQueryParser).Assembly,
                 typeof (CommonInterfaceCloner).Assembly,
                 typeof (PostOffice).Assembly,

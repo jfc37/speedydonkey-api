@@ -11,20 +11,18 @@ namespace ActionHandlers.UpdateHandlers
     {
         private readonly IRepository<Announcement> _repository;
         private readonly IRepository<Block> _blockRepository;
-        private readonly ICommonInterfaceCloner _cloner;
 
         public UpdateAnnouncementHandler(
-            IRepository<Announcement> repository, IRepository<Block> blockRepository, ICommonInterfaceCloner cloner)
+            IRepository<Announcement> repository, IRepository<Block> blockRepository)
         {
             _repository = repository;
             _blockRepository = blockRepository;
-            _cloner = cloner;
         }
 
         public Announcement Handle(UpdateAnnouncement action)
         {
             var originalEntity = _repository.Get(action.ActionAgainst.Id);
-            _cloner.Copy(action.ActionAgainst, originalEntity);
+            new CommonInterfaceCloner().Copy(action.ActionAgainst, originalEntity);
 
             if (originalEntity.Receivers.DoesNotHaveSameItems(action.ActionAgainst.Receivers))
             {

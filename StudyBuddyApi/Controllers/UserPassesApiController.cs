@@ -9,7 +9,6 @@ using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -18,12 +17,10 @@ namespace SpeedyDonkeyApi.Controllers
         private readonly ICurrentUser _currentUser;
 
         public UserPassesApiController(
-            IRepository<User> entityRepository, 
-            IUrlConstructor urlConstructor, 
-            ICommonInterfaceCloner cloner,
+            IRepository<User> entityRepository,
             IActionHandlerOverlord actionHandlerOverlord,
             ICurrentUser currentUser)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(entityRepository, actionHandlerOverlord)
         {
             _currentUser = currentUser;
         }
@@ -53,7 +50,7 @@ namespace SpeedyDonkeyApi.Controllers
                 Id = userId,
                 Passes = new List<IPass>{pass}
             };
-            var user = userModel.ToEntity(Cloner);
+            var user = userModel.ToEntity();
             return PerformAction<PurchasePass, UserModel, User>(userModel, new PurchasePass(user){ PassTemplateId = passTemplateId});
         }
     }

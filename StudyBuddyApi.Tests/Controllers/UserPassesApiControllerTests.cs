@@ -9,24 +9,19 @@ using Models;
 using Moq;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Controllers;
-using SpeedyDonkeyApi.Tests.Builders.MockBuilders;
 
 namespace StudyBuddyApi.Tests.Controllers
 {
     [TestFixture]
     public class UserPassesApiControllerTests
     {
-        protected MockUrlConstructorBuilder UrlConstructorBuilder;
         protected MockRepositoryBuilder<User> RepositoryBuilder;
-        protected ICommonInterfaceCloner Cloner;
         protected MockActionHandlerOverlordBuilder ActionHandlerOverlordBuilder;
 
         protected UserPassesApiController GetController()
         {
             var controller = new UserPassesApiController(
                 RepositoryBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
-                Cloner,
                 ActionHandlerOverlordBuilder.BuildObject(),
                 new CurrentUser());
             ApiControllerSetup.Setup(controller);
@@ -36,10 +31,8 @@ namespace StudyBuddyApi.Tests.Controllers
         [SetUp]
         public virtual void Setup()
         {
-            UrlConstructorBuilder = new MockUrlConstructorBuilder()
-                .WithUrlConstruction();
             RepositoryBuilder = new MockRepositoryBuilder<User>();
-            Cloner = new CommonInterfaceCloner();
+            new CommonInterfaceCloner();
             ActionHandlerOverlordBuilder = new MockActionHandlerOverlordBuilder();
         }
 

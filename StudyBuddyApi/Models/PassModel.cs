@@ -2,7 +2,7 @@
 using System.Net.Http;
 using Common;
 using Models;
-using SpeedyDonkeyApi.Services;
+using SpeedyDonkeyApi.Controllers;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -33,7 +33,7 @@ namespace SpeedyDonkeyApi.Models
             get { return IsValid(); }
         }
 
-        protected override string RouteName
+        protected virtual string RouteName
         {
             get { return "PassApi"; }
         }
@@ -43,30 +43,29 @@ namespace SpeedyDonkeyApi.Models
             return StartDate <= today && today <= EndDate;
         }
 
-        public override Pass ToEntity(ICommonInterfaceCloner cloner)
+        public override Pass ToEntity()
         {
             if (this is ClipPassModel)
             {
-                var entity = cloner.Clone<ClipPassModel, ClipPass>(this as ClipPassModel);
-                AddChildrenToEntity(entity, cloner);
+                var entity = new CommonInterfaceCloner().Clone<ClipPassModel, ClipPass>(this as ClipPassModel);
+                AddChildrenToEntity(entity);
                 return entity;
             }
-            return base.ToEntity(cloner);
+            return base.ToEntity();
         }
 
-        public override IApiModel<Pass> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, Pass entity,
-            ICommonInterfaceCloner cloner)
+        public override IApiModel<Pass> CloneFromEntity(HttpRequestMessage request, Pass entity)
         {
             if (entity is ClipPass)
             {
-                var clipPass = (PassModel) base.CloneFromEntity(request, urlConstructor, entity, cloner);
-                var clipPassModel = cloner.Clone<PassModel, ClipPassModel>(clipPass);
+                var clipPass = (PassModel) base.CloneFromEntity(request, entity);
+                var clipPassModel = new CommonInterfaceCloner().Clone<PassModel, ClipPassModel>(clipPass);
                 clipPassModel.ClipsRemaining = ((ClipPass) entity).ClipsRemaining;
                 return clipPassModel;
             }
             else
             {
-                return base.CloneFromEntity(request, urlConstructor, entity, cloner);
+                return base.CloneFromEntity(request, entity);
             }
         }
 

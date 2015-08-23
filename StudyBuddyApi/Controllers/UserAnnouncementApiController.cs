@@ -13,18 +13,15 @@ namespace SpeedyDonkeyApi.Controllers
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Announcement> _announcementRepository;
         private readonly ICurrentUser _currentUser;
-        private readonly ICommonInterfaceCloner _cloner;
 
         public UserAnnouncementApiController(
             IRepository<User> userRepository, 
             IRepository<Announcement> announcementRepository, 
-            ICurrentUser currentUser,
-            ICommonInterfaceCloner cloner)
+            ICurrentUser currentUser)
         {
             _userRepository = userRepository;
             _announcementRepository = announcementRepository;
             _currentUser = currentUser;
-            _cloner = cloner;
         }
 
         public IHttpActionResult Get()
@@ -43,7 +40,7 @@ namespace SpeedyDonkeyApi.Controllers
             if (allAnnouncementsToShow.NotAny())
                 return NotFound();
 
-            return Ok(allAnnouncementsToShow.Select(x => new AnnouncementModel().CloneFromEntity(x, _cloner)));
+            return Ok(allAnnouncementsToShow.Select(x => new AnnouncementModel().CloneFromEntity(x)));
         }
     }
 }

@@ -22,20 +22,16 @@ namespace StudyBuddyApi.Tests.Controllers
     public abstract class GenericApiControllerTests<TModel, TEntity>  where TModel : IApiModel<TEntity>, new() where TEntity : class, IEntity, new()
     {
         protected MockActionHandlerOverlordBuilder ActionHandlerOverlordBuilder;
-        protected MockUrlConstructorBuilder UrlConstructorBuilder;
         protected MockRepositoryBuilder<TEntity> RepositoryBuilder;
         protected MockEntitySearch<TEntity> EntitySearchBuilder;
-        protected ICommonInterfaceCloner Cloner;
 
         protected void DependencySetup()
         {
             ActionHandlerOverlordBuilder = new MockActionHandlerOverlordBuilder();
-            UrlConstructorBuilder = new MockUrlConstructorBuilder()
-                .WithUrlConstruction();
             RepositoryBuilder = new MockRepositoryBuilder<TEntity>()
                 .WithSuccessfulGet();
             EntitySearchBuilder = new MockEntitySearch<TEntity>();
-            Cloner = new CommonInterfaceCloner();
+            new CommonInterfaceCloner();
         }
 
         protected GenericApiController<TModel, TEntity> GetController()
@@ -262,7 +258,6 @@ namespace StudyBuddyApi.Tests.Controllers
         public virtual void Setup()
         {
             DependencySetup();
-            UrlConstructorBuilder.WithUrlConstruction();
             ActionHandlerOverlordBuilder.WithNoErrorsOnHandling<TAction, TEntity>();
             Model = new TModel();
         }

@@ -14,7 +14,7 @@ namespace ActionHandlers
 
         public Teacher Handle(RemoveAsTeacher action)
         {
-            _teacherStudentConverter.ToStudent(action.ActionAgainst.Id);
+            _teacherStudentConverter.RemoveAsTeacher(action.ActionAgainst.Id);
             return action.ActionAgainst;
         }
     }

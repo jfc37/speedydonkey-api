@@ -9,14 +9,13 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
     [BasicAuthAuthorise]
     public class EnrolmentApiController : GenericApiController<UserModel, User>
     {
-        public EnrolmentApiController(IActionHandlerOverlord actionHandlerOverlord, IUrlConstructor urlConstructor, IRepository<User> repository, ICommonInterfaceCloner cloner, IEntitySearch<User> entitySearch) : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+        public EnrolmentApiController(IActionHandlerOverlord actionHandlerOverlord, IRepository<User> repository, IEntitySearch<User> entitySearch) : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
 

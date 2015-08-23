@@ -9,19 +9,16 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
     public class UserApiController : GenericApiController<UserModel, User>
     {
         public UserApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<User> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<User> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
         [AllowAnonymous]
         public HttpResponseMessage Post([FromBody] UserModel model)

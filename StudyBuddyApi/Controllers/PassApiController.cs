@@ -7,7 +7,6 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -16,11 +15,9 @@ namespace SpeedyDonkeyApi.Controllers
 
         public PassApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor, 
             IRepository<Pass> repository, 
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Pass> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
 
@@ -31,7 +28,7 @@ namespace SpeedyDonkeyApi.Controllers
 
             if (model.PassType == PassType.Unlimited.ToString())
             {
-                var unlimitedPassModel = _cloner.Clone<ClipPassModel, PassModel>(model);
+                var unlimitedPassModel = new CommonInterfaceCloner().Clone<ClipPassModel, PassModel>(model);
                 return PerformAction(unlimitedPassModel, x => new UpdatePass(x));
             }
 

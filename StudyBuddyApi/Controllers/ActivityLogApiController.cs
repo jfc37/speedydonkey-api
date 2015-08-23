@@ -8,19 +8,16 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
     public class ActivityLogApiController : GenericApiController<ActivityLogModel, ActivityLog>
     {
         public ActivityLogApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<ActivityLog> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<ActivityLog> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
 
         [ClaimsAuthorise(Claim = Claim.Admin)]

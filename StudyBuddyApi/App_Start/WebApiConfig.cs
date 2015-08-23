@@ -58,12 +58,6 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
-                name: "TeacherApi",
-                routeTemplate: "api/teachers/{id}",
-                defaults: new { controller = "TeacherApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "UserActivationApi",
                 routeTemplate: "api/users/activation/{id}",
                 defaults: new { controller = "UserActivationApi" }
@@ -73,12 +67,6 @@ namespace SpeedyDonkeyApi
                 name: "UserPasswordResetApi",
                 routeTemplate: "api/users/password/reset/{id}",
                 defaults: new { controller = "UserPasswordResetApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "LevelApi",
-                routeTemplate: "api/levels/{id}",
-                defaults: new { controller = "LevelApi", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

@@ -165,12 +165,16 @@ namespace Data.Mappings
         }
     }
 
-    public class TeacherMap : SubclassMap<Teacher>
+    public class TeacherMap : ClassMap<Teacher>
     {
         public TeacherMap()
         {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             HasManyToMany<Class>(x => x.Classes)
                 .AsSet();
+            References<User>(x => x.User);
         }
     }
     public class ClassMap : ClassMap<Class>
@@ -192,7 +196,7 @@ namespace Data.Mappings
             HasManyToMany<User>(x => x.ActualStudents)
                 .Table("ClassAttendance")
                 .AsSet();
-            HasManyToMany<User>(x => x.Teachers)
+            HasManyToMany<Teacher>(x => x.Teachers)
                 .Table("ClassTeacher")
                 .AsSet();
             HasManyToMany<PassStatistic>(x => x.PassStatistics)
@@ -230,7 +234,7 @@ namespace Data.Mappings
             Map(x => x.Name);
             Map(x => x.StartTime);
             HasMany<Block>(x => x.Blocks);
-            HasManyToMany<User>(x => x.Teachers)
+            HasManyToMany<Teacher>(x => x.Teachers)
                 .Table("LevelTeacher")
                 .AsSet();
         }
@@ -255,7 +259,7 @@ namespace Data.Mappings
                 .Table("UsersEnroledBlocks")
                 .Cascade.SaveUpdate()
                 .AsSet();
-            HasManyToMany<User>(x => x.Teachers)
+            HasManyToMany<Teacher>(x => x.Teachers)
                 .Table("BlockTeacher")
                 .AsSet();
             HasManyToMany<Announcement>(x => x.Announcements)

@@ -5,28 +5,22 @@ using System.Net.Http;
 using Common;
 using Common.Tests.Builders.MockBuilders;
 using Data.Repositories;
-using Data.Tests.Builders;
 using Models;
 using Moq;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Controllers;
-using SpeedyDonkeyApi.Tests.Builders.MockBuilders;
 
 namespace StudyBuddyApi.Tests.Controllers
 {
     [TestFixture]
     public class UserScheduleApiControllerTests
     {
-        protected MockUrlConstructorBuilder UrlConstructorBuilder;
         protected MockAdvancedRepositoryBuilder<User, IList<IEvent>> RepositoryBuilder;
-        protected ICommonInterfaceCloner Cloner;
 
         protected UserScheduleApiController GetController()
         {
             var controller = new UserScheduleApiController(
                 RepositoryBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
-                Cloner,
                 new CurrentUser());
             ApiControllerSetup.Setup(controller);
             return controller;
@@ -35,10 +29,8 @@ namespace StudyBuddyApi.Tests.Controllers
         [SetUp]
         public virtual void Setup()
         {
-            UrlConstructorBuilder = new MockUrlConstructorBuilder()
-                .WithUrlConstruction();
             RepositoryBuilder = new MockAdvancedRepositoryBuilder<User, IList<IEvent>>();
-            Cloner = new CommonInterfaceCloner();
+            new CommonInterfaceCloner();
         }
 
         public class GivenAGetIsMade : UserScheduleApiControllerTests

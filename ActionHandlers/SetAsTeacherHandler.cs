@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Actions;
-using Common;
-using Data.Repositories;
+﻿using Actions;
 using Models;
 
 namespace ActionHandlers
 {
-    public class SetAsTeacherHandler : IActionHandler<SetAsTeacher, Teacher>
+    public class SetAsTeacherHandler : IActionHandler<SetAsTeacher, User>
     {
         private readonly ITeacherStudentConverter _teacherStudentConverter;
 
@@ -16,9 +12,10 @@ namespace ActionHandlers
             _teacherStudentConverter = teacherStudentConverter;
         }
 
-        public Teacher Handle(SetAsTeacher action)
+        public User Handle(SetAsTeacher action)
         {
-            return _teacherStudentConverter.ToTeacher(action.ActionAgainst.Id);
+            _teacherStudentConverter.AddAsTeacher(action.ActionAgainst.Id);
+            return action.ActionAgainst;
         }
     }
 

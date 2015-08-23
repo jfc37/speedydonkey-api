@@ -8,7 +8,6 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -16,10 +15,8 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public PassTemplateApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor, 
             IRepository<PassTemplate> repository, 
-            ICommonInterfaceCloner cloner, 
-            IEntitySearch<PassTemplate> entitySearch) : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            IEntitySearch<PassTemplate> entitySearch) : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
 

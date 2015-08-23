@@ -3,7 +3,6 @@ using System.Linq;
 using System.Net.Http;
 using Common;
 using Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -11,18 +10,17 @@ namespace SpeedyDonkeyApi.Models
     {
         public IList<BlockModel> EnroledBlocks { get; set; }
 
-        public IList<BlockModel> ConvertFromEntity(User user, HttpRequestMessage request, IUrlConstructor urlConstructor, ICommonInterfaceCloner cloner)
+        public IList<BlockModel> ConvertFromEntity(User user, HttpRequestMessage request)
         {
             if (user.EnroledBlocks == null)
                 return new List<BlockModel>();
-            return user.EnroledBlocks.Select(x => (BlockModel)new BlockModel().CloneFromEntity(request, urlConstructor, (Block)x, cloner))
+            return user.EnroledBlocks.Select(x => (BlockModel)new BlockModel().CloneFromEntity(request, (Block)x))
                     .ToList();
         }
     }
     public class ClassRegisterModel : IEntityView<Class, UserModel>
     {
-        public IList<UserModel> ConvertFromEntity(Class theClass, HttpRequestMessage request, IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner)
+        public IList<UserModel> ConvertFromEntity(Class theClass, HttpRequestMessage request)
         {
             var classRoll = new List<UserModel>();
             if (theClass.RegisteredStudents == null)
@@ -30,12 +28,12 @@ namespace SpeedyDonkeyApi.Models
 
             foreach (var student in theClass.RegisteredStudents)
             {
-                var studentModel = (UserModel)new UserModel().CloneFromEntity(request, urlConstructor, (User)student, cloner);
+                var studentModel = (UserModel)new UserModel().CloneFromEntity(request, (User)student);
                 if (student.Passes != null)
                 {
                     studentModel.Passes =
                         student.Passes.Where(x => x.IsValid())
-                            .Select(x => (IPass)new PassModel().CloneFromEntity(request, urlConstructor, (Pass)x, cloner))
+                            .Select(x => (IPass)new PassModel().CloneFromEntity(request, (Pass)x))
                             .ToList();
                 }
                 classRoll.Add(studentModel);
@@ -45,8 +43,7 @@ namespace SpeedyDonkeyApi.Models
     }
     public class ClassAttendanceModel : IEntityView<Class, UserModel>
     {
-        public IList<UserModel> ConvertFromEntity(Class theClass, HttpRequestMessage request, IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner)
+        public IList<UserModel> ConvertFromEntity(Class theClass, HttpRequestMessage request)
         {
             var attendance = new List<UserModel>();
             if (theClass.ActualStudents == null)
@@ -54,12 +51,12 @@ namespace SpeedyDonkeyApi.Models
 
             foreach (var student in theClass.ActualStudents)
             {
-                var studentModel = (UserModel) new UserModel().CloneFromEntity(request, urlConstructor, (User) student, cloner);
+                var studentModel = (UserModel) new UserModel().CloneFromEntity(request, (User) student);
                 if (student.Passes != null)
                 {
                     studentModel.Passes =
                         student.Passes.Where(x => x.IsValid())
-                            .Select(x => (IPass)new PassModel().CloneFromEntity(request, urlConstructor, (Pass)x, cloner))
+                            .Select(x => (IPass)new PassModel().CloneFromEntity(request, (Pass)x))
                             .ToList();   
                 }
                 attendance.Add(studentModel);
@@ -69,8 +66,7 @@ namespace SpeedyDonkeyApi.Models
     }
     public class ClassPassStaticsticsModel : IEntityView<Class, PassStatisticModel>
     {
-        public IList<PassStatisticModel> ConvertFromEntity(Class theClass, HttpRequestMessage request, IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner)
+        public IList<PassStatisticModel> ConvertFromEntity(Class theClass, HttpRequestMessage request)
         {
             var passStatistics = new List<PassStatisticModel>();
             if (theClass.PassStatistics == null)
@@ -78,7 +74,7 @@ namespace SpeedyDonkeyApi.Models
 
             foreach (var passStatistic in theClass.PassStatistics)
             {
-                var passStatisticModel = (PassStatisticModel)new PassStatisticModel().CloneFromEntity(request, urlConstructor, (PassStatistic)passStatistic, cloner);
+                var passStatisticModel = (PassStatisticModel)new PassStatisticModel().CloneFromEntity(request, (PassStatistic)passStatistic);
                 passStatistics.Add(passStatisticModel);
             }
             return passStatistics;

@@ -15,17 +15,13 @@ namespace StudyBuddyApi.Tests.Controllers
     [TestFixture]
     public class ClassAttendanceApiControllerTests
     {
-        protected MockUrlConstructorBuilder UrlConstructorBuilder;
         protected MockRepositoryBuilder<Class> RepositoryBuilder;
-        protected ICommonInterfaceCloner Cloner;
         protected MockActionHandlerOverlordBuilder ActionHandlerOverlordBuilder;
 
         protected ClassAttendanceApiController GetController()
         {
             var controller = new ClassAttendanceApiController(
                 RepositoryBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
-                Cloner,
                 ActionHandlerOverlordBuilder.BuildObject());
             ApiControllerSetup.Setup(controller);
             return controller;
@@ -34,10 +30,8 @@ namespace StudyBuddyApi.Tests.Controllers
         [SetUp]
         public virtual void Setup()
         {
-            UrlConstructorBuilder = new MockUrlConstructorBuilder()
-                .WithUrlConstruction();
             RepositoryBuilder = new MockRepositoryBuilder<Class>();
-            Cloner = new CommonInterfaceCloner();
+            new CommonInterfaceCloner();
             ActionHandlerOverlordBuilder = new MockActionHandlerOverlordBuilder();
         }
 

@@ -11,19 +11,16 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
     public class RegistrationApiController : GenericApiController<RegistrationModel, Registration>
     {
         public RegistrationApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<Registration> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Registration> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
         [AllowAnonymous]
         public HttpResponseMessage Post([FromBody] RegistrationModel model)
@@ -40,7 +37,7 @@ namespace SpeedyDonkeyApi.Controllers
             if (entity == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound);
 
-            var model = new RegistrationModel().CloneFromEntity(Request, _urlConstructor, entity, _cloner);
+            var model = new RegistrationModel().CloneFromEntity(Request, entity);
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
 

@@ -1,19 +1,16 @@
 ﻿using System.Net.Http;
 using Common;
-using Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
     public interface IApiModel<TEntity> where TEntity : IEntity
     {
         int Id { get; set; }
-        string Url { get; set; }
 
-        TEntity ToEntity(ICommonInterfaceCloner cloner);
+        TEntity ToEntity();
 
-        IApiModel<TEntity> CloneFromEntity(TEntity entity, ICommonInterfaceCloner cloner);
-        IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor, TEntity entity, ICommonInterfaceCloner cloner);
+        IApiModel<TEntity> CloneFromEntity(TEntity entity);
+        IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, TEntity entity);
     }
 
     public abstract class ApiModel<TEntity, TModel> : IApiModel<TEntity>
@@ -21,35 +18,31 @@ namespace SpeedyDonkeyApi.Models
         where TModel : class, IApiModel<TEntity>, new()
     {
         public int Id { get; set; }
-        public string Url { get; set; }
-        protected abstract string RouteName { get; }
 
-        public virtual TEntity ToEntity(ICommonInterfaceCloner cloner)
+        public virtual TEntity ToEntity()
         {
-            var entity = cloner.Clone<TModel, TEntity>(this as TModel);
-            AddChildrenToEntity(entity, cloner);
+            var entity = new CommonInterfaceCloner().Clone<TModel, TEntity>(this as TModel);
+            AddChildrenToEntity(entity);
             return entity;
         }
 
-        protected virtual void AddChildrenToEntity(TEntity entity, ICommonInterfaceCloner cloner)
+        protected virtual void AddChildrenToEntity(TEntity entity)
         {
             
         }
 
-        public virtual IApiModel<TEntity> CloneFromEntity(TEntity entity, ICommonInterfaceCloner cloner)
+        public virtual IApiModel<TEntity> CloneFromEntity(TEntity entity)
         {
-            var model = cloner.Clone<TEntity, TModel>(entity);
+            var model = new CommonInterfaceCloner().Clone<TEntity, TModel>(entity);
             AddChildrenToModel(entity, model);
             SanitiseModel(model);
             return model;
         }
 
-        public virtual IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request, IUrlConstructor urlConstructor,
-            TEntity entity,
-            ICommonInterfaceCloner cloner)
+        public virtual IApiModel<TEntity> CloneFromEntity(HttpRequestMessage request,
+            TEntity entity)
         {
-            var model = cloner.Clone<TEntity, TModel>(entity);
-            model.Url = urlConstructor.Construct(RouteName, new {id = entity.Id}, request);
+            var model = new CommonInterfaceCloner().Clone<TEntity, TModel>(entity);
             AddChildrenToModel(entity, model);
             SanitiseModel(model);
             return model;

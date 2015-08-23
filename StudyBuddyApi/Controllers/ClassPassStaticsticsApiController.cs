@@ -3,7 +3,6 @@ using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -11,10 +10,8 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public ClassPassStaticsticsApiController(
             IRepository<Class> entityRepository,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(entityRepository, actionHandlerOverlord)
         {
         }
     }
@@ -22,10 +19,8 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public BlockPassStaticsticsApiController(
             IRepository<Class> entityRepository,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(entityRepository, actionHandlerOverlord)
         {
         }
     }

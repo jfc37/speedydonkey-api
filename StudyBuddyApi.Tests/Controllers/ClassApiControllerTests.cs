@@ -11,9 +11,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new ClassApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -23,9 +21,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new ClassApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -39,9 +35,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new ClassApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -52,9 +46,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new ClassApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -69,9 +61,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new ClassApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -82,9 +72,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new ClassApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }

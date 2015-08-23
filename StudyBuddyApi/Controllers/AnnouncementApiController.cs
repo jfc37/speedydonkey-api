@@ -10,19 +10,16 @@ using Models;
 using Newtonsoft.Json;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
     public class AnnouncementApiController : GenericApiController<AnnouncementModel, Announcement>
     {
         public AnnouncementApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<Announcement> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Announcement> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
 

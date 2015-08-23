@@ -18,9 +18,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new EnrolmentApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
 
@@ -45,9 +43,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new EnrolmentApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
 

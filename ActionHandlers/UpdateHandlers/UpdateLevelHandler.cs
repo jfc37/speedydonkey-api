@@ -11,20 +11,18 @@ namespace ActionHandlers.UpdateHandlers
     {
         private readonly IRepository<Level> _repository;
         private readonly IRepository<Teacher> _teacherRepository;
-        private readonly ICommonInterfaceCloner _cloner;
 
         public UpdateLevelHandler(
-            IRepository<Level> repository, IRepository<Teacher> teacherRepository, ICommonInterfaceCloner cloner)
+            IRepository<Level> repository, IRepository<Teacher> teacherRepository)
         {
             _repository = repository;
             _teacherRepository = teacherRepository;
-            _cloner = cloner;
         }
 
         public Level Handle(UpdateLevel action)
         {
             var originalEntity = _repository.Get(action.ActionAgainst.Id);
-            _cloner.Copy(action.ActionAgainst, originalEntity);
+            new CommonInterfaceCloner().Copy(action.ActionAgainst, originalEntity);
 
             if (originalEntity.Teachers.DoesNotHaveSameItems(action.ActionAgainst.Teachers))
             {

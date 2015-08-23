@@ -9,12 +9,6 @@ namespace SpeedyDonkeyApi.Models
 {
     public class RegistrationModel : ApiModel<Registration, RegistrationModel>, IRegistration
     {
-
-        protected override string RouteName
-        {
-            get { return "RegistrationApi"; }
-        }
-
         public DateTime CreatedDateTime { get; set; }
         public DateTime? LastUpdatedDateTime { get; set; }
         public Guid RegistationId { get; set; }
@@ -98,7 +92,7 @@ namespace SpeedyDonkeyApi.Models
         public string AerialsTeachers { get; set; }
         public bool TermsAndConditions { get; set; }
 
-        protected override void AddChildrenToEntity(Registration entity, ICommonInterfaceCloner cloner)
+        protected override void AddChildrenToEntity(Registration entity)
         {
             entity.Classes = Classes;
             entity.Events = Events;

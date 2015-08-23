@@ -9,7 +9,6 @@ using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -18,19 +17,13 @@ namespace SpeedyDonkeyApi.Controllers
         where TEntity : class, IEntity
     {
         private readonly IRepository<TEntity> _entityRepository;
-        private readonly IUrlConstructor _urlConstructor;
-        protected readonly ICommonInterfaceCloner Cloner;
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
 
         protected EntityPropertyApiController(
             IRepository<TEntity> entityRepository,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord)
         {
             _entityRepository = entityRepository;
-            _urlConstructor = urlConstructor;
-            Cloner = cloner;
             _actionHandlerOverlord = actionHandlerOverlord;
         }
 
@@ -42,7 +35,7 @@ namespace SpeedyDonkeyApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            var userScheduleModels = new TViewModel().ConvertFromEntity(entity, Request, _urlConstructor, Cloner);
+            var userScheduleModels = new TViewModel().ConvertFromEntity(entity, Request);
             return userScheduleModels.Any()
                 ? Request.CreateResponse(userScheduleModels)
                 : Request.CreateResponse(HttpStatusCode.NotFound);
@@ -53,7 +46,7 @@ namespace SpeedyDonkeyApi.Controllers
             where TActionModel : IApiModel<TActionEntity>, new()
             where TActionEntity : class, IEntity
         {
-            var entity = model.ToEntity(Cloner);
+            var entity = model.ToEntity();
             return PerformAction<TAction, TActionModel, TActionEntity>(model, actionCreator(entity));
         }
 
@@ -70,7 +63,7 @@ namespace SpeedyDonkeyApi.Controllers
                 responseCode,
                 new ActionReponse<IApiModel<TActionEntity>>
                 {
-                    ActionResult = model.CloneFromEntity(Request, _urlConstructor, result.ActionResult, Cloner),
+                    ActionResult = model.CloneFromEntity(Request, result.ActionResult),
                     ValidationResult = result.ValidationResult
                 });
         }

@@ -4,7 +4,6 @@ using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -12,11 +11,9 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public PassStatisticApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor, 
             IRepository<PassStatistic> repository, 
-            ICommonInterfaceCloner cloner,
             IEntitySearch<PassStatistic> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
     }

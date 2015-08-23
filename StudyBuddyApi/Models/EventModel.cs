@@ -6,11 +6,6 @@ namespace SpeedyDonkeyApi.Models
 {
     public class EventModel : ApiModel<Event, EventModel>, IEvent
     {
-        protected override string RouteName
-        {
-            get { return "EventApi"; }
-        }
-
         public ICollection<ITeacher> Teachers { get; set; }
         public ICollection<IUser> RegisteredStudents { get; set; }
         public DateTime StartTime { get; set; }

@@ -5,7 +5,6 @@ using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -15,11 +14,9 @@ namespace SpeedyDonkeyApi.Controllers
 
         public UserClaimsApiController(
             IRepository<User> entityRepository, 
-            IUrlConstructor urlConstructor, 
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord,
             ICurrentUser currentUser)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(entityRepository, actionHandlerOverlord)
         {
             _currentUser = currentUser;
         }

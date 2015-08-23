@@ -17,10 +17,7 @@ namespace Validation.Tests
         [SetUp]
         public void Setup()
         {
-            var teacher = new Teacher()
-            {
-                Claims = Claim.Teacher.ToString()
-            };
+            var teacher = new Teacher();
             _repositoryBuilder = new MockRepositoryBuilder<Class>()
                 .WithSuccessfulGet();
             Parameter = new Class

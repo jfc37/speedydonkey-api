@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using Common;
+using Common.Extensions;
+using FluentNHibernate.Conventions;
 using Models;
 using Newtonsoft.Json;
 using SpeedyDonkeyApi.Services;
@@ -20,7 +20,7 @@ namespace SpeedyDonkeyApi.Models
         public LevelModel(List<Teacher> teachers)
         {
             if (teachers != null)
-                Teachers = teachers.OfType<ITeacher>().ToList();
+                Teachers = teachers.ToList<ITeacher>();
         }
 
         public string Name { get; set; }
@@ -32,14 +32,9 @@ namespace SpeedyDonkeyApi.Models
         public IList<IBlock> Blocks { get; set; }
         public int ClassMinutes { get; set; }
 
-        protected override string RouteName
+        protected override void AddChildrenToEntity(Level entity)
         {
-            get { return "LevelApi"; }
-        }
-
-        protected override void AddChildrenToEntity(Level entity, ICommonInterfaceCloner cloner)
-        {
-            if (Teachers != null && Teachers.Any())
+            if (Teachers.IsNotNull() && Teachers.Any())
                 entity.Teachers = Teachers;
         }
 
@@ -47,12 +42,7 @@ namespace SpeedyDonkeyApi.Models
         {
             if (entity.Teachers != null)
             {
-                model.Teachers = entity.Teachers.Select(x => (ITeacher)new TeacherModel
-                {
-                    Id = x.Id,
-                    FirstName = x.FirstName,
-                    Surname = x.Surname
-                }).ToList();
+                model.Teachers = entity.Teachers.Select(x => new TeacherToTeacherModelMapping(x).Do()).ToList<ITeacher>();
             }
         }
     }

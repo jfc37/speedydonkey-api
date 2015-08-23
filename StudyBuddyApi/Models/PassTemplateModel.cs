@@ -5,11 +5,6 @@ namespace SpeedyDonkeyApi.Models
 {
     public class PassTemplateModel : ApiModel<PassTemplate, PassTemplateModel>, IPassTemplate
     {
-        protected override string RouteName
-        {
-            get { return "PassTemplateApi"; }
-        }
-
         public string Description { get; set; }
         public string PassType { get; set; }
         public decimal Cost { get; set; }

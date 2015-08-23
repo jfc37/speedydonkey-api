@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common;
 using Models;
 using Newtonsoft.Json;
 
@@ -22,12 +21,7 @@ namespace SpeedyDonkeyApi.Models
         }
 
 
-        protected override string RouteName
-        {
-            get { return "AnnouncementApi"; }
-        }
-
-        protected override void AddChildrenToEntity(Announcement entity, ICommonInterfaceCloner cloner)
+        protected override void AddChildrenToEntity(Announcement entity)
         {
             if (Receivers != null && Receivers.Any())
                 entity.Receivers = Receivers;

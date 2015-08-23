@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using Common;
 using Models;
 using Newtonsoft.Json;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -22,7 +20,7 @@ namespace SpeedyDonkeyApi.Models
             if (teachers != null)
                 Teachers = teachers.OfType<ITeacher>().ToList();
         }
-        protected override string RouteName
+        protected virtual string RouteName
         {
             get { return "ClassApi"; }
         }
@@ -37,12 +35,12 @@ namespace SpeedyDonkeyApi.Models
         public IBlock Block { get; set; }
         public ICollection<IPassStatistic> PassStatistics { get; set; }
 
-        protected override void AddChildrenToEntity(Class entity, ICommonInterfaceCloner cloner)
+        protected override void AddChildrenToEntity(Class entity)
         {
             if (ActualStudents != null)
             {
                 entity.ActualStudents = ActualStudents
-                    .Select(x => (IUser)((UserModel)x).ToEntity(cloner))
+                    .Select(x => (IUser)((UserModel)x).ToEntity())
                     .ToList();
             }
 
@@ -64,8 +62,12 @@ namespace SpeedyDonkeyApi.Models
                 model.Teachers = entity.Teachers.Select(x => (ITeacher)new TeacherModel
                 {
                     Id = x.Id,
-                    FirstName = x.FirstName,
-                    Surname = x.Surname
+                    User = new UserModel
+                    {
+
+                        FirstName = x.User.FirstName,
+                        Surname = x.User.Surname
+                    }
                 }).ToList();
             }
         }

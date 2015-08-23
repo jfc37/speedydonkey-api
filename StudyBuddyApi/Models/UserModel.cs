@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using Common;
 using Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -21,23 +19,18 @@ namespace SpeedyDonkeyApi.Models
         public DateTime CreatedDateTime { get; set; }
         public DateTime? LastUpdatedDateTime { get; set; }
 
-        protected override string RouteName
-        {
-            get { return "UserApi"; }
-        }
-
-        protected override void AddChildrenToEntity(User entity, ICommonInterfaceCloner cloner)
+        protected override void AddChildrenToEntity(User entity)
         {
             if (EnroledBlocks != null)
             {
                 entity.EnroledBlocks = EnroledBlocks
-                    .Select(x => (IBlock) ((BlockModel) x).ToEntity(cloner))
+                    .Select(x => (IBlock) ((BlockModel) x).ToEntity())
                     .ToList();
             }
             if (Passes != null)
             {
                 entity.Passes = Passes
-                    .Select(x => (IPass) ((PassModel) x).ToEntity(cloner))
+                    .Select(x => (IPass) ((PassModel) x).ToEntity())
                     .ToList();
             }
         }

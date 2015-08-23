@@ -13,9 +13,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -25,9 +23,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -41,9 +37,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -54,9 +48,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -71,9 +63,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -84,9 +74,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
     }
@@ -102,9 +90,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
 
@@ -122,9 +108,7 @@ namespace StudyBuddyApi.Tests.Controllers
         {
             return new BlockApiController(
                 ActionHandlerOverlordBuilder.BuildObject(),
-                UrlConstructorBuilder.BuildObject(),
                 RepositoryBuilder.BuildObject(),
-                Cloner,
                 EntitySearchBuilder.BuildObject());
         }
 

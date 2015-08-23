@@ -8,7 +8,6 @@ using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -16,21 +15,15 @@ namespace SpeedyDonkeyApi.Controllers
     {
         private readonly IRepository<User> _repository;
         private readonly ICurrentUser _currentUser;
-        private readonly IUrlConstructor _urlConstructor;
-        private readonly ICommonInterfaceCloner _cloner;
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
 
         public CurrentUserApiController(
             IRepository<User> repository, 
             ICurrentUser currentUser,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord)
         {
             _repository = repository;
             _currentUser = currentUser;
-            _urlConstructor = urlConstructor;
-            _cloner = cloner;
             _actionHandlerOverlord = actionHandlerOverlord;
         }
         
@@ -38,7 +31,7 @@ namespace SpeedyDonkeyApi.Controllers
         public HttpResponseMessage Put([FromBody]UserModel model)
         {
             model.Id = _currentUser.Id;
-            var user = model.ToEntity(_cloner);
+            var user = model.ToEntity();
             var updateUser = new UpdateUser(user);
             ActionReponse<User> result = _actionHandlerOverlord.HandleAction<UpdateUser, User>(updateUser);
             HttpStatusCode responseCode = result.ValidationResult.IsValid
@@ -48,7 +41,7 @@ namespace SpeedyDonkeyApi.Controllers
                 responseCode,
                 new ActionReponse<IApiModel<User>>
                 {
-                    ActionResult = model.CloneFromEntity(Request, _urlConstructor, result.ActionResult, _cloner),
+                    ActionResult = model.CloneFromEntity(Request, result.ActionResult),
                     ValidationResult = result.ValidationResult
                 });
         }
@@ -56,7 +49,7 @@ namespace SpeedyDonkeyApi.Controllers
         [ActiveUserRequired]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(new UserModel().CloneFromEntity(Request, _urlConstructor, _repository.Get(_currentUser.Id), _cloner));
+            return Request.CreateResponse(new UserModel().CloneFromEntity(Request, _repository.Get(_currentUser.Id)));
         }
     }
 }

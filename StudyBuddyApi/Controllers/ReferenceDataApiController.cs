@@ -8,7 +8,6 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -16,10 +15,8 @@ namespace SpeedyDonkeyApi.Controllers
     {
         public ReferenceDataApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor, 
             IRepository<ReferenceData> repository, 
-            ICommonInterfaceCloner cloner, 
-            IEntitySearch<ReferenceData> entitySearch) : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            IEntitySearch<ReferenceData> entitySearch) : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
 

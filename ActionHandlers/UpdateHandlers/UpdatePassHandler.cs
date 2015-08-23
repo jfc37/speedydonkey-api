@@ -11,8 +11,8 @@ namespace ActionHandlers.UpdateHandlers
     {
         private readonly IRepository<Pass> _repository;
 
-        public UpdatePassHandler(IRepository<Pass> repository, ICommonInterfaceCloner cloner)
-            : base(repository, cloner)
+        public UpdatePassHandler(IRepository<Pass> repository)
+            : base(repository)
         {
             _repository = repository;
         }

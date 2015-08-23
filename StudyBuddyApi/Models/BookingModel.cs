@@ -1,12 +1,10 @@
-﻿using System.Net.Http;
-using Models;
-using SpeedyDonkeyApi.Services;
+﻿using Models;
 
 namespace SpeedyDonkeyApi.Models
 {
     public class BookingModel : ApiModel<Booking, BookingModel>, IBooking
     {
-        protected override string RouteName
+        protected virtual string RouteName
         {
             get { return "BookingApi"; }
         }

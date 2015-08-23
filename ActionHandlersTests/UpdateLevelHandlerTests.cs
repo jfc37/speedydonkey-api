@@ -14,13 +14,12 @@ namespace ActionHandlersTests
     {
         private MockRepositoryBuilder<Level> _levelRepositoryBuilder;
         private MockRepositoryBuilder<Teacher> _teacherRepositoryBuilder;
-        private ICommonInterfaceCloner _cloner;
         private UpdateLevel _action;
         private Level _savedLevel;
 
         private void PerformAction()
         {
-            new UpdateLevelHandler(_levelRepositoryBuilder.BuildObject(), _teacherRepositoryBuilder.BuildObject(), _cloner)
+            new UpdateLevelHandler(_levelRepositoryBuilder.BuildObject(), _teacherRepositoryBuilder.BuildObject())
                 .Handle(_action);
         }
 
@@ -36,7 +35,7 @@ namespace ActionHandlersTests
                 .WithUpdate();
             _teacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
                 .WithSuccessfulGet();
-            _cloner = new CommonInterfaceCloner();
+            new CommonInterfaceCloner();
             _action = new UpdateLevel(_savedLevel);
         }
 

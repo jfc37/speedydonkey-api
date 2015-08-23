@@ -5,7 +5,6 @@ using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -14,12 +13,10 @@ namespace SpeedyDonkeyApi.Controllers
         private readonly ICurrentUser _currentUser;
 
         public UserEnroledBlocksApiController(
-            IRepository<User> entityRepository, 
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
+            IRepository<User> entityRepository,
             IActionHandlerOverlord actionHandlerOverlord,
             ICurrentUser currentUser)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(entityRepository, actionHandlerOverlord)
         {
             _currentUser = currentUser;
         }
