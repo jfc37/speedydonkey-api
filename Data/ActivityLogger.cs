@@ -14,7 +14,7 @@ namespace Data
     {
         private readonly ICurrentUser _currentUser;
         private readonly Guid _activitySession;
-        private ISession _dbSession;
+        private readonly ISession _dbSession;
 
         public ActivityLogger(ICurrentUser currentUser, ISession dbSession)
         {

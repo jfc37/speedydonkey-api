@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Action;
-using Common;
 using Data.Repositories;
 using Models;
 
@@ -35,7 +34,7 @@ namespace ActionHandlers.UpdateHandlers
             return theClass;
         }
 
-        private bool HasTeachersChanged(ICollection<ITeacher> orginal, ICollection<ITeacher> updated)
+        private bool HasTeachersChanged(IEnumerable<ITeacher> orginal, IEnumerable<ITeacher> updated)
         {
             var orginalIds = orginal.Select(x => x.Id);
             var updatedIds = updated.Select(x => x.Id);

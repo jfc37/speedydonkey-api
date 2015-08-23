@@ -48,7 +48,7 @@ namespace ActionHandlers.UpdateHandlers
             return block;
         }
 
-        private bool HasTeachersChanged(ICollection<ITeacher> orginal, ICollection<ITeacher> updated)
+        private bool HasTeachersChanged(IEnumerable<ITeacher> orginal, IEnumerable<ITeacher> updated)
         {
             var orginalIds = orginal.Select(x => x.Id);
             var updatedIds = updated.Select(x => x.Id);

@@ -7,7 +7,7 @@ using NHibernate;
 
 namespace Data.Repositories
 {
-    public interface IAdvancedRepository<TEntity, TModel> where TEntity : IEntity
+    public interface IAdvancedRepository<TEntity, out TModel> where TEntity : IEntity
     {
         TModel Get(int id);
     }

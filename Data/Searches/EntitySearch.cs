@@ -33,7 +33,7 @@ namespace Data.Searches
             return GetListFromQueryable(query);
         }
 
-        private static IList<T> GetListFromQueryable(IQueryable<T> query)
+        private static IList<T> GetListFromQueryable(IEnumerable<T> query)
         {
             return query.ToList();
         }

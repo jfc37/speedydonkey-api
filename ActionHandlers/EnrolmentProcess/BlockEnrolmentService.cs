@@ -8,7 +8,7 @@ namespace ActionHandlers.EnrolmentProcess
 {
     public interface IBlockEnrolmentService
     {
-        IList<Block> EnrolInBlocks(User user, IList<int> blockIds);
+        IList<Block> EnrolInBlocks(User user, IEnumerable<int> blockIds);
     }
 
     public class BlockEnrolmentService : IBlockEnrolmentService
@@ -24,7 +24,7 @@ namespace ActionHandlers.EnrolmentProcess
             _bookingRepository = bookingRepository;
         }
 
-        public IList<Block> EnrolInBlocks(User user, IList<int> blockIds)
+        public IList<Block> EnrolInBlocks(User user, IEnumerable<int> blockIds)
         {
             var allBlocks = _blockRepository.GetAllWithChildren(new[] {"Classes"});
             var interestedBlocks = allBlocks.Where(b => blockIds.Any(x => x == b.Id));

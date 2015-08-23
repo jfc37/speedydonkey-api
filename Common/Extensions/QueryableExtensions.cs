@@ -26,12 +26,11 @@ namespace Common.Extensions
                 throw new ArgumentException("fieldName is null or empty.", "fieldName");
 
             var parts = fieldName.Split(' ');
-            var propertyName = "";
             var tType = typeof(T);
 
             if (parts.Length > 0 && parts[0] != "")
             {
-                propertyName = parts[0];
+                var propertyName = parts[0];
 
                 PropertyInfo prop = tType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 

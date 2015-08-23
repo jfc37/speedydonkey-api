@@ -10,14 +10,17 @@ namespace SpeedyDonkeyApi.Models
 {
     public class BlockModel : ApiModel<Block, BlockModel>, IBlock
     {
-        public BlockModel() { }
-        
+        public BlockModel()
+        {
+        }
+
         [JsonConstructor]
         public BlockModel(List<Teacher> teachers)
         {
             if (teachers != null)
                 Teachers = teachers.ToList<ITeacher>();
         }
+
         public ICollection<ITeacher> Teachers { get; set; }
         public ICollection<IUser> EnroledStudents { get; set; }
         public ILevel Level { get; set; }
@@ -27,6 +30,9 @@ namespace SpeedyDonkeyApi.Models
         public DateTime EndDate { get; set; }
         public string Name { get; set; }
 
+
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
 
         protected override void AddChildrenToEntity(Block entity)
         {
@@ -41,11 +47,9 @@ namespace SpeedyDonkeyApi.Models
         {
             if (entity.Teachers.IsNotNull())
             {
-                model.Teachers = entity.Teachers.Select(x => new TeacherToTeacherModelMapping(x).Do()).ToList<ITeacher>();
+                model.Teachers =
+                    entity.Teachers.Select(x => new TeacherToTeacherModelMapping(x).Do()).ToList<ITeacher>();
             }
         }
-
-        public DateTime CreatedDateTime { get; set; }
-        public DateTime? LastUpdatedDateTime { get; set; }
     }
 }

@@ -71,7 +71,7 @@ namespace Data.Searches
                    splitStatement[0].Equals(SearchKeyWords.OrderBy, StringComparison.InvariantCultureIgnoreCase);
         }
 
-        private bool IsFilterStatement(string[] splitStatement)
+        private bool IsFilterStatement(IEnumerable<string> splitStatement)
         {
             return splitStatement.Count() == 3;
         }

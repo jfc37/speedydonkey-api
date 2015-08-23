@@ -36,7 +36,7 @@ namespace ActionHandlers.EnrolmentProcess
             return _userRepository.Update(user);
         }
 
-        private void SendEmail(User user, IList<Block> blocksBeingEnroledIn)
+        private void SendEmail(User user, IEnumerable<Block> blocksBeingEnroledIn)
         {
             var userNotication = new User
             {
