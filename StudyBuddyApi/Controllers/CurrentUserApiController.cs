@@ -11,6 +11,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/users/current")]
     public class CurrentUserApiController : BaseApiController
     {
         private readonly IRepository<User> _repository;
@@ -27,6 +28,7 @@ namespace SpeedyDonkeyApi.Controllers
             _actionHandlerOverlord = actionHandlerOverlord;
         }
         
+        [Route]
         [ActiveUserRequired]
         public HttpResponseMessage Put([FromBody]UserModel model)
         {
@@ -46,6 +48,7 @@ namespace SpeedyDonkeyApi.Controllers
                 });
         }
 
+        [Route]
         [ActiveUserRequired]
         public HttpResponseMessage Get()
         {

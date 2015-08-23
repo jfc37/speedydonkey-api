@@ -28,18 +28,6 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
-                name: "CurrentUserApi",
-                routeTemplate: "api/users/current",
-                defaults: new { controller = "CurrentUserApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserApi",
-                routeTemplate: "api/users/{id}",
-                defaults: new { controller = "UserApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "UserNoteApi",
                 routeTemplate: "api/users/{id}/notes",
                 defaults: new { controller = "UserNoteApi" }
@@ -193,36 +181,6 @@ namespace SpeedyDonkeyApi
                 name: "ClassPassStaticsticsApi",
                 routeTemplate: "api/classes/{id}/passes/statistics",
                 defaults: new { controller = "ClassPassStaticsticsApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ReferenceDataApi",
-                routeTemplate: "api/reference/{id}",
-                defaults: new { controller = "ReferenceDataApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "PassTemplateApi",
-                routeTemplate: "api/passtemplate/{id}",
-                defaults: new { controller = "PassTemplateApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ProfitReport",
-                routeTemplate: "api/report/profit",
-                defaults: new { controller = "ProfitReportApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "DatabaseApi",
-                routeTemplate: "api/database",
-                defaults: new { controller = "DatabaseApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ActivityLogApi",
-                routeTemplate: "api/activitylog",
-                defaults: new { controller = "ActivityLogApi" }
             );
 
 

@@ -2,7 +2,6 @@
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -11,6 +10,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/reference")]
     public class ReferenceDataApiController : GenericApiController<ReferenceDataModel, ReferenceData>
     {
         public ReferenceDataApiController(
@@ -20,6 +20,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
+        [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Post([FromBody]ReferenceDataModel model)
         {
