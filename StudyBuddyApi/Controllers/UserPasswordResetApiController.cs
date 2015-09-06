@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -12,6 +9,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/users/password/reset")]
     public class UserPasswordResetApiController : BaseApiController
     {
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
@@ -21,6 +19,7 @@ namespace SpeedyDonkeyApi.Controllers
             _actionHandlerOverlord = actionHandlerOverlord;
         }
 
+        [Route]
         [AllowAnonymous]
         public HttpResponseMessage Post([FromBody]UserModel userModel)
         {
@@ -33,6 +32,7 @@ namespace SpeedyDonkeyApi.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route("{id}")]
         [AllowAnonymous]
         public HttpResponseMessage Put([FromBody]UserModel userModel, Guid id)
         {

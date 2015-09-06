@@ -28,36 +28,6 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
-                name: "UserNoteApi",
-                routeTemplate: "api/users/{id}/notes",
-                defaults: new { controller = "UserNoteApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "PassNoteApi",
-                routeTemplate: "api/passes/{id}/notes",
-                defaults: new { controller = "PassNoteApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "AnnouncementApi",
-                routeTemplate: "api/announcements/{id}",
-                defaults: new { controller = "AnnouncementApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserActivationApi",
-                routeTemplate: "api/users/activation/{id}",
-                defaults: new { controller = "UserActivationApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserPasswordResetApi",
-                routeTemplate: "api/users/password/reset/{id}",
-                defaults: new { controller = "UserPasswordResetApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "BlockApi",
                 routeTemplate: "api/blocks/{id}",
                 defaults: new { controller = "BlockApi", id = RouteParameter.Optional }

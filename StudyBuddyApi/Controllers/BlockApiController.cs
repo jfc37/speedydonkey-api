@@ -2,7 +2,6 @@
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -11,6 +10,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/blocks")]
     public class BlockApiController : GenericApiController<BlockModel, Block>
     {
         public BlockApiController(
