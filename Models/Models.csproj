@@ -63,6 +63,8 @@
     <Compile Include="PassStatistic.cs" />
     <Compile Include="PassTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryExtensions\EntityQueryExtensions.cs" />
+    <Compile Include="QueryExtensions\UserModelQueryExtensions.cs" />
     <Compile Include="ReferenceData.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="Teacher.cs" />
