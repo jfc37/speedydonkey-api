@@ -103,7 +103,7 @@ namespace IntegrationTests.Steps.Users
 
             Assert.AreEqual(userResponse.StatusCode, HttpStatusCode.OK);
 
-            var createdUser = userResponse.Data.SingleWithId(ScenarioCache.GetId());
+            var createdUser = userResponse.Data.SingleWithId(ScenarioCache.GetUserId());
             var expectedUser = ScenarioCache.Get<UserModel>(ExpectedUserKey);
             Assert.AreEqual(expectedUser.FullName, createdUser.FullName);
             Assert.AreEqual(expectedUser.Email, createdUser.Email);

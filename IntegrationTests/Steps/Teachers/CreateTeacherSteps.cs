@@ -15,8 +15,8 @@ namespace IntegrationTests.Steps.Teachers
         [When(@"user is attempted to be set up as a teacher")]
         public void WhenUserIsAttemptedToBeSetUpAsATeacher()
         {
-            var userId = ScenarioCache.GetId();
-            var response = ApiCaller.Post<ActionReponse<UserModel>>(Routes.GetCreateTeacher(userId));
+            var userId = ScenarioCache.GetUserId();
+            var response = ApiCaller.Post<ActionReponse<UserModel>>(Routes.GetTeacherById(userId));
 
             ScenarioCache.StoreResponse(response);
         }

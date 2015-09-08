@@ -8,7 +8,7 @@ namespace IntegrationTests.Utilities
         public const string Teachers = "teachers";
         public const string Database = "database";
 
-        public static string GetCreateTeacher(int userId)
+        public static string GetTeacherById(int userId)
         {
             return "{0}/{1}".FormatWith(Teachers, userId);
         }

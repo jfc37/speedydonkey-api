@@ -57,6 +57,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateTeacher.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Teachers\RemoveTeacher.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RemoveTeacher.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\CreateUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,9 +70,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\Common\PreScenario.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
+    <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
     <Compile Include="Steps\Users\CommonUserSteps.cs" />
     <Compile Include="Steps\Users\CreateUserSteps.cs" />
     <Compile Include="Utilities\ApiCaller.cs" />
+    <Compile Include="Utilities\ModelFunctions\TeacherFunction.cs" />
+    <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
     <Compile Include="Utilities\Routes.cs" />
     <Compile Include="Utilities\ScenarioCache.cs" />
     <Compile Include="Utilities\SnakeJsonSerializerStrategy.cs" />
@@ -77,6 +85,10 @@
     <None Include="Features\Teachers\CreateTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateTeacher.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Teachers\RemoveTeacher.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RemoveTeacher.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\CreateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -106,6 +118,7 @@
       <Name>Validation</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
