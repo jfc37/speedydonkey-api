@@ -10,6 +10,11 @@ namespace IntegrationTests.Utilities
             var request = CreateRequest(data, resource, Method.POST);
             return Execute<T>(request);
         }
+        public static IRestResponse<T> Post<T>(string resource) where T : new()
+        {
+            var request = CreateRequest(resource, Method.POST);
+            return Execute<T>(request);
+        }
         public static IRestResponse<T> Get<T>(string resource) where T : new()
         {
             var request = CreateRequest(resource, Method.GET);

@@ -52,6 +52,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Teachers\CreateTeacher.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateTeacher.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\CreateUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -59,7 +64,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\Common\PreScenario.cs" />
-    <Compile Include="Steps\Users\CreateAUser.cs" />
+    <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
+    <Compile Include="Steps\Users\CommonUserSteps.cs" />
+    <Compile Include="Steps\Users\CreateUserSteps.cs" />
     <Compile Include="Utilities\ApiCaller.cs" />
     <Compile Include="Utilities\Routes.cs" />
     <Compile Include="Utilities\ScenarioCache.cs" />
@@ -67,6 +74,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\Teachers\CreateTeacher.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateTeacher.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Users\CreateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateUser.feature.cs</LastGenOutput>

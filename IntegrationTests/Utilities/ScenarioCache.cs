@@ -17,7 +17,7 @@ namespace IntegrationTests.Utilities
 
         public static void Store(string key, object item)
         {
-            ScenarioContext.Current.Remove(key);
+            Clear(key);
             ScenarioContext.Current.Add(key, item);
         }
 
@@ -39,8 +39,14 @@ namespace IntegrationTests.Utilities
                 "Expected to have found the key {0} in the scenario context".FormatWith(key));   
         }
 
+        private static void Clear(string key)
+        {
+            ScenarioContext.Current.Remove(key);
+        }
+
         public static void StoreResponse<T>(IRestResponse<T> response)
         {
+            Clear(ResponseKey);
             ScenarioContext.Current.Add(ResponseKey, response);
         }
 
