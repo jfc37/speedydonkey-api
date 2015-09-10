@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using ActionHandlers;
+using Common;
 using IntegrationTests.Utilities;
 using Models.QueryExtensions;
 using NUnit.Framework;
@@ -79,7 +80,7 @@ namespace IntegrationTests.Steps.Users
 
             Assert.AreEqual(userResponse.StatusCode, HttpStatusCode.Created);
 
-            ScenarioCache.StoreId(userResponse.Data.ActionResult.Id);
+            ScenarioCache.StoreUserId(userResponse.Data.ActionResult.Id);
         }
 
         [When(@"user is attempted to be created")]
@@ -89,7 +90,7 @@ namespace IntegrationTests.Steps.Users
 
             var userResponse = ApiCaller.Post<ActionReponse<UserModel>>(expectedUser, Routes.Users);
 
-            ScenarioCache.StoreResponse(userResponse);
+            ScenarioCache.StoreActionResponse(userResponse);
         }
 
         #endregion
@@ -113,10 +114,8 @@ namespace IntegrationTests.Steps.Users
         [Then(@"validation errors are returned")]
         public void ThenValidationErrorsAreReturned()
         {
-            var response = ScenarioCache.GetResponse<ActionReponse<UserModel>>();
-
-            Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-            Assert.IsFalse(response.Data.ValidationResult.IsValid);
+            Assert.AreEqual(HttpStatusCode.BadRequest, ScenarioCache.GetResponseStatus());
+            Assert.IsFalse(ScenarioCache.GetValidationResult().IsValid);
         }
 
         [Then(@"user is not created")]
@@ -126,8 +125,8 @@ namespace IntegrationTests.Steps.Users
 
             Assert.AreEqual(allUsersResponse.StatusCode, HttpStatusCode.OK);
 
-            var response = ScenarioCache.GetResponse<ActionReponse<UserModel>>();
-            Assert.IsFalse(allUsersResponse.Data.WithFullName(response.Data.ActionResult.FullName).Any());
+            var user = ScenarioCache.GetActionResponse<UserModel>();
+            Assert.IsFalse(allUsersResponse.Data.WithFullName(user.FullName).Any());
         }
 
         #endregion

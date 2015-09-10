@@ -1,18 +1,28 @@
-﻿using Common.Extensions;
+﻿using System.Net;
+using ActionHandlers;
+using Common.Extensions;
 using NUnit.Framework;
 using RestSharp;
 using TechTalk.SpecFlow;
+using Validation;
 
 namespace IntegrationTests.Utilities
 {
     public static class ScenarioCache
     {
-        private const string UserIdKey = "id";
-        private const string ResponseKey = "response";
+        private const string UserIdKey = "userId";
+        private const string TeacherIdKey = "teacherId";
+        private const string ValidationResultKey = "validationResult";
+        private const string ActionResultKey = "actionResultKey";
+        private const string ResponseStatusKey = "responseStatusKey";
 
-        public static void StoreId(int id)
+        public static void StoreUserId(int id)
         {
-            ScenarioContext.Current.Add(UserIdKey, id);
+            Store(UserIdKey, id);
+        }
+        public static void StoreTeacherId(int id)
+        {
+            Store(TeacherIdKey, id);
         }
 
         public static void Store(string key, object item)
@@ -29,8 +39,12 @@ namespace IntegrationTests.Utilities
 
         public static int GetUserId()
         {
-            AssertKeyExists(UserIdKey);
-            return ScenarioContext.Current.Get<int>(UserIdKey);
+            return Get<int>(UserIdKey);
+        }
+
+        public static int GetTeacherId()
+        {
+            return Get<int>(TeacherIdKey);
         }
 
         private static void AssertKeyExists(string key)
@@ -44,21 +58,26 @@ namespace IntegrationTests.Utilities
             ScenarioContext.Current.Remove(key);
         }
 
-        public static void StoreResponse<T>(IRestResponse<T> response)
+        public static void StoreActionResponse<T>(IRestResponse<ActionReponse<T>> response)
         {
-            Clear(ResponseKey);
-            ScenarioContext.Current.Add(ResponseKey, response);
+            Store(ValidationResultKey, response.Data.ValidationResult);
+            Store(ActionResultKey, response.Data.ActionResult);
+            Store(ResponseStatusKey, response.StatusCode);
         }
 
-        public static IRestResponse<T> GetResponse<T>()
+        public static HttpStatusCode GetResponseStatus()
         {
-            AssertKeyExists(ResponseKey);
-            return ScenarioContext.Current.Get<IRestResponse<T>>(ResponseKey);
+            return Get<HttpStatusCode>(ResponseStatusKey);
         }
 
-        public static int GetTeacherId()
+        public static T GetActionResponse<T>()
         {
-            return 1;
+            return Get<T>(ActionResultKey);
+        }
+
+        public static ValidationResult GetValidationResult()
+        {
+            return Get<ValidationResult>(ValidationResultKey);
         }
     }
 }

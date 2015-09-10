@@ -3,7 +3,7 @@ using Models;
 
 namespace ActionHandlers
 {
-    public class SetAsTeacherHandler : IActionHandler<SetAsTeacher, User>
+    public class SetAsTeacherHandler : IActionHandler<SetAsTeacher, Teacher>
     {
         private readonly ITeacherStudentConverter _teacherStudentConverter;
 
@@ -12,10 +12,9 @@ namespace ActionHandlers
             _teacherStudentConverter = teacherStudentConverter;
         }
 
-        public User Handle(SetAsTeacher action)
+        public Teacher Handle(SetAsTeacher action)
         {
-            _teacherStudentConverter.AddAsTeacher(action.ActionAgainst.Id);
-            return action.ActionAgainst;
+            return _teacherStudentConverter.AddAsTeacher(action.ActionAgainst.User.Id);
         }
     }
 

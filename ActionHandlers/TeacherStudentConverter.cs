@@ -8,7 +8,7 @@ namespace ActionHandlers
 {
     public interface ITeacherStudentConverter
     {
-        void AddAsTeacher(int studentId);
+        Teacher AddAsTeacher(int studentId);
         User RemoveAsTeacher(int teacherId);
     }
 
@@ -23,14 +23,14 @@ namespace ActionHandlers
             _studentRepository = studentRepository;
         }
 
-        public void AddAsTeacher(int studentId)
+        public Teacher AddAsTeacher(int studentId)
         {
             var student = _studentRepository.Get(studentId);
 
             student.Claims = new AppendClaimToUser(student.Claims, Claim.Teacher)
                 .Do();
 
-            _teacherRepository.Create(new Teacher(student));
+            return _teacherRepository.Create(new Teacher(student));
         }
 
         public User RemoveAsTeacher(int teacherId)

@@ -23,8 +23,14 @@ namespace SpeedyDonkeyApi.Controllers
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post(int id)
         {
-            var model = new UserModel{Id = id};
-            return PerformAction<SetAsTeacher, UserModel, User>(model, x => new SetAsTeacher(x));
+            var model = new TeacherModel
+            {
+                User = new UserModel
+                {
+                    Id = id
+                }
+            };
+            return PerformAction<SetAsTeacher, TeacherModel, Teacher>(model, x => new SetAsTeacher(x));
         }
 
         [Route("{id}")]

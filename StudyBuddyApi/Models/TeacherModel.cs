@@ -14,5 +14,13 @@ namespace SpeedyDonkeyApi.Models
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string FullName { get { return "{0} {1}".FormatWith(FirstName, Surname); } }
+
+        protected override void AddChildrenToEntity(Teacher entity)
+        {
+            if (User.IsNotNull())
+            {
+                entity.User = new User(User.Id);
+            }
+        }
     }
 }

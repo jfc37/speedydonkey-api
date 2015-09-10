@@ -52,6 +52,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Levels\CreateLevel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateLevel.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Teachers\CreateTeacher.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,6 +74,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\Common\PreScenario.cs" />
+    <Compile Include="Steps\Levels\CreateLevelSteps.cs" />
+    <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
     <Compile Include="Steps\Users\CommonUserSteps.cs" />
@@ -82,6 +89,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\Levels\CreateLevel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateLevel.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Teachers\CreateTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateTeacher.feature.cs</LastGenOutput>
