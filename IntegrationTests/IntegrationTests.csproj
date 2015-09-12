@@ -82,12 +82,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CurrentUser.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Users\CurrentUserSchedule.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentUserSchedule.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\GetClaims.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetClaims.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\Blocks\CommonBlockSteps.cs" />
     <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
     <Compile Include="Steps\Common\PreScenario.cs" />
     <Compile Include="Steps\Levels\CommonLevelSteps.cs" />
@@ -97,6 +103,7 @@
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
     <Compile Include="Steps\Users\CommonUserSteps.cs" />
     <Compile Include="Steps\Users\CreateUserSteps.cs" />
+    <Compile Include="Steps\Users\CurrentUserScheduleSteps.cs" />
     <Compile Include="Steps\Users\CurrentUserSteps.cs" />
     <Compile Include="Steps\Users\GetClaimsSteps.cs" />
     <Compile Include="Utilities\ApiCaller.cs" />
@@ -133,6 +140,10 @@
     <None Include="Features\Users\CurrentUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CurrentUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\CurrentUserSchedule.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CurrentUserSchedule.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\GetClaims.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

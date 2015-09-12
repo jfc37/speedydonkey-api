@@ -10,6 +10,7 @@ namespace IntegrationTests.Utilities
         public const string Levels = "levels";
         public const string Blocks = "blocks";
         public const string CurrentUserClaims = "users/current/claims";
+        public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
 
         public static string GetTeacherById(int userId)
@@ -25,6 +26,11 @@ namespace IntegrationTests.Utilities
         public static string GetCreateBlock(int levelId)
         {
             return "levels/{0}/blocks".FormatWith(levelId);
+        }
+
+        public static string GetEnrolUserInBlock(int userId)
+        {
+            return "users/{0}/enrolment".FormatWith(userId);
         }
     }
 }

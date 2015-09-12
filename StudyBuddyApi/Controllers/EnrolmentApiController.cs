@@ -15,26 +15,19 @@ namespace SpeedyDonkeyApi.Controllers
     [BasicAuthAuthorise]
     public class EnrolmentApiController : GenericApiController<User>
     {
-        public EnrolmentApiController(IActionHandlerOverlord actionHandlerOverlord, IRepository<User> repository, IEntitySearch<User> entitySearch) : base(actionHandlerOverlord, repository, entitySearch)
-        {
-        }
+        public EnrolmentApiController(
+            IActionHandlerOverlord actionHandlerOverlord, 
+            IRepository<User> repository, 
+            IEntitySearch<User> entitySearch) 
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
+        [Route("api/users/{id:int}/enrolment")]
         public HttpResponseMessage Post(int id, [FromBody] EnrolmentModel model)
         {
-            var user = new UserModel
-            {
-                Id = id
-            };
+            var user = new UserModel(id);
             if (model.BlockIds != null)
-                user.EnroledBlocks = model.BlockIds.Select(x => new BlockModel {Id = x}).ToList();
-            if (model.PassTypes != null)
-            {
-                user.Passes = model.PassTypes.Select(x => new PassModel { PassType = x }).ToList();
-                foreach (var pass in user.Passes)
-                {
-                    pass.PaymentStatus = PassPaymentStatus.Pending.ToString();
-                }
-            }
+                user.EnroledBlocks = model.BlockIds.Select(x => new BlockModel(x)).ToList();
+            
             var result = PerformAction<EnrolInBlock, User>(new EnrolInBlock(user.ToEntity()));
 
             return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),

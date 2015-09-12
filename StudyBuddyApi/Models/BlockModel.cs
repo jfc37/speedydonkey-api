@@ -17,6 +17,11 @@ namespace SpeedyDonkeyApi.Models
            Teachers = teachers;
         }
 
+        public BlockModel(int id)
+        {
+            Id = id;
+        }
+
         public List<TeacherModel> Teachers { get; set; }
         public List<UserModel> EnroledStudents { get; set; }
         public LevelModel Level { get; set; }

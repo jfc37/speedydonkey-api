@@ -6,6 +6,13 @@ namespace SpeedyDonkeyApi.Models
 {
     public class UserModel : IEntity
     {
+        public UserModel(int id)
+        {
+            Id = id;
+        }
+
+        public UserModel() { }
+
         public int Id { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }

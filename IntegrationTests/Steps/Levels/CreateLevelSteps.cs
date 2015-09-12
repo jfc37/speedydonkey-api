@@ -19,13 +19,15 @@ namespace IntegrationTests.Steps.Levels
         {
             new CommonTeacherSteps().GivenAnExistingUserIsATeacher();
 
+            var startDate = DateTime.Now.Date;
+            startDate = startDate.AddHours(11);
             var level = new LevelModel
             {
                 ClassMinutes = 60,
                 ClassesInBlock = 6,
-                EndTime = new DateTime(2016, 10, 1, 11, 0, 0),
+                EndTime = startDate.AddYears(1),
                 Name = "Charleston Level 1",
-                StartTime = new DateTime(2015, 10, 1, 11, 0, 0),
+                StartTime = startDate,
                 Teachers = new TeacherModel {Id = ScenarioCache.GetTeacherId()}.PutIntoList()
             };
 

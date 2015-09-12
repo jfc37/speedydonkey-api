@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Web.Http;
 using Common;
+using Common.Extensions;
+using Data.CodeChunks;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
+using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
@@ -23,31 +25,50 @@ namespace SpeedyDonkeyApi.Controllers
             _currentUser = currentUser;
         }
 
+        [Route("api/users/current/schedules")]
         [ActiveUserRequired]
-        public HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);
         }
 
+        [Route("api/users/{id:int}/schedules")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public HttpResponseMessage Get(int id)
+        public IHttpActionResult Get(int id)
         {
             var userSchedule = _userRepository.Get(id);
 
-            if (userSchedule == null)
+            if (userSchedule.IsNull())
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
-            var today = DateTime.Now.Date;
-            var nextWeek = today.AddDays(7);
-            var thisWeeksSchedule = userSchedule
-                .Where(x => x.StartTime > today && x.StartTime < nextWeek)
+            var upcomingSchedule = new GetUpcomingSchedule(userSchedule)
+                .Do()
                 .ToList();
 
-            return thisWeeksSchedule.Any()
-                ? Request.CreateResponse(thisWeeksSchedule)
-                : Request.CreateResponse(HttpStatusCode.NotFound);
+            return upcomingSchedule.Any()
+                ? (IHttpActionResult)Ok(upcomingSchedule.Select(x => x.ToModel()))
+                : NotFound();
+        }
+    }
+
+    public class GetUpcomingSchedule : ICodeChunk<IEnumerable<Event>>
+    {
+        private readonly IEnumerable<Event> _schedule;
+
+        public GetUpcomingSchedule(IEnumerable<Event> schedule)
+        {
+            _schedule = schedule;
+        }
+
+        public IEnumerable<Event> Do()
+        {
+            var today = DateTime.Now.Date;
+            var nextWeek = today.AddDays(7);
+            return _schedule
+                .Where(x => x.StartTime > today && x.StartTime < nextWeek)
+                .ToList();
         }
     }
 }

@@ -88,6 +88,23 @@ namespace SpeedyDonkeyApi.Models
                 StartDate = instance.StartDate
             };
         }
+        public static PassModel ToStripedModel(this Pass instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new PassModel
+            {
+                Id = instance.Id,
+                Cost = instance.Cost,
+                Description = instance.Description,
+                EndDate = instance.EndDate,
+                PassType = instance.PassType,
+                PaymentStatus = instance.PaymentStatus,
+                Note = instance.Note,
+                StartDate = instance.StartDate
+            };
+        }
 
         public static UserModel ToModel(this User instance)
         {
@@ -98,10 +115,9 @@ namespace SpeedyDonkeyApi.Models
             {
                 Note = instance.Note,
                 Email = instance.Email,
-                EnroledBlocks = instance.EnroledBlocks.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
+                EnroledBlocks = instance.EnroledBlocks.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 FirstName = instance.FirstName,
-                Passes = instance.Passes.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
-                Schedule = instance.Schedule.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
+                Passes = instance.Passes.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Surname = instance.Surname,
                 Id = instance.Id
             };
@@ -146,7 +162,24 @@ namespace SpeedyDonkeyApi.Models
                 Classes = instance.Classes.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 EnroledStudents = instance.EnroledStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Level = instance.Level.ToStripedModel(),
-                Name = instance.Name
+                Name = instance.Name,
+                Id = instance.Id
+            };
+        }
+
+        public static BlockModel ToStripedModel(this Block instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new BlockModel
+            {
+                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
+                EndDate = instance.EndDate,
+                StartDate = instance.StartDate,
+                Level = instance.Level.ToStripedModel(),
+                Name = instance.Name,
+                Id = instance.Id
             };
         }
 
@@ -227,6 +260,21 @@ namespace SpeedyDonkeyApi.Models
                 Id = instance.Id,
                 FirstName = instance.User.IsNull() ? null : instance.User.FirstName,
                 Surname = instance.User.IsNull() ? null : instance.User.Surname
+            };
+        }
+
+        public static EventModel ToModel(this Event instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new EventModel
+            {
+                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
+                Name = instance.Name,
+                EndTime = instance.EndTime,
+                StartTime = instance.StartTime,
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull()
             };
         }
 
@@ -377,6 +425,7 @@ namespace SpeedyDonkeyApi.Models
                 Schedule = instance.Schedule.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Surname = instance.Surname,
                 Password = instance.Password,
+                Id = instance.Id
             };
         }
 
@@ -406,7 +455,8 @@ namespace SpeedyDonkeyApi.Models
                 Classes = instance.Classes.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 EnroledStudents = instance.EnroledStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Level = instance.Level.ToEntity(),
-                Name = instance.Name
+                Name = instance.Name,
+                Id = instance.Id
             };
         }
 

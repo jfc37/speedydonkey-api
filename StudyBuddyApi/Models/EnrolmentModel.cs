@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
-using Models;
+using System.Linq;
 
 namespace SpeedyDonkeyApi.Models
 {
     public class EnrolmentModel
     {
-        public int UserId { get; set; } 
-        public IList<int> BlockIds { get; set; } 
-        public IList<string> PassTypes { get; set; } 
+        public EnrolmentModel() { }
+
+        public EnrolmentModel(params int[] blockIds)
+        {
+            BlockIds = blockIds.ToList();
+        }
+
+        public List<int> BlockIds { get; set; } 
     }
 }
