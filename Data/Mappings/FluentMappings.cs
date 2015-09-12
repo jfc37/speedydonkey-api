@@ -147,7 +147,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.FirstName);
             Map(x => x.Surname);
             Map(x => x.Email);
@@ -212,7 +211,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             References(x => x.Event)
                 .Class(typeof(Class))
                 .Cascade.SaveUpdate()
@@ -246,7 +244,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.Name);
@@ -288,7 +285,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.PassType);
@@ -320,7 +316,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.Type);
             Map(x => x.Name);
             Map(x => x.Description);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Common.Extensions
@@ -22,6 +23,21 @@ namespace Common.Extensions
         public static bool NotAny<T>(this IEnumerable<T> instatnce)
         {
             return !instatnce.Any();
+        }
+
+        public static IEnumerable<TResult> SelectIfNotNull<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        {
+            if (source.IsNull())
+                return null;
+
+            return source.Select(selector);
+        }
+
+        public static List<TSource> ToListIfNotNull<TSource>(this IEnumerable<TSource> source)
+        {
+            if (source.IsNull())
+                return null;
+            return source.ToList();
         }
     }
 }

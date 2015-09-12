@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Net;
 using ActionHandlers;
-using Common;
 using IntegrationTests.Utilities;
+using IntegrationTests.Utilities.ModelVerfication;
 using Models.QueryExtensions;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Models;
@@ -106,9 +106,9 @@ namespace IntegrationTests.Steps.Users
 
             var createdUser = userResponse.Data.SingleWithId(ScenarioCache.GetUserId());
             var expectedUser = ScenarioCache.Get<UserModel>(ExpectedUserKey);
-            Assert.AreEqual(expectedUser.FullName, createdUser.FullName);
-            Assert.AreEqual(expectedUser.Email, createdUser.Email);
-            Assert.IsNullOrEmpty(createdUser.Password);
+
+            new VerifyUserProperties(expectedUser, createdUser)
+                .Verify();
         }
 
         [Then(@"validation errors are returned")]

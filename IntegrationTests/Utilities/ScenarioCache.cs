@@ -8,21 +8,38 @@ using Validation;
 
 namespace IntegrationTests.Utilities
 {
+    public static class ModelKeys
+    {
+        public const string LevelModelKey = "levelModel";
+    }
+
+    public static class ModelIdKeys
+    {
+        public const string UserIdKey = "userId";
+        public const string TeacherIdKey = "teacherId";
+        public const string LevelIdKey = "levelId";
+        public const string BlockKeyId = "blockId";
+    }
+
     public static class ScenarioCache
     {
-        private const string UserIdKey = "userId";
-        private const string TeacherIdKey = "teacherId";
         private const string ValidationResultKey = "validationResult";
         private const string ActionResultKey = "actionResultKey";
         private const string ResponseStatusKey = "responseStatusKey";
 
         public static void StoreUserId(int id)
         {
-            Store(UserIdKey, id);
+            Store(ModelIdKeys.UserIdKey, id);
         }
+
         public static void StoreTeacherId(int id)
         {
-            Store(TeacherIdKey, id);
+            Store(ModelIdKeys.TeacherIdKey, id);
+        }
+
+        public static void StoreLevelId(int id)
+        {
+            Store(ModelIdKeys.LevelIdKey, id);
         }
 
         public static void Store(string key, object item)
@@ -39,12 +56,12 @@ namespace IntegrationTests.Utilities
 
         public static int GetUserId()
         {
-            return Get<int>(UserIdKey);
+            return Get<int>(ModelIdKeys.UserIdKey);
         }
 
         public static int GetTeacherId()
         {
-            return Get<int>(TeacherIdKey);
+            return Get<int>(ModelIdKeys.TeacherIdKey);
         }
 
         private static void AssertKeyExists(string key)
@@ -78,6 +95,11 @@ namespace IntegrationTests.Utilities
         public static ValidationResult GetValidationResult()
         {
             return Get<ValidationResult>(ValidationResultKey);
+        }
+
+        public static int GetId(string key)
+        {
+            return Get<int>(key);
         }
     }
 }

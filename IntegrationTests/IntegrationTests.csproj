@@ -52,6 +52,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Blocks\CreateBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateBlock.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Levels\CreateLevel.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,7 +78,9 @@
       <DependentUpon>CreateUser.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
     <Compile Include="Steps\Common\PreScenario.cs" />
+    <Compile Include="Steps\Levels\CommonLevelSteps.cs" />
     <Compile Include="Steps\Levels\CreateLevelSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
@@ -83,12 +90,18 @@
     <Compile Include="Utilities\ApiCaller.cs" />
     <Compile Include="Utilities\ModelFunctions\TeacherFunction.cs" />
     <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyLevelProperties.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyUserProperties.cs" />
     <Compile Include="Utilities\Routes.cs" />
     <Compile Include="Utilities\ScenarioCache.cs" />
     <Compile Include="Utilities\SnakeJsonSerializerStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\Blocks\CreateBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateBlock.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Levels\CreateLevel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateLevel.feature.cs</LastGenOutput>

@@ -34,7 +34,7 @@ namespace IntegrationTests.Steps.Common
 
             var userResponse = ApiCaller.Post<ActionReponse<UserModel>>(userRequest, Routes.Users);
 
-            Assert.AreEqual(userResponse.StatusCode, HttpStatusCode.Created);
+            Assert.AreEqual(HttpStatusCode.Created, userResponse.StatusCode);
         }
     }
 }

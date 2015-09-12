@@ -16,7 +16,7 @@ namespace IntegrationTests.Steps.Teachers
         {
             var response = ApiCaller.Delete<bool>(Routes.GetTeacherById(ScenarioCache.GetTeacherId()));
 
-            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [Then(@"user is removed from the list of teachers")]

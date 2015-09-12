@@ -8,6 +8,7 @@ namespace IntegrationTests.Utilities
         public const string Teachers = "teachers";
         public const string Database = "database";
         public const string Levels = "levels";
+        public const string Blocks = "blocks";
 
         public static string GetTeacherById(int userId)
         {
@@ -17,6 +18,11 @@ namespace IntegrationTests.Utilities
         public static string GetLevelById(int id)
         {
             return "{0}/{1}".FormatWith(Levels, id);
+        }
+
+        public static string GetCreateBlock(int levelId)
+        {
+            return "levels/{0}/blocks".FormatWith(levelId);
         }
     }
 }

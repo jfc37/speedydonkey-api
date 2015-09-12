@@ -28,24 +28,6 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
-                name: "BlockApi",
-                routeTemplate: "api/blocks/{id}",
-                defaults: new { controller = "BlockApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "GenerateAllBlocksApi",
-                routeTemplate: "api/levels/all/blocks",
-                defaults: new { controller = "BlockApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "LevelBlockApi",
-                routeTemplate: "api/levels/{levelId}/blocks",
-                defaults: new { controller = "BlockApi"}
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "EnrolmentApi",
                 routeTemplate: "api/users/{id}/enrolment",
                 defaults: new { controller = "EnrolmentApi" }

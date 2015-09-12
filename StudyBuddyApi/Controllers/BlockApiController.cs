@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
@@ -11,7 +12,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    [RoutePrefix("api/blocks")]
+    [RoutePrefix("api")]
     public class BlockApiController : GenericApiController<Block>
     {
         public BlockApiController(
@@ -22,6 +23,17 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
+        [Route("blocks")]
+        [AllowAnonymous]
+        public IHttpActionResult Get()
+        {
+            var all = GetAll().ToList();
+            return all.Any() ? 
+                (IHttpActionResult) Ok(all.Select(x => x.ToModel())) 
+                : NotFound();
+        }
+
+        [Route("levels/{levelId:int}/blocks")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post(int levelId)
         {
@@ -32,6 +44,7 @@ namespace SpeedyDonkeyApi.Controllers
                 new ActionReponse<BlockModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
+        [Route("levels/all/blocks")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post()
         {
@@ -41,6 +54,7 @@ namespace SpeedyDonkeyApi.Controllers
                 new ActionReponse<BlockModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
+        [Route("blocks/{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Put(int id, [FromBody] BlockModel model)
         {
@@ -51,6 +65,7 @@ namespace SpeedyDonkeyApi.Controllers
                 new ActionReponse<BlockModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
+        [Route("blocks/{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
