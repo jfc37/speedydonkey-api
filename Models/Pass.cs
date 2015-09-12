@@ -3,20 +3,7 @@ using Common;
 
 namespace Models
 {
-    public interface IPass : IEntity, INotable
-    {
-        DateTime StartDate { get; set; }
-        DateTime EndDate { get; set; }
-        string PassType { get; set; }
-        string PaymentStatus { get; set; }
-        decimal Cost { get; set; }
-        string Description { get; set; }
-        IUser Owner { get; set; }
-        IPassStatistic PassStatistic { get; set; }
-        bool IsValid();
-    }
-
-    public class Pass : IPass, IDatabaseEntity
+    public class Pass : IEntity, IDatabaseEntity
     {
         public Pass()
         {
@@ -49,8 +36,8 @@ namespace Models
         public virtual decimal Cost { get; set; }
         public virtual string Description { get; set; }
 
-        public virtual IUser Owner { get; set; }
-        public virtual IPassStatistic PassStatistic { get; set; }
+        public virtual User Owner { get; set; }
+        public virtual PassStatistic PassStatistic { get; set; }
 
         public virtual bool IsValid()
         {

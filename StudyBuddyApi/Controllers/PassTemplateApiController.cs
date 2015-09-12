@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -11,7 +12,7 @@ using SpeedyDonkeyApi.Models;
 namespace SpeedyDonkeyApi.Controllers
 {
     [RoutePrefix("api/passtemplate")]
-    public class PassTemplateApiController : GenericApiController<PassTemplateModel, PassTemplate>
+    public class PassTemplateApiController : GenericApiController<PassTemplate>
     {
         public PassTemplateApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
@@ -24,7 +25,10 @@ namespace SpeedyDonkeyApi.Controllers
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post([FromBody]PassTemplateModel model)
         {
-            return PerformAction(model, x => new CreatePassTemplate(x));
+            var result = PerformAction<CreatePassTemplate, PassTemplate>(new CreatePassTemplate(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<PassTemplateModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [Route("{id:int}")]
@@ -32,18 +36,24 @@ namespace SpeedyDonkeyApi.Controllers
         public HttpResponseMessage Put(int id, [FromBody]PassTemplateModel model)
         {
             model.Id = id;
-            return PerformAction(model, x => new UpdatePassTemplate(x));
+            var result = PerformAction<UpdatePassTemplate, PassTemplate>(new UpdatePassTemplate(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<PassTemplateModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
-            var model = new PassTemplateModel
+            var model = new PassTemplate
             {
                 Id = id
             };
-            return PerformAction(model, x => new DeletePassTemplate(x));
+            var result = PerformAction<DeletePassTemplate, PassTemplate>(new DeletePassTemplate(model));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<PassTemplateModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
     }
 }

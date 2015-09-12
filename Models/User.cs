@@ -5,19 +5,7 @@ using Common;
 
 namespace Models
 {
-    public interface IUser : IEntity, INotable
-    {
-        string Email { get; set; }
-        string Password { get; set; }
-        string FirstName { get; set; }
-        string Surname { get; set; }
-        string FullName { get; }
-        IList<IBooking> Schedule { get; set; } 
-        ICollection<IBlock> EnroledBlocks { get; set; }
-        IList<IPass> Passes { get; set; }
-    }
-
-    public class User : IUser, IDatabaseEntity
+    public class User : IEntity, IDatabaseEntity
     {
         public User()
         {
@@ -35,23 +23,23 @@ namespace Models
         public virtual string FirstName { get; set; }
         public virtual string Surname { get; set; }
         public virtual string FullName { get { return String.Format("{0} {1}", FirstName, Surname); } }
-        public virtual IList<IBooking> Schedule { get; set; }
-        public virtual ICollection<IBlock> EnroledBlocks { get; set; }
-        public virtual IList<IPass> Passes { get; set; }
+        public virtual IList<Booking> Schedule { get; set; }
+        public virtual ICollection<Block> EnroledBlocks { get; set; }
+        public virtual IList<Pass> Passes { get; set; }
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
         public  virtual bool Deleted { get; set; }
         public virtual string Claims { get; set; } 
 
-        public virtual IPass GetPassToUse()
+        public virtual Pass GetPassToUse()
         {
             return Passes.Where(x => x.IsValid())
                 .OrderBy(x => x.EndDate)
                 .FirstOrDefault();
         }
 
-        public virtual IPass GetPassToRefund()
+        public virtual Pass GetPassToRefund()
         {
             if (Passes.Any(x => x.IsValid()))
             {

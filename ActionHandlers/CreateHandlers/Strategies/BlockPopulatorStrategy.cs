@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Extensions;
 using Data.CodeChunks;
 using Models;
 
@@ -36,7 +35,7 @@ namespace ActionHandlers.CreateHandlers.Strategies
             block.StartDate = level.StartTime;
             block.EndDate = new GetBlockEndDate(block.StartDate, level).Do();
 
-            block.Teachers = new List<ITeacher>(level.Teachers);
+            block.Teachers = new List<Teacher>(level.Teachers);
         }
     }
 
@@ -52,7 +51,7 @@ namespace ActionHandlers.CreateHandlers.Strategies
             block.StartDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, latestBlock.StartDate.Hour, latestBlock.StartDate.Minute, latestBlock.StartDate.Second);
             block.EndDate = new GetBlockEndDate(block.StartDate, level).Do();
 
-            block.Teachers = new List<ITeacher>(level.Teachers);
+            block.Teachers = new List<Teacher>(level.Teachers);
         }
     }
 }

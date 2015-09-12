@@ -126,7 +126,7 @@ namespace IntegrationTests.Steps.Users
             Assert.AreEqual(allUsersResponse.StatusCode, HttpStatusCode.OK);
 
             var user = ScenarioCache.GetActionResponse<UserModel>();
-            Assert.IsFalse(allUsersResponse.Data.WithFullName(user.FullName).Any());
+            Assert.IsFalse(allUsersResponse.Data.Any(x => x.FullName == user.FullName));
         }
 
         #endregion

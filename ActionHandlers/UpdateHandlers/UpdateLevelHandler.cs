@@ -26,7 +26,7 @@ namespace ActionHandlers.UpdateHandlers
 
             if (originalEntity.Teachers.DoesNotHaveSameItems(action.ActionAgainst.Teachers))
             {
-                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).Cast<ITeacher>().ToList();
+                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).ToList();
                 originalEntity.Teachers = actualTeachers;
             }
 

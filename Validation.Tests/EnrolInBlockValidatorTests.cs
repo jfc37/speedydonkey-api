@@ -21,7 +21,7 @@ namespace Validation.Tests
         {
             _userRepositoryBuilder = new MockRepositoryBuilder<User>().WithGet(new User
             {
-                EnroledBlocks = new List<IBlock>(),
+                EnroledBlocks = new List<Block>(),
                 Claims = Claim.Teacher.ToString()
             });
             _blockRepositoryBuilder = new MockRepositoryBuilder<Block>().WithGetAll(new List<Block>
@@ -31,7 +31,7 @@ namespace Validation.Tests
             _user = new User
             {
                 Id = 1,
-                EnroledBlocks = new List<IBlock>
+                EnroledBlocks = new List<Block>
                 {
                     new Block{ Id = 2}
                 }
@@ -68,12 +68,12 @@ namespace Validation.Tests
         {
             _userRepositoryBuilder.WithGet(new User
             {
-                EnroledBlocks = new List<IBlock>
+                EnroledBlocks = new List<Block>
                 {
                     new Block {Id = 2}
                 }
             });
-            _user.EnroledBlocks = new List<IBlock>{ new Block{ Id = 2 }};
+            _user.EnroledBlocks = new List<Block>{ new Block{ Id = 2 }};
 
             var result = PerforAction();
 
@@ -89,7 +89,7 @@ namespace Validation.Tests
             {
                 new Block {Id = 1}
             });
-            _user.EnroledBlocks = new List<IBlock>{ new Block{ Id = 4 }};
+            _user.EnroledBlocks = new List<Block>{ new Block{ Id = 4 }};
 
             var result = PerforAction();
 
@@ -105,7 +105,7 @@ namespace Validation.Tests
             _currentUser = new CurrentUser { Id = 2 };
             _userRepositoryBuilder = new MockRepositoryBuilder<User>().WithGet(new User
             {
-                EnroledBlocks = new List<IBlock>(),
+                EnroledBlocks = new List<Block>(),
             });
 
             var result = PerforAction();

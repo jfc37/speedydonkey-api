@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -12,7 +14,7 @@ using SpeedyDonkeyApi.Models;
 namespace SpeedyDonkeyApi.Controllers
 {
     [RoutePrefix("api/users")]
-    public class UserApiController : GenericApiController<UserModel, User>
+    public class UserApiController : GenericApiController<User>
     {
         public UserApiController(
             IActionHandlerOverlord actionHandlerOverlord,
@@ -24,33 +26,47 @@ namespace SpeedyDonkeyApi.Controllers
         [AllowAnonymous]
         public HttpResponseMessage Post([FromBody] UserModel model)
         {
-            return PerformAction(model, x => new CreateUser(x));
+            var result = PerformAction<CreateUser, User>(new CreateUser(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<UserModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
-            return base.Get();
+            var all = GetAll().ToList();
+
+            return all.Any()
+                ? (IHttpActionResult) Ok(all.Select(x => x.ToModel()))
+                : NotFound();
         }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get(string q)
+        public IHttpActionResult Get(string q)
         {
-            return base.Get(q);
+            var all = Search(q).ToList();
+
+            return all.Any()
+                ? (IHttpActionResult)Ok(all.Select(x => x.ToModel()))
+                : NotFound();
         }
 
         [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Delete(int id)
         {
-            var model = new UserModel
+            var model = new User
             {
                 Id = id
             };
 
-            return PerformAction(model, x => new DeleteUser(x));
+            var result = PerformAction<DeleteUser, User>(new DeleteUser(model));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<UserModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
     }
 }

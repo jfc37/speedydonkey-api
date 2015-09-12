@@ -40,7 +40,7 @@ namespace SpeedyDonkeyApi.Controllers
             if (allAnnouncementsToShow.NotAny())
                 return NotFound();
 
-            return Ok(allAnnouncementsToShow.Select(x => new AnnouncementModel().CloneFromEntity(x)));
+            return Ok(allAnnouncementsToShow.Select(x => x.ToModel()));
         }
     }
 }

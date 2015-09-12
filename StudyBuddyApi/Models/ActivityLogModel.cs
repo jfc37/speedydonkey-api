@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class ActivityLogModel : ApiModel<ActivityLog, ActivityLogModel>, IActivityLog
+    public class ActivityLogModel
     {
         public DateTime CreatedDateTime { get; set; }
         public DateTime? LastUpdatedDateTime { get; set; }

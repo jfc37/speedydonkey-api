@@ -26,7 +26,7 @@ namespace ActionHandlers.UpdateHandlers
 
             if (originalEntity.Receivers.DoesNotHaveSameItems(action.ActionAgainst.Receivers))
             {
-                var blocks = action.ActionAgainst.Receivers.Select(b => _blockRepository.Get(b.Id)).Cast<IBlock>().ToList();
+                var blocks = action.ActionAgainst.Receivers.Select(b => _blockRepository.Get(b.Id)).ToList();
                 originalEntity.Receivers = blocks;
             }
 

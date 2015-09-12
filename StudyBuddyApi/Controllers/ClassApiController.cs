@@ -1,8 +1,8 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -11,7 +11,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class ClassApiController : GenericApiController<ClassModel, Class>
+    public class ClassApiController : GenericApiController<Class>
     {
         public ClassApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
@@ -24,14 +24,20 @@ namespace SpeedyDonkeyApi.Controllers
         public HttpResponseMessage Put(int id, [FromBody] ClassModel model)
         {
             model.Id = id;
-            return PerformAction(model, x => new UpdateClass(x));
+            var result = PerformAction<UpdateClass, Class>(new UpdateClass(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
-            var model = new ClassModel { Id = id };
-            return PerformAction(model, x => new DeleteClass(x));
+            var model = new Class { Id = id };
+            var result = PerformAction<DeleteClass, Class>(new DeleteClass(model));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
     }
 }

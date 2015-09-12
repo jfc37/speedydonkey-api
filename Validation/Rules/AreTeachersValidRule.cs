@@ -8,10 +8,10 @@ namespace Validation.Rules
 {
     public class AreTeachersValidRule : IRule
     {
-        private readonly IEnumerable<ITeacher> _teachers;
+        private readonly IEnumerable<Teacher> _teachers;
         private readonly IRepository<Teacher> _repository;
 
-        public AreTeachersValidRule(IEnumerable<ITeacher> teachers, IRepository<Teacher> repository)
+        public AreTeachersValidRule(IEnumerable<Teacher> teachers, IRepository<Teacher> repository)
         {
             _teachers = teachers;
             _repository = repository;

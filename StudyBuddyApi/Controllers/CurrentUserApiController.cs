@@ -41,18 +41,18 @@ namespace SpeedyDonkeyApi.Controllers
                 : HttpStatusCode.BadRequest;
             return Request.CreateResponse(
                 responseCode,
-                new ActionReponse<IApiModel<User>>
+                new ActionReponse<UserModel>
                 {
-                    ActionResult = model.CloneFromEntity(Request, result.ActionResult),
+                    ActionResult = result.ActionResult.ToModel(),
                     ValidationResult = result.ValidationResult
                 });
         }
 
         [Route]
         [ActiveUserRequired]
-        public HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
-            return Request.CreateResponse(new UserModel().CloneFromEntity(Request, _repository.Get(_currentUser.Id)));
+            return Ok(_repository.Get(_currentUser.Id).ToModel());
         }
     }
 }

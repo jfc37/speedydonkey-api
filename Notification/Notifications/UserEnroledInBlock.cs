@@ -13,9 +13,9 @@ namespace Notification.Notifications
         public string EmailBody { get; set; }
         public string TemplateName { get { return "Block Enrolment"; } }
         public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
-        IUser User { get; set; }
+        User User { get; set; }
 
-        public UserEnroledInBlock(IUser user)
+        public UserEnroledInBlock(User user)
         {
             EmailTo = user.Email;
             User = user;

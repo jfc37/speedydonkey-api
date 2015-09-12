@@ -30,7 +30,7 @@ namespace Validation.Validators
                 .Must(NotAlreadyBeAttendingClass).WithMessage(ValidationMessages.AlreadyAttendingClass);
         }
 
-        private bool NotAlreadyBeAttendingClass(Class theClass, ICollection<IUser> users)
+        private bool NotAlreadyBeAttendingClass(Class theClass, ICollection<User> users)
         {
             var retrievedClass = GetClass(theClass.Id);
             if (retrievedClass == null)
@@ -39,25 +39,25 @@ namespace Validation.Validators
             return retrievedClass.ActualStudents == null || retrievedClass.ActualStudents.All(x => x.Id != userId);
         }
 
-        private bool HaveAValidPass(ICollection<IUser> users)
+        private bool HaveAValidPass(ICollection<User> users)
         {
             var user = GetUser(users);
             return user.Passes != null && user.Passes.Any(x => x.IsValid());
         }
 
-        private bool HavePaidForAPass(ICollection<IUser> users)
+        private bool HavePaidForAPass(ICollection<User> users)
         {
             var user = GetUser(users);
             return user.Passes != null && user.Passes.Any(x => x.PaymentStatus == PassPaymentStatus.Paid.ToString());
         }
 
-        private bool BeExistingUser(ICollection<IUser> users)
+        private bool BeExistingUser(ICollection<User> users)
         {
             var user = GetUser(users);
             return user != null;
         }
 
-        private User GetUser(ICollection<IUser> users)
+        private User GetUser(ICollection<User> users)
         {
             var user = _userRepository.Get(users.Single().Id);
             return user;

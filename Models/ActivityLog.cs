@@ -3,17 +3,7 @@ using Common;
 
 namespace Models
 {
-    public interface IActivityLog : IEntity
-    {
-        Guid Session { get; set; }
-        int PerformingUserId { get; set; }
-        DateTime DateTimeStamp { get; set; }
-        ActivityGroup ActivityGroup { get; set; }
-        ActivityType ActivityType { get; set; }
-        string ActivityText { get; set; }
-    }
-
-    public class ActivityLog : IDatabaseEntity, IActivityLog
+    public class ActivityLog : IDatabaseEntity, IEntity
     {
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }

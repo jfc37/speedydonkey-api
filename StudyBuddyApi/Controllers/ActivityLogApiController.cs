@@ -1,16 +1,16 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Http;
 using ActionHandlers;
 using Data.Repositories;
 using Data.Searches;
+using FluentNHibernate.Conventions;
 using Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
     [RoutePrefix("api/activity_logs")]
-    public class ActivityLogApiController : GenericApiController<ActivityLogModel, ActivityLog>
+    public class ActivityLogApiController : GenericApiController<ActivityLog>
     {
         public ActivityLogApiController(
             IActionHandlerOverlord actionHandlerOverlord,
@@ -20,16 +20,28 @@ namespace SpeedyDonkeyApi.Controllers
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public override HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
-            return base.Get();
+            var all = GetAll().ToList();
+            if (all.IsEmpty())
+            {
+                return NotFound();
+            }
+
+            return Ok(all);
         }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public override HttpResponseMessage Get(string q)
+        public IHttpActionResult Get(string q)
         {
-            return base.Get(q);
+            var searchResult = Search(q).ToList();
+            if (searchResult.IsEmpty())
+            {
+                return NotFound();
+            }
+
+            return Ok(searchResult);
         }
     }
 }

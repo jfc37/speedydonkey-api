@@ -48,7 +48,7 @@ namespace ActionHandlers.CreateHandlers
                     EndTime = classTime.AddMinutes(timeSpan.TotalMinutes),
                     Block = result,
                     Name = result.Name + " - Week " + classNumber,
-                    Teachers = new List<ITeacher>(result.Level.Teachers),
+                    Teachers = new List<Teacher>(result.Level.Teachers),
                     CreatedDateTime = DateTime.Now
                 };
                 CreateBookingForClass(nextClass, result.Level.Room);
@@ -57,7 +57,7 @@ namespace ActionHandlers.CreateHandlers
             }
         }
 
-        private void CreateBookingForClass(Class nextClass, IRoom room)
+        private void CreateBookingForClass(Class nextClass, Room room)
         {
             var booking = new Booking
             {

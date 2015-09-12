@@ -1,7 +1,10 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using ActionHandlers;
 using Actions;
+using Common.Extensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -11,7 +14,7 @@ using SpeedyDonkeyApi.Models;
 namespace SpeedyDonkeyApi.Controllers
 {
     [RoutePrefix("api/teachers")]
-    public class TeacherApiController : GenericApiController<TeacherModel, Teacher>
+    public class TeacherApiController : GenericApiController<Teacher>
     {
         public TeacherApiController(
             IActionHandlerOverlord actionHandlerOverlord,
@@ -23,43 +26,61 @@ namespace SpeedyDonkeyApi.Controllers
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post(int id)
         {
-            var model = new TeacherModel
+            var model = new Teacher
             {
-                User = new UserModel
+                User = new User
                 {
                     Id = id
                 }
             };
-            return PerformAction<SetAsTeacher, TeacherModel, Teacher>(model, x => new SetAsTeacher(x));
+            var result = PerformAction<SetAsTeacher, Teacher>(new SetAsTeacher(model));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<TeacherModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [Route("{id}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
-            var model = new TeacherModel { Id = id };
-            return PerformAction(model, x => new RemoveAsTeacher(x));
+            var model = new Teacher { Id = id };
+            var result = PerformAction<RemoveAsTeacher, Teacher>(new RemoveAsTeacher(model));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<TeacherModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
-            return base.Get();
+            var all = GetAll().ToList();
+
+            return all.Any()
+                ? (IHttpActionResult) Ok(all.Select(x => x.ToModel()))
+                : NotFound();
         }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get(string q)
+        public IHttpActionResult Get(string q)
         {
-            return base.Get(q);
+            var all = Search(q).ToList();
+
+            return all.Any()
+                ? (IHttpActionResult)Ok(all.Select(x => x.ToModel()))
+                : NotFound();
         }
 
         [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return base.Get(id);
+            var result = GetById(id);
+
+            return result.IsNotNull()
+                ? (IHttpActionResult) Ok(result.ToModel())
+                : NotFound();
         }
     }
 }

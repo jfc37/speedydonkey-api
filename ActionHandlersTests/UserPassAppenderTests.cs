@@ -60,7 +60,7 @@ namespace ActionHandlersTests
         {
             User = new User
             {
-                Passes = new List<IPass>
+                Passes = new List<Pass>
                 {
                     new ClipPass
                     {
@@ -105,7 +105,7 @@ namespace ActionHandlersTests
             };
             User = new User
             {
-                Passes = new List<IPass>
+                Passes = new List<Pass>
                 {
                     _existingPass
                 }
@@ -149,7 +149,7 @@ namespace ActionHandlersTests
             };
             User = new User
             {
-                Passes = new List<IPass>
+                Passes = new List<Pass>
                 {
                     _existingPass,
                     _pendingPass

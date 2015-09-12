@@ -7,20 +7,20 @@ namespace Data.CodeChunks
     /// <summary>
     /// Returns a populated pass based on a pass template and a start date
     /// </summary>
-    public class GetPopulatedPassFromPassTemplate : ICodeChunk<IPass>
+    public class GetPopulatedPassFromPassTemplate : ICodeChunk<Pass>
     {
-        private readonly IPass _passToPopulate;
+        private readonly Pass _passToPopulate;
         private readonly DateTime _startDate;
         private readonly PassTemplate _passTemplate;
 
-        public GetPopulatedPassFromPassTemplate(IPass passToPopulate, DateTime startDate, PassTemplate passTemplate)
+        public GetPopulatedPassFromPassTemplate(Pass passToPopulate, DateTime startDate, PassTemplate passTemplate)
         {
             _passToPopulate = passToPopulate;
             _startDate = startDate;
             _passTemplate = passTemplate;
         }
 
-        public IPass Do()
+        public Pass Do()
         {
             _passToPopulate.StartDate = _startDate;
             _passToPopulate.EndDate = _startDate.AddWeeks(_passTemplate.WeeksValidFor);

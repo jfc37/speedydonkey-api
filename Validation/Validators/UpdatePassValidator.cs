@@ -31,7 +31,7 @@ namespace Validation.Validators
 
         private bool NotBeNegativeClassesRemaining(Pass pass, int id)
         {
-            var clipPass = pass as IClipPass;
+            var clipPass = pass as ClipPass;
             if (clipPass == null)
                 return true;
 

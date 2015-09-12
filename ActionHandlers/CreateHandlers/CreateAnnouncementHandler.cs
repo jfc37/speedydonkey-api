@@ -2,7 +2,6 @@
 using System.Linq;
 using Action;
 using Actions;
-using Common;
 using Common.Extensions;
 using Data.Repositories;
 using Models;
@@ -28,7 +27,7 @@ namespace ActionHandlers.CreateHandlers
         {
             if (action.ActionAgainst.Receivers != null)
             {
-                var actualBlocks = action.ActionAgainst.Receivers.Select(b => _blockRepository.Get(b.Id)).Cast<IBlock>().ToList();
+                var actualBlocks = action.ActionAgainst.Receivers.Select(b => _blockRepository.Get(b.Id)).ToList();
                 action.ActionAgainst.Receivers = actualBlocks;   
             }
         }
@@ -56,7 +55,7 @@ namespace ActionHandlers.CreateHandlers
             {
                 foreach (var receiver in announcement.Receivers)
                 {
-                    users.AddRange(receiver.EnroledStudents.OfType<User>());
+                    users.AddRange(receiver.EnroledStudents);
                 }
             }
             return users;

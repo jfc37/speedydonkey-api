@@ -28,7 +28,7 @@ namespace ActionHandlersTests
         {
             _savedLevel = new Level
             {
-                Teachers = new List<ITeacher> { new Teacher() }
+                Teachers = new List<Teacher> { new Teacher() }
             };
             _levelRepositoryBuilder = new MockRepositoryBuilder<Level>()
                 .WithGet(_savedLevel)
@@ -64,7 +64,7 @@ namespace ActionHandlersTests
             public void Then_teachers_are_retrieved()
             {
                 _action.ActionAgainst = new Level();
-                _action.ActionAgainst.Teachers = new List<ITeacher>(_savedLevel.Teachers);
+                _action.ActionAgainst.Teachers = new List<Teacher>(_savedLevel.Teachers);
                 _action.ActionAgainst.Teachers.Add(new Teacher{Id = 2});
 
                 PerformAction();
@@ -80,7 +80,7 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Level
                 {
-                    Teachers = new List<ITeacher>
+                    Teachers = new List<Teacher>
                     {
                         new Teacher{Id = 1}
                     }
@@ -100,7 +100,7 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Level
                 {
-                    Teachers = new List<ITeacher>
+                    Teachers = new List<Teacher>
                     {
                         new Teacher{Id = 2}
                     }

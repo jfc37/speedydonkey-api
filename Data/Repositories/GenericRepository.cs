@@ -12,7 +12,7 @@ namespace Data.Repositories
         TModel Get(int id);
     }
 
-    public class UserScheduleRepository : IAdvancedRepository<User, IList<IEvent>>
+    public class UserScheduleRepository : IAdvancedRepository<User, IList<Event>>
     {
         private readonly ISession _session;
 
@@ -21,7 +21,7 @@ namespace Data.Repositories
             _session = session;
         }
 
-        public IList<IEvent> Get(int id)
+        public IList<Event> Get(int id)
         {
             var timeBefore = DateTime.Now.AddHours(-1);
             var search = _session.CreateCriteria<User>()

@@ -34,14 +34,14 @@ namespace ActionHandlers.UserPasses
 
     public interface IPassCreator
     {
-        IPass CreatePass(DateTime startDate, PassTemplate passTemplate);
+        Pass CreatePass(DateTime startDate, PassTemplate passTemplate);
     }
 
     public abstract class PassCreator : IPassCreator
     {
-        public abstract IPass CreatePass(DateTime startDate, PassTemplate passTemplate);
+        public abstract Pass CreatePass(DateTime startDate, PassTemplate passTemplate);
 
-        protected void PopulatePass(IPass pass, DateTime startDate, PassTemplate passTemplate)
+        protected void PopulatePass(Pass pass, DateTime startDate, PassTemplate passTemplate)
         {
             pass = new GetPopulatedPassFromPassTemplate(pass, startDate, passTemplate).Do();
 
@@ -58,7 +58,7 @@ namespace ActionHandlers.UserPasses
             _repository = repository;
         }
 
-        public override IPass CreatePass(DateTime startDate, PassTemplate passTemplate)
+        public override Pass CreatePass(DateTime startDate, PassTemplate passTemplate)
         {
             var pass = new Pass();
 
@@ -75,7 +75,7 @@ namespace ActionHandlers.UserPasses
 
     public class ClipPassCreator : PassCreator
     {
-        public override IPass CreatePass(DateTime startDate, PassTemplate passTemplate)
+        public override Pass CreatePass(DateTime startDate, PassTemplate passTemplate)
         {
             var pass = new ClipPass
             {

@@ -20,7 +20,7 @@ namespace ActionHandlers.CreateHandlers
         {
             action.ActionAgainst.Teachers = _teacherRepository.GetAll()
                 .Where(x => action.ActionAgainst.Teachers.Any(y => y.Id == x.Id))
-                .ToList<ITeacher>();
+                .ToList();
         }
     }
 }

@@ -43,7 +43,7 @@ namespace ActionHandlers.EnrolmentProcess
                 Email = user.Email,
                 FirstName = user.FirstName,
                 Surname = user.Surname,
-                EnroledBlocks = blocksBeingEnroledIn.Select(x => (IBlock) x).ToList(),
+                EnroledBlocks = blocksBeingEnroledIn.ToList(),
                 Passes = null
             };
             var notification = new UserEnroledInBlock(userNotication);

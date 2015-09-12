@@ -30,17 +30,17 @@ namespace ActionHandlers.ClassCheckIn
             return theClass;
         }
 
-        private void AddStudentToClassAttendance(Class theClass, User user, IPassStatistic passStatistic)
+        private void AddStudentToClassAttendance(Class theClass, User user, PassStatistic passStatistic)
         {
-            theClass.ActualStudents = theClass.ActualStudents ?? new List<IUser>();
+            theClass.ActualStudents = theClass.ActualStudents ?? new List<User>();
             theClass.ActualStudents.Add(user);
-            theClass.PassStatistics = theClass.PassStatistics ?? new List<IPassStatistic>();
+            theClass.PassStatistics = theClass.PassStatistics ?? new List<PassStatistic>();
             theClass.PassStatistics.Add(passStatistic);
         }
 
         private Pass UpdatePass(User user)
         {
-            var passToUse = (Pass)user.GetPassToUse();
+            var passToUse = user.GetPassToUse();
             passToUse.PayForClass();
 
             if (passToUse is ClipPass)
@@ -52,7 +52,6 @@ namespace ActionHandlers.ClassCheckIn
         private void MakeNextPassValid(User user)
         {
             var nextPass = user.Passes
-                .OfType<Pass>()
                 .Where(x => x.IsFuturePass())
                 .OrderBy(x => x.StartDate)
                 .FirstOrDefault();

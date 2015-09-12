@@ -40,14 +40,14 @@ namespace Validation.Validators
                 .IsValid();
         }
 
-        private bool BeExistingBlocks(ICollection<IBlock> blocks)
+        private bool BeExistingBlocks(ICollection<Block> blocks)
         {
             return _blockRepository.GetAll()
                 .Select(x => x.Id)
                 .Intersect(blocks.Select(x => x.Id)).Count() == blocks.Count;
         }
 
-        private bool NotAlreadyBeEnroled(User user, ICollection<IBlock> blocksBeingEnroledIn)
+        private bool NotAlreadyBeEnroled(User user, ICollection<Block> blocksBeingEnroledIn)
         {
             var alreadyEnroledBlockIds = _userRepository.GetWithChildren(user.Id, new List<string>{"EnroledBlocks"}).EnroledBlocks.Select(x => x.Id);
             var enrolingBlockIds = blocksBeingEnroledIn.Select(x => x.Id);

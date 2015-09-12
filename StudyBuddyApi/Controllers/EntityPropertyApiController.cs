@@ -1,71 +1,24 @@
-using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 using ActionHandlers;
 using Actions;
 using Common;
-using Data.Repositories;
-using Models;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public abstract class EntityPropertyApiController<TViewModel, TModel, TEntity> : BaseApiController
-        where TViewModel : IEntityView<TEntity, TModel>, new()
-        where TEntity : class, IEntity
+    public abstract class EntityPropertyApiController : BaseApiController
     {
-        private readonly IRepository<TEntity> _entityRepository;
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
 
-        protected EntityPropertyApiController(
-            IRepository<TEntity> entityRepository,
-            IActionHandlerOverlord actionHandlerOverlord)
+        protected EntityPropertyApiController(IActionHandlerOverlord actionHandlerOverlord)
         {
-            _entityRepository = entityRepository;
             _actionHandlerOverlord = actionHandlerOverlord;
         }
 
-        public virtual HttpResponseMessage Get(int id)
-        {
-            var entity = _entityRepository.Get(id);
-            if (entity == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            var userScheduleModels = new TViewModel().ConvertFromEntity(entity, Request);
-            return userScheduleModels.Any()
-                ? Request.CreateResponse(userScheduleModels)
-                : Request.CreateResponse(HttpStatusCode.NotFound);
-        }
-
-        protected HttpResponseMessage PerformAction<TAction, TActionModel, TActionEntity>([FromBody]TActionModel model, Func<TActionEntity, TAction> actionCreator)
+        protected ActionReponse<TActionEntity> PerformAction<TAction, TActionEntity>(TAction action)
             where TAction : IAction<TActionEntity>
-            where TActionModel : IApiModel<TActionEntity>, new()
-            where TActionEntity : class, IEntity
-        {
-            var entity = model.ToEntity();
-            return PerformAction<TAction, TActionModel, TActionEntity>(model, actionCreator(entity));
-        }
-
-        protected HttpResponseMessage PerformAction<TAction, TActionModel, TActionEntity>([FromBody]TActionModel model, TAction action)
-            where TAction : IAction<TActionEntity>
-            where TActionModel : IApiModel<TActionEntity>, new()
             where TActionEntity : class, IEntity
         {
             ActionReponse<TActionEntity> result = _actionHandlerOverlord.HandleAction<TAction, TActionEntity>(action);
-            HttpStatusCode responseCode = result.ValidationResult.IsValid
-                ? HttpStatusCode.Created
-                : HttpStatusCode.BadRequest;
-            return Request.CreateResponse(
-                responseCode,
-                new ActionReponse<IApiModel<TActionEntity>>
-                {
-                    ActionResult = model.CloneFromEntity(Request, result.ActionResult),
-                    ValidationResult = result.ValidationResult
-                });
+            return result;
         }
     }
 }

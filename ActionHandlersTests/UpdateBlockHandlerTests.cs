@@ -31,15 +31,15 @@ namespace ActionHandlersTests
                 Name = "old",
                 StartDate = DateTime.MaxValue,
                 EndDate = DateTime.MaxValue,
-                Teachers = new List<ITeacher> { new Teacher{ Id = 1 } },
-                Classes = new Collection<IClass>()
+                Teachers = new List<Teacher> { new Teacher{ Id = 1 } },
+                Classes = new Collection<Class>()
             };
             _action = new UpdateBlock(new Block
             {
                 Name = "new",
                 StartDate = DateTime.MinValue,
                 EndDate = DateTime.MinValue,
-                Teachers = new List<ITeacher> { new Teacher { Id = 1 } }
+                Teachers = new List<Teacher> { new Teacher { Id = 1 } }
             });
             _repositoryBuilder = new MockRepositoryBuilder<Block>()
                 .WithGet(_existingBlock)
@@ -74,7 +74,7 @@ namespace ActionHandlersTests
             public void Then_teachers_are_retrieved()
             {
                 _action.ActionAgainst = new Block();
-                _action.ActionAgainst.Teachers = new List<ITeacher>(_existingBlock.Teachers);
+                _action.ActionAgainst.Teachers = new List<Teacher>(_existingBlock.Teachers);
                 _action.ActionAgainst.Teachers.Add(new Teacher{ Id = 2 });
 
                 PerformAction();
@@ -90,7 +90,7 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Block
                 {
-                    Teachers = new List<ITeacher>
+                    Teachers = new List<Teacher>
                     {
                         new Teacher{Id = 1}
                     }
@@ -110,7 +110,7 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Block
                 {
-                    Teachers = new List<ITeacher>
+                    Teachers = new List<Teacher>
                     {
                         new Teacher{Id = 2}
                     }

@@ -27,17 +27,17 @@ namespace ActionHandlers.UpdateHandlers
 
             if (HasTeachersChanged(theClass.Teachers, action.ActionAgainst.Teachers))
             {
-                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).Cast<ITeacher>().ToList();
+                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).ToList();
                 theClass.Teachers = actualTeachers;
             }
             _repository.Update(theClass);
             return theClass;
         }
 
-        private bool HasTeachersChanged(IEnumerable<ITeacher> orginal, IEnumerable<ITeacher> updated)
+        private bool HasTeachersChanged(IEnumerable<Teacher> orginal, IEnumerable<Teacher> updated)
         {
-            var orginalIds = orginal.Select(x => x.Id);
-            var updatedIds = updated.Select(x => x.Id);
+            var orginalIds = orginal.Select(x => x.Id).ToList();
+            var updatedIds = updated.Select(x => x.Id).ToList();
             var hasSameNumber = orginalIds.Count() == updatedIds.Count();
             var areSameIds = orginalIds.All(x => updatedIds.Contains(x));
 

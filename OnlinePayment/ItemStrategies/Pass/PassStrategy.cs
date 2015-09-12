@@ -10,12 +10,12 @@ namespace OnlinePayments.ItemStrategies.Pass
     {
         private readonly IRepository<PassTemplate> _passTemplateRepository;
         private readonly IRepository<User> _userRepository;
-        private readonly IUserPassAppender _userPassAppender;
+        private readonly UserPassAppender _userPassAppender;
 
         public PassStrategy(
             IRepository<PassTemplate> passTemplateRepository,
             IRepository<User> userRepository,
-            IUserPassAppender userPassAppender)
+            UserPassAppender userPassAppender)
         {
             _passTemplateRepository = passTemplateRepository;
             _userRepository = userRepository;

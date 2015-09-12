@@ -5,7 +5,7 @@ namespace Models.QueryExtensions
 {
     public static class UserModelQueryExtensions
     {
-        public static IEnumerable<IUser> WithFullName(this IEnumerable<IUser> instance, string name)
+        public static IEnumerable<User> WithFullName(this IEnumerable<User> instance, string name)
         {
             return instance.Where(x => x.FullName == name);
         } 

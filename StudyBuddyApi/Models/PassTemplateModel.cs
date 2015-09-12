@@ -1,9 +1,8 @@
-﻿using System;
-using Models;
+﻿using Common;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class PassTemplateModel : ApiModel<PassTemplate, PassTemplateModel>, IPassTemplate
+    public class PassTemplateModel : IEntity
     {
         public string Description { get; set; }
         public string PassType { get; set; }
@@ -11,7 +10,6 @@ namespace SpeedyDonkeyApi.Models
         public int WeeksValidFor { get; set; }
         public int ClassesValidFor { get; set; }
         public bool AvailableForPurchase { get; set; }
-        public DateTime CreatedDateTime { get; set; }
-        public DateTime? LastUpdatedDateTime { get; set; }
+        public int Id { get; set; }
     }
 }

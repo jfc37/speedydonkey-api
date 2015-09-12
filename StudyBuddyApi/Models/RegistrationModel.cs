@@ -7,10 +7,8 @@ using Models.OnlinePayments;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class RegistrationModel : ApiModel<Registration, RegistrationModel>, IRegistration
+    public class RegistrationModel : IEntity
     {
-        public DateTime CreatedDateTime { get; set; }
-        public DateTime? LastUpdatedDateTime { get; set; }
         public Guid RegistationId { get; set; }
         public decimal Amount { get; set; }
         public OnlinePaymentStatus PaymentStatus { get; set; }
@@ -54,8 +52,8 @@ namespace SpeedyDonkeyApi.Models
         [Required]
         public DanceLevel? BluesLevel { get; set; }
 
-        public ICollection<string> Classes { get; set; }
-        public ICollection<WindyLindyEvents> Events { get; set; }
+        public List<string> Classes { get; set; }
+        public List<WindyLindyEvents> Events { get; set; }
 
         [Required]
         public bool Novice { get; set; }
@@ -91,11 +89,6 @@ namespace SpeedyDonkeyApi.Models
         public string AerialsPartner { get; set; }
         public string AerialsTeachers { get; set; }
         public bool TermsAndConditions { get; set; }
-
-        protected override void AddChildrenToEntity(Registration entity)
-        {
-            entity.Classes = Classes;
-            entity.Events = Events;
-        }
+        public int Id { get; set; }
     }
 }

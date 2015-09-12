@@ -7,17 +7,16 @@ using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
     public class UserScheduleApiController : BaseApiController
     {
-        private readonly IAdvancedRepository<User, IList<IEvent>> _userRepository;
+        private readonly IAdvancedRepository<User, IList<Event>> _userRepository;
         private readonly ICurrentUser _currentUser;
 
         public UserScheduleApiController(
-            IAdvancedRepository<User, IList<IEvent>> userRepository,
+            IAdvancedRepository<User, IList<Event>> userRepository,
             ICurrentUser currentUser)
         {
             _userRepository = userRepository;
@@ -47,7 +46,7 @@ namespace SpeedyDonkeyApi.Controllers
                 .ToList();
 
             return thisWeeksSchedule.Any()
-                ? Request.CreateResponse(thisWeeksSchedule.OfType<Class>().Select(x => new ClassModel().CloneFromEntity(Request, x)))
+                ? Request.CreateResponse(thisWeeksSchedule)
                 : Request.CreateResponse(HttpStatusCode.NotFound);
         }
     }

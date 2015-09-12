@@ -44,8 +44,8 @@ namespace ActionHandlersTests
         {
             return new Level
             {
-                Blocks = new List<IBlock>(),
-                Teachers = new List<ITeacher> { new Teacher() },
+                Blocks = new List<Block>(),
+                Teachers = new List<Teacher> { new Teacher() },
                 ClassesInBlock = 1
             };
         }
@@ -138,7 +138,7 @@ namespace ActionHandlersTests
                        StartTime = LevelStartTime,
                        EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
-                       Blocks = new List<IBlock>(),
+                       Blocks = new List<Block>(),
                        Teachers = new[]
                         {
                             new Teacher(), 
@@ -163,7 +163,7 @@ namespace ActionHandlersTests
                        StartTime = LevelStartTime,
                        EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
-                       Blocks = new List<IBlock>(),
+                       Blocks = new List<Block>(),
                        Teachers = new[]
                         {
                             new Teacher(), 
@@ -186,7 +186,7 @@ namespace ActionHandlersTests
                        StartTime = LevelStartTime,
                        EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
-                       Blocks = new List<IBlock>(),
+                       Blocks = new List<Block>(),
                        Teachers = new[]
                         {
                             new Teacher(), 
@@ -304,7 +304,7 @@ namespace ActionHandlersTests
                        StartTime = LevelStartTime,
                        EndTime = LevelEndTime,
                        ClassesInBlock = numberOfClasses,
-                       Blocks = new List<IBlock>(),
+                       Blocks = new List<Block>(),
                        Teachers = new[]
                         {
                             new Teacher(), 

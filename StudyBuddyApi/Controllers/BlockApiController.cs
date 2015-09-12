@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -11,7 +12,7 @@ using SpeedyDonkeyApi.Models;
 namespace SpeedyDonkeyApi.Controllers
 {
     [RoutePrefix("api/blocks")]
-    public class BlockApiController : GenericApiController<BlockModel, Block>
+    public class BlockApiController : GenericApiController<Block>
     {
         public BlockApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
@@ -24,27 +25,40 @@ namespace SpeedyDonkeyApi.Controllers
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post(int levelId)
         {
-            return PerformAction(new BlockModel {Level = new LevelModel {Id = levelId}}, x => new CreateBlock(x));
+            var blockModel = new BlockModel {Level = new LevelModel {Id = levelId}};
+            var result = PerformAction<CreateBlock, Block>(new CreateBlock(blockModel.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<BlockModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post()
         {
-            return PerformAction(new BlockModel(), x => new GenerateBlocksForAllLevels(x));
+            var result = PerformAction<GenerateBlocksForAllLevels, Block>(new GenerateBlocksForAllLevels(new Block()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<BlockModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Put(int id, [FromBody] BlockModel model)
         {
             model.Id = id;
-            return PerformAction(model, x => new UpdateBlock(x));
+            var result = PerformAction<UpdateBlock, Block>(new UpdateBlock(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<BlockModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
-            var model = new BlockModel {Id = id};
-            return PerformAction(model, x => new DeleteBlock(x));
+            var model = new Block {Id = id};
+            var result = PerformAction<DeleteBlock, Block>(new DeleteBlock(model));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<BlockModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
     }
 }

@@ -29,7 +29,7 @@ namespace IntegrationTests.Steps.Levels
                 EndTime = DateTime.Now.AddYears(1),
                 Name = "Charleston Level 1",
                 StartTime = DateTime.Now.AddMonths(1),
-                Teachers = new TeacherModel {Id = ScenarioCache.GetTeacherId()}.PutIntoList<ITeacher>()
+                Teachers = new TeacherModel {Id = ScenarioCache.GetTeacherId()}.PutIntoList()
             };
 
             ScenarioCache.Store(LevelModelKey, level);

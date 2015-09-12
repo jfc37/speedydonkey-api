@@ -36,7 +36,7 @@ namespace ActionHandlers.UpdateHandlers
 
             if (HasTeachersChanged(block.Teachers, action.ActionAgainst.Teachers))
             {
-                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).Cast<ITeacher>().ToList();
+                var actualTeachers = action.ActionAgainst.Teachers.Select(teacher => _teacherRepository.Get(teacher.Id)).ToList();
                 block.Teachers = actualTeachers;
                 foreach (var theClass in block.Classes)
                 {
@@ -48,7 +48,7 @@ namespace ActionHandlers.UpdateHandlers
             return block;
         }
 
-        private bool HasTeachersChanged(IEnumerable<ITeacher> orginal, IEnumerable<ITeacher> updated)
+        private bool HasTeachersChanged(IEnumerable<Teacher> orginal, IEnumerable<Teacher> updated)
         {
             var orginalIds = orginal.Select(x => x.Id);
             var updatedIds = updated.Select(x => x.Id);

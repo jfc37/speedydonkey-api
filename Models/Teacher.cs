@@ -4,16 +4,10 @@ using Common;
 
 namespace Models
 {
-    public interface ITeacher : IEntity
+    public class Teacher : IEntity, IDatabaseEntity
     {
-        IUser User { get; set; }
-        ICollection<IClass> Classes { get; set; } 
-    }
-
-    public class Teacher : ITeacher, IDatabaseEntity
-    {
-        public virtual IUser User { get; set; }
-        public virtual ICollection<IClass> Classes { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Class> Classes { get; set; }
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }

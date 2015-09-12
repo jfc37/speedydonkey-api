@@ -30,7 +30,7 @@ namespace ActionHandlersTests
                 Name = "old",
                 StartTime = DateTime.MaxValue,
                 EndTime = DateTime.MaxValue,
-                Teachers = new List<ITeacher>
+                Teachers = new List<Teacher>
                 {
                     new Teacher{Id = 1}
                 }
@@ -40,7 +40,7 @@ namespace ActionHandlersTests
                 Name = "new",
                 StartTime = DateTime.MinValue,
                 EndTime = DateTime.MinValue,
-                Teachers = new List<ITeacher>
+                Teachers = new List<Teacher>
                 {
                     new Teacher{Id = 1}
                 }
@@ -96,7 +96,7 @@ namespace ActionHandlersTests
             public void Then_teachers_are_retrieved()
             {
                 _action.ActionAgainst = new Class();
-                _action.ActionAgainst.Teachers = new List<ITeacher>(_existingClass.Teachers);
+                _action.ActionAgainst.Teachers = new List<Teacher>(_existingClass.Teachers);
                 _action.ActionAgainst.Teachers.Add(new Teacher{ Id = 2 });
 
                 PerformAction();
@@ -112,7 +112,7 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Class
                 {
-                    Teachers = new List<ITeacher>
+                    Teachers = new List<Teacher>
                     {
                         new Teacher{Id = 1}
                     }
@@ -132,7 +132,7 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Class
                 {
-                    Teachers = new List<ITeacher>
+                    Teachers = new List<Teacher>
                     {
                         new Teacher{Id = 2}
                     }

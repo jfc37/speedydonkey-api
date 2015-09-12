@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common;
+using Common.Extensions;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
@@ -12,29 +12,34 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class UserPassesApiController : EntityPropertyApiController<CurrentUserPassesModel, PassModel, User>
+    public class UserPassesApiController : EntityPropertyApiController
     {
+        private readonly IRepository<User> _entityRepository;
         private readonly ICurrentUser _currentUser;
 
         public UserPassesApiController(
             IRepository<User> entityRepository,
             IActionHandlerOverlord actionHandlerOverlord,
             ICurrentUser currentUser)
-            : base(entityRepository, actionHandlerOverlord)
+            : base(actionHandlerOverlord)
         {
+            _entityRepository = entityRepository;
             _currentUser = currentUser;
         }
 
         [ActiveUserRequired]
-        public HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);
         }
 
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return base.Get(id);
+            var entity = _entityRepository.Get(id);
+            return entity.IsNotNull()
+                ? (IHttpActionResult) Ok(new CurrentUserPassesModel().ConvertFromEntity(entity))
+                : NotFound();
         }
 
         [ActiveUserRequired]
@@ -48,10 +53,13 @@ namespace SpeedyDonkeyApi.Controllers
             var userModel = new UserModel
             {
                 Id = userId,
-                Passes = new List<IPass>{pass}
+                Passes = pass.PutIntoList()
             };
             var user = userModel.ToEntity();
-            return PerformAction<PurchasePass, UserModel, User>(userModel, new PurchasePass(user){ PassTemplateId = passTemplateId});
+            var result = PerformAction<PurchasePass, User>(new PurchasePass(user) { PassTemplateId = passTemplateId });
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<UserModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
     }
 }

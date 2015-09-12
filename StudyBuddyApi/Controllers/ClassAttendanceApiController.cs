@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using Action;
 using ActionHandlers;
-using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
@@ -10,41 +10,47 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class ClassAttendanceApiController : EntityPropertyApiController<ClassAttendanceModel, UserModel, Class>
+    public class ClassAttendanceApiController : EntityPropertyApiController
     {
         public ClassAttendanceApiController(
             IRepository<Class> entityRepository,
             IActionHandlerOverlord actionHandlerOverlord)
-            : base(entityRepository, actionHandlerOverlord)
+            : base(actionHandlerOverlord)
         {
         }
 
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Post(int id, int studentId)
         {
-            var classModel = new ClassModel
+            var classModel = new Class
             {
                 Id = id,
-                ActualStudents = new List<IUser>
+                ActualStudents = new List<User>
                 {
-                    new UserModel {Id = studentId}
+                    new User {Id = studentId}
                 }
             };
-            return PerformAction<CheckStudentIntoClass, ClassModel, Class>(classModel, x => new CheckStudentIntoClass(x));
+            var result = PerformAction<CheckStudentIntoClass, Class>(new CheckStudentIntoClass(classModel));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Delete(int id, int studentId)
         {
-            var classModel = new ClassModel
+            var classModel = new Class
             {
                 Id = id,
-                ActualStudents = new List<IUser>
+                ActualStudents = new List<User>
                 {
-                    new UserModel {Id = studentId}
+                    new User {Id = studentId}
                 }
             };
-            return PerformAction<RemoveStudentFromClass, ClassModel, Class>(classModel, x => new RemoveStudentFromClass(x));
+            var result = PerformAction<RemoveStudentFromClass, Class>(new RemoveStudentFromClass(classModel));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
     }
 }

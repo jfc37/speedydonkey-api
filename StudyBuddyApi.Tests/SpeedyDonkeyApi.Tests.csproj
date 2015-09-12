@@ -114,21 +114,6 @@
     <Compile Include="Builders\HttpRequestMessageBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockDependencyResolverBuilder.cs" />
     <Compile Include="Builders\MockBuilders\MockPrincipalBuilder.cs" />
-    <Compile Include="Controllers\ClassAttendanceApiControllerTests.cs" />
-    <Compile Include="Controllers\ClassRollApiControllerTests.cs" />
-    <Compile Include="Controllers\BlockApiControllerTests.cs" />
-    <Compile Include="Controllers\BookingApiControllerTests.cs" />
-    <Compile Include="Controllers\ClassApiControllerTests.cs" />
-    <Compile Include="Controllers\EnrolmentApiControllerTests.cs" />
-    <Compile Include="Controllers\PassApiControllerTests.cs" />
-    <Compile Include="Controllers\PayPalApiControllerTests.cs" />
-    <Compile Include="Controllers\ReferenceDataApiControllerTests.cs" />
-    <Compile Include="Controllers\LevelApiControllerTests.cs" />
-    <Compile Include="Controllers\UserApiControllerTests.cs" />
-    <Compile Include="Controllers\UserScheduleApiControllerTests.cs" />
-    <Compile Include="Controllers\UserPassesApiControllerTests.cs" />
-    <Compile Include="Controllers\UserEnroledBlocksApiControllerTests.cs" />
-    <Compile Include="Controllers\GenericApiControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BasicAuthAuthoriseAttributeTestFixture.cs" />
   </ItemGroup>
@@ -188,7 +173,9 @@
       <Name>Validation</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

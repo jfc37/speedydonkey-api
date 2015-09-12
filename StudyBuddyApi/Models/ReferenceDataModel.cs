@@ -1,8 +1,6 @@
-﻿using Models;
-
-namespace SpeedyDonkeyApi.Models
+﻿namespace SpeedyDonkeyApi.Models
 {
-    public class ReferenceDataModel : ApiModel<ReferenceData, ReferenceDataModel>, IReferenceData
+    public class ReferenceDataModel
     {
         public string Type { get; set; }
         public string Name { get; set; }

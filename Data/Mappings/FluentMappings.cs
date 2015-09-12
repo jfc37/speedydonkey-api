@@ -227,14 +227,13 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.ClassesInBlock);
             Map(x => x.ClassMinutes);
             Map(x => x.EndTime);
             Map(x => x.Name);
             Map(x => x.StartTime);
-            HasMany<Block>(x => x.Blocks);
-            HasManyToMany<Teacher>(x => x.Teachers)
+            HasMany(x => x.Blocks);
+            HasManyToMany(x => x.Teachers)
                 .Table("LevelTeacher")
                 .AsSet();
         }
@@ -275,7 +274,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.CostPerClass);
             Map(x => x.NumberOfClassesAttended);
             References<Pass>(x => x.Pass)
@@ -337,7 +335,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.ClassesValidFor);
             Map(x => x.Cost);
             Map(x => x.Description);

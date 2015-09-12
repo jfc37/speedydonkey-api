@@ -1,13 +1,11 @@
 ﻿using ActionHandlers;
-using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class PassStatisticApiController : GenericApiController<PassStatisticModel, PassStatistic>
+    public class PassStatisticApiController : GenericApiController<PassStatistic>
     {
         public PassStatisticApiController(
             IActionHandlerOverlord actionHandlerOverlord, 

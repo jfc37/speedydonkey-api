@@ -7,12 +7,12 @@ namespace ActionHandlers.UserPasses
 {
     public class PurchasePassHandler : IActionHandler<PurchasePass, User>
     {
-        private readonly IUserPassAppender _userPassAppender;
+        private readonly UserPassAppender _userPassAppender;
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<PassTemplate> _passTemplateRepository;
 
         public PurchasePassHandler(
-            IUserPassAppender userPassAppender,
+            UserPassAppender userPassAppender,
             IRepository<User> userRepository,
             IRepository<PassTemplate> passTemplateRepository)
         {
