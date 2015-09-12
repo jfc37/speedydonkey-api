@@ -9,6 +9,8 @@ namespace IntegrationTests.Utilities
         public const string Database = "database";
         public const string Levels = "levels";
         public const string Blocks = "blocks";
+        public const string CurrentUserClaims = "users/current/claims";
+        public const string GetCurrentUser = "users/current";
 
         public static string GetTeacherById(int userId)
         {

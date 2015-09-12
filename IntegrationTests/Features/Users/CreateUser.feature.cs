@@ -82,7 +82,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("a user is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then("that user\'s details can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the user\'s details can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -4,16 +4,6 @@ using Models;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class UserClaimsModel : IEntityView<User, string>
-    {
-        public IEnumerable<string> ConvertFromEntity(User user)
-        {
-            if (user.Claims == null)
-                return new List<string>();
-            return
-                user.Claims.Split(',').ToList();
-        }
-    }
     public class CurrentUserPassesModel : IEntityView<User, PassModel>
     {
         public IEnumerable<PassModel> ConvertFromEntity(User user)

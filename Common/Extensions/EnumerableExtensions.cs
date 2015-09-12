@@ -6,7 +6,7 @@ namespace Common.Extensions
 {
     public static class EnumerableExtensions
     {
-        public static bool DoesNotHaveSameItems<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare) where T : IEntity
+        public static bool DoesNotHaveSameItemIds<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare) where T : IEntity
         {
             var orginalIds = instance.Select(x => x.Id);
             var updatedIds = toCompare.Select(x => x.Id);
@@ -15,9 +15,9 @@ namespace Common.Extensions
 
             return !hasSameNumber || !areSameIds; 
         }
-        public static bool HasSameItems<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare) where T : IEntity
+        public static bool HasSameItems<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare)
         {
-            return !instance.DoesNotHaveSameItems(toCompare);  
+            return instance.OrderBy(t => t).SequenceEqual(toCompare.OrderBy(t => t));
         }
 
         public static bool NotAny<T>(this IEnumerable<T> instatnce)

@@ -7,7 +7,7 @@
 Scenario: Create a user
 	Given a user ready to sign up
 	When a user is created
-	Then that user's details can be retrieved
+	Then the user's details can be retrieved
 
 @user @create @validation_error
 Scenario: Create a user with missing details

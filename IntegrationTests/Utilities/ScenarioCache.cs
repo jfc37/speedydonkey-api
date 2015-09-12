@@ -11,6 +11,8 @@ namespace IntegrationTests.Utilities
     public static class ModelKeys
     {
         public const string LevelModelKey = "levelModel";
+
+        public const string CurrentUserEmail = "currentUserEmail";
     }
 
     public static class ModelIdKeys

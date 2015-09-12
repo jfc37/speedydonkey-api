@@ -105,17 +105,6 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "UserPassesApi" }
             );
 
-            config.Routes.MapHttpRoute(
-                name: "CurrentUserClaimsApi",
-                routeTemplate: "api/users/current/claims",
-                defaults: new { controller = "UserClaimsApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserClaimsApi",
-                routeTemplate: "api/users/{id}/claims",
-                defaults: new { controller = "UserClaimsApi" }
-            );
 
             config.Routes.MapHttpRoute(
                 name: "ClassRegisterApi",

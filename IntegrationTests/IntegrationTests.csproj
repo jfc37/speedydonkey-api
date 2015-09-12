@@ -77,6 +77,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateUser.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Users\CurrentUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentUser.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Users\GetClaims.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetClaims.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
     <Compile Include="Steps\Common\PreScenario.cs" />
@@ -87,6 +97,8 @@
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
     <Compile Include="Steps\Users\CommonUserSteps.cs" />
     <Compile Include="Steps\Users\CreateUserSteps.cs" />
+    <Compile Include="Steps\Users\CurrentUserSteps.cs" />
+    <Compile Include="Steps\Users\GetClaimsSteps.cs" />
     <Compile Include="Utilities\ApiCaller.cs" />
     <Compile Include="Utilities\ModelFunctions\TeacherFunction.cs" />
     <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
@@ -117,6 +129,14 @@
     <None Include="Features\Users\CreateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\CurrentUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CurrentUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\GetClaims.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetClaims.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

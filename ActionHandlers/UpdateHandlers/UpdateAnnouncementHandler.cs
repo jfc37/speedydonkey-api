@@ -24,7 +24,7 @@ namespace ActionHandlers.UpdateHandlers
             var originalEntity = _repository.Get(action.ActionAgainst.Id);
             new CommonInterfaceCloner().Copy(action.ActionAgainst, originalEntity);
 
-            if (originalEntity.Receivers.DoesNotHaveSameItems(action.ActionAgainst.Receivers))
+            if (originalEntity.Receivers.DoesNotHaveSameItemIds(action.ActionAgainst.Receivers))
             {
                 var blocks = action.ActionAgainst.Receivers.Select(b => _blockRepository.Get(b.Id)).ToList();
                 originalEntity.Receivers = blocks;
