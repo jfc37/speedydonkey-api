@@ -31,6 +31,13 @@ namespace SpeedyDonkeyApi.Controllers
             return new ActionResultToHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
         }
 
+        [Route("{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Get(int id)
+        {
+            return new EntityToHttpActionResult<User>(this, GetById(id), x => x.ToModel()).Do();
+        }
+
         [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()

@@ -38,5 +38,15 @@ namespace IntegrationTests.Utilities
         {
             return "users/{0}/enrolment".FormatWith(userId);
         }
+
+        public static string GetUserSearch(string search)
+        {
+            return "users?q={0}".FormatWith(search);
+        }
+
+        public static string GetUserById(int id)
+        {
+            return "users/{0}".FormatWith(id);
+        }
     }
 }

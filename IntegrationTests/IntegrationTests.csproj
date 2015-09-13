@@ -97,6 +97,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetClaims.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Users\RetrieveUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrieveUser.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\Blocks\CommonBlockSteps.cs" />
     <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
@@ -112,6 +117,7 @@
     <Compile Include="Steps\Users\CurrentUserScheduleSteps.cs" />
     <Compile Include="Steps\Users\CurrentUserSteps.cs" />
     <Compile Include="Steps\Users\GetClaimsSteps.cs" />
+    <Compile Include="Steps\Users\RetrieveUserSteps.cs" />
     <Compile Include="Utilities\ApiCaller.cs" />
     <Compile Include="Utilities\ModelFunctions\TeacherFunction.cs" />
     <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
@@ -159,6 +165,10 @@
     <None Include="Features\Users\GetClaims.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetClaims.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\RetrieveUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrieveUser.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

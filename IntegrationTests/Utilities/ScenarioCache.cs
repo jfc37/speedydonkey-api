@@ -14,6 +14,8 @@ namespace IntegrationTests.Utilities
         public const string PassTemplateModelKey = "passTemplateModel";
 
         public const string CurrentUserEmail = "currentUserEmail";
+
+        public const string ResponseKey = "response";
     }
 
     public static class ModelIdKeys
