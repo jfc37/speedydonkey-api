@@ -1,8 +1,10 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
+using Common.Extensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -11,7 +13,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    [RoutePrefix("api/passtemplate")]
+    [RoutePrefix("api/pass-templates")]
     public class PassTemplateApiController : GenericApiController<PassTemplate>
     {
         public PassTemplateApiController(
@@ -19,6 +21,26 @@ namespace SpeedyDonkeyApi.Controllers
             IRepository<PassTemplate> repository, 
             IEntitySearch<PassTemplate> entitySearch) : base(actionHandlerOverlord, repository, entitySearch)
         {
+        }
+
+        [Route]
+        public IHttpActionResult Get()
+        {
+            var all = GetAll().ToList();
+
+            return all.Any()
+                ? (IHttpActionResult) Ok(all.Select(x => x.ToModel()))
+                : NotFound();
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Get(int id)
+        {
+            var entity = GetById(id);
+
+            return entity.IsNotNull()
+                ? (IHttpActionResult) Ok(entity.ToModel())
+                : NotFound();
         }
 
         [Route]

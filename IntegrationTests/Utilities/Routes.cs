@@ -9,6 +9,7 @@ namespace IntegrationTests.Utilities
         public const string Database = "database";
         public const string Levels = "levels";
         public const string Blocks = "blocks";
+        public const string PassTemplate = "pass-templates";
         public const string CurrentUserClaims = "users/current/claims";
         public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
@@ -21,6 +22,11 @@ namespace IntegrationTests.Utilities
         public static string GetLevelById(int id)
         {
             return "{0}/{1}".FormatWith(Levels, id);
+        }
+
+        public static string GetPassTemplateById(int id)
+        {
+            return "{0}/{1}".FormatWith(PassTemplate, id);
         }
 
         public static string GetCreateBlock(int levelId)

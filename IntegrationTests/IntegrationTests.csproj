@@ -62,6 +62,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateLevel.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\PassTemplates\CreatePassTemplate.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreatePassTemplate.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Teachers\CreateTeacher.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,6 +103,7 @@
     <Compile Include="Steps\Common\PreScenario.cs" />
     <Compile Include="Steps\Levels\CommonLevelSteps.cs" />
     <Compile Include="Steps\Levels\CreateLevelSteps.cs" />
+    <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
@@ -109,6 +115,7 @@
     <Compile Include="Utilities\ApiCaller.cs" />
     <Compile Include="Utilities\ModelFunctions\TeacherFunction.cs" />
     <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyPassTemplateProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyLevelProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyUserProperties.cs" />
     <Compile Include="Utilities\Routes.cs" />
@@ -124,6 +131,10 @@
     <None Include="Features\Levels\CreateLevel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateLevel.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\PassTemplates\CreatePassTemplate.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreatePassTemplate.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Teachers\CreateTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

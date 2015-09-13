@@ -11,6 +11,7 @@ namespace IntegrationTests.Utilities
     public static class ModelKeys
     {
         public const string LevelModelKey = "levelModel";
+        public const string PassTemplateModelKey = "passTemplateModel";
 
         public const string CurrentUserEmail = "currentUserEmail";
     }
@@ -21,6 +22,7 @@ namespace IntegrationTests.Utilities
         public const string TeacherIdKey = "teacherId";
         public const string LevelIdKey = "levelId";
         public const string BlockKeyId = "blockId";
+        public const string PassTemplateKeyId = "passTemplateId";
     }
 
     public static class ScenarioCache
