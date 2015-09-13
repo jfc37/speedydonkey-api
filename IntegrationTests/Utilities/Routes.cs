@@ -44,6 +44,11 @@ namespace IntegrationTests.Utilities
             return "levels?q={0}".FormatWith(search);
         }
 
+        public static string GetPassTemplateSearch(string search)
+        {
+            return "pass-templates?q={0}".FormatWith(search);
+        }
+
         public static string GetTeacherSearch(string search)
         {
             return "teachers?q={0}".FormatWith(search);
