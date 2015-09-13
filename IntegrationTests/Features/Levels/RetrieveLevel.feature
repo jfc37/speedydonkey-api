@@ -12,9 +12,8 @@ Scenario: Search levels
 	When a level search is performed
 	Then something is retreived
 
-@level @retrieve @search
+@level @retrieve @get_by_id
 Scenario: Get level by id
 	Given a level exists
 	When a level is retrieved by id
 	Then something is retreived
-

@@ -51,7 +51,6 @@ namespace SpeedyDonkeyApi.Controllers
                 .Do();
         }
 
-
         [Route]
         public IHttpActionResult Get()
         {

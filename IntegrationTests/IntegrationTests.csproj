@@ -82,6 +82,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RemoveTeacher.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Teachers\RetrieveTeacher.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrieveTeacher.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\CreateUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,6 +123,7 @@
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
+    <Compile Include="Steps\Teachers\RetrieveTeacherSteps.cs" />
     <Compile Include="Steps\Users\CommonUserSteps.cs" />
     <Compile Include="Steps\Users\CreateUserSteps.cs" />
     <Compile Include="Steps\Users\CurrentUserScheduleSteps.cs" />
@@ -159,6 +165,10 @@
     <None Include="Features\Teachers\RemoveTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RemoveTeacher.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Teachers\RetrieveTeacher.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrieveTeacher.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\CreateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

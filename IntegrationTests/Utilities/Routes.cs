@@ -44,6 +44,11 @@ namespace IntegrationTests.Utilities
             return "levels?q={0}".FormatWith(search);
         }
 
+        public static string GetTeacherSearch(string search)
+        {
+            return "teachers?q={0}".FormatWith(search);
+        }
+
         public static string GetUserSearch(string search)
         {
             return "users?q={0}".FormatWith(search);

@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace IntegrationTests.Features.Levels
+namespace IntegrationTests.Features.Teachers
 {
     using TechTalk.SpecFlow;
     
@@ -19,20 +19,20 @@ namespace IntegrationTests.Features.Levels
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RetrieveLevel")]
-    public partial class RetrieveLevelFeature
+    [NUnit.Framework.DescriptionAttribute("RetrieveTeacher")]
+    public partial class RetrieveTeacherFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "RetrieveLevel.feature"
+#line 1 "RetrieveTeacher.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RetrieveLevel", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RetrieveTeacher", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,22 +65,22 @@ namespace IntegrationTests.Features.Levels
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get all levels")]
-        [NUnit.Framework.CategoryAttribute("level")]
+        [NUnit.Framework.DescriptionAttribute("Get all teachers")]
+        [NUnit.Framework.CategoryAttribute("teacher")]
         [NUnit.Framework.CategoryAttribute("retrieve")]
         [NUnit.Framework.CategoryAttribute("get_all")]
-        public virtual void GetAllLevels()
+        public virtual void GetAllTeachers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all levels", new string[] {
-                        "level",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all teachers", new string[] {
+                        "teacher",
                         "retrieve",
                         "get_all"});
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
- testRunner.Given("a level exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an existing user is a teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
- testRunner.When("all levels are retreived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("all teachers are retreived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
  testRunner.Then("something is retreived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -88,22 +88,22 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Search levels")]
-        [NUnit.Framework.CategoryAttribute("level")]
+        [NUnit.Framework.DescriptionAttribute("Search teachers")]
+        [NUnit.Framework.CategoryAttribute("teacher")]
         [NUnit.Framework.CategoryAttribute("retrieve")]
         [NUnit.Framework.CategoryAttribute("search")]
-        public virtual void SearchLevels()
+        public virtual void SearchTeachers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search levels", new string[] {
-                        "level",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search teachers", new string[] {
+                        "teacher",
                         "retrieve",
                         "search"});
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 11
- testRunner.Given("a level exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an existing user is a teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
- testRunner.When("a level search is performed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("a teacher search is performed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
  testRunner.Then("something is retreived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -111,22 +111,22 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get level by id")]
-        [NUnit.Framework.CategoryAttribute("level")]
+        [NUnit.Framework.DescriptionAttribute("Get teacher by id")]
+        [NUnit.Framework.CategoryAttribute("teacher")]
         [NUnit.Framework.CategoryAttribute("retrieve")]
         [NUnit.Framework.CategoryAttribute("get_by_id")]
-        public virtual void GetLevelById()
+        public virtual void GetTeacherById()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get level by id", new string[] {
-                        "level",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get teacher by id", new string[] {
+                        "teacher",
                         "retrieve",
                         "get_by_id"});
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.Given("a level exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an existing user is a teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
- testRunner.When("a level is retrieved by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("a teacher is retrieved by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 19
  testRunner.Then("something is retreived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

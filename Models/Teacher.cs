@@ -21,5 +21,10 @@ namespace Models
         {
             User = user;
         }
+
+        public Teacher(int id)
+        {
+            Id = id;
+        }
     }
 }
