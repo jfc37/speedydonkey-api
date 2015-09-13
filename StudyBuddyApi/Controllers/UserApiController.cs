@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
@@ -8,6 +7,7 @@ using Actions;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
@@ -24,34 +24,25 @@ namespace SpeedyDonkeyApi.Controllers
 
         [Route]
         [AllowAnonymous]
-        public HttpResponseMessage Post([FromBody] UserModel model)
+        public IHttpActionResult Post([FromBody] UserModel model)
         {
             var result = PerformAction<CreateUser, User>(new CreateUser(model.ToEntity()));
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
-                new ActionReponse<UserModel>(result.ActionResult.ToModel(), result.ValidationResult));
+            return new ActionResultToHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
         }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            var all = GetAll().ToList();
-
-            return all.Any()
-                ? (IHttpActionResult) Ok(all.Select(x => x.ToModel()))
-                : NotFound();
+            return new SetToHttpActionResult<User>(this, GetAll(), x => x.ToModel()).Do();
         }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(string q)
         {
-            var all = Search(q).ToList();
-
-            return all.Any()
-                ? (IHttpActionResult)Ok(all.Select(x => x.ToModel()))
-                : NotFound();
+            return new SetToHttpActionResult<User>(this, Search(q), x => x.ToModel()).Do();
         }
 
         [Route("{id:int}")]

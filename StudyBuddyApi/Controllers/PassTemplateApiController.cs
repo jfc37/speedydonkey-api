@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common.Extensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
@@ -26,21 +25,19 @@ namespace SpeedyDonkeyApi.Controllers
         [Route]
         public IHttpActionResult Get()
         {
-            var all = GetAll().ToList();
+            return new SetToHttpActionResult<PassTemplate>(this, GetAll(), x => x.ToModel()).Do();
+        }
 
-            return all.Any()
-                ? (IHttpActionResult) Ok(all.Select(x => x.ToModel()))
-                : NotFound();
+        [Route]
+        public IHttpActionResult Get(string q)
+        {
+            return new SetToHttpActionResult<PassTemplate>(this, Search(q), x => x.ToModel()).Do();
         }
 
         [Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            var entity = GetById(id);
-
-            return entity.IsNotNull()
-                ? (IHttpActionResult) Ok(entity.ToModel())
-                : NotFound();
+            return new EntityToHttpActionResult<PassTemplate>(this, GetById(id), x => x.ToModel()).Do();
         }
 
         [Route]

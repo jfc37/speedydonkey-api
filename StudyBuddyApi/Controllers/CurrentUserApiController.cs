@@ -1,6 +1,12 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 using ActionHandlers;
 using Actions;
 using Common;
@@ -30,22 +36,21 @@ namespace SpeedyDonkeyApi.Controllers
         
         [Route]
         [ActiveUserRequired]
-        public HttpResponseMessage Put([FromBody]UserModel model)
+        public IHttpActionResult Put([FromBody]UserModel model)
         {
             model.Id = _currentUser.Id;
             var user = model.ToEntity();
             var updateUser = new UpdateUser(user);
-            ActionReponse<User> result = _actionHandlerOverlord.HandleAction<UpdateUser, User>(updateUser);
-            HttpStatusCode responseCode = result.ValidationResult.IsValid
-                ? HttpStatusCode.Created
-                : HttpStatusCode.BadRequest;
-            return Request.CreateResponse(
-                responseCode,
-                new ActionReponse<UserModel>
+            var result = _actionHandlerOverlord.HandleAction<UpdateUser, User>(updateUser);
+
+            var resultModel = new ActionReponse<UserModel>
                 {
                     ActionResult = result.ActionResult.ToModel(),
                     ValidationResult = result.ValidationResult
-                });
+                };
+            return resultModel.ValidationResult.IsValid 
+                ? this.BadRequestWithContent(resultModel) 
+                : Ok(resultModel);
         }
 
         [Route]
@@ -53,6 +58,19 @@ namespace SpeedyDonkeyApi.Controllers
         public IHttpActionResult Get()
         {
             return Ok(_repository.Get(_currentUser.Id).ToModel());
+        }
+    }
+
+    public static class ApiControllerExtensions
+    {
+        public static IHttpActionResult BadRequestWithContent<T>(this ApiController instance, T content)
+        {
+            return new NegotiatedContentResult<T>(HttpStatusCode.BadRequest, content, instance);
+        }
+
+        public static IHttpActionResult CreatedWithContent<T>(this ApiController instance, T content)
+        {
+            return new NegotiatedContentResult<T>(HttpStatusCode.Created, content, instance);
         }
     }
 }

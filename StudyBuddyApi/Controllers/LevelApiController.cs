@@ -1,13 +1,12 @@
-﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common.Extensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
@@ -26,17 +25,17 @@ namespace SpeedyDonkeyApi.Controllers
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Post([FromBody] LevelModel model)
+        public IHttpActionResult Post([FromBody] LevelModel model)
         {
             var result = PerformAction<CreateLevel, Level>(new CreateLevel(model.ToEntity()));
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
-                new ActionReponse<LevelModel>(result.ActionResult.ToModel(), result.ValidationResult));
+            return new ActionResultToHttpActionResult<Level, LevelModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
         [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Put(int id,  [FromBody] LevelModel model)
+        public HttpResponseMessage Put(int id, [FromBody] LevelModel model)
         {
             model.Id = id;
             var result = PerformAction<UpdateLevel, Level>(new UpdateLevel(model.ToEntity()));
@@ -49,39 +48,30 @@ namespace SpeedyDonkeyApi.Controllers
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
-            var model = new Level{ Id = id};
+            var model = new Level {Id = id};
             var result = PerformAction<DeleteLevel, Level>(new DeleteLevel(model));
 
             return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
                 new ActionReponse<LevelModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
-          
+
 
         [Route]
         public IHttpActionResult Get()
         {
-            var all = GetAll().ToList();
-            return all.Any()
-                ? (IHttpActionResult) Ok(all.Select(x => x.ToModel()))
-                : NotFound();
+            return new SetToHttpActionResult<Level>(this, GetAll(), x => x.ToModel()).Do();
         }
 
         [Route]
         public IHttpActionResult Get(string q)
         {
-            var all = Search(q).ToList();
-            return all.Any()
-                ? (IHttpActionResult)Ok(all.Select(x => x.ToModel()))
-                : NotFound();
+            return new SetToHttpActionResult<Level>(this, Search(q), x => x.ToModel()).Do();
         }
 
         [Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
-            var result = GetById(id);
-            return result.IsNotNull()
-                ? (IHttpActionResult) Ok(result.ToModel())
-                : NotFound();
+            return new EntityToHttpActionResult<Level>(this, GetById(id), x => x.ToModel()).Do();
         }
     }
 }
