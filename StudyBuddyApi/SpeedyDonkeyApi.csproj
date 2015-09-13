@@ -199,7 +199,9 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="CodeChunks\ActionResultToCreatedHttpActionResult.cs" />
     <Compile Include="CodeChunks\ActionResultToHttpActionResult.cs" />
+    <Compile Include="CodeChunks\ActionResultToOkHttpActionResult.cs" />
     <Compile Include="CodeChunks\EntityToHttpActionResult.cs" />
     <Compile Include="CodeChunks\SetToHttpActionResult.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
@@ -236,6 +238,7 @@
     <Compile Include="Controllers\UserPassesApiController.cs" />
     <Compile Include="Controllers\UserScheduleApiController.cs" />
     <Compile Include="Controllers\ValidationResultExtensions.cs" />
+    <Compile Include="Extensions\ApiControllerExtensions.cs" />
     <Compile Include="Extensions\Models\OnlinePaymentRequestModelExtensions.cs" />
     <Compile Include="Extensions\Models\PoliRequestModelExtensions.cs" />
     <Compile Include="Extensions\Models\PayPalRequestModelExtensions.cs" />

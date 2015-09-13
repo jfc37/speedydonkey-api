@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Actions;
@@ -28,7 +26,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
             var result = PerformAction<CreateUser, User>(new CreateUser(model.ToEntity()));
 
-            return new ActionResultToHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
         }
 
         [Route("{id:int}")]
@@ -54,17 +52,14 @@ namespace SpeedyDonkeyApi.Controllers
 
         [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public HttpResponseMessage Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
-            var model = new User
-            {
-                Id = id
-            };
-
+            var model = new User(id);
             var result = PerformAction<DeleteUser, User>(new DeleteUser(model));
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
-                new ActionReponse<UserModel>(result.ActionResult.ToModel(), result.ValidationResult));
+
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this)
+                .Do();
         }
     }
 }

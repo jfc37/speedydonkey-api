@@ -1,5 +1,3 @@
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -19,9 +17,7 @@ namespace SpeedyDonkeyApi.Controllers
             IActionHandlerOverlord actionHandlerOverlord,
             IRepository<Level> repository,
             IEntitySearch<Level> entitySearch)
-            : base(actionHandlerOverlord, repository, entitySearch)
-        {
-        }
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
@@ -29,30 +25,30 @@ namespace SpeedyDonkeyApi.Controllers
         {
             var result = PerformAction<CreateLevel, Level>(new CreateLevel(model.ToEntity()));
 
-            return new ActionResultToHttpActionResult<Level, LevelModel>(result, x => x.ToModel(), this)
+            return new ActionResultToCreatedHttpActionResult<Level, LevelModel>(result, x => x.ToModel(), this)
                 .Do();
         }
 
         [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Put(int id, [FromBody] LevelModel model)
+        public IHttpActionResult Put(int id, [FromBody] LevelModel model)
         {
             model.Id = id;
             var result = PerformAction<UpdateLevel, Level>(new UpdateLevel(model.ToEntity()));
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
-                new ActionReponse<LevelModel>(result.ActionResult.ToModel(), result.ValidationResult));
+            return new ActionResultToOkHttpActionResult<Level, LevelModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
         [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             var model = new Level {Id = id};
             var result = PerformAction<DeleteLevel, Level>(new DeleteLevel(model));
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
-                new ActionReponse<LevelModel>(result.ActionResult.ToModel(), result.ValidationResult));
+            return new ActionResultToOkHttpActionResult<Level, LevelModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
 

@@ -62,6 +62,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateLevel.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Levels\RetrieveLevel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrieveLevel.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\PassTemplates\CreatePassTemplate.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -108,6 +113,7 @@
     <Compile Include="Steps\Common\PreScenario.cs" />
     <Compile Include="Steps\Levels\CommonLevelSteps.cs" />
     <Compile Include="Steps\Levels\CreateLevelSteps.cs" />
+    <Compile Include="Steps\Levels\RetrieveLevelSteps.cs" />
     <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
@@ -137,6 +143,10 @@
     <None Include="Features\Levels\CreateLevel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateLevel.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Levels\RetrieveLevel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrieveLevel.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\PassTemplates\CreatePassTemplate.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

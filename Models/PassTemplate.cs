@@ -6,6 +6,13 @@ namespace Models
 
     public class PassTemplate : IEntity, IDatabaseEntity
     {
+        public PassTemplate(int id)
+        {
+            Id = id;
+        }
+
+        public PassTemplate() { }
+
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }

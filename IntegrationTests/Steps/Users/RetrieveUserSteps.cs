@@ -2,7 +2,6 @@
 using System.Net;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using RestSharp;
 using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 

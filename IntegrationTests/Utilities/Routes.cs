@@ -39,6 +39,11 @@ namespace IntegrationTests.Utilities
             return "users/{0}/enrolment".FormatWith(userId);
         }
 
+        public static string GetLevelSearch(string search)
+        {
+            return "levels?q={0}".FormatWith(search);
+        }
+
         public static string GetUserSearch(string search)
         {
             return "users?q={0}".FormatWith(search);
