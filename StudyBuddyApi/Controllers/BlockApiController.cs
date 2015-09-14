@@ -21,13 +21,21 @@ namespace SpeedyDonkeyApi.Controllers
             : base(actionHandlerOverlord, repository, entitySearch) { }
 
         [Route("blocks")]
-        [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            var all = GetAll().ToList();
-            return all.Any() ? 
-                (IHttpActionResult) Ok(all.Select(x => x.ToModel())) 
-                : NotFound();
+            return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToModel()).Do();
+        }
+
+        [Route("blocks")]
+        public IHttpActionResult Get(string q)
+        {
+            return new SetToHttpActionResult<Block>(this, Search(q), x => x.ToModel()).Do();
+        }
+
+        [Route("blocks/{id:int}")]
+        public IHttpActionResult Get(int id)
+        {
+            return new EntityToHttpActionResult<Block>(this, GetById(id), x => x.ToModel()).Do();
         }
 
         [Route("levels/{levelId:int}/blocks")]

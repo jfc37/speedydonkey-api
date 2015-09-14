@@ -6,11 +6,13 @@ using ActionHandlers;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/classes")]
     public class ClassApiController : GenericApiController<Class>
     {
         public ClassApiController(
@@ -20,6 +22,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Put(int id, [FromBody] ClassModel model)
         {
@@ -30,6 +33,7 @@ namespace SpeedyDonkeyApi.Controllers
                 new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
@@ -38,6 +42,24 @@ namespace SpeedyDonkeyApi.Controllers
 
             return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
                 new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
+        }
+
+        [Route]
+        public IHttpActionResult Get()
+        {
+            return new SetToHttpActionResult<Class>(this, GetAll(), x => x.ToModel()).Do();
+        }
+
+        [Route]
+        public IHttpActionResult Get(string q)
+        {
+            return new SetToHttpActionResult<Class>(this, Search(q), x => x.ToModel()).Do();
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Get(int id)
+        {
+            return new EntityToHttpActionResult<Class>(this, GetById(id), x => x.ToModel()).Do();
         }
     }
 }

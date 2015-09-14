@@ -28,12 +28,6 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
-                name: "ClassApi",
-                routeTemplate: "api/classes/{id}",
-                defaults: new { controller = "ClassApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "PassStatisticApi",
                 routeTemplate: "api/passes/statistics",
                 defaults: new { controller = "PassStatisticApi" }

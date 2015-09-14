@@ -285,14 +285,13 @@ namespace SpeedyDonkeyApi.Models
 
             return new ClassModel
             {
-                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
+                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Name = instance.Name,
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
-                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
+                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Block = instance.Block.ToModel(),
-                PassStatistics = instance.PassStatistics.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
-                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull()
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull()
             };
         }
 

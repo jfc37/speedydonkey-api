@@ -9,6 +9,7 @@ namespace IntegrationTests.Utilities
         public const string Database = "database";
         public const string Levels = "levels";
         public const string Blocks = "blocks";
+        public const string Classes = "classes";
         public const string PassTemplate = "pass-templates";
         public const string CurrentUserClaims = "users/current/claims";
         public const string CurrentUserSchedule = "users/current/schedules";
@@ -62,6 +63,16 @@ namespace IntegrationTests.Utilities
         public static string GetUserById(int id)
         {
             return "users/{0}".FormatWith(id);
+        }
+
+        public static string GetSearch(string resource, string search)
+        {
+            return "{0}?q={1}".FormatWith(resource, search);
+        }
+
+        public static string GetById(string resource, int id)
+        {
+            return "{0}/{1}".FormatWith(resource, id);
         }
     }
 }

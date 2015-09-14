@@ -18,7 +18,7 @@ namespace IntegrationTests.Steps.Levels
         [When(@"a level search is performed")]
         public void WhenALevelSearchIsPerformed()
         {
-            var response = ApiCaller.Get<List<UserModel>>(Routes.GetLevelSearch("id_=_1"));
+            var response = ApiCaller.Get<List<LevelModel>>(Routes.GetLevelSearch("id_=_1"));
             ScenarioCache.Store(ModelKeys.ResponseKey, response.StatusCode);
         }
 
