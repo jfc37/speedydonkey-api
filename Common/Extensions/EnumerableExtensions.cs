@@ -4,6 +4,14 @@ using System.Linq;
 
 namespace Common.Extensions
 {
+    public static class EnumExtensions
+    {
+        public static T Parse<T>(this string instance)
+        {
+            return (T) Enum.Parse(typeof (T), instance);
+        }
+    }
+
     public static class EnumerableExtensions
     {
         public static bool DoesNotHaveSameItemIds<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare) where T : IEntity

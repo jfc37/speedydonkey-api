@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using IntegrationTests.Utilities;
 using Models;
 using NUnit.Framework;
@@ -32,7 +34,24 @@ namespace IntegrationTests.Steps.Passes
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotEmpty(response.Data);
+
+            ScenarioCache.Store(ModelKeys.PassModelKey, response.Data.Single());
         }
+
+        [Then(@"the pass is paid")]
+        public void ThenThePassIsPaid()
+        {
+            var passModel = ScenarioCache.Get<PassModel>(ModelKeys.PassModelKey);
+            Assert.AreEqual(PassPaymentStatus.Paid, passModel.PaymentStatus.Parse<PassPaymentStatus>());
+        }
+
+        [Then(@"the pass is valid")]
+        public void ThenThePassIsValid()
+        {
+            var passModel = ScenarioCache.Get<PassModel>(ModelKeys.PassModelKey);
+            Assert.IsTrue(passModel.IsValid());
+        }
+
 
     }
 }
