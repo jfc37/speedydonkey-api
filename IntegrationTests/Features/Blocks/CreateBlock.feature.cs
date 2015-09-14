@@ -65,13 +65,13 @@ namespace IntegrationTests.Features.Blocks
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Generate a block")]
+        [NUnit.Framework.DescriptionAttribute("Generate first block")]
         [NUnit.Framework.CategoryAttribute("block")]
         [NUnit.Framework.CategoryAttribute("create")]
         [NUnit.Framework.CategoryAttribute("golden_path")]
-        public virtual void GenerateABlock()
+        public virtual void GenerateFirstBlock()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate a block", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate first block", new string[] {
                         "block",
                         "create",
                         "golden_path"});
@@ -83,6 +83,32 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("a block is generated from the level", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
  testRunner.Then("block can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Generate second block")]
+        [NUnit.Framework.CategoryAttribute("block")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        [NUnit.Framework.CategoryAttribute("golden_path")]
+        public virtual void GenerateSecondBlock()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate second block", new string[] {
+                        "block",
+                        "create",
+                        "golden_path"});
+#line 10
+this.ScenarioSetup(scenarioInfo);
+#line 11
+ testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 12
+ testRunner.When("the next block is generated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("block can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.And("the first class of the second block is a week after the last class of the first b" +
+                    "lock", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

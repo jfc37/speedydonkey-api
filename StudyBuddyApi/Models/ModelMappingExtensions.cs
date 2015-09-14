@@ -333,7 +333,8 @@ namespace SpeedyDonkeyApi.Models
                 StartTime = instance.StartTime,
                 ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Block = instance.Block.ToModel(),
-                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull()
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
+                Id = instance.Id
             };
         }
 
@@ -347,6 +348,7 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
+                Id = instance.Id
             };
         }
 
@@ -565,7 +567,8 @@ namespace SpeedyDonkeyApi.Models
                 ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Block = instance.Block.ToEntity(),
                 PassStatistics = instance.PassStatistics.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull()
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
+                Id = instance.Id
             };
         }
 

@@ -7,6 +7,11 @@ namespace IntegrationTests.Utilities
     {
         public const string StandardAuthenticationEmail = "joseph@fullswing.co.nz";
 
+        public static IRestResponse<T> Put<T>(object data, string resource) where T : new()
+        {
+            var request = CreateRequest(data, resource, Method.PUT);
+            return Execute<T>(request, StandardAuthenticationEmail);
+        }
         public static IRestResponse<T> Post<T>(object data, string resource) where T : new()
         {
             var request = CreateRequest(data, resource, Method.POST);
