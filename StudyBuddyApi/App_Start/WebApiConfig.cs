@@ -46,18 +46,6 @@ namespace SpeedyDonkeyApi
                 );
 
             config.Routes.MapHttpRoute(
-                name: "CurrentUserPassPurchaseApi",
-                routeTemplate: "api/users/current/passtemplates/{passTemplateId}",
-                defaults: new { controller = "UserPassesApi" }
-                );
-
-            config.Routes.MapHttpRoute(
-                name: "PassPurchaseApi",
-                routeTemplate: "api/users/{userId}/passtemplates/{passTemplateId}",
-                defaults: new { controller = "UserPassesApi" }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "BookingApi",
                 routeTemplate: "api/bookings/{id}",
                 defaults: new { controller = "BookingApi", id = RouteParameter.Optional }
@@ -67,18 +55,6 @@ namespace SpeedyDonkeyApi
                 name: "CurrentUserEnroledBlocksApi",
                 routeTemplate: "api/users/current/blocks",
                 defaults: new { controller = "UserEnroledBlocksApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CurrentUserPassesApi",
-                routeTemplate: "api/users/current/passes",
-                defaults: new { controller = "UserPassesApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserPassesApi",
-                routeTemplate: "api/users/{id}/passes",
-                defaults: new { controller = "UserPassesApi" }
             );
 
 

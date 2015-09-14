@@ -1,17 +1,17 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common;
 using Common.Extensions;
 using Data.Repositories;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/users")]
     public class UserPassesApiController : EntityPropertyApiController
     {
         private readonly IRepository<User> _entityRepository;
@@ -27,28 +27,29 @@ namespace SpeedyDonkeyApi.Controllers
             _currentUser = currentUser;
         }
 
+        [Route("current/passes")]
         [ActiveUserRequired]
         public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);
         }
 
+        [Route("{id:int}/passes")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(int id)
         {
-            var entity = _entityRepository.Get(id);
-            return entity.IsNotNull()
-                ? (IHttpActionResult) Ok(new CurrentUserPassesModel().ConvertFromEntity(entity))
-                : NotFound();
+            return new EntityToHttpActionResult<User>(this, _entityRepository.Get(id), x => new CurrentUserPassesModel().ConvertFromEntity(x)).Do();
         }
 
+        [Route("current/pass-templates/{passTemplateId:int}")]
         [ActiveUserRequired]
-        public HttpResponseMessage Post(int passTemplateId, [FromBody]PassModel pass)
+        public IHttpActionResult Post(int passTemplateId, [FromBody]PassModel pass)
         {
             return Post(_currentUser.Id, passTemplateId, pass);
         }
 
-        public HttpResponseMessage Post(int userId, int passTemplateId, [FromBody]PassModel pass)
+        [Route("{userId:int}/pass-templates/{passTemplateId:int}")]
+        public IHttpActionResult Post(int userId, int passTemplateId, [FromBody]PassModel pass)
         {
             var userModel = new UserModel
             {
@@ -56,10 +57,11 @@ namespace SpeedyDonkeyApi.Controllers
                 Passes = pass.PutIntoList()
             };
             var user = userModel.ToEntity();
+
             var result = PerformAction<PurchasePass, User>(new PurchasePass(user) { PassTemplateId = passTemplateId });
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
-                new ActionReponse<UserModel>(result.ActionResult.ToModel(), result.ValidationResult));
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this)
+                .Do();
         }
     }
 }

@@ -74,5 +74,15 @@ namespace IntegrationTests.Utilities
         {
             return "{0}/{1}".FormatWith(resource, id);
         }
+
+        public static string GetPassPurchase(int userId, int passTemplateId)
+        {
+            return "users/{0}/pass-templates/{1}".FormatWith(userId, passTemplateId);
+        }
+
+        public static string GetUserPasses(int userId)
+        {
+            return "users/{0}/passes".FormatWith(userId);
+        }
     }
 }
