@@ -26,6 +26,7 @@ namespace IntegrationTests.Utilities
         public const string LevelIdKey = "levelId";
         public const string BlockKeyId = "blockId";
         public const string PassTemplateKeyId = "passTemplateId";
+        public const string ClassKeyId = "classId";
     }
 
     public static class ScenarioCache

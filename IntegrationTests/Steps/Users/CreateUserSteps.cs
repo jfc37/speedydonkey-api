@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using IntegrationTests.Utilities;
 using IntegrationTests.Utilities.ModelVerfication;
 using Models.QueryExtensions;
@@ -24,7 +26,7 @@ namespace IntegrationTests.Steps.Users
             var expectedUser = new UserModel
             {
                 Surname = "Chapman",
-                Email = "joe@email.com",
+                Email = "joe{0}@email.com".FormatWith(Guid.NewGuid()),
                 Password = "password",
                 FirstName = "Joe"
             };

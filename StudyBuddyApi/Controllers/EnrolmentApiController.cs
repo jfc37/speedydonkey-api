@@ -1,18 +1,16 @@
 ﻿using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Data.Repositories;
 using Data.Searches;
 using Models;
-using SpeedyDonkeyApi.Filter;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    [BasicAuthAuthorise]
+    [RoutePrefix("api/users")]
     public class EnrolmentApiController : GenericApiController<User>
     {
         public EnrolmentApiController(
@@ -21,18 +19,15 @@ namespace SpeedyDonkeyApi.Controllers
             IEntitySearch<User> entitySearch) 
             : base(actionHandlerOverlord, repository, entitySearch) { }
 
-        [Route("api/users/{id:int}/enrolment")]
-        public HttpResponseMessage Post(int id, [FromBody] EnrolmentModel model)
+        [Route("{id:int}/enrolment")]
+        public IHttpActionResult Post(int id, [FromBody] EnrolmentModel model)
         {
-            var user = new UserModel(id);
-            if (model.BlockIds != null)
-                user.EnroledBlocks = model.BlockIds.Select(x => new BlockModel(x)).ToList();
-            
+            var user = new UserModel(id) {EnroledBlocks = model.BlockIds.Select(x => new BlockModel(x)).ToList()};
+
             var result = PerformAction<EnrolInBlock, User>(new EnrolInBlock(user.ToEntity()));
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
-                new ActionReponse<UserModel>(result.ActionResult.ToModel(), result.ValidationResult));
-
+            return new ActionResultToOkHttpActionResult<User, UserModel>(result, x => x.ToModel(), this)
+                .Do();
         }
     }
 }

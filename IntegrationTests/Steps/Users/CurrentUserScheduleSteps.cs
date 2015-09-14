@@ -17,19 +17,20 @@ namespace IntegrationTests.Steps.Users
         [Given(@"the current user enrols in the block")]
         public void GivenTheCurrentUserEnrolsInTheBlock()
         {
-            ScenarioCache.StoreUserId(1);
+            //ScenarioCache.StoreUserId(1);
             new CommonBlockSteps().GivenTheUserEnrolsInTheBlock();
         }
 
         [Given(@"the current user isn't enrolled in any blocks")]
         public void GivenTheCurrentUserIsnTEnrolledInAnyBlocks()
         {
+            ScenarioCache.Store(ModelKeys.CurrentUserEmail, ApiCaller.StandardAuthenticationEmail);
         }
 
         [When(@"the current user schedule is retrieved")]
         public void WhenTheCurrentUserScheduleIsRetrieved()
         {
-            var response = ApiCaller.Get<List<EventModel>>(Routes.CurrentUserSchedule);
+            var response = ApiCaller.Get<List<EventModel>>(Routes.CurrentUserSchedule, ScenarioCache.Get<string>(ModelKeys.CurrentUserEmail));
             ScenarioCache.Store(ScheduleResponseKey, response);
         }
 

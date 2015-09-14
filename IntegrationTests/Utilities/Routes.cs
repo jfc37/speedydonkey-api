@@ -84,5 +84,10 @@ namespace IntegrationTests.Utilities
         {
             return "users/{0}/passes".FormatWith(userId);
         }
+
+        public static string GetAttendClass(int classId, int userId)
+        {
+            return "classes/{0}/attendance/{1}".FormatWith(classId, userId);
+        }
     }
 }

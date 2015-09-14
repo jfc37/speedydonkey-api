@@ -12,6 +12,6 @@ namespace IntegrationTests.Steps.PassTemplates
             createPassTemplateSteps.GivenAValidPassTemplateIsReadyToBeSubmitted();
             createPassTemplateSteps.WhenThePassTemplateIsAttemptedToBeCreated();
             createPassTemplateSteps.ThenPassTemplateCanBeRetrieved();
-        }   
+        }
     }
 }

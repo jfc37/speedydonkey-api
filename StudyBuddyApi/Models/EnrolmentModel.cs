@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace SpeedyDonkeyApi.Models
@@ -12,6 +13,7 @@ namespace SpeedyDonkeyApi.Models
             BlockIds = blockIds.ToList();
         }
 
+        [Required]
         public List<int> BlockIds { get; set; } 
     }
 }

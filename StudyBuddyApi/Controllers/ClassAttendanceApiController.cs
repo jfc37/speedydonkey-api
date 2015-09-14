@@ -1,56 +1,49 @@
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
+using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Data.Repositories;
+using Common.Extensions;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/classes")]
     public class ClassAttendanceApiController : EntityPropertyApiController
     {
-        public ClassAttendanceApiController(
-            IRepository<Class> entityRepository,
-            IActionHandlerOverlord actionHandlerOverlord)
+        public ClassAttendanceApiController(IActionHandlerOverlord actionHandlerOverlord)
             : base(actionHandlerOverlord)
         {
         }
 
+        [Route("{id}/attendance/{studentId}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public HttpResponseMessage Post(int id, int studentId)
+        public IHttpActionResult Post(int id, int studentId)
         {
-            var classModel = new Class
+            var classModel = new Class(id)
             {
                 Id = id,
-                ActualStudents = new List<User>
-                {
-                    new User {Id = studentId}
-                }
+                ActualStudents = new User(studentId).PutIntoList()
             };
             var result = PerformAction<CheckStudentIntoClass, Class>(new CheckStudentIntoClass(classModel));
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
-                new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
+            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
+        [Route("{id}/attendance/{studentId}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public HttpResponseMessage Delete(int id, int studentId)
+        public IHttpActionResult Delete(int id, int studentId)
         {
-            var classModel = new Class
+            var classModel = new Class(id)
             {
-                Id = id,
-                ActualStudents = new List<User>
-                {
-                    new User {Id = studentId}
-                }
+                ActualStudents = new User(studentId).PutIntoList()
             };
             var result = PerformAction<RemoveStudentFromClass, Class>(new RemoveStudentFromClass(classModel));
 
-            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
-                new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
+            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+                .Do();
         }
     }
 }
