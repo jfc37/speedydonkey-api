@@ -20,6 +20,7 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.ThenBlockCanBeRetrieved();
         }
 
+        [Given(@"the user enrols in the block")]
         public void GivenTheUserEnrolsInTheBlock()
         {
             var response = ApiCaller.Post<ActionReponse<UserModel>>(new EnrolmentModel(ScenarioCache.GetId(ModelIdKeys.BlockKeyId)),
