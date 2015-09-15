@@ -48,6 +48,7 @@ namespace IntegrationTests.Steps.Levels
             var response = ApiCaller.Get<LevelModel>(Routes.GetLevelById(ScenarioCache.GetActionResponse<LevelModel>().Id));
             
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            ScenarioCache.Store(ModelKeys.LevelModelKey, response.Data);
 
             new VerifyLevelProperties(ScenarioCache.Get<LevelModel>(ModelKeys.LevelModelKey), response.Data)
                 .Verify();

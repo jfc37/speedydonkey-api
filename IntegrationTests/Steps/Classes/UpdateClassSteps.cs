@@ -65,8 +65,8 @@ namespace IntegrationTests.Steps.Classes
             var level = response.Data;
 
             var expectedLevel = ScenarioCache.Get<LevelModel>(ModelKeys.LevelModelKey);
-            Assert.AreEqual(expectedLevel.StartTime, level.StartTime.ToLocalTime());
-            Assert.AreEqual(expectedLevel.EndTime, level.EndTime.ToLocalTime());
+            Assert.AreEqual(expectedLevel.StartTime, level.StartTime);
+            Assert.AreEqual(expectedLevel.EndTime, level.EndTime);
         }
 
     }

@@ -8,3 +8,4 @@ Scenario: Update class time
 	Then the class's start and end time is updated
 	And the blocks start and end time is unchanged
 	And the levels start and end time is unchanged
+

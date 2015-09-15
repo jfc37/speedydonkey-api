@@ -4,6 +4,7 @@ using System.Net;
 using ActionHandlers;
 using Common.Extensions;
 using IntegrationTests.Utilities;
+using Models;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
@@ -22,7 +23,9 @@ namespace IntegrationTests.Steps.Blocks
 
             ScenarioCache.StoreActionResponse(response);
             ScenarioCache.Store(ModelIdKeys.BlockKeyId, response.Data.ActionResult.Id);
-            ScenarioCache.Store(ModelKeys.BlockModelKey, response.Data.ActionResult);
+
+            var blockResponse = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, response.Data.ActionResult.Id));
+            ScenarioCache.Store(ModelKeys.BlockModelKey, blockResponse.Data);
         }
 
         [When(@"the next block is generated")]
@@ -34,10 +37,10 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"block can be retrieved")]
         public void ThenBlockCanBeRetrieved()
         {
-            var response = ApiCaller.Get<List<BlockModel>>(Routes.Blocks);
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsNotEmpty(response.Data);
+            Assert.IsNotNull(response.Data);
         }
 
         [Then(@"the first class of the second block is a week after the last class of the first block")]
@@ -53,5 +56,29 @@ namespace IntegrationTests.Steps.Blocks
 
             Assert.AreEqual(lastClassOfFirstBlock.StartTime.AddWeeks(1).AddDays(1), firstClassOfFirstBlock.StartTime);
         }
+
+        [Then(@"classes are created for the block")]
+        public void ThenClassesAreCreatedForTheBlock()
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+            var block = response.Data;
+
+            Assert.IsNotEmpty(block.Classes);
+
+            foreach (var classModel in block.Classes)
+            {
+                Assert.AreEqual(classModel.StartTime.AddHours(1), classModel.EndTime);
+            }
+        }
+
+        [Then(@"the correct number of classes are created")]
+        public void ThenTheCorrectNumberOfClassesAreCreated()
+        {
+            var level = ScenarioCache.Get<LevelModel>(ModelKeys.LevelModelKey);
+            var block = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
+
+            Assert.AreEqual(level.ClassesInBlock, block.Classes.Count);
+        }
+
     }
 }

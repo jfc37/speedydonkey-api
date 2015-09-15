@@ -39,13 +39,12 @@ namespace ActionHandlers.CreateHandlers
         protected override void PostHandle(ICrudAction<Block> action, Block result)
         {
             var classTime = result.StartDate;
-            var timeSpan = result.Level.EndTime.TimeOfDay.Subtract(result.Level.StartTime.TimeOfDay);
             for (int classNumber = 1; classNumber <= action.ActionAgainst.Level.ClassesInBlock; classNumber++)
             {
                 var nextClass = new Class
                 {
                     StartTime = classTime,
-                    EndTime = classTime.AddMinutes(timeSpan.TotalMinutes),
+                    EndTime = classTime.AddMinutes(result.Level.ClassMinutes),
                     Block = result,
                     Name = result.Name + " - Week " + classNumber,
                     Teachers = new List<Teacher>(result.Level.Teachers),
