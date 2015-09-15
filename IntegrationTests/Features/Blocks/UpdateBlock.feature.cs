@@ -84,11 +84,37 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.When("the block is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.And("the blocks start and end time is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the blocks start and end time is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.Then("the block\'s classes start and end time is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the block\'s classes start and end time is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.And("the levels start and end time is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Update the day a block is on flows on when next block is generated")]
+        [NUnit.Framework.CategoryAttribute("block")]
+        [NUnit.Framework.CategoryAttribute("update")]
+        [NUnit.Framework.CategoryAttribute("golden_path")]
+        public virtual void UpdateTheDayABlockIsOnFlowsOnWhenNextBlockIsGenerated()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update the day a block is on flows on when next block is generated", new string[] {
+                        "block",
+                        "update",
+                        "golden_path"});
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.And("the day the block is on has been updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.When("the next block is generated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 17
+ testRunner.Then("the first class of the second block is a week after the last class of the first b" +
+                    "lock", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

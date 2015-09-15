@@ -54,7 +54,7 @@ namespace IntegrationTests.Steps.Blocks
             var firstClassId = secondBlock.Data.Classes.Min(x => x.Id);
             var firstClassOfFirstBlock = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, firstClassId)).Data;
 
-            Assert.AreEqual(lastClassOfFirstBlock.StartTime.AddWeeks(1).AddDays(1), firstClassOfFirstBlock.StartTime);
+            Assert.AreEqual(lastClassOfFirstBlock.StartTime.AddWeeks(1), firstClassOfFirstBlock.StartTime);
         }
 
         [Then(@"classes are created for the block")]

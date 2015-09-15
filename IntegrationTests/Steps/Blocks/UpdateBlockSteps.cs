@@ -34,8 +34,8 @@ namespace IntegrationTests.Steps.Blocks
             ScenarioCache.StoreActionResponse(response);
         }
 
-        [When(@"the blocks start and end time is updated")]
-        public void WhenTheBlocksStartAndEndTimeIsUpdated()
+        [Then(@"the blocks start and end time is updated")]
+        public void ThenTheBlocksStartAndEndTimeIsUpdated()
         {
             var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId))).Data;
 
@@ -45,6 +45,14 @@ namespace IntegrationTests.Steps.Blocks
 
             ScenarioCache.Store(ModelKeys.BlockModelKey, block);
         }
+
+        [Given(@"the day the block is on has been updated")]
+        public void GivenTheDayTheBlockIsOnHasBeenUpdated()
+        {
+            GivenTheDayTheBlockIsOnNeedsToChange();
+            WhenTheBlockIsUpdated();
+        }
+
 
         [Then(@"the block's classes start and end time is updated")]
         public void ThenTheBlockSClassesStartAndEndTimeIsUpdated()

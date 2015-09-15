@@ -64,24 +64,6 @@ namespace ActionHandlersTests
         {
             GetHandler().Handle(Action);
         }
-
-        [Test]
-        public void Then_block_has_teachers_associated_with_level()
-        {
-            PerformAction();
-
-            Assert.IsNotEmpty(Action.ActionAgainst.Teachers);
-            Assert.AreEqual(1, Action.ActionAgainst.Teachers.Count);
-        }
-
-        [Test]
-        public void Then_classes_has_teachers_associated_with_level()
-        {
-            PerformAction();
-
-            Assert.IsNotEmpty(ClassRepositoryBuilder.CreatedEntity.Teachers);
-            Assert.AreEqual(1, ClassRepositoryBuilder.CreatedEntity.Teachers.Count);
-        }
     }
 
     public class WhenLevelDoesntHaveAnyBlocks : GivenCreateBlockIsHandled
@@ -215,82 +197,6 @@ namespace ActionHandlersTests
             };
             RepositoryBuilder.WithCreate();
             LevelRepositoryBuilder.WithGet(level);
-        }
-
-        [Test]
-        public void Then_block_should_be_created()
-        {
-            PerformAction();
-
-            RepositoryBuilder.Mock.Verify(x => x.Create(Action.ActionAgainst), Times.Once);
-        }
-
-        [Test]
-        public void Then_block_should_get_the_level_name()
-        {
-            PerformAction();
-
-            var createdBlock = RepositoryBuilder.CreatedEntity;
-            var level = Action.ActionAgainst.Level;
-            Assert.AreEqual(level.Name, createdBlock.Name);
-        }
-
-        [TestCase(4)]
-        [TestCase(7)]
-        [TestCase(12)]
-        public void Then_block_should_have_start_date_the_week_after_current_block_finishes(int daysUntilFinish)
-        {
-            var currentBlockEndDate = DateTime.Now.AddDays(daysUntilFinish);
-            LevelRepositoryBuilder.WithGet(new Level
-            {
-                Blocks = new[]
-                {
-                    new Block
-                    {
-                        StartDate = DateTime.Now.AddMonths(-1),
-                        EndDate = currentBlockEndDate
-                    }
-                },
-                Teachers = new[]
-                {
-                    new Teacher(), 
-                }
-            });
-
-            PerformAction();
-
-            var createdBlock = RepositoryBuilder.CreatedEntity;
-            var expectedStartDate = currentBlockEndDate.AddDays(7);
-            Assert.AreEqual(expectedStartDate.Date, createdBlock.StartDate.Date);
-        }
-
-        [TestCase(4)]
-        [TestCase(7)]
-        [TestCase(12)]
-        public void Then_block_should_start_time_the_same_as_current_block(int daysUntilFinish)
-        {
-            var currentBlockStartDate = DateTime.Now.AddMonths(-1);
-            LevelRepositoryBuilder.WithGet(new Level
-            {
-                Blocks = new[]
-                {
-                    new Block
-                    {
-                        StartDate = currentBlockStartDate,
-                        EndDate = DateTime.Now.AddDays(daysUntilFinish)
-                    }
-                },
-                Teachers = new[]
-                {
-                    new Teacher(), 
-                }
-            });
-
-            PerformAction();
-
-            var createdBlock = RepositoryBuilder.CreatedEntity;
-            Assert.AreEqual(currentBlockStartDate.Hour, createdBlock.StartDate.Hour);
-            Assert.AreEqual(currentBlockStartDate.Minute, createdBlock.StartDate.Minute);
         }
 
         [TestCase(1)]
