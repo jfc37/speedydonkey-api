@@ -1,5 +1,4 @@
 ﻿using Action;
-using Actions;
 using Common;
 using Data.Repositories;
 using FluentValidation;
@@ -55,22 +54,6 @@ namespace Validation.Validators
     public class DeleteClassValidator : PreExistingValidator<Class>, IActionValidator<DeleteClass, Class>
     {
         public DeleteClassValidator(IRepository<Class> repository)
-            : base(repository)
-        {
-        }
-    }
-
-    public class SetAsTeacherValidator : OtherPreExistingValidator<Teacher, User>, IActionValidator<SetAsTeacher, Teacher>
-    {
-        public SetAsTeacherValidator(IRepository<User> repository)
-            : base(repository)
-        {
-        }
-    }
-
-    public class RemoveAsTeacherValidator : PreExistingValidator<Teacher>, IActionValidator<RemoveAsTeacher, Teacher>
-    {
-        public RemoveAsTeacherValidator(IRepository<Teacher> repository)
             : base(repository)
         {
         }

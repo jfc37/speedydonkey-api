@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Web.Http;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
@@ -8,6 +9,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/report/profit")]
     public class ProfitReportApiController : BaseApiController
     {
         private readonly IRepository<Pass> _passRepository;
@@ -21,6 +23,7 @@ namespace SpeedyDonkeyApi.Controllers
             _blockRepository = blockRepository;
         }
 
+        [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public virtual HttpResponseMessage Get(DateTime from, DateTime to)
         {

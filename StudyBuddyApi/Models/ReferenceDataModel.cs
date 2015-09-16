@@ -1,14 +1,7 @@
-﻿using Models;
-
-namespace SpeedyDonkeyApi.Models
+﻿namespace SpeedyDonkeyApi.Models
 {
-    public class ReferenceDataModel : ApiModel<ReferenceData, ReferenceDataModel>, IReferenceData
+    public class ReferenceDataModel
     {
-        protected override string RouteName
-        {
-            get { return "ReferenceDataApi"; }
-        }
-
         public string Type { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

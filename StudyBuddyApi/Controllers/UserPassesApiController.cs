@@ -1,60 +1,67 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common;
+using Common.Extensions;
 using Data.Repositories;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class UserPassesApiController : EntityPropertyApiController<CurrentUserPassesModel, PassModel, User>
+    [RoutePrefix("api/users")]
+    public class UserPassesApiController : EntityPropertyApiController
     {
+        private readonly IRepository<User> _entityRepository;
         private readonly ICurrentUser _currentUser;
 
         public UserPassesApiController(
-            IRepository<User> entityRepository, 
-            IUrlConstructor urlConstructor, 
-            ICommonInterfaceCloner cloner,
+            IRepository<User> entityRepository,
             IActionHandlerOverlord actionHandlerOverlord,
             ICurrentUser currentUser)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(actionHandlerOverlord)
         {
+            _entityRepository = entityRepository;
             _currentUser = currentUser;
         }
 
+        [Route("current/passes")]
         [ActiveUserRequired]
-        public HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);
         }
 
+        [Route("{id:int}/passes")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return base.Get(id);
+            return new EntityToHttpActionResult<User>(this, _entityRepository.Get(id), x => new CurrentUserPassesModel().ConvertFromEntity(x)).Do();
         }
 
+        [Route("current/pass-templates/{passTemplateId:int}")]
         [ActiveUserRequired]
-        public HttpResponseMessage Post(int passTemplateId, [FromBody]PassModel pass)
+        public IHttpActionResult Post(int passTemplateId, [FromBody]PassModel pass)
         {
             return Post(_currentUser.Id, passTemplateId, pass);
         }
 
-        public HttpResponseMessage Post(int userId, int passTemplateId, [FromBody]PassModel pass)
+        [Route("{userId:int}/pass-templates/{passTemplateId:int}")]
+        public IHttpActionResult Post(int userId, int passTemplateId, [FromBody]PassModel pass)
         {
             var userModel = new UserModel
             {
                 Id = userId,
-                Passes = new List<IPass>{pass}
+                Passes = pass.PutIntoList()
             };
-            var user = userModel.ToEntity(Cloner);
-            return PerformAction<PurchasePass, UserModel, User>(userModel, new PurchasePass(user){ PassTemplateId = passTemplateId});
+            var user = userModel.ToEntity();
+
+            var result = PerformAction<PurchasePass, User>(new PurchasePass(user) { PassTemplateId = passTemplateId });
+
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this)
+                .Do();
         }
     }
 }

@@ -10,5 +10,10 @@
             PropertyName = property;
             ErrorMessage = error;
         }
+
+        public ValidationError()
+        {
+            
+        }
     }
 }

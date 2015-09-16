@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -11,6 +8,7 @@ using Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/users/activation")]
     public class UserActivationApiController : BaseApiController
     {
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
@@ -20,6 +18,7 @@ namespace SpeedyDonkeyApi.Controllers
             _actionHandlerOverlord = actionHandlerOverlord;
         }
 
+        [Route("{id}")]
         [AllowAnonymous]
         public HttpResponseMessage Post(Guid id)
         {

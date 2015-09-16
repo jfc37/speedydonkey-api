@@ -1,39 +1,60 @@
-using System.Net.Http;
-using ActionHandlers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
 using Common;
+using Common.Extensions;
+using Data.CodeChunks;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class UserClaimsApiController : EntityPropertyApiController<UserClaimsModel, string, User>
+    public class UserClaimsApiController : BaseApiController
     {
+        private readonly IRepository<User> _repository;
         private readonly ICurrentUser _currentUser;
 
         public UserClaimsApiController(
-            IRepository<User> entityRepository, 
-            IUrlConstructor urlConstructor, 
-            ICommonInterfaceCloner cloner,
-            IActionHandlerOverlord actionHandlerOverlord,
+            IRepository<User> repository,
             ICurrentUser currentUser)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
         {
+            _repository = repository;
             _currentUser = currentUser;
         }
 
+        [Route("api/users/current/claims")]
         [ActiveUserRequired]
-        public HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);
         }
 
+        [Route("api/users/{id:int}/claims")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return base.Get(id);
+            var claims = new ExtractUserClaims(_repository.Get(id)).Do();
+            return claims.IsNotNull()
+                ? (IHttpActionResult) Ok(claims)
+                : NotFound();
+        }
+    }
+
+    public class ExtractUserClaims : ICodeChunk<IEnumerable<string>>
+    {
+        private readonly User _user;
+
+        public ExtractUserClaims(User user)
+        {
+            _user = user;
+        }
+
+        public IEnumerable<string> Do()
+        {
+            return _user.IsNull() || _user.Claims.IsNullOrWhiteSpace()
+                ? null
+                : _user.Claims.Split(',').ToList();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace OnlinePayments
         TResponse StartPayment(TPayment payment);
     }
 
-    public interface ICompletePaymentStrategy<in TPaymentId, out TResponse, TPayment>
+    public interface ICompletePaymentStrategy<in TPaymentId, out TResponse, out TPayment>
         where TResponse : ICompleteOnlinePaymentResponse
     {
         TResponse CompletePayment(TPaymentId payment);

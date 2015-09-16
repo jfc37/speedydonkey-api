@@ -1,4 +1,5 @@
-﻿using System.Web.Http.ModelBinding;
+﻿using System.Net;
+using System.Web.Http.ModelBinding;
 using Validation;
 
 namespace SpeedyDonkeyApi.Controllers
@@ -14,6 +15,13 @@ namespace SpeedyDonkeyApi.Controllers
             }
 
             return modelState;
+        }
+
+        public static HttpStatusCode GetStatusCode(this ValidationResult instance, HttpStatusCode validStatusCode)
+        {
+            return instance.IsValid
+                ? validStatusCode
+                : HttpStatusCode.BadRequest;
         }
     }
 }

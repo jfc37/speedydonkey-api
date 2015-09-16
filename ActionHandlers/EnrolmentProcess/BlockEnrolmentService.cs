@@ -8,7 +8,7 @@ namespace ActionHandlers.EnrolmentProcess
 {
     public interface IBlockEnrolmentService
     {
-        IList<Block> EnrolInBlocks(User user, IList<int> blockIds);
+        IList<Block> EnrolInBlocks(User user, IEnumerable<int> blockIds);
     }
 
     public class BlockEnrolmentService : IBlockEnrolmentService
@@ -24,7 +24,7 @@ namespace ActionHandlers.EnrolmentProcess
             _bookingRepository = bookingRepository;
         }
 
-        public IList<Block> EnrolInBlocks(User user, IList<int> blockIds)
+        public IList<Block> EnrolInBlocks(User user, IEnumerable<int> blockIds)
         {
             var allBlocks = _blockRepository.GetAllWithChildren(new[] {"Classes"});
             var interestedBlocks = allBlocks.Where(b => blockIds.Any(x => x == b.Id));
@@ -37,11 +37,11 @@ namespace ActionHandlers.EnrolmentProcess
             return blocksBeingEnroledIn;
         }
 
-        private void AddClassesToUserSchedule(User user, IEnumerable<IClass> classes)
+        private void AddClassesToUserSchedule(User user, IEnumerable<Class> classes)
         {
             if (user.Schedule == null)
             {
-                user.Schedule = new List<IBooking>();
+                user.Schedule = new List<Booking>();
             }
             var bookings = classes.Select(x => new Booking
             {
@@ -55,12 +55,12 @@ namespace ActionHandlers.EnrolmentProcess
             }
         }
 
-        private void AddUserToClassRoll(User user, IEnumerable<IClass> classes)
+        private void AddUserToClassRoll(User user, IEnumerable<Class> classes)
         {
             foreach (var thisClass in classes)
             {
                 if (thisClass.RegisteredStudents == null)
-                    thisClass.RegisteredStudents = new List<IUser>();
+                    thisClass.RegisteredStudents = new List<User>();
 
                 thisClass.RegisteredStudents.Add(user);
             }
@@ -70,7 +70,7 @@ namespace ActionHandlers.EnrolmentProcess
         {
             if (user.EnroledBlocks == null)
             {
-                user.EnroledBlocks = new List<IBlock>();
+                user.EnroledBlocks = new List<Block>();
             }
             foreach (var block in blockBeingEnroledIn)
             {

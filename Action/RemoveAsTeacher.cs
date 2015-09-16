@@ -15,7 +15,7 @@ namespace Actions
         {
             get
             {
-                return String.Format("Remove user {0} as teacher", ActionAgainst.FullName);
+                return String.Format("Remove teacher id {0} as teacher", ActionAgainst.Id);
             }
         }
     }

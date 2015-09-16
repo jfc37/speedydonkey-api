@@ -61,7 +61,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuleRunners\AllRulesAreValidRunner.cs" />
     <Compile Include="RuleRunners\IRuleRunner.cs" />
-    <Compile Include="Rules\AreUsersExistingTeachersRule.cs" />
+    <Compile Include="RuleRunners\IsUserNotATeacher.cs" />
+    <Compile Include="Rules\AreTeachersValidRule.cs" />
     <Compile Include="Rules\DateIsNotTooFarInThePastRule.cs" />
     <Compile Include="Rules\DoesIdExist.cs" />
     <Compile Include="Rules\DoesUserHaveClaimRule.cs" />
@@ -75,6 +76,8 @@
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="ValidatorOverlord.cs" />
+    <Compile Include="Validators\Teachers\RemoveAsTeacherValidator.cs" />
+    <Compile Include="Validators\Teachers\SetAsTeacherValidator.cs" />
     <Compile Include="Validators\UpdateClassValidator.cs" />
     <Compile Include="Validators\UpdateBlockValidator.cs" />
     <Compile Include="Validators\UpdateLevelValidator.cs" />

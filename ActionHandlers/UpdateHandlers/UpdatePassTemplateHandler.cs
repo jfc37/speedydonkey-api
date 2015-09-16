@@ -9,8 +9,8 @@ namespace ActionHandlers.UpdateHandlers
     public class UpdatePassTemplateHandler : UpdateEntityHandler<UpdatePassTemplate, PassTemplate>
     {
         public UpdatePassTemplateHandler(
-            IRepository<PassTemplate> repository, ICommonInterfaceCloner cloner)
-            : base(repository, cloner)
+            IRepository<PassTemplate> repository)
+            : base(repository)
         {
         }
     }

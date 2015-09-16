@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BC1C3D55-94BF-447B-89D4-2E592EECB33F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntegrationTests</RootNamespace>
+    <AssemblyName>IntegrationTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Features\Blocks\UpdateBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateBlock.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Classes\ClassAttendance.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassAttendance.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Blocks\BlockEnrolment.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlockEnrolment.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Blocks\CreateBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateBlock.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Blocks\RetrieveBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrieveBlock.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Classes\RetrieveClass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrieveClass.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Classes\UpdateClass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateClass.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Levels\CreateLevel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateLevel.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Levels\RetrieveLevel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrieveLevel.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Passes\PurchasePass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchasePass.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\PassTemplates\CreatePassTemplate.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreatePassTemplate.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\PassTemplates\RetrievePassTemplate.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrievePassTemplate.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Teachers\CreateTeacher.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateTeacher.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Teachers\RemoveTeacher.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RemoveTeacher.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Teachers\RetrieveTeacher.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrieveTeacher.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Users\CreateUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateUser.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Users\CurrentUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentUser.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Users\CurrentUserSchedule.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentUserSchedule.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Users\GetClaims.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetClaims.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Users\RetrieveUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrieveUser.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\Blocks\BlockEnrolmentSteps.cs" />
+    <Compile Include="Steps\Blocks\CommonBlockSteps.cs" />
+    <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
+    <Compile Include="Steps\Blocks\RetrieveBlockSteps.cs" />
+    <Compile Include="Steps\Blocks\UpdateBlockSteps.cs" />
+    <Compile Include="Steps\Classes\ClassAttendanceSteps.cs" />
+    <Compile Include="Steps\Classes\RetrieveClassSteps.cs" />
+    <Compile Include="Steps\Classes\UpdateClassSteps.cs" />
+    <Compile Include="Steps\Common\PreScenario.cs" />
+    <Compile Include="Steps\Levels\CommonLevelSteps.cs" />
+    <Compile Include="Steps\Levels\CreateLevelSteps.cs" />
+    <Compile Include="Steps\Levels\RetrieveLevelSteps.cs" />
+    <Compile Include="Steps\Passes\CommonPassSteps.cs" />
+    <Compile Include="Steps\Passes\PurchasePassSteps.cs" />
+    <Compile Include="Steps\PassTemplates\CommonPassTemplateSteps.cs" />
+    <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
+    <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
+    <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
+    <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
+    <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
+    <Compile Include="Steps\Teachers\RetrieveTeacherSteps.cs" />
+    <Compile Include="Steps\Users\CommonUserSteps.cs" />
+    <Compile Include="Steps\Users\CreateUserSteps.cs" />
+    <Compile Include="Steps\Users\CurrentUserScheduleSteps.cs" />
+    <Compile Include="Steps\Users\CurrentUserSteps.cs" />
+    <Compile Include="Steps\Users\GetClaimsSteps.cs" />
+    <Compile Include="Steps\Users\RetrieveUserSteps.cs" />
+    <Compile Include="Utilities\ApiCaller.cs" />
+    <Compile Include="Utilities\ModelFunctions\TeacherFunction.cs" />
+    <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyPassTemplateProperties.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyLevelProperties.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyUserProperties.cs" />
+    <Compile Include="Utilities\Routes.cs" />
+    <Compile Include="Utilities\ScenarioCache.cs" />
+    <Compile Include="Utilities\SnakeJsonSerializerStrategy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Features\Blocks\UpdateBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Classes\ClassAttendance.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ClassAttendance.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Blocks\BlockEnrolment.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BlockEnrolment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Blocks\CreateBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Blocks\RetrieveBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrieveBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Classes\RetrieveClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrieveClass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Classes\UpdateClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateClass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Levels\CreateLevel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateLevel.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Levels\RetrieveLevel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrieveLevel.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Passes\PurchasePass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>PurchasePass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\PassTemplates\CreatePassTemplate.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreatePassTemplate.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\PassTemplates\RetrievePassTemplate.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrievePassTemplate.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Teachers\CreateTeacher.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateTeacher.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Teachers\RemoveTeacher.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RemoveTeacher.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Teachers\RetrieveTeacher.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrieveTeacher.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\CreateUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\CurrentUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CurrentUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\CurrentUserSchedule.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CurrentUserSchedule.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\GetClaims.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetClaims.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\RetrieveUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RetrieveUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ActionHandlers\ActionHandlers.csproj">
+      <Project>{AA37B17D-755F-420C-AEB8-CCE08DA6D30E}</Project>
+      <Name>ActionHandlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{6FDCD6FF-6028-424C-BB2C-326315491190}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StudyBuddyApi\SpeedyDonkeyApi.csproj">
+      <Project>{0ed4cace-ae54-49d6-9053-f44de4d7298e}</Project>
+      <Name>SpeedyDonkeyApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Validation\Validation.csproj">
+      <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>
+      <Name>Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

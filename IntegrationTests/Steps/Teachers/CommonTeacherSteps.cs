@@ -1,0 +1,41 @@
+﻿using System.Net;
+using ActionHandlers;
+using IntegrationTests.Steps.Users;
+using IntegrationTests.Utilities;
+using NUnit.Framework;
+using SpeedyDonkeyApi.Models;
+using TechTalk.SpecFlow;
+
+namespace IntegrationTests.Steps.Teachers
+{
+    [Binding]
+    public class CommonTeacherSteps
+    {
+        [Given(@"an existing user is a teacher")]
+        public void GivenAnExistingUserIsATeacher()
+        {
+            new CommonUserSteps().GivenAUserExists();
+            WhenUserIsSetUpAsATeacher();
+        }
+
+        [When(@"user is set up as a teacher")]
+        public void WhenUserIsSetUpAsATeacher()
+        {
+            WhenUserIsAttemptedToBeSetUpAsATeacher();
+
+            Assert.AreEqual(HttpStatusCode.Created, ScenarioCache.GetResponseStatus());
+
+            var teacher = ScenarioCache.GetActionResponse<TeacherModel>();
+            ScenarioCache.StoreTeacherId(teacher.Id);
+        }
+
+        [When(@"user is attempted to be set up as a teacher")]
+        public void WhenUserIsAttemptedToBeSetUpAsATeacher()
+        {
+            var userId = ScenarioCache.GetUserId();
+            var response = ApiCaller.Post<ActionReponse<TeacherModel>>(Routes.GetTeacherById(userId));
+
+            ScenarioCache.StoreActionResponse(response);
+        }
+    }
+}

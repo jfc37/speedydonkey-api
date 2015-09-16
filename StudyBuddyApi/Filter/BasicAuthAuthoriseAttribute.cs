@@ -80,8 +80,8 @@ namespace SpeedyDonkeyApi.Filter
                 {
                     SetCurrentUser(actionContext, user);
 
-                    //var passwordHasher = (IPasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IPasswordHasher));
-                    var passwordHasher = (IPasswordHasher)actionContext.Request.GetDependencyScope().GetService(typeof(IPasswordHasher));
+                    //var passwordHasher = (PasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(PasswordHasher));
+                    var passwordHasher = (PasswordHasher)actionContext.Request.GetDependencyScope().GetService(typeof(PasswordHasher));
                     return passwordHasher.ValidatePassword(password, user.Password);
                 }
             }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Action;
 using Actions;
 using Data.Repositories;
@@ -9,21 +8,19 @@ namespace ActionHandlers.CreateHandlers
 {
     public class CreateLevelHandler : CreateEntityHandler<CreateLevel, Level>
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Teacher> _teacherRepository;
 
-        public CreateLevelHandler(IRepository<Level> repository, IRepository<User> userRepository) : base(repository)
+        public CreateLevelHandler(IRepository<Level> repository, IRepository<Teacher> teacherRepository)
+            : base(repository)
         {
-            _userRepository = userRepository;
+            _teacherRepository = teacherRepository;
         }
 
         protected override void PreHandle(ICrudAction<Level> action)
         {
-            var actualTeachers = action.ActionAgainst
-                .Teachers
-                .Select(teacher => _userRepository.Get(teacher.Id))
-                .Cast<ITeacher>()
+            action.ActionAgainst.Teachers = _teacherRepository.GetAll()
+                .Where(x => action.ActionAgainst.Teachers.Any(y => y.Id == x.Id))
                 .ToList();
-            action.ActionAgainst.Teachers = actualTeachers;
         }
     }
 }

@@ -1,49 +1,58 @@
-﻿using System.Collections.Generic;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common;
+using Data.CodeChunks;
 using Data.Repositories;
 using Data.Searches;
 using Models;
-using Newtonsoft.Json;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class AnnouncementApiController : GenericApiController<AnnouncementModel, Announcement>
+    [RoutePrefix("api/announcements")]
+    public class AnnouncementApiController : GenericApiController<Announcement>
     {
         public AnnouncementApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<Announcement> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Announcement> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
 
+        [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post([FromBody] AnnouncementModel model)
         {
-            return PerformAction(model, x => new CreateAnnouncement(x));
+            var result = PerformAction<CreateAnnouncement, Announcement>(new CreateAnnouncement(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<AnnouncementModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Put(int id, [FromBody] AnnouncementModel model)
         {
             model.Id = id;
-            return PerformAction(model, x => new UpdateAnnouncement(x));
+            var result = PerformAction<UpdateAnnouncement, Announcement>(new UpdateAnnouncement(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<AnnouncementModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Delete(int id)
         {
             var model = new AnnouncementModel { Id = id };
-            return PerformAction(model, x => new DeleteAnnouncement(x));
+            var result = PerformAction<DeleteAnnouncement, Announcement>(new DeleteAnnouncement(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<AnnouncementModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
     }
 }

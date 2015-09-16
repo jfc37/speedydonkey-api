@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
+using Mindscape.Raygun4Net.WebApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -28,90 +29,6 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
-                name: "CurrentUserApi",
-                routeTemplate: "api/users/current",
-                defaults: new { controller = "CurrentUserApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserApi",
-                routeTemplate: "api/users/{id}",
-                defaults: new { controller = "UserApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserNoteApi",
-                routeTemplate: "api/users/{id}/notes",
-                defaults: new { controller = "UserNoteApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "PassNoteApi",
-                routeTemplate: "api/passes/{id}/notes",
-                defaults: new { controller = "PassNoteApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "AnnouncementApi",
-                routeTemplate: "api/announcements/{id}",
-                defaults: new { controller = "AnnouncementApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "TeacherApi",
-                routeTemplate: "api/teachers/{id}",
-                defaults: new { controller = "TeacherApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserActivationApi",
-                routeTemplate: "api/users/activation/{id}",
-                defaults: new { controller = "UserActivationApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserPasswordResetApi",
-                routeTemplate: "api/users/password/reset/{id}",
-                defaults: new { controller = "UserPasswordResetApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "LevelApi",
-                routeTemplate: "api/levels/{id}",
-                defaults: new { controller = "LevelApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "BlockApi",
-                routeTemplate: "api/blocks/{id}",
-                defaults: new { controller = "BlockApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "GenerateAllBlocksApi",
-                routeTemplate: "api/levels/all/blocks",
-                defaults: new { controller = "BlockApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "LevelBlockApi",
-                routeTemplate: "api/levels/{levelId}/blocks",
-                defaults: new { controller = "BlockApi"}
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "EnrolmentApi",
-                routeTemplate: "api/users/{id}/enrolment",
-                defaults: new { controller = "EnrolmentApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ClassApi",
-                routeTemplate: "api/classes/{id}",
-                defaults: new { controller = "ClassApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "PassStatisticApi",
                 routeTemplate: "api/passes/statistics",
                 defaults: new { controller = "PassStatisticApi" }
@@ -130,33 +47,9 @@ namespace SpeedyDonkeyApi
                 );
 
             config.Routes.MapHttpRoute(
-                name: "CurrentUserPassPurchaseApi",
-                routeTemplate: "api/users/current/passtemplates/{passTemplateId}",
-                defaults: new { controller = "UserPassesApi" }
-                );
-
-            config.Routes.MapHttpRoute(
-                name: "PassPurchaseApi",
-                routeTemplate: "api/users/{userId}/passtemplates/{passTemplateId}",
-                defaults: new { controller = "UserPassesApi" }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "BookingApi",
                 routeTemplate: "api/bookings/{id}",
                 defaults: new { controller = "BookingApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CurrentUserScheduleApi",
-                routeTemplate: "api/users/current/schedules",
-                defaults: new { controller = "UserScheduleApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserScheduleApi",
-                routeTemplate: "api/users/{id}/schedules",
-                defaults: new { controller = "UserScheduleApi" }
             );
 
             config.Routes.MapHttpRoute(
@@ -165,29 +58,6 @@ namespace SpeedyDonkeyApi
                 defaults: new { controller = "UserEnroledBlocksApi" }
             );
 
-            config.Routes.MapHttpRoute(
-                name: "CurrentUserPassesApi",
-                routeTemplate: "api/users/current/passes",
-                defaults: new { controller = "UserPassesApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserPassesApi",
-                routeTemplate: "api/users/{id}/passes",
-                defaults: new { controller = "UserPassesApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CurrentUserClaimsApi",
-                routeTemplate: "api/users/current/claims",
-                defaults: new { controller = "UserClaimsApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "UserClaimsApi",
-                routeTemplate: "api/users/{id}/claims",
-                defaults: new { controller = "UserClaimsApi" }
-            );
 
             config.Routes.MapHttpRoute(
                 name: "ClassRegisterApi",
@@ -196,45 +66,9 @@ namespace SpeedyDonkeyApi
             );
 
             config.Routes.MapHttpRoute(
-                name: "ClassAttendanceApi",
-                routeTemplate: "api/classes/{id}/attendance/{studentId}",
-                defaults: new { controller = "ClassAttendanceApi", studentId = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "ClassPassStaticsticsApi",
                 routeTemplate: "api/classes/{id}/passes/statistics",
                 defaults: new { controller = "ClassPassStaticsticsApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ReferenceDataApi",
-                routeTemplate: "api/reference/{id}",
-                defaults: new { controller = "ReferenceDataApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "PassTemplateApi",
-                routeTemplate: "api/passtemplate/{id}",
-                defaults: new { controller = "PassTemplateApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ProfitReport",
-                routeTemplate: "api/report/profit",
-                defaults: new { controller = "ProfitReportApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "DatabaseApi",
-                routeTemplate: "api/database",
-                defaults: new { controller = "DatabaseApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ActivityLogApi",
-                routeTemplate: "api/activitylog",
-                defaults: new { controller = "ActivityLogApi" }
             );
 
 
@@ -256,9 +90,7 @@ namespace SpeedyDonkeyApi
             //Force HTTPS on entire API
             config.Filters.Add(new RequireHttpsAttribute());
             #endif
-
-            config.Services.Add(typeof(IExceptionLogger), new GlobalErrorLoggerService());
-
+ 
 
             //Specify values as appropriate (origins,headers,methods)
             var websiteUrl = ConfigurationManager.AppSettings.Get("WebsiteUrl");

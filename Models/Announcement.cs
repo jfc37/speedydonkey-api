@@ -5,23 +5,13 @@ using Common.Extensions;
 
 namespace Models
 {
-    public interface IAnnouncement : IEntity
-    {
-        string Message { get; set; }
-        ICollection<IBlock> Receivers { get; set; }
-        string Type { get; set; }
-        DateTime? ShowFrom { get; set; }
-        DateTime? ShowUntil { get; set; }
-        bool NotifyAll { get; set; }
-        
-    }
-    public class Announcement : IAnnouncement, IDatabaseEntity
+    public class Announcement : IEntity, IDatabaseEntity
     {
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual string Message { get; set; }
-        public virtual ICollection<IBlock> Receivers { get; set; }
+        public virtual ICollection<Block> Receivers { get; set; }
         public virtual string Type { get; set; }
         public virtual DateTime? ShowFrom { get; set; }
         public virtual DateTime? ShowUntil { get; set; }

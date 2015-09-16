@@ -1,53 +1,49 @@
-using System.Collections.Generic;
-using System.Net.Http;
+using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common;
-using Data.Repositories;
+using Common.Extensions;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class ClassAttendanceApiController : EntityPropertyApiController<ClassAttendanceModel, UserModel, Class>
+    [RoutePrefix("api/classes")]
+    public class ClassAttendanceApiController : EntityPropertyApiController
     {
-        public ClassAttendanceApiController(
-            IRepository<Class> entityRepository,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
-            IActionHandlerOverlord actionHandlerOverlord)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+        public ClassAttendanceApiController(IActionHandlerOverlord actionHandlerOverlord)
+            : base(actionHandlerOverlord)
         {
         }
 
+        [Route("{id}/attendance/{studentId}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public HttpResponseMessage Post(int id, int studentId)
+        public IHttpActionResult Post(int id, int studentId)
         {
-            var classModel = new ClassModel
+            var classModel = new Class(id)
             {
                 Id = id,
-                ActualStudents = new List<IUser>
-                {
-                    new UserModel {Id = studentId}
-                }
+                ActualStudents = new User(studentId).PutIntoList()
             };
-            return PerformAction<CheckStudentIntoClass, ClassModel, Class>(classModel, x => new CheckStudentIntoClass(x));
+            var result = PerformAction<CheckStudentIntoClass, Class>(new CheckStudentIntoClass(classModel));
+
+            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
+        [Route("{id}/attendance/{studentId}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public HttpResponseMessage Delete(int id, int studentId)
+        public IHttpActionResult Delete(int id, int studentId)
         {
-            var classModel = new ClassModel
+            var classModel = new Class(id)
             {
-                Id = id,
-                ActualStudents = new List<IUser>
-                {
-                    new UserModel {Id = studentId}
-                }
+                ActualStudents = new User(studentId).PutIntoList()
             };
-            return PerformAction<RemoveStudentFromClass, ClassModel, Class>(classModel, x => new RemoveStudentFromClass(x));
+            var result = PerformAction<RemoveStudentFromClass, Class>(new RemoveStudentFromClass(classModel));
+
+            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+                .Do();
         }
     }
 }

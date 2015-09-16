@@ -147,7 +147,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.FirstName);
             Map(x => x.Surname);
             Map(x => x.Email);
@@ -165,12 +164,16 @@ namespace Data.Mappings
         }
     }
 
-    public class TeacherMap : SubclassMap<Teacher>
+    public class TeacherMap : ClassMap<Teacher>
     {
         public TeacherMap()
         {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
             HasManyToMany<Class>(x => x.Classes)
                 .AsSet();
+            References<User>(x => x.User);
         }
     }
     public class ClassMap : ClassMap<Class>
@@ -192,7 +195,7 @@ namespace Data.Mappings
             HasManyToMany<User>(x => x.ActualStudents)
                 .Table("ClassAttendance")
                 .AsSet();
-            HasManyToMany<User>(x => x.Teachers)
+            HasManyToMany<Teacher>(x => x.Teachers)
                 .Table("ClassTeacher")
                 .AsSet();
             HasManyToMany<PassStatistic>(x => x.PassStatistics)
@@ -208,7 +211,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             References(x => x.Event)
                 .Class(typeof(Class))
                 .Cascade.SaveUpdate()
@@ -223,14 +225,13 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.ClassesInBlock);
             Map(x => x.ClassMinutes);
             Map(x => x.EndTime);
             Map(x => x.Name);
             Map(x => x.StartTime);
-            HasMany<Block>(x => x.Blocks);
-            HasManyToMany<User>(x => x.Teachers)
+            HasMany(x => x.Blocks);
+            HasManyToMany(x => x.Teachers)
                 .Table("LevelTeacher")
                 .AsSet();
         }
@@ -243,7 +244,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.Name);
@@ -255,7 +255,7 @@ namespace Data.Mappings
                 .Table("UsersEnroledBlocks")
                 .Cascade.SaveUpdate()
                 .AsSet();
-            HasManyToMany<User>(x => x.Teachers)
+            HasManyToMany<Teacher>(x => x.Teachers)
                 .Table("BlockTeacher")
                 .AsSet();
             HasManyToMany<Announcement>(x => x.Announcements)
@@ -271,7 +271,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.CostPerClass);
             Map(x => x.NumberOfClassesAttended);
             References<Pass>(x => x.Pass)
@@ -286,7 +285,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.PassType);
@@ -318,7 +316,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.Type);
             Map(x => x.Name);
             Map(x => x.Description);
@@ -333,7 +330,6 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            Map(x => x.Deleted);
             Map(x => x.ClassesValidFor);
             Map(x => x.Cost);
             Map(x => x.Description);

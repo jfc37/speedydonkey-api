@@ -20,14 +20,11 @@ namespace Validation.Tests
             _repositoryBuilder = new MockRepositoryBuilder<Block>()
                 .WithSuccessfulGet();
             _teacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
-                .WithGet(new Teacher
-                {
-                    Claims = Claim.Teacher.ToString()
-                });
+                .WithGet(new Teacher());
             Parameter = new Block
             {
                 Name = "name",
-                Teachers = new List<ITeacher> { new Teacher(){ Id = 1 } }
+                Teachers = new List<Teacher> { new Teacher(){ Id = 1 } }
             };
         }
 

@@ -1,41 +1,65 @@
-﻿using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using ActionHandlers;
 using Actions;
-using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class TeacherApiController : GenericApiController<TeacherModel, Teacher>
+    [RoutePrefix("api/teachers")]
+    public class TeacherApiController : GenericApiController<Teacher>
     {
         public TeacherApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<Teacher> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Teacher> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
+        [Route("{id}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Post(int id)
+        public IHttpActionResult Post(int id)
         {
-            var model = new TeacherModel{Id = id};
-            return PerformAction(model, x => new SetAsTeacher(x));
+            var model = new Teacher(new User(id));
+            var result = PerformAction<SetAsTeacher, Teacher>(new SetAsTeacher(model));
+
+            return new ActionResultToCreatedHttpActionResult<Teacher, TeacherModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
+        [Route("{id}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
-            var model = new TeacherModel { Id = id };
-            return PerformAction(model, x => new RemoveAsTeacher(x));
+            var model = new Teacher(id);
+            var result = PerformAction<RemoveAsTeacher, Teacher>(new RemoveAsTeacher(model));
+
+            return new ActionResultToOkHttpActionResult<Teacher, TeacherModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
+        [Route]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Get()
+        {
+            return new SetToHttpActionResult<Teacher>(this, GetAll(), x => x.ToModel()).Do();
+        }
 
+        [Route]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Get(string q)
+        {
+            return new SetToHttpActionResult<Teacher>(this, Search(q), x => x.ToModel()).Do();
+        }
+
+        [Route("{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Get(int id)
+        {
+            return new EntityToHttpActionResult<Teacher>(this, GetById(id), x => x.ToModel()).Do();
+        }
     }
 }

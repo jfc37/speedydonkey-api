@@ -31,15 +31,15 @@ namespace ActionHandlersTests
                 .WithGetAll(new [] {
                     new Block
                     {
-                        Classes = new List<IClass>()
+                        Classes = new List<Class>()
                     }
                 });
 
             _action = new EnrolInBlock(new User
             {
                 Id = 5,
-                Passes = new List<IPass>(),
-                EnroledBlocks = new List<IBlock>
+                Passes = new List<Pass>(),
+                EnroledBlocks = new List<Block>
                 {
                     new Block
                     {
@@ -88,7 +88,7 @@ namespace ActionHandlersTests
         [TestCase(8)]
         public void Then_the_users_schedule_should_have_classes_added_to_it(int numberOfClasses)
         {
-            var classes = new List<IClass>();
+            var classes = new List<Class>();
             for (int i = 0; i < numberOfClasses; i++)
             {
                 classes.Add(new Class{Id = i});
@@ -116,7 +116,7 @@ namespace ActionHandlersTests
         [TestCase(8)]
         public void Then_the_class_rolls_should_include_user(int numberOfClasses)
         {
-            var classes = new List<IClass>();
+            var classes = new List<Class>();
             for (int i = 0; i < numberOfClasses; i++)
             {
                 classes.Add(new Class{Id = i});

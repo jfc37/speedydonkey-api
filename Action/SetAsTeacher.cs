@@ -5,9 +5,9 @@ namespace Actions
 {
     public class SetAsTeacher : ICrudAction<Teacher>
     {
-        public SetAsTeacher(Teacher user)
+        public SetAsTeacher(Teacher teacher)
         {
-            ActionAgainst = user;
+            ActionAgainst = teacher;
         }
 
         public Teacher ActionAgainst { get; set; }
@@ -15,7 +15,7 @@ namespace Actions
         {
             get
             {
-                return String.Format("Set user {0} as teacher", ActionAgainst.FullName);
+                return String.Format("Set user {0} as teacher", ActionAgainst.Id);
             }
         }
     }

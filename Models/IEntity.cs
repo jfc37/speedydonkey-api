@@ -1,7 +1,10 @@
-﻿namespace Models
+﻿using System;
+
+namespace Models
 {
     public interface IDatabaseEntity
     {
-        bool Deleted { get; set; }
+        DateTime CreatedDateTime { get; set; }
+        DateTime? LastUpdatedDateTime { get; set; }
     }
 }

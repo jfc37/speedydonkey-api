@@ -40,5 +40,6 @@
         public const string InvalidTeachers = "Teachers selected are invalid";
         public const string TeachersRequired = "Please select at least one teacher";
         public const string InvalidClipsRemaining = "Invalid number of clips remaining";
+        public const string UserIsAlreadyATeacher = "User is already a teacher";
     }
 }

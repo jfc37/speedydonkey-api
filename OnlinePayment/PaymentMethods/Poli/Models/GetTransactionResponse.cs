@@ -10,7 +10,7 @@ namespace OnlinePayments.PaymentMethods.Poli.Models
         public decimal AmountPaid { get; set; }
         public string TransactionStatusCode { get; set; }
         public string ErrorCode { get; set; }
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; private set; }
 
         public void AddError(string errorMessage)
         {

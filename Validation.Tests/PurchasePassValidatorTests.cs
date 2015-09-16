@@ -25,7 +25,7 @@ namespace Validation.Tests
             _user = new User
             {
                 Id = 1,
-                Passes = new List<IPass>
+                Passes = new List<Pass>
                 {
                     new Pass
                     {

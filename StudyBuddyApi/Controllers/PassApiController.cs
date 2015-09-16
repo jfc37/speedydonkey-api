@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using Action;
 using ActionHandlers;
 using Common;
@@ -7,20 +8,17 @@ using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class PassApiController : GenericApiController<PassModel, Pass>
+    public class PassApiController : GenericApiController<Pass>
     {
 
         public PassApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor, 
             IRepository<Pass> repository, 
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Pass> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            : base(actionHandlerOverlord, repository, entitySearch)
         {
         }
 
@@ -31,22 +29,31 @@ namespace SpeedyDonkeyApi.Controllers
 
             if (model.PassType == PassType.Unlimited.ToString())
             {
-                var unlimitedPassModel = _cloner.Clone<ClipPassModel, PassModel>(model);
-                return PerformAction(unlimitedPassModel, x => new UpdatePass(x));
+                var unlimitedPassModel = new CommonInterfaceCloner().Clone<ClipPassModel, PassModel>(model);
+                var result = PerformAction<UpdatePass, Pass>(new UpdatePass(unlimitedPassModel.ToEntity()));
+
+                return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                    new ActionReponse<PassModel>(result.ActionResult.ToModel(), result.ValidationResult));
             }
 
-            return PerformAction(model, x => new UpdatePass(x));
+            var resultResult = PerformAction<UpdatePass, Pass>(new UpdatePass(model.ToEntity()));
+
+            return Request.CreateResponse(resultResult.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<PassModel>(resultResult.ActionResult.ToModel(), resultResult.ValidationResult));
         }
 
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Delete(int id)
         {
-            var model = new PassModel
+            var model = new Pass
             {
                 Id = id
             };
 
-            return PerformAction(model, x => new DeletePass(x));
+            var result = PerformAction<DeletePass, Pass>(new DeletePass(model));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
+                new ActionReponse<PassModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
     }
 }

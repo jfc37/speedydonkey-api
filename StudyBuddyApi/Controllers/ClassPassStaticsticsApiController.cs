@@ -2,30 +2,24 @@ using ActionHandlers;
 using Common;
 using Data.Repositories;
 using Models;
-using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class ClassPassStaticsticsApiController : EntityPropertyApiController<ClassPassStaticsticsModel, PassStatisticModel, Class>
+    public class ClassPassStaticsticsApiController : EntityPropertyApiController
     {
         public ClassPassStaticsticsApiController(
             IRepository<Class> entityRepository,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(actionHandlerOverlord)
         {
         }
     }
-    public class BlockPassStaticsticsApiController : EntityPropertyApiController<ClassPassStaticsticsModel, PassStatisticModel, Class>
+    public class BlockPassStaticsticsApiController : EntityPropertyApiController
     {
         public BlockPassStaticsticsApiController(
             IRepository<Class> entityRepository,
-            IUrlConstructor urlConstructor,
-            ICommonInterfaceCloner cloner,
             IActionHandlerOverlord actionHandlerOverlord)
-            : base(entityRepository, urlConstructor, cloner, actionHandlerOverlord)
+            : base(actionHandlerOverlord)
         {
         }
     }

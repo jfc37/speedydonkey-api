@@ -4,7 +4,7 @@ namespace Validation.Tests.Builders
 {
     public class ValidationResultBuilder
     {
-        private IList<ValidationError> _validationErrors;
+        private List<ValidationError> _validationErrors;
 
         public ValidationResultBuilder()
         {

@@ -7,12 +7,12 @@ using NHibernate;
 
 namespace Data.Repositories
 {
-    public interface IAdvancedRepository<TEntity, TModel> where TEntity : IEntity
+    public interface IAdvancedRepository<TEntity, out TModel> where TEntity : IEntity
     {
         TModel Get(int id);
     }
 
-    public class UserScheduleRepository : IAdvancedRepository<User, IList<IEvent>>
+    public class UserScheduleRepository : IAdvancedRepository<User, IList<Event>>
     {
         private readonly ISession _session;
 
@@ -21,7 +21,7 @@ namespace Data.Repositories
             _session = session;
         }
 
-        public IList<IEvent> Get(int id)
+        public IList<Event> Get(int id)
         {
             var timeBefore = DateTime.Now.AddHours(-1);
             var search = _session.CreateCriteria<User>()
@@ -79,8 +79,7 @@ namespace Data.Repositories
             {
                 search.SetFetchMode(child, FetchMode.Join);
             }
-            var completedSearch = search.Future<TEntity>()
-                .Where(x => !x.Deleted);
+            var completedSearch = search.Future<TEntity>();
 
             var groupedById = completedSearch.GroupBy(x => x.Id);
             var justTheFirstOfEach = groupedById.Select(x => x.First());
@@ -92,7 +91,7 @@ namespace Data.Repositories
         {
             Log(ActivityType.GetById, String.Format("Id: {0}", id));
             var entity = _session.Get<TEntity>(id);
-            return entity == null || entity.Deleted ? null : entity;
+            return entity;
         }
 
         public TEntity GetWithChildren(int id, IList<string> children)
@@ -102,8 +101,7 @@ namespace Data.Repositories
             {
                 search.SetFetchMode(child, FetchMode.Select);
             }
-            var completedSearch = search.Future<TEntity>()
-                .Where(x => !x.Deleted);
+            var completedSearch = search.Future<TEntity>();
 
             var entity = completedSearch.First(x => x.Id == id);
             Log(ActivityType.GetByIdWithChildren, String.Format("Id: {0}, Children: {1}", id, String.Join(", ", children)));
