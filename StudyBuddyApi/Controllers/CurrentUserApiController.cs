@@ -45,7 +45,6 @@ namespace SpeedyDonkeyApi.Controllers
         [ActiveUserRequired]
         public IHttpActionResult Get()
         {
-            throw new Exception("boom");
             return Ok(_repository.Get(_currentUser.Id).ToModel());
         }
     }
