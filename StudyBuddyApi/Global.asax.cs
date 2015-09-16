@@ -118,9 +118,6 @@ namespace SpeedyDonkeyApi
 
             
 
-            var config = new HttpConfiguration();
-            var raygunApiKey = ConfigurationManager.AppSettings.Get("RaygunKey");
-            RaygunWebApiClient.Attach(config, () => new RaygunWebApiClient(raygunApiKey));
         }
     }
 

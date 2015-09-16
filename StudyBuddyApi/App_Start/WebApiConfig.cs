@@ -90,7 +90,9 @@ namespace SpeedyDonkeyApi
             //Force HTTPS on entire API
             config.Filters.Add(new RequireHttpsAttribute());
             #endif
- 
+
+            var raygunApiKey = ConfigurationManager.AppSettings.Get("RaygunKey");
+            RaygunWebApiClient.Attach(config, () => new RaygunWebApiClient(raygunApiKey));
 
             //Specify values as appropriate (origins,headers,methods)
             var websiteUrl = ConfigurationManager.AppSettings.Get("WebsiteUrl");
