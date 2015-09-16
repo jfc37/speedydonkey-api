@@ -17,6 +17,7 @@ using Data.Searches;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using log4net.Config;
+using Mindscape.Raygun4Net.WebApi;
 using NHibernate.Tool.hbm2ddl;
 using Notification;
 using Notification.NotificationHandlers;
@@ -42,6 +43,9 @@ namespace SpeedyDonkeyApi
             GlobalConfiguration.Configuration.Filters.Add(new CurrentUserActionFilter());
 
             var dependencyBuilder = new NHibernateDependancySetup();
+
+
+
 
 
             // Create the container builder.
@@ -111,6 +115,12 @@ namespace SpeedyDonkeyApi
 
             //Setup log4net
             XmlConfigurator.Configure();
+
+            
+
+            var config = new HttpConfiguration();
+            var raygunApiKey = ConfigurationManager.AppSettings.Get("RaygunKey");
+            RaygunWebApiClient.Attach(config, () => new RaygunWebApiClient(raygunApiKey));
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using ActionHandlers;
 using Actions;
 using Common;
@@ -44,6 +45,7 @@ namespace SpeedyDonkeyApi.Controllers
         [ActiveUserRequired]
         public IHttpActionResult Get()
         {
+            throw new Exception("boom");
             return Ok(_repository.Get(_currentUser.Id).ToModel());
         }
     }

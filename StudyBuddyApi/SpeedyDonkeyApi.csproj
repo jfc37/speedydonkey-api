@@ -95,6 +95,12 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
     </Reference>
+    <Reference Include="Mindscape.Raygun4Net">
+      <HintPath>..\packages\Mindscape.Raygun4Net.Core.5.1.1\lib\net40\Mindscape.Raygun4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Mindscape.Raygun4Net.WebApi">
+      <HintPath>..\packages\Mindscape.Raygun4Net.WebApi.5.1.1\lib\net45\Mindscape.Raygun4Net.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="NewRelic.Api.Agent, Version=4.1.136.0, Culture=neutral, PublicKeyToken=06552fced0b33d87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NewRelic.Agent.Api.4.1.136.0\lib\NewRelic.Api.Agent.dll</HintPath>
@@ -194,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Users\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -208,8 +215,9 @@
     <Compile Include="Controllers\BlockApiController.cs" />
     <Compile Include="Controllers\BookingApiController.cs" />
     <Compile Include="Controllers\ClassApiController.cs" />
-    <Compile Include="Controllers\ClassPassStaticsticsApiController.cs" />
     <Compile Include="Controllers\ClassAttendanceApiController.cs" />
+    <Compile Include="Controllers\Classes\ClassPassStaticsticsApiController.cs" />
+    <Compile Include="Controllers\ClassPassStaticsticsApiController.cs" />
     <Compile Include="Controllers\ClassRollApiController.cs" />
     <Compile Include="Controllers\CurrentUserApiController.cs" />
     <Compile Include="Controllers\DatabaseApiController.cs" />
@@ -226,16 +234,16 @@
     <Compile Include="Controllers\PassTemplateApiController.cs" />
     <Compile Include="Controllers\TeacherApiController.cs" />
     <Compile Include="Controllers\ActivityLogApiController.cs" />
-    <Compile Include="Controllers\UserAnnouncementApiController.cs" />
-    <Compile Include="Controllers\RegistrationApiController.cs" />
-    <Compile Include="Controllers\UserClaimsApiController.cs" />
-    <Compile Include="Controllers\UserEnroledBlocksApiController.cs" />
-    <Compile Include="Controllers\PassNoteApiController.cs" />
-    <Compile Include="Controllers\UserNoteApiController.cs" />
-    <Compile Include="Controllers\UserPasswordResetApiController.cs" />
     <Compile Include="Controllers\UserActivationApiController.cs" />
+    <Compile Include="Controllers\RegistrationApiController.cs" />
+    <Compile Include="Controllers\UserAnnouncementApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
+    <Compile Include="Controllers\UserClaimsApiController.cs" />
+    <Compile Include="Controllers\PassNoteApiController.cs" />
+    <Compile Include="Controllers\UserEnroledBlocksApiController.cs" />
+    <Compile Include="Controllers\UserNoteApiController.cs" />
     <Compile Include="Controllers\UserPassesApiController.cs" />
+    <Compile Include="Controllers\UserPasswordResetApiController.cs" />
     <Compile Include="Controllers\UserScheduleApiController.cs" />
     <Compile Include="Controllers\ValidationResultExtensions.cs" />
     <Compile Include="Extensions\ApiControllerExtensions.cs" />

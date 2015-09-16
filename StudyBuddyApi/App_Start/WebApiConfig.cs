@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
+using Mindscape.Raygun4Net.WebApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -89,9 +90,7 @@ namespace SpeedyDonkeyApi
             //Force HTTPS on entire API
             config.Filters.Add(new RequireHttpsAttribute());
             #endif
-
-            config.Services.Add(typeof(IExceptionLogger), new GlobalErrorLoggerService());
-
+ 
 
             //Specify values as appropriate (origins,headers,methods)
             var websiteUrl = ConfigurationManager.AppSettings.Get("WebsiteUrl");
