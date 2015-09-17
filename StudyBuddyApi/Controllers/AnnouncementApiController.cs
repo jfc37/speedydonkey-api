@@ -3,10 +3,10 @@ using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Data.CodeChunks;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
@@ -21,6 +21,24 @@ namespace SpeedyDonkeyApi.Controllers
             IEntitySearch<Announcement> entitySearch)
             : base(actionHandlerOverlord, repository, entitySearch)
         {
+        }
+
+        [Route]
+        public IHttpActionResult Get()
+        {
+            return new SetToHttpActionResult<Announcement>(this, GetAll(), x => x.ToModel()).Do();
+        }
+
+        [Route]
+        public IHttpActionResult Get(string q)
+        {
+            return new SetToHttpActionResult<Announcement>(this, Search(q), x => x.ToModel()).Do();
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Get(int id)
+        {
+            return new EntityToHttpActionResult<Announcement>(this, GetById(id), x => x.ToModel()).Do();
         }
 
         [Route]
@@ -54,5 +72,7 @@ namespace SpeedyDonkeyApi.Controllers
             return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
                 new ActionReponse<AnnouncementModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
+
+
     }
 }
