@@ -6,12 +6,10 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Web.Http.ExceptionHandling;
 using Mindscape.Raygun4Net.WebApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi
 {
@@ -21,55 +19,6 @@ namespace SpeedyDonkeyApi
         {
             // Web API routes
             config.MapHttpAttributeRoutes();
-
-            config.Routes.MapHttpRoute(
-                name: "RegistrationApi",
-                routeTemplate: "api/windy-lindy/registration/{registrationNumber}",
-                defaults: new { controller = "RegistrationApi", registrationNumber = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "PassStatisticApi",
-                routeTemplate: "api/passes/statistics",
-                defaults: new { controller = "PassStatisticApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "PassApi",
-                routeTemplate: "api/passes/{id}",
-                defaults: new { controller = "PassApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CurrentUserAnnouncementsApi",
-                routeTemplate: "api/users/current/announcements",
-                defaults: new { controller = "UserAnnouncementApi" }
-                );
-
-            config.Routes.MapHttpRoute(
-                name: "BookingApi",
-                routeTemplate: "api/bookings/{id}",
-                defaults: new { controller = "BookingApi", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "CurrentUserEnroledBlocksApi",
-                routeTemplate: "api/users/current/blocks",
-                defaults: new { controller = "UserEnroledBlocksApi" }
-            );
-
-
-            config.Routes.MapHttpRoute(
-                name: "ClassRegisterApi",
-                routeTemplate: "api/classes/{id}/roll",
-                defaults: new { controller = "ClassRollApi" }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: "ClassPassStaticsticsApi",
-                routeTemplate: "api/classes/{id}/passes/statistics",
-                defaults: new { controller = "ClassPassStaticsticsApi" }
-            );
 
 
             //Default to json

@@ -8,6 +8,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/users/current/announcements")]
     public class UserAnnouncementApiController : BaseApiController
     {
         private readonly IRepository<User> _userRepository;
@@ -24,6 +25,7 @@ namespace SpeedyDonkeyApi.Controllers
             _currentUser = currentUser;
         }
 
+        [Route]
         public IHttpActionResult Get()
         {
             var user = _userRepository.GetWithChildren(_currentUser.Id, new[] {"EnroledBlocks", "EnroledBlocks.Announcements"});
@@ -32,7 +34,6 @@ namespace SpeedyDonkeyApi.Controllers
                 .Where(x => x.NotifyAll && x.ShouldShowBanner());
 
             var userSpecificAnnouncements = user.EnroledBlocks.SelectMany(x => x.Announcements)
-                .OfType<Announcement>()
                 .Where(x => x.ShouldShowBanner());
 
             var allAnnouncementsToShow = globalAnnouncements.Union(userSpecificAnnouncements).ToList();

@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Http;
+using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common;
@@ -11,6 +12,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/passes")]
     public class PassApiController : GenericApiController<Pass>
     {
 
@@ -22,6 +24,7 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Put(int id, ClipPassModel model)
         {
@@ -42,6 +45,7 @@ namespace SpeedyDonkeyApi.Controllers
                 new ActionReponse<PassModel>(resultResult.ActionResult.ToModel(), resultResult.ValidationResult));
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public HttpResponseMessage Delete(int id)
         {

@@ -8,6 +8,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/classes")]
     public class ClassRollApiController : EntityPropertyApiController
     {
         private readonly IRepository<Class> _entityRepository;
@@ -20,6 +21,7 @@ namespace SpeedyDonkeyApi.Controllers
             _entityRepository = entityRepository;
         }
 
+        [Route("{id:int}/roll")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(int id)
         {

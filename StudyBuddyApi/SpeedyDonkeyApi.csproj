@@ -200,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Classes\" />
     <Folder Include="Controllers\Users\" />
     <Folder Include="Services\" />
   </ItemGroup>
@@ -216,7 +217,6 @@
     <Compile Include="Controllers\BookingApiController.cs" />
     <Compile Include="Controllers\ClassApiController.cs" />
     <Compile Include="Controllers\ClassAttendanceApiController.cs" />
-    <Compile Include="Controllers\Classes\ClassPassStaticsticsApiController.cs" />
     <Compile Include="Controllers\ClassPassStaticsticsApiController.cs" />
     <Compile Include="Controllers\ClassRollApiController.cs" />
     <Compile Include="Controllers\CurrentUserApiController.cs" />

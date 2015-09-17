@@ -22,6 +22,7 @@ namespace SpeedyDonkeyApi.Controllers
             IEntitySearch<Registration> entitySearch)
             : base(actionHandlerOverlord, repository, entitySearch) { }
 
+        [Route("api/windy-lindy/registration")]
         [AllowAnonymous]
         public HttpResponseMessage Post([FromBody] RegistrationModel model)
         {
@@ -31,6 +32,7 @@ namespace SpeedyDonkeyApi.Controllers
                 new ActionReponse<RegistrationModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
+        [Route("api/windy-lindy/registration/{registrationNumber}")]
         [AllowAnonymous]
         public HttpResponseMessage Get(Guid registrationNumber)
         {

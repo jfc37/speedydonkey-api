@@ -1,16 +1,15 @@
-﻿using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using ActionHandlers;
 using Common;
 using Common.Extensions;
 using Data.Repositories;
-using FluentNHibernate.Conventions;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/users")]
     public class UserEnroledBlocksApiController : EntityPropertyApiController
     {
         private readonly IRepository<User> _entityRepository;
@@ -26,12 +25,14 @@ namespace SpeedyDonkeyApi.Controllers
             _currentUser = currentUser;
         }
 
+        [Route("current/blocks")]
         [ActiveUserRequired]
         public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);
         }
 
+        [Route("{id:int}/blocks")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(int id)
         {
