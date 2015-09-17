@@ -10,6 +10,7 @@ using Mindscape.Raygun4Net.WebApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi
 {
