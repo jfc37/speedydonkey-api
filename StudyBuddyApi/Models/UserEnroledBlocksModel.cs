@@ -6,7 +6,6 @@ namespace SpeedyDonkeyApi.Models
 {
     public class UserEnroledBlocksModel : IEntityView<User, BlockModel>
     {
-
         public IEnumerable<BlockModel> ConvertFromEntity(User user)
         {
             if (user.EnroledBlocks == null)

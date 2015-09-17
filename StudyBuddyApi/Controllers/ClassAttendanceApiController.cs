@@ -2,6 +2,7 @@ using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common.Extensions;
+using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
@@ -12,12 +13,27 @@ namespace SpeedyDonkeyApi.Controllers
     [RoutePrefix("api/classes")]
     public class ClassAttendanceApiController : EntityPropertyApiController
     {
-        public ClassAttendanceApiController(IActionHandlerOverlord actionHandlerOverlord)
+        private readonly IRepository<Class> _repository;
+
+        public ClassAttendanceApiController(
+            IActionHandlerOverlord actionHandlerOverlord,
+            IRepository<Class> repository)
             : base(actionHandlerOverlord)
         {
+            _repository = repository;
         }
 
-        [Route("{id}/attendance/{studentId}")]
+        [Route("{id:int}/attendance")]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Get(int id)
+        {
+            var entity = _repository.Get(id);
+            return entity.IsNotNull()
+                ? (IHttpActionResult)Ok(new ClassAttendanceModel().ConvertFromEntity(entity))
+                : NotFound();
+        }
+
+        [Route("{id:int}/attendance/{studentId:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Post(int id, int studentId)
         {
@@ -32,7 +48,7 @@ namespace SpeedyDonkeyApi.Controllers
                 .Do();
         }
 
-        [Route("{id}/attendance/{studentId}")]
+        [Route("{id:int}/attendance/{studentId:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Delete(int id, int studentId)
         {
