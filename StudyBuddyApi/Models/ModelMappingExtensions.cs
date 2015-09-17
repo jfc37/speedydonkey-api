@@ -89,11 +89,16 @@ namespace SpeedyDonkeyApi.Models
                 PaymentStatus = instance.PaymentStatus,
                 Note = instance.Note,
                 Owner = instance.Owner.ToStripedModel(),
-                StartDate = instance.StartDate
+                StartDate = instance.StartDate,
+                CreatedDateTime = instance.CreatedDateTime
             };
         }
         public static PassModel ToStripedModel(this Pass instance)
         {
+            var clipPass = instance as ClipPass;
+            if (clipPass != null)
+                return clipPass.ToStripedModel();
+
             if (instance.IsNull())
                 return null;
 
@@ -106,7 +111,8 @@ namespace SpeedyDonkeyApi.Models
                 PassType = instance.PassType,
                 PaymentStatus = instance.PaymentStatus,
                 Note = instance.Note,
-                StartDate = instance.StartDate
+                StartDate = instance.StartDate,
+                CreatedDateTime = instance.CreatedDateTime
             };
         }
 
@@ -126,7 +132,8 @@ namespace SpeedyDonkeyApi.Models
                 Note = instance.Note,
                 Owner = instance.Owner.ToStripedModel(),
                 StartDate = instance.StartDate,
-                ClipsRemaining = instance.ClipsRemaining
+                ClipsRemaining = instance.ClipsRemaining,
+                CreatedDateTime = instance.CreatedDateTime
             };
         }
         public static ClipPassModel ToStripedModel(this ClipPass instance)
@@ -144,7 +151,8 @@ namespace SpeedyDonkeyApi.Models
                 PaymentStatus = instance.PaymentStatus,
                 Note = instance.Note,
                 StartDate = instance.StartDate,
-                ClipsRemaining = instance.ClipsRemaining
+                ClipsRemaining = instance.ClipsRemaining,
+                CreatedDateTime = instance.CreatedDateTime
             };
         }
 
