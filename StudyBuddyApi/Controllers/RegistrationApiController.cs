@@ -51,8 +51,8 @@ namespace SpeedyDonkeyApi.Controllers
         {
             var all = GetAll().ToList();
             return all.Any()
-                ? (IHttpActionResult) NotFound()
-                : Ok(all);
+                ? Ok(all)
+                : (IHttpActionResult) NotFound();
         }
     }
 }
