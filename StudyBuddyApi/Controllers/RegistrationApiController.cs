@@ -1,54 +1,58 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ActionHandlers;
 using Actions;
-using Common;
 using Data.CodeChunks;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class RegistrationApiController : GenericApiController<RegistrationModel, Registration>
+    public class RegistrationApiController : GenericApiController<Registration>
     {
         public RegistrationApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<Registration> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Registration> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
+        [Route("api/windy-lindy/registration")]
         [AllowAnonymous]
         public HttpResponseMessage Post([FromBody] RegistrationModel model)
         {
-            return PerformAction(model, x => new CreateRegistration(x));
+            var result = PerformAction<CreateRegistration, Registration>(new CreateRegistration(model.ToEntity()));
+
+            return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
+                new ActionReponse<RegistrationModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
+        [Route("api/windy-lindy/registration/{registrationNumber}")]
         [AllowAnonymous]
         public HttpResponseMessage Get(Guid registrationNumber)
         {
-            var entity = new GetRegistrationFromRegistrationNumber(_repository, registrationNumber)
+            var entity = new GetRegistrationFromRegistrationNumber(Repository, registrationNumber)
                 .Do();
 
             if (entity == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound);
 
-            var model = new RegistrationModel().CloneFromEntity(Request, _urlConstructor, entity, _cloner);
-            return Request.CreateResponse(HttpStatusCode.OK, model);
+            return Request.CreateResponse(HttpStatusCode.OK, entity.ToModel());
         }
 
         [Route("api/windy-lindy/registrations")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public override HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
-            return base.Get();
+            var all = GetAll().ToList();
+            return all.Any()
+                ? Ok(all)
+                : (IHttpActionResult) NotFound();
         }
     }
 }

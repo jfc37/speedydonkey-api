@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Actions;
 using Models;
 
@@ -11,7 +10,7 @@ namespace Action
         public string LogText { 
             get
             {
-                return String.Format("Remove student {0} from class {1}", ActionAgainst.ActualStudents.Single().Id, ActionAgainst.Id);
+                return String.Format("Remove student from class {0}", ActionAgainst.Id);
             }
         }
 

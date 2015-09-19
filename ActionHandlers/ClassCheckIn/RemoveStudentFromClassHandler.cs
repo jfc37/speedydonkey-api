@@ -22,7 +22,7 @@ namespace ActionHandlers.ClassCheckIn
             var user = _userRepository.Get(action.ActionAgainst.ActualStudents.Single().Id);
             UpdatePass(user);
             var theClass = _classRepository.Get(action.ActionAgainst.Id);
-            theClass.ActualStudents = theClass.ActualStudents ?? new List<IUser>();
+            theClass.ActualStudents = theClass.ActualStudents ?? new List<User>();
             theClass.ActualStudents.Remove(user);
             _classRepository.Update(theClass);
 
@@ -32,7 +32,7 @@ namespace ActionHandlers.ClassCheckIn
         private void UpdatePass(User user)
         {
             var passToUse = user.GetPassToRefund();
-            ((Pass)passToUse).RefundForClass();
+            passToUse.RefundForClass();
         }
     }
 }

@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using Models;
+﻿using System.Collections.Generic;
+using Common.Extensions;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class TeacherModel : ApiModel<Teacher, TeacherModel>, ITeacher
+    public class TeacherModel
     {
-        protected override string RouteName
-        {
-            get { return "TeacherApi"; }
-        }
-
-        public ICollection<IClass> Classes { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public int Id { get; set; }
+        public UserModel User { get; set; }
+        public List<ClassModel> Classes { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public string FullName { get { return String.Format("{0} {1}", FirstName, Surname); } }
-        public IList<IBooking> Schedule { get; set; }
-        public ICollection<IBlock> EnroledBlocks { get; set; }
-        public IList<IPass> Passes { get; set; }
-        public DateTime CreatedDateTime { get; set; }
-        public DateTime? LastUpdatedDateTime { get; set; }
-        public string Note { get; set; }
+        public string FullName { get { return "{0} {1}".FormatWith(FirstName, Surname); } }
+
     }
 }

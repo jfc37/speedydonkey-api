@@ -7,10 +7,10 @@ namespace ActionHandlers.UpdateHandlers
 {
     public class UpdateUserHandler : UpdateEntityHandler<UpdateUser, User>
     {
-        private readonly IPasswordHasher _passwordHasher;
+        private readonly PasswordHasher _passwordHasher;
 
-        public UpdateUserHandler(IRepository<User> repository, IPasswordHasher passwordHasher, ICommonInterfaceCloner cloner)
-            : base(repository, cloner)
+        public UpdateUserHandler(IRepository<User> repository, PasswordHasher passwordHasher)
+            : base(repository)
         {
             _passwordHasher = passwordHasher;
         }

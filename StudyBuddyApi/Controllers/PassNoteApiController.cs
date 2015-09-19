@@ -7,6 +7,7 @@ using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/passes")]
     public class PassNoteApiController : BaseApiController
     {
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
@@ -16,6 +17,7 @@ namespace SpeedyDonkeyApi.Controllers
             _actionHandlerOverlord = actionHandlerOverlord;
         }
 
+        [Route("{id}/notes")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Put(int id, [FromBody] string note)
         {
@@ -24,7 +26,9 @@ namespace SpeedyDonkeyApi.Controllers
 
             var result = _actionHandlerOverlord.HandleAction<UpdatePassNote, Pass>(action);
 
-            return result.ValidationResult.IsValid ? (IHttpActionResult) Ok() : BadRequest(result.ToJson());
+            return result.ValidationResult.IsValid 
+                ? (IHttpActionResult) Ok() 
+                : BadRequest(result.ToJson());
         }
     }
 }

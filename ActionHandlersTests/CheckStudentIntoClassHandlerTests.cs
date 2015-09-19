@@ -23,7 +23,7 @@ namespace ActionHandlersTests
         {
             UserInDatabase = new User
             {
-                Passes = new List<IPass>
+                Passes = new List<Pass>
                 {
                     new Pass
                     {
@@ -39,7 +39,7 @@ namespace ActionHandlersTests
                 .WithGet(UserInDatabase);
             Action = new CheckStudentIntoClass(new Class
             {
-                ActualStudents = new List<IUser>
+                ActualStudents = new List<User>
                 {
                     new User()
                 }

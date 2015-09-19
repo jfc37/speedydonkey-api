@@ -1,19 +1,12 @@
-﻿using System;
-using Models;
+﻿using Common;
 
 namespace SpeedyDonkeyApi.Models
 {
-    public class PassStatisticModel : ApiModel<PassStatistic, PassStatisticModel>, IPassStatistic
+    public class PassStatisticModel : IEntity
     {
-        protected override string RouteName
-        {
-            get { return "PassStatisticApi"; }
-        }
-
-        public DateTime CreatedDateTime { get; set; }
-        public DateTime? LastUpdatedDateTime { get; set; }
-        public IPass Pass { get; set; }
+        public PassModel Pass { get; set; }
         public decimal CostPerClass { get; set; }
         public int NumberOfClassesAttended { get; set; }
+        public int Id { get; set; }
     }
 }

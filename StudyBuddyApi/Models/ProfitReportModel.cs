@@ -30,7 +30,7 @@ namespace SpeedyDonkeyApi.Models
             get { return BlockProfitReports.Sum(x => x.TotalRevenue); }
         }
 
-        public ProfitReportModel Populate(IList<Pass> passesBought, List<Block> blocksWithInPeriod, IList<Pass> unlimitedPasses)
+        public ProfitReportModel Populate(IEnumerable<Pass> passesBought, IEnumerable<Block> blocksWithInPeriod, IEnumerable<Pass> unlimitedPasses)
         {
             var model = new ProfitReportModel
             {

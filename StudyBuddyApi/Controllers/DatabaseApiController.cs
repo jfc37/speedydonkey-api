@@ -4,11 +4,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Common;
-using Models;
-using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi.Controllers
 {
+    [RoutePrefix("api/database")]
     public class DatabaseApiController : ApiController
     {
         private readonly IAppSettings _appSettings;
@@ -18,7 +17,7 @@ namespace SpeedyDonkeyApi.Controllers
             _appSettings = appSettings;
         }
 
-        //[ClaimsAuthorise(Claim = Claim.DeleteDatabase)]
+        [Route]
         public HttpResponseMessage Delete()
         {
             if (!Convert.ToBoolean(_appSettings.GetSetting(AppSettingKey.AllowDatabaseDelete)))

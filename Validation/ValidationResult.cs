@@ -6,7 +6,7 @@ namespace Validation
     public class ValidationResult
     {
         public bool IsValid { get { return !ValidationErrors.Any(); } }
-        public IList<ValidationError> ValidationErrors { get; set; }
+        public List<ValidationError> ValidationErrors { get; set; }
 
         public ValidationResult()
         {

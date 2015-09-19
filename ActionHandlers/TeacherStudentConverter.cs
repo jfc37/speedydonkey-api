@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Common;
+using Common.Extensions;
+using Data.CodeChunks;
 using Data.Repositories;
 using Models;
 
@@ -8,80 +8,82 @@ namespace ActionHandlers
 {
     public interface ITeacherStudentConverter
     {
-        Teacher ToTeacher(int studentId);
-        User ToStudent(int teacherId);
+        Teacher AddAsTeacher(int studentId);
+        User RemoveAsTeacher(int teacherId);
     }
 
     public class TeacherStudentConverter : ITeacherStudentConverter
     {
-        private readonly ICommonInterfaceCloner _cloner;
         private readonly IRepository<Teacher> _teacherRepository;
         private readonly IRepository<User> _studentRepository;
 
-        public TeacherStudentConverter(ICommonInterfaceCloner cloner, IRepository<Teacher> teacherRepository, IRepository<User> studentRepository)
+        public TeacherStudentConverter(IRepository<Teacher> teacherRepository, IRepository<User> studentRepository)
         {
-            _cloner = cloner;
             _teacherRepository = teacherRepository;
             _studentRepository = studentRepository;
         }
 
-        public Teacher ToTeacher(int studentId)
+        public Teacher AddAsTeacher(int studentId)
         {
             var student = _studentRepository.Get(studentId);
-            var teacher = _cloner.Clone<User, Teacher>(student);
 
-            CopyProperties(student, teacher);
+            student.Claims = new AppendClaimToUser(student.Claims, Claim.Teacher)
+                .Do();
 
-            AddTeacherClaim(teacher);
-            var createdTeacher = _teacherRepository.Create(teacher);
-
-            RemoveAssociations(student);
-            return createdTeacher;
+            return _teacherRepository.Create(new Teacher(student));
         }
 
-        public User ToStudent(int teacherId)
+        public User RemoveAsTeacher(int teacherId)
         {
             var teacher = _teacherRepository.Get(teacherId);
-            var student = _cloner.Clone<Teacher, User>(teacher);
+            var student = (User) teacher.User;
+            
+            student.Claims = new RemoveClaimFromUser(student.Claims, Claim.Teacher).Do();
 
-            CopyProperties(teacher, student);
-            RemoveTeacherClaim(student);
-            var createdStudent = _studentRepository.Create(student);
+            _teacherRepository.Delete(teacherId);
+            return student;
+        }
+    }
 
-            RemoveAssociations(teacher);
-            return createdStudent;
+    public class AppendClaimToUser : ICodeChunk<string>
+    {
+        private readonly string _currentClaims;
+        private readonly Claim _claim;
+
+        public AppendClaimToUser(string currentClaims, Claim claim)
+        {
+            _currentClaims = currentClaims;
+            _claim = claim;
         }
 
-        private void RemoveAssociations(User user)
+        public string Do()
         {
-            user.Passes.Clear();
-            user.EnroledBlocks.Clear();
-            user.Schedule.Clear();
-            _studentRepository.Delete(user.Id);
+            if (String.IsNullOrWhiteSpace(_currentClaims))
+                return _claim.ToString();
+
+            if (!_currentClaims.Contains(_claim.ToString()))
+                return _currentClaims + "," + _claim;
+
+            return _currentClaims;
+        }
+    }
+
+    public class RemoveClaimFromUser : ICodeChunk<string>
+    {
+        private readonly string _currentClaims;
+        private readonly Claim _claim;
+
+        public RemoveClaimFromUser(string currentClaims, Claim claim)
+        {
+            _currentClaims = currentClaims;
+            _claim = claim;
         }
 
-        private void CopyProperties(User fromUser, User toUser)
+        public string Do()
         {
-            toUser.EnroledBlocks = new List<IBlock>(fromUser.EnroledBlocks);
-            toUser.Passes = new List<IPass>(fromUser.Passes);
-            toUser.Schedule = new List<IBooking>(fromUser.Schedule);
-            toUser.Claims = fromUser.Claims;
-            toUser.ActivationKey = fromUser.ActivationKey;
-            toUser.Status = fromUser.Status;
-        }
-
-        private void AddTeacherClaim(User userToMakeTeacher)
-        {
-            if (String.IsNullOrWhiteSpace(userToMakeTeacher.Claims))
-                userToMakeTeacher.Claims = Claim.Teacher.ToString();
-            else if (!userToMakeTeacher.Claims.Contains(Claim.Teacher.ToString()))
-                userToMakeTeacher.Claims = userToMakeTeacher.Claims + "," + Claim.Teacher;
-        }
-
-        private void RemoveTeacherClaim(User userToMakeTeacher)
-        {
-            if (!String.IsNullOrWhiteSpace(userToMakeTeacher.Claims))
-                userToMakeTeacher.Claims = userToMakeTeacher.Claims.Replace(Claim.Teacher.ToString(), "");
+            return _currentClaims.IsNotNullOrWhiteSpace() 
+                ? _currentClaims.Replace(_claim.ToString(), "") 
+                : _currentClaims;
         }
     }
 }

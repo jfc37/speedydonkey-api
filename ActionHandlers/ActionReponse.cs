@@ -15,6 +15,12 @@ namespace ActionHandlers
             ValidationResult = new ValidationResult();
         }
 
+        public ActionReponse(TResult actionResult, ValidationResult validationResult)
+        {
+            ActionResult = actionResult;
+            ValidationResult = validationResult;
+        }
+
         public ValidationResult ValidationResult { get; set; }
         public TResult ActionResult { get; set; }
     }

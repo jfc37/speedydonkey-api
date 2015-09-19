@@ -1,53 +1,84 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class BlockApiController : GenericApiController<BlockModel, Block>
+    [RoutePrefix("api")]
+    public class BlockApiController : GenericApiController<Block>
     {
         public BlockApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor, 
             IRepository<Block> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Block> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            : base(actionHandlerOverlord, repository, entitySearch) { }
+
+        [Route("blocks")]
+        public IHttpActionResult Get()
         {
+            return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToModel()).Do();
         }
 
-        [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Post(int levelId)
+        [Route("blocks")]
+        public IHttpActionResult Get(string q)
         {
-            return PerformAction(new BlockModel {Level = new LevelModel {Id = levelId}}, x => new CreateBlock(x));
+            return new SetToHttpActionResult<Block>(this, Search(q), x => x.ToModel()).Do();
         }
 
-        [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Post()
+        [Route("blocks/{id:int}")]
+        public IHttpActionResult Get(int id)
         {
-            return PerformAction(new BlockModel(), x => new GenerateBlocksForAllLevels(x));
+            return new EntityToHttpActionResult<Block>(this, GetById(id), x => x.ToModel()).Do();
         }
 
+        [Route("levels/{levelId:int}/blocks")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Put(int id, [FromBody] BlockModel model)
+        public IHttpActionResult Post(int levelId)
+        {
+            var blockModel = new BlockModel {Level = new LevelModel {Id = levelId}};
+            var result = PerformAction<CreateBlock, Block>(new CreateBlock(blockModel.ToEntity()));
+
+            return new ActionResultToCreatedHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
+
+        [Route("levels/all/blocks")]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public IHttpActionResult Post()
+        {
+            var result = PerformAction<GenerateBlocksForAllLevels, Block>(new GenerateBlocksForAllLevels(new Block()));
+
+            return new ActionResultToCreatedHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
+
+        [Route("blocks/{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public IHttpActionResult Put(int id, [FromBody] BlockModel model)
         {
             model.Id = id;
-            return PerformAction(model, x => new UpdateBlock(x));
+            var result = PerformAction<UpdateBlock, Block>(new UpdateBlock(model.ToEntity()));
+
+            return new ActionResultToOkHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
+        [Route("blocks/{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
-            var model = new BlockModel {Id = id};
-            return PerformAction(model, x => new DeleteBlock(x));
+            var model = new Block {Id = id};
+            var result = PerformAction<DeleteBlock, Block>(new DeleteBlock(model));
+
+            return new ActionResultToOkHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
+                .Do();
         }
     }
 }

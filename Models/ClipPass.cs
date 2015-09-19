@@ -1,11 +1,6 @@
 ﻿namespace Models
 {
-    public interface IClipPass : IPass
-    {
-        int ClipsRemaining { get; set; }
-    }
-
-    public class ClipPass : Pass, IClipPass
+    public class ClipPass : Pass
     {
         public virtual int ClipsRemaining { get; set; }
 

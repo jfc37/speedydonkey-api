@@ -15,7 +15,7 @@ namespace OnlinePayments.CodeChunks
 
         public PayPalAPIInterfaceServiceService Do()
         {
-            var config = new GetPayPalConfig(_appSettings).Do(); ;
+            var config = new GetPayPalConfig(_appSettings).Do();
 
             return new PayPalAPIInterfaceServiceService(config);
         }

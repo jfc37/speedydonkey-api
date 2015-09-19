@@ -1,38 +1,47 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Http;
 using ActionHandlers;
-using Actions;
-using Common;
 using Data.Repositories;
 using Data.Searches;
+using FluentNHibernate.Conventions;
 using Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class ActivityLogApiController : GenericApiController<ActivityLogModel, ActivityLog>
+    [RoutePrefix("api/activity_logs")]
+    public class ActivityLogApiController : GenericApiController<ActivityLog>
     {
         public ActivityLogApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<ActivityLog> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<ActivityLog> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
-
+        [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public override HttpResponseMessage Get()
+        public IHttpActionResult Get()
         {
-            return base.Get();
+            var all = GetAll().ToList();
+            if (all.IsEmpty())
+            {
+                return NotFound();
+            }
+
+            return Ok(all);
         }
 
+        [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public override HttpResponseMessage Get(string q)
+        public IHttpActionResult Get(string q)
         {
-            return base.Get(q);
+            var searchResult = Search(q).ToList();
+            if (searchResult.IsEmpty())
+            {
+                return NotFound();
+            }
+
+            return Ok(searchResult);
         }
     }
 }

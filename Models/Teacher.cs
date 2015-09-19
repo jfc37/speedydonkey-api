@@ -1,19 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Common;
 
 namespace Models
 {
-    public interface ITeacher : IUser
+    public class Teacher : IEntity, IDatabaseEntity
     {
-        ICollection<IClass> Classes { get; set; } 
-    }
+        public virtual User User { get; set; }
+        public virtual ICollection<Class> Classes { get; set; }
+        public virtual int Id { get; set; }
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
 
-    public class Teacher : User, ITeacher
-    {
-        public virtual ICollection<IClass> Classes { get; set; }
+        public Teacher()
+        {
+            
+        }
+
+        public Teacher(User user)
+        {
+            User = user;
+        }
+
+        public Teacher(int id)
+        {
+            Id = id;
+        }
     }
 }

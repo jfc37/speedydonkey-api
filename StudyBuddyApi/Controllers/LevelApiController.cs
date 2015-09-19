@@ -1,47 +1,72 @@
-﻿using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class LevelApiController : GenericApiController<LevelModel, Level>
+    [RoutePrefix("api/levels")]
+    public class LevelApiController : GenericApiController<Level>
     {
         public LevelApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<Level> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<Level> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch)
+            : base(actionHandlerOverlord, repository, entitySearch) { }
+
+        [Route]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public IHttpActionResult Post([FromBody] LevelModel model)
         {
+            var result = PerformAction<CreateLevel, Level>(new CreateLevel(model.ToEntity()));
+
+            return new ActionResultToCreatedHttpActionResult<Level, LevelModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Post([FromBody] LevelModel model)
-        {
-            return PerformAction(model, x => new CreateLevel(x));
-        }
-
-        [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Put(int id,  [FromBody] LevelModel model)
+        public IHttpActionResult Put(int id, [FromBody] LevelModel model)
         {
             model.Id = id;
-            return PerformAction(model, x => new UpdateLevel(x));
+            var result = PerformAction<UpdateLevel, Level>(new UpdateLevel(model.ToEntity()));
+
+            return new ActionResultToOkHttpActionResult<Level, LevelModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public HttpResponseMessage Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
-            var model = new LevelModel{ Id = id};
-            return PerformAction(model, x => new DeleteLevel(x));
+            var model = new Level {Id = id};
+            var result = PerformAction<DeleteLevel, Level>(new DeleteLevel(model));
+
+            return new ActionResultToOkHttpActionResult<Level, LevelModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
+
+        [Route]
+        public IHttpActionResult Get()
+        {
+            return new SetToHttpActionResult<Level>(this, GetAll(), x => x.ToModel()).Do();
+        }
+
+        [Route]
+        public IHttpActionResult Get(string q)
+        {
+            return new SetToHttpActionResult<Level>(this, Search(q), x => x.ToModel()).Do();
+        }
+
+        [Route("{id:int}")]
+        public IHttpActionResult Get(int id)
+        {
+            return new EntityToHttpActionResult<Level>(this, GetById(id), x => x.ToModel()).Do();
         }
     }
 }

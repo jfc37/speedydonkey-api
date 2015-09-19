@@ -27,7 +27,7 @@ namespace Validation.Validators
                 .Must(HavePermissionForPaymentStatus).WithMessage(ValidationMessages.CannontAddPaidPass);
         }
 
-        private bool HavePermissionForPaymentStatus(User user, IList<IPass> passes)
+        private bool HavePermissionForPaymentStatus(User user, IList<Pass> passes)
         {
             if (passes.Single().PaymentStatus == PassPaymentStatus.Pending.ToString())
                 return true;

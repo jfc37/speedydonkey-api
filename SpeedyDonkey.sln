@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinePayments", "OnlinePay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinePaymentsTests", "OnlinePaymentsTests\OnlinePaymentsTests.csproj", "{43596953-67A1-4E99-B326-586211FE2497}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{BC1C3D55-94BF-447B-89D4-2E592EECB33F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,10 @@ Global
 		{43596953-67A1-4E99-B326-586211FE2497}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43596953-67A1-4E99-B326-586211FE2497}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43596953-67A1-4E99-B326-586211FE2497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1C3D55-94BF-447B-89D4-2E592EECB33F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1C3D55-94BF-447B-89D4-2E592EECB33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1C3D55-94BF-447B-89D4-2E592EECB33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1C3D55-94BF-447B-89D4-2E592EECB33F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +132,7 @@ Global
 		{27BF4A3A-76B6-486C-AF99-4671B1445777} = {6DC9588D-44DF-4448-AF24-D42074FB822A}
 		{E60D9FFE-EBE3-42F6-981C-6BFD426E9E2D} = {6DC9588D-44DF-4448-AF24-D42074FB822A}
 		{43596953-67A1-4E99-B326-586211FE2497} = {6DC9588D-44DF-4448-AF24-D42074FB822A}
+		{BC1C3D55-94BF-447B-89D4-2E592EECB33F} = {6DC9588D-44DF-4448-AF24-D42074FB822A}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

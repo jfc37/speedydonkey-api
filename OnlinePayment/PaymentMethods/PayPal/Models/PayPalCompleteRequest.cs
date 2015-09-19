@@ -13,8 +13,8 @@ namespace OnlinePayments.PaymentMethods.PayPal.Models
 
         public PayPalCompleteRequest() { }
 
-        public string Token { get; set; }
-        public decimal Amount { get; set; }
-        public string PayerId { get; set; }
+        public string Token { get; private set; }
+        public decimal Amount { get; private set; }
+        public string PayerId { get; private set; }
     }
 }

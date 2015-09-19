@@ -1,55 +1,65 @@
-﻿using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Actions;
-using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Services;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    public class UserApiController : GenericApiController<UserModel, User>
+    [RoutePrefix("api/users")]
+    public class UserApiController : GenericApiController<User>
     {
         public UserApiController(
-            IActionHandlerOverlord actionHandlerOverlord, 
-            IUrlConstructor urlConstructor,
+            IActionHandlerOverlord actionHandlerOverlord,
             IRepository<User> repository,
-            ICommonInterfaceCloner cloner,
             IEntitySearch<User> entitySearch)
-            : base(actionHandlerOverlord, urlConstructor, repository, cloner, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch) { }
 
+        [Route]
         [AllowAnonymous]
-        public HttpResponseMessage Post([FromBody] UserModel model)
+        public IHttpActionResult Post([FromBody] UserModel model)
         {
-            return PerformAction(model, x => new CreateUser(x));
+            var result = PerformAction<CreateUser, User>(new CreateUser(model.ToEntity()));
+
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
         }
 
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get()
+        public IHttpActionResult Get(int id)
         {
-            return base.Get();
+            return new EntityToHttpActionResult<User>(this, GetById(id), x => x.ToModel()).Do();
         }
 
+        [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public override HttpResponseMessage Get(string q)
+        public IHttpActionResult Get()
         {
-            return base.Get(q);
+            return new SetToHttpActionResult<User>(this, GetAll(), x => x.ToModel()).Do();
         }
 
+        [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public HttpResponseMessage Delete(int id)
+        public IHttpActionResult Get(string q)
         {
-            var model = new UserModel
-            {
-                Id = id
-            };
+            return new SetToHttpActionResult<User>(this, Search(q), x => x.ToModel()).Do();
+        }
 
-            return PerformAction(model, x => new DeleteUser(x));
+        [Route("{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Delete(int id)
+        {
+            var model = new User(id);
+            var result = PerformAction<DeleteUser, User>(new DeleteUser(model));
+
+
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this)
+                .Do();
         }
     }
 }

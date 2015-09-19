@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Common;
 
 namespace Models
 {
-    public interface IRoom
-    {
-        string Location { get; set; }
-        IList<IBooking> Bookings { get; set; }
-    }
 
-    public class Room : IRoom
+    public class Room : IEntity
     {
         public string Location { get; set; }
-        public IList<IBooking> Bookings { get; set; }
+        public IList<Booking> Bookings { get; set; }
+        public virtual int Id { get; set; }
+        public virtual DateTime CreatedDateTime { get; set; }
+        public virtual DateTime? LastUpdatedDateTime { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace ActionHandlers.UserPasses
         public void AddPassToUser(User user, string paymentStatus, PassTemplate passTemplate)
         {
             if (user.Passes == null)
-                user.Passes = new List<IPass>();
+                user.Passes = new List<Pass>();
 
             var startDate = new GetStartDateForUsersPurchasedPass(user)
                 .Do();

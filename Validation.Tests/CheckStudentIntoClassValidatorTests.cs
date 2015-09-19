@@ -34,13 +34,13 @@ namespace Validation.Tests
         {
             _retrievedClass = new Class
             {
-                ActualStudents = new List<IUser>()
+                ActualStudents = new List<User>()
             };
             _classRepositoryBuilder = new MockRepositoryBuilder<Class>()
                 .WithGet(_retrievedClass);
             _retrievedUser = new User
             {
-                Passes = new List<IPass>
+                Passes = new List<Pass>
                 {
                     new Pass
                     {
@@ -55,7 +55,7 @@ namespace Validation.Tests
             _class = new Class
             {
                 Id = 12,
-                ActualStudents = new List<IUser>
+                ActualStudents = new List<User>
                 {
                     new User()
                 }

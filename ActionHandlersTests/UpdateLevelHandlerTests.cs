@@ -14,13 +14,12 @@ namespace ActionHandlersTests
     {
         private MockRepositoryBuilder<Level> _levelRepositoryBuilder;
         private MockRepositoryBuilder<Teacher> _teacherRepositoryBuilder;
-        private ICommonInterfaceCloner _cloner;
         private UpdateLevel _action;
         private Level _savedLevel;
 
         private void PerformAction()
         {
-            new UpdateLevelHandler(_levelRepositoryBuilder.BuildObject(), _teacherRepositoryBuilder.BuildObject(), _cloner)
+            new UpdateLevelHandler(_levelRepositoryBuilder.BuildObject(), _teacherRepositoryBuilder.BuildObject())
                 .Handle(_action);
         }
 
@@ -29,14 +28,14 @@ namespace ActionHandlersTests
         {
             _savedLevel = new Level
             {
-                Teachers = new List<ITeacher> { new Teacher() }
+                Teachers = new List<Teacher> { new Teacher() }
             };
             _levelRepositoryBuilder = new MockRepositoryBuilder<Level>()
                 .WithGet(_savedLevel)
                 .WithUpdate();
             _teacherRepositoryBuilder = new MockRepositoryBuilder<Teacher>()
                 .WithSuccessfulGet();
-            _cloner = new CommonInterfaceCloner();
+            new CommonInterfaceCloner();
             _action = new UpdateLevel(_savedLevel);
         }
 
@@ -65,7 +64,7 @@ namespace ActionHandlersTests
             public void Then_teachers_are_retrieved()
             {
                 _action.ActionAgainst = new Level();
-                _action.ActionAgainst.Teachers = new List<ITeacher>(_savedLevel.Teachers);
+                _action.ActionAgainst.Teachers = new List<Teacher>(_savedLevel.Teachers);
                 _action.ActionAgainst.Teachers.Add(new Teacher{Id = 2});
 
                 PerformAction();
@@ -81,7 +80,7 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Level
                 {
-                    Teachers = new List<ITeacher>
+                    Teachers = new List<Teacher>
                     {
                         new Teacher{Id = 1}
                     }
@@ -101,7 +100,7 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst = new Level
                 {
-                    Teachers = new List<ITeacher>
+                    Teachers = new List<Teacher>
                     {
                         new Teacher{Id = 2}
                     }

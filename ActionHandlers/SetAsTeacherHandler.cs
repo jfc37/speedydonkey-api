@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Actions;
-using Common;
-using Data.Repositories;
+﻿using Actions;
 using Models;
 
 namespace ActionHandlers
@@ -18,7 +14,7 @@ namespace ActionHandlers
 
         public Teacher Handle(SetAsTeacher action)
         {
-            return _teacherStudentConverter.ToTeacher(action.ActionAgainst.Id);
+            return _teacherStudentConverter.AddAsTeacher(action.ActionAgainst.User.Id);
         }
     }
 
