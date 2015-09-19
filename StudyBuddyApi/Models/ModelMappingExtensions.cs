@@ -292,8 +292,8 @@ namespace SpeedyDonkeyApi.Models
 
             return new TeacherModel
             {
-                User = instance.User.ToModel(),
-                Classes = instance.Classes.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
+                User = instance.User.ToStripedModel(),
+                Classes = instance.Classes.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Id = instance.Id,
                 FirstName = instance.User.IsNull() ? null : instance.User.FirstName,
                 Surname = instance.User.IsNull() ? null : instance.User.Surname
