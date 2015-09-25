@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Mindscape.Raygun4Net;
 using Mindscape.Raygun4Net.WebApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -16,6 +18,7 @@ namespace SpeedyDonkeyApi
 {
     public static class WebApiConfig
     {
+        private static RaygunWebApiClient _client;
         public static void Register(HttpConfiguration config)
         {
             // Web API routes
@@ -42,7 +45,16 @@ namespace SpeedyDonkeyApi
             #endif
 
             var raygunApiKey = ConfigurationManager.AppSettings.Get("RaygunKey");
-            RaygunWebApiClient.Attach(config, () => new RaygunWebApiClient(raygunApiKey));
+            RaygunWebApiClient.Attach(config, () =>
+            {
+                if (_client == null)
+                {
+                    _client = new RaygunWebApiClient(raygunApiKey);
+                    _client.SendingMessage += client_SendingMessage;
+                }
+
+                return _client;
+            });
 
             //Specify values as appropriate (origins,headers,methods)
             var websiteUrl = ConfigurationManager.AppSettings.Get("WebsiteUrl");
@@ -51,6 +63,20 @@ namespace SpeedyDonkeyApi
                 websiteUrl = "https://spa-speedydonkey.azurewebsites.net,http://localhost:7300,http://localhost:3000";
             var cors = new EnableCorsAttribute(websiteUrl, "*", "*");
             config.EnableCors(cors);
+        }
+
+        private static void client_SendingMessage(object sender, RaygunSendingMessageEventArgs e)
+        {
+            if (e.Message.Details.Request == null || e.Message.Details.Request.Url == null || e.Message.Details.Response == null)
+            {
+                return;
+            }
+            var code = e.Message.Details.Response.StatusCode;
+
+            if (code == 404)
+            {
+                e.Cancel = true;
+            }
         }
     }
 
