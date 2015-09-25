@@ -15,6 +15,11 @@ namespace IntegrationTests.Utilities
         public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
 
+        public static string GetChangeClassTeachers(int classId)
+        {
+            return "classes/{0}/teachers".FormatWith(classId);
+        }
+
         public static string GetTeacherById(int userId)
         {
             return "{0}/{1}".FormatWith(Teachers, userId);

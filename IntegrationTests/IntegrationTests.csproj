@@ -57,6 +57,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UpdateBlock.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Classes\ChangeClassTeachers.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChangeClassTeachers.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Classes\ClassAttendance.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -158,6 +163,7 @@
     <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
     <Compile Include="Steps\Blocks\RetrieveBlockSteps.cs" />
     <Compile Include="Steps\Blocks\UpdateBlockSteps.cs" />
+    <Compile Include="Steps\Classes\ChangeClassTeachersSteps.cs" />
     <Compile Include="Steps\Classes\ClassAttendanceSteps.cs" />
     <Compile Include="Steps\Classes\RetrieveClassSteps.cs" />
     <Compile Include="Steps\Classes\UpdateClassSteps.cs" />
@@ -195,6 +201,10 @@
     <None Include="Features\Blocks\UpdateBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UpdateBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Classes\ChangeClassTeachers.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ChangeClassTeachers.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Classes\ClassAttendance.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

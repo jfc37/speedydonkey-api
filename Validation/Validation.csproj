@@ -76,6 +76,7 @@
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="ValidatorOverlord.cs" />
+    <Compile Include="Validators\Classes\ChangeClassTeachersValidator.cs" />
     <Compile Include="Validators\Teachers\RemoveAsTeacherValidator.cs" />
     <Compile Include="Validators\Teachers\SetAsTeacherValidator.cs" />
     <Compile Include="Validators\UpdateClassValidator.cs" />
