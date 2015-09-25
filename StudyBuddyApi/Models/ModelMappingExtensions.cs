@@ -243,7 +243,7 @@ namespace SpeedyDonkeyApi.Models
                 Id = instance.Id,
                 Message = instance.Message,
                 NotifyAll = instance.NotifyAll,
-                Receivers = instance.Receivers.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
+                Receivers = instance.Receivers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 ShowFrom = instance.ShowFrom,
                 ShowUntil = instance.ShowUntil,
                 Type = instance.Type
@@ -257,8 +257,8 @@ namespace SpeedyDonkeyApi.Models
 
             return new LevelModel
             {
-                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
-                Blocks = instance.Blocks.SelectIfNotNull(x => x.ToModel()).ToListIfNotNull(),
+                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
+                Blocks = instance.Blocks.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Name = instance.Name,
                 ClassMinutes = instance.ClassMinutes,
                 ClassesInBlock = instance.ClassesInBlock,
@@ -339,9 +339,7 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
-                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Block = instance.Block.ToModel(),
-                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
+                Block = instance.Block.ToStripedModel(),
                 Id = instance.Id
             };
         }
