@@ -323,8 +323,7 @@ namespace SpeedyDonkeyApi.Models
                 Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Name = instance.Name,
                 EndTime = instance.EndTime,
-                StartTime = instance.StartTime,
-                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull()
+                StartTime = instance.StartTime
             };
         }
 
