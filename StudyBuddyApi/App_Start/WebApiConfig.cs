@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http.Formatting;
+﻿using System.Configuration;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -34,9 +29,12 @@ namespace SpeedyDonkeyApi
             jsonSetting.Converters.Add(new StringEnumConverter());
             config.Formatters.JsonFormatter.SerializerSettings = jsonSetting;
 
-            //Give json some camel casing
-            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
-            jsonFormatter.SerializerSettings.ContractResolver = new LowerCaseDelimitedPropertyNamesContractResovler('_');
+            //Camel case json
+            var formatters = GlobalConfiguration.Configuration.Formatters;
+            var jsonFormatter = formatters.JsonFormatter;
+            var settings = jsonFormatter.SerializerSettings;
+            settings.Formatting = Formatting.Indented;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
 
             #if !DEBUG
@@ -76,67 +74,6 @@ namespace SpeedyDonkeyApi
             if (code == 404)
             {
                 e.Cancel = true;
-            }
-        }
-    }
-
-    public class LowerCaseDelimitedPropertyNamesContractResovler : DefaultContractResolver
-    {
-        private readonly char _delimiter;
-
-        public LowerCaseDelimitedPropertyNamesContractResovler(char delimiter)
-            : base(true)
-        {
-            _delimiter = delimiter;
-        }
-
-        protected override string ResolvePropertyName(string propertyName)
-        {
-            return propertyName.ToDelimitedString(_delimiter);
-        }
-    }
-
-    public static class StringExtensions
-    {
-        public static string ToDelimitedString(this string @string, char delimiter)
-        {
-            var camelCaseString = @string.ToCamelCaseString();
-            return new string(InsertDelimiterBeforeCaps(camelCaseString, delimiter).ToArray());
-        }
-
-        public static string ToCamelCaseString(this string @string)
-        {
-            if (string.IsNullOrEmpty(@string) || !char.IsUpper(@string[0]))
-            {
-                return @string;
-            }
-            string lowerCasedFirstChar =
-                char.ToLower(@string[0], CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture);
-            if (@string.Length > 1)
-            {
-                lowerCasedFirstChar = lowerCasedFirstChar + @string.Substring(1);
-            }
-            return lowerCasedFirstChar;
-        }
-
-        private static IEnumerable<char> InsertDelimiterBeforeCaps(IEnumerable<char> input, char delimiter)
-        {
-            bool lastCharWasUppper = false;
-            foreach (char c in input)
-            {
-                if (char.IsUpper(c))
-                {
-                    if (!lastCharWasUppper)
-                    {
-                        yield return delimiter;
-                        lastCharWasUppper = true;
-                    }
-                    yield return char.ToLower(c);
-                    continue;
-                }
-
-                yield return c;
-                lastCharWasUppper = false;
             }
         }
     }
