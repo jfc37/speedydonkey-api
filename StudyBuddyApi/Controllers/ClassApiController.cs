@@ -1,7 +1,10 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
+using Action.Classes;
 using ActionHandlers;
 using Data.Repositories;
 using Data.Searches;
@@ -20,6 +23,22 @@ namespace SpeedyDonkeyApi.Controllers
             IRepository<Class> repository, 
             IEntitySearch<Class> entitySearch) : base(actionHandlerOverlord, repository, entitySearch)
         {
+        }
+
+        [Route("{id:int}/teachers")]
+        [NullModelActionFilter]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Put(int id, [FromBody] IEnumerable<int> teacherIds)
+        {
+            var theClass = new Class(id)
+            {
+                Teachers = teacherIds.Select(x => new Teacher(x)).ToList()
+            };
+
+            var result = PerformAction<ChangeClassTeachers, Class>(new ChangeClassTeachers(theClass));
+
+            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+                .Do();
         }
 
         [Route("{id:int}")]

@@ -14,7 +14,7 @@ namespace IntegrationTests.Steps.Common
         [BeforeScenario]
         public void SetupSystem()
         {
-            SimpleJson.CurrentJsonSerializerStrategy = new SnakeJsonSerializerStrategy();
+           // SimpleJson.CurrentJsonSerializerStrategy = new SnakeJsonSerializerStrategy();
             ResetDatabase();
             CreateAdminUser();
         }
