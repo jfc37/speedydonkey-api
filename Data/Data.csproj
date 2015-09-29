@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityLogger.cs" />
-    <Compile Include="CodeChunks\GetBlockEndDate.cs" />
     <Compile Include="CodeChunks\GetCostPerClassForUnlimitedPass.cs" />
     <Compile Include="CodeChunks\GetPayPalConfig.cs" />
     <Compile Include="CodeChunks\GetPopulatedPassFromPassTemplate.cs" />

@@ -16,7 +16,6 @@ namespace Models
         public virtual DateTime? ShowFrom { get; set; }
         public virtual DateTime? ShowUntil { get; set; }
         public virtual bool NotifyAll { get; set; }
-        public virtual bool Deleted { get; set; }
 
         public virtual bool ShouldShowBanner()
         {

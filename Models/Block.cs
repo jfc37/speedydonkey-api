@@ -15,7 +15,6 @@ namespace Models
         public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<User> EnroledStudents { get; set; }
-        public virtual Level Level { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
         public virtual ICollection<Announcement> Announcements { get; set; }
         public virtual DateTime StartDate { get; set; }

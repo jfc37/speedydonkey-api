@@ -62,14 +62,12 @@
     <Compile Include="CheckStudentIntoClassHandlerTests.cs" />
     <Compile Include="CreateActionTests.cs" />
     <Compile Include="EnrolInBlockHandlerTests.cs" />
-    <Compile Include="GenerateBlocksForAllLevelsHandlerTests.cs" />
     <Compile Include="ResetPasswordHandlerTests.cs" />
     <Compile Include="ForgottenPasswordHandlerTests.cs" />
     <Compile Include="PasswordHasherTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateClassHandlerTests.cs" />
     <Compile Include="UpdateBlockHandlerTests.cs" />
-    <Compile Include="UpdateLevelHandlerTests.cs" />
     <Compile Include="UserPassAppenderTests.cs" />
   </ItemGroup>
   <ItemGroup>

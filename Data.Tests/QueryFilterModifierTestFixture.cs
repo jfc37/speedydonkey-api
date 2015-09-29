@@ -11,7 +11,7 @@ namespace Data.Tests
     public class QueryFilterModifierTestFixture
     {
         private IList<User> _userCollectionSearchingOver;
-        private IList<Level> _levelCollectionSearchingOver; 
+        private IList<Block> _blockCollectionSearchingOver; 
 
         private QueryFilterModifier GetFilterDescriptor()
         {
@@ -136,26 +136,26 @@ namespace Data.Tests
             [Test]
             public void It_should_handle_an_equals_query_with_a_number()
             {
-                _levelCollectionSearchingOver = new[]
+                _blockCollectionSearchingOver = new[]
                 {
-                    new Level{ClassesInBlock = 50}, 
-                    new Level{ClassesInBlock = 45}, 
+                    new Block{NumberOfClasses= 50}, 
+                    new Block{NumberOfClasses= 45}, 
                 };
 
                 var filterDescriptor = GetFilterDescriptor();
 
-                var queryable = _levelCollectionSearchingOver.AsQueryable();
+                var queryable = _blockCollectionSearchingOver.AsQueryable();
                 var searchStatement = new SearchStatement
                 {
                     Condition = SearchKeyWords.Equals,
-                    Element = "ClassesInBlock",
+                    Element = "NumberOfClasses",
                     Value = "45"
                 };
                 var queryableWithFilter = filterDescriptor.ApplyStatementToQuery(searchStatement, queryable);
 
                 var filteredResults = queryableWithFilter.ToList();
                 var result = filteredResults.Single();
-                Assert.AreEqual(45, result.ClassesInBlock);
+                Assert.AreEqual(45, result.NumberOfClasses);
             }
 
             [Test]
@@ -187,7 +187,7 @@ namespace Data.Tests
         //    [Test]
         //    public void It_should_handle_query_on_a_number()
         //    {
-        //        _levelCollectionSearchingOver = new[]
+        //        _blockCollectionSearchingOver = new[]
         //        {
         //            new Assignment{ FinalMarkPercentage = 80 },
         //            new Assignment{ FinalMarkPercentage = 50 }
@@ -195,7 +195,7 @@ namespace Data.Tests
 
         //        var filterDescriptor = GetFilterDescriptor();
 
-        //        var queryable = _levelCollectionSearchingOver.AsQueryable();
+        //        var queryable = _blockCollectionSearchingOver.AsQueryable();
         //        var searchStatement = new SearchStatement
         //        {
         //            Condition = SearchKeyWords.GreaterThan,
@@ -212,7 +212,7 @@ namespace Data.Tests
         //    [Test]
         //    public void It_should_handle_query_on_a_date()
         //    {
-        //        _levelCollectionSearchingOver = new[]
+        //        _blockCollectionSearchingOver = new[]
         //        {
         //            new Assignment{ StartDate = DateTime.Today.AddMonths(-1) },
         //            new Assignment{ StartDate = DateTime.Today.AddMonths(1)}
@@ -220,7 +220,7 @@ namespace Data.Tests
 
         //        var filterDescriptor = GetFilterDescriptor();
 
-        //        var queryable = _levelCollectionSearchingOver.AsQueryable();
+        //        var queryable = _blockCollectionSearchingOver.AsQueryable();
         //        var searchStatement = new SearchStatement
         //        {
         //            Condition = SearchKeyWords.GreaterThan,
@@ -237,7 +237,7 @@ namespace Data.Tests
         //    [Test]
         //    public void It_should_return_no_results_when_nothing_matches()
         //    {
-        //        _levelCollectionSearchingOver = new[]
+        //        _blockCollectionSearchingOver = new[]
         //        {
         //            new Assignment{ FinalMarkPercentage = 80 },
         //            new Assignment{ FinalMarkPercentage = 50 }
@@ -245,7 +245,7 @@ namespace Data.Tests
 
         //        var filterDescriptor = GetFilterDescriptor();
 
-        //        var queryable = _levelCollectionSearchingOver.AsQueryable();
+        //        var queryable = _blockCollectionSearchingOver.AsQueryable();
         //        var searchStatement = new SearchStatement
         //        {
         //            Condition = SearchKeyWords.GreaterThan,
@@ -264,7 +264,7 @@ namespace Data.Tests
         //    [Test]
         //    public void It_should_handle_query_on_a_number()
         //    {
-        //        _levelCollectionSearchingOver = new[]
+        //        _blockCollectionSearchingOver = new[]
         //        {
         //            new Assignment{ FinalMarkPercentage = 80 },
         //            new Assignment{ FinalMarkPercentage = 50 }
@@ -272,7 +272,7 @@ namespace Data.Tests
 
         //        var filterDescriptor = GetFilterDescriptor();
 
-        //        var queryable = _levelCollectionSearchingOver.AsQueryable();
+        //        var queryable = _blockCollectionSearchingOver.AsQueryable();
         //        var searchStatement = new SearchStatement
         //        {
         //            Condition = SearchKeyWords.LessThan,
@@ -289,7 +289,7 @@ namespace Data.Tests
         //    [Test]
         //    public void It_should_handle_query_on_a_date()
         //    {
-        //        _levelCollectionSearchingOver = new[]
+        //        _blockCollectionSearchingOver = new[]
         //        {
         //            new Assignment{ StartDate = DateTime.Today.AddMonths(-1) },
         //            new Assignment{ StartDate = DateTime.Today.AddMonths(1)}
@@ -297,7 +297,7 @@ namespace Data.Tests
 
         //        var filterDescriptor = GetFilterDescriptor();
 
-        //        var queryable = _levelCollectionSearchingOver.AsQueryable();
+        //        var queryable = _blockCollectionSearchingOver.AsQueryable();
         //        var searchStatement = new SearchStatement
         //        {
         //            Condition = SearchKeyWords.LessThan,
@@ -314,7 +314,7 @@ namespace Data.Tests
         //    [Test]
         //    public void It_should_return_no_results_when_nothing_matches()
         //    {
-        //        _levelCollectionSearchingOver = new[]
+        //        _blockCollectionSearchingOver = new[]
         //        {
         //            new Assignment{ FinalMarkPercentage = 80 },
         //            new Assignment{ FinalMarkPercentage = 50 }
@@ -322,7 +322,7 @@ namespace Data.Tests
 
         //        var filterDescriptor = GetFilterDescriptor();
 
-        //        var queryable = _levelCollectionSearchingOver.AsQueryable();
+        //        var queryable = _blockCollectionSearchingOver.AsQueryable();
         //        var searchStatement = new SearchStatement
         //        {
         //            Condition = SearchKeyWords.LessThan,

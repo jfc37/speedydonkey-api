@@ -12,13 +12,6 @@ namespace ActionHandlers.DeleteHandlers
         {
         }
     }
-    public class DeleteLevelHandler : DeleteEntityHandler<DeleteLevel, Level>
-    {
-        public DeleteLevelHandler(IRepository<Level> repository)
-            : base(repository)
-        {
-        }
-    }
     public class DeleteBlockHandler : DeleteEntityHandler<DeleteBlock, Block>
     {
         private readonly IRepository<Class> _classRepository;

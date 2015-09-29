@@ -24,7 +24,6 @@ namespace SpeedyDonkeyApi.Models
 
         public List<TeacherModel> Teachers { get; set; }
         public List<UserModel> EnroledStudents { get; set; }
-        public LevelModel Level { get; set; }
         public List<ClassModel> Classes { get; set; }
         public List<AnnouncementModel> Announcements { get; set; }
         public DateTime StartDate { get; set; }
