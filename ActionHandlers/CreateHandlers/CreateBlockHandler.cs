@@ -1,69 +1,113 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Action;
-using ActionHandlers.CreateHandlers.Strategies;
 using Actions;
+using Common.Extensions;
+using Data.CodeChunks;
 using Data.Repositories;
 using Models;
 
 namespace ActionHandlers.CreateHandlers
 {
-    public class CreateBlockHandler : CreateEntityHandler<CreateBlock, Block>
+    public class CreateClassesForBlock : ICodeChunk<IEnumerable<Class>>
     {
-        private readonly IRepository<Level> _levelRepository;
-        private readonly IRepository<Class> _classRepository;
-        private readonly IRepository<Booking> _bookingRepository;
-        private readonly IBlockPopulatorStrategyFactory _blockPopulatorStrategyFactory;
+        private readonly IRepository<Class> _repository;
+        private readonly Block _block;
 
-        public CreateBlockHandler(
-            IRepository<Block> repository, 
-            IRepository<Level> levelRepository, 
-            IRepository<Class> classRepository, 
-            IRepository<Booking> bookingRepository, 
-            IBlockPopulatorStrategyFactory blockPopulatorStrategyFactory) : base(repository)
+        public CreateClassesForBlock(IRepository<Class> repository, Block block)
         {
-            _levelRepository = levelRepository;
-            _classRepository = classRepository;
-            _bookingRepository = bookingRepository;
-            _blockPopulatorStrategyFactory = blockPopulatorStrategyFactory;
+            _repository = repository;
+            _block = block;
         }
 
-        protected override void PreHandle(ICrudAction<Block> action)
+        public IEnumerable<Class> Do()
         {
-            var level = _levelRepository.Get(action.ActionAgainst.Level.Id);
-            action.ActionAgainst.Name = level.Name;
-            var populatorStrategy = _blockPopulatorStrategyFactory.GetStrategy(level);
-            populatorStrategy.PopulateBlock(action.ActionAgainst, level);
-        }
-
-        protected override void PostHandle(ICrudAction<Block> action, Block result)
-        {
-            var classTime = result.StartDate;
-            for (int classNumber = 1; classNumber <= action.ActionAgainst.Level.ClassesInBlock; classNumber++)
+            var classTime = _block.StartDate;
+            for (int classNumber = 1; classNumber <= _block.NumberOfClasses; classNumber++)
             {
                 var nextClass = new Class
                 {
                     StartTime = classTime,
-                    EndTime = classTime.AddMinutes(result.Level.ClassMinutes),
-                    Block = result,
-                    Name = result.Name + " - Week " + classNumber,
-                    Teachers = new List<Teacher>(result.Level.Teachers),
+                    EndTime = classTime.AddMinutes(_block.MinutesPerClass),
+                    Block = _block,
+                    Name = _block.Name + " - Week " + classNumber,
+                    Teachers = new List<Teacher>(_block.Teachers),
                     CreatedDateTime = DateTime.Now
                 };
-                CreateBookingForClass(nextClass, result.Level.Room);
-                _classRepository.Create(nextClass);
+                var createdClass = _repository.Create(nextClass);
                 classTime = classTime.AddDays(7);
+
+                yield return createdClass;
             }
         }
+    }
 
-        private void CreateBookingForClass(Class nextClass, Room room)
+    public class CreateBlockHandler : CreateEntityHandler<CreateBlock, Block>
+    {
+        private readonly IRepository<Class> _classRepository;
+
+        public CreateBlockHandler(
+            IRepository<Block> repository, 
+            IRepository<Class> classRepository) : base(repository)
         {
-            var booking = new Booking
+            _classRepository = classRepository;
+        }
+
+        protected override void PreHandle(ICrudAction<Block> action)
+        {
+            base.PreHandle(action);
+            action.ActionAgainst.EndDate = action.ActionAgainst.StartDate
+                .AddMinutes(action.ActionAgainst.MinutesPerClass)
+                .AddWeeks(action.ActionAgainst.NumberOfClasses - 1);
+        }
+
+        protected override void PostHandle(ICrudAction<Block> action, Block result)
+        {
+            result.Classes = new CreateClassesForBlock(_classRepository, result)
+                .Do()
+                .ToList();
+        }
+    }
+    public class CreateNextBlockHandler : CreateEntityHandler<CreateNextBlock, Block>
+    {
+        private readonly IRepository<Block> _repository;
+        private readonly IRepository<Class> _classRepository;
+
+        public CreateNextBlockHandler(
+            IRepository<Block> repository, 
+            IRepository<Class> classRepository) : base(repository)
+        {
+            _repository = repository;
+            _classRepository = classRepository;
+        }
+
+        protected override void PreHandle(ICrudAction<Block> action)
+        {
+            base.PreHandle(action);
+
+            var previousBlock = _repository.Get(action.ActionAgainst.Id);
+
+            action.ActionAgainst = new Block
             {
-                Event = nextClass,
-                Room = room
+                CreatedDateTime = DateTime.Now,
+                MinutesPerClass = previousBlock.MinutesPerClass,
+                NumberOfClasses = previousBlock.NumberOfClasses,
+                Name = previousBlock.Name,
+                Teachers = new List<Teacher>(previousBlock.Teachers),
+                StartDate = previousBlock.StartDate.AddWeeks(previousBlock.NumberOfClasses)
             };
-            _bookingRepository.Create(booking);
+
+            action.ActionAgainst.EndDate = action.ActionAgainst.StartDate
+                .AddMinutes(action.ActionAgainst.MinutesPerClass)
+                .AddWeeks(action.ActionAgainst.NumberOfClasses - 1);
+        }
+
+        protected override void PostHandle(ICrudAction<Block> action, Block result)
+        {
+            result.Classes = new CreateClassesForBlock(_classRepository, result)
+                .Do()
+                .ToList();
         }
     }
 }

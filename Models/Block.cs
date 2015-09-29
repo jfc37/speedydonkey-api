@@ -6,6 +6,11 @@ namespace Models
 {
     public class Block : IDatabaseEntity, IEntity
     {
+        public Block()
+        {
+            Classes = new List<Class>();
+        }
+
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }
@@ -17,5 +22,7 @@ namespace Models
         public virtual DateTime EndDate { get; set; }
         public virtual string Name { get; set; }
         public virtual int Id { get; set; }
+        public virtual int NumberOfClasses { get; set; }
+        public virtual int MinutesPerClass { get; set; }
     }
 }

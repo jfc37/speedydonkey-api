@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Classes\ChangeClassTeachers.cs" />
     <Compile Include="CreateAnnouncement.cs" />
+    <Compile Include="CreateNextBlock.cs" />
     <Compile Include="CreateRegistration.cs" />
     <Compile Include="DeleteAnnouncement.cs" />
     <Compile Include="DeleteUser.cs" />

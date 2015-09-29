@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Users
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CurrentUser")]
+    [TechTalk.SpecRun.FeatureAttribute("CurrentUser", SourceFile="Features\\Users\\CurrentUser.feature", SourceLine=0)]
     public partial class CurrentUserFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Users
 #line 1 "CurrentUser.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Users
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,11 +62,10 @@ namespace IntegrationTests.Features.Users
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get current user")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("currentuser")]
-        [NUnit.Framework.CategoryAttribute("get")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get current user", new string[] {
+                "user",
+                "currentuser",
+                "get"}, SourceLine=3)]
         public virtual void GetCurrentUser()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get current user", new string[] {
@@ -83,6 +80,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("the user\'s details can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

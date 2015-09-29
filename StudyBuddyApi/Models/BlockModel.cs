@@ -29,6 +29,8 @@ namespace SpeedyDonkeyApi.Models
         public List<AnnouncementModel> Announcements { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public int NumberOfClasses { get; set; }
+        public int MinutesPerClass { get; set; }
         public string Name { get; set; }
         public int Id { get; set; }
     }

@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Classes
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("UpdateClass")]
+    [TechTalk.SpecRun.FeatureAttribute("UpdateClass", SourceFile="Features\\Classes\\UpdateClass.feature", SourceLine=0)]
     public partial class UpdateClassFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Classes
 #line 1 "UpdateClass.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Classes
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,11 +62,10 @@ namespace IntegrationTests.Features.Classes
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Update class time")]
-        [NUnit.Framework.CategoryAttribute("class")]
-        [NUnit.Framework.CategoryAttribute("update")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
+        [TechTalk.SpecRun.ScenarioAttribute("Update class time", new string[] {
+                "class",
+                "update",
+                "golden_path"}, SourceLine=3)]
         public virtual void UpdateClassTime()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update class time", new string[] {
@@ -85,12 +82,14 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("the class is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
  testRunner.Then("the class\'s start and end time is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
- testRunner.And("the blocks start and end time is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.And("the levels start and end time is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Classes
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("ChangeClassTeachers")]
+    [TechTalk.SpecRun.FeatureAttribute("ChangeClassTeachers", SourceFile="Features\\Classes\\ChangeClassTeachers.feature", SourceLine=0)]
     public partial class ChangeClassTeachersFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Classes
 #line 1 "ChangeClassTeachers.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Classes
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,12 +62,11 @@ namespace IntegrationTests.Features.Classes
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Change class teachers")]
-        [NUnit.Framework.CategoryAttribute("class")]
-        [NUnit.Framework.CategoryAttribute("update")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
-        [NUnit.Framework.CategoryAttribute("change_teacher")]
+        [TechTalk.SpecRun.ScenarioAttribute("Change class teachers", new string[] {
+                "class",
+                "update",
+                "golden_path",
+                "change_teacher"}, SourceLine=3)]
         public virtual void ChangeClassTeachers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change class teachers", new string[] {
@@ -93,6 +90,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("the class teachers are updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

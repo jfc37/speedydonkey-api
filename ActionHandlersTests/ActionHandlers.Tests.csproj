@@ -61,7 +61,6 @@
     <Compile Include="Calculations\WindyLindyPriceCalculationTests.cs" />
     <Compile Include="CheckStudentIntoClassHandlerTests.cs" />
     <Compile Include="CreateActionTests.cs" />
-    <Compile Include="CreateBlockHandlerTests.cs" />
     <Compile Include="EnrolInBlockHandlerTests.cs" />
     <Compile Include="GenerateBlocksForAllLevelsHandlerTests.cs" />
     <Compile Include="ResetPasswordHandlerTests.cs" />

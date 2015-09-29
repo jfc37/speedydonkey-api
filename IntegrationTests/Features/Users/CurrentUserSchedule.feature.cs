@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Users
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CurrentUserSchedule")]
+    [TechTalk.SpecRun.FeatureAttribute("CurrentUserSchedule", SourceFile="Features\\Users\\CurrentUserSchedule.feature", SourceLine=0)]
     public partial class CurrentUserScheduleFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Users
 #line 1 "CurrentUserSchedule.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Users
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,12 +62,11 @@ namespace IntegrationTests.Features.Users
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get current user\'s schedule when enrolled")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("currentuser")]
-        [NUnit.Framework.CategoryAttribute("schedule")]
-        [NUnit.Framework.CategoryAttribute("get")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get current user\'s schedule when enrolled", new string[] {
+                "user",
+                "currentuser",
+                "schedule",
+                "get"}, SourceLine=3)]
         public virtual void GetCurrentUserSScheduleWhenEnrolled()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get current user\'s schedule when enrolled", new string[] {
@@ -91,12 +88,11 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get current user schedule when not enrolled in anything")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("currentuser")]
-        [NUnit.Framework.CategoryAttribute("schedule")]
-        [NUnit.Framework.CategoryAttribute("get")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get current user schedule when not enrolled in anything", new string[] {
+                "user",
+                "currentuser",
+                "schedule",
+                "get"}, SourceLine=10)]
         public virtual void GetCurrentUserScheduleWhenNotEnrolledInAnything()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get current user schedule when not enrolled in anything", new string[] {
@@ -114,6 +110,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("the current user\'s schedule is emtpy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

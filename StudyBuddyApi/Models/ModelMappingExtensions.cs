@@ -213,7 +213,9 @@ namespace SpeedyDonkeyApi.Models
                 EnroledStudents = instance.EnroledStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Level = instance.Level.ToStripedModel(),
                 Name = instance.Name,
-                Id = instance.Id
+                Id = instance.Id,
+                MinutesPerClass = instance.MinutesPerClass,
+                NumberOfClasses = instance.NumberOfClasses
             };
         }
 
@@ -229,7 +231,9 @@ namespace SpeedyDonkeyApi.Models
                 StartDate = instance.StartDate,
                 Level = instance.Level.ToStripedModel(),
                 Name = instance.Name,
-                Id = instance.Id
+                Id = instance.Id,
+                MinutesPerClass = instance.MinutesPerClass,
+                NumberOfClasses = instance.NumberOfClasses
             };
         }
 
@@ -504,7 +508,9 @@ namespace SpeedyDonkeyApi.Models
                 EnroledStudents = instance.EnroledStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Level = instance.Level.ToEntity(),
                 Name = instance.Name,
-                Id = instance.Id
+                Id = instance.Id,
+                MinutesPerClass = instance.MinutesPerClass,
+                NumberOfClasses = instance.NumberOfClasses
             };
         }
 

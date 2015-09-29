@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.PassTemplates
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreatePassTemplate")]
+    [TechTalk.SpecRun.FeatureAttribute("CreatePassTemplate", SourceFile="Features\\PassTemplates\\CreatePassTemplate.feature", SourceLine=0)]
     public partial class CreatePassTemplateFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.PassTemplates
 #line 1 "CreatePassTemplate.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.PassTemplates
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,11 +62,10 @@ namespace IntegrationTests.Features.PassTemplates
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a pass template")]
-        [NUnit.Framework.CategoryAttribute("passtemplate")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
+        [TechTalk.SpecRun.ScenarioAttribute("Create a pass template", new string[] {
+                "passtemplate",
+                "create",
+                "golden_path"}, SourceLine=3)]
         public virtual void CreateAPassTemplate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a pass template", new string[] {
@@ -87,11 +84,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Try to set up an invalid pass template")]
-        [NUnit.Framework.CategoryAttribute("passtemplate")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("validation_error")]
+        [TechTalk.SpecRun.ScenarioAttribute("Try to set up an invalid pass template", new string[] {
+                "passtemplate",
+                "create",
+                "validation_error"}, SourceLine=9)]
         public virtual void TryToSetUpAnInvalidPassTemplate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to set up an invalid pass template", new string[] {
@@ -110,6 +106,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("pass template can not be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

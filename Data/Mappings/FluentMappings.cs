@@ -246,6 +246,8 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.StartDate);
             Map(x => x.EndDate);
+            Map(x => x.NumberOfClasses);
+            Map(x => x.MinutesPerClass);
             Map(x => x.Name);
             References(x => x.Level)
                 .Class(typeof(Level));

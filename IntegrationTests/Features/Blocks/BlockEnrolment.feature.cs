@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Blocks
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("BlockEnrolment")]
+    [TechTalk.SpecRun.FeatureAttribute("BlockEnrolment", SourceFile="Features\\Blocks\\BlockEnrolment.feature", SourceLine=0)]
     public partial class BlockEnrolmentFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Blocks
 #line 1 "BlockEnrolment.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Blocks
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,10 +62,9 @@ namespace IntegrationTests.Features.Blocks
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User enrols in a block")]
-        [NUnit.Framework.CategoryAttribute("block")]
-        [NUnit.Framework.CategoryAttribute("enrolment")]
+        [TechTalk.SpecRun.ScenarioAttribute("User enrols in a block", new string[] {
+                "block",
+                "enrolment"}, SourceLine=3)]
         public virtual void UserEnrolsInABlock()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User enrols in a block", new string[] {
@@ -85,6 +82,12 @@ testRunner.Then("the user is enroled in the block", ((string)(null)), ((TechTalk
 testRunner.And("the user has an item in their upcoming schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }
