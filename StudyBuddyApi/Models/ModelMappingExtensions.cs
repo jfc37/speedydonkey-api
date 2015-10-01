@@ -306,6 +306,8 @@ namespace SpeedyDonkeyApi.Models
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
                 Block = instance.Block.ToStripedModel(),
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
+                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Id = instance.Id
             };
         }

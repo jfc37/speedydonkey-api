@@ -64,18 +64,21 @@ namespace SpeedyDonkeyApi.Controllers
         }
 
         [Route]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
             return new SetToHttpActionResult<Class>(this, GetAll(), x => x.ToModel()).Do();
         }
 
         [Route]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(string q)
         {
             return new SetToHttpActionResult<Class>(this, Search(q), x => x.ToModel()).Do();
         }
 
         [Route("{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(int id)
         {
             return new EntityToHttpActionResult<Class>(this, GetById(id), x => x.ToModel()).Do();
