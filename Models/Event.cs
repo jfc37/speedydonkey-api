@@ -9,7 +9,6 @@ namespace Models
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual int Id { get; set; }
-        public virtual bool Deleted { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<User> RegisteredStudents { get; set; }
         public virtual DateTime StartTime { get; set; }

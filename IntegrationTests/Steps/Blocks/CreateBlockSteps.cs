@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Net;
 using ActionHandlers;
 using Common.Extensions;
+using IntegrationTests.Steps.Teachers;
 using IntegrationTests.Utilities;
-using Models;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
@@ -14,10 +14,37 @@ namespace IntegrationTests.Steps.Blocks
     [Binding]
     public class CreateBlockSteps
     {
-        [When(@"a block is generated from the level")]
-        public void WhenABlockIsGeneratedFromTheLevel()
+        [Given(@"a valid block is ready to be submitted")]
+        public void GivenAValidBlockIsReadyToBeSubmitted()
         {
-            var response = ApiCaller.Post<ActionReponse<BlockModel>>(Routes.GetCreateBlock(ScenarioCache.GetId(ModelIdKeys.LevelIdKey)));
+            new CommonTeacherSteps().GivenAnExistingUserIsATeacher();
+
+            var startDate = DateTime.Now.Date;
+            startDate = startDate.AddHours(11);
+            var block = new BlockModel
+            {
+                MinutesPerClass = 60,
+                NumberOfClasses = 6,
+                Name = "Charleston Level 1",
+                StartDate = startDate,
+                Teachers = new TeacherModel { Id = ScenarioCache.GetTeacherId() }.PutIntoList()
+            };
+
+            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+        }
+
+        [When(@"the block is attempted to be created")]
+        public void WhenTheBlockIsAttemptedToBeCreated()
+        {
+            var response = ApiCaller.Post<ActionReponse<BlockModel>>(ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey), Routes.Blocks);
+            ScenarioCache.StoreActionResponse(response);
+            ScenarioCache.Store(ModelIdKeys.BlockKeyId, response.Data.ActionResult.Id);
+        }
+
+        [When(@"the next block is generated")]
+        public void WhenTheNextBlockIsGenerated()
+        {
+            var response = ApiCaller.Post<ActionReponse<BlockModel>>(Routes.GetCreateNextBlock(ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
 
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
 
@@ -26,12 +53,6 @@ namespace IntegrationTests.Steps.Blocks
 
             var blockResponse = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, response.Data.ActionResult.Id));
             ScenarioCache.Store(ModelKeys.BlockModelKey, blockResponse.Data);
-        }
-
-        [When(@"the next block is generated")]
-        public void WhenTheNextBlockIsGenerated()
-        {
-            WhenABlockIsGeneratedFromTheLevel();
         }
 
         [Then(@"block can be retrieved")]
@@ -74,10 +95,12 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the correct number of classes are created")]
         public void ThenTheCorrectNumberOfClassesAreCreated()
         {
-            var level = ScenarioCache.Get<LevelModel>(ModelKeys.LevelModelKey);
-            var block = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+            var block = response.Data;
 
-            Assert.AreEqual(level.ClassesInBlock, block.Classes.Count);
+            var expectedBlock = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
+
+            Assert.AreEqual(expectedBlock.NumberOfClasses, block.Classes.Count);
         }
 
     }

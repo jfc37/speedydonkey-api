@@ -40,6 +40,9 @@
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="SpecRun.SpecFlowPlugin">
+      <HintPath>..\packages\SpecRun.SpecFlow.1.2.0\lib\net35\SpecRun.SpecFlowPlugin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +52,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="TechTalk.SpecRun">
+      <HintPath>..\packages\SpecRun.SpecFlow.1.2.0\lib\net35\TechTalk.SpecRun.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -91,16 +97,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UpdateClass.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Levels\CreateLevel.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreateLevel.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Levels\RetrieveLevel.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RetrieveLevel.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\Passes\PurchasePass.feature.cs">
       <AutoGen>True</AutoGen>
@@ -194,10 +190,12 @@
     <Compile Include="Utilities\ModelVerfication\VerifyUserProperties.cs" />
     <Compile Include="Utilities\Routes.cs" />
     <Compile Include="Utilities\ScenarioCache.cs" />
-    <Compile Include="Utilities\SnakeJsonSerializerStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Default.srprofile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Features\Blocks\UpdateBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UpdateBlock.feature.cs</LastGenOutput>
@@ -229,14 +227,6 @@
     <None Include="Features\Classes\UpdateClass.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UpdateClass.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\Levels\CreateLevel.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateLevel.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\Levels\RetrieveLevel.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>RetrieveLevel.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Passes\PurchasePass.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -283,6 +273,10 @@
       <LastGenOutput>RetrieveUser.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="runtests.cmd" />
+    <None Include="SpecRunTestProfile.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActionHandlers\ActionHandlers.csproj">
@@ -306,7 +300,9 @@
       <Name>Validation</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -18,8 +18,8 @@ namespace Data.CodeChunks
         public Dictionary<string, string> Do()
         {
             var paypalConfig = new Dictionary<string, string>();
-            paypalConfig.Add("account1.apUsername", _appSettings.GetSetting(AppSettingKey.PayPalUsername));
-            paypalConfig.Add("account1.apPassword", _appSettings.GetSetting(AppSettingKey.PayPalPassword));
+            paypalConfig.Add("account1.apiUsername", _appSettings.GetSetting(AppSettingKey.PayPalUsername));
+            paypalConfig.Add("account1.apiPassword", _appSettings.GetSetting(AppSettingKey.PayPalPassword));
             paypalConfig.Add("account1.apiSignature", _appSettings.GetSetting(AppSettingKey.PayPalSignature));
             paypalConfig.Add("mode", _appSettings.GetSetting(AppSettingKey.PayPalMode));
 

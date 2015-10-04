@@ -1,5 +1,4 @@
-﻿using System;
-using Action;
+﻿using Action;
 using Data.Repositories;
 using FluentValidation;
 using Models;
@@ -7,11 +6,11 @@ using Validation.Rules;
 
 namespace Validation.Validators
 {
-    public class CreateLevelValidator : AbstractValidator<Level>, IActionValidator<CreateLevel, Level>
+    public class CreateBlockValidator : AbstractValidator<Block>, IActionValidator<CreateBlock, Block>
     {
         private readonly IRepository<Teacher> _teacherRepository;
 
-        public CreateLevelValidator(IRepository<Teacher> teacherRepository)
+        public CreateBlockValidator(IRepository<Teacher> teacherRepository)
         {
             _teacherRepository = teacherRepository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
@@ -19,17 +18,13 @@ namespace Validation.Validators
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage(ValidationMessages.MissingName);
 
-            RuleFor(x => x.StartTime)
+            RuleFor(x => x.StartDate)
                 .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingStartTime);
 
-            RuleFor(x => x.EndTime)
-                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingEndTime)
-                .GreaterThan(x => x.StartTime).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime);
-
-            RuleFor(x => x.ClassMinutes)
+            RuleFor(x => x.MinutesPerClass)
                 .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassMinutes);
 
-            RuleFor(x => x.ClassesInBlock)
+            RuleFor(x => x.NumberOfClasses)
                 .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassesInBlock);
 
             RuleFor(x => x.Teachers)

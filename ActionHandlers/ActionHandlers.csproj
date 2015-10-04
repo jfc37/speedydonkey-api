@@ -60,18 +60,15 @@
     <Compile Include="CreateHandlers\CreatePassTemplateHandler.cs" />
     <Compile Include="DeleteHandlers\DeleteEntityHandler.cs" />
     <Compile Include="DeleteHandlers\DeleteHandlers.cs" />
-    <Compile Include="GenerateBlocksForAllLevelsHandler.cs" />
     <Compile Include="ResetPasswordHandler.cs" />
     <Compile Include="ForgottenPasswordHandler.cs" />
     <Compile Include="ActivateUserHandler.cs" />
     <Compile Include="ClassCheckIn\RemoveStudentFromClassHandler.cs" />
     <Compile Include="ClassCheckIn\CheckStudentIntoClassHandler.cs" />
     <Compile Include="CreateHandlers\CreateBlockHandler.cs" />
-    <Compile Include="CreateHandlers\CreateLevelHandler.cs" />
     <Compile Include="CreateHandlers\CreateReferenceDataHandler.cs" />
     <Compile Include="CreateHandlers\CreateUserHandler.cs" />
     <Compile Include="CreateHandlers\CreateEntityHandler.cs" />
-    <Compile Include="CreateHandlers\Strategies\BlockPopulatorStrategy.cs" />
     <Compile Include="EnrolmentProcess\BlockEnrolmentService.cs" />
     <Compile Include="EnrolmentProcess\EnrolInBlockHandler.cs" />
     <Compile Include="PasswordHasher.cs" />
@@ -84,7 +81,6 @@
     <Compile Include="UpdateHandlers\UpdateEntityHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateBlockHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateAnnouncementHandler.cs" />
-    <Compile Include="UpdateHandlers\UpdateLevelHandler.cs" />
     <Compile Include="UpdateHandlers\UpdatePassTemplateHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateUserHandler.cs" />
     <Compile Include="UpdateHandlers\UpdatePassHandler.cs" />
@@ -121,6 +117,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CreateHandlers\Strategies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

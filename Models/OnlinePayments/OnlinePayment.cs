@@ -8,7 +8,6 @@ namespace Models.OnlinePayments
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
-        public virtual bool Deleted { get; set; }
         public virtual OnlinePaymentItem ItemType { get; set; }
         public virtual string ItemId { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }

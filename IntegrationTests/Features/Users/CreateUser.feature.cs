@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Users
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreateUser")]
+    [TechTalk.SpecRun.FeatureAttribute("CreateUser", Description="In order to participate in Full Swing\r\nAs a student\r\nI want to create an account", SourceFile="Features\\Users\\CreateUser.feature", SourceLine=0)]
     public partial class CreateUserFeature
     {
         
@@ -28,27 +27,26 @@ namespace IntegrationTests.Features.Users
 #line 1 "CreateUser.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateUser", "In order to participate in Full Swing\nAs a student\nI want to create an account", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateUser", "In order to participate in Full Swing\r\nAs a student\r\nI want to create an account", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,11 +62,10 @@ namespace IntegrationTests.Features.Users
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a user")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
+        [TechTalk.SpecRun.ScenarioAttribute("Create a user", new string[] {
+                "user",
+                "create",
+                "golden_path"}, SourceLine=6)]
         public virtual void CreateAUser()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a user", new string[] {
@@ -87,11 +84,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a user with missing details")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("validation_error")]
+        [TechTalk.SpecRun.ScenarioAttribute("Create a user with missing details", new string[] {
+                "user",
+                "create",
+                "validation_error"}, SourceLine=12)]
         public virtual void CreateAUserWithMissingDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a user with missing details", new string[] {
@@ -114,11 +110,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a user with an email address already in use")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("validation_error")]
+        [TechTalk.SpecRun.ScenarioAttribute("Create a user with an email address already in use", new string[] {
+                "user",
+                "create",
+                "validation_error"}, SourceLine=20)]
         public virtual void CreateAUserWithAnEmailAddressAlreadyInUse()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a user with an email address already in use", new string[] {
@@ -141,6 +136,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("user is not created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

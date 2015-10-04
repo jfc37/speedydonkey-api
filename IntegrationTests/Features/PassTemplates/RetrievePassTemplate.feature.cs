@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.PassTemplates
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RetrievePassTemplate")]
+    [TechTalk.SpecRun.FeatureAttribute("RetrievePassTemplate", SourceFile="Features\\PassTemplates\\RetrievePassTemplate.feature", SourceLine=0)]
     public partial class RetrievePassTemplateFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.PassTemplates
 #line 1 "RetrievePassTemplate.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.PassTemplates
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,11 +62,10 @@ namespace IntegrationTests.Features.PassTemplates
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get all pass templates")]
-        [NUnit.Framework.CategoryAttribute("pass_template")]
-        [NUnit.Framework.CategoryAttribute("retrieve")]
-        [NUnit.Framework.CategoryAttribute("get_all")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get all pass templates", new string[] {
+                "pass_template",
+                "retrieve",
+                "get_all"}, SourceLine=3)]
         public virtual void GetAllPassTemplates()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all pass templates", new string[] {
@@ -87,11 +84,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Search pass templates")]
-        [NUnit.Framework.CategoryAttribute("pass_template")]
-        [NUnit.Framework.CategoryAttribute("retrieve")]
-        [NUnit.Framework.CategoryAttribute("search")]
+        [TechTalk.SpecRun.ScenarioAttribute("Search pass templates", new string[] {
+                "pass_template",
+                "retrieve",
+                "search"}, SourceLine=9)]
         public virtual void SearchPassTemplates()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search pass templates", new string[] {
@@ -110,11 +106,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get pass template by id")]
-        [NUnit.Framework.CategoryAttribute("pass_template")]
-        [NUnit.Framework.CategoryAttribute("retrieve")]
-        [NUnit.Framework.CategoryAttribute("get_by_id")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get pass template by id", new string[] {
+                "pass_template",
+                "retrieve",
+                "get_by_id"}, SourceLine=15)]
         public virtual void GetPassTemplateById()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get pass template by id", new string[] {
@@ -131,6 +126,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("something is retreived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

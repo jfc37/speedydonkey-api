@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Users
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RetrieveUser")]
+    [TechTalk.SpecRun.FeatureAttribute("RetrieveUser", SourceFile="Features\\Users\\RetrieveUser.feature", SourceLine=0)]
     public partial class RetrieveUserFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Users
 #line 1 "RetrieveUser.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Users
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,11 +62,10 @@ namespace IntegrationTests.Features.Users
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get all users")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("retrieve")]
-        [NUnit.Framework.CategoryAttribute("get_all")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get all users", new string[] {
+                "user",
+                "retrieve",
+                "get_all"}, SourceLine=3)]
         public virtual void GetAllUsers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all users", new string[] {
@@ -87,11 +84,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Search users")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("retrieve")]
-        [NUnit.Framework.CategoryAttribute("search")]
+        [TechTalk.SpecRun.ScenarioAttribute("Search users", new string[] {
+                "user",
+                "retrieve",
+                "search"}, SourceLine=9)]
         public virtual void SearchUsers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search users", new string[] {
@@ -110,11 +106,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get user by id")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("retrieve")]
-        [NUnit.Framework.CategoryAttribute("search")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get user by id", new string[] {
+                "user",
+                "retrieve",
+                "search"}, SourceLine=15)]
         public virtual void GetUserById()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get user by id", new string[] {
@@ -131,6 +126,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("something is retreived", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

@@ -211,9 +211,10 @@ namespace SpeedyDonkeyApi.Models
                 StartDate = instance.StartDate,
                 Classes = instance.Classes.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 EnroledStudents = instance.EnroledStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Level = instance.Level.ToStripedModel(),
                 Name = instance.Name,
-                Id = instance.Id
+                Id = instance.Id,
+                MinutesPerClass = instance.MinutesPerClass,
+                NumberOfClasses = instance.NumberOfClasses
             };
         }
 
@@ -227,9 +228,10 @@ namespace SpeedyDonkeyApi.Models
                 Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 EndDate = instance.EndDate,
                 StartDate = instance.StartDate,
-                Level = instance.Level.ToStripedModel(),
                 Name = instance.Name,
-                Id = instance.Id
+                Id = instance.Id,
+                MinutesPerClass = instance.MinutesPerClass,
+                NumberOfClasses = instance.NumberOfClasses
             };
         }
 
@@ -247,41 +249,6 @@ namespace SpeedyDonkeyApi.Models
                 ShowFrom = instance.ShowFrom,
                 ShowUntil = instance.ShowUntil,
                 Type = instance.Type
-            };
-        }
-
-        public static LevelModel ToModel(this Level instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new LevelModel
-            {
-                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Blocks = instance.Blocks.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Name = instance.Name,
-                ClassMinutes = instance.ClassMinutes,
-                ClassesInBlock = instance.ClassesInBlock,
-                EndTime = instance.EndTime,
-                Room = instance.Room,
-                StartTime = instance.StartTime,
-                Id = instance.Id
-            };
-        }
-
-        public static LevelModel ToStripedModel(this Level instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new LevelModel
-            {
-                Name = instance.Name,
-                ClassMinutes = instance.ClassMinutes,
-                ClassesInBlock = instance.ClassesInBlock,
-                EndTime = instance.EndTime,
-                StartTime = instance.StartTime,
-                Id = instance.Id
             };
         }
 
@@ -339,6 +306,8 @@ namespace SpeedyDonkeyApi.Models
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
                 Block = instance.Block.ToStripedModel(),
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
+                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Id = instance.Id
             };
         }
@@ -502,9 +471,10 @@ namespace SpeedyDonkeyApi.Models
                 StartDate = instance.StartDate,
                 Classes = instance.Classes.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 EnroledStudents = instance.EnroledStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Level = instance.Level.ToEntity(),
                 Name = instance.Name,
-                Id = instance.Id
+                Id = instance.Id,
+                MinutesPerClass = instance.MinutesPerClass,
+                NumberOfClasses = instance.NumberOfClasses
             };
         }
 
@@ -522,25 +492,6 @@ namespace SpeedyDonkeyApi.Models
                 ShowFrom = instance.ShowFrom,
                 ShowUntil = instance.ShowUntil,
                 Type = instance.Type
-            };
-        }
-
-        public static Level ToEntity(this LevelModel instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new Level
-            {
-                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Blocks = instance.Blocks.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Name = instance.Name,
-                ClassMinutes = instance.ClassMinutes,
-                ClassesInBlock = instance.ClassesInBlock,
-                EndTime = instance.EndTime,
-                Room = instance.Room,
-                StartTime = instance.StartTime,
-                Id = instance.Id
             };
         }
 

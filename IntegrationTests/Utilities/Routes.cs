@@ -7,13 +7,17 @@ namespace IntegrationTests.Utilities
         public const string Users = "users";
         public const string Teachers = "teachers";
         public const string Database = "database";
-        public const string Levels = "levels";
         public const string Blocks = "blocks";
         public const string Classes = "classes";
         public const string PassTemplate = "pass-templates";
         public const string CurrentUserClaims = "users/current/claims";
         public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
+
+        public static string GetClassAttendance(int classId)
+        {
+            return "classes/{0}/attendance".FormatWith(classId);
+        }
 
         public static string GetChangeClassTeachers(int classId)
         {
@@ -25,29 +29,19 @@ namespace IntegrationTests.Utilities
             return "{0}/{1}".FormatWith(Teachers, userId);
         }
 
-        public static string GetLevelById(int id)
-        {
-            return "{0}/{1}".FormatWith(Levels, id);
-        }
-
         public static string GetPassTemplateById(int id)
         {
             return "{0}/{1}".FormatWith(PassTemplate, id);
         }
 
-        public static string GetCreateBlock(int levelId)
+        public static string GetCreateNextBlock(int id)
         {
-            return "levels/{0}/blocks".FormatWith(levelId);
+            return "blocks/{0}".FormatWith(id);
         }
 
         public static string GetEnrolUserInBlock(int userId)
         {
             return "users/{0}/enrolment".FormatWith(userId);
-        }
-
-        public static string GetLevelSearch(string search)
-        {
-            return "levels?q={0}".FormatWith(search);
         }
 
         public static string GetPassTemplateSearch(string search)

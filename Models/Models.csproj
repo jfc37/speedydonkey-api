@@ -59,7 +59,6 @@
     <Compile Include="OnlinePayments\PayPalPayment.cs" />
     <Compile Include="OnlinePayments\PoliPayment.cs" />
     <Compile Include="Pass.cs" />
-    <Compile Include="Level.cs" />
     <Compile Include="PassStatistic.cs" />
     <Compile Include="PassTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -35,14 +35,6 @@ namespace Validation.Validators
         }
     }
 
-    public class DeleteLevelValidator : PreExistingValidator<Level>, IActionValidator<DeleteLevel, Level>
-    {
-        public DeleteLevelValidator(IRepository<Level> repository)
-            : base(repository)
-        {
-        }
-    }
-
     public class DeleteBlockValidator : PreExistingValidator<Block>, IActionValidator<DeleteBlock, Block>
     {
         public DeleteBlockValidator(IRepository<Block> repository)

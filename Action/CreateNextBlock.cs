@@ -4,9 +4,9 @@ using Models;
 
 namespace Action
 {
-    public class CreateBlock : ICrudAction<Block>
+    public class CreateNextBlock : ICrudAction<Block>
     {
-        public CreateBlock(Block block)
+        public CreateNextBlock(Block block)
         {
             ActionAgainst = block;
         }
@@ -16,7 +16,7 @@ namespace Action
         {
             get
             {
-                return String.Format("Create block");
+                return String.Format("Create next block");
             }
         }
     }

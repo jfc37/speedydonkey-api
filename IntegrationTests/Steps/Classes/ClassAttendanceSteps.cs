@@ -60,10 +60,10 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the student is marked against class")]
         public void ThenTheStudentIsMarkedAgainstClass()
         {
-            var response = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassKeyId)));
+            var response = ApiCaller.Get<List<UserModel>>(Routes.GetClassAttendance(ScenarioCache.GetId(ModelIdKeys.ClassKeyId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.Contains(ScenarioCache.GetId(ModelIdKeys.UserIdKey), response.Data.ActualStudents.Select(x => x.Id).ToList());
+            Assert.Contains(ScenarioCache.GetId(ModelIdKeys.UserIdKey), response.Data.Select(x => x.Id).ToList());
         }
 
         [Then(@"a clip has been removed from the pass")]
@@ -81,10 +81,10 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the student isnt marked against class")]
         public void ThenTheStudentIsntMarkedAgainstClass()
         {
-            var response = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassKeyId)));
+            var response = ApiCaller.Get<List<UserModel>>(Routes.GetClassAttendance(ScenarioCache.GetId(ModelIdKeys.ClassKeyId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsEmpty(response.Data.ActualStudents);
+            Assert.IsEmpty(response.Data);
         }
 
         [Then(@"a clip has not been removed from the pass")]

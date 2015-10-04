@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Classes
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("ClassAttendance")]
+    [TechTalk.SpecRun.FeatureAttribute("ClassAttendance", SourceFile="Features\\Classes\\ClassAttendance.feature", SourceLine=0)]
     public partial class ClassAttendanceFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Classes
 #line 1 "ClassAttendance.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Classes
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,11 +62,10 @@ namespace IntegrationTests.Features.Classes
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User attends a class")]
-        [NUnit.Framework.CategoryAttribute("class")]
-        [NUnit.Framework.CategoryAttribute("attendance")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
+        [TechTalk.SpecRun.ScenarioAttribute("User attends a class", new string[] {
+                "class",
+                "attendance",
+                "golden_path"}, SourceLine=3)]
         public virtual void UserAttendsAClass()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User attends a class", new string[] {
@@ -97,11 +94,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User attends a class without a valid pass")]
-        [NUnit.Framework.CategoryAttribute("class")]
-        [NUnit.Framework.CategoryAttribute("attendance")]
-        [NUnit.Framework.CategoryAttribute("validation_errors")]
+        [TechTalk.SpecRun.ScenarioAttribute("User attends a class without a valid pass", new string[] {
+                "class",
+                "attendance",
+                "validation_errors"}, SourceLine=14)]
         public virtual void UserAttendsAClassWithoutAValidPass()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User attends a class without a valid pass", new string[] {
@@ -128,11 +124,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User attends then unattends a class")]
-        [NUnit.Framework.CategoryAttribute("class")]
-        [NUnit.Framework.CategoryAttribute("attendance")]
-        [NUnit.Framework.CategoryAttribute("unattend")]
+        [TechTalk.SpecRun.ScenarioAttribute("User attends then unattends a class", new string[] {
+                "class",
+                "attendance",
+                "unattend"}, SourceLine=24)]
         public virtual void UserAttendsThenUnattendsAClass()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User attends then unattends a class", new string[] {
@@ -157,6 +152,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("a clip has not been removed from the pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

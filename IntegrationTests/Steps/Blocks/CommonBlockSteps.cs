@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using ActionHandlers;
-using IntegrationTests.Steps.Levels;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Models;
@@ -14,9 +13,9 @@ namespace IntegrationTests.Steps.Blocks
         [Given(@"a block exists")]
         public void GivenABlockExists()
         {
-            new CommonLevelSteps().GivenALevelExists();
             var createBlockSteps = new CreateBlockSteps();
-            createBlockSteps.WhenABlockIsGeneratedFromTheLevel();
+            createBlockSteps.GivenAValidBlockIsReadyToBeSubmitted();
+            createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
             createBlockSteps.ThenBlockCanBeRetrieved();
         }
 

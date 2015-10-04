@@ -18,8 +18,8 @@ namespace IntegrationTests.Features.Users
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("GetClaims")]
+    [TechTalk.SpecRun.FeatureAttribute("GetClaims", Description="In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
+        "wo numbers", SourceFile="Features\\Users\\GetClaims.feature", SourceLine=0)]
     public partial class GetClaimsFeature
     {
         
@@ -28,28 +28,27 @@ namespace IntegrationTests.Features.Users
 #line 1 "GetClaims.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetClaims", "In order to avoid silly mistakes\nAs a math idiot\nI want to be told the sum of two" +
-                    " numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetClaims", "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
+                    "wo numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -65,11 +64,10 @@ namespace IntegrationTests.Features.Users
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get user claims")]
-        [NUnit.Framework.CategoryAttribute("claims")]
-        [NUnit.Framework.CategoryAttribute("user")]
-        [NUnit.Framework.CategoryAttribute("get")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get user claims", new string[] {
+                "claims",
+                "user",
+                "get"}, SourceLine=6)]
         public virtual void GetUserClaims()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get user claims", new string[] {
@@ -88,11 +86,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get teacher claims")]
-        [NUnit.Framework.CategoryAttribute("claims")]
-        [NUnit.Framework.CategoryAttribute("teacher")]
-        [NUnit.Framework.CategoryAttribute("get")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get teacher claims", new string[] {
+                "claims",
+                "teacher",
+                "get"}, SourceLine=12)]
         public virtual void GetTeacherClaims()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get teacher claims", new string[] {
@@ -111,11 +108,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get admin claims")]
-        [NUnit.Framework.CategoryAttribute("claims")]
-        [NUnit.Framework.CategoryAttribute("admin")]
-        [NUnit.Framework.CategoryAttribute("get")]
+        [TechTalk.SpecRun.ScenarioAttribute("Get admin claims", new string[] {
+                "claims",
+                "admin",
+                "get"}, SourceLine=18)]
         public virtual void GetAdminClaims()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get admin claims", new string[] {
@@ -132,6 +128,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("their claims are \'teacher,admin\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }
