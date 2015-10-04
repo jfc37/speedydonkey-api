@@ -55,19 +55,5 @@ namespace IntegrationTests.Steps.Classes
             Assert.AreEqual(expectedBlock.StartDate, block.StartDate);
             Assert.AreEqual(expectedBlock.EndDate, block.EndDate);
         }
-
-        [Then(@"the levels start and end time is unchanged")]
-        public void ThenTheLevelsStartAndEndTimeIsUnchanged()
-        {
-            var response = ApiCaller.Get<LevelModel>(Routes.GetById(Routes.Levels, ScenarioCache.GetId(ModelIdKeys.LevelIdKey)));
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-
-            var level = response.Data;
-
-            var expectedLevel = ScenarioCache.Get<LevelModel>(ModelKeys.LevelModelKey);
-            Assert.AreEqual(expectedLevel.StartTime, level.StartTime);
-            Assert.AreEqual(expectedLevel.EndTime, level.EndTime);
-        }
-
     }
 }

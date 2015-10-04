@@ -10,7 +10,6 @@ namespace IntegrationTests.Utilities
 {
     public static class ModelKeys
     {
-        public const string LevelModelKey = "levelModel";
         public const string PassModelKey = "passModel";
         public const string PassTemplateModelKey = "passTemplateModel";
         public const string BlockModelKey = "blockModel";
@@ -25,7 +24,6 @@ namespace IntegrationTests.Utilities
     {
         public const string UserIdKey = "userId";
         public const string TeacherIdKey = "teacherId";
-        public const string LevelIdKey = "levelId";
         public const string BlockKeyId = "blockId";
         public const string PassTemplateKeyId = "passTemplateId";
         public const string ClassKeyId = "classId";
@@ -45,11 +43,6 @@ namespace IntegrationTests.Utilities
         public static void StoreTeacherId(int id)
         {
             Store(ModelIdKeys.TeacherIdKey, id);
-        }
-
-        public static void StoreLevelId(int id)
-        {
-            Store(ModelIdKeys.LevelIdKey, id);
         }
 
         public static void Store(string key, object item)

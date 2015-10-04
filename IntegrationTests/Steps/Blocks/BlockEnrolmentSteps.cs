@@ -1,9 +1,7 @@
 ﻿using System.Linq;
 using System.Net;
-using ActionHandlers;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
-using Models;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;

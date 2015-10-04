@@ -11,7 +11,7 @@ using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    [RoutePrefix("api")]
+    [RoutePrefix("api/blocks")]
     public class BlockApiController : GenericApiController<Block>
     {
         public BlockApiController(
@@ -20,46 +20,47 @@ namespace SpeedyDonkeyApi.Controllers
             IEntitySearch<Block> entitySearch)
             : base(actionHandlerOverlord, repository, entitySearch) { }
 
-        [Route("blocks")]
+        [Route]
         public IHttpActionResult Get()
         {
             return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToModel()).Do();
         }
 
-        [Route("blocks")]
+        [Route]
         public IHttpActionResult Get(string q)
         {
             return new SetToHttpActionResult<Block>(this, Search(q), x => x.ToModel()).Do();
         }
 
-        [Route("blocks/{id:int}")]
+        [Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
             return new EntityToHttpActionResult<Block>(this, GetById(id), x => x.ToModel()).Do();
         }
 
-        [Route("levels/{levelId:int}/blocks")]
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public IHttpActionResult Post(int levelId)
+        public IHttpActionResult Post(int id)
         {
-            var blockModel = new BlockModel {Level = new LevelModel {Id = levelId}};
+            var blockModel = new BlockModel(id);
+            var result = PerformAction<CreateNextBlock, Block>(new CreateNextBlock(blockModel.ToEntity()));
+
+            return new ActionResultToCreatedHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
+
+        [Route]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        [NullModelActionFilter]
+        public IHttpActionResult Post([FromBody] BlockModel blockModel)
+        {
             var result = PerformAction<CreateBlock, Block>(new CreateBlock(blockModel.ToEntity()));
 
             return new ActionResultToCreatedHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
                 .Do();
         }
 
-        [Route("levels/all/blocks")]
-        [ClaimsAuthorise(Claim = Claim.Admin)]
-        public IHttpActionResult Post()
-        {
-            var result = PerformAction<GenerateBlocksForAllLevels, Block>(new GenerateBlocksForAllLevels(new Block()));
-
-            return new ActionResultToCreatedHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
-                .Do();
-        }
-
-        [Route("blocks/{id:int}")]
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Put(int id, [FromBody] BlockModel model)
         {
@@ -70,7 +71,7 @@ namespace SpeedyDonkeyApi.Controllers
                 .Do();
         }
 
-        [Route("blocks/{id:int}")]
+        [Route("{id:int}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Delete(int id)
         {

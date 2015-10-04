@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Passes
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("PurchasePass")]
+    [TechTalk.SpecRun.FeatureAttribute("PurchasePass", SourceFile="Features\\Passes\\PurchasePass.feature", SourceLine=0)]
     public partial class PurchasePassFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Passes
 #line 1 "PurchasePass.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Passes
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,10 +62,9 @@ namespace IntegrationTests.Features.Passes
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User purchases pass from a teacher")]
-        [NUnit.Framework.CategoryAttribute("pass")]
-        [NUnit.Framework.CategoryAttribute("create")]
+        [TechTalk.SpecRun.ScenarioAttribute("User purchases pass from a teacher", new string[] {
+                "pass",
+                "create"}, SourceLine=3)]
         public virtual void UserPurchasesPassFromATeacher()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User purchases pass from a teacher", new string[] {
@@ -89,6 +86,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("the pass is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

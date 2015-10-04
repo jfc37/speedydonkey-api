@@ -18,8 +18,7 @@ namespace IntegrationTests.Features.Blocks
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreateBlock")]
+    [TechTalk.SpecRun.FeatureAttribute("CreateBlock", SourceFile="Features\\Blocks\\CreateBlock.feature", SourceLine=0)]
     public partial class CreateBlockFeature
     {
         
@@ -28,7 +27,7 @@ namespace IntegrationTests.Features.Blocks
 #line 1 "CreateBlock.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
@@ -36,19 +35,18 @@ namespace IntegrationTests.Features.Blocks
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,11 +62,10 @@ namespace IntegrationTests.Features.Blocks
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Generate first block")]
-        [NUnit.Framework.CategoryAttribute("block")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
+        [TechTalk.SpecRun.ScenarioAttribute("Generate first block", new string[] {
+                "block",
+                "create",
+                "golden_path"}, SourceLine=3)]
         public virtual void GenerateFirstBlock()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate first block", new string[] {
@@ -78,9 +75,9 @@ namespace IntegrationTests.Features.Blocks
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
- testRunner.Given("a level exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a valid block is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
- testRunner.When("a block is generated from the level", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the block is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
  testRunner.Then("block can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
@@ -91,11 +88,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Generate second block")]
-        [NUnit.Framework.CategoryAttribute("block")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
+        [TechTalk.SpecRun.ScenarioAttribute("Generate second block", new string[] {
+                "block",
+                "create",
+                "golden_path"}, SourceLine=11)]
         public virtual void GenerateSecondBlock()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate second block", new string[] {
@@ -115,6 +111,12 @@ this.ScenarioSetup(scenarioInfo);
                     "lock", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

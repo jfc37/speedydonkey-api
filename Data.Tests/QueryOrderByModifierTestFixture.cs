@@ -11,7 +11,7 @@ namespace Data.Tests
     public class QueryOrderByModifierTestFixture
     {
         private IList<User> _userCollectionSearchingOver;
-        private IList<Level> _levelCollectionSearchingOver; 
+        private IList<Block> _blockCollectionSearchingOver; 
 
         private QueryOrderByModifier GetOrderByDescriptor()
         {
@@ -49,51 +49,51 @@ namespace Data.Tests
             [Test]
             public void It_should_handle_ordering_by_a_number()
             {
-                _levelCollectionSearchingOver = new[]
+                _blockCollectionSearchingOver = new[]
                 {
-                    new Level{ ClassesInBlock = 20},
-                    new Level{ ClassesInBlock = 100},
-                    new Level{ ClassesInBlock = 45},
-                    new Level{ ClassesInBlock = 87},
-                    new Level{ ClassesInBlock = 12},
+                    new Block{ NumberOfClasses = 20},
+                    new Block{ NumberOfClasses = 100},
+                    new Block{ NumberOfClasses = 45},
+                    new Block{ NumberOfClasses = 87},
+                    new Block{ NumberOfClasses = 12},
                 };
 
                 var orderByModifier = GetOrderByDescriptor();
 
-                var queryable = _levelCollectionSearchingOver.AsQueryable();
+                var queryable = _blockCollectionSearchingOver.AsQueryable();
                 var searchStatement = new SearchStatement
                 {
                     Condition = SearchKeyWords.OrderBy,
-                    Element = "classesinblock"
+                    Element = "numberofclasses"
                 };
                 var queryableWithOrderBy = orderByModifier.ApplyStatementToQuery(searchStatement, queryable);
 
-                Assert.AreEqual(_levelCollectionSearchingOver.OrderBy(x => x.ClassesInBlock), queryableWithOrderBy.ToList());
+                Assert.AreEqual(_blockCollectionSearchingOver.OrderBy(x => x.NumberOfClasses), queryableWithOrderBy.ToList());
             }
 
             [Test]
             public void It_should_handle_ordering_by_a_date()
             {
-                _levelCollectionSearchingOver = new[]
+                _blockCollectionSearchingOver = new[]
                 {
-                    new Level{ StartTime = DateTime.Today.AddDays(-2)},
-                    new Level{ StartTime = DateTime.Today.AddDays(-25)},
-                    new Level{ StartTime = DateTime.Today.AddDays(2)},
-                    new Level{ StartTime = DateTime.Today.AddDays(-5)},
-                    new Level{ StartTime = DateTime.Today.AddDays(6)},
+                    new Block{ StartDate = DateTime.Today.AddDays(-2)},
+                    new Block{ StartDate = DateTime.Today.AddDays(-25)},
+                    new Block{ StartDate = DateTime.Today.AddDays(2)},
+                    new Block{ StartDate = DateTime.Today.AddDays(-5)},
+                    new Block{ StartDate = DateTime.Today.AddDays(6)},
                 };
 
                 var orderByModifier = GetOrderByDescriptor();
 
-                var queryable = _levelCollectionSearchingOver.AsQueryable();
+                var queryable = _blockCollectionSearchingOver.AsQueryable();
                 var searchStatement = new SearchStatement
                 {
                     Condition = SearchKeyWords.OrderBy,
-                    Element = "starttime"
+                    Element = "startdate"
                 };
                 var queryableWithOrderBy = orderByModifier.ApplyStatementToQuery(searchStatement, queryable);
 
-                Assert.AreEqual(_levelCollectionSearchingOver.OrderBy(x => x.StartTime), queryableWithOrderBy.ToList());
+                Assert.AreEqual(_blockCollectionSearchingOver.OrderBy(x => x.StartDate), queryableWithOrderBy.ToList());
             }
 
             [Test]

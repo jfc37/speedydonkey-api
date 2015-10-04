@@ -97,7 +97,6 @@ namespace Models
         public virtual Guid RegistationId { get; set; }
         public virtual decimal Amount { get; set; }
 
-        public virtual bool Deleted { get; set; }
 
         public virtual OnlinePaymentStatus PaymentStatus { get; set; }
         public virtual string FirstName { get; set; }

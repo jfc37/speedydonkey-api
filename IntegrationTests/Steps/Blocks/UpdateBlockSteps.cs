@@ -58,10 +58,9 @@ namespace IntegrationTests.Steps.Blocks
         public void ThenTheBlockSClassesStartAndEndTimeIsUpdated()
         {
             var block = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
-            var level = ScenarioCache.Get<LevelModel>(ModelKeys.LevelModelKey);
 
             var expectedStartTime = block.StartDate;
-            var expectedEndTime = block.StartDate.AddMinutes(level.ClassMinutes);
+            var expectedEndTime = block.StartDate.AddMinutes(block.MinutesPerClass);
 
             foreach (var theClass in block.Classes.OrderBy(x => x.Id))
             {

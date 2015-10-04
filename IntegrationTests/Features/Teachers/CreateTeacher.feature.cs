@@ -18,8 +18,8 @@ namespace IntegrationTests.Features.Teachers
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CreateTeacher")]
+    [TechTalk.SpecRun.FeatureAttribute("CreateTeacher", Description="In order to allow teachers to perform their duties\r\nAs an admin\r\nI want promote a" +
+        " student to a teacher", SourceFile="Features\\Teachers\\CreateTeacher.feature", SourceLine=0)]
     public partial class CreateTeacherFeature
     {
         
@@ -28,28 +28,27 @@ namespace IntegrationTests.Features.Teachers
 #line 1 "CreateTeacher.feature"
 #line hidden
         
-        [NUnit.Framework.TestFixtureSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateTeacher", "In order to allow teachers to perform their duties\nAs an admin\nI want promote a s" +
-                    "tudent to a teacher", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateTeacher", "In order to allow teachers to perform their duties\r\nAs an admin\r\nI want promote a" +
+                    " student to a teacher", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.TestFixtureTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -65,11 +64,10 @@ namespace IntegrationTests.Features.Teachers
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Make a user a teacher")]
-        [NUnit.Framework.CategoryAttribute("teacher")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
+        [TechTalk.SpecRun.ScenarioAttribute("Make a user a teacher", new string[] {
+                "teacher",
+                "create",
+                "golden_path"}, SourceLine=6)]
         public virtual void MakeAUserATeacher()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a user a teacher", new string[] {
@@ -88,11 +86,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Try to set up an existing teacher as a teacher")]
-        [NUnit.Framework.CategoryAttribute("teacher")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("validation_error")]
+        [TechTalk.SpecRun.ScenarioAttribute("Try to set up an existing teacher as a teacher", new string[] {
+                "teacher",
+                "create",
+                "validation_error"}, SourceLine=12)]
         public virtual void TryToSetUpAnExistingTeacherAsATeacher()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to set up an existing teacher as a teacher", new string[] {
@@ -113,11 +110,10 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Make a seasoned user a teacher")]
-        [NUnit.Framework.CategoryAttribute("teacher")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("golden_path")]
+        [TechTalk.SpecRun.ScenarioAttribute("Make a seasoned user a teacher", new string[] {
+                "teacher",
+                "create",
+                "golden_path"}, SourceLine=19)]
         public virtual void MakeASeasonedUserATeacher()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a seasoned user a teacher", new string[] {
@@ -146,6 +142,12 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("the user\'s details can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }

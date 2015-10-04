@@ -7,7 +7,6 @@ Scenario: Update the day a block is on
 	When the block is updated
 	Then the blocks start and end time is updated
 	And the block's classes start and end time is updated
-	And the levels start and end time is unchanged
 
 @block @update @golden_path
 Scenario: Update the day a block is on flows on when next block is generated
