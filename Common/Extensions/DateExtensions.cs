@@ -25,6 +25,11 @@ namespace Common.Extensions
             return instance.HasValue && instance.Value.IsBefore(toCompare);
         }
 
+        public static bool IsOnOrBefore(this DateTimeOffset? instance, DateTimeOffset toCompare)
+        {
+            return instance.HasValue && instance.Value.IsOnOrBefore(toCompare);
+        }
+
         public static bool IsBefore(this DateTimeOffset instance, DateTimeOffset toCompare)
         {
             return instance < toCompare;
@@ -38,6 +43,11 @@ namespace Common.Extensions
         public static bool IsOnOrAfter(this DateTimeOffset instance, DateTimeOffset toCompare)
         {
             return instance >= toCompare;
+        }
+
+        public static bool IsOnOrAfter(this DateTimeOffset? instance, DateTimeOffset toCompare)
+        {
+            return instance.HasValue && instance.IsOnOrAfter(toCompare);
         }
         public static bool IsAfter(this DateTimeOffset? instance, DateTimeOffset toCompare)
         {
