@@ -5,6 +5,7 @@ Scenario: Generate first block
 	Given a valid block is ready to be submitted
 	When the block is attempted to be created
 	Then block can be retrieved
+	And the blocks dates are in utc
 	And classes are created for the block
 	And the correct number of classes are created
 

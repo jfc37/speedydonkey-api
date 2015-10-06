@@ -8,8 +8,8 @@ namespace SpeedyDonkeyApi.Models
     {
         public List<TeacherModel> Teachers { get; set; }
         public List<UserModel> RegisteredStudents { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTimeOffset StartTime { get; set; }
+        public DateTimeOffset EndTime { get; set; }
         public string Name { get; set; }
     }
 }
