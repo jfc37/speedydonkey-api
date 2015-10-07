@@ -126,7 +126,7 @@ namespace ActionHandlersTests
 
             var expectedStartDate = _existingPass.EndDate.AddDays(1).Date;
             var newPass = User.Passes.Single(x => x.StartDate == User.Passes.Max(y => y.StartDate));
-            Assert.AreEqual(expectedStartDate, newPass.StartDate);
+            Assert.AreEqual(expectedStartDate.Date, newPass.StartDate.Date);
         }
     }
 
@@ -170,7 +170,7 @@ namespace ActionHandlersTests
 
             var expectedStartDate = _pendingPass.EndDate.AddDays(1).Date;
             var newPass = User.Passes.Single(x => x.StartDate == User.Passes.Max(y => y.StartDate));
-            Assert.AreEqual(expectedStartDate, newPass.StartDate);
+            Assert.AreEqual(expectedStartDate.Date, newPass.StartDate.Date);
         }
     }
 

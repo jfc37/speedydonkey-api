@@ -147,7 +147,7 @@ namespace ActionHandlersTests
             PerformAction();
 
             var updatedNextPass = ClassInDatabase.ActualStudents.Single().Passes.Single(x => x.IsValid());
-            Assert.AreEqual(DateTime.Now.Date, updatedNextPass.StartDate);
+            Assert.AreEqual(DateTime.Now.Date, updatedNextPass.StartDate.Date);
         }
 
         [Test]
@@ -156,7 +156,7 @@ namespace ActionHandlersTests
             PerformAction();
 
             var updatedNextPass = ClassInDatabase.ActualStudents.Single().Passes.Single(x => x.IsValid());
-            Assert.AreEqual(DateTime.Now.Date.Add(_expiryPeriod), updatedNextPass.EndDate);
+            Assert.AreEqual(DateTime.Now.Date.Add(_expiryPeriod), updatedNextPass.EndDate.Date);
         }
     }
 }
