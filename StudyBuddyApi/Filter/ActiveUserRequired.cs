@@ -41,10 +41,9 @@ namespace SpeedyDonkeyApi.Filter
                     !String.IsNullOrWhiteSpace(authHeader.Parameter))
                 {
                     var email = GetEmail(authHeader);
-                    var q = String.Format("{0}{1}{2}{3}{4}", SearchElements.Email, SearchSyntax.Seperator, SearchKeyWords.Equals, SearchSyntax.Seperator, email);
-                    //var userSearch = (IEntitySearch<User>)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IEntitySearch<User>));
-                    var userSearch = (IEntitySearch<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IEntitySearch<User>));
-                    var user = userSearch.Search(q).SingleOrDefault();
+                    var userSearch = (IRepository<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IRepository<User>));
+                    var user = userSearch.GetAll()
+                        .SingleOrDefault(x => x.Email == email);
                     return user;
                 }
             }
