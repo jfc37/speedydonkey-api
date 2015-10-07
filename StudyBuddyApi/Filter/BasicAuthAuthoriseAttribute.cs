@@ -6,13 +6,11 @@ using System.Net.Http.Headers;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
-using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using System.Web.Mvc;
 using ActionHandlers;
 using Common;
-using Data.Searches;
+using Data.Repositories;
 using Models;
 using AllowAnonymousAttribute = System.Web.Http.AllowAnonymousAttribute;
 
@@ -60,7 +58,7 @@ namespace SpeedyDonkeyApi.Filter
             }
             catch (FormatException)
             {
-                return new []{"", ""};
+                return new[] { "", "" };
             }
             var split = credentials.Split(':');
             if (split.Count() != 2)
@@ -72,15 +70,13 @@ namespace SpeedyDonkeyApi.Filter
         {
             if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
-                var q = String.Format("{0}{1}{2}{3}{4}", SearchElements.Email, SearchSyntax.Seperator, SearchKeyWords.Equals, SearchSyntax.Seperator, username);
-                //var userSearch = (IEntitySearch<User>)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IEntitySearch<User>));
-                var userSearch = (IEntitySearch<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IEntitySearch<User>));
-                var user = userSearch.Search(q).SingleOrDefault();
+                var userSearch = (IRepository<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IRepository<User>));
+                var user = userSearch.GetAll()
+                    .SingleOrDefault(x => x.Email == username);
                 if (user != null)
                 {
                     SetCurrentUser(actionContext, user);
 
-                    //var passwordHasher = (PasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(PasswordHasher));
                     var passwordHasher = (PasswordHasher)actionContext.Request.GetDependencyScope().GetService(typeof(PasswordHasher));
                     return passwordHasher.ValidatePassword(password, user.Password);
                 }
