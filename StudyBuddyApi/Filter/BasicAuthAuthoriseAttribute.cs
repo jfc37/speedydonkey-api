@@ -11,7 +11,6 @@ using System.Web.Http.Filters;
 using ActionHandlers;
 using Common;
 using Data.Repositories;
-using Data.Searches;
 using Models;
 using AllowAnonymousAttribute = System.Web.Http.AllowAnonymousAttribute;
 
@@ -59,7 +58,7 @@ namespace SpeedyDonkeyApi.Filter
             }
             catch (FormatException)
             {
-                return new []{"", ""};
+                return new[] { "", "" };
             }
             var split = credentials.Split(':');
             if (split.Count() != 2)
