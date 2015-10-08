@@ -7,7 +7,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using ActionHandlers;
 using Common;
-using Data.Searches;
+using Data.Repositories;
 using Models;
 
 namespace SpeedyDonkeyApi.Filter
@@ -53,14 +53,11 @@ namespace SpeedyDonkeyApi.Filter
         {
             if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
-                var q = String.Format("{0}{1}{2}{3}{4}", SearchElements.Email, SearchSyntax.Seperator, SearchKeyWords.Equals, SearchSyntax.Seperator, username);
-                //var userSearch = (IEntitySearch<User>)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IEntitySearch<User>));
-                var userSearch = (IEntitySearch<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IEntitySearch<User>));
-                var user = userSearch.Search(q).SingleOrDefault();
+                var userSearch = (IRepository<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IRepository<User>));
+                var user = userSearch.GetAll()
+                    .SingleOrDefault(x => x.Email == username);
                 if (user != null)
                 {
-
-                    //var passwordHasher = (PasswordHasher) GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(PasswordHasher));
                     var passwordHasher = (PasswordHasher)actionContext.Request.GetDependencyScope().GetService(typeof(PasswordHasher));
                     if (passwordHasher.ValidatePassword(password, user.Password))
                     {
