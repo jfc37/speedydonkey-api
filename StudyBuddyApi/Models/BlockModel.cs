@@ -26,8 +26,8 @@ namespace SpeedyDonkeyApi.Models
         public List<UserModel> EnroledStudents { get; set; }
         public List<ClassModel> Classes { get; set; }
         public List<AnnouncementModel> Announcements { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
         public int NumberOfClasses { get; set; }
         public int MinutesPerClass { get; set; }
         public string Name { get; set; }

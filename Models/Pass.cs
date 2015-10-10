@@ -17,8 +17,8 @@ namespace Models
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
-        public virtual DateTime StartDate { get; set; }
-        public virtual DateTime EndDate { get; set; }
+        public virtual DateTimeOffset StartDate { get; set; }
+        public virtual DateTimeOffset EndDate { get; set; }
 
         public virtual string PassType
         {

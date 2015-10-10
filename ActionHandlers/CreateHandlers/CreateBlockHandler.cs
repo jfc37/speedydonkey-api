@@ -60,6 +60,9 @@ namespace ActionHandlers.CreateHandlers
             action.ActionAgainst.EndDate = action.ActionAgainst.StartDate
                 .AddMinutes(action.ActionAgainst.MinutesPerClass)
                 .AddWeeks(action.ActionAgainst.NumberOfClasses - 1);
+
+            action.ActionAgainst.StartDate = action.ActionAgainst.StartDate.ToUniversalTime();
+            action.ActionAgainst.EndDate = action.ActionAgainst.EndDate.ToUniversalTime();
         }
 
         protected override void PostHandle(ICrudAction<Block> action, Block result)

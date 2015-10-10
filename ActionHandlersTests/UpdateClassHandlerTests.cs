@@ -38,8 +38,8 @@ namespace ActionHandlersTests
             _action = new UpdateClass(new Class
             {
                 Name = "new",
-                StartTime = DateTime.MinValue,
-                EndTime = DateTime.MinValue,
+                StartTime = DateTime.MinValue.AddYears(1).Date,
+                EndTime = DateTime.MinValue.AddYears(1).Date,
                 Teachers = new List<Teacher>
                 {
                     new Teacher{Id = 1}
@@ -67,7 +67,7 @@ namespace ActionHandlersTests
             PerformAction();
 
             _repositoryBuilder.Mock.Verify(x => x.Update(It.IsAny<Class>()));
-            Assert.AreEqual(DateTime.MinValue, _repositoryBuilder.UpdatedEntity.StartTime);
+            Assert.AreEqual(DateTime.MinValue.AddYears(1).Date, _repositoryBuilder.UpdatedEntity.StartTime.Date);
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace ActionHandlersTests
             PerformAction();
 
             _repositoryBuilder.Mock.Verify(x => x.Update(It.IsAny<Class>()));
-            Assert.AreEqual(DateTime.MinValue, _repositoryBuilder.UpdatedEntity.EndTime);
+            Assert.AreEqual(DateTime.MinValue.AddYears(1).Date, _repositoryBuilder.UpdatedEntity.EndTime.Date);
         }
 
         public class WhenThereHasBeenNoChangeInTeachers : UpdateClassHandlerTests

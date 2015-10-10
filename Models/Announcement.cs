@@ -13,14 +13,14 @@ namespace Models
         public virtual string Message { get; set; }
         public virtual ICollection<Block> Receivers { get; set; }
         public virtual string Type { get; set; }
-        public virtual DateTime? ShowFrom { get; set; }
-        public virtual DateTime? ShowUntil { get; set; }
+        public virtual DateTimeOffset? ShowFrom { get; set; }
+        public virtual DateTimeOffset? ShowUntil { get; set; }
         public virtual bool NotifyAll { get; set; }
 
         public virtual bool ShouldShowBanner()
         {
             var isABannerNotification = Type.EqualsEnum(AnnouncementType.Banner);
-            var isWithinShowingPeriod = ShowFrom.IsLessThan(DateTime.Now) && ShowUntil.IsGreaterThan(DateTime.Now);
+            var isWithinShowingPeriod = ShowFrom.IsOnOrBefore(DateTime.UtcNow) && ShowUntil.IsOnOrAfter(DateTime.UtcNow);
             return isABannerNotification && isWithinShowingPeriod;
         }
     }

@@ -19,7 +19,7 @@ namespace Validation.Validators
                 .NotEmpty().WithMessage(ValidationMessages.MissingName);
 
             RuleFor(x => x.StartDate)
-                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingStartTime);
+                .Must(x => new DateIsNotTooFarInThePastRule(x.Date).IsValid()).WithMessage(ValidationMessages.MissingStartTime);
 
             RuleFor(x => x.MinutesPerClass)
                 .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassMinutes);

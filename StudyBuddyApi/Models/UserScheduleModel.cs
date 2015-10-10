@@ -8,8 +8,8 @@ namespace SpeedyDonkeyApi.Models
 {
     public class UserScheduleModel
     {
-        public DateTime StartTime { get; set; } 
-        public DateTime EndTime { get; set; }
+        public DateTimeOffset StartTime { get; set; }
+        public DateTimeOffset EndTime { get; set; }
         public string Name { get; set; }
         public int EventId { get; set; }
 
