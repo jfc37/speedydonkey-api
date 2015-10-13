@@ -171,7 +171,7 @@ namespace Models
                     return 60;
 
                 case WindyLindyEvents.SundayNightAfterParty:
-                    return 10;
+                    return 25;
 
                 case WindyLindyEvents.GroupiesGoodbyeJam:
                     return 25;
