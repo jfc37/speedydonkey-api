@@ -2,7 +2,6 @@
 using System.Linq;
 using Action;
 using Actions;
-using Common.Extensions;
 using Data.Repositories;
 using Models;
 using Notification.NotificationHandlers;
@@ -34,13 +33,10 @@ namespace ActionHandlers.CreateHandlers
 
         protected override void PostHandle(ICrudAction<Announcement> action, Announcement result)
         {
-            if (result.Type.EqualsEnum(AnnouncementType.Email))
+            var usersToNotifiy = GetUsersToSendTo(result);
+            foreach (var user in usersToNotifiy)
             {
-                var usersToNotifiy = GetUsersToSendTo(result);
-                foreach (var user in usersToNotifiy)
-                {
-                    _notificationHandler.Handle(new EmailAnnouncement(user, result.Message));
-                }
+                _notificationHandler.Handle(new EmailAnnouncement(user, result.Message, result.Subject));
             }
         }
 
