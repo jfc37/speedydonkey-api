@@ -23,65 +23,47 @@ namespace SpeedyDonkeyApi.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
         public string PhoneNumber { get; set; }
 
-        [Required]
         public string CountryOfResidence { get; set; }
 
-        [Required]
         public string City { get; set; }
 
-        [Required]
         public string EmergencyContactPerson { get; set; }
 
-        [Required]
         public string EmergencyContactNumber { get; set; }
 
-        [Required]
         public bool? Over18 { get; set; }
 
         [Required]
         public bool? FullPass { get; set; }
-        [Required]
         public DanceRole? DanceRole { get; set; }
-        [Required]
         public DanceLevel? LindyLevel { get; set; }
-        [Required]
         public DanceLevel? BalboaLevel { get; set; }
-        [Required]
         public DanceLevel? BluesLevel { get; set; }
 
         public List<string> Classes { get; set; }
         public List<WindyLindyEvents> Events { get; set; }
 
-        [Required]
         public bool Novice { get; set; }
         public string NovicePartner { get; set; }
 
-        [Required]
         public bool Balboa { get; set; }
         public string BalboaPartner { get; set; }
 
-        [Required]
         public bool Hellzapoppin { get; set; }
         public string HellzapoppinPartner { get; set; }
 
-        [Required]
         public bool JackAndJill { get; set; }
 
-        [Required]
         public bool ShowcaseCouple { get; set; }
         public string ShowcaseCouplePartner { get; set; }
 
-        [Required]
         public bool ShowcaseTeam { get; set; }
         public string ShowcaseTeamPartner { get; set; }
 
-        [Required]
         public bool SoloJazz { get; set; }
 
-        [Required]
         public bool StrictlyLindy { get; set; }
         public string StrictlyLindyPartner { get; set; }
         public bool PerformAtGrammy { get; set; }
