@@ -245,10 +245,8 @@ namespace SpeedyDonkeyApi.Models
                 Id = instance.Id,
                 Message = instance.Message,
                 NotifyAll = instance.NotifyAll,
+                Subject = instance.Subject,
                 Receivers = instance.Receivers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                ShowFrom = instance.ShowFrom,
-                ShowUntil = instance.ShowUntil,
-                Type = instance.Type
             };
         }
 
@@ -488,10 +486,8 @@ namespace SpeedyDonkeyApi.Models
                 Id = instance.Id,
                 Message = instance.Message,
                 NotifyAll = instance.NotifyAll,
-                Receivers = instance.Receivers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                ShowFrom = instance.ShowFrom,
-                ShowUntil = instance.ShowUntil,
-                Type = instance.Type
+                Subject = instance.Subject,
+                Receivers = instance.Receivers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull()
             };
         }
 

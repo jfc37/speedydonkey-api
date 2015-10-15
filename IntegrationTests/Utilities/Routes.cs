@@ -7,6 +7,7 @@ namespace IntegrationTests.Utilities
         public const string Users = "users";
         public const string Teachers = "teachers";
         public const string Database = "database";
+        public const string Announcements = "announcements";
         public const string Blocks = "blocks";
         public const string Classes = "classes";
         public const string PassTemplate = "pass-templates";

@@ -22,7 +22,10 @@ namespace Notification
 
         public void Send(INotification notification)
         {
-            MandrillApi api = new MandrillApi(_appSettings.GetSetting(AppSettingKey.MandrillApiKey));
+            if (!Convert.ToBoolean(_appSettings.GetSetting(AppSettingKey.ShouldSendEmail)))
+                return;
+
+            var api = new MandrillApi(_appSettings.GetSetting(AppSettingKey.MandrillApiKey));
 
             var templateContents = notification.TemplateContent.Select(x => new TemplateContent
             {
