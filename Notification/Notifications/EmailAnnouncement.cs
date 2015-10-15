@@ -6,14 +6,15 @@ namespace Notification.Notifications
     public class EmailAnnouncement : INotification
     {
         public string EmailTo { get; private set; }
-        public string Subject { get { return "Announcement from Full Swing"; } }
+        public string Subject { get; private set; }
         public string TemplateName { get { return "Announcement"; } }
         public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
         User User { get; set; }
 
-        public EmailAnnouncement(User user, string message)
+        public EmailAnnouncement(User user, string message, string subject)
         {
             EmailTo = user.Email;
+            Subject = subject;
             User = user;
 
             TemplateContent = new[]

@@ -49,10 +49,15 @@
   <ItemGroup>
     <Compile Include="ActionHandlerOverlord.cs" />
     <Compile Include="ActionReponse.cs" />
+    <Compile Include="Announcements\CreateAnnouncementHandler.cs" />
+    <Compile Include="Announcements\RetrieveUsers\IRetrieveUsersToNotify.cs" />
+    <Compile Include="Announcements\RetrieveUsers\IRetrieveUsersToNotifyFactory.cs" />
+    <Compile Include="Announcements\RetrieveUsers\RetrieveAllUsers.cs" />
+    <Compile Include="Announcements\RetrieveUsers\RetrieveUsersInSpecificBlocksToNotify.cs" />
+    <Compile Include="Announcements\RetrieveUsers\RetrieveUsersToNotifyFactory.cs" />
     <Compile Include="Calculations\ExpressCheckoutTotalCalculation.cs" />
     <Compile Include="Calculations\ExpressCheckoutFeeCalculation.cs" />
     <Compile Include="Classes\ChangeClassTeachersHandler.cs" />
-    <Compile Include="CreateHandlers\CreateAnnouncementHandler.cs" />
     <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />

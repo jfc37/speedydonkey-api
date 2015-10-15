@@ -4,14 +4,6 @@ using System.Linq;
 
 namespace Common.Extensions
 {
-    public static class EnumExtensions
-    {
-        public static T Parse<T>(this string instance)
-        {
-            return (T) Enum.Parse(typeof (T), instance);
-        }
-    }
-
     public static class EnumerableExtensions
     {
         public static bool DoesNotHaveSameItemIds<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare) where T : IEntity
@@ -47,5 +39,22 @@ namespace Common.Extensions
                 return null;
             return source.ToList();
         }
+
+        public static bool IsEmpty<T>(this IEnumerable<T> instance)
+        {
+            return instance.NotAny();
+        }
+
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> instance)
+        {
+            return instance.IsNull() || instance.NotAny();
+        }
+
+        public static bool IsNotNullOrEmpty<T>(this IEnumerable<T> instance)
+        {
+            return !instance.IsNullOrEmpty();
+        }
+
+
     }
 }

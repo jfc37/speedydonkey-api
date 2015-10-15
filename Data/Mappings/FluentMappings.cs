@@ -130,9 +130,6 @@ namespace Data.Mappings
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.Message);
-            Map(x => x.ShowFrom);
-            Map(x => x.ShowUntil);
-            Map(x => x.Type);
             Map(x => x.NotifyAll);
             HasManyToMany<Block>(x => x.Receivers)
                 .Table("BlockToAnnouncement")

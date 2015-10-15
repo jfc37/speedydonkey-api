@@ -236,7 +236,6 @@
     <Compile Include="Controllers\ActivityLogApiController.cs" />
     <Compile Include="Controllers\UserActivationApiController.cs" />
     <Compile Include="Controllers\RegistrationApiController.cs" />
-    <Compile Include="Controllers\UserAnnouncementApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserClaimsApiController.cs" />
     <Compile Include="Controllers\PassNoteApiController.cs" />

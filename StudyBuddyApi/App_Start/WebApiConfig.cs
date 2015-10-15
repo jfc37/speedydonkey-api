@@ -5,6 +5,9 @@ using System.Web.Http.Cors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+#if !DEBUG
+using SpeedyDonkeyApi.Filter;
+#endif
 
 namespace SpeedyDonkeyApi
 {

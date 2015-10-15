@@ -58,6 +58,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Announcements\CreateAnnouncement.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateAnnouncement.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Blocks\UpdateBlock.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,6 +159,7 @@
       <DependentUpon>RetrieveUser.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\Announcements\CreateAnnoucementSteps.cs" />
     <Compile Include="Steps\Blocks\BlockEnrolmentSteps.cs" />
     <Compile Include="Steps\Blocks\CommonBlockSteps.cs" />
     <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
@@ -195,6 +201,10 @@
     <None Include="App.config" />
     <None Include="Default.srprofile">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Announcements\CreateAnnouncement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateAnnouncement.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Blocks\UpdateBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
