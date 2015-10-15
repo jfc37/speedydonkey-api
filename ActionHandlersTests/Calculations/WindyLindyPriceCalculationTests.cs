@@ -15,7 +15,7 @@ namespace ActionHandlersTests.Calculations
         [TestCase(WindyLindyEvents.GroupiesPrivateParty, 25)]
         [TestCase(WindyLindyEvents.HardRockBusTour, 30)]
         [TestCase(WindyLindyEvents.BackStageParty, 60)]
-        [TestCase(WindyLindyEvents.SundayNightAfterParty, 10)]
+        [TestCase(WindyLindyEvents.SundayNightAfterParty, 25)]
         [TestCase(WindyLindyEvents.GroupiesGoodbyeJam, 25)]
         public void It_should_have_the_correct_price_for_all_events(WindyLindyEvents windyLindyEvents, decimal expectedPrice)
         {

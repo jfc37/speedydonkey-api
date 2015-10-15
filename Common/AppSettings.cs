@@ -40,13 +40,13 @@ namespace Common
         AutoActivateAdmin,
         AutoActivateUser,
         FromEmail,
+        ShouldSendEmail,
         AllowDatabaseDelete,
 
         PayPalUsername,
         PayPalPassword,
         PayPalSignature,
         PayPalMode,
-
 
         PoliAuthorisation,
         PoliInitiateUrl,
