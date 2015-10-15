@@ -57,6 +57,11 @@ namespace Common.Extensions
             return !instance.IsInt();
         }
 
+        public static bool DoesNotContain(this string instance, string value)
+        {
+            return !instance.Contains(value);
+        }
+
         public static int ToInt(this string instance)
         {
             return int.Parse(instance);
