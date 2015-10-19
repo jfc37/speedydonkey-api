@@ -61,6 +61,7 @@
     <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />
+    <Compile Include="Rooms\CreateRoomHandler.cs" />
     <Compile Include="SetAsTeacherHandler.cs" />
     <Compile Include="CreateHandlers\CreatePassTemplateHandler.cs" />
     <Compile Include="DeleteHandlers\DeleteEntityHandler.cs" />

@@ -10,6 +10,7 @@ namespace IntegrationTests.Utilities
         public const string Announcements = "announcements";
         public const string Blocks = "blocks";
         public const string Classes = "classes";
+        public const string Room = "rooms";
         public const string PassTemplate = "pass-templates";
         public const string CurrentUserClaims = "users/current/claims";
         public const string CurrentUserSchedule = "users/current/schedules";

@@ -1,4 +1,5 @@
-﻿using Action;
+﻿using System.Linq;
+using Action;
 using Common;
 using Data.Repositories;
 using FluentValidation;
@@ -48,6 +49,9 @@ namespace Validation.Validators
         public DeleteClassValidator(IRepository<Class> repository)
             : base(repository)
         {
+            RuleFor(x => x.ActualStudents)
+                .Must((x, y) => new HasNoClassAttandanceRule(repository, x.Id).IsValid())
+                .WithMessage(ValidationMessages.CannotDeleteClassWithAttendance);
         }
     }
 }

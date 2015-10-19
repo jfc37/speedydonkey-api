@@ -231,6 +231,7 @@
     <Compile Include="Controllers\PassStatisticApiController.cs" />
     <Compile Include="Controllers\PassApiController.cs" />
     <Compile Include="Controllers\PassTemplateApiController.cs" />
+    <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
     <Compile Include="Controllers\TeacherApiController.cs" />
     <Compile Include="Controllers\UserActivationApiController.cs" />
     <Compile Include="Controllers\RegistrationApiController.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="GlobalErrorLoggerService.cs" />
     <Compile Include="Models\BlockModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
+    <Compile Include="Models\EntityModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
     <Compile Include="Models\ModelMappingExtensions.cs" />
@@ -273,6 +275,7 @@
     <Compile Include="Models\PassStatisticModel.cs" />
     <Compile Include="Models\PassTemplateModel.cs" />
     <Compile Include="Models\ProfitReportModel.cs" />
+    <Compile Include="Models\RoomModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\UserEnroledBlocksModel.cs" />
     <Compile Include="Models\CurrentUserPassesModel.cs" />

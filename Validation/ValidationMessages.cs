@@ -19,7 +19,6 @@
         public const string MissingSurname = "Please enter a surname";
         public const string DuplicateEmail = "Email address has already been registered";
         public const string InvalidUserToEnrol = "You do not have permission to enrol other students into blocks";
-        public const string CannotChangePassType = "You can non change the type of pass";
         public const string ProvidePasses = "Provide passes to add";
         public const string CannotAddPassForAnother = "You don't have permission to add passes to another student";
         public const string BadActivationKey = "Bad activiation key";
@@ -31,6 +30,7 @@
         public const string ItemDoesntExist = "Item doesn't exist";
         public const string CannontAddPaidPass = "You don't have permission to add a pass already paid for";
         public const string MissingName = "Please enter a name";
+        public const string MissingLocation = "Please enter a location";
         public const string MissingStartTime = "Please enter a start time";
         public const string MissingEndTime = "Please enter an end time";
         public const string EndTimeGreaterThanStartTime = "Please enter an end time greater than the start time";
@@ -41,5 +41,6 @@
         public const string TeachersRequired = "Please select at least one teacher";
         public const string InvalidClipsRemaining = "Invalid number of clips remaining";
         public const string UserIsAlreadyATeacher = "User is already a teacher";
+        public const string CannotDeleteClassWithAttendance = "Cannot delete class with attendance";
     }
 }

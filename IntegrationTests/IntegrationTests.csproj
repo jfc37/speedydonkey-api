@@ -98,6 +98,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrieveBlock.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Classes\DeleteClass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteClass.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Classes\RetrieveClass.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,6 +127,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrievePassTemplate.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\CreateRoom.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRoom.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\Teachers\CreateTeacher.feature.cs">
       <AutoGen>True</AutoGen>
@@ -173,6 +183,7 @@
     <Compile Include="Steps\Blocks\UpdateBlockSteps.cs" />
     <Compile Include="Steps\Classes\ChangeClassTeachersSteps.cs" />
     <Compile Include="Steps\Classes\ClassAttendanceSteps.cs" />
+    <Compile Include="Steps\Classes\DeleteClassSteps.cs" />
     <Compile Include="Steps\Classes\RetrieveClassSteps.cs" />
     <Compile Include="Steps\Classes\UpdateClassSteps.cs" />
     <Compile Include="Steps\Common\PreScenario.cs" />
@@ -184,6 +195,7 @@
     <Compile Include="Steps\PassTemplates\CommonPassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
+    <Compile Include="Steps\Rooms\CreateRoomSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
@@ -199,6 +211,7 @@
     <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyPassTemplateProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyLevelProperties.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyRoomProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyUserProperties.cs" />
     <Compile Include="Utilities\Routes.cs" />
     <Compile Include="Utilities\ScenarioCache.cs" />
@@ -240,6 +253,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveBlock.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\Classes\DeleteClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteClass.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Classes\RetrieveClass.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveClass.feature.cs</LastGenOutput>
@@ -259,6 +276,10 @@
     <None Include="Features\PassTemplates\RetrievePassTemplate.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrievePassTemplate.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\CreateRoom.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateRoom.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Teachers\CreateTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

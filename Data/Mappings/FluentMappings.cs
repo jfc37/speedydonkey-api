@@ -231,6 +231,18 @@ namespace Data.Mappings
         }
     }
 
+    public class RoomMap : ClassMap<Room>
+    {
+        public RoomMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.Name);
+            Map(x => x.Location);
+        }
+    }
+
     public class PassMap : ClassMap<Pass>
     {
         public PassMap()

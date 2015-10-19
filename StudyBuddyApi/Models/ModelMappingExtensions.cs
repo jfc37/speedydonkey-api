@@ -69,6 +69,18 @@ namespace SpeedyDonkeyApi.Models
                 WeeksValidFor = instance.WeeksValidFor
             };
         }
+        public static RoomModel ToModel(this Room instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new RoomModel
+            {
+                Id = instance.Id,
+                Location = instance.Location,
+                Name = instance.Name
+            };
+        }
 
         public static PassModel ToModel(this Pass instance)
         {
@@ -424,6 +436,19 @@ namespace SpeedyDonkeyApi.Models
                 AvailableForPurchase = instance.AvailableForPurchase,
                 ClassesValidFor = instance.ClassesValidFor,
                 WeeksValidFor = instance.WeeksValidFor
+            };
+        }
+
+        public static Room ToEntity(this RoomModel instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new Room
+            {
+                Id = instance.Id,
+                Location = instance.Location,
+                Name = instance.Name
             };
         }
 

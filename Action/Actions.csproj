@@ -50,6 +50,8 @@
     <Compile Include="DeleteAnnouncement.cs" />
     <Compile Include="DeleteUser.cs" />
     <Compile Include="RemoveAsTeacher.cs" />
+    <Compile Include="Rooms\CreateRoom.cs" />
+    <Compile Include="Rooms\UpdateRoom.cs" />
     <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />
     <Compile Include="UpdatePassNote.cs" />

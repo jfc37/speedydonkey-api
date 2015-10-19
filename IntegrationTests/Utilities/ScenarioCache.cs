@@ -15,6 +15,7 @@ namespace IntegrationTests.Utilities
         public const string BlockModelKey = "blockModel";
         public const string AnnouncementKey = "announcementKey";
         public const string ClassModelKey = "classModel";
+        public const string RoomModelKey = "roomModel";
 
         public const string CurrentUserEmail = "currentUserEmail";
 
@@ -28,6 +29,7 @@ namespace IntegrationTests.Utilities
         public const string BlockKeyId = "blockId";
         public const string PassTemplateKeyId = "passTemplateId";
         public const string ClassKeyId = "classId";
+        public const string RoomKeyId = "roomId";
     }
 
     public static class ScenarioCache

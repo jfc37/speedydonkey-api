@@ -27,6 +27,5 @@ namespace IntegrationTests.Steps.Blocks
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
-
     }
 }
