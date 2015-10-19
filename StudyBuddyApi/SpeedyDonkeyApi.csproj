@@ -214,7 +214,6 @@
     <Compile Include="CodeChunks\SetToHttpActionResult.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BlockApiController.cs" />
-    <Compile Include="Controllers\BookingApiController.cs" />
     <Compile Include="Controllers\ClassApiController.cs" />
     <Compile Include="Controllers\ClassAttendanceApiController.cs" />
     <Compile Include="Controllers\Classes\BlockClassesApiController.cs" />
@@ -233,7 +232,6 @@
     <Compile Include="Controllers\PassApiController.cs" />
     <Compile Include="Controllers\PassTemplateApiController.cs" />
     <Compile Include="Controllers\TeacherApiController.cs" />
-    <Compile Include="Controllers\ActivityLogApiController.cs" />
     <Compile Include="Controllers\UserActivationApiController.cs" />
     <Compile Include="Controllers\RegistrationApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
@@ -261,7 +259,6 @@
     </Compile>
     <Compile Include="GlobalErrorLoggerService.cs" />
     <Compile Include="Models\BlockModel.cs" />
-    <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
@@ -282,7 +279,6 @@
     <Compile Include="Models\EnrolmentModel.cs" />
     <Compile Include="Models\PassModel.cs" />
     <Compile Include="Models\ReferenceDataModel.cs" />
-    <Compile Include="Models\ActivityLogModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserScheduleModel.cs" />

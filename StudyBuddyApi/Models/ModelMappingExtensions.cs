@@ -187,18 +187,6 @@ namespace SpeedyDonkeyApi.Models
             };
         }
 
-        public static BookingModel ToModel(this Booking instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new BookingModel
-            {
-                Room = instance.Room,
-                Event = instance.Event
-            };
-        }
-
         public static BlockModel ToModel(this Block instance)
         {
             if (instance.IsNull())
@@ -316,6 +304,20 @@ namespace SpeedyDonkeyApi.Models
                 return null;
 
             return new ClassModel
+            {
+                Name = instance.Name,
+                EndTime = instance.EndTime,
+                StartTime = instance.StartTime,
+                Id = instance.Id
+            };
+        }
+
+        public static EventModel ToStripedModel(this Event instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new EventModel
             {
                 Name = instance.Name,
                 EndTime = instance.EndTime,
@@ -444,17 +446,7 @@ namespace SpeedyDonkeyApi.Models
             };
         }
 
-        public static Booking ToEntity(this BookingModel instance)
-        {
-            if (instance.IsNull())
-                return null;
 
-            return new Booking
-            {
-                Room = instance.Room,
-                Event = instance.Event
-            };
-        }
 
         public static Block ToEntity(this BlockModel instance)
         {
@@ -521,6 +513,21 @@ namespace SpeedyDonkeyApi.Models
                 PassStatistics = instance.PassStatistics.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Id = instance.Id
+            };
+        }
+
+        public static Event ToEntity(this EventModel instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new Event
+            {
+                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
+                Name = instance.Name,
+                EndTime = instance.EndTime,
+                StartTime = instance.StartTime,
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
             };
         }
 

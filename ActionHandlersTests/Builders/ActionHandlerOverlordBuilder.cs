@@ -1,6 +1,5 @@
 ﻿using ActionHandlers;
 using Autofac;
-using Data;
 using Validation;
 
 namespace ActionHandlersTests.Builders
@@ -9,11 +8,10 @@ namespace ActionHandlersTests.Builders
     {
         private IValidatorOverlord _validatorOverlord;
         private ILifetimeScope _container;
-        private IActivityLogger _activityLogger;
 
         public ActionHandlerOverlord Build()
         {
-            return new ActionHandlerOverlord(_validatorOverlord, _container, _activityLogger);
+            return new ActionHandlerOverlord(_validatorOverlord, _container);
         }
 
         public ActionHandlerOverlordBuilder WithValidatorOverlord(IValidatorOverlord validatorOverlord)
@@ -25,12 +23,6 @@ namespace ActionHandlersTests.Builders
         public ActionHandlerOverlordBuilder WithLifetimeScope(ILifetimeScope container)
         {
             _container = container;
-            return this;
-        }
-
-        public ActionHandlerOverlordBuilder WithActivityLogger(IActivityLogger activityLogger)
-        {
-            _activityLogger = activityLogger;
             return this;
         }
     }

@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateAnnouncement.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Blocks\DeleteBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteBlock.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Blocks\UpdateBlock.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,6 +168,7 @@
     <Compile Include="Steps\Blocks\BlockEnrolmentSteps.cs" />
     <Compile Include="Steps\Blocks\CommonBlockSteps.cs" />
     <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
+    <Compile Include="Steps\Blocks\DeleteBlockSteps.cs" />
     <Compile Include="Steps\Blocks\RetrieveBlockSteps.cs" />
     <Compile Include="Steps\Blocks\UpdateBlockSteps.cs" />
     <Compile Include="Steps\Classes\ChangeClassTeachersSteps.cs" />
@@ -205,6 +211,10 @@
     <None Include="Features\Announcements\CreateAnnouncement.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateAnnouncement.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Blocks\DeleteBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteBlock.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Blocks\UpdateBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
