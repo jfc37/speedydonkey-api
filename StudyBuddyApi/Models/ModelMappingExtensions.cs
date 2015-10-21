@@ -82,6 +82,19 @@ namespace SpeedyDonkeyApi.Models
             };
         }
 
+        public static RoomModel ToStripedModel(this Room instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new RoomModel
+            {
+                Id = instance.Id,
+                Location = instance.Location,
+                Name = instance.Name
+            };
+        }
+
         public static PassModel ToModel(this Pass instance)
         {
             var clipPass = instance as ClipPass;
@@ -285,10 +298,12 @@ namespace SpeedyDonkeyApi.Models
 
             return new EventModel
             {
+                Id = instance.Id,
                 Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Name = instance.Name,
                 EndTime = instance.EndTime,
-                StartTime = instance.StartTime
+                StartTime = instance.StartTime,
+                Room = instance.Room.ToStripedModel()
             };
         }
 
@@ -306,7 +321,8 @@ namespace SpeedyDonkeyApi.Models
                 Block = instance.Block.ToStripedModel(),
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Id = instance.Id
+                Id = instance.Id,
+                Room = instance.Room.ToStripedModel()
             };
         }
 

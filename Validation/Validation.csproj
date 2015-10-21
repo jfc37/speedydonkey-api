@@ -79,6 +79,7 @@
     <Compile Include="ValidatorOverlord.cs" />
     <Compile Include="Validators\Announcements\CreateAnnouncementHandlerValidator.cs" />
     <Compile Include="Validators\Announcements\DoesAnnouncementHaveSomeoneToNotify.cs" />
+    <Compile Include="Validators\Classes\ChangeClassRoomValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassTeachersValidator.cs" />
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />

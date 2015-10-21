@@ -181,6 +181,7 @@ namespace Data.Mappings
             Map(x => x.StartTime);
             Map(x => x.EndTime);
             Map(x => x.Name);
+            References(x => x.Room);
             HasManyToMany(x => x.RegisteredStudents)
                 .Table("ClassRoll")
                 .AsSet();
@@ -240,6 +241,7 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.Name);
             Map(x => x.Location);
+            HasMany(x => x.Events);
         }
     }
 

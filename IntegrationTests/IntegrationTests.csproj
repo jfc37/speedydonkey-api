@@ -128,6 +128,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrievePassTemplate.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Rooms\AssignRoomToClass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssignRoomToClass.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Rooms\CreateRoom.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,6 +210,7 @@
     <Compile Include="Steps\PassTemplates\CommonPassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
+    <Compile Include="Steps\Rooms\AssignRoomToClassSteps.cs" />
     <Compile Include="Steps\Rooms\CreateRoomSteps.cs" />
     <Compile Include="Steps\Rooms\DeleteRoomSteps.cs" />
     <Compile Include="Steps\Rooms\UpdateRoomSteps.cs" />
@@ -288,6 +294,10 @@
     <None Include="Features\PassTemplates\RetrievePassTemplate.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrievePassTemplate.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\AssignRoomToClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AssignRoomToClass.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Rooms\CreateRoom.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

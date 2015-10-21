@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Common;
+using Common.Extensions;
 
 namespace Models
 {
@@ -22,5 +24,16 @@ namespace Models
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
+    }
+
+    public static class RoomExtensions
+    {
+        public static IEnumerable<Event> GetUpcomingSchedule(this Room instance)
+        {
+            var schedule = instance.Events.Where(x => x.StartTime.IsBetween(DateTime.Today, DateTime.Today.AddWeeks(1)))
+                .ToList();
+
+            return schedule;
+        }
     }
 }

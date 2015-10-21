@@ -14,5 +14,6 @@ namespace Models
         public virtual DateTimeOffset StartTime { get; set; }
         public virtual DateTimeOffset EndTime { get; set; }
         public virtual string Name { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

@@ -40,6 +40,7 @@
         public const string InvalidLevel = "Level doesn't exist";
         public const string InvalidTeachers = "Teachers selected are invalid";
         public const string TeachersRequired = "Please select at least one teacher";
+        public const string RoomRequired = "Please select a room";
         public const string InvalidClipsRemaining = "Invalid number of clips remaining";
         public const string UserIsAlreadyATeacher = "User is already a teacher";
         public const string CannotDeleteClassWithAttendance = "Cannot delete class with attendance";

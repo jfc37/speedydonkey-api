@@ -1,6 +1,8 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http;
 using Action.Rooms;
 using ActionHandlers;
+using Common.Extensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -35,6 +37,16 @@ namespace SpeedyDonkeyApi.Controllers.Rooms
         public IHttpActionResult Get(int id)
         {
             return new EntityToHttpActionResult<Room>(this, GetById(id), x => x.ToModel()).Do();
+        }
+
+        [Route("{id:int}/upcoming-schedule")]
+        public IHttpActionResult GetUpcomingSchedule(int id)
+        {
+            var room = GetById(id);
+
+            return room.IsNull()
+                ? (IHttpActionResult) NotFound()
+                : Ok(room.GetUpcomingSchedule().Select(x => x.ToModel()));
         }
 
         [Route]

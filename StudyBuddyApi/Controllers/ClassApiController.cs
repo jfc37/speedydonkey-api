@@ -25,6 +25,22 @@ namespace SpeedyDonkeyApi.Controllers
         {
         }
 
+        [Route("{id:int}/rooms/{roomId:int}")]
+        [NullModelActionFilter]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Put(int id, int roomId)
+        {
+            var theClass = new Class(id)
+            {
+                Room = new Room(roomId)
+            };
+
+            var result = PerformAction<ChangeClassRoom, Class>(new ChangeClassRoom(theClass));
+
+            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
+        
         [Route("{id:int}/teachers")]
         [NullModelActionFilter]
         [ClaimsAuthorise(Claim = Claim.Teacher)]

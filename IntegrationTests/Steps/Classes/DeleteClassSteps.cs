@@ -15,7 +15,7 @@ namespace IntegrationTests.Steps.Classes
         [Given(@"a class needs to be deleted")]
         public void GivenAClassNeedsToBeDeleted()
         {
-            ScenarioCache.Store(ModelIdKeys.ClassKeyId, 2);
+            ScenarioCache.Store(ModelIdKeys.ClassKeyId, 1);
         }
 
         [Given(@"a user has attended the class")]
