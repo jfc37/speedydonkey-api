@@ -133,6 +133,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateRoom.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Rooms\UpdateRoom.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateRoom.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Teachers\CreateTeacher.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -280,6 +285,10 @@
     <None Include="Features\Rooms\CreateRoom.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateRoom.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\UpdateRoom.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateRoom.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Teachers\CreateTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
