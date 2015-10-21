@@ -16,7 +16,7 @@ namespace Action
         {
             get
             {
-                return String.Format("Create announcement {0}", ActionAgainst.Message);
+                return String.Format("Create announcement");
             }
         }
     }
