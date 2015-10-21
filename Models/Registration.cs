@@ -156,7 +156,7 @@ namespace Models
                     return 10;
 
                 case WindyLindyEvents.GrammyAwards:
-                    return 20;
+                    return 30;
 
                 case WindyLindyEvents.RockStarsBall:
                     return 60;
@@ -171,7 +171,7 @@ namespace Models
                     return 60;
 
                 case WindyLindyEvents.SundayNightAfterParty:
-                    return 25;
+                    return 30;
 
                 case WindyLindyEvents.GroupiesGoodbyeJam:
                     return 25;

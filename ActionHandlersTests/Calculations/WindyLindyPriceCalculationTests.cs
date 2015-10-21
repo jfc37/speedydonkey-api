@@ -10,12 +10,12 @@ namespace ActionHandlersTests.Calculations
     public class WindyLindyPriceCalculationTests
     {
         [TestCase(WindyLindyEvents.Heats, 10)]
-        [TestCase(WindyLindyEvents.GrammyAwards, 20)]
+        [TestCase(WindyLindyEvents.GrammyAwards, 30)]
         [TestCase(WindyLindyEvents.RockStarsBall, 60)]
         [TestCase(WindyLindyEvents.GroupiesPrivateParty, 25)]
         [TestCase(WindyLindyEvents.HardRockBusTour, 30)]
         [TestCase(WindyLindyEvents.BackStageParty, 60)]
-        [TestCase(WindyLindyEvents.SundayNightAfterParty, 25)]
+        [TestCase(WindyLindyEvents.SundayNightAfterParty, 30)]
         [TestCase(WindyLindyEvents.GroupiesGoodbyeJam, 25)]
         public void It_should_have_the_correct_price_for_all_events(WindyLindyEvents windyLindyEvents, decimal expectedPrice)
         {
