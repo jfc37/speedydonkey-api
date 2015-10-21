@@ -12,6 +12,7 @@ Scenario: Update a room
 Scenario: Try to update an invalid room
 	Given a room exists
 	And the room needs to be changed
-	When the room is attempted to be created
+	But the room has invalid details
+	When the room is updated
 	Then validation errors are returned
-	And the room can not be retrieved
+	And the request is unsuccessful

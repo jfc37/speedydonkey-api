@@ -133,6 +133,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateRoom.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Rooms\DeleteRoom.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteRoom.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Rooms\UpdateRoom.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -201,6 +206,8 @@
     <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
     <Compile Include="Steps\Rooms\CreateRoomSteps.cs" />
+    <Compile Include="Steps\Rooms\DeleteRoomSteps.cs" />
+    <Compile Include="Steps\Rooms\UpdateRoomSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
@@ -285,6 +292,10 @@
     <None Include="Features\Rooms\CreateRoom.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateRoom.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\DeleteRoom.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteRoom.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Rooms\UpdateRoom.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
