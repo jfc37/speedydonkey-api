@@ -20,10 +20,10 @@ namespace Validation.Validators
 
             RuleFor(x => x.EndDate)
                 .GreaterThan(x => x.StartDate).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime)
-                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingEndTime);
+                .Must(x => new DateIsNotTooFarInThePastRule(x.Date).IsValid()).WithMessage(ValidationMessages.MissingEndTime);
 
             RuleFor(x => x.StartDate)
-                .Must(x => new DateIsNotTooFarInThePastRule(x).IsValid()).WithMessage(ValidationMessages.MissingStartTime);
+                .Must(x => new DateIsNotTooFarInThePastRule(x.Date).IsValid()).WithMessage(ValidationMessages.MissingStartTime);
 
             RuleFor(x => x.Id)
                 .Must(NotBeNegativeClassesRemaining).WithMessage(ValidationMessages.InvalidClipsRemaining);

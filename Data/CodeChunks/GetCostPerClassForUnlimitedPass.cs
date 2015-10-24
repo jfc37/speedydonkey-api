@@ -24,7 +24,7 @@ namespace Data.CodeChunks
         {
             var numberOfClassesAvailableForPass = _repository
                 .GetAll()
-                .Count(x => _pass.StartDate.IsLessThanOrEqualTo(x.StartTime) && x.StartTime.IsLessThanOrEqualTo(_pass.EndDate));
+                .Count(x => _pass.StartDate.IsOnOrBefore(x.StartTime) && x.StartTime.IsOnOrBefore(_pass.EndDate));
             if (numberOfClassesAvailableForPass == 0)
                 return 0;
 

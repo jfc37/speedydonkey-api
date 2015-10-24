@@ -37,8 +37,8 @@ namespace ActionHandlersTests
             _action = new UpdateBlock(new Block
             {
                 Name = "new",
-                StartDate = DateTime.MinValue,
-                EndDate = DateTime.MinValue,
+                StartDate = DateTime.MinValue.AddYears(1).Date,
+                EndDate = DateTime.MinValue.AddYears(1).Date,
                 Teachers = new List<Teacher> { new Teacher { Id = 1 } }
             });
             _repositoryBuilder = new MockRepositoryBuilder<Block>()

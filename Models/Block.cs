@@ -17,8 +17,8 @@ namespace Models
         public virtual ICollection<User> EnroledStudents { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
         public virtual ICollection<Announcement> Announcements { get; set; }
-        public virtual DateTime StartDate { get; set; }
-        public virtual DateTime EndDate { get; set; }
+        public virtual DateTimeOffset StartDate { get; set; }
+        public virtual DateTimeOffset EndDate { get; set; }
         public virtual string Name { get; set; }
         public virtual int Id { get; set; }
         public virtual int NumberOfClasses { get; set; }

@@ -19,9 +19,7 @@ namespace SpeedyDonkeyApi.Models
         }
         public string Message { get; set; }
         public List<BlockModel> Receivers { get; set; }
-        public string Type { get; set; }
-        public DateTime? ShowFrom { get; set; }
-        public DateTime? ShowUntil { get; set; }
+        public string Subject { get; set; }
         public bool NotifyAll { get; set; }
         public int Id { get; set; }
     }

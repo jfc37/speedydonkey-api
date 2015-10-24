@@ -21,12 +21,13 @@ namespace IntegrationTests.Steps.Blocks
 
             var startDate = DateTime.Now.Date;
             startDate = startDate.AddHours(11);
+            var startDateWithOffset = new DateTimeOffset(startDate);
             var block = new BlockModel
             {
                 MinutesPerClass = 60,
                 NumberOfClasses = 6,
                 Name = "Charleston Level 1",
-                StartDate = startDate,
+                StartDate = startDateWithOffset,
                 Teachers = new TeacherModel { Id = ScenarioCache.GetTeacherId() }.PutIntoList()
             };
 
@@ -50,9 +51,6 @@ namespace IntegrationTests.Steps.Blocks
 
             ScenarioCache.StoreActionResponse(response);
             ScenarioCache.Store(ModelIdKeys.BlockKeyId, response.Data.ActionResult.Id);
-
-            var blockResponse = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, response.Data.ActionResult.Id));
-            ScenarioCache.Store(ModelKeys.BlockModelKey, blockResponse.Data);
         }
 
         [Then(@"block can be retrieved")]
@@ -62,6 +60,17 @@ namespace IntegrationTests.Steps.Blocks
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotNull(response.Data);
+        }
+
+        [Then(@"the blocks dates are in utc")]
+        public void ThenTheBlocksDatesAreInUtc()
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+
+            var originalBlock = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
+            Assert.AreNotEqual(originalBlock.StartDate.Offset, response.Data.StartDate.Offset);
+            Assert.AreEqual(originalBlock.StartDate.ToUniversalTime(), response.Data.StartDate.ToUniversalTime());
+            Assert.AreEqual(originalBlock.StartDate.ToLocalTime(), response.Data.StartDate.ToLocalTime());
         }
 
         [Then(@"the first class of the second block is a week after the last class of the first block")]

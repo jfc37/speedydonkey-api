@@ -64,10 +64,9 @@ namespace SpeedyDonkeyApi.Controllers
 
         public IEnumerable<Event> Do()
         {
-            var today = DateTime.Now.Date;
-            var nextWeek = today.AddDays(7);
+            var today = DateTime.UtcNow.Date;
             return _schedule
-                .Where(x => x.StartTime > today && x.StartTime < nextWeek)
+                .Where(x => x.StartTime.IsOnOrAfter(today) && x.StartTime.IsBefore(today.AddWeeks(1)))
                 .ToList();
         }
     }
