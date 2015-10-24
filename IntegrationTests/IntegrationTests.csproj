@@ -128,6 +128,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrievePassTemplate.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Rooms\AssignRoomToBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssignRoomToBlock.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Rooms\AssignRoomToClass.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -294,6 +299,10 @@
     <None Include="Features\PassTemplates\RetrievePassTemplate.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrievePassTemplate.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\AssignRoomToBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AssignRoomToBlock.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Rooms\AssignRoomToClass.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
