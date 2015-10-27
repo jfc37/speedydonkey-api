@@ -183,10 +183,10 @@ namespace Data.Mappings
             Map(x => x.Name);
             References(x => x.Room);
             HasManyToMany(x => x.RegisteredStudents)
-                .Table("ClassRoll")
+                .Table("EventRoll")
                 .AsSet();
             HasManyToMany(x => x.Teachers)
-                .Table("ClassTeacher")
+                .Table("EventTeacher")
                 .AsSet();
         }
     }
