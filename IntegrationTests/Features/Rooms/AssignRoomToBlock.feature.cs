@@ -153,7 +153,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
  testRunner.When("the block is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 30
- testRunner.And("the block details has the room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the block details has the room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 31
  testRunner.And("all the classes in the block has the room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32

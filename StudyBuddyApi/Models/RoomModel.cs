@@ -8,6 +8,10 @@ namespace SpeedyDonkeyApi.Models
         {
             
         }
+        public RoomModel(int id)
+        {
+            Id = id;
+        }
 
         public RoomModel(string name, string location)
         {

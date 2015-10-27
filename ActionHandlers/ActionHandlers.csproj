@@ -55,10 +55,16 @@
     <Compile Include="Announcements\RetrieveUsers\RetrieveAllUsers.cs" />
     <Compile Include="Announcements\RetrieveUsers\RetrieveUsersInSpecificBlocksToNotify.cs" />
     <Compile Include="Announcements\RetrieveUsers\RetrieveUsersToNotifyFactory.cs" />
+    <Compile Include="Blocks\ChangeBlockRoomHandler.cs" />
+    <Compile Include="Blocks\ClassRoomChangerForBlock.cs" />
+    <Compile Include="Blocks\CreateBlockHandler.cs" />
+    <Compile Include="Blocks\CreateClassesForBlock.cs" />
+    <Compile Include="Blocks\CreateNextBlockHandler.cs" />
     <Compile Include="Calculations\ExpressCheckoutTotalCalculation.cs" />
     <Compile Include="Calculations\ExpressCheckoutFeeCalculation.cs" />
     <Compile Include="Classes\ChangeClassRoomHandler.cs" />
     <Compile Include="Classes\ChangeClassTeachersHandler.cs" />
+    <Compile Include="Classes\ClassRoomChanger.cs" />
     <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />
@@ -74,7 +80,6 @@
     <Compile Include="ActivateUserHandler.cs" />
     <Compile Include="ClassCheckIn\RemoveStudentFromClassHandler.cs" />
     <Compile Include="ClassCheckIn\CheckStudentIntoClassHandler.cs" />
-    <Compile Include="CreateHandlers\CreateBlockHandler.cs" />
     <Compile Include="CreateHandlers\CreateReferenceDataHandler.cs" />
     <Compile Include="CreateHandlers\CreateUserHandler.cs" />
     <Compile Include="CreateHandlers\CreateEntityHandler.cs" />

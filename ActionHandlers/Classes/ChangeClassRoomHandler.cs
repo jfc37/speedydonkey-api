@@ -20,9 +20,8 @@ namespace ActionHandlers.Classes
             var theClass = _classRepository.Get(action.ActionAgainst.Id);
             var room = _roomRepository.Get(action.ActionAgainst.Room.Id);
 
-            theClass.Room = room;
-
-            return _classRepository.Update(theClass);
+            return new ClassRoomChanger(_classRepository, theClass, room)
+                .Do();
         }
     }
 }

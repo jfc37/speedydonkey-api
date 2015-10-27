@@ -99,5 +99,10 @@ namespace IntegrationTests.Utilities
         {
             return "classes/{0}/rooms/{1}".FormatWith(classId, roomId);
         }
+
+        public static string GetBlockRoom(int blockId, int roomId)
+        {
+            return "blocks/{0}/rooms/{1}".FormatWith(blockId, roomId);
+        }
     }
 }

@@ -1,16 +1,17 @@
-﻿using Action;
+using Action;
+using Common.Extensions;
 using Data.Repositories;
 using FluentValidation;
 using Models;
 using Validation.Rules;
 
-namespace Validation.Validators
+namespace Validation.Validators.Blocks
 {
     public class CreateBlockValidator : AbstractValidator<Block>, IActionValidator<CreateBlock, Block>
     {
         private readonly IRepository<Teacher> _teacherRepository;
 
-        public CreateBlockValidator(IRepository<Teacher> teacherRepository)
+        public CreateBlockValidator(IRepository<Teacher> teacherRepository, IRepository<Room> roomRepository)
         {
             _teacherRepository = teacherRepository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
@@ -30,6 +31,10 @@ namespace Validation.Validators
             RuleFor(x => x.Teachers)
                 .NotEmpty().WithMessage(ValidationMessages.TeachersRequired)
                 .Must(x => new AreTeachersValidRule(x, _teacherRepository).IsValid()).WithMessage(ValidationMessages.InvalidTeachers);
+
+            RuleFor(x => x.Room)
+                .Must(x => new DoesIdExist<Room>(roomRepository, x.Id).IsValid()).WithMessage(ValidationMessages.InvalidRoom)
+                .When(x => x.Room.IsNotNull());
         }
     }
 }

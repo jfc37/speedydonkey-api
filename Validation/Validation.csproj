@@ -69,6 +69,7 @@
     <Compile Include="Rules\HasExactlyOneInSetRule.cs" />
     <Compile Include="Rules\HasNoClassAttandanceRule.cs" />
     <Compile Include="Rules\IRule.cs" />
+    <Compile Include="Rules\IsRoomAvailable.cs" />
     <Compile Include="Rules\IsStringAValidGuidRule.cs" />
     <Compile Include="Rules\IsThereARegistrationWithMatchingRegistrationNumber.cs" />
     <Compile Include="Rules\IsUserLoggedInRule.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="ValidatorOverlord.cs" />
     <Compile Include="Validators\Announcements\CreateAnnouncementHandlerValidator.cs" />
     <Compile Include="Validators\Announcements\DoesAnnouncementHaveSomeoneToNotify.cs" />
+    <Compile Include="Validators\Blocks\ChangeBlockRoomValidator.cs" />
+    <Compile Include="Validators\Blocks\CreateBlockValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassRoomValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassTeachersValidator.cs" />
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
@@ -88,7 +91,6 @@
     <Compile Include="Validators\Teachers\SetAsTeacherValidator.cs" />
     <Compile Include="Validators\UpdateClassValidator.cs" />
     <Compile Include="Validators\UpdateBlockValidator.cs" />
-    <Compile Include="Validators\CreateBlockValidator.cs" />
     <Compile Include="Validators\DeleteValidators.cs" />
     <Compile Include="Validators\CreateUpdatePassTemplateValidator.cs" />
     <Compile Include="Validators\ResetPasswordValidator.cs" />

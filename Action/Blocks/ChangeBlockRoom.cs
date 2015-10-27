@@ -1,11 +1,11 @@
-﻿using Actions;
+using Actions;
 using Models;
 
-namespace Action
+namespace Action.Blocks
 {
-    public class CreateBlock : ICrudAction<Block>
+    public class ChangeBlockRoom : IAction<Block>
     {
-        public CreateBlock(Block block)
+        public ChangeBlockRoom(Block block)
         {
             ActionAgainst = block;
         }

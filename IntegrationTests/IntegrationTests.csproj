@@ -215,6 +215,7 @@
     <Compile Include="Steps\PassTemplates\CommonPassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
+    <Compile Include="Steps\Rooms\AssignRoomToBlockSteps.cs" />
     <Compile Include="Steps\Rooms\AssignRoomToClassSteps.cs" />
     <Compile Include="Steps\Rooms\CreateRoomSteps.cs" />
     <Compile Include="Steps\Rooms\DeleteRoomSteps.cs" />

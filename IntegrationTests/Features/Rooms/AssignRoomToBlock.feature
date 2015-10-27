@@ -27,6 +27,6 @@ Scenario: Create block with room
 	And a valid block is ready to be submitted
 	And the pending block is to be held in the room
 	When the block is attempted to be created
-	And the block details has the room
+	Then the block details has the room
 	And all the classes in the block has the room
 	And the room has the classes in its schedule

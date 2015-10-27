@@ -227,7 +227,8 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
-                NumberOfClasses = instance.NumberOfClasses
+                NumberOfClasses = instance.NumberOfClasses,
+                Room = instance.Room.ToStripedModel()
             };
         }
 
@@ -244,7 +245,8 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
-                NumberOfClasses = instance.NumberOfClasses
+                NumberOfClasses = instance.NumberOfClasses,
+                Room = instance.Room.ToStripedModel()
             };
         }
 
@@ -336,6 +338,7 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
+                Room = instance.Room.ToStripedModel(),
                 Id = instance.Id
             };
         }
@@ -505,7 +508,8 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
-                NumberOfClasses = instance.NumberOfClasses
+                NumberOfClasses = instance.NumberOfClasses,
+                Room = instance.Room.ToEntity()
             };
         }
 

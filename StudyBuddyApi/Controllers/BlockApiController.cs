@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Action;
+using Action.Blocks;
 using ActionHandlers;
 using Data.Repositories;
 using Data.Searches;
@@ -77,6 +77,22 @@ namespace SpeedyDonkeyApi.Controllers
         {
             var model = new Block {Id = id};
             var result = PerformAction<DeleteBlock, Block>(new DeleteBlock(model));
+
+            return new ActionResultToOkHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
+
+        [Route("{id:int}/rooms/{roomId:int}")]
+        [NullModelActionFilter]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Put(int id, int roomId)
+        {
+            var block = new Block(id)
+            {
+                Room = new Room(roomId)
+            };
+
+            var result = PerformAction<ChangeBlockRoom, Block>(new ChangeBlockRoom(block));
 
             return new ActionResultToOkHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
                 .Do();
