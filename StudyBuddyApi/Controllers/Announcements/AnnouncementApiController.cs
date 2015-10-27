@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
@@ -9,7 +9,7 @@ using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Announcements
 {
     [RoutePrefix("api/announcements")]
     public class AnnouncementApiController : GenericApiController<Announcement>

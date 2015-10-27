@@ -1,4 +1,4 @@
-﻿using System.Web.Http;
+using System.Web.Http;
 using ActionHandlers;
 using Actions;
 using Common;
@@ -8,7 +8,7 @@ using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Users
 {
     [RoutePrefix("api/users/current")]
     public class CurrentUserApiController : BaseApiController

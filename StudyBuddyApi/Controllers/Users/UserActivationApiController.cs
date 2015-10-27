@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -6,7 +6,7 @@ using Action;
 using ActionHandlers;
 using Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Users
 {
     [RoutePrefix("api/users/activation")]
     public class UserActivationApiController : BaseApiController

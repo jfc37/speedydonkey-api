@@ -8,7 +8,7 @@ using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Classes
 {
     [RoutePrefix("api/classes")]
     public class ClassAttendanceApiController : EntityPropertyApiController

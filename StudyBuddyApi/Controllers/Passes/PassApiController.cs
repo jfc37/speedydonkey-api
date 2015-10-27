@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Action;
@@ -10,7 +10,7 @@ using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Passes
 {
     [RoutePrefix("api/passes")]
     public class PassApiController : GenericApiController<Pass>

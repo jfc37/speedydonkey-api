@@ -1,4 +1,3 @@
-﻿using System.Reflection;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -10,7 +9,7 @@ using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Users
 {
     [RoutePrefix("api/users")]
     public class UserApiController : GenericApiController<User>

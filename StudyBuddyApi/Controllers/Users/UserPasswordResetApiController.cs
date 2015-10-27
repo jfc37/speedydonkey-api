@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -7,7 +7,7 @@ using ActionHandlers;
 using Models;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Users
 {
     [RoutePrefix("api/users/password/reset")]
     public class UserPasswordResetApiController : BaseApiController

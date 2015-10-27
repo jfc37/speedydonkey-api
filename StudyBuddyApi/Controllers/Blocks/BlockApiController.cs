@@ -1,4 +1,4 @@
-﻿using System.Web.Http;
+using System.Web.Http;
 using Action;
 using Action.Blocks;
 using ActionHandlers;
@@ -9,7 +9,7 @@ using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Blocks
 {
     [RoutePrefix("api/blocks")]
     public class BlockApiController : GenericApiController<Block>
@@ -20,19 +20,28 @@ namespace SpeedyDonkeyApi.Controllers
             IEntitySearch<Block> entitySearch)
             : base(actionHandlerOverlord, repository, entitySearch) { }
 
+        [Route("for-enrolment")]
+        public IHttpActionResult GetForEnrolment()
+        {
+            return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToStripedModel()).Do();
+        }
+
         [Route]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
             return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToModel()).Do();
         }
 
         [Route]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(string q)
         {
             return new SetToHttpActionResult<Block>(this, Search(q), x => x.ToModel()).Do();
         }
 
         [Route("{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(int id)
         {
             return new EntityToHttpActionResult<Block>(this, GetById(id), x => x.ToModel()).Do();

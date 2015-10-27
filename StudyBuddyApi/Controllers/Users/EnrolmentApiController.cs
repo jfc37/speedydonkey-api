@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -8,7 +8,7 @@ using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Users
 {
     [RoutePrefix("api/users")]
     public class EnrolmentApiController : GenericApiController<User>

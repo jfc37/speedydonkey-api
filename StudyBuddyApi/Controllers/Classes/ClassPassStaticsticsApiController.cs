@@ -6,7 +6,7 @@ using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Classes
 {
     public class ClassPassStaticsticsApiController : EntityPropertyApiController
     {

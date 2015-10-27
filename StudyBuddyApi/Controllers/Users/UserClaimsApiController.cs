@@ -1,14 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using Common;
 using Common.Extensions;
-using Data.CodeChunks;
 using Data.Repositories;
 using Models;
+using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Users
 {
     public class UserClaimsApiController : BaseApiController
     {
@@ -38,23 +36,6 @@ namespace SpeedyDonkeyApi.Controllers
             return claims.IsNotNull()
                 ? (IHttpActionResult) Ok(claims)
                 : NotFound();
-        }
-    }
-
-    public class ExtractUserClaims : ICodeChunk<IEnumerable<string>>
-    {
-        private readonly User _user;
-
-        public ExtractUserClaims(User user)
-        {
-            _user = user;
-        }
-
-        public IEnumerable<string> Do()
-        {
-            return _user.IsNull() || _user.Claims.IsNullOrWhiteSpace()
-                ? null
-                : _user.Claims.Split(',').ToList();
         }
     }
 }

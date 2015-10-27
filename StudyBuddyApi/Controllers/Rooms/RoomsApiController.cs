@@ -22,24 +22,28 @@ namespace SpeedyDonkeyApi.Controllers.Rooms
             : base(actionHandlerOverlord, repository, entitySearch) { }
 
         [Route]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Get()
         {
             return new SetToHttpActionResult<Room>(this, GetAll(), x => x.ToModel()).Do();
         }
 
         [Route]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Get(string q)
         {
             return new SetToHttpActionResult<Room>(this, Search(q), x => x.ToModel()).Do();
         }
 
         [Route("{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Get(int id)
         {
             return new EntityToHttpActionResult<Room>(this, GetById(id), x => x.ToModel()).Do();
         }
 
         [Route("{id:int}/upcoming-schedule")]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult GetUpcomingSchedule(int id)
         {
             var room = GetById(id);

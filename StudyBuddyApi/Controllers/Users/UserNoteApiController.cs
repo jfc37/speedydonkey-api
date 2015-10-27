@@ -1,18 +1,18 @@
-﻿using System.Web.Http;
+using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Common.Extensions;
 using Models;
 using SpeedyDonkeyApi.Filter;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Users
 {
-    [RoutePrefix("api/passes")]
-    public class PassNoteApiController : BaseApiController
+    [RoutePrefix("api/users")]
+    public class UserNoteApiController : BaseApiController
     {
         private readonly IActionHandlerOverlord _actionHandlerOverlord;
 
-        public PassNoteApiController(IActionHandlerOverlord actionHandlerOverlord)
+        public UserNoteApiController(IActionHandlerOverlord actionHandlerOverlord)
         {
             _actionHandlerOverlord = actionHandlerOverlord;
         }
@@ -21,10 +21,10 @@ namespace SpeedyDonkeyApi.Controllers
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Put(int id, [FromBody] string note)
         {
-            var pass = new Pass(id) {Note = note};
-            var action = new UpdatePassNote(pass);
+            var user = new User(id) {Note = note};
+            var action = new UpdateUserNote(user);
 
-            var result = _actionHandlerOverlord.HandleAction<UpdatePassNote, Pass>(action);
+            var result = _actionHandlerOverlord.HandleAction<UpdateUserNote, User>(action);
 
             return result.ValidationResult.IsValid 
                 ? (IHttpActionResult) Ok() 

@@ -1,4 +1,4 @@
-﻿using System.Web.Http;
+using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Data.Repositories;
@@ -8,7 +8,7 @@ using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.PassTemplates
 {
     [RoutePrefix("api/pass-templates")]
     public class PassTemplateApiController : GenericApiController<PassTemplate>

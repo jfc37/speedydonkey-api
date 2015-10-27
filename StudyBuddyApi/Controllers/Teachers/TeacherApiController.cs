@@ -1,4 +1,4 @@
-﻿using System.Web.Http;
+using System.Web.Http;
 using ActionHandlers;
 using Actions;
 using Data.Repositories;
@@ -8,7 +8,7 @@ using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Teachers
 {
     [RoutePrefix("api/teachers")]
     public class TeacherApiController : GenericApiController<Teacher>

@@ -1,4 +1,4 @@
-﻿using System.Web.Http;
+using System.Web.Http;
 using ActionHandlers;
 using Common;
 using Common.Extensions;
@@ -7,7 +7,7 @@ using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Users
 {
     [RoutePrefix("api/users")]
     public class UserEnroledBlocksApiController : EntityPropertyApiController

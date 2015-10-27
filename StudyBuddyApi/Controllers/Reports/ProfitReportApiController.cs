@@ -7,7 +7,7 @@ using Models;
 using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
-namespace SpeedyDonkeyApi.Controllers
+namespace SpeedyDonkeyApi.Controllers.Reports
 {
     [RoutePrefix("api/report/profit")]
     public class ProfitReportApiController : BaseApiController
