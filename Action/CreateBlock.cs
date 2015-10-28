@@ -1,5 +1,4 @@
-﻿using System;
-using Actions;
+﻿using Actions;
 using Models;
 
 namespace Action
@@ -12,12 +11,5 @@ namespace Action
         }
 
         public Block ActionAgainst { get; set; }
-        public string LogText
-        {
-            get
-            {
-                return String.Format("Create block");
-            }
-        }
     }
 }

@@ -44,11 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityLog.cs" />
     <Compile Include="Announcement.cs" />
     <Compile Include="AvailableTime.cs" />
     <Compile Include="Block.cs" />
-    <Compile Include="Booking.cs" />
     <Compile Include="Class.cs" />
     <Compile Include="ClipPass.cs" />
     <Compile Include="IEntity.cs" />

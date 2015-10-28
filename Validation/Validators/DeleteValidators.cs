@@ -48,6 +48,9 @@ namespace Validation.Validators
         public DeleteClassValidator(IRepository<Class> repository)
             : base(repository)
         {
+            RuleFor(x => x.ActualStudents)
+                .Must((x, y) => new HasNoClassAttandanceRule(repository, x.Id).IsValid())
+                .WithMessage(ValidationMessages.CannotDeleteClassWithAttendance);
         }
     }
 }

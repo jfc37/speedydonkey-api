@@ -29,7 +29,7 @@ namespace Data.Repositories
                 .SetFetchMode("Schedule.Event", FetchMode.Join)
                 .Future<User>();
             var user = search.First(x => x.Id == id);
-            var schedule = user.Schedule.Select(x => x.Event)
+            var schedule = user.Schedule
                 .Where(x => x.StartTime > timeBefore)
                 .OrderBy(x => x.StartTime)
                 .Take(10).ToList();
@@ -57,17 +57,14 @@ namespace Data.Repositories
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity , IDatabaseEntity
     {
         private readonly ISession _session;
-        private readonly IActivityLogger _activityLogger;
 
-        public GenericRepository(ISession session, IActivityLogger activityLogger)
+        public GenericRepository(ISession session)
         {
             _session = session;
-            _activityLogger = activityLogger;
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            Log(ActivityType.GetAll);
             return _session.CreateCriteria<TEntity>()
                 .List<TEntity>();
         }
@@ -83,13 +80,11 @@ namespace Data.Repositories
 
             var groupedById = completedSearch.GroupBy(x => x.Id);
             var justTheFirstOfEach = groupedById.Select(x => x.First());
-            Log(ActivityType.GetAllWithChildren, String.Format("Children: {0}", String.Join(", ", children)));
             return justTheFirstOfEach;
         }
 
         public TEntity Get(int id)
         {
-            Log(ActivityType.GetById, String.Format("Id: {0}", id));
             var entity = _session.Get<TEntity>(id);
             return entity;
         }
@@ -104,7 +99,6 @@ namespace Data.Repositories
             var completedSearch = search.Future<TEntity>();
 
             var entity = completedSearch.First(x => x.Id == id);
-            Log(ActivityType.GetByIdWithChildren, String.Format("Id: {0}, Children: {1}", id, String.Join(", ", children)));
             return entity;
         }
 
@@ -116,7 +110,6 @@ namespace Data.Repositories
                 _session.Save(entity);
                 transaction.Commit();
             }
-            Log(ActivityType.Create, String.Format("Id: {0}", entity.Id));
             return entity;
         }
 
@@ -129,7 +122,6 @@ namespace Data.Repositories
                 _session.Flush();
                 transaction.Commit();
             }
-            Log(ActivityType.Update, String.Format("Id: {0}", entity.Id));
             return entity;
         }
 
@@ -142,17 +134,6 @@ namespace Data.Repositories
                 _session.Flush();
                 transaction.Commit();
             }
-            Log(ActivityType.Delete, String.Format("Id: {0}", entity.Id));
-        }
-
-        private void Log(ActivityType activityType, string extraDetails = "")
-        {
-            var activityText = String.Format("Entity: {0}", typeof (TEntity).Name);
-            if (!String.IsNullOrWhiteSpace(extraDetails))
-                activityText = activityText + ", " + extraDetails;
-
-            _activityLogger.Log(ActivityGroup.DatabaseAccess, activityType,
-                activityText);
         }
     }
 }

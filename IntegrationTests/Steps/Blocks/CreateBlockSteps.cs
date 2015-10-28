@@ -19,7 +19,7 @@ namespace IntegrationTests.Steps.Blocks
         {
             new CommonTeacherSteps().GivenAnExistingUserIsATeacher();
 
-            var startDate = DateTime.Now.Date;
+            var startDate = DateTime.Now.Date.AddDays(2);
             startDate = startDate.AddHours(11);
             var startDateWithOffset = new DateTimeOffset(startDate);
             var block = new BlockModel

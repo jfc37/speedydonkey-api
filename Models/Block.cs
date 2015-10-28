@@ -6,6 +6,11 @@ namespace Models
 {
     public class Block : IDatabaseEntity, IEntity
     {
+        public Block(int id) : this()
+        {
+            Id = id;
+        }
+
         public Block()
         {
             Classes = new List<Class>();
@@ -17,6 +22,7 @@ namespace Models
         public virtual ICollection<User> EnroledStudents { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
         public virtual ICollection<Announcement> Announcements { get; set; }
+        public virtual Room Room { get; set; }
         public virtual DateTimeOffset StartDate { get; set; }
         public virtual DateTimeOffset EndDate { get; set; }
         public virtual string Name { get; set; }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Models;
 using Newtonsoft.Json;
 
 namespace SpeedyDonkeyApi.Models
@@ -27,5 +26,6 @@ namespace SpeedyDonkeyApi.Models
         public List<UserModel> ActualStudents { get; set; }
         public BlockModel Block { get; set; }
         public List<PassStatisticModel> PassStatistics { get; set; }
+        public RoomModel Room { get; set; }
     }
 }

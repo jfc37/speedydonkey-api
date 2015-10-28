@@ -28,6 +28,7 @@ namespace SpeedyDonkeyApi.Models
         public List<AnnouncementModel> Announcements { get; set; }
         public DateTimeOffset StartDate { get; set; }
         public DateTimeOffset EndDate { get; set; }
+        public RoomModel Room { get; set; }
         public int NumberOfClasses { get; set; }
         public int MinutesPerClass { get; set; }
         public string Name { get; set; }
