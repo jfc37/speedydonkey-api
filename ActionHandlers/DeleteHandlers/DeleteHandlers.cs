@@ -15,13 +15,11 @@ namespace ActionHandlers.DeleteHandlers
     public class DeleteBlockHandler : DeleteEntityHandler<DeleteBlock, Block>
     {
         private readonly IRepository<Class> _classRepository;
-        private readonly IRepository<Booking> _bookingRepository;
 
-        public DeleteBlockHandler(IRepository<Block> repository, IRepository<Class> classRepository, IRepository<Booking> bookingRepository)
+        public DeleteBlockHandler(IRepository<Block> repository, IRepository<Class> classRepository)
             : base(repository)
         {
             _classRepository = classRepository;
-            _bookingRepository = bookingRepository;
         }
 
         protected override void PreHandle(ICrudAction<Block> action)
@@ -34,7 +32,7 @@ namespace ActionHandlers.DeleteHandlers
 
         private void DeleteClasses(Block block)
         {
-            var deleteClassHandler = new DeleteClassHandler(_classRepository, _bookingRepository);
+            var deleteClassHandler = new DeleteClassHandler(_classRepository);
             foreach (var theClass in block.Classes.OfType<Class>())
             {
                 deleteClassHandler.Handle(new DeleteClass(theClass));
@@ -51,23 +49,9 @@ namespace ActionHandlers.DeleteHandlers
     }
     public class DeleteClassHandler : DeleteEntityHandler<DeleteClass, Class>
     {
-        private readonly IRepository<Booking> _bookingRepository;
-
-        public DeleteClassHandler(IRepository<Class> repository, IRepository<Booking> bookingRepository)
+        public DeleteClassHandler(IRepository<Class> repository)
             : base(repository)
         {
-            _bookingRepository = bookingRepository;
-        }
-
-        protected override void PreHandle(ICrudAction<Class> action)
-        {
-            var theClass = Repository.Get(action.ActionAgainst.Id);
-
-            var bookings = _bookingRepository.GetAll().Where(x => x.Event == theClass);
-            foreach (var booking in bookings)
-            {
-                _bookingRepository.Delete(booking.Id);
-            }
         }
     }
     public class DeletePassHandler : DeleteEntityHandler<DeletePass, Pass>

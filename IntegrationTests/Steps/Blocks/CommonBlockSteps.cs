@@ -19,6 +19,15 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.ThenBlockCanBeRetrieved();
         }
 
+        [Given(@"'(.*)' blocks exists")]
+        public void GivenBlocksExists(int numberOfBlocks)
+        {
+            for (int blockNumber = 1; blockNumber <= numberOfBlocks; blockNumber++)
+            {
+                GivenABlockExists();
+            }
+        }
+
         [Given(@"the user enrols in the block")]
         public void GivenTheUserEnrolsInTheBlock()
         {

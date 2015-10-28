@@ -63,7 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityLogger.cs" />
     <Compile Include="CodeChunks\GetCostPerClassForUnlimitedPass.cs" />
     <Compile Include="CodeChunks\GetPayPalConfig.cs" />
     <Compile Include="CodeChunks\GetPopulatedPassFromPassTemplate.cs" />

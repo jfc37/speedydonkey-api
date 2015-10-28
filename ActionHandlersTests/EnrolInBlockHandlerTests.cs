@@ -18,7 +18,7 @@ namespace ActionHandlersTests
 
         private MockRepositoryBuilder<User> _userRepositoryBuilder;
         private MockRepositoryBuilder<Block> _blockRepositoryBuilder;
-        private MockRepositoryBuilder<Booking> _bookingRepositoryBuilder;
+        private MockRepositoryBuilder<Event> _bookingRepositoryBuilder;
         private MockPostOfficeBuilder _postOfficeBuilder;
         
         [SetUp]
@@ -47,7 +47,7 @@ namespace ActionHandlersTests
                     }
                 }
             });
-            _bookingRepositoryBuilder = new MockRepositoryBuilder<Booking>()
+            _bookingRepositoryBuilder = new MockRepositoryBuilder<Event>()
                 .WithCreate()
                 .WithGetAll();
             _postOfficeBuilder = new MockPostOfficeBuilder()
@@ -98,12 +98,6 @@ namespace ActionHandlersTests
                 Id = _action.ActionAgainst.EnroledBlocks.Single().Id,
                 Classes = classes
             }});
-            _bookingRepositoryBuilder.WithGetAll(classes.Select(x => new Booking{
-                Event = new Class
-                {
-                    Id = x.Id
-                }
-            }));
 
             PerformAction();
 
@@ -126,12 +120,6 @@ namespace ActionHandlersTests
                 Id = _action.ActionAgainst.EnroledBlocks.Single().Id,
                 Classes = classes
             }});
-            _bookingRepositoryBuilder.WithGetAll(classes.Select(x => new Booking{
-                Event = new Class
-                {
-                    Id = x.Id
-                }
-            }));
 
             PerformAction();
 

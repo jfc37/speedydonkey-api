@@ -69,6 +69,31 @@ namespace SpeedyDonkeyApi.Models
                 WeeksValidFor = instance.WeeksValidFor
             };
         }
+        public static RoomModel ToModel(this Room instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new RoomModel
+            {
+                Id = instance.Id,
+                Location = instance.Location,
+                Name = instance.Name
+            };
+        }
+
+        public static RoomModel ToStripedModel(this Room instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new RoomModel
+            {
+                Id = instance.Id,
+                Location = instance.Location,
+                Name = instance.Name
+            };
+        }
 
         public static PassModel ToModel(this Pass instance)
         {
@@ -187,18 +212,6 @@ namespace SpeedyDonkeyApi.Models
             };
         }
 
-        public static BookingModel ToModel(this Booking instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new BookingModel
-            {
-                Room = instance.Room,
-                Event = instance.Event
-            };
-        }
-
         public static BlockModel ToModel(this Block instance)
         {
             if (instance.IsNull())
@@ -214,7 +227,8 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
-                NumberOfClasses = instance.NumberOfClasses
+                NumberOfClasses = instance.NumberOfClasses,
+                Room = instance.Room.ToStripedModel()
             };
         }
 
@@ -231,7 +245,8 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
-                NumberOfClasses = instance.NumberOfClasses
+                NumberOfClasses = instance.NumberOfClasses,
+                Room = instance.Room.ToStripedModel()
             };
         }
 
@@ -285,10 +300,12 @@ namespace SpeedyDonkeyApi.Models
 
             return new EventModel
             {
+                Id = instance.Id,
                 Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Name = instance.Name,
                 EndTime = instance.EndTime,
-                StartTime = instance.StartTime
+                StartTime = instance.StartTime,
+                Room = instance.Room.ToStripedModel()
             };
         }
 
@@ -306,7 +323,8 @@ namespace SpeedyDonkeyApi.Models
                 Block = instance.Block.ToStripedModel(),
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Id = instance.Id
+                Id = instance.Id,
+                Room = instance.Room.ToStripedModel()
             };
         }
 
@@ -316,6 +334,21 @@ namespace SpeedyDonkeyApi.Models
                 return null;
 
             return new ClassModel
+            {
+                Name = instance.Name,
+                EndTime = instance.EndTime,
+                StartTime = instance.StartTime,
+                Room = instance.Room.ToStripedModel(),
+                Id = instance.Id
+            };
+        }
+
+        public static EventModel ToStripedModel(this Event instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new EventModel
             {
                 Name = instance.Name,
                 EndTime = instance.EndTime,
@@ -425,6 +458,19 @@ namespace SpeedyDonkeyApi.Models
             };
         }
 
+        public static Room ToEntity(this RoomModel instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new Room
+            {
+                Id = instance.Id,
+                Location = instance.Location,
+                Name = instance.Name
+            };
+        }
+
         public static User ToEntity(this UserModel instance)
         {
             if (instance.IsNull())
@@ -444,17 +490,7 @@ namespace SpeedyDonkeyApi.Models
             };
         }
 
-        public static Booking ToEntity(this BookingModel instance)
-        {
-            if (instance.IsNull())
-                return null;
 
-            return new Booking
-            {
-                Room = instance.Room,
-                Event = instance.Event
-            };
-        }
 
         public static Block ToEntity(this BlockModel instance)
         {
@@ -472,7 +508,8 @@ namespace SpeedyDonkeyApi.Models
                 Name = instance.Name,
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
-                NumberOfClasses = instance.NumberOfClasses
+                NumberOfClasses = instance.NumberOfClasses,
+                Room = instance.Room.ToEntity()
             };
         }
 
@@ -521,6 +558,21 @@ namespace SpeedyDonkeyApi.Models
                 PassStatistics = instance.PassStatistics.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Id = instance.Id
+            };
+        }
+
+        public static Event ToEntity(this EventModel instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new Event
+            {
+                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
+                Name = instance.Name,
+                EndTime = instance.EndTime,
+                StartTime = instance.StartTime,
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
             };
         }
 

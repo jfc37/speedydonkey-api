@@ -14,11 +14,11 @@ namespace ActionHandlers.EnrolmentProcess
     public class BlockEnrolmentService : IBlockEnrolmentService
     {
         private readonly IRepository<Block> _blockRepository;
-        private readonly IRepository<Booking> _bookingRepository;
+        private readonly IRepository<Event> _bookingRepository;
 
         public BlockEnrolmentService(
             IRepository<Block> blockRepository,
-            IRepository<Booking> bookingRepository)
+            IRepository<Event> bookingRepository)
         {
             _blockRepository = blockRepository;
             _bookingRepository = bookingRepository;
@@ -41,17 +41,11 @@ namespace ActionHandlers.EnrolmentProcess
         {
             if (user.Schedule == null)
             {
-                user.Schedule = new List<Booking>();
+                user.Schedule = new List<Event>();
             }
-            var bookings = classes.Select(x => new Booking
+            foreach (var theClass in classes)
             {
-                CreatedDateTime = DateTime.Now,
-                Event = x
-            }).ToList();
-            foreach (var booking in bookings)
-            {
-                _bookingRepository.Create(booking);
-                user.Schedule.Add(booking);
+                user.Schedule.Add(theClass);
             }
         }
 

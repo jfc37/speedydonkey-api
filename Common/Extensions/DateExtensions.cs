@@ -45,6 +45,11 @@ namespace Common.Extensions
             return instance >= toCompare;
         }
 
+        public static bool IsBetween(this DateTimeOffset instance, DateTimeOffset start, DateTimeOffset end)
+        {
+            return instance.IsOnOrAfter(start) && instance.IsOnOrBefore(end);
+        }
+
         public static bool IsOnOrAfter(this DateTimeOffset? instance, DateTimeOffset toCompare)
         {
             return instance.HasValue && instance.IsOnOrAfter(toCompare);
