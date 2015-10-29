@@ -106,5 +106,19 @@ namespace SpeedyDonkeyApi.Controllers.Blocks
             return new ActionResultToOkHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
                 .Do();
         }
+
+        [Route("{id:int}/rooms")]
+        [NullModelActionFilter]
+        [HttpDelete]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult UnassignRoom(int id)
+        {
+            var block = new Block(id);
+
+            var result = PerformAction<UnassignBlockRoom, Block>(new UnassignBlockRoom(block));
+
+            return new ActionResultToOkHttpActionResult<Block, BlockModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
     }
 }

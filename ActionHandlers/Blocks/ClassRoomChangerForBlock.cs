@@ -19,7 +19,6 @@ namespace ActionHandlers.Blocks
             _room = room;
         }
 
-
         public Block Do()
         {
             foreach (var theClass in _block.Classes)

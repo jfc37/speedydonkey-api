@@ -40,6 +40,20 @@ namespace SpeedyDonkeyApi.Controllers.Classes
             return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
                 .Do();
         }
+
+        [Route("{id:int}/rooms")]
+        [NullModelActionFilter]
+        [HttpDelete]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult UnassignRoom(int id)
+        {
+            var theClass = new Class(id);
+
+            var result = PerformAction<UnassignClassRoom, Class>(new UnassignClassRoom(theClass));
+
+            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
         
         [Route("{id:int}/teachers")]
         [NullModelActionFilter]
