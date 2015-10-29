@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blocks\ChangeBlockRoom.cs" />
+    <Compile Include="Blocks\UnassignBlockRoom.cs" />
     <Compile Include="Classes\ChangeClassRoom.cs" />
     <Compile Include="Classes\ChangeClassTeachers.cs" />
+    <Compile Include="Classes\UnassignClassRoom.cs" />
     <Compile Include="CreateAnnouncement.cs" />
     <Compile Include="CreateNextBlock.cs" />
     <Compile Include="CreateRegistration.cs" />
