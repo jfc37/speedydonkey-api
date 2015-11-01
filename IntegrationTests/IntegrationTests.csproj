@@ -148,6 +148,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DeleteRoom.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Rooms\UnassignRoomFromBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnassignRoomFromBlock.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\UnassignRoomFromClass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnassignRoomFromClass.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Rooms\UpdateRoom.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -219,6 +229,8 @@
     <Compile Include="Steps\Rooms\AssignRoomToClassSteps.cs" />
     <Compile Include="Steps\Rooms\CreateRoomSteps.cs" />
     <Compile Include="Steps\Rooms\DeleteRoomSteps.cs" />
+    <Compile Include="Steps\Rooms\UnassignRoomFromBlockSteps.cs" />
+    <Compile Include="Steps\Rooms\UnassignRoomFromClassSteps.cs" />
     <Compile Include="Steps\Rooms\UpdateRoomSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
@@ -316,6 +328,14 @@
     <None Include="Features\Rooms\DeleteRoom.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DeleteRoom.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\UnassignRoomFromBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UnassignRoomFromBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\UnassignRoomFromClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UnassignRoomFromClass.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Rooms\UpdateRoom.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

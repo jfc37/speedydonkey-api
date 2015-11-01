@@ -82,8 +82,10 @@
     <Compile Include="Validators\Announcements\DoesAnnouncementHaveSomeoneToNotify.cs" />
     <Compile Include="Validators\Blocks\ChangeBlockRoomValidator.cs" />
     <Compile Include="Validators\Blocks\CreateBlockValidator.cs" />
+    <Compile Include="Validators\Blocks\UnassignBlockRoomValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassRoomValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassTeachersValidator.cs" />
+    <Compile Include="Validators\Classes\UnassignClassRoomValidator.cs" />
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />
     <Compile Include="Validators\Rooms\UpdateRoomValidator.cs" />

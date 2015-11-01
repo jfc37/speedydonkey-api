@@ -57,14 +57,17 @@
     <Compile Include="Announcements\RetrieveUsers\RetrieveUsersToNotifyFactory.cs" />
     <Compile Include="Blocks\ChangeBlockRoomHandler.cs" />
     <Compile Include="Blocks\ClassRoomChangerForBlock.cs" />
+    <Compile Include="Blocks\ClassRoomRemoverForBlock.cs" />
     <Compile Include="Blocks\CreateBlockHandler.cs" />
     <Compile Include="Blocks\CreateClassesForBlock.cs" />
     <Compile Include="Blocks\CreateNextBlockHandler.cs" />
+    <Compile Include="Blocks\UnassignBlockRoomHandler.cs" />
     <Compile Include="Calculations\ExpressCheckoutTotalCalculation.cs" />
     <Compile Include="Calculations\ExpressCheckoutFeeCalculation.cs" />
     <Compile Include="Classes\ChangeClassRoomHandler.cs" />
     <Compile Include="Classes\ChangeClassTeachersHandler.cs" />
     <Compile Include="Classes\ClassRoomChanger.cs" />
+    <Compile Include="Classes\UnassignClassRoomHandler.cs" />
     <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />
