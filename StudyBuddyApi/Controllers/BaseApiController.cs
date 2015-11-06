@@ -4,7 +4,7 @@ using SpeedyDonkeyApi.Filter;
 namespace SpeedyDonkeyApi.Controllers
 {
 
-    [BasicAuthAuthorise]
+    [Authorize]
     public abstract class BaseApiController : ApiController
     {
     }
