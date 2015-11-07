@@ -209,7 +209,6 @@ namespace SpeedyDonkeyApi
 
             config.Filters.Add(new NullModelActionFilter());
             config.Filters.Add(new ValidateModelActionFilter());
-            config.Filters.Add(new CurrentUserActionFilter());
         }
     }
 

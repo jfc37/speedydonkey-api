@@ -37,7 +37,7 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
 
         [Route]
-        //[ClaimsAuthorise(Claim = Claim.Teacher)]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
             return new SetToHttpActionResult<User>(this, GetAll(), x => x.ToModel()).Do();

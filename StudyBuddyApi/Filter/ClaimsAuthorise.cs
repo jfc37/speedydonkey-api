@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
@@ -22,13 +23,11 @@ namespace SpeedyDonkeyApi.Filter
         private void HandleUnauthorised(HttpActionContext actionContext)
         {
             actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
-            //TODO: Remove login url hardcoding
-            actionContext.Response.Headers.Add("WWW-Authenticate", "Basic Scheme='SpeedyDonkey' location='http://localhost:50831/users/login'");
         }
 
         private string GetClaimsForUser(HttpActionContext actionContext)
         {
-            var loggedInUser = new ExtractLoggedInUser(actionContext.Request).Do();
+            var loggedInUser = new ExtractLoggedInUser(actionContext.Request.GetOwinContext().Authentication.User, actionContext.Request.GetDependencyScope()).Do();
             return loggedInUser.IsNull() 
                 ? "" 
                 : loggedInUser.Claims;

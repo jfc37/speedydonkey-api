@@ -25,7 +25,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
 
         [Route("api/users/current/schedules")]
-        [ActiveUserRequired]
         public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);

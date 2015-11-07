@@ -5,6 +5,7 @@ namespace SpeedyDonkeyApi.Controllers
 {
 
     [Authorize]
+    [CreateNewUserIfRequired]
     public abstract class BaseApiController : ApiController
     {
     }

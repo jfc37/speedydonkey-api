@@ -1,8 +1,6 @@
-using System;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
+using System.Security.Claims;
+using System.Web.Http.Dependencies;
 using Data.CodeChunks;
 using Data.Repositories;
 using Models;
@@ -11,49 +9,27 @@ namespace SpeedyDonkeyApi.CodeChunks
 {
     public class ExtractLoggedInUser : ICodeChunk<User>
     {
-        private readonly HttpRequestMessage _request;
+        private readonly ClaimsPrincipal _claimsPrincipal;
+        private readonly IDependencyScope _dependencyScope;
 
-        public ExtractLoggedInUser(HttpRequestMessage request)
+        public ExtractLoggedInUser(ClaimsPrincipal claimsPrincipal, IDependencyScope dependencyScope)
         {
-            _request = request;
+            _claimsPrincipal = claimsPrincipal;
+            _dependencyScope = dependencyScope;
         }
 
         public User Do()
         {
-            var authHeader = _request.Headers.Authorization;
-            if (authHeader != null)
+            if (_claimsPrincipal.Identity.IsAuthenticated)
             {
-                if (authHeader.Scheme.Equals("basic", StringComparison.OrdinalIgnoreCase) &&  !String.IsNullOrWhiteSpace(authHeader.Parameter))
-                {
-                    var email = GetEmail(authHeader);
-                    var userSearch = (IRepository<User>)_request.GetDependencyScope().GetService(typeof(IRepository<User>));
-                    var user = userSearch.GetAll()
-                        .SingleOrDefault(x => x.Email == email);
+                var globalId = _claimsPrincipal.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
 
-                    return user;
-                }
+                var repository = (IRepository<User>)_dependencyScope.GetService(typeof(IRepository<User>));
+                return repository.GetAll()
+                    .SingleOrDefault(x => x.GlobalId == globalId);
             }
 
             return null;
-        }
-
-        private string GetEmail(AuthenticationHeaderValue authHeader)
-        {
-            var rawCredentials = authHeader.Parameter;
-            var encoding = Encoding.GetEncoding("iso-8859-1");
-            string credentials;
-            try
-            {
-                credentials = encoding.GetString(Convert.FromBase64String(rawCredentials));
-            }
-            catch (FormatException)
-            {
-                return "";
-            }
-            var split = credentials.Split(':');
-            if (split.Count() != 2)
-                return "";
-            return split[0];
         }
     }
 }

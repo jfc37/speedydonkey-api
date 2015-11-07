@@ -293,12 +293,10 @@
     <Compile Include="Extensions\Models\OnlinePaymentRequestModelExtensions.cs" />
     <Compile Include="Extensions\Models\PoliRequestModelExtensions.cs" />
     <Compile Include="Extensions\Models\PayPalRequestModelExtensions.cs" />
-    <Compile Include="Filter\ActiveUserRequired.cs" />
     <Compile Include="Filter\ClaimsAuthorise.cs" />
+    <Compile Include="Filter\CreateNewUserIfRequired.cs" />
     <Compile Include="Filter\NullModelActionFilter.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
-    <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
-    <Compile Include="Filter\CurrentUserAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />
     <Compile Include="GlobalErrorLoggerService.cs" />
     <Compile Include="Models\BlockModel.cs" />
