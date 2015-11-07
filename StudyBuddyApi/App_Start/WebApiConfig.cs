@@ -209,6 +209,7 @@ namespace SpeedyDonkeyApi
 
             config.Filters.Add(new NullModelActionFilter());
             config.Filters.Add(new ValidateModelActionFilter());
+            config.Filters.Add(new CurrentUserAttribute());
         }
     }
 
@@ -221,6 +222,7 @@ namespace SpeedyDonkeyApi
             HttpsConfig.Register(config);
            CorsConfig.Register(config);
             DependancyInjectionConfig.Register(config, app);
+            FilterConfig.Register(config);
         }
     }
 }

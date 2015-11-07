@@ -5,7 +5,6 @@ using Common;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
-using SpeedyDonkeyApi.Filter;
 using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Users
