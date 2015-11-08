@@ -20,7 +20,7 @@ namespace SpeedyDonkeyApi
             config.Formatters.JsonFormatter.SerializerSettings = jsonSetting;
 
             //Camel case json
-            var formatters = GlobalConfiguration.Configuration.Formatters;
+            var formatters = config.Formatters;
             var jsonFormatter = formatters.JsonFormatter;
             var settings = jsonFormatter.SerializerSettings;
             settings.Formatting = Formatting.Indented;

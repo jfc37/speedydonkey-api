@@ -27,7 +27,7 @@ namespace SpeedyDonkeyApi.Filter
         private string GetClaimsForUser(HttpActionContext actionContext)
         {
             var loggedInUser = new ExtractLoggedInUser(actionContext.Request.GetOwinContext().Authentication.User, actionContext.Request.GetDependencyScope()).Do();
-            return loggedInUser.IsNull() 
+            return loggedInUser.IsNull() || loggedInUser.Claims.IsNullOrWhiteSpace() 
                 ? "" 
                 : loggedInUser.Claims;
         }
