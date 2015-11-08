@@ -22,7 +22,7 @@ namespace SpeedyDonkeyApi.CodeChunks
         {
             if (_claimsPrincipal.Identity.IsAuthenticated)
             {
-                var globalId = _claimsPrincipal.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
+                var globalId = new ExtractGlobalIdFromJwt(_claimsPrincipal).Do();
 
                 var repository = (IRepository<User>)_dependencyScope.GetService(typeof(IRepository<User>));
                 return repository.GetAll()
@@ -30,6 +30,21 @@ namespace SpeedyDonkeyApi.CodeChunks
             }
 
             return null;
+        }
+    }
+
+    public class ExtractGlobalIdFromJwt : ICodeChunk<string>
+    {
+        private readonly ClaimsPrincipal _claimsPrincipal;
+
+        public ExtractGlobalIdFromJwt(ClaimsPrincipal claimsPrincipal)
+        {
+            _claimsPrincipal = claimsPrincipal;
+        }
+
+        public string Do()
+        {
+            return _claimsPrincipal.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Web.Http;
+using Common;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security;
@@ -27,9 +28,10 @@ namespace SpeedyDonkeyApi.Owin
 
         private void ConfigAuthZero(IAppBuilder app)
         {
-            var issuer = "https://" + ConfigurationManager.AppSettings["auth0:Domain"] + "/";
-            var audience = ConfigurationManager.AppSettings["auth0:ClientId"];
-            var secret = TextEncodings.Base64.Encode(TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["auth0:ClientSecret"]));
+            var appSettings = new AppSettings();
+            var issuer = "https://" + appSettings.GetSetting(AppSettingKey.AuthZeroDomain) + "/";
+            var audience = appSettings.GetSetting(AppSettingKey.AuthZeroClientId);
+            var secret = TextEncodings.Base64.Encode(TextEncodings.Base64Url.Decode(appSettings.GetSetting(AppSettingKey.AuthZeroClientSecret)));
 
             app.UseJwtBearerAuthentication(new JwtBearerAuthenticationOptions
             {
