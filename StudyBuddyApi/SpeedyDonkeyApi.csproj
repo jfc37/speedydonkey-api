@@ -248,6 +248,12 @@
   <ItemGroup>
     <Compile Include="App_Packages\TaskHelpers.Sources.0.1\TaskHelpers.cs" />
     <Compile Include="App_Packages\TaskHelpers.Sources.0.1\TaskHelpersExtensions.cs" />
+    <Compile Include="App_Start\CorsConfig.cs" />
+    <Compile Include="App_Start\DependancyInjectionConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\HttpsConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SerailisationConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CodeChunks\ActionResultToCreatedHttpActionResult.cs" />
     <Compile Include="CodeChunks\ActionResultToHttpActionResult.cs" />
