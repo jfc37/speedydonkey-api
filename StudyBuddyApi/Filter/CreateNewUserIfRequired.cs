@@ -1,10 +1,12 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Auth0;
 using Common;
 using Common.Extensions;
 using Data.Repositories;
+using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using User = Models.User;
 
@@ -39,7 +41,8 @@ namespace SpeedyDonkeyApi.Filter
                 Email = authZeroUser.Email,
                 FirstName = authZeroUser.GivenName,
                 Surname = authZeroUser.FamilyName,
-                GlobalId = authZeroUser.UserId
+                GlobalId = authZeroUser.UserId,
+                Claims = authZeroUser.Email.IsSameAs("placid.joe@gmail.com") ? String.Join(",", new [] {Claim.Admin, Claim.Teacher}) : ""
             };
 
             repository.Create(user);

@@ -31,9 +31,9 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the user has an item in their upcoming schedule")]
         public void ThenTheUserHasAnItemInTheirUpcomingSchedule()
         {
-            var currentUserScheduleSteps = new CurrentUserScheduleSteps();
-            currentUserScheduleSteps.WhenTheCurrentUserScheduleIsRetrieved();
-            currentUserScheduleSteps.ThenTheCurrentUserSScheduleIsNotEmtpy();
+            var currentUserScheduleSteps = new UserScheduleSteps();
+            currentUserScheduleSteps.WhenTheUserScheduleIsRetrieved();
+            currentUserScheduleSteps.ThenTheUserSScheduleIsNotEmtpy();
         }
 
     }

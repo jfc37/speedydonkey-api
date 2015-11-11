@@ -11,6 +11,8 @@ namespace SpeedyDonkeyApi.Filter
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
+            new CreateNewUserIfRequired().OnActionExecuting(actionContext);
+
             var loggedInUser = new ExtractLoggedInUser(actionContext.Request.GetOwinContext().Authentication.User, actionContext.Request.GetDependencyScope()).Do();
 
             if (loggedInUser.IsNotNull())

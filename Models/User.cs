@@ -9,9 +9,11 @@ namespace Models
     {
         public User()
         {
-            
+            Schedule = new List<Event>();
+            EnroledBlocks = new List<Block>();
+            Passes = new List<Pass>();
         }
-        public User(int id)
+        public User(int id) : this()
         {
             Id = id;
         }
