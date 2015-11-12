@@ -14,6 +14,8 @@ namespace SpeedyDonkeyApi.Filter
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
+            new CreateNewUserIfRequired().OnActionExecuting(actionContext);
+
             var claims = GetClaimsForUser(actionContext);
             if  (claims.DoesNotContain(Claim.ToString()))
                 HandleUnauthorised(actionContext);
@@ -22,14 +24,12 @@ namespace SpeedyDonkeyApi.Filter
         private void HandleUnauthorised(HttpActionContext actionContext)
         {
             actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
-            //TODO: Remove login url hardcoding
-            actionContext.Response.Headers.Add("WWW-Authenticate", "Basic Scheme='SpeedyDonkey' location='http://localhost:50831/users/login'");
         }
 
         private string GetClaimsForUser(HttpActionContext actionContext)
         {
-            var loggedInUser = new ExtractLoggedInUser(actionContext.Request).Do();
-            return loggedInUser.IsNull() 
+            var loggedInUser = new ExtractLoggedInUser(actionContext.Request.GetOwinContext().Authentication.User, actionContext.Request.GetDependencyScope()).Do();
+            return loggedInUser.IsNull() || loggedInUser.Claims.IsNullOrWhiteSpace() 
                 ? "" 
                 : loggedInUser.Claims;
         }

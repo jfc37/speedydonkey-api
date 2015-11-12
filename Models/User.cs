@@ -9,13 +9,16 @@ namespace Models
     {
         public User()
         {
-            
+            Schedule = new List<Event>();
+            EnroledBlocks = new List<Block>();
+            Passes = new List<Pass>();
         }
-        public User(int id)
+        public User(int id) : this()
         {
             Id = id;
         }
 
+        public virtual string GlobalId { get; set; }
         public virtual UserStatus Status { get; set; }
         public virtual Guid ActivationKey { get; set; }
         public virtual string Email { get; set; }

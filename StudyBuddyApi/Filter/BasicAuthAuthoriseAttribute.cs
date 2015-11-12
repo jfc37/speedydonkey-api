@@ -12,7 +12,6 @@ using ActionHandlers;
 using Common;
 using Data.Repositories;
 using Models;
-using AllowAnonymousAttribute = System.Web.Http.AllowAnonymousAttribute;
 
 namespace SpeedyDonkeyApi.Filter
 {
@@ -20,12 +19,6 @@ namespace SpeedyDonkeyApi.Filter
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
-                return;
-
-            if (actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any())
-                return;
-
             var authHeader = actionContext.Request.Headers.Authorization;
             if (authHeader != null)
             {

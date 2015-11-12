@@ -1,53 +1,67 @@
-﻿using System.Configuration;
-using System.Net.Http.Headers;
-using System.Web.Http;
-using System.Web.Http.Cors;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+﻿using System.Web.Http;
+using Autofac;
+using Data.Mappings;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 #if !DEBUG
-using SpeedyDonkeyApi.Filter;
 #endif
+using NHibernate;
+using NHibernate.Tool.hbm2ddl;
+using Owin;
+using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi
 {
+    public class NHibernateDependancySetup
+    {
+        public void AddDependencies(string connectionString, ContainerBuilder builder)
+        {
+            SessionSetup sessionSetup = new SessionSetup(connectionString);
+            var sessionFactory = sessionSetup.GetSessionFactory();
+
+            builder.RegisterInstance(sessionFactory);
+            builder.Register(s => s.Resolve<ISessionFactory>().OpenSession())
+                .InstancePerRequest();
+        }
+    }
+
+    public class SessionSetup
+    {
+        private readonly FluentConfiguration _fluentConfiguration;
+        public SessionSetup(string connectionString)
+        {
+            IPersistenceConfigurer persistenceConfigurer = MsSqlConfiguration.MsSql2012
+                .ConnectionString(connectionString)
+                .AdoNetBatchSize(10);
+
+            _fluentConfiguration = Fluently.Configure()
+                .Database(persistenceConfigurer)
+                .Diagnostics(x => x.Disable())
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>());
+        }
+
+        public ISessionFactory GetSessionFactory()
+        {
+            return _fluentConfiguration.BuildSessionFactory();
+        }
+
+        public void BuildSchema()
+        {
+            var schemaExport = new SchemaExport(_fluentConfiguration.BuildConfiguration());
+            schemaExport.Execute(true, true, false);
+        }
+    }
+
     public static class WebApiConfig
     {
-        public static void Register(HttpConfiguration config)
+        public static void Register(HttpConfiguration config, IAppBuilder app)
         {
-            // Web API routes
-            config.MapHttpAttributeRoutes();
-
-
-            //Default to json
-            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/javascript"));
-
-            //Serialise enums to strings
-            JsonSerializerSettings jsonSetting = new JsonSerializerSettings();
-            jsonSetting.Converters.Add(new StringEnumConverter());
-            config.Formatters.JsonFormatter.SerializerSettings = jsonSetting;
-
-            //Camel case json
-            var formatters = GlobalConfiguration.Configuration.Formatters;
-            var jsonFormatter = formatters.JsonFormatter;
-            var settings = jsonFormatter.SerializerSettings;
-            settings.Formatting = Formatting.Indented;
-            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-
-
-            #if !DEBUG
-            //Force HTTPS on entire API
-            config.Filters.Add(new RequireHttpsAttribute());
-            #endif
-
-            //Specify values as appropriate (origins,headers,methods)
-            var websiteUrl = ConfigurationManager.AppSettings.Get("WebsiteUrl");
-            websiteUrl = "https://" + websiteUrl;
-            if (websiteUrl == "https://spa-speedydonkey.azurewebsites.net")
-                websiteUrl = "https://spa-speedydonkey.azurewebsites.net,http://localhost:7300,http://localhost:3000";
-            var cors = new EnableCorsAttribute(websiteUrl, "*", "*");
-            config.EnableCors(cors);
+            RouteConfig.Register(config);
+            SerailisationConfig.Register(config);
+            HttpsConfig.Register(config);
+           CorsConfig.Register(config);
+            DependancyInjectionConfig.Register(config, app);
+            FilterConfig.Register(config);
         }
     }
 }

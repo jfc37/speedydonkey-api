@@ -17,8 +17,6 @@ namespace IntegrationTests.Utilities
         public const string ClassModelKey = "classModel";
         public const string RoomModelKey = "roomModel";
 
-        public const string CurrentUserEmail = "currentUserEmail";
-
         public const string ResponseKey = "response";
     }
 

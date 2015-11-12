@@ -22,7 +22,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
 
         [Route("api/users/current/claims")]
-        [ActiveUserRequired]
         public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);

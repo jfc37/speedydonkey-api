@@ -20,6 +20,14 @@ namespace IntegrationTests.Utilities
         {
             return "rooms/{0}/upcoming-schedule".FormatWith(roomId);
         }
+        public static string GetUserSchedule(int userId)
+        {
+            return "users/{0}/schedules".FormatWith(userId);
+        }
+        public static string GetUserClaims(int userId)
+        {
+            return "users/{0}/claims".FormatWith(userId);
+        }
         public static string GetClassAttendance(int classId)
         {
             return "classes/{0}/attendance".FormatWith(classId);

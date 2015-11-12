@@ -1,22 +1,35 @@
 ﻿using System.Net;
 using ActionHandlers;
+using Auth0;
+using Common;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using RestSharp;
 using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Common
 {
     [Binding]
-    public class PreScenario
+    public static class PreScenario
     {
-        [BeforeScenario]
-        public void SetupSystem()
+        [BeforeTestRun]
+        public static void BeforeTestRun()
         {
-           // SimpleJson.CurrentJsonSerializerStrategy = new SnakeJsonSerializerStrategy();
+            var appSettings = new AppSettings();
+            var client = new Client(
+                clientID: appSettings.GetSetting(AppSettingKey.AuthZeroClientId),
+                clientSecret: appSettings.GetSetting(AppSettingKey.AuthZeroClientSecret),
+                domain: appSettings.GetSetting(AppSettingKey.AuthZeroDomain)
+                );
+            var tokenResult = client.LoginUser("placid.joe@gmail.com", "password1", "speedydonkeydb");
+            ApiCaller.IdJwt = tokenResult.IdToken;
+        }
+
+        [BeforeScenario]
+        public static void SetupSystem()
+        {
             ResetDatabase();
-            CreateAdminUser();
+            ScenarioCache.StoreUserId(1);
         }
 
         private static void ResetDatabase()
@@ -24,7 +37,7 @@ namespace IntegrationTests.Steps.Common
             ApiCaller.Delete<bool>(Routes.Database);
         }
 
-        private void CreateAdminUser()
+        private static void CreateAdminUser()
         {
             var userRequest = new UserModel();
             userRequest.Surname = "admin";

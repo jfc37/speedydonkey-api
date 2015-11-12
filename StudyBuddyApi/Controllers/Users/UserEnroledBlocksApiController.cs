@@ -26,7 +26,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
 
         [Route("current/blocks")]
-        [ActiveUserRequired]
         public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);

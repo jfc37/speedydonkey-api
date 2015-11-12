@@ -125,6 +125,7 @@ namespace Data.Mappings
         public UserMap()
         {
             Id(x => x.Id);
+            Map(x => x.GlobalId);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.FirstName);
