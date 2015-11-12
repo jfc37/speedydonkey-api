@@ -2,6 +2,7 @@
 using System.Linq;
 using Actions;
 using Common;
+using Common.Extensions;
 using Data.Repositories;
 using Models;
 using Notification;
@@ -11,12 +12,14 @@ namespace ActionHandlers.CreateHandlers
 {
     public class CreateUserHandler : CreateEntityHandler<CreateUser, User>
     {
+        private readonly IRepository<User> _repository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IPostOffice _postOffice;
         private readonly IAppSettings _appSettings;
 
         public CreateUserHandler(IRepository<User> repository, IPasswordHasher passwordHasher, IPostOffice postOffice, IAppSettings appSettings) : base(repository)
         {
+            _repository = repository;
             _passwordHasher = passwordHasher;
             _postOffice = postOffice;
             _appSettings = appSettings;
@@ -56,6 +59,9 @@ namespace ActionHandlers.CreateHandlers
         {
             var userRegistered = new UserRegistered(result, _appSettings.GetWebsiteUrl());
             _postOffice.Send(userRegistered);
+
+            result.GlobalId = "auth0|{0}".FormatWith(result.Id);
+            _repository.Update(result);
         }
     }
 }

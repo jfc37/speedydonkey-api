@@ -89,22 +89,16 @@ namespace IntegrationTests.Steps.Announcements
         [When(@"the announcement is attempted to be created")]
         public void WhenTheAnnouncementIsAttemptedToBeCreated()
         {
-            var response = ApiCaller.Post<ActionReponse<AnnouncementModel>>(ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey), Routes.Announcements);
+            var response = ApiCaller.Post<ActionReponse<AnnouncementConfirmationModel>>(ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey), Routes.Announcements);
             ScenarioCache.StoreActionResponse(response);
         }
 
-        [Then(@"announcement request is successful")]
-        public void ThenAnnouncementRequestIsSuccessful()
+        [Then(@"an email was sent to '(.*)' users")]
+        public void ThenAnEmailWasSentToUsers(int numberOfUsersEmailed)
         {
-            var httpStatusCode = ScenarioCache.GetResponseStatus();
-            Assert.AreEqual(HttpStatusCode.Created, httpStatusCode);
-        }
+            var announcementConfirmation = ScenarioCache.GetActionResponse<AnnouncementConfirmationModel>();
 
-        [Then(@"announcement request fails")]
-        public void ThenAnnouncementRequestFails()
-        {
-            var httpStatusCode = ScenarioCache.GetResponseStatus();
-            Assert.AreEqual(HttpStatusCode.BadRequest, httpStatusCode);
+            Assert.AreEqual(numberOfUsersEmailed, announcementConfirmation.NumberOfUsersEmailed);
         }
     }
 }
