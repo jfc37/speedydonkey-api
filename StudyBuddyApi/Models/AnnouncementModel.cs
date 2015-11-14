@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Common;
 using Newtonsoft.Json;
 
@@ -22,5 +21,20 @@ namespace SpeedyDonkeyApi.Models
         public string Subject { get; set; }
         public bool NotifyAll { get; set; }
         public int Id { get; set; }
+    }
+
+    public class AnnouncementConfirmationModel
+    {
+        public AnnouncementConfirmationModel(int numberOfUsersEmailed)
+        {
+            NumberOfUsersEmailed = numberOfUsersEmailed;
+        }
+
+        public AnnouncementConfirmationModel()
+        {
+            
+        }
+
+        public int NumberOfUsersEmailed { get; set; }
     }
 }

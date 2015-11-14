@@ -21,7 +21,7 @@ namespace IntegrationTests.Steps.Common
                 clientSecret: appSettings.GetSetting(AppSettingKey.AuthZeroClientSecret),
                 domain: appSettings.GetSetting(AppSettingKey.AuthZeroDomain)
                 );
-            var tokenResult = client.LoginUser("placid.joe@gmail.com", "password1", "speedydonkeydb");
+            var tokenResult = client.LoginUser("placid.joe@gmail.com", "password", "speedydonkeydb");
             ApiCaller.IdJwt = tokenResult.IdToken;
         }
 

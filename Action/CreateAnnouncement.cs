@@ -1,5 +1,4 @@
-﻿using System;
-using Actions;
+﻿using Actions;
 using Models;
 
 namespace Action
@@ -12,12 +11,6 @@ namespace Action
         }
 
         public Announcement ActionAgainst { get; set; }
-        public string LogText
-        {
-            get
-            {
-                return String.Format("Create announcement");
-            }
-        }
+        public int NumberOfUsersEmailed { get; set; }
     }
 }
