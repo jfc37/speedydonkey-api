@@ -21,6 +21,18 @@ Scenario: Send email to single block that have multiple students
 	And an email was sent to '4' users
 
 @announcement @create @golden_path
+Scenario: Send email to multiple blocks that have multiple students
+	Given '2' blocks exists
+	And the user enrols in '2' blocks
+	And a user exists
+	And the user enrols in '2' blocks
+	And a valid announcement is ready to be submitted
+	And the announcement is to be sent to the block
+	When the announcement is attempted to be created
+	Then the request is successful
+	And an email was sent to '2' users
+
+@announcement @create @golden_path
 Scenario: Send email to two blocks
 	Given '2' blocks exists
 	And the user enrols in '2' blocks
