@@ -28,7 +28,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
 
         [Route("current/passes")]
-        [ActiveUserRequired]
         public IHttpActionResult Get()
         {
             return Get(_currentUser.Id);
@@ -42,7 +41,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
 
         [Route("current/pass-templates/{passTemplateId:int}")]
-        [ActiveUserRequired]
         public IHttpActionResult Post(int passTemplateId, [FromBody]PassModel pass)
         {
             return Post(_currentUser.Id, passTemplateId, pass);

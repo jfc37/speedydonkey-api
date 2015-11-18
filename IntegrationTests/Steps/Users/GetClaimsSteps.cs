@@ -16,14 +16,12 @@ namespace IntegrationTests.Steps.Users
         [Given(@"an admin user")]
         public void GivenAnAdminUser()
         {
-            ScenarioCache.Store(ModelKeys.CurrentUserEmail, "joseph@fullswing.co.nz");
         }
 
         [When(@"their claims are retrieved")]
         public void WhenTheirClaimsAreRetrieved()
         {
-            var response = ApiCaller.Get<List<string>>(Routes.CurrentUserClaims,
-                ScenarioCache.Get<string>(ModelKeys.CurrentUserEmail));
+            var response = ApiCaller.Get<List<string>>(Routes.GetUserClaims(ScenarioCache.GetUserId()));
 
             ScenarioCache.Store(ClaimsResponseKey, response);
         }

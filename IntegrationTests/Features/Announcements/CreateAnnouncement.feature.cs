@@ -77,13 +77,81 @@ this.ScenarioSetup(scenarioInfo);
 #line 5
  testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
- testRunner.And("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the user enrols in the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
- testRunner.And("the announcement is to be sent to the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
- testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the announcement is to be sent to the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("announcement request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.And("an email was sent to \'1\' users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Send email to single block that have multiple students", new string[] {
+                "announcement",
+                "create",
+                "golden_path"}, SourceLine=13)]
+        public virtual void SendEmailToSingleBlockThatHaveMultipleStudents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send email to single block that have multiple students", new string[] {
+                        "announcement",
+                        "create",
+                        "golden_path"});
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
+ testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+ testRunner.And("\'4\' users are enrols in the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.And("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+ testRunner.And("the announcement is to be sent to the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
+ testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 20
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 21
+ testRunner.And("an email was sent to \'4\' users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Send email to multiple blocks that have multiple students", new string[] {
+                "announcement",
+                "create",
+                "golden_path"}, SourceLine=23)]
+        public virtual void SendEmailToMultipleBlocksThatHaveMultipleStudents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send email to multiple blocks that have multiple students", new string[] {
+                        "announcement",
+                        "create",
+                        "golden_path"});
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line 25
+ testRunner.Given("\'2\' blocks exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 26
+ testRunner.And("the user enrols in \'2\' blocks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.And("a user exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 28
+ testRunner.And("the user enrols in \'2\' blocks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.And("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+ testRunner.And("the announcement is to be sent to the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+ testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
+ testRunner.And("an email was sent to \'2\' users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -91,27 +159,29 @@ this.ScenarioSetup(scenarioInfo);
         [TechTalk.SpecRun.ScenarioAttribute("Send email to two blocks", new string[] {
                 "announcement",
                 "create",
-                "golden_path"}, SourceLine=11)]
+                "golden_path"}, SourceLine=35)]
         public virtual void SendEmailToTwoBlocks()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send email to two blocks", new string[] {
                         "announcement",
                         "create",
                         "golden_path"});
-#line 12
+#line 36
 this.ScenarioSetup(scenarioInfo);
-#line 13
- testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
- testRunner.And("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 15
+#line 37
+ testRunner.Given("\'2\' blocks exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 38
+ testRunner.And("the user enrols in \'2\' blocks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
  testRunner.And("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 40
  testRunner.And("the announcement is to be sent to multiple blocks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 41
  testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
- testRunner.Then("announcement request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 42
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 43
+ testRunner.And("an email was sent to \'1\' users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -119,23 +189,23 @@ this.ScenarioSetup(scenarioInfo);
         [TechTalk.SpecRun.ScenarioAttribute("Send email to all users", new string[] {
                 "announcement",
                 "create",
-                "golden_path"}, SourceLine=20)]
+                "golden_path"}, SourceLine=45)]
         public virtual void SendEmailToAllUsers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Send email to all users", new string[] {
                         "announcement",
                         "create",
                         "golden_path"});
-#line 21
+#line 46
 this.ScenarioSetup(scenarioInfo);
-#line 22
+#line 47
  testRunner.Given("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 23
+#line 48
  testRunner.And("the announcement is to be sent to all users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
+#line 49
  testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
- testRunner.Then("announcement request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 50
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -143,23 +213,23 @@ this.ScenarioSetup(scenarioInfo);
         [TechTalk.SpecRun.ScenarioAttribute("Try to send email to no one", new string[] {
                 "announcement",
                 "create",
-                "validation_error"}, SourceLine=27)]
+                "validation_error"}, SourceLine=52)]
         public virtual void TryToSendEmailToNoOne()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to send email to no one", new string[] {
                         "announcement",
                         "create",
                         "validation_error"});
-#line 28
+#line 53
 this.ScenarioSetup(scenarioInfo);
-#line 29
+#line 54
  testRunner.Given("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 30
+#line 55
  testRunner.And("the announcement is to be sent to no one", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 56
  testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 32
- testRunner.Then("announcement request fails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 57
+ testRunner.Then("the request is unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -167,23 +237,23 @@ this.ScenarioSetup(scenarioInfo);
         [TechTalk.SpecRun.ScenarioAttribute("Try to send email with no message", new string[] {
                 "announcement",
                 "create",
-                "validation_error"}, SourceLine=34)]
+                "validation_error"}, SourceLine=59)]
         public virtual void TryToSendEmailWithNoMessage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to send email with no message", new string[] {
                         "announcement",
                         "create",
                         "validation_error"});
-#line 35
+#line 60
 this.ScenarioSetup(scenarioInfo);
-#line 36
+#line 61
  testRunner.Given("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 37
+#line 62
  testRunner.And("the announcement is missing the message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 63
  testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 39
- testRunner.Then("announcement request fails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 64
+ testRunner.Then("the request is unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -191,23 +261,23 @@ this.ScenarioSetup(scenarioInfo);
         [TechTalk.SpecRun.ScenarioAttribute("Try to send email with no subject", new string[] {
                 "announcement",
                 "create",
-                "validation_error"}, SourceLine=41)]
+                "validation_error"}, SourceLine=66)]
         public virtual void TryToSendEmailWithNoSubject()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to send email with no subject", new string[] {
                         "announcement",
                         "create",
                         "validation_error"});
-#line 42
+#line 67
 this.ScenarioSetup(scenarioInfo);
-#line 43
+#line 68
  testRunner.Given("a valid announcement is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 44
+#line 69
  testRunner.And("the announcement is missing the subject", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
+#line 70
  testRunner.When("the announcement is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 46
- testRunner.Then("announcement request fails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 71
+ testRunner.Then("the request is unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

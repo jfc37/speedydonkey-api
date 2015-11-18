@@ -1,13 +1,16 @@
-﻿using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
+using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi
 {
-    public class FilterConfig
+    public static class FilterConfig
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        public static void Register(HttpConfiguration config)
         {
-            filters.Add(new HandleErrorAttribute());
+            GlobalFilters.Filters.Add(new HandleErrorAttribute());
+
+            config.Filters.Add(new CurrentUserAttribute());
         }
     }
 }

@@ -26,10 +26,11 @@ namespace SpeedyDonkeyApi.Controllers.Announcements
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public HttpResponseMessage Post([FromBody] AnnouncementModel model)
         {
-            var result = PerformAction<CreateAnnouncement, Announcement>(new CreateAnnouncement(model.ToEntity()));
+            var createAnnouncementAction = new CreateAnnouncement(model.ToEntity());
+            var result = PerformAction<CreateAnnouncement, Announcement>(createAnnouncementAction);
 
             return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.Created),
-                new ActionReponse<AnnouncementModel>(result.ActionResult.ToModel(), result.ValidationResult));
+                new ActionReponse<AnnouncementConfirmationModel>(new AnnouncementConfirmationModel(createAnnouncementAction.NumberOfUsersEmailed), result.ValidationResult));
         }
     }
 }

@@ -50,5 +50,9 @@ namespace Common
 
         PoliAuthorisation,
         PoliInitiateUrl,
+
+        AuthZeroClientId,
+        AuthZeroClientSecret,
+        AuthZeroDomain
     }
 }

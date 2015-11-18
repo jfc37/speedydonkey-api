@@ -28,7 +28,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
         
         [Route]
-        [ActiveUserRequired]
         public IHttpActionResult Put([FromBody]UserModel model)
         {
             model.Id = _currentUser.Id;
@@ -41,8 +40,17 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
 
         [Route]
-        [ActiveUserRequired]
         public IHttpActionResult Get()
+        {
+            return Ok(_repository.Get(_currentUser.Id).ToModel());
+        }
+
+        
+        [HttpGet]
+        [Route("check")]
+        [AllowAnonymous]
+        [BasicAuthAuthorise]
+        public IHttpActionResult BasicAuthCheck()
         {
             return Ok(_repository.Get(_currentUser.Id).ToModel());
         }
