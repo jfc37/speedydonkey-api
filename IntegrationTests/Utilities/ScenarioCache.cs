@@ -34,6 +34,7 @@ namespace IntegrationTests.Utilities
     {
         private const string ValidationResultKey = "validationResult";
         private const string ActionResultKey = "actionResultKey";
+        private const string ResponseKey = "responseKey";
         private const string ResponseStatusKey = "responseStatusKey";
 
         public static void StoreUserId(int id)
@@ -86,6 +87,14 @@ namespace IntegrationTests.Utilities
             Store(ResponseStatusKey, response.StatusCode);
         }
 
+        public static void StoreResponse<T>(IRestResponse<T> response)
+        {
+            Store(ResponseStatusKey, response.StatusCode);
+
+            if (response.Data.IsNotNull())
+                Store(ResponseKey, response.Data);
+        }
+
         public static HttpStatusCode GetResponseStatus()
         {
             return Get<HttpStatusCode>(ResponseStatusKey);
@@ -94,6 +103,11 @@ namespace IntegrationTests.Utilities
         public static T GetActionResponse<T>()
         {
             return Get<T>(ActionResultKey);
+        }
+
+        public static T GetResponse<T>()
+        {
+            return Get<T>(ResponseKey);
         }
 
         public static ValidationResult GetValidationResult()

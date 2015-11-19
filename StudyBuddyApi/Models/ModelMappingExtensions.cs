@@ -228,7 +228,8 @@ namespace SpeedyDonkeyApi.Models
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
                 NumberOfClasses = instance.NumberOfClasses,
-                Room = instance.Room.ToStripedModel()
+                Room = instance.Room.ToStripedModel(),
+                IsInviteOnly = instance.IsInviteOnly
             };
         }
 
@@ -246,7 +247,8 @@ namespace SpeedyDonkeyApi.Models
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
                 NumberOfClasses = instance.NumberOfClasses,
-                Room = instance.Room.ToStripedModel()
+                Room = instance.Room.ToStripedModel(),
+                IsInviteOnly = instance.IsInviteOnly
             };
         }
 
@@ -509,7 +511,8 @@ namespace SpeedyDonkeyApi.Models
                 Id = instance.Id,
                 MinutesPerClass = instance.MinutesPerClass,
                 NumberOfClasses = instance.NumberOfClasses,
-                Room = instance.Room.ToEntity()
+                Room = instance.Room.ToEntity(),
+                IsInviteOnly = instance.IsInviteOnly
             };
         }
 

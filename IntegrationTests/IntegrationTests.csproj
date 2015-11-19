@@ -72,6 +72,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DeleteBlock.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Blocks\InviteOnlyBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InviteOnlyBlock.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Blocks\UpdateBlock.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -270,6 +275,10 @@
     <None Include="Features\Blocks\DeleteBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DeleteBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Blocks\InviteOnlyBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InviteOnlyBlock.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Blocks\UpdateBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

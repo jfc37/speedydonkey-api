@@ -18,20 +18,20 @@ namespace IntegrationTests.Features.Blocks
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("BlockEnrolment", SourceFile="Features\\Blocks\\BlockEnrolment.feature", SourceLine=0)]
-    public partial class BlockEnrolmentFeature
+    [TechTalk.SpecRun.FeatureAttribute("InviteOnlyBlock", SourceFile="Features\\Blocks\\InviteOnlyBlock.feature", SourceLine=0)]
+    public partial class InviteOnlyBlockFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "BlockEnrolment.feature"
+#line 1 "InviteOnlyBlock.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BlockEnrolment", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "InviteOnlyBlock", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -62,46 +62,54 @@ namespace IntegrationTests.Features.Blocks
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("User enrols in a block", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("Create invite only block", new string[] {
                 "block",
-                "enrolment"}, SourceLine=3)]
-        public virtual void UserEnrolsInABlock()
+                "block_invite_only",
+                "create",
+                "golden_path"}, SourceLine=3)]
+        public virtual void CreateInviteOnlyBlock()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User enrols in a block", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create invite only block", new string[] {
                         "block",
-                        "enrolment"});
+                        "block_invite_only",
+                        "create",
+                        "golden_path"});
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
-testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a valid block is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
-testRunner.When("the user enrols in the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the block is invite only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
-testRunner.Then("the user is enroled in the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the block is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
-testRunner.And("the user has an item in their upcoming schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("block can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.And("the block is invite only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("User see\'s which blocks they can enrol in", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("Invite only block not available for enrolment", new string[] {
                 "block",
-                "available_blocks"}, SourceLine=10)]
-        public virtual void UserSeeSWhichBlocksTheyCanEnrolIn()
+                "block_invite_only",
+                "create",
+                "golden_path"}, SourceLine=11)]
+        public virtual void InviteOnlyBlockNotAvailableForEnrolment()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User see\'s which blocks they can enrol in", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invite only block not available for enrolment", new string[] {
                         "block",
-                        "available_blocks"});
-#line 11
-this.ScenarioSetup(scenarioInfo);
+                        "block_invite_only",
+                        "create",
+                        "golden_path"});
 #line 12
-testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 13
-testRunner.When("blocks for enrolment is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("an invite only block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
-testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("blocks for enrolment is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
-testRunner.And("there are blocks available for enrolment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the request returns not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

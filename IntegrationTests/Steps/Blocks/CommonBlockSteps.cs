@@ -20,10 +20,21 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.ThenBlockCanBeRetrieved();
         }
 
+        [Given(@"an invite only block exists")]
+        public void GivenAnInviteOnlyBlockExists()
+        {
+            var createBlockSteps = new CreateBlockSteps();
+            createBlockSteps.GivenAValidBlockIsReadyToBeSubmitted();
+            createBlockSteps.GivenTheBlockIsInviteOnly();
+            createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
+            createBlockSteps.ThenBlockCanBeRetrieved();
+        }
+
+
         [Given(@"'(.*)' blocks exists")]
         public void GivenBlocksExists(int numberOfBlocks)
         {
-            for (int blockNumber = 1; blockNumber <= numberOfBlocks; blockNumber++)
+            for (var blockNumber = 1; blockNumber <= numberOfBlocks; blockNumber++)
             {
                 GivenABlockExists();
             }
