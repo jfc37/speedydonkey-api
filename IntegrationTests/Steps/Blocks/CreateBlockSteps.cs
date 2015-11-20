@@ -83,6 +83,16 @@ namespace IntegrationTests.Steps.Blocks
             Assert.IsTrue(response.Data.IsInviteOnly);
         }
 
+        [Then(@"the block is not invite only")]
+        public void ThenTheBlockIsNotInviteOnly()
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsFalse(response.Data.IsInviteOnly);
+        }
+
+
         [Then(@"the blocks dates are in utc")]
         public void ThenTheBlocksDatesAreInUtc()
         {
