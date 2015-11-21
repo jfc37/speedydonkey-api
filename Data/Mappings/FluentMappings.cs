@@ -204,6 +204,7 @@ namespace Data.Mappings
             Map(x => x.NumberOfClasses);
             Map(x => x.MinutesPerClass);
             Map(x => x.Name);
+            Map(x => x.IsInviteOnly);
             References(x => x.Room);
             HasMany(x => x.Classes);
             HasManyToMany(x => x.EnroledStudents)

@@ -32,6 +32,7 @@ namespace SpeedyDonkeyApi.Models
         public int NumberOfClasses { get; set; }
         public int MinutesPerClass { get; set; }
         public string Name { get; set; }
+        public bool IsInviteOnly { get; set; }
         public int Id { get; set; }
     }
 }

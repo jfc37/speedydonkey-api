@@ -4,6 +4,7 @@
     {
         public const string AlreadyEnroledInBlock = "You are already enroled in a selected block";
         public const string InvalidBlock = "Block doesn't exist";
+        public const string UnavailableBlock = "Block isn't available for enrolment";
         public const string InvalidRoom = "Room doesn't exist";
         public const string InvalidClass = "Class doesn't exist";
         public const string InvalidUser = "User does not exist";

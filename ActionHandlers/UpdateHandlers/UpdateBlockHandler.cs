@@ -23,6 +23,7 @@ namespace ActionHandlers.UpdateHandlers
         {
             var block = _repository.Get(action.ActionAgainst.Id);
             block.Name = action.ActionAgainst.Name;
+            block.IsInviteOnly = action.ActionAgainst.IsInviteOnly;
 
             var startDateDifference = block.StartDate.Subtract(action.ActionAgainst.StartDate);
             var endDateDifference = block.EndDate.Subtract(action.ActionAgainst.EndDate);

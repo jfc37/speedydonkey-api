@@ -29,5 +29,6 @@ namespace Models
         public virtual int Id { get; set; }
         public virtual int NumberOfClasses { get; set; }
         public virtual int MinutesPerClass { get; set; }
+        public virtual bool IsInviteOnly { get; set; }
     }
 }
