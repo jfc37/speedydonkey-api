@@ -34,6 +34,17 @@ namespace IntegrationTests.Steps.Blocks
             ScenarioCache.Store(ModelKeys.BlockModelKey, block);
         }
 
+        [Given(@"the block is invite only")]
+        public void GivenTheBlockIsInviteOnly()
+        {
+            var block = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
+
+            block.IsInviteOnly = true;
+
+            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+        }
+
+
         [When(@"the block is attempted to be created")]
         public void WhenTheBlockIsAttemptedToBeCreated()
         {
@@ -61,6 +72,26 @@ namespace IntegrationTests.Steps.Blocks
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotNull(response.Data);
         }
+
+
+        [Then(@"the block is invite only")]
+        public void ThenTheBlockIsInviteOnly()
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsTrue(response.Data.IsInviteOnly);
+        }
+
+        [Then(@"the block is not invite only")]
+        public void ThenTheBlockIsNotInviteOnly()
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsFalse(response.Data.IsInviteOnly);
+        }
+
 
         [Then(@"the blocks dates are in utc")]
         public void ThenTheBlocksDatesAreInUtc()

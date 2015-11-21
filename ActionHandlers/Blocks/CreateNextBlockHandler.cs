@@ -33,7 +33,8 @@ namespace ActionHandlers.Blocks
                 Name = previousBlock.Name,
                 Teachers = new List<Teacher>(previousBlock.Teachers),
                 StartDate = previousBlock.StartDate.AddWeeks(previousBlock.NumberOfClasses),
-                Room = previousBlock.Room
+                Room = previousBlock.Room,
+                IsInviteOnly = previousBlock.IsInviteOnly
             };
 
             action.ActionAgainst.EndDate = action.ActionAgainst.StartDate

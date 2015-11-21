@@ -56,9 +56,15 @@ namespace IntegrationTests.Steps.Rooms
         [Then(@"the request is unsuccessful")]
         public void ThenTheRequestIsUnsuccessful()
         {
-            var httpStatusCode = ScenarioCache.GetResponseStatus();
-            Assert.AreEqual(HttpStatusCode.BadRequest, httpStatusCode);
         }
+
+        [Then(@"the request returns not found")]
+        public void ThenTheRequestReturnsNotFound()
+        {
+            var httpStatusCode = ScenarioCache.GetResponseStatus();
+            Assert.AreEqual(HttpStatusCode.NotFound, httpStatusCode);
+        }
+
 
     }
 }

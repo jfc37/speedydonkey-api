@@ -15,6 +15,7 @@ namespace IntegrationTests.Utilities
         public const string CurrentUserClaims = "users/current/claims";
         public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
+        public const string BlocksForEnrolment = "blocks/for-enrolment";
 
         public static string GetRoomUpcomingSchedule(int roomId)
         {
