@@ -114,7 +114,7 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.Message);
             Map(x => x.NotifyAll);
-            HasManyToMany<Block>(x => x.Receivers)
+            HasManyToMany(x => x.Receivers)
                 .Table("BlockToAnnouncement")
                 .AsSet();
         }
@@ -136,10 +136,10 @@ namespace Data.Mappings
             Map(x => x.Status);
             Map(x => x.ActivationKey);
             Map(x => x.Note);
-            HasManyToMany<Block>(x => x.EnroledBlocks)
+            HasManyToMany(x => x.EnroledBlocks)
                 .Table("UsersEnroledBlocks")
                 .AsSet();
-            HasMany<Pass>(x => x.Passes)
+            HasMany(x => x.Passes)
                 .Cascade.SaveUpdate();
             HasMany(x => x.Schedule);
         }
@@ -152,9 +152,9 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            HasManyToMany<Class>(x => x.Classes)
+            HasManyToMany(x => x.Classes)
                 .AsSet();
-            References<User>(x => x.User);
+            References(x => x.User);
         }
     }
     public class ClassMap : SubclassMap<Class>
@@ -163,12 +163,6 @@ namespace Data.Mappings
         {
             References(x => x.Block)
                 .Class(typeof(Block));
-            HasManyToMany<User>(x => x.ActualStudents)
-                .Table("ClassAttendance")
-                .AsSet();
-            HasManyToMany<PassStatistic>(x => x.PassStatistics)
-                .Table("ClassPassStatistic")
-                .AsSet();
         }
     }
 
@@ -188,6 +182,12 @@ namespace Data.Mappings
                 .AsSet();
             HasManyToMany(x => x.Teachers)
                 .Table("EventTeacher")
+                .AsSet();
+            HasManyToMany(x => x.ActualStudents)
+                .Table("ClassAttendance")
+                .AsSet();
+            HasManyToMany(x => x.PassStatistics)
+                .Table("ClassPassStatistic")
                 .AsSet();
         }
     }
@@ -230,7 +230,7 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.CostPerClass);
             Map(x => x.NumberOfClassesAttended);
-            References<Pass>(x => x.Pass)
+            References(x => x.Pass)
                 .Column("Pass_id");
         }
     }
