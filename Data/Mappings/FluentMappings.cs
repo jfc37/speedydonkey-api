@@ -171,6 +171,14 @@ namespace Data.Mappings
                 .AsSet();
         }
     }
+    public class StandAloneEventMap : SubclassMap<StandAloneEvent>
+    {
+        public StandAloneEventMap()
+        {
+            Map(x => x.IsPrivate);
+            Map(x => x.Price);
+        }
+    }
 
     public class EventMap : ClassMap<Event>
     {

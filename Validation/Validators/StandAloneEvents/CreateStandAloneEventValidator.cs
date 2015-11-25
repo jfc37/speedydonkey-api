@@ -1,16 +1,16 @@
-﻿using Action;
+using Action.StandAloneEvents;
 using Data.Repositories;
 using FluentValidation;
 using Models;
 using Validation.Rules;
 
-namespace Validation.Validators
+namespace Validation.Validators.StandAloneEvents
 {
-    public class UpdateClassValidator : AbstractValidator<Class>, IActionValidator<UpdateClass, Class>
+    public class CreateStandAloneEventValidator : AbstractValidator<StandAloneEvent>, IActionValidator<CreateStandAloneEvent, StandAloneEvent>
     {
         private readonly IRepository<Teacher> _teacherRepository;
 
-        public UpdateClassValidator(IRepository<Class> repository, IRepository<Teacher> teacherRepository)
+        public CreateStandAloneEventValidator(IRepository<Teacher> teacherRepository)
         {
             _teacherRepository = teacherRepository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
@@ -18,8 +18,8 @@ namespace Validation.Validators
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage(ValidationMessages.MissingName);
 
-            RuleFor(x => x.Id)
-                .Must(x => new DoesIdExist<Class>(repository, x).IsValid()).WithMessage(ValidationMessages.InvalidClass);
+            RuleFor(x => x.Price)
+                .NotEmpty().WithMessage(ValidationMessages.MissingPrice);
 
             RuleFor(x => x.EndTime)
                 .GreaterThan(x => x.StartTime).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime)

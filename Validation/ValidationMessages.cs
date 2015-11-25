@@ -32,6 +32,7 @@
         public const string ItemDoesntExist = "Item doesn't exist";
         public const string CannontAddPaidPass = "You don't have permission to add a pass already paid for";
         public const string MissingName = "Please enter a name";
+        public const string MissingPrice = "Please enter a price";
         public const string MissingLocation = "Please enter a location";
         public const string MissingStartTime = "Please enter a start time";
         public const string MissingEndTime = "Please enter an end time";

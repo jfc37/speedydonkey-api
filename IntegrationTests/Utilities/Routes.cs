@@ -9,6 +9,7 @@ namespace IntegrationTests.Utilities
         public const string Database = "database";
         public const string Announcements = "announcements";
         public const string Blocks = "blocks";
+        public const string StandAloneEvent = "stand-alone-events";
         public const string Classes = "classes";
         public const string Room = "rooms";
         public const string PassTemplate = "pass-templates";

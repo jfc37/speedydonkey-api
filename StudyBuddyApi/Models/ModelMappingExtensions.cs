@@ -311,6 +311,24 @@ namespace SpeedyDonkeyApi.Models
             };
         }
 
+        public static StandAloneEventModel ToModel(this StandAloneEvent instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new StandAloneEventModel
+            {
+                Id = instance.Id,
+                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
+                Name = instance.Name,
+                EndTime = instance.EndTime,
+                StartTime = instance.StartTime,
+                Room = instance.Room.ToStripedModel(),
+                Price = instance.Price,
+                IsPrivate = instance.IsPrivate
+            };
+        }
+
         public static ClassModel ToModel(this Class instance)
         {
             if (instance.IsNull())
@@ -576,6 +594,23 @@ namespace SpeedyDonkeyApi.Models
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
+            };
+        }
+
+        public static StandAloneEvent ToEntity(this StandAloneEventModel instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new StandAloneEvent
+            {
+                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
+                Name = instance.Name,
+                EndTime = instance.EndTime,
+                StartTime = instance.StartTime,
+                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
+                Price = instance.Price,
+                IsPrivate = instance.IsPrivate
             };
         }
 

@@ -16,4 +16,10 @@ namespace Models
         public virtual string Name { get; set; }
         public virtual Room Room { get; set; }
     }
+
+    public class StandAloneEvent : Event
+    {
+        public virtual decimal Price { get; set; }
+        public virtual bool IsPrivate { get; set; }
+    }
 }
