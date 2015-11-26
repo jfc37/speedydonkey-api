@@ -1,6 +1,7 @@
 using System.Web.Http;
 using Action.StandAloneEvents;
 using ActionHandlers;
+using Data.QueryFilters;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -49,6 +50,12 @@ namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
         public IHttpActionResult Get(int id)
         {
             return new EntityToHttpActionResult<StandAloneEvent>(this, GetById(id), x => x.ToModel()).Do();
+        }
+
+        [Route("for-registration")]
+        public IHttpActionResult GetForEnrolment()
+        {
+            return new SetToHttpActionResult<StandAloneEvent>(this, new AvailableEventsForRegistrationFilter().Filter(GetAll()), x => x.ToStripedModel()).Do();
         }
     }
 }

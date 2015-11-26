@@ -18,20 +18,20 @@ namespace IntegrationTests.Features.StandAloneEvents
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("CreateStandAloneEvent", SourceFile="Features\\StandAloneEvents\\CreateStandAloneEvent.feature", SourceLine=0)]
-    public partial class CreateStandAloneEventFeature
+    [TechTalk.SpecRun.FeatureAttribute("ViewStandAloneEvent", SourceFile="Features\\StandAloneEvents\\ViewStandAloneEvent.feature", SourceLine=0)]
+    public partial class ViewStandAloneEventFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CreateStandAloneEvent.feature"
+#line 1 "ViewStandAloneEvent.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CreateStandAloneEvent", "", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ViewStandAloneEvent", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -62,48 +62,48 @@ namespace IntegrationTests.Features.StandAloneEvents
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Create stand alone event", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("Private event is not available for registration", new string[] {
                 "stand_alone_event",
+                "private_event",
                 "create",
                 "golden_path"}, SourceLine=3)]
-        public virtual void CreateStandAloneEvent()
+        public virtual void PrivateEventIsNotAvailableForRegistration()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create stand alone event", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Private event is not available for registration", new string[] {
                         "stand_alone_event",
+                        "private_event",
                         "create",
                         "golden_path"});
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
- testRunner.Given("a valid stand alone event is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a private stand alone event exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
- testRunner.When("the stand alone event is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("upcoming statnd alone events are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 7
- testRunner.Then("the stand alone event can be retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the request returns not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Try to set up an invalid stand alone event", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("Public event is available for registration", new string[] {
                 "stand_alone_event",
                 "create",
-                "validation_error"}, SourceLine=10)]
-        public virtual void TryToSetUpAnInvalidStandAloneEvent()
+                "golden_path"}, SourceLine=9)]
+        public virtual void PublicEventIsAvailableForRegistration()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to set up an invalid stand alone event", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Public event is available for registration", new string[] {
                         "stand_alone_event",
                         "create",
-                        "validation_error"});
-#line 11
+                        "golden_path"});
+#line 10
 this.ScenarioSetup(scenarioInfo);
+#line 11
+ testRunner.Given("a stand alone event exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
- testRunner.Given("an invalid stand alone event is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("upcoming statnd alone events are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.When("the stand alone event is attempted to be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
- testRunner.Then("validation errors are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 15
- testRunner.And("the request is unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

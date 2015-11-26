@@ -30,6 +30,21 @@ namespace IntegrationTests.Steps.StandAloneEvents
             ScenarioCache.Store(ModelKeys.StandAloneEventKey, standAloneEvent);
         }
 
+        [Given(@"an invalid stand alone event is ready to be submitted")]
+        public void GivenAnInvalidStandAloneEventIsReadyToBeSubmitted()
+        {
+            new CommonTeacherSteps().GivenAnExistingUserIsATeacher();
+
+            var standAloneEvent = new StandAloneEventModel
+            {
+                Teachers = new TeacherModel { Id = ScenarioCache.GetTeacherId() }.PutIntoList(),
+                StartTime = DateTime.Now.AddHours(1),
+                EndTime = DateTime.Now.AddHours(3),
+            };
+
+            ScenarioCache.Store(ModelKeys.StandAloneEventKey, standAloneEvent);
+        }
+
         [When(@"the stand alone event is attempted to be created")]
         public void WhenTheStandAloneEventIsAttemptedToBeCreated()
         {

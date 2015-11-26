@@ -69,26 +69,31 @@ namespace Common.Extensions
     {
         private const int DaysInWeek = 7;
 
-        public static bool IsLessThan(this DateTime? instance, DateTime toCompare)
+        public static bool IsBefore(this DateTime? instance, DateTime toCompare)
         {
-            return instance.HasValue && instance.Value.IsLessThan(toCompare);
+            return instance.HasValue && instance.Value.IsBefore(toCompare);
         }
 
-        public static bool IsLessThan(this DateTime instance, DateTime toCompare)
+        public static bool IsBefore(this DateTime instance, DateTime toCompare)
         {
             return instance < toCompare;
         }
 
-        public static bool IsLessThanOrEqualTo(this DateTime instance, DateTime toCompare)
+        public static bool IsOnOrBefore(this DateTime instance, DateTime toCompare)
         {
             return instance <= toCompare;
         }
-        public static bool IsGreaterThan(this DateTime? instance, DateTime toCompare)
+
+        public static bool IsOnOrAfter(this DateTime instance, DateTime toCompare)
         {
-            return instance.HasValue && instance.Value.IsGreaterThan(toCompare);
+            return instance >= toCompare;
+        }
+        public static bool IsAfter(this DateTime? instance, DateTime toCompare)
+        {
+            return instance.HasValue && instance.Value.IsAfter(toCompare);
         }
 
-        public static bool IsGreaterThan(this DateTime instance, DateTime toCompare)
+        public static bool IsAfter(this DateTime instance, DateTime toCompare)
         {
             return instance > toCompare;
         }
