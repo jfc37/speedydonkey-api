@@ -27,7 +27,7 @@ namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
         {
             var result = PerformAction<CreateStandAloneEvent, StandAloneEvent>(new CreateStandAloneEvent(standAloneEventModel.ToEntity()));
 
-            return new ActionResultToCreatedHttpActionResult<StandAloneEvent, StandAloneEventModel>(result, x => x.ToModel(), this)
+            return new ActionResultToCreatedHttpActionResult<StandAloneEvent, EventModel>(result, x => x.ToModel(), this)
                 .Do();
         }
 

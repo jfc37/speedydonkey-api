@@ -92,6 +92,7 @@
     <Compile Include="IActionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StandAloneEvents\CreateStandAloneEventHandler.cs" />
+    <Compile Include="StandAloneEvents\RegisterForStandAloneEventHandler.cs" />
     <Compile Include="TeacherStudentConverter.cs" />
     <Compile Include="UpdateHandlers\UpdatePassNoteHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateUserNoteHandler.cs" />

@@ -1,19 +1,18 @@
 ﻿using Actions;
 using Models;
 
-namespace Action
+namespace Action.StandAloneEvents
 {
     /// <summary>
-    /// Action for enrolling a user in a set of blocks
+    /// Action for registering a user in stand alone events
     /// </summary>
-    /// <seealso cref="User" />
-    public class EnrolInBlock : IAction<User>
+    public class RegisterForStandAloneEvent : IAction<User>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EnrolInBlock"/> class.
+        /// Initializes a new instance of the <see cref="RegisterForStandAloneEvent"/> class.
         /// </summary>
         /// <param name="user">The user.</param>
-        public EnrolInBlock(User user)
+        public RegisterForStandAloneEvent(User user)
         {
             ActionAgainst = user;
         }

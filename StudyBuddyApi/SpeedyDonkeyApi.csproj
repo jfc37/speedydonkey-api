@@ -320,6 +320,7 @@
     <Compile Include="Models\EntityModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\AnnouncementModel.cs" />
+    <Compile Include="Models\EventRegistrationModel.cs" />
     <Compile Include="Models\ModelMappingExtensions.cs" />
     <Compile Include="Models\OnlinePayments\OnlinePaymentRequestModel.cs" />
     <Compile Include="Models\OnlinePayments\PayPal\PayPalCompleteModel.cs" />

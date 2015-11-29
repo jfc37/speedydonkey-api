@@ -60,6 +60,11 @@ namespace IntegrationTests.Utilities
             return "users/{0}/enrolment".FormatWith(userId);
         }
 
+        public static string GetRegisterUserInEvent(int userId)
+        {
+            return "users/{0}/registration/event".FormatWith(userId);
+        }
+
         public static string GetPassTemplateSearch(string search)
         {
             return "pass-templates?q={0}".FormatWith(search);

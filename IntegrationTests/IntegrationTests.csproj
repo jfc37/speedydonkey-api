@@ -177,6 +177,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateStandAloneEvent.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\StandAloneEvents\StandAloneEventRegistration.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StandAloneEventRegistration.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\StandAloneEvents\ViewStandAloneEvent.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -252,6 +257,7 @@
     <Compile Include="Steps\Rooms\UnassignRoomFromClassSteps.cs" />
     <Compile Include="Steps\Rooms\UpdateRoomSteps.cs" />
     <Compile Include="Steps\StandAloneEvents\CreateStandAloneEventSteps.cs" />
+    <Compile Include="Steps\StandAloneEvents\StandAloneEventRegistrationSteps.cs" />
     <Compile Include="Steps\StandAloneEvents\ViewStandAloneEventSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
@@ -371,6 +377,10 @@
     <None Include="Features\StandAloneEvents\CreateStandAloneEvent.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateStandAloneEvent.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\StandAloneEvents\StandAloneEventRegistration.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>StandAloneEventRegistration.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\StandAloneEvents\ViewStandAloneEvent.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

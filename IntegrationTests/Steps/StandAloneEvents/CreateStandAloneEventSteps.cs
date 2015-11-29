@@ -23,8 +23,8 @@ namespace IntegrationTests.Steps.StandAloneEvents
                 Name = "Private Lesson",
                 Price = 80,
                 Teachers = new TeacherModel { Id = ScenarioCache.GetTeacherId() }.PutIntoList(),
-                StartTime = DateTime.Now.AddHours(1),
-                EndTime = DateTime.Now.AddHours(3),
+                StartTime = DateTime.Now.AddDays(2).AddHours(1),
+                EndTime = DateTime.Now.AddDays(2).AddHours(3),
             };
 
             ScenarioCache.Store(ModelKeys.StandAloneEventKey, standAloneEvent);
