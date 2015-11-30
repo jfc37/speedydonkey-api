@@ -60,6 +60,7 @@
     <Compile Include="DeleteClass.cs" />
     <Compile Include="StandAloneEvents\CreateStandAloneEvent.cs" />
     <Compile Include="StandAloneEvents\RegisterForStandAloneEvent.cs" />
+    <Compile Include="StandAloneEvents\UpdateStandAloneEvent.cs" />
     <Compile Include="UpdatePassNote.cs" />
     <Compile Include="UpdateUserNote.cs" />
     <Compile Include="UpdateClass.cs" />

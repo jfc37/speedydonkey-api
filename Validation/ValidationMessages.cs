@@ -7,6 +7,7 @@
         public const string UnavailableBlock = "Block isn't available for enrolment";
         public const string InvalidRoom = "Room doesn't exist";
         public const string InvalidClass = "Class doesn't exist";
+        public const string InvalidEvent = "Event doesn't exist";
         public const string InvalidUser = "User does not exist";
         public const string InvalidPass = "Pass does not exist";
         public const string IncorrectNumberOfAttendees = "You can only add attendance for one student at a time";

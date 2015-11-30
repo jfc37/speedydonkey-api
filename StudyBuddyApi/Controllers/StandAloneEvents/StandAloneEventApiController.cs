@@ -1,4 +1,7 @@
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using Action;
 using Action.StandAloneEvents;
 using ActionHandlers;
 using Data.QueryFilters;
@@ -28,6 +31,17 @@ namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
             var result = PerformAction<CreateStandAloneEvent, StandAloneEvent>(new CreateStandAloneEvent(standAloneEventModel.ToEntity()));
 
             return new ActionResultToCreatedHttpActionResult<StandAloneEvent, EventModel>(result, x => x.ToModel(), this)
+                .Do();
+        }
+
+        [Route("{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult Put(int id, [FromBody] StandAloneEventModel model)
+        {
+            model.Id = id;
+            var result = PerformAction<UpdateStandAloneEvent, StandAloneEvent>(new UpdateStandAloneEvent(model.ToEntity()));
+
+            return new ActionResultToOkHttpActionResult<StandAloneEvent, EventModel>(result, x => x.ToModel(), this)
                 .Do();
         }
 

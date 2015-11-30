@@ -651,6 +651,7 @@ namespace SpeedyDonkeyApi.Models
 
             return new StandAloneEvent
             {
+                Id = instance.Id,
                 Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Name = instance.Name,
                 EndTime = instance.EndTime,
