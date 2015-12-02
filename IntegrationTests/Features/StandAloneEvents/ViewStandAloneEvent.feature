@@ -9,5 +9,5 @@ Scenario: Private event is not available for registration
 @stand_alone_event @create @golden_path
 Scenario: Public event is available for registration
 	Given a stand alone event exists
-	When upcoming statnd alone events are requested
+	When upcoming stand alone events are requested
 	Then the request is successful

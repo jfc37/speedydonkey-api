@@ -31,7 +31,7 @@ namespace IntegrationTests.Steps.StandAloneEvents
             createSteps.ThenTheStandAloneEventCanBeRetrieved();
         }
 
-        [When(@"upcoming statnd alone events are requested")]
+        [When(@"upcoming stand alone events are requested")]
         public void WhenUpcomingStatndAloneEventsAreRequested()
         {
             var response = ApiCaller.Get<List<StandAloneEventModel>>(Routes.StandAloneEventsForRegistration);
