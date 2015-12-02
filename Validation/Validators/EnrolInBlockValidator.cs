@@ -23,11 +23,25 @@ namespace Validation.Validators
             _currentUser = currentUser;
             When(x => x.EnroledBlocks.IsNotNull(), () =>
             {
-                RuleFor(x => x.EnroledBlocks).Must(NotAlreadyBeEnroled)
-                    .WithMessage(ValidationMessages.AlreadyEnroledInBlock)
-                    .Must(BeExistingBlocks).WithMessage(ValidationMessages.InvalidBlock);
-                RuleFor(x => x.Id).Must(BeAllowedToEnrol).WithMessage(ValidationMessages.InvalidUserToEnrol);
+                RuleFor(x => x.EnroledBlocks)
+                    .Must(NotAlreadyBeEnroled).WithMessage(ValidationMessages.AlreadyEnroledInBlock)
+                    .Must(BeExistingBlocks).WithMessage(ValidationMessages.InvalidBlock)
+                    .Must(ComplyWithInviteOnlyRule).WithMessage(ValidationMessages.UnavailableBlock);
+                RuleFor(x => x.Id)
+                    .Must(BeAllowedToEnrol).WithMessage(ValidationMessages.InvalidUserToEnrol);
             });
+        }
+
+        private bool ComplyWithInviteOnlyRule(ICollection<Block> blocks)
+        {
+            var isUserATeacher = IsUserATeacher();
+
+            var blockIds = blocks.Select(x => x.Id);
+            var isEnrollingInInviteOnly = _blockRepository.GetAll()
+                .Where(x => blockIds.Contains(x.Id))
+                .Any(x => x.IsInviteOnly);
+
+            return !isEnrollingInInviteOnly || isUserATeacher;
         }
 
         private bool BeAllowedToEnrol(int userIdBeingEnroled)
@@ -35,6 +49,11 @@ namespace Validation.Validators
             if (userIdBeingEnroled == _currentUser.Id)
                 return true;
 
+            return IsUserATeacher();
+        }
+
+        private bool IsUserATeacher()
+        {
             var user = _userRepository.Get(_currentUser.Id);
             return new DoesUserHaveClaimRule(user, Claim.Teacher)
                 .IsValid();

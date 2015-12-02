@@ -25,6 +25,33 @@ namespace IntegrationTests.Steps.Blocks
             ScenarioCache.Store(ModelKeys.BlockModelKey, block);
         }
 
+        [Given(@"the block needs to change to invite only")]
+        public void GivenTheBlockNeedsToChangeToInviteOnly()
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, 1));
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            var block = response.Data;
+            block.IsInviteOnly = true;
+
+            ScenarioCache.Store(ModelIdKeys.BlockKeyId, block.Id);
+            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+        }
+
+        [Given(@"the block needs to change from invite only")]
+        public void GivenTheBlockNeedsToChangeFromInviteOnly()
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, 1));
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            var block = response.Data;
+            block.IsInviteOnly = false;
+
+            ScenarioCache.Store(ModelIdKeys.BlockKeyId, block.Id);
+            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+        }
+
+
         [When(@"the block is updated")]
         public void WhenTheBlockIsUpdated()
         {

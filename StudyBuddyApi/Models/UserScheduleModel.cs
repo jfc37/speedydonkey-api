@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Models;
-using NHibernate;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -18,10 +17,10 @@ namespace SpeedyDonkeyApi.Models
             var schedule = entity.Schedule.ToList();
             var upcomingSchedule = schedule.Select(x => new UserScheduleModel
             {
-                EndTime = x.Event.EndTime,
-                StartTime = x.Event.StartTime,
-                EventId = x.Event.Id,
-                Name = x.Event.Name
+                EndTime = x.EndTime,
+                StartTime = x.StartTime,
+                EventId = x.Id,
+                Name = x.Name
             })
             .Where(x => x.StartTime > DateTime.Now.AddHours(-1))
             .OrderBy(x => x.StartTime)

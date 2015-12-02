@@ -10,11 +10,25 @@ namespace IntegrationTests.Utilities
         public const string Announcements = "announcements";
         public const string Blocks = "blocks";
         public const string Classes = "classes";
+        public const string Room = "rooms";
         public const string PassTemplate = "pass-templates";
         public const string CurrentUserClaims = "users/current/claims";
         public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
+        public const string BlocksForEnrolment = "blocks/for-enrolment";
 
+        public static string GetRoomUpcomingSchedule(int roomId)
+        {
+            return "rooms/{0}/upcoming-schedule".FormatWith(roomId);
+        }
+        public static string GetUserSchedule(int userId)
+        {
+            return "users/{0}/schedules".FormatWith(userId);
+        }
+        public static string GetUserClaims(int userId)
+        {
+            return "users/{0}/claims".FormatWith(userId);
+        }
         public static string GetClassAttendance(int classId)
         {
             return "classes/{0}/attendance".FormatWith(classId);
@@ -88,6 +102,26 @@ namespace IntegrationTests.Utilities
         public static string GetAttendClass(int classId, int userId)
         {
             return "classes/{0}/attendance/{1}".FormatWith(classId, userId);
+        }
+
+        public static string GetClassRoom(int classId, int roomId)
+        {
+            return "classes/{0}/rooms/{1}".FormatWith(classId, roomId);
+        }
+
+        public static string GetClassRoom(int classId)
+        {
+            return "classes/{0}/rooms".FormatWith(classId);
+        }
+
+        public static string GetBlockRoom(int blockId, int roomId)
+        {
+            return "blocks/{0}/rooms/{1}".FormatWith(blockId, roomId);
+        }
+
+        public static string GetBlockRoom(int blockId)
+        {
+            return "blocks/{0}/rooms".FormatWith(blockId);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Action;
 using ActionHandlers.Announcements.RetrieveUsers;
 using Models;
@@ -21,12 +22,16 @@ namespace ActionHandlers.Announcements
         public Announcement Handle(CreateAnnouncement action)
         {
             var usersToNotify = _retrieveUsersToNotifyFactory.Create(action.ActionAgainst)
-                .Get(action.ActionAgainst);
+                .Get(action.ActionAgainst)
+                .Distinct()
+                .ToList();
 
             foreach (var user in usersToNotify)
             {
                 _notificationHandler.Handle(new EmailAnnouncement(user, action.ActionAgainst.Message, action.ActionAgainst.Subject));
             }
+
+            action.NumberOfUsersEmailed = usersToNotify.Count();
 
             return action.ActionAgainst;
         }

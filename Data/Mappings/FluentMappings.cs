@@ -4,7 +4,6 @@ using Models.OnlinePayments;
 
 namespace Data.Mappings
 {
-
     public class OnlinePaymentMap : ClassMap<OnlinePayment>
     {
         public OnlinePaymentMap()
@@ -44,22 +43,6 @@ namespace Data.Mappings
             Map(x => x.SuccessUrl);
             Map(x => x.PoliId);
             Map(x => x.Token);
-        }
-    }
-
-    public class ActivityLogMap : ClassMap<ActivityLog>
-    {
-        public ActivityLogMap()
-        {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
-            Map(x => x.PerformingUserId);
-            Map(x => x.Session);
-            Map(x => x.DateTimeStamp);
-            Map(x => x.ActivityText);
-            Map(x => x.ActivityType);
-            Map(x => x.ActivityGroup);
         }
     }
 
@@ -142,6 +125,7 @@ namespace Data.Mappings
         public UserMap()
         {
             Id(x => x.Id);
+            Map(x => x.GlobalId);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.FirstName);
@@ -157,7 +141,7 @@ namespace Data.Mappings
                 .AsSet();
             HasMany<Pass>(x => x.Passes)
                 .Cascade.SaveUpdate();
-            HasMany<Booking>(x => x.Schedule);
+            HasMany(x => x.Schedule);
         }
     }
 
@@ -173,26 +157,14 @@ namespace Data.Mappings
             References<User>(x => x.User);
         }
     }
-    public class ClassMap : ClassMap<Class>
+    public class ClassMap : SubclassMap<Class>
     {
         public ClassMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
-            Map(x => x.StartTime);
-            Map(x => x.EndTime);
-            Map(x => x.Name);
             References(x => x.Block)
                 .Class(typeof(Block));
-            HasManyToMany<User>(x => x.RegisteredStudents)
-                .Table("ClassRoll")
-                .AsSet();
             HasManyToMany<User>(x => x.ActualStudents)
                 .Table("ClassAttendance")
-                .AsSet();
-            HasManyToMany<Teacher>(x => x.Teachers)
-                .Table("ClassTeacher")
                 .AsSet();
             HasManyToMany<PassStatistic>(x => x.PassStatistics)
                 .Table("ClassPassStatistic")
@@ -200,17 +172,23 @@ namespace Data.Mappings
         }
     }
 
-    public class BookingMap : ClassMap<Booking>
+    public class EventMap : ClassMap<Event>
     {
-        public BookingMap()
+        public EventMap()
         {
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            References(x => x.Event)
-                .Class(typeof(Class))
-                .Cascade.SaveUpdate()
-                .Not.LazyLoad();
+            Map(x => x.StartTime);
+            Map(x => x.EndTime);
+            Map(x => x.Name);
+            References(x => x.Room);
+            HasManyToMany(x => x.RegisteredStudents)
+                .Table("EventRoll")
+                .AsSet();
+            HasManyToMany(x => x.Teachers)
+                .Table("EventTeacher")
+                .AsSet();
         }
     }
 
@@ -226,6 +204,8 @@ namespace Data.Mappings
             Map(x => x.NumberOfClasses);
             Map(x => x.MinutesPerClass);
             Map(x => x.Name);
+            Map(x => x.IsInviteOnly);
+            References(x => x.Room);
             HasMany(x => x.Classes);
             HasManyToMany(x => x.EnroledStudents)
                 .Inverse()
@@ -252,6 +232,19 @@ namespace Data.Mappings
             Map(x => x.NumberOfClassesAttended);
             References<Pass>(x => x.Pass)
                 .Column("Pass_id");
+        }
+    }
+
+    public class RoomMap : ClassMap<Room>
+    {
+        public RoomMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            Map(x => x.Name);
+            Map(x => x.Location);
+            HasMany(x => x.Events);
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
@@ -16,7 +17,7 @@ namespace SpeedyDonkeyApi
             var raygunApiKey = ConfigurationManager.AppSettings.Get("RaygunKey");
             var raygunClient = new RaygunWebApiClient(raygunApiKey);
 
-            var user = new ExtractLoggedInUser(context.Request).Do();
+            var user = new ExtractLoggedInUser(context.Request.GetOwinContext().Authentication.User, context.Request.GetDependencyScope()).Do();
             if (user.IsNotNull())
             {
                 raygunClient.UserInfo = new RaygunIdentifierMessage(user.Email)

@@ -20,7 +20,7 @@ namespace IntegrationTests.Steps.Users
         [When(@"a user search is performed")]
         public void WhenAUserSearchIsPerformed()
         {
-            var userResponse = ApiCaller.Get<List<UserModel>>(Routes.GetUserSearch("surname_=_admin"));
+            var userResponse = ApiCaller.Get<List<UserModel>>(Routes.GetUserSearch("surname_=_Chapman"));
             ScenarioCache.Store(ModelKeys.ResponseKey, userResponse.StatusCode);
         }
 

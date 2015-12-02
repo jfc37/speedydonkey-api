@@ -18,7 +18,7 @@ namespace SpeedyDonkeyApi.Models
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string FullName { get { return String.Format("{0} {1}", FirstName, Surname); } }
-        public List<BookingModel> Schedule { get; set; }
+        public List<EventModel> Schedule { get; set; }
         public List<BlockModel> EnroledBlocks { get; set; }
         public List<PassModel> Passes { get; set; }
         public string Email { get; set; }

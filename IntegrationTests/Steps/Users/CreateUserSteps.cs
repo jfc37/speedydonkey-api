@@ -83,7 +83,6 @@ namespace IntegrationTests.Steps.Users
             Assert.AreEqual(userResponse.StatusCode, HttpStatusCode.Created);
 
             ScenarioCache.StoreUserId(userResponse.Data.ActionResult.Id);
-            ScenarioCache.Store(ModelKeys.CurrentUserEmail, userResponse.Data.ActionResult.Email);
         }
 
         [When(@"user is attempted to be created")]

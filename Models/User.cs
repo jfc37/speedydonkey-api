@@ -9,13 +9,16 @@ namespace Models
     {
         public User()
         {
-            
+            Schedule = new List<Event>();
+            EnroledBlocks = new List<Block>();
+            Passes = new List<Pass>();
         }
-        public User(int id)
+        public User(int id) : this()
         {
             Id = id;
         }
 
+        public virtual string GlobalId { get; set; }
         public virtual UserStatus Status { get; set; }
         public virtual Guid ActivationKey { get; set; }
         public virtual string Email { get; set; }
@@ -23,7 +26,7 @@ namespace Models
         public virtual string FirstName { get; set; }
         public virtual string Surname { get; set; }
         public virtual string FullName { get { return String.Format("{0} {1}", FirstName, Surname); } }
-        public virtual IList<Booking> Schedule { get; set; }
+        public virtual IList<Event> Schedule { get; set; }
         public virtual ICollection<Block> EnroledBlocks { get; set; }
         public virtual IList<Pass> Passes { get; set; }
         public virtual int Id { get; set; }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Common;
 using Mandrill;
+using Mandrill.Models;
+using Mandrill.Requests.Messages;
 using Notification.Notifications;
 
 namespace Notification
@@ -29,25 +31,25 @@ namespace Notification
 
             var templateContents = notification.TemplateContent.Select(x => new TemplateContent
             {
-                name = x.Key,
-                content = x.Value
+                Name = x.Key,
+                Content = x.Value
             }).ToList();
 
             var emailMessage = new EmailMessage
             {
-                from_email = _appSettings.GetSetting(AppSettingKey.FromEmail),
-                to = new List<EmailAddress>
+                FromEmail = _appSettings.GetSetting(AppSettingKey.FromEmail),
+                To = new List<EmailAddress>
                 {
                     new EmailAddress(GetEmailTo(notification.EmailTo))
                 },
-                subject = notification.Subject,
-                merge_language = "handlebars"
+                Subject = notification.Subject,
+                MergeLanguage = "handlebars"
             };
             foreach (var templateContent in notification.TemplateContent)
             {
                 emailMessage.AddGlobalVariable(templateContent.Key, templateContent.Value);
             }
-            api.SendMessageAsync(emailMessage, notification.TemplateName, templateContents);
+            api.SendMessageTemplate(new SendMessageTemplateRequest(emailMessage, notification.TemplateName, templateContents));
         }
 
         private string GetEmailTo(string realEmail)

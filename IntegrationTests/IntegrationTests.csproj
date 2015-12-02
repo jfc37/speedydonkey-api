@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Auth0, Version=1.11.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Auth0.1.11.3\lib\net\Auth0.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -63,6 +67,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateAnnouncement.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Blocks\DeleteBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteBlock.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Blocks\InviteOnlyBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InviteOnlyBlock.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Blocks\UpdateBlock.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,6 +107,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrieveBlock.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Classes\DeleteClass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteClass.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Classes\RetrieveClass.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,6 +136,41 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrievePassTemplate.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\AssignRoomToBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssignRoomToBlock.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\AssignRoomToClass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssignRoomToClass.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\CreateRoom.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRoom.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\DeleteRoom.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteRoom.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\UnassignRoomFromBlock.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnassignRoomFromBlock.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\UnassignRoomFromClass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnassignRoomFromClass.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Rooms\UpdateRoom.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateRoom.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\Teachers\CreateTeacher.feature.cs">
       <AutoGen>True</AutoGen>
@@ -163,10 +217,12 @@
     <Compile Include="Steps\Blocks\BlockEnrolmentSteps.cs" />
     <Compile Include="Steps\Blocks\CommonBlockSteps.cs" />
     <Compile Include="Steps\Blocks\CreateBlockSteps.cs" />
+    <Compile Include="Steps\Blocks\DeleteBlockSteps.cs" />
     <Compile Include="Steps\Blocks\RetrieveBlockSteps.cs" />
     <Compile Include="Steps\Blocks\UpdateBlockSteps.cs" />
     <Compile Include="Steps\Classes\ChangeClassTeachersSteps.cs" />
     <Compile Include="Steps\Classes\ClassAttendanceSteps.cs" />
+    <Compile Include="Steps\Classes\DeleteClassSteps.cs" />
     <Compile Include="Steps\Classes\RetrieveClassSteps.cs" />
     <Compile Include="Steps\Classes\UpdateClassSteps.cs" />
     <Compile Include="Steps\Common\PreScenario.cs" />
@@ -178,6 +234,13 @@
     <Compile Include="Steps\PassTemplates\CommonPassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
+    <Compile Include="Steps\Rooms\AssignRoomToBlockSteps.cs" />
+    <Compile Include="Steps\Rooms\AssignRoomToClassSteps.cs" />
+    <Compile Include="Steps\Rooms\CreateRoomSteps.cs" />
+    <Compile Include="Steps\Rooms\DeleteRoomSteps.cs" />
+    <Compile Include="Steps\Rooms\UnassignRoomFromBlockSteps.cs" />
+    <Compile Include="Steps\Rooms\UnassignRoomFromClassSteps.cs" />
+    <Compile Include="Steps\Rooms\UpdateRoomSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
@@ -193,18 +256,29 @@
     <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyPassTemplateProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyLevelProperties.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyRoomProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyUserProperties.cs" />
     <Compile Include="Utilities\Routes.cs" />
     <Compile Include="Utilities\ScenarioCache.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Default.srprofile">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Features\Announcements\CreateAnnouncement.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateAnnouncement.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Blocks\DeleteBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Blocks\InviteOnlyBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InviteOnlyBlock.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Blocks\UpdateBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -230,6 +304,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveBlock.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\Classes\DeleteClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteClass.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Classes\RetrieveClass.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveClass.feature.cs</LastGenOutput>
@@ -249,6 +327,34 @@
     <None Include="Features\PassTemplates\RetrievePassTemplate.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrievePassTemplate.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\AssignRoomToBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AssignRoomToBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\AssignRoomToClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AssignRoomToClass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\CreateRoom.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateRoom.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\DeleteRoom.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteRoom.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\UnassignRoomFromBlock.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UnassignRoomFromBlock.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\UnassignRoomFromClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UnassignRoomFromClass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Rooms\UpdateRoom.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateRoom.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Teachers\CreateTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

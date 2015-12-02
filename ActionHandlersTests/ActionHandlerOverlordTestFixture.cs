@@ -17,7 +17,6 @@ namespace ActionHandlersTests
         private MockValidatorOverlordBuilder _validatorOverlordBuilder;
         private ActionHandlerOverlordBuilder _actionHandlerOverlordBuilder;
         private LifetimeScopeBuilder _lifetimeScopeBuilder;
-        private MockActivityLoggerBuilder _activityLoggerBuilder;
 
         private TestAction _actionToHandle;
 
@@ -28,8 +27,6 @@ namespace ActionHandlersTests
             _validatorOverlordBuilder = new MockValidatorOverlordBuilder();
             _lifetimeScopeBuilder = new LifetimeScopeBuilder()
                 .WithActionHandlersRegistered();
-            _activityLoggerBuilder = new MockActivityLoggerBuilder()
-                .WithLogging();
 
             _actionToHandle = new TestAction();
         }
@@ -39,7 +36,6 @@ namespace ActionHandlersTests
             return _actionHandlerOverlordBuilder
                 .WithValidatorOverlord(_validatorOverlordBuilder.BuildObject())
                 .WithLifetimeScope(_lifetimeScopeBuilder.Build())
-                .WithActivityLogger(_activityLoggerBuilder.BuildObject())
                 .Build();
         }
 
@@ -103,39 +99,6 @@ namespace ActionHandlersTests
                 var overlord = BuildOverlord();
 
                 Assert.Throws<ComponentNotRegisteredException>(() => overlord.HandleAction<TestAction, TestObject>(_actionToHandle));
-            }
-
-            [Test]
-            public void It_should_log_the_action_started()
-            {
-                _lifetimeScopeBuilder.WithActionHandlersRegistered();
-
-                var overlord = BuildOverlord();
-                overlord.HandleAction<TestAction, TestObject>(_actionToHandle);
-
-                _activityLoggerBuilder.Mock.Verify(x => x.Log(ActivityGroup.PerformAction, ActivityType.Beginning, It.IsAny<string>()));
-            }
-
-            [Test]
-            public void It_should_log_the_action_succeeded()
-            {
-                _validatorOverlordBuilder.WithValidInput<TestAction, TestObject>();
-
-                var overlord = BuildOverlord();
-                overlord.HandleAction<TestAction, TestObject>(_actionToHandle);
-
-                _activityLoggerBuilder.Mock.Verify(x => x.Log(ActivityGroup.PerformAction, ActivityType.Successful, It.IsAny<string>()));
-            }
-
-            [Test]
-            public void It_should_log_the_action_failed_validation()
-            {
-                _validatorOverlordBuilder.WithInvalidInput<TestAction, TestObject>();
-
-                var overlord = BuildOverlord();
-                overlord.HandleAction<TestAction, TestObject>(_actionToHandle);
-
-                _activityLoggerBuilder.Mock.Verify(x => x.Log(ActivityGroup.PerformAction, ActivityType.FailedValidation, It.IsAny<string>()));
             }
         }
 

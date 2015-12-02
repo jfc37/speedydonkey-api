@@ -1,5 +1,4 @@
-﻿using System;
-using Actions;
+﻿using Actions;
 using Models;
 
 namespace Action
@@ -11,12 +10,5 @@ namespace Action
             ActionAgainst = passTemplate;
         }
         public PassTemplate ActionAgainst { get; set; }
-        public string LogText
-        {
-            get
-            {
-                return String.Format("Update pass template {0}", ActionAgainst.Description);
-            }
-        }
     }
 }

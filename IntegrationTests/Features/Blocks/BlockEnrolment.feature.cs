@@ -84,6 +84,28 @@ testRunner.And("the user has an item in their upcoming schedule", ((string)(null
             this.ScenarioCleanup();
         }
         
+        [TechTalk.SpecRun.ScenarioAttribute("User see\'s which blocks they can enrol in", new string[] {
+                "block",
+                "available_blocks"}, SourceLine=10)]
+        public virtual void UserSeeSWhichBlocksTheyCanEnrolIn()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User see\'s which blocks they can enrol in", new string[] {
+                        "block",
+                        "available_blocks"});
+#line 11
+this.ScenarioSetup(scenarioInfo);
+#line 12
+testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+testRunner.When("blocks for enrolment is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+testRunner.And("there are blocks available for enrolment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [TechTalk.SpecRun.TestRunCleanup()]
         public virtual void TestRunCleanup()
         {

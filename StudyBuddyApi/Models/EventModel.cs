@@ -11,5 +11,7 @@ namespace SpeedyDonkeyApi.Models
         public DateTimeOffset StartTime { get; set; }
         public DateTimeOffset EndTime { get; set; }
         public string Name { get; set; }
+        public int Id { get; set; }
+        public RoomModel Room { get; set; }
     }
 }

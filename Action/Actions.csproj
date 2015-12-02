@@ -43,13 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blocks\ChangeBlockRoom.cs" />
+    <Compile Include="Blocks\UnassignBlockRoom.cs" />
+    <Compile Include="Classes\ChangeClassRoom.cs" />
     <Compile Include="Classes\ChangeClassTeachers.cs" />
+    <Compile Include="Classes\UnassignClassRoom.cs" />
     <Compile Include="CreateAnnouncement.cs" />
     <Compile Include="CreateNextBlock.cs" />
     <Compile Include="CreateRegistration.cs" />
     <Compile Include="DeleteAnnouncement.cs" />
     <Compile Include="DeleteUser.cs" />
     <Compile Include="RemoveAsTeacher.cs" />
+    <Compile Include="Rooms\CreateRoom.cs" />
+    <Compile Include="Rooms\UpdateRoom.cs" />
     <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />
     <Compile Include="UpdatePassNote.cs" />
