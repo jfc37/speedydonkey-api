@@ -39,13 +39,27 @@ namespace SpeedyDonkeyApi.Filter
             var user = new User
             {
                 Email = authZeroUser.Email,
-                FirstName = authZeroUser.GivenName,
+                FirstName = GetFirstName(authZeroUser),
                 Surname = authZeroUser.FamilyName,
                 GlobalId = authZeroUser.UserId,
                 Claims = authZeroUser.Email.IsSameAs("placid.joe@gmail.com") ? String.Join(",", new [] {Claim.Admin, Claim.Teacher}) : ""
             };
 
             repository.Create(user);
+        }
+
+        private string GetFirstName(UserProfile user)
+        {
+            if (user.GivenName.IsNotNullOrWhiteSpace())
+                return user.GivenName;
+
+            if (user.Nickname.IsNotNullOrWhiteSpace())
+                return user.Nickname;
+
+            if (user.Name.IsNotNullOrWhiteSpace())
+                return user.Name;
+
+            return user.Email;
         }
     }
 

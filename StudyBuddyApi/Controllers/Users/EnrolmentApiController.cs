@@ -2,6 +2,7 @@ using System.Linq;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
+using Common;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -13,11 +14,23 @@ namespace SpeedyDonkeyApi.Controllers.Users
     [RoutePrefix("api/users")]
     public class EnrolmentApiController : GenericApiController<User>
     {
+        private readonly ICurrentUser _currentUser;
+
         public EnrolmentApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
             IRepository<User> repository, 
-            IEntitySearch<User> entitySearch) 
-            : base(actionHandlerOverlord, repository, entitySearch) { }
+            IEntitySearch<User> entitySearch,
+            ICurrentUser currentUser) 
+            : base(actionHandlerOverlord, repository, entitySearch)
+        {
+            _currentUser = currentUser;
+        }
+
+        [Route("current/enrolment")]
+        public IHttpActionResult Post([FromBody] EnrolmentModel model)
+        {
+            return Post(_currentUser.Id, model);
+        }
 
         [Route("{id:int}/enrolment")]
         public IHttpActionResult Post(int id, [FromBody] EnrolmentModel model)
