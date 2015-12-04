@@ -9,6 +9,11 @@ namespace ActionHandlers
     /// <typeparam name="TObject"></typeparam>
     public interface IActionHandler<in TAction, out TObject> where TAction : IAction<TObject>
     {
+        /// <summary>
+        /// Handles the specified action.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         TObject Handle(TAction action);
     }
 }

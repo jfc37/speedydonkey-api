@@ -99,11 +99,12 @@
     <Compile Include="UpdateHandlers\UpdateBlockHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateAnnouncementHandler.cs" />
     <Compile Include="UpdateHandlers\UpdatePassTemplateHandler.cs" />
-    <Compile Include="UpdateHandlers\UpdateUserHandler.cs" />
     <Compile Include="UpdateHandlers\UpdatePassHandler.cs" />
     <Compile Include="UserPasses\PassCreator.cs" />
     <Compile Include="UserPasses\PurchasePassHandler.cs" />
     <Compile Include="UserPasses\UserPassAppender.cs" />
+    <Compile Include="Users\UpdateUserHandler.cs" />
+    <Compile Include="Users\UpdateUserNamesHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Action\Actions.csproj">

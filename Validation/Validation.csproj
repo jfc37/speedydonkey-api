@@ -101,9 +101,10 @@
     <Compile Include="Validators\PurchasePassValidator.cs" />
     <Compile Include="Validators\ActivateUserValidator.cs" />
     <Compile Include="Validators\UpdatePassValidator.cs" />
-    <Compile Include="Validators\CreateUserValidator.cs" />
     <Compile Include="Validators\EnrolInBlockValidator.cs" />
     <Compile Include="Validators\IActionValidator.cs" />
+    <Compile Include="Validators\Users\CreateUserValidator.cs" />
+    <Compile Include="Validators\Users\UpdateUserNamesValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Action\Actions.csproj">
