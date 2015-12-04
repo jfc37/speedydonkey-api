@@ -1,4 +1,5 @@
-﻿using Common.Extensions;
+﻿using System;
+using Common.Extensions;
 using Models;
 
 namespace SpeedyDonkeyApi.Models
@@ -300,37 +301,63 @@ namespace SpeedyDonkeyApi.Models
             if (instance.IsNull())
                 return null;
 
-            return new EventModel
+            EventModel model = null;
+
+            var classInstance = instance as Class;
+            if (classInstance.IsNotNull())
+                model = classInstance.ToModel();
+
+            var standAloneEventInstance = instance as StandAloneEvent;
+            if (standAloneEventInstance.IsNotNull())
+                model = standAloneEventInstance.ToModel();
+
+            if (model.IsNull())
+                throw new ArgumentException(
+                    "Can't handle converting to model for type {0}".FormatWith(instance.GetType()), "instance");
+
+            model.Id = instance.Id;
+            model.Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull();
+            model.Name = instance.Name;
+            model.EndTime = instance.EndTime;
+            model.StartTime = instance.StartTime;
+            model.Room = instance.Room.ToStripedModel();
+            model.RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull();
+
+            return model;
+
+        }
+
+        private static StandAloneEventModel ToModel(this StandAloneEvent instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new StandAloneEventModel
             {
                 Id = instance.Id,
                 Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Name = instance.Name,
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
-                Room = instance.Room.ToStripedModel()
+                Room = instance.Room.ToStripedModel(),
+                Price = instance.Price,
+                IsPrivate = instance.IsPrivate
             };
         }
 
-        public static ClassModel ToModel(this Class instance)
+        private static ClassModel ToModel(this Class instance)
         {
             if (instance.IsNull())
                 return null;
 
             return new ClassModel
             {
-                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Name = instance.Name,
-                EndTime = instance.EndTime,
-                StartTime = instance.StartTime,
                 Block = instance.Block.ToStripedModel(),
-                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Id = instance.Id,
-                Room = instance.Room.ToStripedModel()
+                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull()
             };
         }
 
-        public static ClassModel ToStripedModel(this Class instance)
+        private static ClassModel ToStripedModel(this Class instance)
         {
             if (instance.IsNull())
                 return null;
@@ -345,18 +372,43 @@ namespace SpeedyDonkeyApi.Models
             };
         }
 
+        private static StandAloneEventModel ToStripedModel(this StandAloneEvent instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new StandAloneEventModel
+            {
+                Price = instance.Price,
+                IsPrivate = instance.IsPrivate
+            };
+        }
+
         public static EventModel ToStripedModel(this Event instance)
         {
             if (instance.IsNull())
                 return null;
 
-            return new EventModel
-            {
-                Name = instance.Name,
-                EndTime = instance.EndTime,
-                StartTime = instance.StartTime,
-                Id = instance.Id
-            };
+            EventModel model = null;
+
+            var classInstance = instance as Class;
+            if (classInstance.IsNotNull())
+                model = classInstance.ToStripedModel();
+
+            var standAloneEventInstance = instance as StandAloneEvent;
+            if (standAloneEventInstance.IsNotNull())
+                model = standAloneEventInstance.ToStripedModel();
+
+            if (model.IsNull())
+                throw new ArgumentException(
+                    "Can't handle converting to striped model for type {0}".FormatWith(instance.GetType()), "instance");
+
+            model.Id = instance.Id;
+            model.Name = instance.Name;
+            model.EndTime = instance.EndTime;
+            model.StartTime = instance.StartTime;
+
+            return model;
         }
 
         public static PassStatisticModel ToModel(this PassStatistic instance)
@@ -569,13 +621,44 @@ namespace SpeedyDonkeyApi.Models
             if (instance.IsNull())
                 return null;
 
-            return new Event
+            Event model = null;
+
+            var classInstance = instance as ClassModel;
+            if (classInstance.IsNotNull())
+                model = classInstance.ToEntity();
+
+            var standAloneEventInstance = instance as StandAloneEventModel;
+            if (standAloneEventInstance.IsNotNull())
+                model = standAloneEventInstance.ToEntity();
+
+            if (model.IsNull())
+                throw new ArgumentException(
+                    "Can't handle converting to entity for type {0}".FormatWith(instance.GetType()), "instance");
+
+            model.Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull();
+            model.Name = instance.Name;
+            model.EndTime = instance.EndTime;
+            model.StartTime = instance.StartTime;
+            model.RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull();
+
+            return model;
+        }
+
+        public static StandAloneEvent ToEntity(this StandAloneEventModel instance)
+        {
+            if (instance.IsNull())
+                return null;
+
+            return new StandAloneEvent
             {
+                Id = instance.Id,
                 Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Name = instance.Name,
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
+                Price = instance.Price,
+                IsPrivate = instance.IsPrivate
             };
         }
 

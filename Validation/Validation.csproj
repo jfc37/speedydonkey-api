@@ -89,6 +89,9 @@
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />
     <Compile Include="Validators\Rooms\UpdateRoomValidator.cs" />
+    <Compile Include="Validators\StandAloneEvents\CreateStandAloneEventValidator.cs" />
+    <Compile Include="Validators\StandAloneEvents\RegisterForStandAloneEventValidator.cs" />
+    <Compile Include="Validators\StandAloneEvents\UpdateStandAloneEventValidator.cs" />
     <Compile Include="Validators\Teachers\RemoveAsTeacherValidator.cs" />
     <Compile Include="Validators\Teachers\SetAsTeacherValidator.cs" />
     <Compile Include="Validators\UpdateClassValidator.cs" />

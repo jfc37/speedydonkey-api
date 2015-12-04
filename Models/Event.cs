@@ -4,7 +4,7 @@ using Common;
 
 namespace Models
 {
-    public class Event : IEntity, IDatabaseEntity
+    public abstract class Event : IEntity, IDatabaseEntity
     {
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
@@ -15,5 +15,21 @@ namespace Models
         public virtual DateTimeOffset EndTime { get; set; }
         public virtual string Name { get; set; }
         public virtual Room Room { get; set; }
+    }
+
+    public class StandAloneEvent : Event
+    {
+        public StandAloneEvent()
+        {
+            
+        }
+
+        public StandAloneEvent(int id)
+        {
+            Id = id;
+        }
+
+        public virtual decimal Price { get; set; }
+        public virtual bool IsPrivate { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Models;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -13,5 +12,11 @@ namespace SpeedyDonkeyApi.Models
         public string Name { get; set; }
         public int Id { get; set; }
         public RoomModel Room { get; set; }
+    }
+
+    public class StandAloneEventModel : EventModel
+    {
+        public decimal Price { get; set; }
+        public bool IsPrivate { get; set; }
     }
 }

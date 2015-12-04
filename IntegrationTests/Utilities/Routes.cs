@@ -9,13 +9,14 @@ namespace IntegrationTests.Utilities
         public const string Database = "database";
         public const string Announcements = "announcements";
         public const string Blocks = "blocks";
+        public const string StandAloneEvent = "stand-alone-events";
         public const string Classes = "classes";
         public const string Room = "rooms";
         public const string PassTemplate = "pass-templates";
-        public const string CurrentUserClaims = "users/current/claims";
         public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
         public const string BlocksForEnrolment = "blocks/for-enrolment";
+        public const string StandAloneEventsForRegistration = "stand-alone-events/for-registration";
 
         public static string GetRoomUpcomingSchedule(int roomId)
         {
@@ -57,6 +58,11 @@ namespace IntegrationTests.Utilities
         public static string GetEnrolUserInBlock(int userId)
         {
             return "users/{0}/enrolment".FormatWith(userId);
+        }
+
+        public static string GetRegisterUserInEvent(int userId)
+        {
+            return "users/{0}/registration/event".FormatWith(userId);
         }
 
         public static string GetPassTemplateSearch(string search)
