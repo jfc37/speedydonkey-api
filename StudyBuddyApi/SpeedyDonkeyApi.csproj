@@ -340,6 +340,7 @@
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserScheduleModel.cs" />
+    <Compile Include="Models\Users\UserNamesModel.cs" />
     <Compile Include="Owin\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

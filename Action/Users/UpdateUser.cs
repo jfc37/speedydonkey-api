@@ -1,7 +1,7 @@
-﻿using System;
+using Actions;
 using Models;
 
-namespace Actions
+namespace Action.Users
 {
     public class UpdateUser : ICrudAction<User>
     {
@@ -11,12 +11,5 @@ namespace Actions
         }
 
         public User ActionAgainst { get; set; }
-        public string LogText
-        {
-            get
-            {
-                return String.Format("Update user {0}", ActionAgainst.FullName);
-            }
-        }
     }
 }

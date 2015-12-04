@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;
-using Validation.Validators;
+using Validation.Validators.Users;
 
 namespace Validation.Tests
 {
