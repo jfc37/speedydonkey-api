@@ -13,6 +13,7 @@ namespace IntegrationTests.Utilities
         public const string Classes = "classes";
         public const string Room = "rooms";
         public const string PassTemplate = "pass-templates";
+        public const string CurrentUserNames = "users/current/names";
         public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
         public const string BlocksForEnrolment = "blocks/for-enrolment";

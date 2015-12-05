@@ -1,9 +1,10 @@
-﻿using Actions;
-using Common;
+using Action.Users;
+using ActionHandlers.UpdateHandlers;
+using Actions;
 using Data.Repositories;
 using Models;
 
-namespace ActionHandlers.UpdateHandlers
+namespace ActionHandlers.Users
 {
     public class UpdateUserHandler : UpdateEntityHandler<UpdateUser, User>
     {

@@ -1,16 +1,16 @@
-﻿using System.Linq;
+using System.Linq;
+using Action.Users;
 using Actions;
 using Data.Repositories;
 using FluentValidation;
-using Models;
 
-namespace Validation.Validators
+namespace Validation.Validators.Users
 {
-    public class CreateUserValidator : AbstractValidator<User>, IActionValidator<CreateUser, User>, IActionValidator<UpdateUser, User>
+    public class CreateUserValidator : AbstractValidator<Models.User>, IActionValidator<CreateUser, Models.User>, IActionValidator<UpdateUser, Models.User>
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Models.User> _userRepository;
 
-        public CreateUserValidator(IRepository<User> userRepository)
+        public CreateUserValidator(IRepository<Models.User> userRepository)
         {
             _userRepository = userRepository;
 
@@ -34,7 +34,7 @@ namespace Validation.Validators
                 .NotEmpty().WithMessage(ValidationMessages.MissingSurname);
         }
 
-        private bool BeUnique(User user, string email)
+        private bool BeUnique(Models.User user, string email)
         {
             return _userRepository.GetAll()
                 .Where(x => x.Id != user.Id)

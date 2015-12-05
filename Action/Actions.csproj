@@ -72,7 +72,6 @@
     <Compile Include="DeletePass.cs" />
     <Compile Include="UpdatePassTemplate.cs" />
     <Compile Include="CreatePassTemplate.cs" />
-    <Compile Include="UpdateUser.cs" />
     <Compile Include="ResetPassword.cs" />
     <Compile Include="ForgottenPassword.cs" />
     <Compile Include="PurchasePass.cs" />
@@ -87,6 +86,8 @@
     <Compile Include="IAction.cs" />
     <Compile Include="ICrudAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\UpdateUser.cs" />
+    <Compile Include="Users\UpdateUserNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
