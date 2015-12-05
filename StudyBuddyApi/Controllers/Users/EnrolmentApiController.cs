@@ -44,6 +44,12 @@ namespace SpeedyDonkeyApi.Controllers.Users
                 .Do();
         }
 
+        [Route("current/registration/event")]
+        public IHttpActionResult Post([FromBody] EventRegistrationModel model)
+        {
+            return Post(_currentUser.Id, model);
+        }
+
         [Route("{id:int}/registration/event")]
         public IHttpActionResult Post(int id, [FromBody] EventRegistrationModel model)
         {
