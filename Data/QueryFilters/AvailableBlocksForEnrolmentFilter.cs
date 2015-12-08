@@ -20,7 +20,7 @@ namespace Data.QueryFilters
             return query
                 .Where(x => !x.IsInviteOnly)
                 .Where(x => x.EndDate.IsAfter(_today))
-                .Where(x => x.StartDate.Date.StartOfWeek(DayOfWeek.Monday).AddWeeks(1).IsBefore(_today));
+                .Where(x => x.StartDate.Date.StartOfWeek(DayOfWeek.Monday).AddWeeks(1).IsAfter(_today));
         }
     }
 }

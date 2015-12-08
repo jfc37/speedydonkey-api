@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Common.Extensions;
 using Data.QueryFilters;
-using FizzWare.NBuilder;
 using Models;
 using NUnit.Framework;
 
@@ -23,7 +22,7 @@ namespace Data.Tests.QueryFilters
             return new Block
             {
                 IsInviteOnly = false,
-                StartDate = _today.AddWeeks(-1),
+                StartDate = _today.AddDays(-1),
                 EndDate = _today.AddWeeks(2)
             };
         }
@@ -43,6 +42,7 @@ namespace Data.Tests.QueryFilters
 
             private void PerformAssertion(Block block)
             {
+                var testing = block.StartDate.Date.StartOfWeek(DayOfWeek.Monday).AddWeeks(1);
                 var result = PerformAction(block.PutIntoList());
 
                 Assert.IsNotEmpty(result);
@@ -72,10 +72,12 @@ namespace Data.Tests.QueryFilters
             [Test]
             public void Are_past_their_first_week()
             {
-                _today = new DateTime(2015, 12, 14);
+                _today = new DateTime(2015, 12, 8);
 
                 var block = GetValidBlock();
-                block.StartDate = _today.AddWeeks(-1);
+                block.StartDate = new DateTimeOffset(new DateTime(2015, 11, 3));//_today.AddWeeks(-1);
+
+                var testing = block.StartDate.Date.StartOfWeek(DayOfWeek.Monday).AddWeeks(1);
 
                 PerformAssertion(block);
             }
