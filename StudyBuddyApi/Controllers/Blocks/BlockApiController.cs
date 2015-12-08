@@ -1,3 +1,4 @@
+using System;
 using System.Web.Http;
 using Action;
 using Action.Blocks;
@@ -25,7 +26,7 @@ namespace SpeedyDonkeyApi.Controllers.Blocks
         [Route("for-enrolment")]
         public IHttpActionResult GetForEnrolment()
         {
-            return new SetToHttpActionResult<Block>(this, new AvailableBlocksForEnrolmentFilter().Filter(GetAll()), x => x.ToStripedModel()).Do();
+            return new SetToHttpActionResult<Block>(this, new AvailableBlocksForEnrolmentFilter(DateTime.Today).Filter(GetAll()), x => x.ToStripedModel()).Do();
         }
 
         [Route]

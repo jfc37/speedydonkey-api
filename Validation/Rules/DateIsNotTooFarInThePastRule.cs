@@ -15,7 +15,7 @@ namespace Validation.Rules
 
         public bool IsValid()
         {
-            return _date.IsGreaterThan(DateTime.Now.AddYears(-NumberOfYears));
+            return _date.IsAfter(DateTime.Now.AddYears(-NumberOfYears));
         }
     }
 }
