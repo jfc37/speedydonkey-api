@@ -10,7 +10,7 @@ namespace SpeedyDonkeyApi.Models
         {
             if (user.EnroledBlocks == null)
                 return new List<BlockModel>();
-            return user.EnroledBlocks.Select(x => x.ToModel());
+            return user.EnroledBlocks.Select(x => x.ToStripedModel());
         }
     }
     public class ClassRegisterModel : IEntityView<Class, UserModel>

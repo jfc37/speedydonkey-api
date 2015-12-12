@@ -12,16 +12,16 @@ namespace SpeedyDonkeyApi.Controllers.Users
     [RoutePrefix("api/users")]
     public class UserEnroledBlocksApiController : EntityPropertyApiController
     {
-        private readonly IRepository<User> _entityRepository;
+        private readonly IRepository<User> _repository;
         private readonly ICurrentUser _currentUser;
 
         public UserEnroledBlocksApiController(
-            IRepository<User> entityRepository,
+            IRepository<User> repository,
             IActionHandlerOverlord actionHandlerOverlord,
             ICurrentUser currentUser)
             : base(actionHandlerOverlord)
         {
-            _entityRepository = entityRepository;
+            _repository = repository;
             _currentUser = currentUser;
         }
 
@@ -35,7 +35,7 @@ namespace SpeedyDonkeyApi.Controllers.Users
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(int id)
         {
-            var entity = _entityRepository.Get(id);
+            var entity = _repository.Get(id);
             return entity.IsNotNull()
                 ? (IHttpActionResult) Ok(new UserEnroledBlocksModel().ConvertFromEntity(entity))
                 : NotFound();
