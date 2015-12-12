@@ -42,7 +42,6 @@ namespace Data.Tests.QueryFilters
 
             private void PerformAssertion(Block block)
             {
-                var testing = block.StartDate.Date.StartOfWeek(DayOfWeek.Monday).AddWeeks(1);
                 var result = PerformAction(block.PutIntoList());
 
                 Assert.IsNotEmpty(result);
@@ -75,9 +74,7 @@ namespace Data.Tests.QueryFilters
                 _today = new DateTime(2015, 12, 8);
 
                 var block = GetValidBlock();
-                block.StartDate = new DateTimeOffset(new DateTime(2015, 11, 3));//_today.AddWeeks(-1);
-
-                var testing = block.StartDate.Date.StartOfWeek(DayOfWeek.Monday).AddWeeks(1);
+                block.StartDate = new DateTimeOffset(new DateTime(2015, 11, 3));
 
                 PerformAssertion(block);
             }
