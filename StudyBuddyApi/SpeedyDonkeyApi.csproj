@@ -293,7 +293,6 @@
     <Compile Include="Controllers\Users\CurrentUserApiController.cs" />
     <Compile Include="Controllers\Users\CurrentUserNameApiController.cs" />
     <Compile Include="Controllers\Users\EnrolmentApiController.cs" />
-    <Compile Include="Controllers\Users\UserActivationApiController.cs" />
     <Compile Include="Controllers\Users\UserApiController.cs" />
     <Compile Include="Controllers\Users\UserClaimsApiController.cs" />
     <Compile Include="Controllers\Users\UserEnroledBlocksApiController.cs" />
