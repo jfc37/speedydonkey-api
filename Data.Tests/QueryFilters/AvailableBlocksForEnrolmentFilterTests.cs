@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Common.Extensions;
 using Data.QueryFilters;
-using FizzWare.NBuilder;
 using Models;
 using NUnit.Framework;
 
@@ -9,23 +10,81 @@ namespace Data.Tests.QueryFilters
     [TestFixture]
     public class AvailableBlocksForEnrolmentFilterTests
     {
-        private IEnumerable<Block> PerformAction(IEnumerable<Block> query)
+        private DateTime _today;
+
+        public AvailableBlocksForEnrolmentFilterTests()
         {
-            return new AvailableBlocksForEnrolmentFilter()
-                .Filter(query);
+            _today = DateTime.Today;
         }
 
-        [Test]
-        public void It_should_exclude_invite_only_blocks()
+        private Block GetValidBlock()
         {
-            var query = Builder<Block>.CreateListOfSize(1)
-                .All()
-                .With(x => x.IsInviteOnly = true)
-                .Build();
+            return new Block
+            {
+                IsInviteOnly = false,
+                StartDate = _today.AddDays(-1),
+                EndDate = _today.AddWeeks(2)
+            };
+        }
 
-            var result = PerformAction(query);
+        private IEnumerable<Block> PerformAction(IEnumerable<Block> query)
+        {
+            return new AvailableBlocksForEnrolmentFilter(_today).Filter(query);
+        }
 
-            Assert.IsEmpty(result);
+        public class IncludesThoseThat : AvailableBlocksForEnrolmentFilterTests
+        {
+            [Test]
+            public void Should_be_included()
+            {
+                PerformAssertion(GetValidBlock());
+            }
+
+            private void PerformAssertion(Block block)
+            {
+                var result = PerformAction(block.PutIntoList());
+
+                Assert.IsNotEmpty(result);
+            }
+        }
+
+        public class IgnoresThosesThat : AvailableBlocksForEnrolmentFilterTests
+        {
+            [Test]
+            public void Are_invite_only()
+            {
+                var block = GetValidBlock();
+                block.IsInviteOnly = true;
+
+                PerformAssertion(block);
+            }
+
+            [Test]
+            public void Have_finished()
+            {
+                var block = GetValidBlock();
+                block.EndDate = DateTime.Today;
+
+                PerformAssertion(block);
+            }
+
+            [Test]
+            public void Are_past_their_first_week()
+            {
+                _today = new DateTime(2015, 12, 8);
+
+                var block = GetValidBlock();
+                block.StartDate = new DateTimeOffset(new DateTime(2015, 11, 3));
+
+                PerformAssertion(block);
+            }
+
+            private void PerformAssertion(Block block)
+            {
+                var result = PerformAction(block.PutIntoList());
+
+                Assert.IsEmpty(result);
+            }
         }
     }
 }

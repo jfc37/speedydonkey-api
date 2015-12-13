@@ -63,6 +63,23 @@ namespace Common.Extensions
         {
             return instance > toCompare;
         }
+
+        /// <summary>
+        /// Moves the date into the past until it matches provided day
+        /// </summary>
+        /// <param name="instance">The instance.</param>
+        /// <param name="startOfWeek">The start of week.</param>
+        /// <returns></returns>
+        public static DateTime StartOfWeek(this DateTime instance, DayOfWeek startOfWeek)
+        {
+            int diff = instance.DayOfWeek - startOfWeek;
+            if (diff < 0)
+            {
+                diff += 7;
+    }
+
+            return instance.AddDays(-1 * diff).Date;
+        }
     }
 
     public static class DateExtensions
