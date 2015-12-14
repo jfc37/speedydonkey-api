@@ -35,6 +35,10 @@ namespace IntegrationTests.Utilities
         {
             return "classes/{0}/attendance".FormatWith(classId);
         }
+        public static string GetEventAttendance(int eventId)
+        {
+            return "stand-alone-events/{0}/attendance".FormatWith(eventId);
+        }
 
         public static string GetChangeClassTeachers(int classId)
         {
@@ -109,6 +113,11 @@ namespace IntegrationTests.Utilities
         public static string GetAttendClass(int classId, int userId)
         {
             return "classes/{0}/attendance/{1}".FormatWith(classId, userId);
+        }
+
+        public static string GetAttendEvent(int eventId, int userId)
+        {
+            return "stand-alone-events/{0}/attendance/{1}".FormatWith(eventId, userId);
         }
 
         public static string GetClassRoom(int classId, int roomId)

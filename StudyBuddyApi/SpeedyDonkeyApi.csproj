@@ -290,6 +290,7 @@
     <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventApiController.cs" />
+    <Compile Include="Controllers\StandAloneEvents\StandAloneEventAttendanceApiController.cs" />
     <Compile Include="Controllers\Teachers\TeacherApiController.cs" />
     <Compile Include="Controllers\Users\CurrentUserApiController.cs" />
     <Compile Include="Controllers\Users\CurrentUserNameApiController.cs" />

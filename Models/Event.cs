@@ -11,6 +11,7 @@ namespace Models
         public virtual int Id { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<User> RegisteredStudents { get; set; }
+        public virtual ICollection<User> ActualStudents { get; set; }
         public virtual DateTimeOffset StartTime { get; set; }
         public virtual DateTimeOffset EndTime { get; set; }
         public virtual string Name { get; set; }

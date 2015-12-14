@@ -322,6 +322,7 @@ namespace SpeedyDonkeyApi.Models
             model.StartTime = instance.StartTime;
             model.Room = instance.Room.ToStripedModel();
             model.RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull();
+            model.ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull();
 
             return model;
 
@@ -640,6 +641,7 @@ namespace SpeedyDonkeyApi.Models
             model.EndTime = instance.EndTime;
             model.StartTime = instance.StartTime;
             model.RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull();
+            model.ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull();
 
             return model;
         }
@@ -657,6 +659,7 @@ namespace SpeedyDonkeyApi.Models
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
+                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Price = instance.Price,
                 IsPrivate = instance.IsPrivate
             };

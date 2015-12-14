@@ -16,7 +16,6 @@ namespace SpeedyDonkeyApi.Models
             Teachers = teachers;
         }
 
-        public List<UserModel> ActualStudents { get; set; }
         public BlockModel Block { get; set; }
         public List<PassStatisticModel> PassStatistics { get; set; }
     }

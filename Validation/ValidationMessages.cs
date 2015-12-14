@@ -13,7 +13,7 @@
         public const string IncorrectNumberOfAttendees = "You can only add attendance for one student at a time";
         public const string NoValidPasses = "Please purchase a pass before attending the class";
         public const string NoPaidForPasses = "Please pay for your pass before attending the class";
-        public const string AlreadyAttendingClass = "You are already attending this class";
+        public const string AlreadyAttending = "You are already attending";
         public const string MissingPassword = "Please enter a password";
         public const string PasswordTooShort = "Please enter a password atleast 7 characters long";
         public const string MissingEmail = "Please enter an email address";

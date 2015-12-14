@@ -163,9 +163,6 @@ namespace Data.Mappings
         {
             References(x => x.Block)
                 .Class(typeof(Block));
-            HasManyToMany<User>(x => x.ActualStudents)
-                .Table("ClassAttendance")
-                .AsSet();
             HasManyToMany<PassStatistic>(x => x.PassStatistics)
                 .Table("ClassPassStatistic")
                 .AsSet();
@@ -196,6 +193,9 @@ namespace Data.Mappings
                 .AsSet();
             HasManyToMany(x => x.Teachers)
                 .Table("EventTeacher")
+                .AsSet();
+            HasManyToMany(x => x.ActualStudents)
+                .Table("ClassAttendance")
                 .AsSet();
         }
     }

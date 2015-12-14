@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
-using Action;
+using Action.Classes;
 using Data.Repositories;
 using FluentValidation;
 using Models;
 using Validation.Rules;
 
-namespace Validation.Validators
+namespace Validation.Validators.Classes
 {
     public class CheckStudentIntoClassValidator : AbstractValidator<Class>, IActionValidator<CheckStudentIntoClass, Class>
     {
@@ -27,7 +27,7 @@ namespace Validation.Validators
                 .Must(BeExistingUser).WithMessage(ValidationMessages.InvalidUser)
                 .Must(HaveAValidPass).WithMessage(ValidationMessages.NoValidPasses)
                 .Must(HavePaidForAPass).WithMessage(ValidationMessages.NoPaidForPasses)
-                .Must(NotAlreadyBeAttendingClass).WithMessage(ValidationMessages.AlreadyAttendingClass);
+                .Must(NotAlreadyBeAttendingClass).WithMessage(ValidationMessages.AlreadyAttending);
         }
 
         private bool NotAlreadyBeAttendingClass(Class theClass, ICollection<User> users)
