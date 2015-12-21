@@ -37,7 +37,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
 
             var result = PerformAction<ChangeClassRoom, Class>(new ChangeClassRoom(theClass));
 
-            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+            return new ActionResultToOkHttpActionResult<Class, EventModel>(result, x => x.ToModel(), this)
                 .Do();
         }
 
@@ -51,7 +51,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
 
             var result = PerformAction<UnassignClassRoom, Class>(new UnassignClassRoom(theClass));
 
-            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+            return new ActionResultToOkHttpActionResult<Class, EventModel>(result, x => x.ToModel(), this)
                 .Do();
         }
         
@@ -67,7 +67,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
 
             var result = PerformAction<ChangeClassTeachers, Class>(new ChangeClassTeachers(theClass));
 
-            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+            return new ActionResultToOkHttpActionResult<Class, EventModel>(result, x => x.ToModel(), this)
                 .Do();
         }
 
@@ -79,7 +79,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
             var result = PerformAction<UpdateClass, Class>(new UpdateClass(model.ToEntity()));
 
             return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
-                new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
+                new ActionReponse<EventModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [Route("{id:int}")]
@@ -90,7 +90,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
             var result = PerformAction<DeleteClass, Class>(new DeleteClass(model));
 
             return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
-                new ActionReponse<ClassModel>(result.ActionResult.ToModel(), result.ValidationResult));
+                new ActionReponse<EventModel>(result.ActionResult.ToModel(), result.ValidationResult));
         }
 
         [Route]

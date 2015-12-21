@@ -21,12 +21,12 @@ namespace SpeedyDonkeyApi.Controllers.Classes
 
         [Route("{blockId:int}/classes")]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
-        public IEnumerable<ClassModel> Get(int blockId)
+        public IEnumerable<EventModel> Get(int blockId)
         {
             var block = _repository.Get(blockId);
 
             return block.IsNull()
-                ? new List<ClassModel>()
+                ? new List<EventModel>()
                 : block.Classes
                     .Select(x => x.ToModel())
                     .ToList();

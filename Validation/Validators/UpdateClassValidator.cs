@@ -8,12 +8,10 @@ namespace Validation.Validators
 {
     public class UpdateClassValidator : AbstractValidator<Class>, IActionValidator<UpdateClass, Class>
     {
-        private readonly IRepository<Class> _repository;
         private readonly IRepository<Teacher> _teacherRepository;
 
         public UpdateClassValidator(IRepository<Class> repository, IRepository<Teacher> teacherRepository)
         {
-            _repository = repository;
             _teacherRepository = teacherRepository;
             CascadeMode = CascadeMode.StopOnFirstFailure;
 

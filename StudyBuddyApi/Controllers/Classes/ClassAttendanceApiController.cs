@@ -1,5 +1,5 @@
 using System.Web.Http;
-using Action;
+using Action.Classes;
 using ActionHandlers;
 using Common.Extensions;
 using Data.Repositories;
@@ -44,7 +44,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
             };
             var result = PerformAction<CheckStudentIntoClass, Class>(new CheckStudentIntoClass(classModel));
 
-            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+            return new ActionResultToOkHttpActionResult<Class, EventModel>(result, x => x.ToModel(), this)
                 .Do();
         }
 
@@ -58,7 +58,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
             };
             var result = PerformAction<RemoveStudentFromClass, Class>(new RemoveStudentFromClass(classModel));
 
-            return new ActionResultToOkHttpActionResult<Class, ClassModel>(result, x => x.ToModel(), this)
+            return new ActionResultToOkHttpActionResult<Class, EventModel>(result, x => x.ToModel(), this)
                 .Do();
         }
     }

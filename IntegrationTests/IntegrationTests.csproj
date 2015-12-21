@@ -172,6 +172,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UpdateRoom.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\StandAloneEvents\CreateStandAloneEvent.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateStandAloneEvent.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\StandAloneEvents\EventAttendance.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventAttendance.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\StandAloneEvents\StandAloneEventRegistration.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StandAloneEventRegistration.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\StandAloneEvents\UpdateStandAloneEvent.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateStandAloneEvent.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\StandAloneEvents\ViewStandAloneEvent.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewStandAloneEvent.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Teachers\CreateTeacher.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -246,6 +271,11 @@
     <Compile Include="Steps\Rooms\UnassignRoomFromBlockSteps.cs" />
     <Compile Include="Steps\Rooms\UnassignRoomFromClassSteps.cs" />
     <Compile Include="Steps\Rooms\UpdateRoomSteps.cs" />
+    <Compile Include="Steps\StandAloneEvents\CreateStandAloneEventSteps.cs" />
+    <Compile Include="Steps\StandAloneEvents\EventAttendanceSteps.cs" />
+    <Compile Include="Steps\StandAloneEvents\StandAloneEventRegistrationSteps.cs" />
+    <Compile Include="Steps\StandAloneEvents\UpdateStandAloneEventSteps.cs" />
+    <Compile Include="Steps\StandAloneEvents\ViewStandAloneEventSteps.cs" />
     <Compile Include="Steps\Teachers\CommonTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
@@ -362,6 +392,26 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UpdateRoom.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\StandAloneEvents\CreateStandAloneEvent.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateStandAloneEvent.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\StandAloneEvents\EventAttendance.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EventAttendance.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\StandAloneEvents\StandAloneEventRegistration.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>StandAloneEventRegistration.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\StandAloneEvents\UpdateStandAloneEvent.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateStandAloneEvent.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\StandAloneEvents\ViewStandAloneEvent.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ViewStandAloneEvent.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Teachers\CreateTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateTeacher.feature.cs</LastGenOutput>
@@ -429,6 +479,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -85,10 +85,15 @@
     <Compile Include="Validators\Blocks\UnassignBlockRoomValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassRoomValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassTeachersValidator.cs" />
+    <Compile Include="Validators\Classes\CheckStudentIntoClassValidator.cs" />
     <Compile Include="Validators\Classes\UnassignClassRoomValidator.cs" />
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />
     <Compile Include="Validators\Rooms\UpdateRoomValidator.cs" />
+    <Compile Include="Validators\StandAloneEvents\CheckStudentIntoEventValidator.cs" />
+    <Compile Include="Validators\StandAloneEvents\CreateStandAloneEventValidator.cs" />
+    <Compile Include="Validators\StandAloneEvents\RegisterForStandAloneEventValidator.cs" />
+    <Compile Include="Validators\StandAloneEvents\UpdateStandAloneEventValidator.cs" />
     <Compile Include="Validators\Teachers\RemoveAsTeacherValidator.cs" />
     <Compile Include="Validators\Teachers\SetAsTeacherValidator.cs" />
     <Compile Include="Validators\UpdateClassValidator.cs" />
@@ -97,7 +102,6 @@
     <Compile Include="Validators\CreateUpdatePassTemplateValidator.cs" />
     <Compile Include="Validators\ResetPasswordValidator.cs" />
     <Compile Include="Validators\ForgottenPasswordValidator.cs" />
-    <Compile Include="Validators\CheckStudentIntoClassValidator.cs" />
     <Compile Include="Validators\PurchasePassValidator.cs" />
     <Compile Include="Validators\ActivateUserValidator.cs" />
     <Compile Include="Validators\UpdatePassValidator.cs" />

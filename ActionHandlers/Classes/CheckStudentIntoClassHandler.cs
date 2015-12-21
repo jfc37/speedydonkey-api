@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Action;
+using Action.Classes;
 using Data.Repositories;
 using Models;
 
-namespace ActionHandlers.ClassCheckIn
+namespace ActionHandlers.Classes
 {
     public class CheckStudentIntoClassHandler : IActionHandler<CheckStudentIntoClass, Class>
     {
