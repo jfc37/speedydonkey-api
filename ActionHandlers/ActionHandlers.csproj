@@ -66,7 +66,9 @@
     <Compile Include="Calculations\ExpressCheckoutFeeCalculation.cs" />
     <Compile Include="Classes\ChangeClassRoomHandler.cs" />
     <Compile Include="Classes\ChangeClassTeachersHandler.cs" />
+    <Compile Include="Classes\CheckStudentIntoClassHandler.cs" />
     <Compile Include="Classes\ClassRoomChanger.cs" />
+    <Compile Include="Classes\RemoveStudentFromClassHandler.cs" />
     <Compile Include="Classes\UnassignClassRoomHandler.cs" />
     <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
@@ -81,8 +83,6 @@
     <Compile Include="ResetPasswordHandler.cs" />
     <Compile Include="ForgottenPasswordHandler.cs" />
     <Compile Include="ActivateUserHandler.cs" />
-    <Compile Include="ClassCheckIn\RemoveStudentFromClassHandler.cs" />
-    <Compile Include="ClassCheckIn\CheckStudentIntoClassHandler.cs" />
     <Compile Include="CreateHandlers\CreateReferenceDataHandler.cs" />
     <Compile Include="CreateHandlers\CreateUserHandler.cs" />
     <Compile Include="CreateHandlers\CreateEntityHandler.cs" />
@@ -91,6 +91,11 @@
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="IActionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StandAloneEvents\CheckStudentIntoEventHandler.cs" />
+    <Compile Include="StandAloneEvents\CreateStandAloneEventHandler.cs" />
+    <Compile Include="StandAloneEvents\RegisterForStandAloneEventHandler.cs" />
+    <Compile Include="StandAloneEvents\RemoveStudentFromEventHandler.cs" />
+    <Compile Include="StandAloneEvents\UpdateStandAloneEventHandler.cs" />
     <Compile Include="TeacherStudentConverter.cs" />
     <Compile Include="UpdateHandlers\UpdatePassNoteHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateUserNoteHandler.cs" />
@@ -137,6 +142,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClassCheckIn\" />
     <Folder Include="CreateHandlers\Strategies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
