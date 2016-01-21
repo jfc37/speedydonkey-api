@@ -39,10 +39,6 @@ namespace Data.Searches
         public IStatementParser GetStatementParser(string statement)
         {
             var splitStatement = statement.Split(SearchSyntax.Seperator.ToCharArray());
-            if (IsIncludeStatement(splitStatement))
-            {
-                return new IncludeStatementParser();
-            }
             if (IsTakeOrSkipStatement(splitStatement))
             {
                 return new TakeSkipStatementParser();
@@ -74,12 +70,6 @@ namespace Data.Searches
         private bool IsFilterStatement(IEnumerable<string> splitStatement)
         {
             return splitStatement.Count() == 3;
-        }
-
-        private bool IsIncludeStatement(string[] splitStatement)
-        {
-            return splitStatement.Count() == 2 &&
-                   splitStatement[0].Equals(SearchKeyWords.Include, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 

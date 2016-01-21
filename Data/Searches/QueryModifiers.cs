@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using Common;
 using Common.Extensions;
 
 namespace Data.Searches
@@ -39,14 +37,6 @@ namespace Data.Searches
         {
             int numberToSkip;
             return int.TryParse(statement.Value, out numberToSkip) ? queryable.Skip(numberToSkip) : queryable;
-        }
-    }
-
-    public class QueryIncludeModifier : IQueryModifier
-    {
-        public IQueryable<T> ApplyStatementToQuery<T>(SearchStatement statement, IQueryable<T> queryable)
-        {
-            return queryable.Include(statement.Element);
         }
     }
 
