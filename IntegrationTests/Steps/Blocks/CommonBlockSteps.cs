@@ -1,9 +1,10 @@
 ﻿using System.Net;
 using ActionHandlers;
+using Contracts.Enrolment;
+using Contracts.Users;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Blocks

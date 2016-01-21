@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net;
+using Contracts.Events;
 using IntegrationTests.Steps.Blocks;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
 using RestSharp;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Users

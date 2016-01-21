@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 using ActionHandlers;
 using Common.Extensions;
+using Contracts.Announcements;
+using Contracts.Blocks;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Announcements

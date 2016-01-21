@@ -1,10 +1,11 @@
 ﻿using System.Net;
 using ActionHandlers;
+using Contracts;
+using Contracts.Classes;
 using IntegrationTests.Steps.Passes;
 using IntegrationTests.Steps.PassTemplates;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Classes

@@ -1,12 +1,9 @@
 ﻿using System.Web.Http;
-using Common.Extensions;
-using Data;
-using Models;
+using Contracts.OnlinePayments.Poli;
 using Models.OnlinePayments;
 using OnlinePayments;
 using OnlinePayments.PaymentMethods.Poli.Models;
 using SpeedyDonkeyApi.Extensions.Models;
-using SpeedyDonkeyApi.Models.OnlinePayments.Poli;
 
 namespace SpeedyDonkeyApi.Controllers.OnlinePayments
 {

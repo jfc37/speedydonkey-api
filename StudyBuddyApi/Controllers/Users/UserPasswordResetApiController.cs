@@ -4,8 +4,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
+using Contracts.Users;
 using Models;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Users
 {

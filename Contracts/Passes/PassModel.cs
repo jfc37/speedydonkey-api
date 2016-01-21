@@ -1,0 +1,43 @@
+using System;
+using Contracts.Users;
+
+namespace Contracts.Passes
+{
+    public class PassModel
+    {
+        public int Id { get; set; }
+        public DateTime CreatedDateTime { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+
+        public DateTimeOffset EndDate { get; set; }
+
+        public string PassType { get; set; }
+
+        public string PassNumber
+        {
+            get
+            {
+                return String.Format("{0}{1}", CreatedDateTime.ToString("yy"), Id.ToString("D4"));
+            }
+        }
+
+        public string PaymentStatus { get; set; }
+        public decimal Cost { get; set; }
+        public string Description { get; set; }
+        public UserModel Owner { get; set; }
+        public PassStatisticModel PassStatistic { get; set; }
+
+        public bool Valid
+        {
+            get { return IsValid(); }
+        }
+
+        public virtual bool IsValid()
+        {
+            var today = DateTime.Now.Date;
+            return StartDate <= today && today <= EndDate;
+        }
+
+        public string Note { get; set; }
+    }
+}

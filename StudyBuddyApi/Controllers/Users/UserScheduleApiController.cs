@@ -3,11 +3,11 @@ using System.Linq;
 using System.Web.Http;
 using Common;
 using Common.Extensions;
+using Contracts;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Users
 {

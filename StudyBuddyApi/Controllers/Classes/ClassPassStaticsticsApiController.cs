@@ -1,10 +1,10 @@
 using System.Web.Http;
 using ActionHandlers;
 using Common.Extensions;
+using Contracts.Classes;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Classes
 {

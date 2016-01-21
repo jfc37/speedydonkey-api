@@ -1,7 +1,7 @@
 ﻿using System.Net;
+using Contracts.Teachers;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Teachers

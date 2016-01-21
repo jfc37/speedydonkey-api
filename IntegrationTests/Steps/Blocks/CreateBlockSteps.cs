@@ -3,10 +3,13 @@ using System.Linq;
 using System.Net;
 using ActionHandlers;
 using Common.Extensions;
+using Contracts;
+using Contracts.Blocks;
+using Contracts.Classes;
+using Contracts.Teachers;
 using IntegrationTests.Steps.Teachers;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Blocks

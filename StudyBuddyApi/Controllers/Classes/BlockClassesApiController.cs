@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Web.Http;
 using Common.Extensions;
+using Contracts;
+using Contracts.Events;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Classes
 {

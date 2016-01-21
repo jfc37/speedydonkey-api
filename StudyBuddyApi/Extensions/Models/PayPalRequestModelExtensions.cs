@@ -1,5 +1,5 @@
+using Contracts.OnlinePayments.PayPal;
 using Models.OnlinePayments;
-using SpeedyDonkeyApi.Models.OnlinePayments.PayPal;
 
 namespace SpeedyDonkeyApi.Extensions.Models
 {

@@ -2,10 +2,11 @@ using System.Web.Http;
 using Action.StandAloneEvents;
 using ActionHandlers;
 using Common.Extensions;
+using Contracts;
+using Contracts.Events;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
 {

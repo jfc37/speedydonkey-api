@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Contracts.Passes;
 using IntegrationTests.Utilities;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.PassTemplates

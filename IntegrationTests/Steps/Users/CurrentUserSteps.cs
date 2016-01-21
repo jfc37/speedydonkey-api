@@ -1,5 +1,5 @@
-﻿using IntegrationTests.Utilities;
-using SpeedyDonkeyApi.Models;
+﻿using Contracts.Users;
+using IntegrationTests.Utilities;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Users

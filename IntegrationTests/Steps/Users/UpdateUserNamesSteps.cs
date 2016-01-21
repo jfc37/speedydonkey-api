@@ -1,9 +1,7 @@
 ﻿using ActionHandlers;
+using Contracts.Users;
 using IntegrationTests.Utilities;
-using Models;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
-using SpeedyDonkeyApi.Models.Users;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Users

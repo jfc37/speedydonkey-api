@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
-using SpeedyDonkeyApi.Models;
+using Contracts.Teachers;
 
 namespace IntegrationTests.Utilities.ModelFunctions
 {

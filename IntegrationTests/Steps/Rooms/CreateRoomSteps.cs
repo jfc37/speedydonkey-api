@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using ActionHandlers;
+using Contracts.Rooms;
 using IntegrationTests.Utilities;
 using IntegrationTests.Utilities.ModelVerfication;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Rooms

@@ -3,12 +3,13 @@ using System.Web.Http;
 using Action.Rooms;
 using ActionHandlers;
 using Common.Extensions;
+using Contracts;
+using Contracts.Rooms;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Rooms
 {

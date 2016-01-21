@@ -1,12 +1,13 @@
 using System.Web.Http;
 using ActionHandlers;
 using Actions;
+using Contracts;
+using Contracts.Teachers;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Teachers
 {

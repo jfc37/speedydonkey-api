@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Contracts;
+using Contracts.Blocks;
 using IntegrationTests.Utilities;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Blocks

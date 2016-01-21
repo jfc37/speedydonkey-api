@@ -1,11 +1,11 @@
 ﻿using System.Net;
 using ActionHandlers;
 using Common.Extensions;
+using Contracts.Passes;
 using IntegrationTests.Utilities;
 using IntegrationTests.Utilities.ModelVerfication;
 using Models;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.PassTemplates

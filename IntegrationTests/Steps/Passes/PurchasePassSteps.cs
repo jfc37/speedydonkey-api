@@ -3,10 +3,11 @@ using System.Linq;
 using System.Net;
 using ActionHandlers;
 using Common.Extensions;
+using Contracts.Passes;
+using Contracts.Users;
 using IntegrationTests.Utilities;
 using Models;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Passes

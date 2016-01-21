@@ -2,9 +2,9 @@
 using ActionHandlers;
 using Auth0;
 using Common;
+using Contracts.Users;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Common

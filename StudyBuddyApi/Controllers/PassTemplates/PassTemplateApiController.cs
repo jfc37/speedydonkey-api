@@ -1,12 +1,13 @@
 using System.Web.Http;
 using Action;
 using ActionHandlers;
+using Contracts;
+using Contracts.Passes;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.PassTemplates
 {

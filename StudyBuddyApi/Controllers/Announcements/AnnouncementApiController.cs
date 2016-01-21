@@ -3,11 +3,12 @@ using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
+using Contracts;
+using Contracts.Announcements;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Announcements
 {
