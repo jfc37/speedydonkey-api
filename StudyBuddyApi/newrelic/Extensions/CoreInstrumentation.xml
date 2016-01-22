@@ -11,31 +11,12 @@
 			</match>
 		</tracerFactory>
 
-		<!-- agent shutdown hook -->
-		<!-- Mandatory for traces to work. -->
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Web.HttpApplicationEndTracerFactory">
-			<match assemblyName="System.Web" className="System.Web.HttpApplicationFactory">
-				<exactMethodMatcher methodName="FireApplicationOnEnd" />
-			</match>
-		</tracerFactory>
-
 		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Web.ScriptHandlerFactoryTracerFactory" transactionNamingPriority="3">
 			<match assemblyName="System.Web.Extensions" className="System.Web.Script.Services.ScriptHandlerFactory+HandlerWrapper">
 				<exactMethodMatcher methodName="ProcessRequest" parameters="System.Web.HttpContext" />
 			</match>
 			<match assemblyName="System.Web.Extensions" className="System.Web.Script.Services.ScriptHandlerFactory+AsyncHandlerWrapper">
 				<exactMethodMatcher methodName="BeginProcessRequest" />
-			</match>
-		</tracerFactory>
-
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Web.ASPProcessRequestTracerFactory" transactionNamingPriority="6">
-			<!-- ASP pages -->
-			<match assemblyName="System.Web" className="System.Web.UI.Page">
-				<exactMethodMatcher methodName="ProcessRequest" parameters="System.Boolean,System.Boolean" />
-			</match>
-			<!-- async ASP pages -->
-			<match assemblyName="System.Web" className="System.Web.UI.Page">
-				<exactMethodMatcher methodName="AsyncPageBeginProcessRequest" parameters="System.Web.HttpContext,System.AsyncCallback,System.Object" />
 			</match>
 		</tracerFactory>
 
@@ -59,56 +40,11 @@
 			</match>
 		</tracerFactory>
 
-		<!-- **************************  KATANA (OWIN)  ************************** -->
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.WebTransactionTracerFactory">
-			<match assemblyName="Microsoft.Owin.Host.HttpListener" className="Microsoft.Owin.Host.HttpListener.OwinHttpListener">
-				<exactMethodMatcher methodName="StartProcessingRequest" parameters="System.Net.HttpListenerContext" />
-			</match>
-		</tracerFactory>
-
 		<!-- **************************  WEB SERVICES  ***************************** -->
 
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.ServiceModel.SoapLogicalMethodTracerFactory" transactionNamingPriority="4">
-			<!-- synchronous -->
-			<match assemblyName="System.Web.Services" className="System.Web.Services.Protocols.LogicalMethodInfo">
-				<exactMethodMatcher methodName="Invoke" parameters="System.Object,System.Object[]" />
-			</match>
-			<!-- asynchronous -->
-			<match assemblyName="System.Web.Services" className="System.Web.Services.Protocols.LogicalMethodInfo">
-				<exactMethodMatcher methodName="BeginInvoke" parameters="System.Object,System.Object[],System.AsyncCallback,System.Object" />
-			</match>
-		</tracerFactory>
-
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.ServiceModel.WebServiceMethodTracerFactory" transactionNamingPriority="4">
+		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.ServiceModel.WebServiceMethodTracerFactory" transactionNamingPriority="5">
 			<match assemblyName="System.Web.Extensions" className="System.Web.Script.Services.WebServiceMethodData">
 				<exactMethodMatcher methodName="CallMethod" />
-			</match>
-		</tracerFactory>
-
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.ServiceModel.SoapHttpClientProtocolTracerFactory" transactionNamingPriority="4">
-			<match assemblyName="System.Web.Services" className="System.Web.Services.Protocols.SoapHttpClientProtocol">
-				<exactMethodMatcher methodName="Invoke" />
-				<exactMethodMatcher methodName="InvokeAsync" />
-			</match>
-		</tracerFactory>
-
-		<!-- WCF (Windows Communication Framework) -->
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.ServiceModel.WcfServiceInvocationTracerFactory" transactionNamingPriority="4">
-			<!-- synchronous service invocations -->
-			<match assemblyName="System.ServiceModel" className="System.ServiceModel.Dispatcher.SyncMethodInvoker">
-				<exactMethodMatcher methodName="Invoke" parameters="System.Object,System.Object[],System.Object[]&amp;" />
-			</match>
-			<!-- asynchronous service invocations -->
-			<match assemblyName="System.ServiceModel" className="System.ServiceModel.Dispatcher.AsyncMethodInvoker">
-				<exactMethodMatcher methodName="InvokeBegin" parameters="System.Object,System.Object[],System.AsyncCallback,System.Object" />
-				<exactMethodMatcher methodName="InvokeEnd" parameters="System.Object,System.Object[]&amp;,System.IAsyncResult" />
-			</match>
-		</tracerFactory>
-
-		<!-- WCF (Windows Communication Framework) client -->
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.ServiceModel.WcfInvokeServiceTracerFactory">
-			<match assemblyName="System.ServiceModel" className="System.ServiceModel.Channels.ServiceChannelProxy">
-				<exactMethodMatcher methodName="InvokeService" />
 			</match>
 		</tracerFactory>
 
@@ -133,15 +69,10 @@
 
 		<!-- NET external calls -->
 
+		
 		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Net.HttpWebRequestTracerFactory">
 			<match assemblyName="System" className="System.Net.HttpWebRequest">
 				<exactMethodMatcher methodName="GetResponse" />
-			</match>
-		</tracerFactory>
-
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Net.HttpWebRequestSerializeHeadersTracerFactory">
-			<match assemblyName="System" className="System.Net.HttpWebRequest">
-				<exactMethodMatcher methodName="SerializeHeaders" />
 			</match>
 		</tracerFactory>
 
@@ -305,7 +236,7 @@
 		</tracerFactory>
 
 		<!-- **************************  UMBRACO CMS  ***************************** -->
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Frameworks.Umbraco.UmbracoDefaultTracerFactory" transactionNamingPriority="4">
+		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Frameworks.Umbraco.UmbracoDefaultTracerFactory" transactionNamingPriority="5">
 			<match assemblyName="umbraco" className="umbraco.UmbracoDefault">
 				<exactMethodMatcher methodName="Render" parameters="System.Web.UI.HtmlTextWriter" />
 			</match>
@@ -317,7 +248,7 @@
 		</tracerFactory>
 
 		<!-- **************************  DotNetNuke CMS  ***************************** -->
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Frameworks.DotNetNuke.PageInitTracerFactory" transactionNamingPriority="4">
+		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Frameworks.DotNetNuke.PageInitTracerFactory" transactionNamingPriority="5">
 			<match assemblyName="DotNetNuke" className="DotNetNuke.Framework.PageBase">
 				<exactMethodMatcher methodName="OnInit" />
 			</match>
@@ -330,7 +261,7 @@
 		</tracerFactory>
 
 		<!-- **************************  Castle MonoRail  ***************************** -->
-		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Frameworks.MonoRail.ActionMethodExecutorTracerFactory" transactionNamingPriority="4">
+		<tracerFactory name="NewRelic.Agent.Core.Tracer.Factories.Frameworks.MonoRail.ActionMethodExecutorTracerFactory" transactionNamingPriority="5">
 			<match assemblyName="Castle.MonoRail.Framework" className="Castle.MonoRail.Framework.ActionMethodExecutor">
 				<exactMethodMatcher methodName="Execute" />
 			</match>

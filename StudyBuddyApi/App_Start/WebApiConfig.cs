@@ -3,6 +3,7 @@ using Autofac;
 using Data.Mappings;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using Mindscape.Raygun4Net.WebApi;
 #if !DEBUG
 #endif
 using NHibernate;
@@ -62,6 +63,8 @@ namespace SpeedyDonkeyApi
            CorsConfig.Register(config);
             DependancyInjectionConfig.Register(config, app);
             FilterConfig.Register(config);
+
+            RaygunWebApiClient.Attach(config);
         }
     }
 }

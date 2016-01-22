@@ -20,14 +20,14 @@ namespace SpeedyDonkeyApi
             var user = new ExtractLoggedInUser(context.Request.GetOwinContext().Authentication.User, context.Request.GetDependencyScope()).Do();
             if (user.IsNotNull())
             {
-                raygunClient.UserInfo = new RaygunIdentifierMessage(user.Email)
-                {
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    FullName = user.FullName,
-                    Identifier = user.Id.ToString(),
-                    IsAnonymous = false
-                };    
+                //raygunClient.UserInfo = new RaygunIdentifierMessage(user.Email)
+                //{
+                //    Email = user.Email,
+                //    FirstName = user.FirstName,
+                //    FullName = user.FullName,
+                //    Identifier = user.Id.ToString(),
+                //    IsAnonymous = false
+                //};    
             }
 
             raygunClient.Send(context.Exception);

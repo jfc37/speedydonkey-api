@@ -1,3 +1,4 @@
+using System;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
@@ -25,6 +26,7 @@ namespace SpeedyDonkeyApi.Controllers.Users
         [AllowAnonymous]
         public IHttpActionResult Post([FromBody] UserModel model)
         {
+            throw new Exception("xxxx");
             var result = PerformAction<CreateUser, User>(new CreateUser(model.ToEntity()));
 
             return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
