@@ -4,6 +4,7 @@ using Action.Rooms;
 using ActionHandlers;
 using Common.Extensions;
 using Contracts;
+using Contracts.MappingExtensions;
 using Contracts.Rooms;
 using Data.Repositories;
 using Data.Searches;

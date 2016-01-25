@@ -5,6 +5,7 @@ using Common.Extensions;
 using Contracts;
 using Contracts.Classes;
 using Contracts.Events;
+using Contracts.MappingExtensions;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;

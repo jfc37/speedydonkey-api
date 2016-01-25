@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Contracts.MappingExtensions;
 using Models;
 
 namespace Contracts.Passes

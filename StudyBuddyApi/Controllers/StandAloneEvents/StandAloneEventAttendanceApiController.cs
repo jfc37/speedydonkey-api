@@ -4,6 +4,7 @@ using ActionHandlers;
 using Common.Extensions;
 using Contracts;
 using Contracts.Events;
+using Contracts.MappingExtensions;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;

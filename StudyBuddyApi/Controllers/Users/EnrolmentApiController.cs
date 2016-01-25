@@ -8,6 +8,7 @@ using Contracts;
 using Contracts.Blocks;
 using Contracts.Enrolment;
 using Contracts.Events;
+using Contracts.MappingExtensions;
 using Contracts.Users;
 using Data.Repositories;
 using Data.Searches;

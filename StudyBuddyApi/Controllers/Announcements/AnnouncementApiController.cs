@@ -5,6 +5,7 @@ using Action;
 using ActionHandlers;
 using Contracts;
 using Contracts.Announcements;
+using Contracts.MappingExtensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;

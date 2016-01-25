@@ -4,6 +4,7 @@ using System.Web.Http;
 using Common;
 using Common.Extensions;
 using Contracts;
+using Contracts.MappingExtensions;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;

@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using ActionHandlers;
-using Common.Extensions;
 using Contracts.Passes;
 using IntegrationTests.Utilities;
 using IntegrationTests.Utilities.ModelVerfication;

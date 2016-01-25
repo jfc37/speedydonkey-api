@@ -1,6 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using Models;
 using Models.OnlinePayments;
+using Models.PrivateLessons;
 
 namespace Data.Mappings
 {
@@ -20,6 +21,18 @@ namespace Data.Mappings
             Map(x => x.PaymentStatus);
             Map(x => x.ReferenceNumber);
             Map(x => x.InitiatedBy);
+        }
+    }
+    public class OpeningHoursMap : ClassMap<OpeningHours>
+    {
+        public OpeningHoursMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.Day);
+            Map(x => x.OpeningTime);
+            Map(x => x.ClosingTime);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
         }
     }
 

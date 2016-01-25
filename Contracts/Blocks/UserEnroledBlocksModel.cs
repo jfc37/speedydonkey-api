@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Contracts.MappingExtensions;
 using Models;
 
 namespace Contracts.Blocks
@@ -10,7 +11,7 @@ namespace Contracts.Blocks
         {
             if (user.EnroledBlocks == null)
                 return new List<BlockModel>();
-            return user.EnroledBlocks.Select(x => ModelMappingExtensions.ToStripedModel((Block) x));
+            return user.EnroledBlocks.Select(x => x.ToStripedModel());
         }
     }
 }

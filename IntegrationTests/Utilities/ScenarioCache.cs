@@ -18,6 +18,7 @@ namespace IntegrationTests.Utilities
         public const string ClassModelKey = "classModel";
         public const string RoomModelKey = "roomModel";
         public const string UserNamesModelKey = "userNamesModel";
+        public const string OpeningHoursModelKey = "userNamesModel";
 
         public const string ResponseKey = "response";
     }
@@ -31,6 +32,7 @@ namespace IntegrationTests.Utilities
         public const string PassTemplateKeyId = "passTemplateId";
         public const string ClassKeyId = "classId";
         public const string RoomKeyId = "roomId";
+        public const string OpeningHoursKeyId = "openingHoursId";
     }
 
     public static class ScenarioCache

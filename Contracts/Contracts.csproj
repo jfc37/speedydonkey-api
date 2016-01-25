@@ -34,6 +34,10 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NodaTime, Version=1.3.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodaTime.1.3.1\lib\net35-Client\NodaTime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -58,7 +62,10 @@
     <Compile Include="Events\EventRegistrationModel.cs" />
     <Compile Include="Events\StandAloneEventModel.cs" />
     <Compile Include="IEntityView.cs" />
-    <Compile Include="ModelMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\EntityMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\LocalTimeMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\ModelMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\OpeningHoursMappingExtensions.cs" />
     <Compile Include="OnlinePayments\OnlinePaymentRequestModel.cs" />
     <Compile Include="OnlinePayments\PayPal\PayPalCompleteModel.cs" />
     <Compile Include="OnlinePayments\PayPal\PayPalConfirmModel.cs" />
@@ -71,6 +78,8 @@
     <Compile Include="Passes\PassModel.cs" />
     <Compile Include="Passes\PassStatisticModel.cs" />
     <Compile Include="Passes\PassTemplateModel.cs" />
+    <Compile Include="PrivateLessons\LocalTimeModel.cs" />
+    <Compile Include="PrivateLessons\OpeningHoursModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\BlockProfitReport.cs" />
     <Compile Include="Reports\ClassProfitReport.cs" />
@@ -94,6 +103,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

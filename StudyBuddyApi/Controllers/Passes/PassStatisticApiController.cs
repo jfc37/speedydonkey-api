@@ -1,6 +1,7 @@
 using System.Web.Http;
 using ActionHandlers;
 using Contracts;
+using Contracts.MappingExtensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;

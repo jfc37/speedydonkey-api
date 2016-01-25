@@ -4,6 +4,7 @@ using ActionHandlers;
 using Common;
 using Common.Extensions;
 using Contracts;
+using Contracts.MappingExtensions;
 using Contracts.Passes;
 using Contracts.Users;
 using Data.Repositories;

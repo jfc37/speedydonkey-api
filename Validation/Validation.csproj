@@ -43,6 +43,10 @@
       <HintPath>..\packages\FluentValidation.6.1.0.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NodaTime, Version=1.3.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodaTime.1.3.1\lib\net35-Client\NodaTime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -83,6 +87,7 @@
     <Compile Include="Validators\Classes\ChangeClassTeachersValidator.cs" />
     <Compile Include="Validators\Classes\CheckStudentIntoClassValidator.cs" />
     <Compile Include="Validators\Classes\UnassignClassRoomValidator.cs" />
+    <Compile Include="Validators\PrivateLessons\SetOpeningHoursValidator.cs" />
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />
     <Compile Include="Validators\Rooms\UpdateRoomValidator.cs" />

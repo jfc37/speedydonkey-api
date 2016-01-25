@@ -2,6 +2,7 @@ using System.Web.Http;
 using ActionHandlers;
 using Actions;
 using Contracts;
+using Contracts.MappingExtensions;
 using Contracts.Teachers;
 using Data.Repositories;
 using Data.Searches;

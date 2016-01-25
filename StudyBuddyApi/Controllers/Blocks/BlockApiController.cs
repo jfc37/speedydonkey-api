@@ -5,6 +5,7 @@ using Action.Blocks;
 using ActionHandlers;
 using Contracts;
 using Contracts.Blocks;
+using Contracts.MappingExtensions;
 using Data.QueryFilters;
 using Data.Repositories;
 using Data.Searches;

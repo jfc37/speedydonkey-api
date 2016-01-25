@@ -40,12 +40,15 @@
         public const string EndTimeGreaterThanStartTime = "Please enter an end time greater than the start time";
         public const string InvalidClassMinutes = "Please enter class minutes";
         public const string InvalidClassesInBlock = "Please enter number of classes in a block";
-        public const string InvalidLevel = "Level doesn't exist";
         public const string InvalidTeachers = "Teachers selected are invalid";
         public const string TeachersRequired = "Please select at least one teacher";
         public const string RoomRequired = "Please select a room";
         public const string InvalidClipsRemaining = "Invalid number of clips remaining";
         public const string UserIsAlreadyATeacher = "User is already a teacher";
         public const string CannotDeleteClassWithAttendance = "Cannot delete class with attendance";
+        public const string InvalidOpeningDay = "Please select a day";
+        public const string InvalidOpeningTime = "Please select an opening time";
+        public const string InvalidClosingTime = "Please select a closing time";
+        public const string ClosingTimeAfterOpeningTime = "Please select a closing time later than the opening time";
     }
 }

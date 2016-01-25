@@ -6,6 +6,7 @@ using System.Web.Http;
 using ActionHandlers;
 using Actions;
 using Contracts;
+using Contracts.MappingExtensions;
 using Contracts.WindyLindy;
 using Data.CodeChunks;
 using Data.Repositories;

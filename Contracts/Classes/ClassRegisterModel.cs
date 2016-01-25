@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Contracts.MappingExtensions;
 using Contracts.Users;
 using Models;
 

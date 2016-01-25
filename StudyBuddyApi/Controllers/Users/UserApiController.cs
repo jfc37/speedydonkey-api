@@ -4,6 +4,7 @@ using Action;
 using ActionHandlers;
 using Actions;
 using Contracts;
+using Contracts.MappingExtensions;
 using Contracts.Users;
 using Data.Repositories;
 using Data.Searches;

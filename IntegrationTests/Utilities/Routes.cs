@@ -18,6 +18,7 @@ namespace IntegrationTests.Utilities
         public const string GetCurrentUser = "users/current";
         public const string BlocksForEnrolment = "blocks/for-enrolment";
         public const string StandAloneEventsForRegistration = "stand-alone-events/for-registration";
+        public const string OpeningHours = "opening-hours";
 
         public static string GetRoomUpcomingSchedule(int roomId)
         {

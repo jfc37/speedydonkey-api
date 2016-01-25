@@ -52,7 +52,6 @@ namespace IntegrationTests.Utilities
         {
             var request = new RestRequest(resource, method);
             request.AddJsonBody(data);
-            request.RequestFormat = DataFormat.Json;
             return request;
         }
 
