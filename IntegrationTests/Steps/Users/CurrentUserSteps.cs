@@ -15,7 +15,7 @@ namespace IntegrationTests.Steps.Users
             var response = ApiCaller.Get<UserModel>(Routes.GetCurrentUser);
 
             ScenarioCache.Store(ExpectedUserKey, response.Data);
-            ScenarioCache.StoreUserId(response.Data.Id);
+            ScenarioCache.Store(ModelIdKeys.UserIdKey, response.Data.Id);
         }
     }
 }

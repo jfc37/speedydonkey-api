@@ -17,7 +17,7 @@ namespace IntegrationTests.Steps.Users
         [Given(@"the current user enrols in the block")]
         public void GivenTheCurrentUserEnrolsInTheBlock()
         {
-            ScenarioCache.StoreUserId(1);
+            ScenarioCache.Store(ModelIdKeys.UserIdKey, 1);
             new CommonBlockSteps().GivenTheUserEnrolsInTheBlock();
         }
 

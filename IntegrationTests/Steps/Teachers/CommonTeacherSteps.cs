@@ -26,7 +26,7 @@ namespace IntegrationTests.Steps.Teachers
             Assert.AreEqual(HttpStatusCode.Created, ScenarioCache.GetResponseStatus());
 
             var teacher = ScenarioCache.GetActionResponse<TeacherModel>();
-            ScenarioCache.StoreTeacherId(teacher.Id);
+            ScenarioCache.Store(ModelIdKeys.TeacherIdKey, teacher.Id);
         }
 
         [When(@"user is attempted to be set up as a teacher")]

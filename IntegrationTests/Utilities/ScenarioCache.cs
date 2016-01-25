@@ -8,54 +8,62 @@ using Validation;
 
 namespace IntegrationTests.Utilities
 {
-    public static class ModelKeys
+    public enum ModelKeys
     {
-        public const string PassModelKey = "passModel";
-        public const string PassTemplateModelKey = "passTemplateModel";
-        public const string BlockModelKey = "blockModel";
-        public const string StandAloneEventKey = "standAloneEvent";
-        public const string AnnouncementKey = "announcementKey";
-        public const string ClassModelKey = "classModel";
-        public const string RoomModelKey = "roomModel";
-        public const string UserNamesModelKey = "userNamesModel";
-        public const string OpeningHoursModelKey = "userNamesModel";
+        PassModelKey,
+        PassTemplateModelKey,
+        BlockModelKey,
+        StandAloneEventKey,
+        AnnouncementKey,
+        ClassModelKey,
+        RoomModelKey,
+        UserNamesModelKey,
+        OpeningHoursModelKey,
 
-        public const string ResponseKey = "response";
+        ResponseKey
     }
 
-    public static class ModelIdKeys
+    public enum ModelIdKeys
     {
-        public const string UserIdKey = "userId";
-        public const string TeacherIdKey = "teacherId";
-        public const string BlockKeyId = "blockId";
-        public const string StandAloneEventKeyId = "standAloneEventId";
-        public const string PassTemplateKeyId = "passTemplateId";
-        public const string ClassKeyId = "classId";
-        public const string RoomKeyId = "roomId";
-        public const string OpeningHoursKeyId = "openingHoursId";
+        UserIdKey,
+        TeacherIdKey,
+        BlockKeyId,
+        StandAloneEventKeyId,
+        PassTemplateKeyId,
+        ClassKeyId,
+        RoomKeyId
     }
 
     public static class ScenarioCache
     {
         private const string ValidationResultKey = "validationResult";
         private const string ActionResultKey = "actionResultKey";
-        private const string ResponseKey = "responseKey";
         private const string ResponseStatusKey = "responseStatusKey";
-
-        public static void StoreUserId(int id)
+        
+        public static void Store(ModelIdKeys key, object item)
         {
-            Store(ModelIdKeys.UserIdKey, id);
+            Store(key.ToString(), item);
         }
-
-        public static void StoreTeacherId(int id)
+        
+        public static void Store(ModelKeys key, object item)
         {
-            Store(ModelIdKeys.TeacherIdKey, id);
+            Store(key.ToString(), item);
         }
 
         public static void Store(string key, object item)
         {
             Clear(key);
             ScenarioContext.Current.Add(key, item);
+        }
+
+        public static T Get<T>(ModelIdKeys key)
+        {
+            return Get<T>(key.ToString());
+        }
+
+        public static T Get<T>(ModelKeys key)
+        {
+            return Get<T>(key.ToString());
         }
 
         public static T Get<T>(string key)
@@ -97,7 +105,7 @@ namespace IntegrationTests.Utilities
             Store(ResponseStatusKey, response.StatusCode);
 
             if (response.Data.IsNotNull())
-                Store(ResponseKey, response.Data);
+                Store(ModelKeys.ResponseKey, response.Data);
         }
 
         public static HttpStatusCode GetResponseStatus()
@@ -112,7 +120,7 @@ namespace IntegrationTests.Utilities
 
         public static T GetResponse<T>()
         {
-            return Get<T>(ResponseKey);
+            return Get<T>(ModelKeys.ResponseKey);
         }
 
         public static ValidationResult GetValidationResult()
@@ -120,7 +128,7 @@ namespace IntegrationTests.Utilities
             return Get<ValidationResult>(ValidationResultKey);
         }
 
-        public static int GetId(string key)
+        public static int GetId(ModelIdKeys key)
         {
             return Get<int>(key);
         }
