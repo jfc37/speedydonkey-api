@@ -15,5 +15,11 @@
         {
             
         }
+
+        public override string ToString()
+        {
+            return $"[Property: {PropertyName}; " +
+                   $"Error: {ErrorMessage}]";
+        }
     }
 }

@@ -12,5 +12,11 @@ namespace Validation
         {
             ValidationErrors = new List<ValidationError>();
         }
+
+        public override string ToString()
+        {
+            return $"[IsValid: {IsValid}; " +
+                   $"ValidationErrors: {string.Join(",", ValidationErrors)}]";
+        }
     }
 }

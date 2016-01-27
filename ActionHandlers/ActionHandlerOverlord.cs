@@ -3,6 +3,8 @@ using Autofac;
 using Data;
 using Models;
 using Validation;
+using PostSharp.Patterns.Diagnostics;
+using PostSharp.Extensibility;
 
 namespace ActionHandlers
 {
@@ -23,6 +25,7 @@ namespace ActionHandlers
             _container = container;
         }
 
+        [Log]
         public ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : IAction<TObject>
         {
             var validationResult = _validatorOverlord.Validate<TAction, TObject>(action.ActionAgainst);

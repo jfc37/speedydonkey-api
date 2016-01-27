@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Core.Registration;
 using FluentValidation.Results;
 using Validation.Validators;
+using PostSharp.Patterns.Diagnostics;
 
 namespace Validation
 {
@@ -20,6 +21,7 @@ namespace Validation
             _container = container;
         }
 
+        [Log]
         public ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : IAction<TObject>
         {
             IActionValidator<TAction, TObject> validator;

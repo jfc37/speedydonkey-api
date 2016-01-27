@@ -11,12 +11,10 @@ namespace Actions
         }
 
         public User ActionAgainst { get; set; }
-        public string LogText
+
+        public override string ToString()
         {
-            get
-            {
-                return String.Format("Create user {0}", ActionAgainst.FullName);
-            }
+            return $"[CreateUser: {ActionAgainst};]";
         }
     }
 }

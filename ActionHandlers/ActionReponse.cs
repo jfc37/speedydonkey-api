@@ -23,5 +23,11 @@ namespace ActionHandlers
 
         public ValidationResult ValidationResult { get; set; }
         public TResult ActionResult { get; set; }
+
+        public override string ToString()
+        {
+            return $"[ActionResult = {ActionResult}; " +
+                   $"ValidationResult = {ValidationResult}]";
+        }
     }
 }

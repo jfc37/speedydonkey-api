@@ -18,6 +18,15 @@ namespace Models
             Id = id;
         }
 
+        public override string ToString()
+        {
+            return $"[GlobalId: {GlobalId}; " +
+                   $"Id: {Id}; " +
+                   $"FirstName: {FirstName}; " +
+                   $"Surname: {Surname}; " +
+                   $"Email: {Email}]";
+        }
+
         public virtual string GlobalId { get; set; }
         public virtual UserStatus Status { get; set; }
         public virtual Guid ActivationKey { get; set; }
