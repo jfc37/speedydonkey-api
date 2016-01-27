@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Data.Repositories;
@@ -13,11 +14,14 @@ namespace ActionHandlers.EnrolmentProcess
     public class BlockEnrolmentService : IBlockEnrolmentService
     {
         private readonly IRepository<Block> _blockRepository;
+        private readonly IRepository<Event> _bookingRepository;
 
         public BlockEnrolmentService(
-            IRepository<Block> blockRepository)
+            IRepository<Block> blockRepository,
+            IRepository<Event> bookingRepository)
         {
             _blockRepository = blockRepository;
+            _bookingRepository = bookingRepository;
         }
 
         public IList<Block> EnrolInBlocks(User user, IEnumerable<int> blockIds)

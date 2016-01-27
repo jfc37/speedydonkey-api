@@ -9,7 +9,6 @@ namespace IntegrationTests.Utilities
         public const string Database = "database";
         public const string Announcements = "announcements";
         public const string Blocks = "blocks";
-        public const string StandAloneEvent = "stand-alone-events";
         public const string Classes = "classes";
         public const string Room = "rooms";
         public const string PassTemplate = "pass-templates";
@@ -17,7 +16,6 @@ namespace IntegrationTests.Utilities
         public const string CurrentUserSchedule = "users/current/schedules";
         public const string GetCurrentUser = "users/current";
         public const string BlocksForEnrolment = "blocks/for-enrolment";
-        public const string StandAloneEventsForRegistration = "stand-alone-events/for-registration";
 
         public static string GetRoomUpcomingSchedule(int roomId)
         {
@@ -34,10 +32,6 @@ namespace IntegrationTests.Utilities
         public static string GetClassAttendance(int classId)
         {
             return "classes/{0}/attendance".FormatWith(classId);
-        }
-        public static string GetEventAttendance(int eventId)
-        {
-            return "stand-alone-events/{0}/attendance".FormatWith(eventId);
         }
 
         public static string GetChangeClassTeachers(int classId)
@@ -63,11 +57,6 @@ namespace IntegrationTests.Utilities
         public static string GetEnrolUserInBlock(int userId)
         {
             return "users/{0}/enrolment".FormatWith(userId);
-        }
-
-        public static string GetRegisterUserInEvent(int userId)
-        {
-            return "users/{0}/registration/event".FormatWith(userId);
         }
 
         public static string GetPassTemplateSearch(string search)
@@ -113,11 +102,6 @@ namespace IntegrationTests.Utilities
         public static string GetAttendClass(int classId, int userId)
         {
             return "classes/{0}/attendance/{1}".FormatWith(classId, userId);
-        }
-
-        public static string GetAttendEvent(int eventId, int userId)
-        {
-            return "stand-alone-events/{0}/attendance/{1}".FormatWith(eventId, userId);
         }
 
         public static string GetClassRoom(int classId, int roomId)

@@ -163,17 +163,12 @@ namespace Data.Mappings
         {
             References(x => x.Block)
                 .Class(typeof(Block));
+            HasManyToMany<User>(x => x.ActualStudents)
+                .Table("ClassAttendance")
+                .AsSet();
             HasManyToMany<PassStatistic>(x => x.PassStatistics)
                 .Table("ClassPassStatistic")
                 .AsSet();
-        }
-    }
-    public class StandAloneEventMap : SubclassMap<StandAloneEvent>
-    {
-        public StandAloneEventMap()
-        {
-            Map(x => x.IsPrivate);
-            Map(x => x.Price);
         }
     }
 
@@ -193,9 +188,6 @@ namespace Data.Mappings
                 .AsSet();
             HasManyToMany(x => x.Teachers)
                 .Table("EventTeacher")
-                .AsSet();
-            HasManyToMany(x => x.ActualStudents)
-                .Table("ClassAttendance")
                 .AsSet();
         }
     }

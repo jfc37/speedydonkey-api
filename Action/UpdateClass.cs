@@ -1,4 +1,5 @@
-﻿using Actions;
+﻿using System;
+using Actions;
 using Models;
 
 namespace Action
@@ -11,5 +12,12 @@ namespace Action
         }
 
         public Class ActionAgainst { get; set; }
+        public string LogText
+        {
+            get
+            {
+                return String.Format("Update class {0}", ActionAgainst.Id);
+            }
+        }
     }
 }

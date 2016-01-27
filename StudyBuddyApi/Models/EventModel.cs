@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Models;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -7,17 +8,10 @@ namespace SpeedyDonkeyApi.Models
     {
         public List<TeacherModel> Teachers { get; set; }
         public List<UserModel> RegisteredStudents { get; set; }
-        public List<UserModel> ActualStudents { get; set; }
         public DateTimeOffset StartTime { get; set; }
         public DateTimeOffset EndTime { get; set; }
         public string Name { get; set; }
         public int Id { get; set; }
         public RoomModel Room { get; set; }
-    }
-
-    public class StandAloneEventModel : EventModel
-    {
-        public decimal Price { get; set; }
-        public bool IsPrivate { get; set; }
     }
 }

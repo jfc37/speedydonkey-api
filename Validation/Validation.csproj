@@ -9,13 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Validation</RootNamespace>
     <AssemblyName>Validation</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,9 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+    <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -46,8 +44,8 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="FluentValidation, Version=5.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -87,15 +85,10 @@
     <Compile Include="Validators\Blocks\UnassignBlockRoomValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassRoomValidator.cs" />
     <Compile Include="Validators\Classes\ChangeClassTeachersValidator.cs" />
-    <Compile Include="Validators\Classes\CheckStudentIntoClassValidator.cs" />
     <Compile Include="Validators\Classes\UnassignClassRoomValidator.cs" />
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />
     <Compile Include="Validators\Rooms\UpdateRoomValidator.cs" />
-    <Compile Include="Validators\StandAloneEvents\CheckStudentIntoEventValidator.cs" />
-    <Compile Include="Validators\StandAloneEvents\CreateStandAloneEventValidator.cs" />
-    <Compile Include="Validators\StandAloneEvents\RegisterForStandAloneEventValidator.cs" />
-    <Compile Include="Validators\StandAloneEvents\UpdateStandAloneEventValidator.cs" />
     <Compile Include="Validators\Teachers\RemoveAsTeacherValidator.cs" />
     <Compile Include="Validators\Teachers\SetAsTeacherValidator.cs" />
     <Compile Include="Validators\UpdateClassValidator.cs" />
@@ -104,6 +97,7 @@
     <Compile Include="Validators\CreateUpdatePassTemplateValidator.cs" />
     <Compile Include="Validators\ResetPasswordValidator.cs" />
     <Compile Include="Validators\ForgottenPasswordValidator.cs" />
+    <Compile Include="Validators\CheckStudentIntoClassValidator.cs" />
     <Compile Include="Validators\PurchasePassValidator.cs" />
     <Compile Include="Validators\ActivateUserValidator.cs" />
     <Compile Include="Validators\UpdatePassValidator.cs" />

@@ -76,7 +76,7 @@ namespace Common.Extensions
             if (diff < 0)
             {
                 diff += 7;
-    }
+            }
 
             return instance.AddDays(-1 * diff).Date;
         }
@@ -99,11 +99,6 @@ namespace Common.Extensions
         public static bool IsOnOrBefore(this DateTime instance, DateTime toCompare)
         {
             return instance <= toCompare;
-        }
-
-        public static bool IsOnOrAfter(this DateTime instance, DateTime toCompare)
-        {
-            return instance >= toCompare;
         }
         public static bool IsAfter(this DateTime? instance, DateTime toCompare)
         {

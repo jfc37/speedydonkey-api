@@ -56,8 +56,8 @@ namespace IntegrationTests.Steps.Users
 
             var expectedNames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNamesModelKey);
 
-            Assert.IsNull(response.Data.FirstName);
-            Assert.IsNull(response.Data.Surname);
+            Assert.AreNotEqual(expectedNames.FirstName, response.Data.FirstName);
+            Assert.AreNotEqual(expectedNames.Surname, response.Data.Surname);
         }
 
 

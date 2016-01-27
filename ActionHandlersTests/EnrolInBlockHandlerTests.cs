@@ -18,7 +18,7 @@ namespace ActionHandlersTests
 
         private MockRepositoryBuilder<User> _userRepositoryBuilder;
         private MockRepositoryBuilder<Block> _blockRepositoryBuilder;
-        private MockRepositoryBuilder<Class> _bookingRepositoryBuilder;
+        private MockRepositoryBuilder<Event> _bookingRepositoryBuilder;
         private MockPostOfficeBuilder _postOfficeBuilder;
         
         [SetUp]
@@ -47,7 +47,7 @@ namespace ActionHandlersTests
                     }
                 }
             });
-            _bookingRepositoryBuilder = new MockRepositoryBuilder<Class>()
+            _bookingRepositoryBuilder = new MockRepositoryBuilder<Event>()
                 .WithCreate()
                 .WithGetAll();
             _postOfficeBuilder = new MockPostOfficeBuilder()
@@ -58,7 +58,7 @@ namespace ActionHandlersTests
         {
             return new EnrolInBlockHandler(
                 _userRepositoryBuilder.BuildObject(),
-                new BlockEnrolmentService(_blockRepositoryBuilder.BuildObject()), 
+                new BlockEnrolmentService(_blockRepositoryBuilder.BuildObject(), _bookingRepositoryBuilder.BuildObject()), 
                 _postOfficeBuilder.BuildObject());
         }
 

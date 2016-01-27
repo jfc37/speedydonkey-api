@@ -7,13 +7,12 @@
         public const string UnavailableBlock = "Block isn't available for enrolment";
         public const string InvalidRoom = "Room doesn't exist";
         public const string InvalidClass = "Class doesn't exist";
-        public const string InvalidEvent = "Event doesn't exist";
         public const string InvalidUser = "User does not exist";
         public const string InvalidPass = "Pass does not exist";
         public const string IncorrectNumberOfAttendees = "You can only add attendance for one student at a time";
         public const string NoValidPasses = "Please purchase a pass before attending the class";
         public const string NoPaidForPasses = "Please pay for your pass before attending the class";
-        public const string AlreadyAttending = "You are already attending";
+        public const string AlreadyAttendingClass = "You are already attending this class";
         public const string MissingPassword = "Please enter a password";
         public const string PasswordTooShort = "Please enter a password atleast 7 characters long";
         public const string MissingEmail = "Please enter an email address";
@@ -33,7 +32,6 @@
         public const string ItemDoesntExist = "Item doesn't exist";
         public const string CannontAddPaidPass = "You don't have permission to add a pass already paid for";
         public const string MissingName = "Please enter a name";
-        public const string MissingPrice = "Please enter a price";
         public const string MissingLocation = "Please enter a location";
         public const string MissingStartTime = "Please enter a start time";
         public const string MissingEndTime = "Please enter an end time";

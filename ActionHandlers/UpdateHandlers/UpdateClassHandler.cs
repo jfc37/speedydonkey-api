@@ -34,12 +34,12 @@ namespace ActionHandlers.UpdateHandlers
             return theClass;
         }
 
-        private static bool HasTeachersChanged(IEnumerable<Teacher> orginal, IEnumerable<Teacher> updated)
+        private bool HasTeachersChanged(IEnumerable<Teacher> orginal, IEnumerable<Teacher> updated)
         {
             var orginalIds = orginal.Select(x => x.Id).ToList();
             var updatedIds = updated.Select(x => x.Id).ToList();
             var hasSameNumber = orginalIds.Count() == updatedIds.Count();
-            var areSameIds = orginalIds.All(updatedIds.Contains);
+            var areSameIds = orginalIds.All(x => updatedIds.Contains(x));
 
             return !hasSameNumber || !areSameIds;
         }

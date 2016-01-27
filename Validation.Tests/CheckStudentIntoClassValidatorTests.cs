@@ -4,7 +4,7 @@ using System.Linq;
 using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;
-using Validation.Validators.Classes;
+using Validation.Validators;
 
 namespace Validation.Tests
 {
@@ -134,7 +134,7 @@ namespace Validation.Tests
 
             Assert.IsFalse(result.IsValid);
             var error = result.Errors.Single();
-            Assert.AreEqual(ValidationMessages.AlreadyAttending, error.ErrorMessage);
+            Assert.AreEqual(ValidationMessages.AlreadyAttendingClass, error.ErrorMessage);
         }
     }
 }
