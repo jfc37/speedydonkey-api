@@ -20,7 +20,7 @@ namespace SpeedyDonkeyApi.CodeChunks
         {
             var today = DateTime.UtcNow.Date;
             return _schedule
-                .Where(x => DateTimeOffsetExtensions.IsOnOrAfter((DateTimeOffset) x.StartTime, today) && DateTimeOffsetExtensions.IsBefore((DateTimeOffset) x.StartTime, today.AddWeeks(1)))
+                .Where(x => x.StartTime.IsOnOrAfter(today) && x.StartTime.IsBefore(today.AddWeeks(1)))
                 .ToList();
         }
     }

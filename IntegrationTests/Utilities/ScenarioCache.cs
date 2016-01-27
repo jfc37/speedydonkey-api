@@ -13,6 +13,7 @@ namespace IntegrationTests.Utilities
         public const string PassModelKey = "passModel";
         public const string PassTemplateModelKey = "passTemplateModel";
         public const string BlockModelKey = "blockModel";
+        public const string StandAloneEventKey = "standAloneEvent";
         public const string AnnouncementKey = "announcementKey";
         public const string ClassModelKey = "classModel";
         public const string RoomModelKey = "roomModel";
@@ -26,6 +27,7 @@ namespace IntegrationTests.Utilities
         public const string UserIdKey = "userId";
         public const string TeacherIdKey = "teacherId";
         public const string BlockKeyId = "blockId";
+        public const string StandAloneEventKeyId = "standAloneEventId";
         public const string PassTemplateKeyId = "passTemplateId";
         public const string ClassKeyId = "classId";
         public const string RoomKeyId = "roomId";
