@@ -74,6 +74,7 @@
     <Compile Include="Mappings\FluentMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryFilters\AvailableBlocksForEnrolmentFilter.cs" />
+    <Compile Include="QueryFilters\AvailableEventsForRegistrationFilter.cs" />
     <Compile Include="QueryFilters\IQueryFilter.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Searches\ConditionExpressionHandlerFactory.cs" />

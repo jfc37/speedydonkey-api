@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Action;
-using ActionHandlers.ClassCheckIn;
+using Action.Classes;
+using ActionHandlers.Classes;
 using Data.Tests.Builders;
 using Models;
 using NUnit.Framework;

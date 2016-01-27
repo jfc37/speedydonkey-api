@@ -1,7 +1,6 @@
 using System;
 using System.Web.Http;
 using ActionHandlers;
-using SpeedyDonkeyApi.Controllers;
 using SpeedyDonkeyApi.Extensions;
 
 namespace SpeedyDonkeyApi.CodeChunks
