@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Common.Extensions;
 using Contracts.Classes;
 using Contracts.Users;
 
@@ -12,7 +11,6 @@ namespace Contracts.Teachers
         public List<ClassModel> Classes { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public string FullName { get { return "{0} {1}".FormatWith(FirstName, Surname); } }
-
+        public string FullName => @"{FirstName} {Surname}";
     }
 }

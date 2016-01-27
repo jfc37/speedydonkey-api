@@ -10,23 +10,23 @@ namespace Contracts.MappingExtensions
     public static class OpeningHoursMappingExtensions
     {
         /// <summary>
-        /// Converts OpeningHours to OpeningHoursModel
+        /// Converts OpeningHours to TimeSlotModel
         /// </summary>
         /// <param name="instance">The instance.</param>
         /// <returns></returns>
-        public static OpeningHoursModel ToModel(this OpeningHours instance)
+        public static TimeSlotModel ToModel(this OpeningHours instance)
         {
             return instance.IsNull() 
                 ? null 
-                : new OpeningHoursModel(instance.Day, instance.OpeningTime.ToModel(), instance.ClosingTime.ToModel());
+                : new TimeSlotModel(instance.Day, instance.OpeningTime.ToModel(), instance.ClosingTime.ToModel());
         }
 
         /// <summary>
-        /// Converts OpeningHoursModel to OpeningHours
+        /// Converts TimeSlotModel to OpeningHours
         /// </summary>
         /// <param name="instance">The instance.</param>
         /// <returns></returns>
-        public static OpeningHours ToEntity(this OpeningHoursModel instance)
+        public static OpeningHours ToEntity(this TimeSlotModel instance)
         {
             if (instance.IsNull())
                 return null;

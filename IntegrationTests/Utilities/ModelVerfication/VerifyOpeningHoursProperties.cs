@@ -6,10 +6,10 @@ namespace IntegrationTests.Utilities.ModelVerfication
 {
     public class VerifyOpeningHoursProperties
     {
-        private readonly OpeningHoursModel _expected;
-        private readonly OpeningHoursModel _actual;
+        private readonly TimeSlotModel _expected;
+        private readonly TimeSlotModel _actual;
 
-        public VerifyOpeningHoursProperties(OpeningHoursModel expected, OpeningHoursModel actual)
+        public VerifyOpeningHoursProperties(TimeSlotModel expected, TimeSlotModel actual)
         {
             _expected = expected;
             _actual = actual;

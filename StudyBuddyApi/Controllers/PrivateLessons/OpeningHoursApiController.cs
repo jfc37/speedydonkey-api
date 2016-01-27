@@ -5,8 +5,10 @@ using Contracts.MappingExtensions;
 using Contracts.PrivateLessons;
 using Data.Repositories;
 using Data.Searches;
+using Models;
 using Models.PrivateLessons;
 using SpeedyDonkeyApi.CodeChunks;
+using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi.Controllers.PrivateLessons
 {
@@ -28,12 +30,12 @@ namespace SpeedyDonkeyApi.Controllers.PrivateLessons
         }
 
         [Route]
-        //[ClaimsAuthorise(Claim = Claim.Admin)]
-        public IHttpActionResult Post([FromBody]OpeningHoursModel model)
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public IHttpActionResult Post([FromBody]TimeSlotModel model)
         {
             var result = PerformAction<SetOpeningHours, OpeningHours>(new SetOpeningHours(model.ToEntity()));
 
-            return new ActionResultToCreatedHttpActionResult<OpeningHours, OpeningHoursModel>(result, x => x.ToModel(), this)
+            return new ActionResultToCreatedHttpActionResult<OpeningHours, TimeSlotModel>(result, x => x.ToModel(), this)
                 .Do();
         }
     }

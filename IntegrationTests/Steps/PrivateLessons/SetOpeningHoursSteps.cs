@@ -25,10 +25,10 @@ namespace IntegrationTests.Steps.PrivateLessons
         [Given(@"opening hours need to be changed")]
         public void GivenOpeningHoursNeedToBeChanged()
         {
-            var response = ApiCaller.Get<List<OpeningHoursModel>>(Routes.OpeningHours);
+            var response = ApiCaller.Get<List<TimeSlotModel>>(Routes.OpeningHours);
             var openingHours = response.Data.Single();
 
-            var newOpeningHours = new OpeningHoursModel(openingHours.Day, openingHours.OpeningTime.PlusHours(1), openingHours.ClosingTime.PlusHours(1));
+            var newOpeningHours = new TimeSlotModel(openingHours.Day, openingHours.OpeningTime.PlusHours(1), openingHours.ClosingTime.PlusHours(1));
 
             ScenarioCache.Store(ModelKeys.OpeningHoursModelKey, newOpeningHours);
         }
@@ -43,7 +43,7 @@ namespace IntegrationTests.Steps.PrivateLessons
         [Given(@"a valid opening hour is ready to be submitted")]
         public void GivenAValidOpeningHourIsReadyToBeSubmitted()
         {
-            var openingHour = new OpeningHoursModel(IsoDayOfWeek.Monday, new LocalTimeModel(10, 0), new LocalTimeModel(22, 30));
+            var openingHour = new TimeSlotModel(IsoDayOfWeek.Monday, new LocalTimeModel(10, 0), new LocalTimeModel(22, 30));
 
             ScenarioCache.Store(ModelKeys.OpeningHoursModelKey, openingHour);
         }
@@ -53,7 +53,7 @@ namespace IntegrationTests.Steps.PrivateLessons
         {
             var openingTime = new LocalTimeModel(10, 0);
             var closingTime = openingTime.PlusHours(-1);
-            var openingHour = new OpeningHoursModel(IsoDayOfWeek.Monday, openingTime, closingTime);
+            var openingHour = new TimeSlotModel(IsoDayOfWeek.Monday, openingTime, closingTime);
 
             ScenarioCache.Store(ModelKeys.OpeningHoursModelKey, openingHour);
         }
@@ -62,18 +62,18 @@ namespace IntegrationTests.Steps.PrivateLessons
         [When(@"the opening hour is attempted to be created")]
         public void WhenTheOpeningHourIsAttemptedToBeCreated()
         {
-            var response = ApiCaller.Post<ActionReponse<OpeningHoursModel>>(ScenarioCache.Get<OpeningHoursModel>(ModelKeys.OpeningHoursModelKey), Routes.OpeningHours);
+            var response = ApiCaller.Post<ActionReponse<TimeSlotModel>>(ScenarioCache.Get<TimeSlotModel>(ModelKeys.OpeningHoursModelKey), Routes.OpeningHours);
             ScenarioCache.StoreActionResponse(response);
         }
 
         [Then(@"the opening hour can be retrieved")]
         public void ThenTheOpeningHourCanBeRetrieved()
         {
-            var response = ApiCaller.Get<List<OpeningHoursModel>>(Routes.OpeningHours);
+            var response = ApiCaller.Get<List<TimeSlotModel>>(Routes.OpeningHours);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
-            var expectedOpeningHours = ScenarioCache.Get<OpeningHoursModel>(ModelKeys.OpeningHoursModelKey);
+            var expectedOpeningHours = ScenarioCache.Get<TimeSlotModel>(ModelKeys.OpeningHoursModelKey);
             var actualOpeningHours = response.Data.Single();
 
             new VerifyOpeningHoursProperties(expectedOpeningHours, actualOpeningHours)
@@ -83,7 +83,7 @@ namespace IntegrationTests.Steps.PrivateLessons
         [Then(@"the opening hour cannot be retrieved")]
         public void ThenTheOpeningHourCannotBeRetrieved()
         {
-            var response = ApiCaller.Get<List<OpeningHoursModel>>(Routes.OpeningHours);
+            var response = ApiCaller.Get<List<TimeSlotModel>>(Routes.OpeningHours);
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }

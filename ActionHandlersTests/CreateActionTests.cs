@@ -112,7 +112,7 @@ namespace ActionHandlersTests
 
                 PerformAction();
 
-                Assert.IsNotEmpty(_action.ActionAgainst.Claims);
+                Assert.IsEmpty(_action.ActionAgainst.Claims);
             }
         }
     }
