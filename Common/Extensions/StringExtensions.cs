@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
 
 namespace Common.Extensions
 {
@@ -70,6 +74,44 @@ namespace Common.Extensions
         public static Guid ToGuid(this string instance)
         {
             return Guid.Parse(instance);
+        }
+
+        /// <summary>
+        /// Nicely formats a string description of the object included the requested properties
+        /// </summary>
+        /// <param name="instance">The instance.</param>
+        /// <param name="propertyNames">The property names.</param>
+        /// <returns></returns>
+        public static string ToDebugString(this object instance, params string[] propertyNames)
+        {
+            var instanceType = instance.GetType();
+
+            var stringList = new List<string>();
+            foreach (var propertyName in propertyNames)
+            {
+                var propertyValue = instanceType.GetProperty(propertyName).GetValue(instance);
+
+                if (propertyValue.IsOfType<IEnumerable>() && propertyValue.IsNotOfType<string>())
+                {
+                    propertyValue = ((IEnumerable) propertyValue).ToCollectionDebugString();
+                }
+
+                stringList.Add($"{propertyName}: {propertyValue}");
+                
+            }
+
+            return "{" +
+                   $"{instanceType.Name}: " +
+                   $"{stringList.JoinToString(", ")}" +
+                   "}";
+        }
+
+        private static string ToCollectionDebugString(this IEnumerable instance)
+        {
+            var index = 1;
+            return "[" +
+                   $"{(from object item in instance select $"{index++}: {item}").ToList().JoinToString(", ")}" +
+                   "]";
         }
     }
 }

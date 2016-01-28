@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.Extensions;
 using Models;
 
 namespace Actions
@@ -14,7 +15,7 @@ namespace Actions
 
         public override string ToString()
         {
-            return $"[CreateUser: {ActionAgainst};]";
+            return this.ToDebugString(nameof(ActionAgainst));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Validation;
+﻿using Common.Extensions;
+using Validation;
 
 namespace ActionHandlers
 {
@@ -26,8 +27,7 @@ namespace ActionHandlers
 
         public override string ToString()
         {
-            return $"[ActionResult = {ActionResult}; " +
-                   $"ValidationResult = {ValidationResult}]";
+            return this.ToDebugString(nameof(ActionResult), nameof(ValidationResult));
         }
     }
 }

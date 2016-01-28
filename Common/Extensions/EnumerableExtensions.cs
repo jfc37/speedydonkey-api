@@ -70,5 +70,10 @@ namespace Common.Extensions
         {
             return !source.Any(predicate);
         }
+
+        public static string JoinToString<T>(this IEnumerable<T> instance, string separator)
+        {
+            return string.Join(separator, instance);
+        }
     }
 }
