@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Common.Extensions;
 using Data.CodeChunks;
+using SpeedyDonkeyApi.Extensions;
 
 namespace SpeedyDonkeyApi.CodeChunks
 {
@@ -22,7 +23,7 @@ namespace SpeedyDonkeyApi.CodeChunks
         public IHttpActionResult Do()
         {
             return _entity.IsNotNull()
-                ? (IHttpActionResult)new OkNegotiatedContentResult<object>(_modelConvert(_entity), _controller)
+                ? (IHttpActionResult)new OkLoggableNegotiatedContentResult<object>(_modelConvert(_entity), _controller)
                 : new NotFoundResult(_controller);
         }
     }

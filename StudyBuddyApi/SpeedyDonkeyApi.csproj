@@ -311,9 +311,11 @@
     <Compile Include="Controllers\ValidationResultExtensions.cs" />
     <Compile Include="Controllers\WindyLindy\RegistrationApiController.cs" />
     <Compile Include="Extensions\ApiControllerExtensions.cs" />
+    <Compile Include="Extensions\LoggableNegotiatedContentResult.cs" />
     <Compile Include="Extensions\Models\OnlinePaymentRequestModelExtensions.cs" />
     <Compile Include="Extensions\Models\PoliRequestModelExtensions.cs" />
     <Compile Include="Extensions\Models\PayPalRequestModelExtensions.cs" />
+    <Compile Include="Extensions\OkLoggableNegotiatedContentResult.cs" />
     <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
     <Compile Include="Filter\ClaimsAuthorise.cs" />
     <Compile Include="Filter\CreateNewUserIfRequired.cs" />
