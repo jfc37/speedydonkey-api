@@ -7,7 +7,7 @@ namespace Action
     /// Action for enrolling a user in a set of blocks
     /// </summary>
     /// <seealso cref="User" />
-    public class EnrolInBlock : IAction<User>
+    public class EnrolInBlock : SystemAction<User>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EnrolInBlock"/> class.
@@ -17,13 +17,5 @@ namespace Action
         {
             ActionAgainst = user;
         }
-
-        /// <summary>
-        /// Gets or sets the action against.
-        /// </summary>
-        /// <value>
-        /// The action against.
-        /// </value>
-        public User ActionAgainst { get; set; }
     }
 }

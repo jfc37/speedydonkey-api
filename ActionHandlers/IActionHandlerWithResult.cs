@@ -8,7 +8,7 @@ namespace ActionHandlers
     /// <typeparam name="TAction"></typeparam>
     /// <typeparam name="TObject"></typeparam>
     /// <typeparam name="TResult"></typeparam>
-    public interface IActionHandlerWithResult<in TAction, out TObject, out TResult> where TAction : IAction<TObject>
+    public interface IActionHandlerWithResult<in TAction, out TObject, out TResult> where TAction : SystemAction<TObject>
     {
         TResult Handle(TAction action);
     }

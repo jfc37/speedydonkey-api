@@ -6,7 +6,8 @@ using Models;
 
 namespace ActionHandlers.DeleteHandlers
 {
-    public class DeleteEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> where TAction : ICrudAction<TEntity> where TEntity : IEntity
+    public class DeleteEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> 
+        where TAction : SystemAction<TEntity>, ICrudAction<TEntity> where TEntity : IEntity
     {
         protected readonly IRepository<TEntity> Repository;
 

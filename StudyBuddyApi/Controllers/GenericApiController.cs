@@ -24,7 +24,7 @@ namespace SpeedyDonkeyApi.Controllers
         }
 
         protected ActionReponse<TE> PerformAction<TAction, TE>(TAction action)
-            where TAction : IAction<TE>
+            where TAction : SystemAction<TE>
             where TE : class, IEntity
         {
             ActionReponse<TE> result = _actionHandlerOverlord.HandleAction<TAction, TE>(action);

@@ -6,7 +6,8 @@ using Models;
 
 namespace ActionHandlers.UpdateHandlers
 {
-    public class UpdateEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> where TAction : ICrudAction<TEntity> where TEntity : IEntity
+    public class UpdateEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> 
+        where TAction : SystemAction<TEntity>, ICrudAction<TEntity> where TEntity : IEntity
     {
         private readonly IRepository<TEntity> _repository;
 

@@ -3,13 +3,11 @@ using Models;
 
 namespace Action.Users
 {
-    public class UpdateUser : ICrudAction<User>
+    public class UpdateUser : SystemAction<User>, ICrudAction<User>
     {
         public UpdateUser(User user)
         {
             ActionAgainst = user;
         }
-
-        public User ActionAgainst { get; set; }
     }
 }

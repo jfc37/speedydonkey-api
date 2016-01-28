@@ -9,7 +9,7 @@ namespace Validation
 {
     public interface IValidatorOverlord
     {
-        ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : IAction<TObject>;
+        ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>;
     }
 
     public class ValidatorOverlord : IValidatorOverlord
@@ -22,7 +22,7 @@ namespace Validation
         }
 
         [Log]
-        public ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : IAction<TObject>
+        public ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>
         {
             IActionValidator<TAction, TObject> validator;
             try
@@ -46,7 +46,7 @@ namespace Validation
             return FluentConverter.ToProjectValidationResult(validationResult);
         }
 
-        private IActionValidator<TAction, TObject> GetValidator<TAction, TObject>() where TAction : IAction<TObject>
+        private IActionValidator<TAction, TObject> GetValidator<TAction, TObject>() where TAction : SystemAction<TObject>
         {
             var actionValidator = _container.Resolve<IActionValidator<TAction, TObject>>();
             return actionValidator;

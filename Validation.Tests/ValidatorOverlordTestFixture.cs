@@ -97,7 +97,7 @@ namespace Validation.Tests
             }
         }
 
-        private class TestAction : IAction<TestObject>
+        private class TestAction : SystemAction<TestObject>
         {
             public TestObject ActionAgainst { get; set; }
             public string LogText { get; private set; }

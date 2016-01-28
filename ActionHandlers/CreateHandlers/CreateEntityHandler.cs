@@ -6,7 +6,7 @@ using Models;
 namespace ActionHandlers.CreateHandlers
 {
     public abstract class CrudEntityHandler<TAction, TEntity> : IActionHandler<TAction, TEntity>
-        where TAction : ICrudAction<TEntity>
+        where TAction : SystemAction<TEntity>, ICrudAction<TEntity>
         where TEntity : IEntity
     {
         public TEntity Handle(TAction action)
@@ -24,7 +24,8 @@ namespace ActionHandlers.CreateHandlers
         protected virtual void PreHandle(ICrudAction<TEntity> action) { }
     }
 
-    public class CreateEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> where TAction : ICrudAction<TEntity> where TEntity : IEntity
+    public class CreateEntityHandler<TAction, TEntity> : CrudEntityHandler<TAction, TEntity> 
+        where TAction : SystemAction<TEntity>, ICrudAction<TEntity> where TEntity : IEntity
     {
         private readonly IRepository<TEntity> _repository;
 

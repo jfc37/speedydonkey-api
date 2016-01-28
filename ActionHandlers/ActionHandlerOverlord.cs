@@ -7,7 +7,7 @@ namespace ActionHandlers
 {
     public interface IActionHandlerOverlord
     {
-        ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : IAction<TObject>;
+        ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : SystemAction<TObject>;
     }
 
     public class ActionHandlerOverlord : IActionHandlerOverlord
@@ -22,7 +22,7 @@ namespace ActionHandlers
         }
 
         [Log]
-        public ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : IAction<TObject>
+        public ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : SystemAction<TObject>
         {
             var validationResult = _validatorOverlord.Validate<TAction, TObject>(action.ActionAgainst);
 
@@ -39,7 +39,7 @@ namespace ActionHandlers
             };
         }
 
-        private IActionHandler<TAction, TObject> GetActionHandler<TAction, TObject>() where TAction : IAction<TObject>
+        private IActionHandler<TAction, TObject> GetActionHandler<TAction, TObject>() where TAction : SystemAction<TObject>
         {
             var actionValidator = _container.Resolve<IActionHandler<TAction, TObject>>();
             return actionValidator;
