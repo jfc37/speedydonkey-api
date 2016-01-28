@@ -4,6 +4,8 @@ using System.Linq;
 using Common;
 using Models;
 using NHibernate;
+using PostSharp.Patterns.Diagnostics;
+using PostSharp.Extensibility;
 
 namespace Data.Repositories
 {
@@ -83,12 +85,14 @@ namespace Data.Repositories
             return justTheFirstOfEach;
         }
 
+        [Log]
         public TEntity Get(int id)
         {
             var entity = _session.Get<TEntity>(id);
             return entity;
         }
 
+        [Log]
         public TEntity GetWithChildren(int id, IList<string> children)
         {
             var search = _session.CreateCriteria<TEntity>();
@@ -102,6 +106,7 @@ namespace Data.Repositories
             return entity;
         }
 
+        [Log]
         public TEntity Create(TEntity entity)
         {
             entity.CreatedDateTime = DateTime.Now;
@@ -113,6 +118,7 @@ namespace Data.Repositories
             return entity;
         }
 
+        [Log]
         public TEntity Update(TEntity entity)
         {
             entity.LastUpdatedDateTime = DateTime.Now;
@@ -125,6 +131,7 @@ namespace Data.Repositories
             return entity;
         }
 
+        [Log]
         public void Delete(int id)
         {
             var entity = Get(id);

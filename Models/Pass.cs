@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Common.Extensions;
 
 namespace Models
 {
@@ -64,6 +65,11 @@ namespace Models
         }
 
         public virtual string Note { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Description));
+        }
     }
 
     public enum PassType
