@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common;
+using Common.Extensions;
 using Newtonsoft.Json;
 
 namespace SpeedyDonkeyApi.Models
@@ -34,5 +35,9 @@ namespace SpeedyDonkeyApi.Models
         public string Name { get; set; }
         public bool IsInviteOnly { get; set; }
         public int Id { get; set; }
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Name), nameof(StartDate), nameof(EndDate));
+        }
     }
 }

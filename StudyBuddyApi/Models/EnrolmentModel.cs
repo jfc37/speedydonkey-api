@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Common.Extensions;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -30,6 +31,10 @@ namespace SpeedyDonkeyApi.Models
         /// The block ids.
         /// </value>
         [Required]
-        public List<int> BlockIds { get; set; } 
+        public List<int> BlockIds { get; set; }
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(BlockIds));
+        }
     }
 }
