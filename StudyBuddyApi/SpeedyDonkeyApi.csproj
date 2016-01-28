@@ -321,6 +321,7 @@
     <Compile Include="Filter\NullModelActionFilter.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />
+    <Compile Include="GlobalAspects.cs" />
     <Compile Include="GlobalErrorLoggerService.cs" />
     <Compile Include="Models\BlockModel.cs" />
     <Compile Include="Models\ClassModel.cs" />
