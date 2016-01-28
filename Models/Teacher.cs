@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common;
+using Common.Extensions;
 
 namespace Models
 {
@@ -25,6 +26,11 @@ namespace Models
         public Teacher(int id)
         {
             Id = id;
+        }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id));
         }
     }
 }
