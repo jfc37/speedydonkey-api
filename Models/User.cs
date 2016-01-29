@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common;
+using Common.Extensions;
 
 namespace Models
 {
@@ -16,6 +17,11 @@ namespace Models
         public User(int id) : this()
         {
             Id = id;
+        }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(GlobalId), nameof(Id), nameof(FirstName), nameof(Surname), nameof(Email));
         }
 
         public virtual string GlobalId { get; set; }

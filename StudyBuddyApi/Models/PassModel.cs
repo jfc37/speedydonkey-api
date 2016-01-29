@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.Extensions;
 
 namespace SpeedyDonkeyApi.Models
 {
@@ -38,6 +39,10 @@ namespace SpeedyDonkeyApi.Models
         }
 
         public string Note { get; set; }
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Description));
+        }
     }
 
     public class ClipPassModel : PassModel

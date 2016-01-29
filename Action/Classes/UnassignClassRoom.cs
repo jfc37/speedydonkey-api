@@ -3,13 +3,11 @@ using Models;
 
 namespace Action.Classes
 {
-    public class UnassignClassRoom : IAction<Class>
+    public class UnassignClassRoom : SystemAction<Class>
     {
         public UnassignClassRoom(Class theClass)
         {
             ActionAgainst = theClass;
         }
-
-        public Class ActionAgainst { get; set; }
     }
 }

@@ -3,13 +3,11 @@ using Models;
 
 namespace Action.StandAloneEvents
 {
-    public class CreateStandAloneEvent : ICrudAction<StandAloneEvent>
+    public class CreateStandAloneEvent : SystemAction<StandAloneEvent>, ICrudAction<StandAloneEvent>
     {
         public CreateStandAloneEvent(StandAloneEvent standAloneEvent)
         {
             ActionAgainst = standAloneEvent;
         }
-
-        public StandAloneEvent ActionAgainst { get; set; }
     }
 }

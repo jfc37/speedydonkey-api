@@ -1,22 +1,14 @@
 ﻿using System;
+using Common.Extensions;
 using Models;
 
 namespace Actions
 {
-    public class CreateUser : ICrudAction<User>
+    public class CreateUser : SystemAction<User>, ICrudAction<User>
     {
         public CreateUser(User user)
         {
             ActionAgainst = user;
-        }
-
-        public User ActionAgainst { get; set; }
-        public string LogText
-        {
-            get
-            {
-                return String.Format("Create user {0}", ActionAgainst.FullName);
-            }
         }
     }
 }

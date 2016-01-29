@@ -11,6 +11,10 @@ namespace SpeedyDonkeyApi.Models
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string FullName { get { return "{0} {1}".FormatWith(FirstName, Surname); } }
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(FirstName), nameof(Surname));
+        }
 
     }
 }

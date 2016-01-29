@@ -3,10 +3,8 @@ using Models;
 
 namespace Action.Classes
 {
-    public class CheckStudentIntoClass : IAction<Class>
+    public class CheckStudentIntoClass : SystemAction<Class>
     {
-        public Class ActionAgainst { get; set; }
-
         public CheckStudentIntoClass(Class theClass)
         {
             ActionAgainst = theClass;

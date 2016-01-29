@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Common.Extensions;
 
 namespace Models
 {
@@ -22,5 +23,10 @@ namespace Models
         public virtual int WeeksValidFor { get; set; }
         public virtual int ClassesValidFor { get; set; }
         public virtual bool AvailableForPurchase { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Description), nameof(PassType), nameof(Cost));
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace ActionHandlersTests.Builders.MockBuilders
     {
         public object PassedInAction { get; private set; }
 
-        public MockActionHandlerOverlordBuilder WithNoErrorsOnHandling<TAction, TObject>() where TAction : IAction<TObject>
+        public MockActionHandlerOverlordBuilder WithNoErrorsOnHandling<TAction, TObject>() where TAction : SystemAction<TObject>
         {
             Mock.Setup(x => x.HandleAction<TAction, TObject>(It.IsAny<TAction>()))
                 .Callback<TAction>(x => PassedInAction = x)
@@ -19,7 +19,7 @@ namespace ActionHandlersTests.Builders.MockBuilders
             return this;
         }
 
-        public MockActionHandlerOverlordBuilder WithErrorsOnHandling<TAction, TObject>() where TAction : IAction<TObject>
+        public MockActionHandlerOverlordBuilder WithErrorsOnHandling<TAction, TObject>() where TAction : SystemAction<TObject>
         {
             var validationResult = new ValidationResult
             {

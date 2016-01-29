@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Common;
+using Common.Extensions;
 
 namespace Models
 {
@@ -16,6 +17,11 @@ namespace Models
         public virtual DateTimeOffset EndTime { get; set; }
         public virtual string Name { get; set; }
         public virtual Room Room { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Name), nameof(StartTime), nameof(EndTime));
+        }
     }
 
     public class StandAloneEvent : Event
