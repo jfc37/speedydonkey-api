@@ -456,9 +456,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UpdateUserNames.feature.cs</LastGenOutput>
     </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="runtests.cmd" />
     <None Include="SpecRunTestProfile.xsd">
       <SubType>Designer</SubType>
