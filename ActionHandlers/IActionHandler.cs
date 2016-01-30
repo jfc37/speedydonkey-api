@@ -7,7 +7,7 @@ namespace ActionHandlers
     /// </summary>
     /// <typeparam name="TAction"></typeparam>
     /// <typeparam name="TObject"></typeparam>
-    public interface IActionHandler<in TAction, out TObject> where TAction : IAction<TObject>
+    public interface IActionHandler<in TAction, out TObject> where TAction : SystemAction<TObject>
     {
         /// <summary>
         /// Handles the specified action.

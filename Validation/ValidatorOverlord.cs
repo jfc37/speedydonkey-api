@@ -3,12 +3,13 @@ using Autofac;
 using Autofac.Core.Registration;
 using FluentValidation.Results;
 using Validation.Validators;
+using PostSharp.Patterns.Diagnostics;
 
 namespace Validation
 {
     public interface IValidatorOverlord
     {
-        ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : IAction<TObject>;
+        ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>;
     }
 
     public class ValidatorOverlord : IValidatorOverlord
@@ -20,7 +21,8 @@ namespace Validation
             _container = container;
         }
 
-        public ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : IAction<TObject>
+        [Log]
+        public ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>
         {
             IActionValidator<TAction, TObject> validator;
             try
@@ -44,7 +46,7 @@ namespace Validation
             return FluentConverter.ToProjectValidationResult(validationResult);
         }
 
-        private IActionValidator<TAction, TObject> GetValidator<TAction, TObject>() where TAction : IAction<TObject>
+        private IActionValidator<TAction, TObject> GetValidator<TAction, TObject>() where TAction : SystemAction<TObject>
         {
             var actionValidator = _container.Resolve<IActionValidator<TAction, TObject>>();
             return actionValidator;

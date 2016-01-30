@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Validation.Validators
 {
-    public interface IActionValidator<in TAction, TObject> : IValidator<TObject> where TAction : IAction<TObject>
+    public interface IActionValidator<in TAction, TObject> : IValidator<TObject> where TAction : SystemAction<TObject>
     {
     }
 }

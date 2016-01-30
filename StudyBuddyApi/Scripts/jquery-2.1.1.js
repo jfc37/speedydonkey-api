@@ -105,8 +105,8 @@ jQuery.fn = jQuery.prototype = {
 		return slice.call( this );
 	},
 
-	// GetById the Nth element in the matched element set OR
-	// GetById the whole matched element set as a clean array
+	// Get the Nth element in the matched element set OR
+	// Get the whole matched element set as a clean array
 	get: function( num ) {
 		return num != null ?
 
@@ -513,7 +513,7 @@ jQuery.extend({
 			return fn.apply( context || this, args.concat( slice.call( arguments ) ) );
 		};
 
-		// GetSetOfType the guid of unique handler to the same of original handler, so it can be removed
+		// Set the guid of unique handler to the same of original handler, so it can be removed
 		proxy.guid = fn.guid = fn.guid || jQuery.guid++;
 
 		return proxy;
@@ -1019,7 +1019,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		return document;
 	}
 
-	// GetSetOfType our document
+	// Set our document
 	document = doc;
 	docElem = doc.documentElement;
 
@@ -1376,7 +1376,7 @@ Sizzle.matches = function( expr, elements ) {
 };
 
 Sizzle.matchesSelector = function( elem, expr ) {
-	// GetSetOfType document vars if needed
+	// Set document vars if needed
 	if ( ( elem.ownerDocument || elem ) !== document ) {
 		setDocument( elem );
 	}
@@ -1405,7 +1405,7 @@ Sizzle.matchesSelector = function( elem, expr ) {
 };
 
 Sizzle.contains = function( context, elem ) {
-	// GetSetOfType document vars if needed
+	// Set document vars if needed
 	if ( ( context.ownerDocument || context ) !== document ) {
 		setDocument( context );
 	}
@@ -1413,7 +1413,7 @@ Sizzle.contains = function( context, elem ) {
 };
 
 Sizzle.attr = function( elem, name ) {
-	// GetSetOfType document vars if needed
+	// Set document vars if needed
 	if ( ( elem.ownerDocument || elem ) !== document ) {
 		setDocument( elem );
 	}
@@ -1585,7 +1585,7 @@ Expr = Sizzle.selectors = {
 
 			// Strip excess characters from unquoted arguments
 			} else if ( unquoted && rpseudo.test( unquoted ) &&
-				// GetById excess from tokenize (recursively)
+				// Get excess from tokenize (recursively)
 				(excess = tokenize( unquoted, true )) &&
 				// advance to the next closing parenthesis
 				(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
@@ -2173,7 +2173,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			postMap = [],
 			preexisting = results.length,
 
-			// GetById initial elements from seed or context
+			// Get initial elements from seed or context
 			elems = seed || multipleContexts( selector || "*", context.nodeType ? [ context ] : context, [] ),
 
 			// Prefilter to get matcher input, preserving a map for seed-results synchronization
@@ -2214,7 +2214,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 		if ( seed ) {
 			if ( postFinder || preFilter ) {
 				if ( postFinder ) {
-					// GetById the final matcherOut by condensing this intermediate into postFinder contexts
+					// Get the final matcherOut by condensing this intermediate into postFinder contexts
 					temp = [];
 					i = matcherOut.length;
 					while ( i-- ) {
@@ -2484,7 +2484,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 				break;
 			}
 			if ( (find = Expr.find[ type ]) ) {
-				// EntitySearch, expanding context for leading sibling combinators
+				// Search, expanding context for leading sibling combinators
 				if ( (seed = find(
 					token.matches[0].replace( runescape, funescape ),
 					rsibling.test( tokens[0].type ) && testContext( context.parentNode ) || context
@@ -3241,7 +3241,7 @@ jQuery.extend({
 						fns = null;
 					}).promise();
 				},
-				// GetById a promise for this deferred
+				// Get a promise for this deferred
 				// If obj is provided, the promise aspect is added to the object
 				promise: function( obj ) {
 					return obj != null ? jQuery.extend( obj, promise ) : promise;
@@ -3355,7 +3355,7 @@ jQuery.fn.ready = function( fn ) {
 };
 
 jQuery.extend({
-	// Is the DOM ready to be used? GetSetOfType to true once it occurs.
+	// Is the DOM ready to be used? Set to true once it occurs.
 	isReady: false,
 
 	// A counter to track how many items to wait for before
@@ -3825,7 +3825,7 @@ jQuery.fn.extend({
 				return;
 			}
 
-			// GetSetOfType the data...
+			// Set the data...
 			this.each(function() {
 				// First, attempt to store a copy or reference of any
 				// data that might've been store with a camelCased key.
@@ -3955,7 +3955,7 @@ jQuery.fn.extend({
 	clearQueue: function( type ) {
 		return this.queue( type || "fx", [] );
 	},
-	// GetById a promise resolved when queues of a certain type
+	// Get a promise resolved when queues of a certain type
 	// are emptied (fx is the type by default)
 	promise: function( type, obj ) {
 		var tmp,
@@ -5843,7 +5843,7 @@ function showHide( elements, show ) {
 				elem.style.display = "";
 			}
 
-			// GetSetOfType elements which have been overridden with display: none
+			// Set elements which have been overridden with display: none
 			// in a stylesheet to whatever the default browser style is
 			// for such an element
 			if ( elem.style.display === "" && isHidden( elem ) ) {
@@ -5858,7 +5858,7 @@ function showHide( elements, show ) {
 		}
 	}
 
-	// GetSetOfType the display of most of the elements in a second loop
+	// Set the display of most of the elements in a second loop
 	// to avoid the constant reflow
 	for ( index = 0; index < length; index++ ) {
 		elem = elements[ index ];
@@ -5911,7 +5911,7 @@ jQuery.extend({
 		"float": "cssFloat"
 	},
 
-	// GetById and set the style property on a DOM Node
+	// Get and set the style property on a DOM Node
 	style: function( elem, name, value, extra ) {
 		// Don't set styles on text and comment nodes
 		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
@@ -6375,7 +6375,7 @@ function defaultPrefilter( elem, props, opts ) {
 		// overflowY are set to the same value
 		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
 
-		// GetSetOfType display property to inline-block for height/width
+		// Set display property to inline-block for height/width
 		// animations on inline elements that are having width/height animated
 		display = jQuery.css( elem, "display" );
 
@@ -6983,7 +6983,7 @@ jQuery.extend({
 
 				// Boolean attributes get special treatment (#10870)
 				if ( jQuery.expr.match.bool.test( name ) ) {
-					// GetSetOfType corresponding property to false
+					// Set corresponding property to false
 					elem[ propName ] = false;
 				}
 
@@ -7387,7 +7387,7 @@ jQuery.extend({
 							( support.optDisabled ? !option.disabled : option.getAttribute( "disabled" ) === null ) &&
 							( !option.parentNode.disabled || !jQuery.nodeName( option.parentNode, "optgroup" ) ) ) {
 
-						// GetById the specific value for the option
+						// Get the specific value for the option
 						value = jQuery( option ).val();
 
 						// We don't need an array for one selects
@@ -8085,7 +8085,7 @@ jQuery.extend({
 			}
 		}
 
-		// GetSetOfType the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
 		if ( s.ifModified ) {
 			if ( jQuery.lastModified[ cacheURL ] ) {
 				jqXHR.setRequestHeader( "If-Modified-Since", jQuery.lastModified[ cacheURL ] );
@@ -8095,12 +8095,12 @@ jQuery.extend({
 			}
 		}
 
-		// GetSetOfType the correct header, if data is being sent
+		// Set the correct header, if data is being sent
 		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
 			jqXHR.setRequestHeader( "Content-Type", s.contentType );
 		}
 
-		// GetSetOfType the Accepts header for the server, depending on the dataType
+		// Set the Accepts header for the server, depending on the dataType
 		jqXHR.setRequestHeader(
 			"Accept",
 			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[0] ] ?
@@ -8127,7 +8127,7 @@ jQuery.extend({
 			jqXHR[ i ]( s[ i ] );
 		}
 
-		// GetById transport
+		// Get transport
 		transport = inspectPrefiltersOrTransports( transports, s, options, jqXHR );
 
 		// If no transport, we auto-abort
@@ -8186,13 +8186,13 @@ jQuery.extend({
 			// Cache response headers
 			responseHeadersString = headers || "";
 
-			// GetSetOfType readyState
+			// Set readyState
 			jqXHR.readyState = status > 0 ? 4 : 0;
 
 			// Determine if successful
 			isSuccess = status >= 200 && status < 300 || status === 304;
 
-			// GetById response data
+			// Get response data
 			if ( responses ) {
 				response = ajaxHandleResponses( s, jqXHR, responses );
 			}
@@ -8203,7 +8203,7 @@ jQuery.extend({
 			// If successful, handle type chaining
 			if ( isSuccess ) {
 
-				// GetSetOfType the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+				// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
 				if ( s.ifModified ) {
 					modified = jqXHR.getResponseHeader("Last-Modified");
 					if ( modified ) {
@@ -8242,7 +8242,7 @@ jQuery.extend({
 				}
 			}
 
-			// GetSetOfType data for the fake xhr object
+			// Set data for the fake xhr object
 			jqXHR.status = status;
 			jqXHR.statusText = ( nativeStatusText || statusText ) + "";
 
@@ -8453,7 +8453,7 @@ jQuery.param = function( a, traditional ) {
 			s[ s.length ] = encodeURIComponent( key ) + "=" + encodeURIComponent( value );
 		};
 
-	// GetSetOfType traditional to true for jQuery <= 1.3.2 behavior.
+	// Set traditional to true for jQuery <= 1.3.2 behavior.
 	if ( traditional === undefined ) {
 		traditional = jQuery.ajaxSettings && jQuery.ajaxSettings.traditional;
 	}
@@ -8574,7 +8574,7 @@ jQuery.ajaxTransport(function( options ) {
 					headers["X-Requested-With"] = "XMLHttpRequest";
 				}
 
-				// GetSetOfType headers
+				// Set headers
 				for ( i in headers ) {
 					xhr.setRequestHeader( i, headers[ i ] );
 				}
@@ -8727,7 +8727,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 	// Handle iff the expected data type is "jsonp" or we have a parameter to set
 	if ( jsonProp || s.dataTypes[ 0 ] === "jsonp" ) {
 
-		// GetById callback name, remembering preexisting value associated with it
+		// Get callback name, remembering preexisting value associated with it
 		callbackName = s.jsonpCallback = jQuery.isFunction( s.jsonpCallback ) ?
 			s.jsonpCallback() :
 			s.jsonpCallback;
@@ -8908,7 +8908,7 @@ jQuery.offset = {
 			curElem = jQuery( elem ),
 			props = {};
 
-		// GetSetOfType position first, in-case top/left are set even on static elem
+		// Set position first, in-case top/left are set even on static elem
 		if ( position === "static" ) {
 			elem.style.position = "relative";
 		}
@@ -9003,10 +9003,10 @@ jQuery.fn.extend({
 			offset = elem.getBoundingClientRect();
 
 		} else {
-			// GetById *real* offsetParent
+			// Get *real* offsetParent
 			offsetParent = this.offsetParent();
 
-			// GetById correct offsets
+			// Get correct offsets
 			offset = this.offset();
 			if ( !jQuery.nodeName( offsetParent[ 0 ], "html" ) ) {
 				parentOffset = offsetParent.offset();
@@ -9099,7 +9099,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 					return elem.document.documentElement[ "client" + name ];
 				}
 
-				// GetById document width or height
+				// Get document width or height
 				if ( elem.nodeType === 9 ) {
 					doc = elem.documentElement;
 
@@ -9113,10 +9113,10 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 				}
 
 				return value === undefined ?
-					// GetById width or height on the element, requesting but not forcing parseFloat
+					// Get width or height on the element, requesting but not forcing parseFloat
 					jQuery.css( elem, type, extra ) :
 
-					// GetSetOfType width or height on the element
+					// Set width or height on the element
 					jQuery.style( elem, type, value, extra );
 			}, type, chainable ? margin : undefined, chainable, null );
 		};

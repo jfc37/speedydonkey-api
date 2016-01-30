@@ -9,12 +9,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Action</RootNamespace>
     <AssemblyName>Action</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +48,8 @@
     <Compile Include="Blocks\UnassignBlockRoom.cs" />
     <Compile Include="Classes\ChangeClassRoom.cs" />
     <Compile Include="Classes\ChangeClassTeachers.cs" />
+    <Compile Include="Classes\CheckStudentIntoClass.cs" />
+    <Compile Include="Classes\RemoveStudentFromClass.cs" />
     <Compile Include="Classes\UnassignClassRoom.cs" />
     <Compile Include="CreateAnnouncement.cs" />
     <Compile Include="CreateNextBlock.cs" />
@@ -55,9 +58,15 @@
     <Compile Include="DeleteUser.cs" />
     <Compile Include="RemoveAsTeacher.cs" />
     <Compile Include="Rooms\CreateRoom.cs" />
+    <Compile Include="Rooms\DeleteRoom.cs" />
     <Compile Include="Rooms\UpdateRoom.cs" />
     <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />
+    <Compile Include="StandAloneEvents\CheckStudentIntoEvent.cs" />
+    <Compile Include="StandAloneEvents\CreateStandAloneEvent.cs" />
+    <Compile Include="StandAloneEvents\RegisterForStandAloneEvent.cs" />
+    <Compile Include="StandAloneEvents\RemoveStudentFromEvent.cs" />
+    <Compile Include="StandAloneEvents\UpdateStandAloneEvent.cs" />
     <Compile Include="UpdatePassNote.cs" />
     <Compile Include="UpdateUserNote.cs" />
     <Compile Include="UpdateClass.cs" />
@@ -74,13 +83,11 @@
     <Compile Include="PurchasePass.cs" />
     <Compile Include="ActivateUser.cs" />
     <Compile Include="UpdatePass.cs" />
-    <Compile Include="RemoveStudentFromClass.cs" />
-    <Compile Include="CheckStudentIntoClass.cs" />
     <Compile Include="CreateReferenceData.cs" />
     <Compile Include="EnrolInBlock.cs" />
     <Compile Include="CreateBlock.cs" />
     <Compile Include="CreateUser.cs" />
-    <Compile Include="IAction.cs" />
+    <Compile Include="SystemAction.cs" />
     <Compile Include="ICrudAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\UpdateUser.cs" />

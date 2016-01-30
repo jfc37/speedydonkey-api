@@ -42,7 +42,7 @@ namespace IntegrationTests.Utilities
 
         private static IRestResponse<T> Execute<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://localhost:50831/api");
+            var client = new RestClient("http://localhost:8080/api");
             //var client = new RestClient("https://api-speedydonkey.azurewebsites.net/api");
             client.Authenticator = new JwtAuthenticator(IdJwt);
             return client.Execute<T>(request);

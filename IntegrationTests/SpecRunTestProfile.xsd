@@ -24,6 +24,7 @@
   <xs:complexType name="TestProfileSettings">
     <xs:attribute name="name" type="xs:string" use="optional" />
     <xs:attribute name="projectName" type="xs:string" use="required" />
+    <xs:attribute name="licenseKey" type="xs:string" use="optional" />
     <xs:attribute name="baseFolder" type="xs:string" use="optional" />
     <xs:attribute name="outputFolder" type="xs:string" use="optional" />
     <xs:attribute name="reportTemplate" type="xs:string" use="optional" />
@@ -103,6 +104,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="RelocateConfigurationFile" type="RelocateConfigurationFile" />
       <xs:element minOccurs="1" maxOccurs="1" name="Custom" type="CustomStep" />
       <xs:element minOccurs="1" maxOccurs="1" name="IISExpress" type="IISExpressStep" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CopyFile" type="CopyFile" />
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="CopyFolder">
@@ -132,6 +134,12 @@
     <xs:attribute name="iisExpressPath" type="xs:string" use="optional" />
     <xs:attribute name="port" type="xs:string" use="optional" default="8080" />
     <xs:attribute name="useShellExecute" type="xs:boolean" use="optional" default="true" />
+  </xs:complexType>
+  <xs:complexType name="CopyFile">
+    <xs:attribute name="source" type="xs:string" use="required" />
+    <xs:attribute name="target" type="xs:string" use="optional" />
+    <xs:attribute name="targetFolder" type="xs:string" use="optional" />
+    <xs:attribute name="deleteOnRestore" type="xs:boolean" use="optional" default="true" />
   </xs:complexType>
 
   <!-- simple types-->

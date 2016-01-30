@@ -24,5 +24,27 @@ namespace Common.Extensions
         {
             return !instance.IsNull();
         }
+
+        /// <summary>
+        /// Determines whether [is of type].
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance">The instance.</param>
+        /// <returns></returns>
+        public static bool IsOfType<T>(this object instance)
+        {
+            return instance is T;
+        }
+
+        /// <summary>
+        /// Determines whether [is not of type].
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance">The instance.</param>
+        /// <returns></returns>
+        public static bool IsNotOfType<T>(this object instance)
+        {
+            return !instance.IsOfType<T>();
+        }
     }
 }

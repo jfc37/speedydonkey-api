@@ -40,7 +40,7 @@ namespace Data.Tests
 
         public class Search : EntitySearcherTestFixture
         {
-            private string _q;
+            private readonly string _q = "";
 
             private IList<User> PerformSearch()
             {

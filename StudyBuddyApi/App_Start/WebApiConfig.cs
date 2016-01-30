@@ -62,6 +62,8 @@ namespace SpeedyDonkeyApi
            CorsConfig.Register(config);
             DependancyInjectionConfig.Register(config, app);
             FilterConfig.Register(config);
+
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

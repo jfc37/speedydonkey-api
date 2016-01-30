@@ -3,13 +3,11 @@ using Models;
 
 namespace Action
 {
-    public class CreateBlock : ICrudAction<Block>
+    public class CreateBlock : SystemAction<Block>, ICrudAction<Block>
     {
         public CreateBlock(Block block)
         {
             ActionAgainst = block;
         }
-
-        public Block ActionAgainst { get; set; }
     }
 }

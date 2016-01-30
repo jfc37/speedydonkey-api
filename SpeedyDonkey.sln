@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedyDonkeyApi", "StudyBuddyApi\SpeedyDonkeyApi.csproj", "{0ED4CACE-AE54-49D6-9053-F44DE4D7298E}"
 EndProject
@@ -44,6 +44,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CC3766F3-7152-480F-84FB-A7D1F8C356F9}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3348095D-B3B5-4762-9471-F5F8F395B25E}"
+	ProjectSection(SolutionItems) = preProject
+		SpeedyDonkey.pssln = SpeedyDonkey.pssln
 	EndProjectSection
 EndProject
 Global
@@ -138,8 +143,5 @@ Global
 		{E60D9FFE-EBE3-42F6-981C-6BFD426E9E2D} = {6DC9588D-44DF-4448-AF24-D42074FB822A}
 		{43596953-67A1-4E99-B326-586211FE2497} = {6DC9588D-44DF-4448-AF24-D42074FB822A}
 		{BC1C3D55-94BF-447B-89D4-2E592EECB33F} = {6DC9588D-44DF-4448-AF24-D42074FB822A}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

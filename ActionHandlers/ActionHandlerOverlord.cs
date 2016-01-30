@@ -1,15 +1,13 @@
 ﻿using Actions;
 using Autofac;
-using Data;
-using Models;
 using Validation;
+using PostSharp.Patterns.Diagnostics;
 
 namespace ActionHandlers
 {
     public interface IActionHandlerOverlord
     {
-        ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : IAction<TObject>;
-        ActionReponse<TResult> HandleAction<TAction, TObject, TResult>(TAction action) where TAction : IAction<TObject>;
+        ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : SystemAction<TObject>;
     }
 
     public class ActionHandlerOverlord : IActionHandlerOverlord
@@ -23,7 +21,8 @@ namespace ActionHandlers
             _container = container;
         }
 
-        public ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : IAction<TObject>
+        [Log]
+        public ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : SystemAction<TObject>
         {
             var validationResult = _validatorOverlord.Validate<TAction, TObject>(action.ActionAgainst);
 
@@ -40,34 +39,9 @@ namespace ActionHandlers
             };
         }
 
-        public ActionReponse<TResult> HandleAction<TAction, TObject, TResult>(TAction action) where TAction : IAction<TObject>
-        {
-            var validationResult = _validatorOverlord.Validate<TAction, TObject>(action.ActionAgainst);
-
-            if (validationResult.IsValid)
-            {
-                var actionHandler = GetActionHandler<TAction, TObject, TResult>();
-                var result = actionHandler.Handle(action);
-                return new ActionReponse<TResult>(result);
-            }
-            else
-            {
-                return new ActionReponse<TResult>
-                {
-                    ValidationResult = validationResult
-                };
-            }
-        }
-
-        private IActionHandler<TAction, TObject> GetActionHandler<TAction, TObject>() where TAction : IAction<TObject>
+        private IActionHandler<TAction, TObject> GetActionHandler<TAction, TObject>() where TAction : SystemAction<TObject>
         {
             var actionValidator = _container.Resolve<IActionHandler<TAction, TObject>>();
-            return actionValidator;
-        }
-
-        private IActionHandlerWithResult<TAction, TObject, TResult> GetActionHandler<TAction, TObject, TResult>() where TAction : IAction<TObject>
-        {
-            var actionValidator = _container.Resolve<IActionHandlerWithResult<TAction, TObject, TResult>>();
             return actionValidator;
         }
     }

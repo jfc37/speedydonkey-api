@@ -3,13 +3,11 @@ using Models;
 
 namespace Action.Blocks
 {
-    public class ChangeBlockRoom : IAction<Block>
+    public class ChangeBlockRoom : SystemAction<Block>
     {
         public ChangeBlockRoom(Block block)
         {
             ActionAgainst = block;
         }
-
-        public Block ActionAgainst { get; set; }
     }
 }

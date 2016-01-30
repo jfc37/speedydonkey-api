@@ -1,4 +1,6 @@
-﻿namespace Validation
+﻿using Common.Extensions;
+
+namespace Validation
 {
     public class ValidationError
     {
@@ -14,6 +16,11 @@
         public ValidationError()
         {
             
+        }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(PropertyName), nameof(ErrorMessage));
         }
     }
 }

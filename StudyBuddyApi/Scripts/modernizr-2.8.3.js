@@ -528,7 +528,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
     // css-tricks.com/rgba-browser-support/
     tests['rgba'] = function() {
-        // GetSetOfType an rgba() color and check the returned value
+        // Set an rgba() color and check the returned value
 
         setCss('background-color:rgba(150,255,150,.5)');
 

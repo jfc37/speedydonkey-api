@@ -21,7 +21,7 @@ intellisense.annotate(jQuery, {
   },
   'ajaxSetup': function() {
     /// <signature>
-    ///   <summary>GetSetOfType default values for future Ajax requests. Its use is not recommended.</summary>
+    ///   <summary>Set default values for future Ajax requests. Its use is not recommended.</summary>
     ///   <param name="options" type="PlainObject">A set of key/value pairs that configure the default Ajax request. All options are optional.</param>
     /// </signature>
   },
@@ -185,7 +185,7 @@ intellisense.annotate(jQuery, {
   },
   'inArray': function() {
     /// <signature>
-    ///   <summary>EntitySearch for a specified value within an array and return its index (or -1 if not found).</summary>
+    ///   <summary>Search for a specified value within an array and return its index (or -1 if not found).</summary>
     ///   <param name="value" type="Anything">The value to search for.</param>
     ///   <param name="array" type="Array">An array through which to search.</param>
     ///   <param name="fromIndex" type="Number">The index of the array at which to begin the search. The default is 0, which will search the whole array.</param>
@@ -859,18 +859,18 @@ intellisense.annotate(jQuery.fn, {
   },
   'attr': function() {
     /// <signature>
-    ///   <summary>GetSetOfType one or more attributes for the set of matched elements.</summary>
+    ///   <summary>Set one or more attributes for the set of matched elements.</summary>
     ///   <param name="attributeName" type="String">The name of the attribute to set.</param>
     ///   <param name="value" type="">A value to set for the attribute.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType one or more attributes for the set of matched elements.</summary>
+    ///   <summary>Set one or more attributes for the set of matched elements.</summary>
     ///   <param name="attributes" type="PlainObject">An object of attribute-value pairs to set.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType one or more attributes for the set of matched elements.</summary>
+    ///   <summary>Set one or more attributes for the set of matched elements.</summary>
     ///   <param name="attributeName" type="String">The name of the attribute to set.</param>
     ///   <param name="function(index, attr)" type="Function">A function returning the value to set. this is the current element. Receives the index position of the element in the set and the old attribute value as arguments.</param>
     ///   <returns type="jQuery" />
@@ -1017,7 +1017,7 @@ intellisense.annotate(jQuery.fn, {
   },
   'children': function() {
     /// <signature>
-    ///   <summary>GetById the children of each element in the set of matched elements, optionally filtered by a selector.</summary>
+    ///   <summary>Get the children of each element in the set of matched elements, optionally filtered by a selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -1091,7 +1091,7 @@ intellisense.annotate(jQuery.fn, {
     /// </signature>
   },
   'contents': function() {
-    /// <summary>GetById the children of each element in the set of matched elements, including text and comment nodes.</summary>
+    /// <summary>Get the children of each element in the set of matched elements, including text and comment nodes.</summary>
     /// <returns type="jQuery" />
   },
   'context': function() {
@@ -1100,19 +1100,19 @@ intellisense.annotate(jQuery.fn, {
   },
   'css': function() {
     /// <signature>
-    ///   <summary>GetSetOfType one or more CSS properties for the set of matched elements.</summary>
+    ///   <summary>Set one or more CSS properties for the set of matched elements.</summary>
     ///   <param name="propertyName" type="String">A CSS property name.</param>
     ///   <param name="value" type="">A value to set for the property.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType one or more CSS properties for the set of matched elements.</summary>
+    ///   <summary>Set one or more CSS properties for the set of matched elements.</summary>
     ///   <param name="propertyName" type="String">A CSS property name.</param>
     ///   <param name="function(index, value)" type="Function">A function returning the value to set. this is the current element. Receives the index position of the element in the set and the old value as arguments.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType one or more CSS properties for the set of matched elements.</summary>
+    ///   <summary>Set one or more CSS properties for the set of matched elements.</summary>
     ///   <param name="properties" type="PlainObject">An object of property-value pairs to set.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -1145,7 +1145,7 @@ intellisense.annotate(jQuery.fn, {
   },
   'delay': function() {
     /// <signature>
-    ///   <summary>GetSetOfType a timer to delay execution of subsequent items in the queue.</summary>
+    ///   <summary>Set a timer to delay execution of subsequent items in the queue.</summary>
     ///   <param name="duration" type="Number">An integer indicating the number of milliseconds to delay execution of the next item in the queue.</param>
     ///   <param name="queueName" type="String">A string containing the name of the queue. Defaults to fx, the standard effects queue.</param>
     ///   <returns type="jQuery" />
@@ -1358,17 +1358,17 @@ intellisense.annotate(jQuery.fn, {
   },
   'find': function() {
     /// <signature>
-    ///   <summary>GetById the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.</summary>
+    ///   <summary>Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetById the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.</summary>
+    ///   <summary>Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.</summary>
     ///   <param name="jQuery object" type="Object">A jQuery object to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetById the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.</summary>
+    ///   <summary>Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.</summary>
     ///   <param name="element" type="Element">An element to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -1469,12 +1469,12 @@ intellisense.annotate(jQuery.fn, {
   },
   'height': function() {
     /// <signature>
-    ///   <summary>GetSetOfType the CSS height of every matched element.</summary>
+    ///   <summary>Set the CSS height of every matched element.</summary>
     ///   <param name="value" type="">An integer representing the number of pixels, or an integer with an optional unit of measure appended (as a string).</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType the CSS height of every matched element.</summary>
+    ///   <summary>Set the CSS height of every matched element.</summary>
     ///   <param name="function(index, height)" type="Function">A function returning the height to set. Receives the index position of the element in the set and the old height as arguments. Within the function, this refers to the current element in the set.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -1512,12 +1512,12 @@ intellisense.annotate(jQuery.fn, {
   },
   'html': function() {
     /// <signature>
-    ///   <summary>GetSetOfType the HTML contents of each element in the set of matched elements.</summary>
+    ///   <summary>Set the HTML contents of each element in the set of matched elements.</summary>
     ///   <param name="htmlString" type="htmlString">A string of HTML to set as the content of each matched element.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType the HTML contents of each element in the set of matched elements.</summary>
+    ///   <summary>Set the HTML contents of each element in the set of matched elements.</summary>
     ///   <param name="function(index, oldhtml)" type="Function">A function returning the HTML content to set. Receives the           index position of the element in the set and the old HTML value as arguments.           jQuery empties the element before calling the function;           use the oldhtml argument to reference the previous content.           Within the function, this refers to the current element in the set.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -1533,12 +1533,12 @@ intellisense.annotate(jQuery.fn, {
   },
   'index': function() {
     /// <signature>
-    ///   <summary>EntitySearch for a given element from among the matched elements.</summary>
+    ///   <summary>Search for a given element from among the matched elements.</summary>
     ///   <param name="selector" type="String">A selector representing a jQuery collection in which to look for an element.</param>
     ///   <returns type="Number" />
     /// </signature>
     /// <signature>
-    ///   <summary>EntitySearch for a given element from among the matched elements.</summary>
+    ///   <summary>Search for a given element from among the matched elements.</summary>
     ///   <param name="element" type="">The DOM element or first element within the jQuery object to look for.</param>
     ///   <returns type="Number" />
     /// </signature>
@@ -1572,11 +1572,11 @@ intellisense.annotate(jQuery.fn, {
     /// </signature>
   },
   'innerHeight': function() {
-    /// <summary>GetById the current computed height for the first element in the set of matched elements, including padding but not border.</summary>
+    /// <summary>Get the current computed height for the first element in the set of matched elements, including padding but not border.</summary>
     /// <returns type="Number" />
   },
   'innerWidth': function() {
-    /// <summary>GetById the current computed width for the first element in the set of matched elements, including padding but not border.</summary>
+    /// <summary>Get the current computed width for the first element in the set of matched elements, including padding but not border.</summary>
     /// <returns type="Number" />
   },
   'input': function() {
@@ -1831,7 +1831,7 @@ intellisense.annotate(jQuery.fn, {
   },
   'next': function() {
     /// <signature>
-    ///   <summary>GetById the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.</summary>
+    ///   <summary>Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -1852,20 +1852,20 @@ intellisense.annotate(jQuery.fn, {
   },
   'nextAll': function() {
     /// <signature>
-    ///   <summary>GetById all following siblings of each element in the set of matched elements, optionally filtered by a selector.</summary>
+    ///   <summary>Get all following siblings of each element in the set of matched elements, optionally filtered by a selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },
   'nextUntil': function() {
     /// <signature>
-    ///   <summary>GetById all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.</summary>
+    ///   <summary>Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to indicate where to stop matching following sibling elements.</param>
     ///   <param name="filter" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetById all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.</summary>
+    ///   <summary>Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.</summary>
     ///   <param name="element" type="Element">A DOM node or jQuery object indicating where to stop matching following sibling elements.</param>
     ///   <param name="filter" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
@@ -1937,18 +1937,18 @@ intellisense.annotate(jQuery.fn, {
   },
   'offset': function() {
     /// <signature>
-    ///   <summary>GetSetOfType the current coordinates of every element in the set of matched elements, relative to the document.</summary>
+    ///   <summary>Set the current coordinates of every element in the set of matched elements, relative to the document.</summary>
     ///   <param name="coordinates" type="PlainObject">An object containing the properties top and left, which are integers indicating the new top and left coordinates for the elements.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType the current coordinates of every element in the set of matched elements, relative to the document.</summary>
+    ///   <summary>Set the current coordinates of every element in the set of matched elements, relative to the document.</summary>
     ///   <param name="function(index, coords)" type="Function">A function to return the coordinates to set. Receives the index of the element in the collection as the first argument and the current coordinates as the second argument. The function should return an object with the new top and left properties.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },
   'offsetParent': function() {
-    /// <summary>GetById the closest ancestor element that is positioned.</summary>
+    /// <summary>Get the closest ancestor element that is positioned.</summary>
     /// <returns type="jQuery" />
   },
   'on': function() {
@@ -2000,41 +2000,41 @@ intellisense.annotate(jQuery.fn, {
   },
   'outerHeight': function() {
     /// <signature>
-    ///   <summary>GetById the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns an integer (without "px") representation of the value or null if called on an empty set of elements.</summary>
+    ///   <summary>Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns an integer (without "px") representation of the value or null if called on an empty set of elements.</summary>
     ///   <param name="includeMargin" type="Boolean">A Boolean indicating whether to include the element's margin in the calculation.</param>
     ///   <returns type="Number" />
     /// </signature>
   },
   'outerWidth': function() {
     /// <signature>
-    ///   <summary>GetById the current computed width for the first element in the set of matched elements, including padding and border.</summary>
+    ///   <summary>Get the current computed width for the first element in the set of matched elements, including padding and border.</summary>
     ///   <param name="includeMargin" type="Boolean">A Boolean indicating whether to include the element's margin in the calculation.</param>
     ///   <returns type="Number" />
     /// </signature>
   },
   'parent': function() {
     /// <signature>
-    ///   <summary>GetById the parent of each element in the current set of matched elements, optionally filtered by a selector.</summary>
+    ///   <summary>Get the parent of each element in the current set of matched elements, optionally filtered by a selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },
   'parents': function() {
     /// <signature>
-    ///   <summary>GetById the ancestors of each element in the current set of matched elements, optionally filtered by a selector.</summary>
+    ///   <summary>Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },
   'parentsUntil': function() {
     /// <signature>
-    ///   <summary>GetById the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.</summary>
+    ///   <summary>Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to indicate where to stop matching ancestor elements.</param>
     ///   <param name="filter" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetById the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.</summary>
+    ///   <summary>Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.</summary>
     ///   <param name="element" type="Element">A DOM node or jQuery object indicating where to stop matching ancestor elements.</param>
     ///   <param name="filter" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
@@ -2044,7 +2044,7 @@ intellisense.annotate(jQuery.fn, {
     /// <summary>Selects all elements of type password.</summary>
   },
   'position': function() {
-    /// <summary>GetById the current coordinates of the first element in the set of matched elements, relative to the offset parent.</summary>
+    /// <summary>Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.</summary>
     /// <returns type="Object" />
   },
   'prepend': function() {
@@ -2069,27 +2069,27 @@ intellisense.annotate(jQuery.fn, {
   },
   'prev': function() {
     /// <signature>
-    ///   <summary>GetById the immediately preceding sibling of each element in the set of matched elements, optionally filtered by a selector.</summary>
+    ///   <summary>Get the immediately preceding sibling of each element in the set of matched elements, optionally filtered by a selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },
   'prevAll': function() {
     /// <signature>
-    ///   <summary>GetById all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.</summary>
+    ///   <summary>Get all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },
   'prevUntil': function() {
     /// <signature>
-    ///   <summary>GetById all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.</summary>
+    ///   <summary>Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to indicate where to stop matching preceding sibling elements.</param>
     ///   <param name="filter" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetById all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.</summary>
+    ///   <summary>Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.</summary>
     ///   <param name="element" type="Element">A DOM node or jQuery object indicating where to stop matching preceding sibling elements.</param>
     ///   <param name="filter" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
@@ -2105,18 +2105,18 @@ intellisense.annotate(jQuery.fn, {
   },
   'prop': function() {
     /// <signature>
-    ///   <summary>GetSetOfType one or more properties for the set of matched elements.</summary>
+    ///   <summary>Set one or more properties for the set of matched elements.</summary>
     ///   <param name="propertyName" type="String">The name of the property to set.</param>
     ///   <param name="value" type="">A value to set for the property.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType one or more properties for the set of matched elements.</summary>
+    ///   <summary>Set one or more properties for the set of matched elements.</summary>
     ///   <param name="properties" type="PlainObject">An object of property-value pairs to set.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType one or more properties for the set of matched elements.</summary>
+    ///   <summary>Set one or more properties for the set of matched elements.</summary>
     ///   <param name="propertyName" type="String">The name of the property to set.</param>
     ///   <param name="function(index, oldPropertyValue)" type="Function">A function returning the value to set. Receives the index position of the element in the set and the old property value as arguments. Within the function, the keyword this refers to the current element.</param>
     ///   <returns type="jQuery" />
@@ -2258,14 +2258,14 @@ intellisense.annotate(jQuery.fn, {
   },
   'scrollLeft': function() {
     /// <signature>
-    ///   <summary>GetSetOfType the current horizontal position of the scroll bar for each of the set of matched elements.</summary>
+    ///   <summary>Set the current horizontal position of the scroll bar for each of the set of matched elements.</summary>
     ///   <param name="value" type="Number">An integer indicating the new position to set the scroll bar to.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },
   'scrollTop': function() {
     /// <signature>
-    ///   <summary>GetSetOfType the current vertical position of the scroll bar for each of the set of matched elements.</summary>
+    ///   <summary>Set the current vertical position of the scroll bar for each of the set of matched elements.</summary>
     ///   <param name="value" type="Number">An integer indicating the new position to set the scroll bar to.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -2320,7 +2320,7 @@ intellisense.annotate(jQuery.fn, {
   },
   'siblings': function() {
     /// <signature>
-    ///   <summary>GetById the siblings of each element in the set of matched elements, optionally filtered by a selector.</summary>
+    ///   <summary>Get the siblings of each element in the set of matched elements, optionally filtered by a selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match elements against.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -2430,12 +2430,12 @@ intellisense.annotate(jQuery.fn, {
   },
   'text': function() {
     /// <signature>
-    ///   <summary>GetSetOfType the content of each element in the set of matched elements to the specified text.</summary>
+    ///   <summary>Set the content of each element in the set of matched elements to the specified text.</summary>
     ///   <param name="textString" type="String">A string of text to set as the content of each matched element.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType the content of each element in the set of matched elements to the specified text.</summary>
+    ///   <summary>Set the content of each element in the set of matched elements to the specified text.</summary>
     ///   <param name="function(index, text)" type="Function">A function returning the text content to set. Receives the index position of the element in the set and the old text value as arguments.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -2579,12 +2579,12 @@ intellisense.annotate(jQuery.fn, {
   },
   'val': function() {
     /// <signature>
-    ///   <summary>GetSetOfType the value of each element in the set of matched elements.</summary>
+    ///   <summary>Set the value of each element in the set of matched elements.</summary>
     ///   <param name="value" type="">A string of text or an array of strings corresponding to the value of each matched element to set as selected/checked.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType the value of each element in the set of matched elements.</summary>
+    ///   <summary>Set the value of each element in the set of matched elements.</summary>
     ///   <param name="function(index, value)" type="Function">A function returning the value to set. this is the current element. Receives the index position of the element in the set and the old value as arguments.</param>
     ///   <returns type="jQuery" />
     /// </signature>
@@ -2594,12 +2594,12 @@ intellisense.annotate(jQuery.fn, {
   },
   'width': function() {
     /// <signature>
-    ///   <summary>GetSetOfType the CSS width of each element in the set of matched elements.</summary>
+    ///   <summary>Set the CSS width of each element in the set of matched elements.</summary>
     ///   <param name="value" type="">An integer representing the number of pixels, or an integer along with an optional unit of measure appended (as a string).</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>GetSetOfType the CSS width of each element in the set of matched elements.</summary>
+    ///   <summary>Set the CSS width of each element in the set of matched elements.</summary>
     ///   <param name="function(index, width)" type="Function">A function returning the width to set. Receives the index position of the element in the set and the old width as arguments. Within the function, this refers to the current element in the set.</param>
     ///   <returns type="jQuery" />
     /// </signature>

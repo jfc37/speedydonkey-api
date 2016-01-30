@@ -4,20 +4,11 @@ using Models;
 
 namespace Action
 {
-    public class DeletePass : ICrudAction<Pass>
+    public class DeletePass : SystemAction<Pass>, ICrudAction<Pass>
     {
         public DeletePass(Pass pass)
         {
             ActionAgainst = pass;
-        }
-
-        public Pass ActionAgainst { get; set; }
-        public string LogText
-        {
-            get
-            {
-                return String.Format("Delete pass {0}", ActionAgainst.Id);
-            }
         }
     }
 }

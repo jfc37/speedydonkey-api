@@ -20,7 +20,7 @@ namespace IntegrationTests.Utilities.ModelVerfication
             Assert.AreEqual(_expected.FirstName, _actual.FirstName);
             Assert.AreEqual(_expected.Surname, _actual.Surname);
 
-            Assert.IsNullOrEmpty(_actual.Password);
+            Assert.IsNull(_actual.Password);
         }
     }
 }

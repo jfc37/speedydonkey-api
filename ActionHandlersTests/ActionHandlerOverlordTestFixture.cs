@@ -110,10 +110,8 @@ namespace ActionHandlersTests
             }
         }
 
-        internal class TestAction : IAction<TestObject>
+        internal class TestAction : SystemAction<TestObject>
         {
-            public TestObject ActionAgainst { get; set; }
-            public string LogText { get; private set; }
         }
 
         internal class TestObject

@@ -4,6 +4,17 @@ using System.Linq;
 
 namespace Common.Extensions
 {
+    public static class ListExtensions
+    {
+        public static void AddRange<T>(this IList<T> instance, IEnumerable<T> items)
+        {
+            foreach (var item in items)
+            {
+                instance.Add(item);
+            }
+        }
+    }
+
     public static class EnumerableExtensions
     {
         public static bool DoesNotHaveSameItemIds<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare) where T : IEntity
@@ -58,6 +69,11 @@ namespace Common.Extensions
         public static bool NotAny<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             return !source.Any(predicate);
+        }
+
+        public static string JoinToString<T>(this IEnumerable<T> instance, string separator)
+        {
+            return string.Join(separator, instance);
         }
     }
 }

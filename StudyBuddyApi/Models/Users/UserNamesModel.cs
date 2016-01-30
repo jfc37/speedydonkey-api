@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Common.Extensions;
 
 namespace SpeedyDonkeyApi.Models.Users
 {
@@ -43,5 +44,9 @@ namespace SpeedyDonkeyApi.Models.Users
             Surname = surname;
         }
 
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(FirstName), nameof(Surname));
+        }
     }
 }
