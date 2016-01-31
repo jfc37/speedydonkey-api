@@ -373,11 +373,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="newrelic\Extensions\CoreInstrumentation.xml" />
     <Content Include="newrelic\Extensions\CustomInstrumentation.xml" />
     <Content Include="newrelic\Extensions\NewRelic.Collections.dll" />
@@ -406,11 +401,6 @@
     <Content Include="newrelic\NewRelic.Agent.Extensions.dll" />
     <Content Include="newrelic\NewRelic.Profiler.dll" />
     <Content Include="packages.config" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="newrelic\newrelic.config" />
     <Content Include="newrelic\Extensions\extension.xsd">
       <SubType>Designer</SubType>
@@ -420,13 +410,7 @@
     </None>
     <None Include="Properties\PublishProfiles\api-speedydonkey - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\api-speedydonkey - Web Deploy.pubxml" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -443,7 +427,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SpeedyDonkeyApi.psproj" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActionHandlers\ActionHandlers.csproj">
