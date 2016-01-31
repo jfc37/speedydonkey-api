@@ -77,7 +77,6 @@
     <Compile Include="Extensions\Decimals\ToCurrencyStringTests.cs" />
     <Compile Include="Extensions\Strings\IsNotSameAsTests.cs" />
     <Compile Include="Extensions\Strings\IsSameAsTests.cs" />
-    <Compile Include="InMemoryDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

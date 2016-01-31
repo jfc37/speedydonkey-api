@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using Contracts;
 using Contracts.Blocks;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;

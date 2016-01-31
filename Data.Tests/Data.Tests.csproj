@@ -87,7 +87,6 @@
     <Compile Include="QueryTakeModifierTestFixture.cs" />
     <Compile Include="QueryOrderByModifierTestFixture.cs" />
     <Compile Include="QueryFilterModifierTestFixture.cs" />
-    <Compile Include="QueryIncludeModifierTestFixture.cs" />
     <Compile Include="QueryModifierFactoryTestFixture.cs" />
     <Compile Include="SearchQueryParserTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

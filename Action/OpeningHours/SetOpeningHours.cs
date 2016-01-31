@@ -5,7 +5,7 @@ namespace Action.OpeningHours
     /// <summary>
     /// Action for setting opening hours.
     /// </summary>
-    public class SetOpeningHours : IAction<Models.PrivateLessons.OpeningHours>
+    public class SetOpeningHours : SystemAction<Models.PrivateLessons.OpeningHours>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SetOpeningHours"/> class.
@@ -15,6 +15,5 @@ namespace Action.OpeningHours
         {
             ActionAgainst = actionAgainst;
         }
-        public Models.PrivateLessons.OpeningHours ActionAgainst { get; set; }
     }
 }
