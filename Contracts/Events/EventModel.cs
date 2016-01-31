@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Common.Extensions;
 using Contracts.Rooms;
 using Contracts.Teachers;
 using Contracts.Users;
@@ -16,5 +17,9 @@ namespace Contracts.Events
         public string Name { get; set; }
         public int Id { get; set; }
         public RoomModel Room { get; set; }
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Name), nameof(StartTime), nameof(EndTime));
+        }
     }
 }

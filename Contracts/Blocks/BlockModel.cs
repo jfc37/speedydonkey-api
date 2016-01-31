@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Common;
+using Common.Extensions;
 using Contracts.Announcements;
 using Contracts.Classes;
 using Contracts.Rooms;
@@ -39,5 +40,10 @@ namespace Contracts.Blocks
         public string Name { get; set; }
         public bool IsInviteOnly { get; set; }
         public int Id { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Name), nameof(StartDate), nameof(EndDate));
+        }
     }
 }

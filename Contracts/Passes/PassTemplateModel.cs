@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Extensions;
 
 namespace Contracts.Passes
 {
@@ -11,5 +12,9 @@ namespace Contracts.Passes
         public int ClassesValidFor { get; set; }
         public bool AvailableForPurchase { get; set; }
         public int Id { get; set; }
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Description));
+        }
     }
 }

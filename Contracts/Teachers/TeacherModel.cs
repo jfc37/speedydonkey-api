@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Common.Extensions;
 using Contracts.Classes;
 using Contracts.Users;
 
@@ -12,5 +13,9 @@ namespace Contracts.Teachers
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string FullName => @"{FirstName} {Surname}";
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(FirstName), nameof(Surname));
+        }
     }
 }

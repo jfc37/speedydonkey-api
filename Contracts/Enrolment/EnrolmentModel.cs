@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Common.Extensions;
 
 namespace Contracts.Enrolment
 {
@@ -30,6 +31,11 @@ namespace Contracts.Enrolment
         /// The block ids.
         /// </value>
         [Required]
-        public List<int> BlockIds { get; set; } 
+        public List<int> BlockIds { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(BlockIds));
+        }
     }
 }

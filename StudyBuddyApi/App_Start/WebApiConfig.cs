@@ -64,6 +64,8 @@ namespace SpeedyDonkeyApi
             DependancyInjectionConfig.Register(config, app);
             FilterConfig.Register(config);
 
+            log4net.Config.XmlConfigurator.Configure();
+
             RaygunWebApiClient.Attach(config);
         }
     }

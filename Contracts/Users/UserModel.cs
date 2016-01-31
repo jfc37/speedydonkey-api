@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Common;
+using Common.Extensions;
 using Contracts.Blocks;
 using Contracts.Events;
 using Contracts.Passes;
@@ -27,5 +28,10 @@ namespace Contracts.Users
         public string Email { get; set; }
 
         public string Note { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(FirstName), nameof(Surname), nameof(Email));
+        }
     }
 }

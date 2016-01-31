@@ -1,4 +1,5 @@
 using Common;
+using Common.Extensions;
 
 namespace Contracts.Rooms
 {
@@ -22,5 +23,9 @@ namespace Contracts.Rooms
         public int Id { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Location));
+        }
     }
 }

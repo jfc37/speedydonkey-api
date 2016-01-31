@@ -24,6 +24,11 @@ namespace Models
         public virtual int Id { get; set; }
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Name));
+        }
     }
 
     public static class RoomExtensions

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Common.Extensions;
 
 namespace Contracts.Users
 {
@@ -41,6 +42,11 @@ namespace Contracts.Users
         {
             FirstName = firstName;
             Surname = surname;
+        }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(FirstName), nameof(Surname));
         }
 
     }

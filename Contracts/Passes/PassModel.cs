@@ -1,4 +1,5 @@
 using System;
+using Common.Extensions;
 using Contracts.Users;
 
 namespace Contracts.Passes
@@ -39,5 +40,10 @@ namespace Contracts.Passes
         }
 
         public string Note { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Description));
+        }
     }
 }

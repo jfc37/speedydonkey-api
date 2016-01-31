@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common;
+using Common.Extensions;
 
 namespace Models
 {
@@ -30,5 +31,10 @@ namespace Models
         public virtual int NumberOfClasses { get; set; }
         public virtual int MinutesPerClass { get; set; }
         public virtual bool IsInviteOnly { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Id), nameof(Name), nameof(StartDate), nameof(EndDate));
+        }
     }
 }

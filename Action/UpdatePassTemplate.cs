@@ -3,12 +3,11 @@ using Models;
 
 namespace Action
 {
-    public class UpdatePassTemplate : ICrudAction<PassTemplate>
+    public class UpdatePassTemplate : SystemAction<PassTemplate>, ICrudAction<PassTemplate>
     {
         public UpdatePassTemplate(PassTemplate passTemplate)
         {
             ActionAgainst = passTemplate;
         }
-        public PassTemplate ActionAgainst { get; set; }
     }
 }

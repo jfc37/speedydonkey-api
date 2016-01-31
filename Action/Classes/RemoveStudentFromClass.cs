@@ -3,10 +3,8 @@ using Models;
 
 namespace Action.Classes
 {
-    public class RemoveStudentFromClass : IAction<Class>
+    public class RemoveStudentFromClass : SystemAction<Class>
     {
-        public Class ActionAgainst { get; set; }
-
         public RemoveStudentFromClass(Class theClass)
         {
             ActionAgainst = theClass;

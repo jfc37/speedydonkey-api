@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Action</RootNamespace>
     <AssemblyName>Action</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -59,6 +59,7 @@
     <Compile Include="OpeningHours\SetOpeningHours.cs" />
     <Compile Include="RemoveAsTeacher.cs" />
     <Compile Include="Rooms\CreateRoom.cs" />
+    <Compile Include="Rooms\DeleteRoom.cs" />
     <Compile Include="Rooms\UpdateRoom.cs" />
     <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />
@@ -87,7 +88,7 @@
     <Compile Include="EnrolInBlock.cs" />
     <Compile Include="CreateBlock.cs" />
     <Compile Include="CreateUser.cs" />
-    <Compile Include="IAction.cs" />
+    <Compile Include="SystemAction.cs" />
     <Compile Include="ICrudAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\UpdateUser.cs" />
