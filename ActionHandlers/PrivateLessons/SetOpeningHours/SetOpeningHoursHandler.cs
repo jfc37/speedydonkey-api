@@ -5,7 +5,7 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
     /// <summary>
     /// Creates or updates opening hours
     /// </summary>
-    public class SetOpeningHoursHandler : IActionHandler<Action.OpeningHours.SetOpeningHours, OpeningHours>
+    public class SetOpeningHoursHandler : IActionHandler<Action.PrivateLessons.SetOpeningHours, TimeSlot>
     {
         private readonly IOpeningHourManagerFactory _openingHourManagerFactory;
 
@@ -19,7 +19,7 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
         /// </summary>
         /// <param name="action">The action.</param>
         /// <returns></returns>
-        public OpeningHours Handle(Action.OpeningHours.SetOpeningHours action)
+        public TimeSlot Handle(Action.PrivateLessons.SetOpeningHours action)
         {
             return _openingHourManagerFactory.GetManager(action.ActionAgainst)
                 .Save();

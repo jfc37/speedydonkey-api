@@ -9,29 +9,29 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
     /// <seealso cref="IOpeningHourManager" />
     public class CreateOpeningHourManager : IOpeningHourManager
     {
-        private readonly OpeningHours _openingHours;
-        private readonly IRepository<OpeningHours> _repository;
+        private readonly TimeSlot _timeSlot;
+        private readonly IRepository<TimeSlot> _repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateOpeningHourManager"/> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
-        /// <param name="openingHours">The opening hours.</param>
+        /// <param name="timeSlot">The opening hours.</param>
         public CreateOpeningHourManager(
-            IRepository<OpeningHours> repository, 
-            OpeningHours openingHours)
+            IRepository<TimeSlot> repository, 
+            TimeSlot timeSlot)
         {
             _repository = repository;
-            _openingHours = openingHours;
+            _timeSlot = timeSlot;
         }
 
         /// <summary>
         /// Creates an opening hour
         /// </summary>
         /// <returns></returns>
-        public OpeningHours Save()
+        public TimeSlot Save()
         {
-            return _repository.Create(_openingHours);
+            return _repository.Create(_timeSlot);
         }
     }
 }

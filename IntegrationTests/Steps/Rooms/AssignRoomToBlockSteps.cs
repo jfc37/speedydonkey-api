@@ -19,14 +19,14 @@ namespace IntegrationTests.Steps.Rooms
         [Given(@"the block needs to be assigned a room")]
         public void GivenTheBlockNeedsToBeAssignedARoom()
         {
-            ScenarioCache.Store(ModelIdKeys.BlockKeyId, 1);
+            ScenarioCache.Store(ModelIdKeys.Block, 1);
         }
 
         [When(@"the block room assignment is requested")]
         public void WhenTheBlockRoomAssignmentIsRequested()
         {
-            var blockId = ScenarioCache.GetId(ModelIdKeys.BlockKeyId);
-            var roomId = ScenarioCache.GetId(ModelIdKeys.RoomKeyId);
+            var blockId = ScenarioCache.GetId(ModelIdKeys.Block);
+            var roomId = ScenarioCache.GetId(ModelIdKeys.Room);
             var response = ApiCaller.Put<ActionReponse<BlockModel>>(Routes.GetBlockRoom(blockId, roomId));
             ScenarioCache.StoreActionResponse(response);
         }
@@ -34,8 +34,8 @@ namespace IntegrationTests.Steps.Rooms
         [Then(@"the block details has the room")]
         public void ThenTheBlockDetailsHasTheRoom()
         {
-            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId))).Data;
-            var roomId = ScenarioCache.GetId(ModelIdKeys.RoomKeyId);
+            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block))).Data;
+            var roomId = ScenarioCache.GetId(ModelIdKeys.Room);
 
             Assert.IsNotNull(block.Room);
             Assert.AreEqual(roomId, block.Room.Id);
@@ -44,8 +44,8 @@ namespace IntegrationTests.Steps.Rooms
         [Then(@"all the classes in the block has the room")]
         public void ThenAllTheClassesInTheBlockHasTheRoom()
         {
-            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId))).Data;
-            var roomId = ScenarioCache.GetId(ModelIdKeys.RoomKeyId);
+            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block))).Data;
+            var roomId = ScenarioCache.GetId(ModelIdKeys.Room);
 
             foreach (var classModel in block.Classes)
             {
@@ -57,11 +57,11 @@ namespace IntegrationTests.Steps.Rooms
         [Then(@"the room has the classes in its schedule")]
         public void ThenTheRoomHasTheClassesInItsSchedule()
         {
-            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId))).Data;
+            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block))).Data;
             var blockClasses = block.Classes;
             var roomScheduleResponse =
                 ApiCaller.Get<List<EventModel>>(
-                    Routes.GetRoomUpcomingSchedule(ScenarioCache.GetId(ModelIdKeys.RoomKeyId)));
+                    Routes.GetRoomUpcomingSchedule(ScenarioCache.GetId(ModelIdKeys.Room)));
 
             Assert.AreEqual(HttpStatusCode.OK, roomScheduleResponse.StatusCode);
 
@@ -80,14 +80,14 @@ namespace IntegrationTests.Steps.Rooms
         [When(@"another block at the same time needs to be assigned to the same room")]
         public void WhenAnotherBlockAtTheSameTimeNeedsToBeAssignedToTheSameRoom()
         {
-            ScenarioCache.Store(ModelIdKeys.BlockKeyId, 2);
+            ScenarioCache.Store(ModelIdKeys.Block, 2);
             WhenTheBlockRoomAssignmentIsRequested();
         }
 
         [Then(@"all the classes in the block does not have the room")]
         public void ThenAllTheClassesInTheBlockDoesNotHaveTheRoom()
         {
-            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId))).Data;
+            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block))).Data;
 
             foreach (var classModel in block.Classes)
             {
@@ -98,11 +98,11 @@ namespace IntegrationTests.Steps.Rooms
         [Then(@"the room does not have the blocks classes in its schedule")]
         public void ThenTheRoomDoesNotHaveTheBlocksClassesInItsSchedule()
         {
-            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId))).Data;
+            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block))).Data;
             var blockClasses = block.Classes;
             var roomScheduleResponse =
                 ApiCaller.Get<List<EventModel>>(
-                    Routes.GetRoomUpcomingSchedule(ScenarioCache.GetId(ModelIdKeys.RoomKeyId)));
+                    Routes.GetRoomUpcomingSchedule(ScenarioCache.GetId(ModelIdKeys.Room)));
 
             Assert.AreEqual(HttpStatusCode.OK, roomScheduleResponse.StatusCode);
 
@@ -112,12 +112,12 @@ namespace IntegrationTests.Steps.Rooms
         [Given(@"the pending block is to be held in the room")]
         public void GivenThePendingBlockIsToBeHeldInTheRoom()
         {
-            var block = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
-            var roomId = ScenarioCache.GetId(ModelIdKeys.RoomKeyId);
+            var block = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
+            var roomId = ScenarioCache.GetId(ModelIdKeys.Room);
 
             block.Room = new RoomModel(roomId);
 
-            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+            ScenarioCache.Store(ModelKeys.Block, block);
         }
     }
 }

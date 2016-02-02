@@ -10,8 +10,8 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
         /// <summary>
         /// Constructs the correct type of OpeningHourManager
         /// </summary>
-        /// <param name="openingHours">The opening hours.</param>
+        /// <param name="timeSlot">The opening hours.</param>
         /// <returns></returns>
-        IOpeningHourManager GetManager(OpeningHours openingHours);
+        IOpeningHourManager GetManager(TimeSlot timeSlot);
     }
 }

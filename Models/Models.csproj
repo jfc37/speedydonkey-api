@@ -64,7 +64,8 @@
     <Compile Include="Pass.cs" />
     <Compile Include="PassStatistic.cs" />
     <Compile Include="PassTemplate.cs" />
-    <Compile Include="PrivateLessons\OpeningHours.cs" />
+    <Compile Include="PrivateLessons\TeacherAvailability.cs" />
+    <Compile Include="PrivateLessons\TimeSlot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExtensions\EntityQueryExtensions.cs" />
     <Compile Include="QueryExtensions\UserModelQueryExtensions.cs" />

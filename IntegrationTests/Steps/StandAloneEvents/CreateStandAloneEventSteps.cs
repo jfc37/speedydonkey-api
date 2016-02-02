@@ -28,7 +28,7 @@ namespace IntegrationTests.Steps.StandAloneEvents
                 EndTime = DateTime.Now.AddDays(2).AddHours(3),
             };
 
-            ScenarioCache.Store(ModelKeys.StandAloneEventKey, standAloneEvent);
+            ScenarioCache.Store(ModelKeys.StandAloneEvent, standAloneEvent);
         }
 
         [Given(@"an invalid stand alone event is ready to be submitted")]
@@ -43,21 +43,21 @@ namespace IntegrationTests.Steps.StandAloneEvents
                 EndTime = DateTime.Now.AddHours(3),
             };
 
-            ScenarioCache.Store(ModelKeys.StandAloneEventKey, standAloneEvent);
+            ScenarioCache.Store(ModelKeys.StandAloneEvent, standAloneEvent);
         }
 
         [When(@"the stand alone event is attempted to be created")]
         public void WhenTheStandAloneEventIsAttemptedToBeCreated()
         {
-            var response = ApiCaller.Post<ActionReponse<StandAloneEventModel>>(ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEventKey), Routes.StandAloneEvent);
+            var response = ApiCaller.Post<ActionReponse<StandAloneEventModel>>(ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEvent), Routes.StandAloneEvent);
             ScenarioCache.StoreActionResponse(response);
-            ScenarioCache.Store(ModelIdKeys.StandAloneEventKeyId, response.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.StandAloneEvent, response.Data.ActionResult.Id);
         }
 
         [Then(@"the stand alone event can be retrieved")]
         public void ThenTheStandAloneEventCanBeRetrieved()
         {
-            var response = ApiCaller.Get<StandAloneEventModel>(Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEventKeyId)));
+            var response = ApiCaller.Get<StandAloneEventModel>(Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEvent)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotNull(response.Data);

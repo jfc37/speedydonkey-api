@@ -1,4 +1,4 @@
-﻿using Action.OpeningHours;
+﻿using Action.PrivateLessons;
 using FluentValidation;
 using Models.PrivateLessons;
 using NodaTime;
@@ -8,7 +8,7 @@ namespace Validation.Validators.PrivateLessons
     /// <summary>
     /// Validator for setting opening hours
     /// </summary>
-    public class SetOpeningHoursValidator : AbstractValidator<OpeningHours>, IActionValidator<SetOpeningHours, OpeningHours>
+    public class SetOpeningHoursValidator : AbstractValidator<TimeSlot>, IActionValidator<SetOpeningHours, TimeSlot>
     {
         public SetOpeningHoursValidator()
         {

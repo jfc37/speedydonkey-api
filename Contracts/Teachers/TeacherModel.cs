@@ -7,6 +7,23 @@ namespace Contracts.Teachers
 {
     public class TeacherModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TeacherModel"/> class.
+        /// </summary>
+        public TeacherModel()
+        {
+            
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TeacherModel"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        public TeacherModel(int id)
+        {
+            Id = id;
+        }
+
         public int Id { get; set; }
         public UserModel User { get; set; }
         public List<ClassModel> Classes { get; set; }

@@ -91,6 +91,12 @@
     <Compile Include="Classes\UnassignClassRoomHandler.cs" />
     <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\CreateTeacherAvailabilityManager.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\ITeacherAvailabilityManager.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\ITeacherAvailabilityManagerFactory.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\TeacherAvailabilityManagerFactory.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\SetTeacherAvailabilityHandler.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\UpdateTeacherAvailabilityManager.cs" />
     <Compile Include="PrivateLessons\SetOpeningHours\CreateOpeningHourManager.cs" />
     <Compile Include="PrivateLessons\SetOpeningHours\IOpeningHourManager.cs" />
     <Compile Include="PrivateLessons\SetOpeningHours\IOpeningHourManagerFactory.cs" />

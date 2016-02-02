@@ -22,23 +22,23 @@ namespace IntegrationTests.Steps.Announcements
                 NotifyAll = true
             };
 
-            ScenarioCache.Store(ModelKeys.AnnouncementKey, announcement);
+            ScenarioCache.Store(ModelKeys.Announcement, announcement);
         }
 
         [Given(@"the announcement is to be sent to the block")]
         public void GivenTheAnnouncementIsToBeSentToTheBlock()
         {
-            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey);
+            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.Announcement);
             announcement.NotifyAll = false;
             announcement.Receivers = new BlockModel(1).PutIntoList();
 
-            ScenarioCache.Store(ModelKeys.AnnouncementKey, announcement);
+            ScenarioCache.Store(ModelKeys.Announcement, announcement);
         }
 
         [Given(@"the announcement is to be sent to multiple blocks")]
         public void GivenTheAnnouncementIsToBeSentToMultipleBlocks()
         {
-            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey);
+            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.Announcement);
             announcement.NotifyAll = false;
             announcement.Receivers = new List<BlockModel>
             {
@@ -46,50 +46,50 @@ namespace IntegrationTests.Steps.Announcements
                 new BlockModel(2)
             };
 
-            ScenarioCache.Store(ModelKeys.AnnouncementKey, announcement);
+            ScenarioCache.Store(ModelKeys.Announcement, announcement);
         }
 
         [Given(@"the announcement is to be sent to all users")]
         public void GivenTheAnnouncementIsToBeSentToAllUsers()
         {
-            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey);
+            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.Announcement);
             announcement.NotifyAll = true;
 
-            ScenarioCache.Store(ModelKeys.AnnouncementKey, announcement);
+            ScenarioCache.Store(ModelKeys.Announcement, announcement);
         }
 
         [Given(@"the announcement is to be sent to no one")]
         public void GivenTheAnnouncementIsToBeSentToNoOne()
         {
-            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey);
+            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.Announcement);
             announcement.NotifyAll = false;
             announcement.Receivers = new List<BlockModel>();
 
-            ScenarioCache.Store(ModelKeys.AnnouncementKey, announcement);
+            ScenarioCache.Store(ModelKeys.Announcement, announcement);
         }
 
         [Given(@"the announcement is missing the message")]
         public void GivenTheAnnouncementIsMissingTheMessage()
         {
-            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey);
+            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.Announcement);
             announcement.Message = null;
 
-            ScenarioCache.Store(ModelKeys.AnnouncementKey, announcement);
+            ScenarioCache.Store(ModelKeys.Announcement, announcement);
         }
 
         [Given(@"the announcement is missing the subject")]
         public void GivenTheAnnouncementIsMissingTheSubject()
         {
-            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey);
+            var announcement = ScenarioCache.Get<AnnouncementModel>(ModelKeys.Announcement);
             announcement.Subject = null;
 
-            ScenarioCache.Store(ModelKeys.AnnouncementKey, announcement);
+            ScenarioCache.Store(ModelKeys.Announcement, announcement);
         }
 
         [When(@"the announcement is attempted to be created")]
         public void WhenTheAnnouncementIsAttemptedToBeCreated()
         {
-            var response = ApiCaller.Post<ActionReponse<AnnouncementConfirmationModel>>(ScenarioCache.Get<AnnouncementModel>(ModelKeys.AnnouncementKey), Routes.Announcements);
+            var response = ApiCaller.Post<ActionReponse<AnnouncementConfirmationModel>>(ScenarioCache.Get<AnnouncementModel>(ModelKeys.Announcement), Routes.Announcements);
             ScenarioCache.StoreActionResponse(response);
         }
 

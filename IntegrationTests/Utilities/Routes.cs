@@ -19,7 +19,12 @@ namespace IntegrationTests.Utilities
         public const string BlocksForEnrolment = "blocks/for-enrolment";
         public const string StandAloneEventsForRegistration = "stand-alone-events/for-registration";
         public const string OpeningHours = "opening-hours";
+        public const string TeacherAvailability = "teacher-availabilities";
 
+        public static string GetCurrentTeacherAvailabilities()
+        {
+            return $"{TeacherAvailability}/current";
+        }
         public static string GetRoomUpcomingSchedule(int roomId)
         {
             return "rooms/{0}/upcoming-schedule".FormatWith(roomId);

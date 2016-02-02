@@ -30,7 +30,7 @@ namespace IntegrationTests.Steps.PrivateLessons
 
             var newOpeningHours = new TimeSlotModel(openingHours.Day, openingHours.OpeningTime.PlusHours(1), openingHours.ClosingTime.PlusHours(1));
 
-            ScenarioCache.Store(ModelKeys.OpeningHoursModelKey, newOpeningHours);
+            ScenarioCache.Store(ModelKeys.OpeningHours, newOpeningHours);
         }
 
         [When(@"the opening hour is attempted to be updated")]
@@ -45,7 +45,7 @@ namespace IntegrationTests.Steps.PrivateLessons
         {
             var openingHour = new TimeSlotModel(IsoDayOfWeek.Monday, new LocalTimeModel(10, 0), new LocalTimeModel(22, 30));
 
-            ScenarioCache.Store(ModelKeys.OpeningHoursModelKey, openingHour);
+            ScenarioCache.Store(ModelKeys.OpeningHours, openingHour);
         }
 
         [Given(@"a invalid opening hour is ready to be submitted")]
@@ -55,14 +55,14 @@ namespace IntegrationTests.Steps.PrivateLessons
             var closingTime = openingTime.PlusHours(-1);
             var openingHour = new TimeSlotModel(IsoDayOfWeek.Monday, openingTime, closingTime);
 
-            ScenarioCache.Store(ModelKeys.OpeningHoursModelKey, openingHour);
+            ScenarioCache.Store(ModelKeys.OpeningHours, openingHour);
         }
 
 
         [When(@"the opening hour is attempted to be created")]
         public void WhenTheOpeningHourIsAttemptedToBeCreated()
         {
-            var response = ApiCaller.Post<ActionReponse<TimeSlotModel>>(ScenarioCache.Get<TimeSlotModel>(ModelKeys.OpeningHoursModelKey), Routes.OpeningHours);
+            var response = ApiCaller.Post<ActionReponse<TimeSlotModel>>(ScenarioCache.Get<TimeSlotModel>(ModelKeys.OpeningHours), Routes.OpeningHours);
             ScenarioCache.StoreActionResponse(response);
         }
 
@@ -73,7 +73,7 @@ namespace IntegrationTests.Steps.PrivateLessons
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
-            var expectedOpeningHours = ScenarioCache.Get<TimeSlotModel>(ModelKeys.OpeningHoursModelKey);
+            var expectedOpeningHours = ScenarioCache.Get<TimeSlotModel>(ModelKeys.OpeningHours);
             var actualOpeningHours = response.Data.Single();
 
             new VerifyOpeningHoursProperties(expectedOpeningHours, actualOpeningHours)

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Action.OpeningHours;
+using Action.PrivateLessons;
 using ActionHandlers.PrivateLessons.SetOpeningHours;
 using Common.Extensions;
 using Data.Repositories;
@@ -15,13 +15,13 @@ namespace ActionHandlersTests.PrivateLessons
     public class SetOpeningHoursHandlerTests
     {
         private SetOpeningHours _setOpeningHours;
-        private Mock<IRepository<OpeningHours>> _repository;
+        private Mock<IRepository<TimeSlot>> _repository;
 
         [SetUp]
         public void Setup()
         {
-            _setOpeningHours = new SetOpeningHours(new OpeningHours(IsoDayOfWeek.Friday, LocalTime.Midnight, LocalTime.Noon));
-            _repository = new Mock<IRepository<OpeningHours>>(MockBehavior.Loose);
+            _setOpeningHours = new SetOpeningHours(new TimeSlot(IsoDayOfWeek.Friday, LocalTime.Midnight, LocalTime.Noon));
+            _repository = new Mock<IRepository<TimeSlot>>(MockBehavior.Loose);
 
             _repository.SetReturnsDefault(_setOpeningHours.ActionAgainst.PutIntoList().AsQueryable());
         }
@@ -33,13 +33,13 @@ namespace ActionHandlersTests.PrivateLessons
 
             PerformAction();
 
-            _repository.Verify(x => x.Update(It.IsAny<OpeningHours>()));
+            _repository.Verify(x => x.Update(It.IsAny<TimeSlot>()));
         }
 
         [Test]
         public void It_should_create_if_opening_hour_doesnt_exist_for_day()
         {
-            _repository.SetReturnsDefault(new List<OpeningHours>());
+            _repository.SetReturnsDefault(new List<TimeSlot>());
 
             PerformAction();
 

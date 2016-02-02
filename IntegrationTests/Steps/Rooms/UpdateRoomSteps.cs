@@ -22,17 +22,17 @@ namespace IntegrationTests.Steps.Rooms
         [Given(@"the room needs to be changed")]
         public void GivenTheRoomNeedsToBeChanged()
         {
-            var room = ScenarioCache.Get<RoomModel>(ModelKeys.RoomModelKey);
+            var room = ScenarioCache.Get<RoomModel>(ModelKeys.Room);
             room.Name = "Changed Name";
             room.Location = "Changed Location";
 
-            ScenarioCache.Store(ModelKeys.RoomModelKey, room);
+            ScenarioCache.Store(ModelKeys.Room, room);
         }
 
         [When(@"the room is updated")]
         public void WhenTheRoomIsUpdated()
         {
-            var response = ApiCaller.Put<ActionReponse<RoomModel>>(ScenarioCache.Get<RoomModel>(ModelKeys.RoomModelKey), Routes.GetById(Routes.Room, ScenarioCache.GetId(ModelIdKeys.RoomKeyId)));
+            var response = ApiCaller.Put<ActionReponse<RoomModel>>(ScenarioCache.Get<RoomModel>(ModelKeys.Room), Routes.GetById(Routes.Room, ScenarioCache.GetId(ModelIdKeys.Room)));
             ScenarioCache.StoreActionResponse(response);
         }
 
@@ -46,11 +46,11 @@ namespace IntegrationTests.Steps.Rooms
         [Given(@"the room has invalid details")]
         public void GivenTheRoomHasInvalidDetails()
         {
-            var room = ScenarioCache.Get<RoomModel>(ModelKeys.RoomModelKey);
+            var room = ScenarioCache.Get<RoomModel>(ModelKeys.Room);
             room.Name = "";
             room.Location = null;
 
-            ScenarioCache.Store(ModelKeys.RoomModelKey, room);
+            ScenarioCache.Store(ModelKeys.Room, room);
         }
 
         [Then(@"the request is unsuccessful")]

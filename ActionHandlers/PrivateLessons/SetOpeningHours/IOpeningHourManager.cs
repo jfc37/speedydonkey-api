@@ -11,6 +11,6 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
         /// Saves an opening hour
         /// </summary>
         /// <returns></returns>
-        OpeningHours Save();
+        TimeSlot Save();
     }
 }

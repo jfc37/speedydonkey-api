@@ -10,28 +10,29 @@ namespace IntegrationTests.Utilities
 {
     public enum ModelKeys
     {
-        PassModelKey,
-        PassTemplateModelKey,
-        BlockModelKey,
-        StandAloneEventKey,
-        AnnouncementKey,
-        ClassModelKey,
-        RoomModelKey,
-        UserNamesModelKey,
-        OpeningHoursModelKey,
+        Pass,
+        PassTemplate,
+        Block,
+        StandAloneEvent,
+        Announcement,
+        Class,
+        Room,
+        UserNames,
+        OpeningHours,
+        TeacherAvailability,
 
-        ResponseKey
+        Response
     }
 
     public enum ModelIdKeys
     {
-        UserIdKey,
-        TeacherIdKey,
-        BlockKeyId,
-        StandAloneEventKeyId,
-        PassTemplateKeyId,
-        ClassKeyId,
-        RoomKeyId
+        User,
+        Teacher,
+        Block,
+        StandAloneEvent,
+        PassTemplate,
+        Class,
+        Room
     }
 
     public static class ScenarioCache
@@ -74,12 +75,12 @@ namespace IntegrationTests.Utilities
 
         public static int GetUserId()
         {
-            return Get<int>(ModelIdKeys.UserIdKey);
+            return Get<int>(ModelIdKeys.User);
         }
 
         public static int GetTeacherId()
         {
-            return Get<int>(ModelIdKeys.TeacherIdKey);
+            return Get<int>(ModelIdKeys.Teacher);
         }
 
         private static void AssertKeyExists(string key)
@@ -105,7 +106,7 @@ namespace IntegrationTests.Utilities
             Store(ResponseStatusKey, response.StatusCode);
 
             if (response.Data.IsNotNull())
-                Store(ModelKeys.ResponseKey, response.Data);
+                Store(ModelKeys.Response, response.Data);
         }
 
         public static HttpStatusCode GetResponseStatus()
@@ -120,7 +121,7 @@ namespace IntegrationTests.Utilities
 
         public static T GetResponse<T>()
         {
-            return Get<T>(ModelKeys.ResponseKey);
+            return Get<T>(ModelKeys.Response);
         }
 
         public static ValidationResult GetValidationResult()

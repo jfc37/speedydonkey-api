@@ -14,27 +14,27 @@ namespace IntegrationTests.Steps.Users
         public void WhenAllUsersAreRetreived()
         {
             var userResponse = ApiCaller.Get<List<UserModel>>(Routes.Users);
-            ScenarioCache.Store(ModelKeys.ResponseKey, userResponse.StatusCode);
+            ScenarioCache.Store(ModelKeys.Response, userResponse.StatusCode);
         }
 
         [When(@"a user search is performed")]
         public void WhenAUserSearchIsPerformed()
         {
             var userResponse = ApiCaller.Get<List<UserModel>>(Routes.GetUserSearch("surname_=_Chapman"));
-            ScenarioCache.Store(ModelKeys.ResponseKey, userResponse.StatusCode);
+            ScenarioCache.Store(ModelKeys.Response, userResponse.StatusCode);
         }
 
         [When(@"a user is retrieved by id")]
         public void WhenAUserIsRetrievedById()
         {
-            var userResponse = ApiCaller.Get<UserModel>(Routes.GetUserById(ScenarioCache.GetId(ModelIdKeys.UserIdKey)));
-            ScenarioCache.Store(ModelKeys.ResponseKey, userResponse.StatusCode);
+            var userResponse = ApiCaller.Get<UserModel>(Routes.GetUserById(ScenarioCache.GetId(ModelIdKeys.User)));
+            ScenarioCache.Store(ModelKeys.Response, userResponse.StatusCode);
         }
 
         [Then(@"something is retreived")]
         public void ThenSomethingIsRetreived()
         {
-            var response = ScenarioCache.Get<HttpStatusCode>(ModelKeys.ResponseKey);
+            var response = ScenarioCache.Get<HttpStatusCode>(ModelKeys.Response);
 
             Assert.AreEqual(HttpStatusCode.OK, response);
         }

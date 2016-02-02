@@ -56,7 +56,8 @@
     <Compile Include="CreateRegistration.cs" />
     <Compile Include="DeleteAnnouncement.cs" />
     <Compile Include="DeleteUser.cs" />
-    <Compile Include="OpeningHours\SetOpeningHours.cs" />
+    <Compile Include="PrivateLessons\SetOpeningHours.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability.cs" />
     <Compile Include="RemoveAsTeacher.cs" />
     <Compile Include="Rooms\CreateRoom.cs" />
     <Compile Include="Rooms\DeleteRoom.cs" />

@@ -15,7 +15,7 @@ namespace IntegrationTests.Steps.Blocks
         [When(@"the block is deleted")]
         public void WhenTheBlockIsDeleted()
         {
-            var blockId = ScenarioCache.GetId(ModelIdKeys.BlockKeyId);
+            var blockId = ScenarioCache.GetId(ModelIdKeys.Block);
             var response = ApiCaller.Delete<ActionReponse<BlockModel>>(Routes.GetById(Routes.Blocks, blockId));
 
             ScenarioCache.StoreActionResponse(response);

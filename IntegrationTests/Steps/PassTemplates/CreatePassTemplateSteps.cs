@@ -25,7 +25,7 @@ namespace IntegrationTests.Steps.PassTemplates
                 WeeksValidFor = 9
             };
 
-            ScenarioCache.Store(ModelKeys.PassTemplateModelKey, passTemplate);
+            ScenarioCache.Store(ModelKeys.PassTemplate, passTemplate);
         }
 
         [Given(@"an invalid pass template is ready to be submitted")]
@@ -40,28 +40,28 @@ namespace IntegrationTests.Steps.PassTemplates
                 WeeksValidFor = 9
             };
 
-            ScenarioCache.Store(ModelKeys.PassTemplateModelKey, passTemplate);
+            ScenarioCache.Store(ModelKeys.PassTemplate, passTemplate);
         }
 
         [When(@"the pass template is attempted to be created")]
         public void WhenThePassTemplateIsAttemptedToBeCreated()
         {
-            var response = ApiCaller.Post<ActionReponse<PassTemplateModel>>(ScenarioCache.Get<PassTemplateModel>(ModelKeys.PassTemplateModelKey), Routes.PassTemplate);
+            var response = ApiCaller.Post<ActionReponse<PassTemplateModel>>(ScenarioCache.Get<PassTemplateModel>(ModelKeys.PassTemplate), Routes.PassTemplate);
             ScenarioCache.StoreActionResponse(response);
-            ScenarioCache.Store(ModelIdKeys.PassTemplateKeyId, response.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.PassTemplate, response.Data.ActionResult.Id);
         }
 
         [Then(@"pass template can be retrieved")]
         public void ThenPassTemplateCanBeRetrieved()
         {
-            var passTemplateId = ScenarioCache.GetId(ModelIdKeys.PassTemplateKeyId);
+            var passTemplateId = ScenarioCache.GetId(ModelIdKeys.PassTemplate);
             Assert.Greater(passTemplateId, 0);
 
             var response = ApiCaller.Get<PassTemplateModel>(Routes.GetPassTemplateById(passTemplateId));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
-            new VerifyPassTemplateProperties(ScenarioCache.Get<PassTemplateModel>(ModelKeys.PassTemplateModelKey), response.Data)
+            new VerifyPassTemplateProperties(ScenarioCache.Get<PassTemplateModel>(ModelKeys.PassTemplate), response.Data)
                 .Verify();
         }
 

@@ -44,7 +44,7 @@ namespace IntegrationTests.Steps.Blocks
         [Given(@"the user enrols in the block")]
         public void GivenTheUserEnrolsInTheBlock()
         {
-            var response = ApiCaller.Post<ActionReponse<UserModel>>(new EnrolmentModel(ScenarioCache.GetId(ModelIdKeys.BlockKeyId)),
+            var response = ApiCaller.Post<ActionReponse<UserModel>>(new EnrolmentModel(ScenarioCache.GetId(ModelIdKeys.Block)),
                 Routes.GetEnrolUserInBlock(ScenarioCache.GetUserId()));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);

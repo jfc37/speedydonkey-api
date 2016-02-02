@@ -9,7 +9,7 @@ namespace Models.PrivateLessons
     /// </summary>
     /// <seealso cref="Common.IEntity" />
     /// <seealso cref="Models.IDatabaseEntity" />
-    public class OpeningHours : IEntity, IDatabaseEntity
+    public class TimeSlot : IEntity, IDatabaseEntity
     {
         public virtual int Id { get; set; }
         public virtual IsoDayOfWeek Day { get; set; }
@@ -19,12 +19,13 @@ namespace Models.PrivateLessons
         public virtual DateTime? LastUpdatedDateTime { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OpeningHours"/> class.
+        /// Initializes a new instance of the <see cref="TimeSlot"/> class.
         /// </summary>
         /// <param name="day">The day.</param>
         /// <param name="openingTime">The opening time.</param>
         /// <param name="closingTime">The closing time.</param>
-        public OpeningHours(IsoDayOfWeek day, LocalTime openingTime, LocalTime closingTime)
+        public TimeSlot(IsoDayOfWeek day, LocalTime openingTime, LocalTime closingTime)
+            : this()
         {
             Day = day;
             OpeningTime = openingTime;
@@ -32,8 +33,11 @@ namespace Models.PrivateLessons
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OpeningHours"/> class.
+        /// Initializes a new instance of the <see cref="TimeSlot"/> class.
         /// </summary>
-        public OpeningHours() { }
+        public TimeSlot()
+        {
+            CreatedDateTime = DateTime.Now;
+        }
     }
 }

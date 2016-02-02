@@ -23,7 +23,7 @@ namespace Data.Mappings
             Map(x => x.InitiatedBy);
         }
     }
-    public class OpeningHoursMap : ClassMap<OpeningHours>
+    public class OpeningHoursMap : ClassMap<TimeSlot>
     {
         public OpeningHoursMap()
         {
@@ -33,6 +33,18 @@ namespace Data.Mappings
             Map(x => x.ClosingTime);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
+        }
+    }
+    public class TeacherAvailabilityMap : ClassMap<TeacherAvailability>
+    {
+        public TeacherAvailabilityMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+            References(x => x.Teacher);
+            HasMany(x => x.Availabilities)
+                .Cascade.All();
         }
     }
 
@@ -127,7 +139,7 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.Message);
             Map(x => x.NotifyAll);
-            HasManyToMany<Block>(x => x.Receivers)
+            HasManyToMany(x => x.Receivers)
                 .Table("BlockToAnnouncement")
                 .AsSet();
         }
@@ -165,9 +177,9 @@ namespace Data.Mappings
             Id(x => x.Id);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
-            HasManyToMany<Class>(x => x.Classes)
+            HasManyToMany(x => x.Classes)
                 .AsSet();
-            References<User>(x => x.User);
+            References(x => x.User);
         }
     }
     public class ClassMap : SubclassMap<Class>
@@ -176,7 +188,7 @@ namespace Data.Mappings
         {
             References(x => x.Block)
                 .Class(typeof(Block));
-            HasManyToMany<PassStatistic>(x => x.PassStatistics)
+            HasManyToMany(x => x.PassStatistics)
                 .Table("ClassPassStatistic")
                 .AsSet();
         }

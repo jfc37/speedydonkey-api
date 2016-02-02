@@ -22,15 +22,15 @@ namespace IntegrationTests.Steps.Classes
             classModel.StartTime = classModel.StartTime.AddHours(2);
             classModel.EndTime = classModel.EndTime.AddHours(3);
 
-            ScenarioCache.Store(ModelIdKeys.ClassKeyId, classModel.Id);
-            ScenarioCache.Store(ModelKeys.ClassModelKey, classModel);
+            ScenarioCache.Store(ModelIdKeys.Class, classModel.Id);
+            ScenarioCache.Store(ModelKeys.Class, classModel);
         }
 
         [When(@"the class is updated")]
         public void WhenTheClassIsUpdated()
         {
-            var response = ApiCaller.Put<ActionReponse<ClassModel>>(ScenarioCache.Get<ClassModel>(ModelKeys.ClassModelKey),
-                Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassKeyId)));
+            var response = ApiCaller.Put<ActionReponse<ClassModel>>(ScenarioCache.Get<ClassModel>(ModelKeys.Class),
+                Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.Class)));
 
             ScenarioCache.StoreActionResponse(response);
         }
@@ -38,9 +38,9 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the class's start and end time is updated")]
         public void ThenTheClassSStartAndEndTimeIsUpdated()
         {
-            var classModel = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassKeyId))).Data;
+            var classModel = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.Class))).Data;
 
-            var expectedClassModel = ScenarioCache.Get<ClassModel>(ModelKeys.ClassModelKey);
+            var expectedClassModel = ScenarioCache.Get<ClassModel>(ModelKeys.Class);
             Assert.AreEqual(expectedClassModel.StartTime, classModel.StartTime);
             Assert.AreEqual(expectedClassModel.EndTime, classModel.EndTime);
         }
@@ -48,12 +48,12 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the blocks start and end time is unchanged")]
         public void ThenTheBlocksStartAndEndTimeIsUnchanged()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
             var block = response.Data;
 
-            var expectedBlock = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
+            var expectedBlock = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
             Assert.AreEqual(expectedBlock.StartDate, block.StartDate);
             Assert.AreEqual(expectedBlock.EndDate, block.EndDate);
         }

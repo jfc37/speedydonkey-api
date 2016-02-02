@@ -13,23 +13,23 @@ namespace IntegrationTests.Steps.Users
         public void GivenTheCurrentUserNeedsToChangeTheirName()
         {
             var usernames = new UserNamesModel("first", "last");
-            ScenarioCache.Store(ModelKeys.UserNamesModelKey, usernames);
+            ScenarioCache.Store(ModelKeys.UserNames, usernames);
         }
 
         [Given(@"the current user leaves the first name empty")]
         public void GivenTheCurrentUserLeavesTheFirstNameEmpty()
         {
-            var usernames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNamesModelKey);
+            var usernames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNames);
 
             usernames.FirstName = null;
 
-            ScenarioCache.Store(ModelKeys.UserNamesModelKey, usernames);
+            ScenarioCache.Store(ModelKeys.UserNames, usernames);
         }
 
         [When(@"the current user changes their name")]
         public void WhenTheCurrentUserChangesTheirName()
         {
-            var usernames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNamesModelKey);
+            var usernames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNames);
 
             var response = ApiCaller.Put<ActionReponse<ActionReponse<UserModel>>>(usernames, Routes.CurrentUserNames);
 
@@ -41,7 +41,7 @@ namespace IntegrationTests.Steps.Users
         {
             var response = ApiCaller.Get<UserNamesModel>(Routes.CurrentUserNames);
 
-            var expectedNames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNamesModelKey);
+            var expectedNames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNames);
 
             Assert.AreEqual(expectedNames.FirstName, response.Data.FirstName);
             Assert.AreEqual(expectedNames.Surname, response.Data.Surname);
@@ -52,7 +52,7 @@ namespace IntegrationTests.Steps.Users
         {
             var response = ApiCaller.Get<UserNamesModel>(Routes.CurrentUserNames);
 
-            var expectedNames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNamesModelKey);
+            var expectedNames = ScenarioCache.Get<UserNamesModel>(ModelKeys.UserNames);
 
             Assert.IsNull(response.Data.FirstName);
             Assert.IsNull(response.Data.Surname);

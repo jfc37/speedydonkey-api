@@ -10,13 +10,13 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
     /// <seealso cref="IOpeningHourManagerFactory" />
     public class OpeningHourManagerFactory : IOpeningHourManagerFactory
     {
-        private readonly IRepository<OpeningHours> _repository;
+        private readonly IRepository<TimeSlot> _repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OpeningHourManagerFactory"/> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
-        public OpeningHourManagerFactory(IRepository<OpeningHours> repository)
+        public OpeningHourManagerFactory(IRepository<TimeSlot> repository)
         {
             _repository = repository;
         }
@@ -24,16 +24,16 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
         /// <summary>
         /// Constructs the correct type of OpeningHourManager
         /// </summary>
-        /// <param name="openingHours">The opening hours.</param>
+        /// <param name="timeSlot">The opening hours.</param>
         /// <returns></returns>
-        public IOpeningHourManager GetManager(OpeningHours openingHours)
+        public IOpeningHourManager GetManager(TimeSlot timeSlot)
         {
             var alreadyExists = _repository.GetAll()
-                .Any(x => x.Day == openingHours.Day);
+                .Any(x => x.Day == timeSlot.Day);
 
             return alreadyExists
-                ? (IOpeningHourManager) new UpdateOpeningHourManager(_repository, openingHours)
-                : new CreateOpeningHourManager(_repository, openingHours);
+                ? (IOpeningHourManager) new UpdateOpeningHourManager(_repository, timeSlot)
+                : new CreateOpeningHourManager(_repository, timeSlot);
         }
     }
 }

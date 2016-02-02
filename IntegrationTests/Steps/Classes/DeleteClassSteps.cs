@@ -16,7 +16,7 @@ namespace IntegrationTests.Steps.Classes
         [Given(@"a class needs to be deleted")]
         public void GivenAClassNeedsToBeDeleted()
         {
-            ScenarioCache.Store(ModelIdKeys.ClassKeyId, 1);
+            ScenarioCache.Store(ModelIdKeys.Class, 1);
         }
 
         [Given(@"a user has attended the class")]
@@ -29,7 +29,7 @@ namespace IntegrationTests.Steps.Classes
         [When(@"the class is deleted")]
         public void WhenTheClassIsDeleted()
         {
-            var response = ApiCaller.Delete<ActionReponse<ClassModel>>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassKeyId)));
+            var response = ApiCaller.Delete<ActionReponse<ClassModel>>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.Class)));
 
             ScenarioCache.StoreActionResponse(response);
         }
@@ -37,7 +37,7 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the class can not be retrieved")]
         public void ThenTheClassCanNotBeRetrieved()
         {
-            var response = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassKeyId)));
+            var response = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.Class)));
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
@@ -45,7 +45,7 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the class can be retrieved")]
         public void ThenTheClassCanBeRetrieved()
         {
-            var response = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassKeyId)));
+            var response = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.Class)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }

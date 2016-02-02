@@ -265,6 +265,7 @@
     <Compile Include="Controllers\PassTemplates\PassTemplateApiController.cs" />
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
+    <Compile Include="Controllers\PrivateLessons\OpeningHoursApiController.cs" />
     <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventApiController.cs" />

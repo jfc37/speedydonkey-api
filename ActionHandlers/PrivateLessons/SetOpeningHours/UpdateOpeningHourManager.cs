@@ -10,33 +10,33 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
     /// <seealso cref="IOpeningHourManager" />
     public class UpdateOpeningHourManager : IOpeningHourManager
     {
-        private readonly OpeningHours _openingHours;
-        private readonly IRepository<OpeningHours> _repository;
+        private readonly TimeSlot _timeSlot;
+        private readonly IRepository<TimeSlot> _repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateOpeningHourManager"/> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
-        /// <param name="openingHours">The opening hours.</param>
+        /// <param name="timeSlot">The opening hours.</param>
         public UpdateOpeningHourManager(
-            IRepository<OpeningHours> repository, 
-            OpeningHours openingHours)
+            IRepository<TimeSlot> repository, 
+            TimeSlot timeSlot)
         {
             _repository = repository;
-            _openingHours = openingHours;
+            _timeSlot = timeSlot;
         }
 
         /// <summary>
         /// Updates an opening hour
         /// </summary>
         /// <returns></returns>
-        public OpeningHours Save()
+        public TimeSlot Save()
         {
             var original = _repository.GetAll()
-                .Single(x => x.Day == _openingHours.Day);
+                .Single(x => x.Day == _timeSlot.Day);
 
-            original.OpeningTime = _openingHours.OpeningTime;
-            original.ClosingTime = _openingHours.ClosingTime;
+            original.OpeningTime = _timeSlot.OpeningTime;
+            original.ClosingTime = _timeSlot.ClosingTime;
 
             return _repository.Update(original);
         }

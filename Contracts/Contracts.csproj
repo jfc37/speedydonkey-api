@@ -67,6 +67,7 @@
     <Compile Include="MappingExtensions\LocalTimeMappingExtensions.cs" />
     <Compile Include="MappingExtensions\ModelMappingExtensions.cs" />
     <Compile Include="MappingExtensions\OpeningHoursMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\TeacherAvailablityMappingExtensions.cs" />
     <Compile Include="OnlinePayments\OnlinePaymentRequestModel.cs" />
     <Compile Include="OnlinePayments\PayPal\PayPalCompleteModel.cs" />
     <Compile Include="OnlinePayments\PayPal\PayPalConfirmModel.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Passes\PassStatisticModel.cs" />
     <Compile Include="Passes\PassTemplateModel.cs" />
     <Compile Include="PrivateLessons\LocalTimeModel.cs" />
+    <Compile Include="PrivateLessons\TeacherAvailabilityModel.cs" />
     <Compile Include="PrivateLessons\TimeSlotModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\BlockProfitReport.cs" />
