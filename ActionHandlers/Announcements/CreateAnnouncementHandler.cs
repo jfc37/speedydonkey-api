@@ -23,13 +23,11 @@ namespace ActionHandlers.Announcements
         {
             var usersToNotify = _retrieveUsersToNotifyFactory.Create(action.ActionAgainst)
                 .Get(action.ActionAgainst)
-                .Distinct()
                 .ToList();
 
-            foreach (var user in usersToNotify)
-            {
-                _notificationHandler.Handle(new EmailAnnouncement(user, action.ActionAgainst.Message, action.ActionAgainst.Subject));
-            }
+            usersToNotify.ForEach(x =>
+                _notificationHandler.Handle(
+                    new EmailAnnouncement(x, action.ActionAgainst.Message, action.ActionAgainst.Subject)));
 
             action.NumberOfUsersEmailed = usersToNotify.Count();
 

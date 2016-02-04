@@ -136,6 +136,7 @@ namespace Data.Mappings
             Map(x => x.Status);
             Map(x => x.ActivationKey);
             Map(x => x.Note);
+            Map(x => x.DoNotEmail);
             HasManyToMany<Block>(x => x.EnroledBlocks)
                 .Table("UsersEnroledBlocks")
                 .AsSet();
