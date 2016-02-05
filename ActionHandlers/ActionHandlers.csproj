@@ -70,6 +70,7 @@
     <Compile Include="Announcements\RetrieveUsers\RetrieveAllUsers.cs" />
     <Compile Include="Announcements\RetrieveUsers\RetrieveUsersInSpecificBlocksToNotify.cs" />
     <Compile Include="Announcements\RetrieveUsers\RetrieveUsersToNotifyFactory.cs" />
+    <Compile Include="Announcements\RetrieveUsers\RetrieveUsersToNotifyFilterDecorator.cs" />
     <Compile Include="Blocks\ChangeBlockRoomHandler.cs" />
     <Compile Include="Blocks\ClassRoomChangerForBlock.cs" />
     <Compile Include="Blocks\ClassRoomRemoverForBlock.cs" />
@@ -123,6 +124,10 @@
     <Compile Include="UserPasses\PassCreator.cs" />
     <Compile Include="UserPasses\PurchasePassHandler.cs" />
     <Compile Include="UserPasses\UserPassAppender.cs" />
+    <Compile Include="Users\DoNotEmailFlags\DoNotEmailForUserFlagChanger.cs" />
+    <Compile Include="Users\DoNotEmailFlags\IDoNotEmailForUserFlagChanger.cs" />
+    <Compile Include="Users\DoNotEmailFlags\RemoveDoNotEmailForUserHandler.cs" />
+    <Compile Include="Users\DoNotEmailFlags\SetDoNotEmailForUserHandler.cs" />
     <Compile Include="Users\UpdateUserHandler.cs" />
     <Compile Include="Users\UpdateUserNamesHandler.cs" />
   </ItemGroup>

@@ -195,7 +195,8 @@ namespace SpeedyDonkeyApi.Models
                 FirstName = instance.FirstName,
                 Passes = instance.Passes.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
                 Surname = instance.Surname,
-                Id = instance.Id
+                Id = instance.Id,
+                DoNotEmail = instance.DoNotEmail
             };
         }
 
@@ -541,7 +542,8 @@ namespace SpeedyDonkeyApi.Models
                 Schedule = instance.Schedule.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Surname = instance.Surname,
                 Password = instance.Password,
-                Id = instance.Id
+                Id = instance.Id,
+                DoNotEmail = instance.DoNotEmail
             };
         }
 

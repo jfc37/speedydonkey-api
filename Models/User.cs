@@ -39,6 +39,7 @@ namespace Models
         public virtual DateTime CreatedDateTime { get; set; }
         public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual string Claims { get; set; } 
+        public virtual bool DoNotEmail { get; set; }
 
         public virtual Pass GetPassToUse()
         {

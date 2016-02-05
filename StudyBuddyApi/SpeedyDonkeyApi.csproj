@@ -341,6 +341,7 @@
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventAttendanceApiController.cs" />
     <Compile Include="Controllers\Teachers\TeacherApiController.cs" />
     <Compile Include="Controllers\Users\CurrentUserApiController.cs" />
+    <Compile Include="Controllers\Users\UserEmailApiController.cs" />
     <Compile Include="Controllers\Users\CurrentUserNameApiController.cs" />
     <Compile Include="Controllers\Users\EnrolmentApiController.cs" />
     <Compile Include="Controllers\Users\UserApiController.cs" />

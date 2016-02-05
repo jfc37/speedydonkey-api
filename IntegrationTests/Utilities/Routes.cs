@@ -65,6 +65,11 @@ namespace IntegrationTests.Utilities
             return "users/{0}/enrolment".FormatWith(userId);
         }
 
+        public static string GetDoNotEmailUser(int userId)
+        {
+            return "users/{0}/do-not-email".FormatWith(userId);
+        }
+
         public static string GetRegisterUserInEvent(int userId)
         {
             return "users/{0}/registration/event".FormatWith(userId);
