@@ -3,7 +3,7 @@
 @stand_alone_event @private_event @create @golden_path
 Scenario: Private event is not available for registration
 	Given a private stand alone event exists
-	When upcoming statnd alone events are requested
+	When upcoming stand alone events are requested
 	Then the request returns not found
 
 @stand_alone_event @create @golden_path

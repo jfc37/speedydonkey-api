@@ -16,10 +16,11 @@ namespace ActionHandlers.Announcements.RetrieveUsers
 
         public IRetrieveUsersToNotify Create(Announcement announcement)
         {
-            if (announcement.NotifyAll)
-                return new RetrieveAllUsers(_userRepository);
+            var actualRetriever = announcement.NotifyAll 
+                ? (IRetrieveUsersToNotify) new RetrieveAllUsers(_userRepository) 
+                : new RetrieveUsersInSpecificBlocksToNotify(_blockRepository);
 
-            return new RetrieveUsersInSpecificBlocksToNotify(_blockRepository);
+            return new RetrieveUsersToNotifyFilterDecorator(actualRetriever);
         }
     }
 }

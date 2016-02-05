@@ -2,6 +2,7 @@
 using System.Net;
 using ActionHandlers;
 using Common.Extensions;
+using IntegrationTests.Steps.Rooms;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
 using SpeedyDonkeyApi.Models;
@@ -99,6 +100,15 @@ namespace IntegrationTests.Steps.Announcements
             var announcementConfirmation = ScenarioCache.GetActionResponse<AnnouncementConfirmationModel>();
 
             Assert.AreEqual(numberOfUsersEmailed, announcementConfirmation.NumberOfUsersEmailed);
+        }
+
+        [When(@"an announcement is sent to the block")]
+        public void WhenAnAnnouncementIsSentToTheBlock()
+        {
+            GivenAValidAnnouncementIsReadyToBeSubmitted();
+            GivenTheAnnouncementIsToBeSentToTheBlock();
+            WhenTheAnnouncementIsAttemptedToBeCreated();
+            new UpdateRoomSteps().ThenTheRequestIsSuccessful();
         }
     }
 }

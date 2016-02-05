@@ -23,7 +23,7 @@ namespace SpeedyDonkeyApi.Models
         public List<BlockModel> EnroledBlocks { get; set; }
         public List<PassModel> Passes { get; set; }
         public string Email { get; set; }
-
+        public bool DoNotEmail { get; set; }
         public string Note { get; set; }
 
         public override string ToString()
