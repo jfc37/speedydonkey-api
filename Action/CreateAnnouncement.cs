@@ -1,4 +1,5 @@
 ﻿using Actions;
+using Common.Extensions;
 using Models;
 
 namespace Action
@@ -11,5 +12,10 @@ namespace Action
         }
         
         public int NumberOfUsersEmailed { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(NumberOfUsersEmailed), nameof(ActionAgainst));
+        }
     }
 }

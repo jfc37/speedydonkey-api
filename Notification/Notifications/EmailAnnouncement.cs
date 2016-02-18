@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Common.Extensions;
 using Models;
 
 namespace Notification.Notifications
@@ -23,6 +24,11 @@ namespace Notification.Notifications
                 new KeyValuePair<string, string>("surname", user.Surname),
                 new KeyValuePair<string, string>("message", message) 
             };
+        }
+        
+        public override string ToString()
+        {
+            return this.ToDebugString(nameof(Subject), nameof(EmailTo));
         }
     }
 }
