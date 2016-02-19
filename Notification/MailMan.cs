@@ -6,6 +6,8 @@ using Mandrill;
 using Mandrill.Models;
 using Mandrill.Requests.Messages;
 using Notification.Notifications;
+using PostSharp.Patterns.Diagnostics;
+using PostSharp.Extensibility;
 
 namespace Notification
 {
@@ -22,6 +24,7 @@ namespace Notification
             _appSettings = appSettings;
         }
 
+        [Log]
         public void Send(INotification notification)
         {
             if (!Convert.ToBoolean(_appSettings.GetSetting(AppSettingKey.ShouldSendEmail)))
