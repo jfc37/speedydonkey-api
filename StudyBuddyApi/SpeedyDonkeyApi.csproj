@@ -337,6 +337,7 @@
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
+    <Compile Include="Controllers\Settings\LogoController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventApiController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventAttendanceApiController.cs" />
     <Compile Include="Controllers\Teachers\TeacherApiController.cs" />
