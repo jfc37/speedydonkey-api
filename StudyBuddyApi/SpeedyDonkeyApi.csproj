@@ -337,7 +337,7 @@
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
-    <Compile Include="Controllers\Settings\LogoController.cs" />
+    <Compile Include="Controllers\Settings\SettingsController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventApiController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventAttendanceApiController.cs" />
     <Compile Include="Controllers\Teachers\TeacherApiController.cs" />
@@ -387,6 +387,8 @@
     <Compile Include="Models\PassTemplateModel.cs" />
     <Compile Include="Models\ProfitReportModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
+    <Compile Include="Models\Settings\SettingItemModel.cs" />
+    <Compile Include="Models\Settings\CompleteSettingsModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\UserEnroledBlocksModel.cs" />
     <Compile Include="Models\CurrentUserPassesModel.cs" />

@@ -180,6 +180,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UpdateRoom.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Settings\CreateSetting.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateSetting.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\StandAloneEvents\CreateStandAloneEvent.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -284,6 +289,7 @@
     <Compile Include="Steps\Rooms\UnassignRoomFromBlockSteps.cs" />
     <Compile Include="Steps\Rooms\UnassignRoomFromClassSteps.cs" />
     <Compile Include="Steps\Rooms\UpdateRoomSteps.cs" />
+    <Compile Include="Steps\Settings\CreateSettingSteps.cs" />
     <Compile Include="Steps\StandAloneEvents\CreateStandAloneEventSteps.cs" />
     <Compile Include="Steps\StandAloneEvents\EventAttendanceSteps.cs" />
     <Compile Include="Steps\StandAloneEvents\StandAloneEventRegistrationSteps.cs" />
@@ -405,6 +411,10 @@
     <None Include="Features\Rooms\UpdateRoom.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UpdateRoom.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Settings\CreateSetting.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateSetting.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\StandAloneEvents\CreateStandAloneEvent.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
