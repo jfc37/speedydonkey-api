@@ -38,5 +38,21 @@
 			</match>
 		</tracerFactory>
 
+		<tracerFactory>
+			<match assemblyName="System.Web" className="System.Web.HttpWriter">
+				<exactMethodMatcher methodName="Filter" />
+				<exactMethodMatcher methodName="FilterIntegrated" />
+			</match>
+		</tracerFactory>
+
+		<tracerFactory>
+			<match assemblyName="System.Web" className="System.Web.UI.Page">
+				<exactMethodMatcher methodName="ProcessRequest" parameters="System.Boolean,System.Boolean" />
+			</match>
+			<match assemblyName="System.Web" className="System.Web.UI.Page">
+				<exactMethodMatcher methodName="AsyncPageBeginProcessRequest" />
+			</match>
+		</tracerFactory>
+
 	</instrumentation>
 </extension>

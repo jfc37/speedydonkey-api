@@ -19,8 +19,6 @@ namespace Data.Searches
         public const string GreaterThan = "gt";
         public const string LessThan = "lt";
 
-        public const string Include = "include";
-
         public const string OrderBy = "orderby";
         public const string Descending = "desc";
         public const string Ascending = "asc";

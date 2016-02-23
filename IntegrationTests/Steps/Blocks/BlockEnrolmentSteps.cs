@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Contracts.Blocks;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Blocks
@@ -36,12 +36,12 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the user is enroled in the block")]
         public void ThenTheUserIsEnroledInTheBlock()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
             var user = response.Data.EnroledStudents.Single();
-            Assert.AreEqual(ScenarioCache.GetId(ModelIdKeys.UserIdKey), user.Id);
+            Assert.AreEqual(ScenarioCache.GetId(ModelIdKeys.User), user.Id);
         }
 
         [Then(@"the user has an item in their upcoming schedule")]

@@ -20,10 +20,7 @@ namespace Data.Searches
 
                 case SearchKeyWords.OrderBy:
                     return new QueryOrderByModifier();
-
-                case SearchKeyWords.Include:
-                    return new QueryIncludeModifier();
-
+                    
                 case SearchKeyWords.Contains:
                 case SearchKeyWords.Equals:
                 case SearchKeyWords.GreaterThan:

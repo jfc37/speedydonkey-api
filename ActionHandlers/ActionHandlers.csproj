@@ -53,6 +53,10 @@
       <HintPath>..\packages\PostSharp.Patterns.Diagnostics.4.2.18\lib\net40\PostSharp.Patterns.Diagnostics.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NodaTime, Version=1.3.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodaTime.1.3.1\lib\net35-Client\NodaTime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -88,6 +92,18 @@
     <Compile Include="Classes\UnassignClassRoomHandler.cs" />
     <Compile Include="CreateHandlers\CreateRegistrationHandler.cs" />
     <Compile Include="IActionHandlerWithResult.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\CreateTeacherAvailabilityManager.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\ITeacherAvailabilityManager.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\ITeacherAvailabilityManagerFactory.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\TeacherAvailabilityManagerFactory.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\SetTeacherAvailabilityHandler.cs" />
+    <Compile Include="PrivateLessons\SetTeacherAvailability\UpdateTeacherAvailabilityManager.cs" />
+    <Compile Include="PrivateLessons\SetOpeningHours\CreateOpeningHourManager.cs" />
+    <Compile Include="PrivateLessons\SetOpeningHours\IOpeningHourManager.cs" />
+    <Compile Include="PrivateLessons\SetOpeningHours\IOpeningHourManagerFactory.cs" />
+    <Compile Include="PrivateLessons\SetOpeningHours\OpeningHourManagerFactory.cs" />
+    <Compile Include="PrivateLessons\SetOpeningHours\SetOpeningHoursHandler.cs" />
+    <Compile Include="PrivateLessons\SetOpeningHours\UpdateOpeningHourManager.cs" />
     <Compile Include="RemoveAsTeacherHandler.cs" />
     <Compile Include="Rooms\CreateRoomHandler.cs" />
     <Compile Include="Rooms\DeleteRoomHandler.cs" />

@@ -52,7 +52,12 @@ namespace ActionHandlers.CreateHandlers
 
         private bool IsEmailOnAdminWhitelist(string email)
         {
-            return _appSettings.GetSetting(AppSettingKey.AdminEmailWhitelist).Contains(String.Format("|{0}|", email));
+            var blah = _appSettings.GetSetting(AppSettingKey.AdminEmailWhitelist);
+            var blah2 = $"|{email}|";
+
+            var blah3 = blah.Contains(blah2);
+
+            return _appSettings.GetSetting(AppSettingKey.AdminEmailWhitelist).Contains($"|{email}|");
         }
 
         protected override void PostHandle(ICrudAction<User> action, User result)

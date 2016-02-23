@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Contracts.Events;
 using IntegrationTests.Utilities;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.StandAloneEvents
@@ -14,9 +14,9 @@ namespace IntegrationTests.Steps.StandAloneEvents
             var createSteps = new CreateStandAloneEventSteps();
             createSteps.GivenAValidStandAloneEventIsReadyToBeSubmitted();
 
-            var standAloneEvent = ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEventKey);
+            var standAloneEvent = ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEvent);
             standAloneEvent.IsPrivate = true;
-            ScenarioCache.Store(ModelKeys.StandAloneEventKey, standAloneEvent);
+            ScenarioCache.Store(ModelKeys.StandAloneEvent, standAloneEvent);
 
             createSteps.WhenTheStandAloneEventIsAttemptedToBeCreated();
             createSteps.ThenTheStandAloneEventCanBeRetrieved();

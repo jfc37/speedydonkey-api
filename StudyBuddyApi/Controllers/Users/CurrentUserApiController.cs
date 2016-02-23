@@ -2,11 +2,13 @@ using System.Web.Http;
 using Action.Users;
 using ActionHandlers;
 using Common;
+using Contracts;
+using Contracts.MappingExtensions;
+using Contracts.Users;
 using Data.Repositories;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Users
 {

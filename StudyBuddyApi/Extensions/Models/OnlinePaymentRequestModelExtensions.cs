@@ -1,5 +1,5 @@
-﻿using Models.OnlinePayments;
-using SpeedyDonkeyApi.Models.OnlinePayments;
+﻿using Contracts.OnlinePayments;
+using Models.OnlinePayments;
 
 namespace SpeedyDonkeyApi.Extensions.Models
 {

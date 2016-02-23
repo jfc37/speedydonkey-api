@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using System.Net;
 using ActionHandlers;
+using Contracts;
+using Contracts.Blocks;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Blocks
@@ -21,8 +22,8 @@ namespace IntegrationTests.Steps.Blocks
             block.StartDate = block.StartDate.AddDays(2);
             block.EndDate = block.EndDate.AddDays(2);
 
-            ScenarioCache.Store(ModelIdKeys.BlockKeyId, block.Id);
-            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+            ScenarioCache.Store(ModelIdKeys.Block, block.Id);
+            ScenarioCache.Store(ModelKeys.Block, block);
         }
 
         [Given(@"the block needs to change to invite only")]
@@ -34,8 +35,8 @@ namespace IntegrationTests.Steps.Blocks
             var block = response.Data;
             block.IsInviteOnly = true;
 
-            ScenarioCache.Store(ModelIdKeys.BlockKeyId, block.Id);
-            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+            ScenarioCache.Store(ModelIdKeys.Block, block.Id);
+            ScenarioCache.Store(ModelKeys.Block, block);
         }
 
         [Given(@"the block needs to change from invite only")]
@@ -47,16 +48,16 @@ namespace IntegrationTests.Steps.Blocks
             var block = response.Data;
             block.IsInviteOnly = false;
 
-            ScenarioCache.Store(ModelIdKeys.BlockKeyId, block.Id);
-            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+            ScenarioCache.Store(ModelIdKeys.Block, block.Id);
+            ScenarioCache.Store(ModelKeys.Block, block);
         }
 
 
         [When(@"the block is updated")]
         public void WhenTheBlockIsUpdated()
         {
-            var response = ApiCaller.Put<ActionReponse<BlockModel>>(ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey),
-                Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId)));
+            var response = ApiCaller.Put<ActionReponse<BlockModel>>(ScenarioCache.Get<BlockModel>(ModelKeys.Block),
+                Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
 
             ScenarioCache.StoreActionResponse(response);
         }
@@ -64,13 +65,13 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the blocks start and end time is updated")]
         public void ThenTheBlocksStartAndEndTimeIsUpdated()
         {
-            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockKeyId))).Data;
+            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block))).Data;
 
-            var expectedBlock = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
+            var expectedBlock = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
             Assert.AreEqual(expectedBlock.StartDate, block.StartDate);
             Assert.AreEqual(expectedBlock.EndDate, block.EndDate);
 
-            ScenarioCache.Store(ModelKeys.BlockModelKey, block);
+            ScenarioCache.Store(ModelKeys.Block, block);
         }
 
         [Given(@"the day the block is on has been updated")]
@@ -84,7 +85,7 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the block's classes start and end time is updated")]
         public void ThenTheBlockSClassesStartAndEndTimeIsUpdated()
         {
-            var block = ScenarioCache.Get<BlockModel>(ModelKeys.BlockModelKey);
+            var block = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
 
             var expectedStartTime = block.StartDate;
             var expectedEndTime = block.StartDate.AddMinutes(block.MinutesPerClass);

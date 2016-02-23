@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SpeedyDonkeyApi.Models;
+using Contracts.Users;
 
 namespace IntegrationTests.Utilities.ModelFunctions
 {

@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using ActionHandlers;
+using Contracts.Rooms;
 using IntegrationTests.Utilities;
 using IntegrationTests.Utilities.ModelVerfication;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Rooms
@@ -15,35 +15,35 @@ namespace IntegrationTests.Steps.Rooms
         public void GivenAValidRoomIsReadyToBeSubmitted()
         {
             var room = new RoomModel("Room One", "Cuba Street");
-            ScenarioCache.Store(ModelKeys.RoomModelKey, room);
+            ScenarioCache.Store(ModelKeys.Room, room);
         }
 
         [Given(@"an invalid room is ready to be submitted")]
         public void GivenAnInvalidRoomIsReadyToBeSubmitted()
         {
             var room = new RoomModel();
-            ScenarioCache.Store(ModelKeys.RoomModelKey, room);
+            ScenarioCache.Store(ModelKeys.Room, room);
         }
 
         [When(@"the room is attempted to be created")]
         public void WhenTheRoomIsAttemptedToBeCreated()
         {
-            var response = ApiCaller.Post<ActionReponse<RoomModel>>(ScenarioCache.Get<RoomModel>(ModelKeys.RoomModelKey), Routes.Room);
+            var response = ApiCaller.Post<ActionReponse<RoomModel>>(ScenarioCache.Get<RoomModel>(ModelKeys.Room), Routes.Room);
             ScenarioCache.StoreActionResponse(response);
-            ScenarioCache.Store(ModelIdKeys.RoomKeyId, response.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.Room, response.Data.ActionResult.Id);
         }
 
         [Then(@"the room can be retrieved")]
         public void ThenTheRoomCanBeRetrieved()
         {
-            var roomId = ScenarioCache.GetId(ModelIdKeys.RoomKeyId);
+            var roomId = ScenarioCache.GetId(ModelIdKeys.Room);
             Assert.Greater(roomId, 0);
 
             var response = ApiCaller.Get<RoomModel>(Routes.GetById(Routes.Room, roomId));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
-            new VerifyRoomProperties(ScenarioCache.Get<RoomModel>(ModelKeys.RoomModelKey), response.Data)
+            new VerifyRoomProperties(ScenarioCache.Get<RoomModel>(ModelKeys.Room), response.Data)
                 .Verify();
         }
 

@@ -1,9 +1,9 @@
 ﻿using System.Web.Http;
+using Contracts.OnlinePayments.PayPal;
 using Models.OnlinePayments;
 using OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal.Models;
 using SpeedyDonkeyApi.Extensions.Models;
-using SpeedyDonkeyApi.Models.OnlinePayments.PayPal;
 
 namespace SpeedyDonkeyApi.Controllers.OnlinePayments
 {

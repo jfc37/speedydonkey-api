@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net;
 using ActionHandlers;
 using Common.Extensions;
+using Contracts.Users;
 using IntegrationTests.Utilities;
 using IntegrationTests.Utilities.ModelVerfication;
 using Models.QueryExtensions;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Users
@@ -82,7 +82,7 @@ namespace IntegrationTests.Steps.Users
 
             Assert.AreEqual(userResponse.StatusCode, HttpStatusCode.Created);
 
-            ScenarioCache.StoreUserId(userResponse.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.User, userResponse.Data.ActionResult.Id);
         }
 
         [When(@"user is attempted to be created")]

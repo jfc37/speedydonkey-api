@@ -3,13 +3,15 @@ using System.Web.Http;
 using Action;
 using Action.Blocks;
 using ActionHandlers;
+using Contracts;
+using Contracts.Blocks;
+using Contracts.MappingExtensions;
 using Data.QueryFilters;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Blocks
 {

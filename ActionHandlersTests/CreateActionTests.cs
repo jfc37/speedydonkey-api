@@ -97,7 +97,7 @@ namespace ActionHandlersTests
 
                 PerformAction();
 
-                Assert.IsNotNullOrEmpty(_action.ActionAgainst.Claims);
+                Assert.IsNotEmpty(_action.ActionAgainst.Claims);
             }
         }
 
@@ -112,7 +112,7 @@ namespace ActionHandlersTests
 
                 PerformAction();
 
-                Assert.IsNullOrEmpty(_action.ActionAgainst.Claims);
+                Assert.IsEmpty(_action.ActionAgainst.Claims);
             }
         }
     }

@@ -1,10 +1,6 @@
-﻿using System.Net;
-using ActionHandlers;
-using Auth0;
+﻿using Auth0;
 using Common;
 using IntegrationTests.Utilities;
-using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Common
@@ -29,25 +25,12 @@ namespace IntegrationTests.Steps.Common
         public static void SetupSystem()
         {
             ResetDatabase();
-            ScenarioCache.StoreUserId(1);
+            ScenarioCache.Store(ModelIdKeys.User, 1);
         }
 
         private static void ResetDatabase()
         {
             ApiCaller.Delete<bool>(Routes.Database);
-        }
-
-        private static void CreateAdminUser()
-        {
-            var userRequest = new UserModel();
-            userRequest.Surname = "admin";
-            userRequest.Email = "joseph@fullswing.co.nz";
-            userRequest.Password = "password";
-            userRequest.FirstName = "admin";
-
-            var userResponse = ApiCaller.Post<ActionReponse<UserModel>>(userRequest, Routes.Users);
-
-            Assert.AreEqual(HttpStatusCode.Created, userResponse.StatusCode);
         }
     }
 }
