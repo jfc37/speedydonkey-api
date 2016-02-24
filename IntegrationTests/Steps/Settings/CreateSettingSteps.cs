@@ -34,7 +34,7 @@ namespace IntegrationTests.Steps.Settings
         [Given(@"a valid logo url is ready to be submitted")]
         public void GivenAValidLogoUrlIsReadyToBeSubmitted()
         {
-            var validUri = new Uri("http://www.google.com");
+            var validUri = new Uri("http://www.allaccess.com/assets/img/editorial/raw/kr/KRfoundlogo.jpg");
             var logoSetting = new SettingItemModel(SettingTypes.Logo.ToString(), validUri.OriginalString);
             var completeSettings = new CompleteSettingsModel(logoSetting);
 

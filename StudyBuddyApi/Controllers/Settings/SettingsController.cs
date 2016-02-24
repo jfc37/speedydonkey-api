@@ -46,5 +46,13 @@ namespace SpeedyDonkeyApi.Controllers.Settings
                 ? (IHttpActionResult) Ok(_settingsRepository.GetAll().Single(x => x.Name == settingType).ToModel())
                 : NotFound();
         }
+        
+        [Route]
+        [AllowAnonymous]
+        public IHttpActionResult Get()
+        {
+            return Ok(_settingsRepository.GetAll().Select(x => x.ToModel()));
+        }
+        
     }
 }
