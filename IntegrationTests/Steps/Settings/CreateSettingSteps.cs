@@ -24,7 +24,7 @@ namespace IntegrationTests.Steps.Settings
         public void GivenTheLogoSettingNeedsToBeChanged()
         {
             var validUri = new Uri("http://www.bing.com");
-            var logoSetting = new SettingItemModel(SettingTypes.Logo.ToString(), validUri.OriginalString);
+            var logoSetting = new SettingItemModel(SettingTypes.Logo.ToString().ToLower(), validUri.OriginalString);
             var completeSettings = new CompleteSettingsModel(logoSetting);
 
             ScenarioCache.Store(ModelKeys.SettingItem, logoSetting);
@@ -35,7 +35,7 @@ namespace IntegrationTests.Steps.Settings
         public void GivenAValidLogoUrlIsReadyToBeSubmitted()
         {
             var validUri = new Uri("http://www.allaccess.com/assets/img/editorial/raw/kr/KRfoundlogo.jpg");
-            var logoSetting = new SettingItemModel(SettingTypes.Logo.ToString(), validUri.OriginalString);
+            var logoSetting = new SettingItemModel(SettingTypes.Logo.ToString().ToLower(), validUri.OriginalString);
             var completeSettings = new CompleteSettingsModel(logoSetting);
 
             ScenarioCache.Store(ModelKeys.SettingItem, logoSetting);
@@ -64,7 +64,7 @@ namespace IntegrationTests.Steps.Settings
         [Given(@"an invalid logo url is ready to be submitted")]
         public void GivenAnInvalidLogoUrlIsReadyToBeSubmitted()
         {
-            var completeSettings = new CompleteSettingsModel(new SettingItemModel(SettingTypes.Logo.ToString(), "notaurl"));
+            var completeSettings = new CompleteSettingsModel(new SettingItemModel(SettingTypes.Logo.ToString().ToLower(), "notaurl"));
 
             ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
         }
