@@ -25,7 +25,7 @@ namespace IntegrationTests.Steps.Common
         public static void SetupSystem()
         {
             ResetDatabase();
-            ScenarioCache.Store(ModelIdKeys.User, 1);
+            ScenarioCache.Store(ModelIdKeys.UserId, 1);
         }
 
         private static void ResetDatabase()

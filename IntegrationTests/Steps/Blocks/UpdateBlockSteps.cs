@@ -22,7 +22,7 @@ namespace IntegrationTests.Steps.Blocks
             block.StartDate = block.StartDate.AddDays(2);
             block.EndDate = block.EndDate.AddDays(2);
 
-            ScenarioCache.Store(ModelIdKeys.Block, block.Id);
+            ScenarioCache.Store(ModelIdKeys.BlockId, block.Id);
             ScenarioCache.Store(ModelKeys.Block, block);
         }
 
@@ -35,7 +35,7 @@ namespace IntegrationTests.Steps.Blocks
             var block = response.Data;
             block.IsInviteOnly = true;
 
-            ScenarioCache.Store(ModelIdKeys.Block, block.Id);
+            ScenarioCache.Store(ModelIdKeys.BlockId, block.Id);
             ScenarioCache.Store(ModelKeys.Block, block);
         }
 
@@ -48,7 +48,7 @@ namespace IntegrationTests.Steps.Blocks
             var block = response.Data;
             block.IsInviteOnly = false;
 
-            ScenarioCache.Store(ModelIdKeys.Block, block.Id);
+            ScenarioCache.Store(ModelIdKeys.BlockId, block.Id);
             ScenarioCache.Store(ModelKeys.Block, block);
         }
 
@@ -57,7 +57,7 @@ namespace IntegrationTests.Steps.Blocks
         public void WhenTheBlockIsUpdated()
         {
             var response = ApiCaller.Put<ActionReponse<BlockModel>>(ScenarioCache.Get<BlockModel>(ModelKeys.Block),
-                Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+                Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
 
             ScenarioCache.StoreActionResponse(response);
         }
@@ -65,7 +65,7 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the blocks start and end time is updated")]
         public void ThenTheBlocksStartAndEndTimeIsUpdated()
         {
-            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block))).Data;
+            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId))).Data;
 
             var expectedBlock = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
             Assert.AreEqual(expectedBlock.StartDate, block.StartDate);

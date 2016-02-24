@@ -57,6 +57,7 @@
       <HintPath>..\packages\PostSharp.Patterns.Diagnostics.4.2.18\lib\net40\PostSharp.Patterns.Diagnostics.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +96,10 @@
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />
     <Compile Include="Validators\Rooms\UpdateRoomValidator.cs" />
+    <Compile Include="Validators\Settings\AreAllSettingNamesValid.cs" />
+    <Compile Include="Validators\Settings\AreNoDuplicateSettings.cs" />
+    <Compile Include="Validators\Settings\IsLogoSettingAValidUrl.cs" />
+    <Compile Include="Validators\Settings\UpdateSettingsValidator.cs" />
     <Compile Include="Validators\StandAloneEvents\CheckStudentIntoEventValidator.cs" />
     <Compile Include="Validators\StandAloneEvents\CreateStandAloneEventValidator.cs" />
     <Compile Include="Validators\StandAloneEvents\RegisterForStandAloneEventValidator.cs" />

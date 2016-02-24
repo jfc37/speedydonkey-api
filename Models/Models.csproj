@@ -71,6 +71,8 @@
     <Compile Include="QueryExtensions\UserModelQueryExtensions.cs" />
     <Compile Include="ReferenceData.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="Settings\CompleteSettings.cs" />
+    <Compile Include="Settings\SettingItem.cs" />
     <Compile Include="Settings\SettingTypes.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="Registration.cs" />

@@ -27,7 +27,7 @@ namespace IntegrationTests.Steps.Users
         [When(@"a user is retrieved by id")]
         public void WhenAUserIsRetrievedById()
         {
-            var userResponse = ApiCaller.Get<UserModel>(Routes.GetUserById(ScenarioCache.GetId(ModelIdKeys.User)));
+            var userResponse = ApiCaller.Get<UserModel>(Routes.GetUserById(ScenarioCache.GetId(ModelIdKeys.UserId)));
             ScenarioCache.Store(ModelKeys.Response, userResponse.StatusCode);
         }
 

@@ -22,7 +22,7 @@ namespace IntegrationTests.Steps.Classes
             classModel.StartTime = classModel.StartTime.AddHours(2);
             classModel.EndTime = classModel.EndTime.AddHours(3);
 
-            ScenarioCache.Store(ModelIdKeys.Class, classModel.Id);
+            ScenarioCache.Store(ModelIdKeys.ClassId, classModel.Id);
             ScenarioCache.Store(ModelKeys.Class, classModel);
         }
 
@@ -30,7 +30,7 @@ namespace IntegrationTests.Steps.Classes
         public void WhenTheClassIsUpdated()
         {
             var response = ApiCaller.Put<ActionReponse<ClassModel>>(ScenarioCache.Get<ClassModel>(ModelKeys.Class),
-                Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.Class)));
+                Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassId)));
 
             ScenarioCache.StoreActionResponse(response);
         }
@@ -38,7 +38,7 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the class's start and end time is updated")]
         public void ThenTheClassSStartAndEndTimeIsUpdated()
         {
-            var classModel = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.Class))).Data;
+            var classModel = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassId))).Data;
 
             var expectedClassModel = ScenarioCache.Get<ClassModel>(ModelKeys.Class);
             Assert.AreEqual(expectedClassModel.StartTime, classModel.StartTime);
@@ -48,7 +48,7 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the blocks start and end time is unchanged")]
         public void ThenTheBlocksStartAndEndTimeIsUnchanged()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
             var block = response.Data;

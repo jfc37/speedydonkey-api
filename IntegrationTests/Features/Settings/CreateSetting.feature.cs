@@ -114,6 +114,33 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Update logo url setting")]
+        [NUnit.Framework.CategoryAttribute("settings")]
+        [NUnit.Framework.CategoryAttribute("update")]
+        [NUnit.Framework.CategoryAttribute("logo")]
+        [NUnit.Framework.CategoryAttribute("golden_path")]
+        public virtual void UpdateLogoUrlSetting()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update logo url setting", new string[] {
+                        "settings",
+                        "update",
+                        "logo",
+                        "golden_path"});
+#line 17
+this.ScenarioSetup(scenarioInfo);
+#line 18
+ testRunner.Given("the logo setting is already set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 19
+ testRunner.And("the logo setting needs to be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+ testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
+ testRunner.Then("logo setting is retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

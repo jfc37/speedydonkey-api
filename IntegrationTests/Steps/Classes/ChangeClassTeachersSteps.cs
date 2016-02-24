@@ -26,7 +26,7 @@ namespace IntegrationTests.Steps.Classes
 
             var currentClassTeacherIds = classModel.Teachers.Select(x => x.Id).ToList();
             var newClassTeacherIds = new List<int> {currentClassTeacherIds.Max() + 1, currentClassTeacherIds.Max() + 2};
-            ScenarioCache.Store(ModelIdKeys.Class, classModel.Id);
+            ScenarioCache.Store(ModelIdKeys.ClassId, classModel.Id);
             ScenarioCache.Store(OriginalTeacherIdsKey, currentClassTeacherIds);
             ScenarioCache.Store(NewTeacherIdsKey, newClassTeacherIds);
         }
@@ -34,10 +34,10 @@ namespace IntegrationTests.Steps.Classes
         [When(@"the class teachers are changed")]
         public void WhenTheClassTeachersAreChanged()
         {
-            var classId = ScenarioCache.GetId(ModelIdKeys.Class);
+            var classId = ScenarioCache.GetId(ModelIdKeys.ClassId);
 
             var response = ApiCaller.Put<ActionReponse<ClassModel>>(ScenarioCache.Get<List<int>>(NewTeacherIdsKey),
-                Routes.GetChangeClassTeachers(ScenarioCache.GetId(ModelIdKeys.Class)));
+                Routes.GetChangeClassTeachers(ScenarioCache.GetId(ModelIdKeys.ClassId)));
 
             ScenarioCache.StoreActionResponse(response);
         }
@@ -45,7 +45,7 @@ namespace IntegrationTests.Steps.Classes
         [Then(@"the class teachers are updated")]
         public void ThenTheClassTeachersAreUpdated()
         {
-            var classModel = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.Class))).Data;
+            var classModel = ApiCaller.Get<ClassModel>(Routes.GetById(Routes.Classes, ScenarioCache.GetId(ModelIdKeys.ClassId))).Data;
 
             var expectedNewTeachers = ScenarioCache.Get<List<int>>(NewTeacherIdsKey);
             var unexpectedOriginalTeachers = ScenarioCache.Get<List<int>>(OriginalTeacherIdsKey);

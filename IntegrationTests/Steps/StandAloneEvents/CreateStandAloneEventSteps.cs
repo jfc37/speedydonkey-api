@@ -51,13 +51,13 @@ namespace IntegrationTests.Steps.StandAloneEvents
         {
             var response = ApiCaller.Post<ActionReponse<StandAloneEventModel>>(ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEvent), Routes.StandAloneEvent);
             ScenarioCache.StoreActionResponse(response);
-            ScenarioCache.Store(ModelIdKeys.StandAloneEvent, response.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.StandAloneEventId, response.Data.ActionResult.Id);
         }
 
         [Then(@"the stand alone event can be retrieved")]
         public void ThenTheStandAloneEventCanBeRetrieved()
         {
-            var response = ApiCaller.Get<StandAloneEventModel>(Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEvent)));
+            var response = ApiCaller.Get<StandAloneEventModel>(Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEventId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotNull(response.Data);

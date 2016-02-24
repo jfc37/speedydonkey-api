@@ -12,7 +12,7 @@ namespace IntegrationTests.Steps.Rooms
         [When(@"the class room unassignment is requested")]
         public void WhenTheClassRoomUnassignmentIsRequested()
         {
-            var classId = ScenarioCache.GetId(ModelIdKeys.Class);
+            var classId = ScenarioCache.GetId(ModelIdKeys.ClassId);
             var response = ApiCaller.Delete<ActionReponse<ClassModel>>(Routes.GetClassRoom(classId));
             ScenarioCache.StoreActionResponse(response);
         }

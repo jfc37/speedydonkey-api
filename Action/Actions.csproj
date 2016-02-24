@@ -64,6 +64,7 @@
     <Compile Include="Rooms\UpdateRoom.cs" />
     <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />
+    <Compile Include="Settings\UpdateSettings.cs" />
     <Compile Include="StandAloneEvents\CheckStudentIntoEvent.cs" />
     <Compile Include="StandAloneEvents\CreateStandAloneEvent.cs" />
     <Compile Include="StandAloneEvents\RegisterForStandAloneEvent.cs" />

@@ -20,19 +20,21 @@ namespace IntegrationTests.Utilities
         UserNames,
         OpeningHours,
         TeacherAvailability,
+        SettingItem,
+        CompleteSettings,
 
         Response
     }
 
     public enum ModelIdKeys
     {
-        User,
-        Teacher,
-        Block,
-        StandAloneEvent,
-        PassTemplate,
-        Class,
-        Room
+        UserId,
+        TeacherId,
+        BlockId,
+        StandAloneEventId,
+        PassTemplateId,
+        ClassId,
+        RoomId
     }
 
     public static class ScenarioCache
@@ -75,12 +77,12 @@ namespace IntegrationTests.Utilities
 
         public static int GetUserId()
         {
-            return Get<int>(ModelIdKeys.User);
+            return Get<int>(ModelIdKeys.UserId);
         }
 
         public static int GetTeacherId()
         {
-            return Get<int>(ModelIdKeys.Teacher);
+            return Get<int>(ModelIdKeys.TeacherId);
         }
 
         private static void AssertKeyExists(string key)

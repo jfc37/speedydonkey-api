@@ -23,7 +23,7 @@ namespace IntegrationTests.Steps.StandAloneEvents
         [When(@"the stand alone event is updated")]
         public void WhenTheStandAloneEventIsUpdated()
         {
-            var response = ApiCaller.Put<ActionReponse<StandAloneEventModel>>(ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEvent), Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEvent)));
+            var response = ApiCaller.Put<ActionReponse<StandAloneEventModel>>(ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEvent), Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEventId)));
 
             ScenarioCache.StoreActionResponse(response);
         }
@@ -32,7 +32,7 @@ namespace IntegrationTests.Steps.StandAloneEvents
         [Then(@"the stand alone event is now private")]
         public void ThenTheStandAloneEventIsNowPrivate()
         {
-            var response = ApiCaller.Get<StandAloneEventModel>(Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEvent)));
+            var response = ApiCaller.Get<StandAloneEventModel>(Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEventId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotNull(response.Data);

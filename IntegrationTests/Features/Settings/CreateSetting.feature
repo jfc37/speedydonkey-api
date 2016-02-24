@@ -12,3 +12,10 @@ Scenario: Try to set up an invalid logo url setting
 	When the settings are attempted to be set
 	Then validation errors are returned
 	Then logo setting is not retrieved
+	
+@settings @update @logo @golden_path
+Scenario: Update logo url setting
+	Given the logo setting is already set
+	And the logo setting needs to be changed
+	When the settings are attempted to be set
+	Then logo setting is retrieved

@@ -123,6 +123,7 @@
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="IActionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\UpdateSettingsHandler.cs" />
     <Compile Include="StandAloneEvents\CheckStudentIntoEventHandler.cs" />
     <Compile Include="StandAloneEvents\CreateStandAloneEventHandler.cs" />
     <Compile Include="StandAloneEvents\RegisterForStandAloneEventHandler.cs" />

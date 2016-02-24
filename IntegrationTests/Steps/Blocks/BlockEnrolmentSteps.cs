@@ -36,12 +36,12 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the user is enroled in the block")]
         public void ThenTheUserIsEnroledInTheBlock()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
             var user = response.Data.EnroledStudents.Single();
-            Assert.AreEqual(ScenarioCache.GetId(ModelIdKeys.User), user.Id);
+            Assert.AreEqual(ScenarioCache.GetId(ModelIdKeys.UserId), user.Id);
         }
 
         [Then(@"the user has an item in their upcoming schedule")]

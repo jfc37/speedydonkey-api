@@ -30,13 +30,13 @@ namespace IntegrationTests.Steps.Rooms
         {
             var response = ApiCaller.Post<ActionReponse<RoomModel>>(ScenarioCache.Get<RoomModel>(ModelKeys.Room), Routes.Room);
             ScenarioCache.StoreActionResponse(response);
-            ScenarioCache.Store(ModelIdKeys.Room, response.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.RoomId, response.Data.ActionResult.Id);
         }
 
         [Then(@"the room can be retrieved")]
         public void ThenTheRoomCanBeRetrieved()
         {
-            var roomId = ScenarioCache.GetId(ModelIdKeys.Room);
+            var roomId = ScenarioCache.GetId(ModelIdKeys.RoomId);
             Assert.Greater(roomId, 0);
 
             var response = ApiCaller.Get<RoomModel>(Routes.GetById(Routes.Room, roomId));

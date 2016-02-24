@@ -32,7 +32,7 @@ namespace IntegrationTests.Steps.Rooms
         [When(@"the room is updated")]
         public void WhenTheRoomIsUpdated()
         {
-            var response = ApiCaller.Put<ActionReponse<RoomModel>>(ScenarioCache.Get<RoomModel>(ModelKeys.Room), Routes.GetById(Routes.Room, ScenarioCache.GetId(ModelIdKeys.Room)));
+            var response = ApiCaller.Put<ActionReponse<RoomModel>>(ScenarioCache.Get<RoomModel>(ModelKeys.Room), Routes.GetById(Routes.Room, ScenarioCache.GetId(ModelIdKeys.RoomId)));
             ScenarioCache.StoreActionResponse(response);
         }
 

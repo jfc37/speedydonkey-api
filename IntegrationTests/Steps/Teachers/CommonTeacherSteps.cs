@@ -21,7 +21,7 @@ namespace IntegrationTests.Steps.Teachers
         [Given(@"the current user is a teacher")]
         public void GivenTheCurrentUserIsATeacher()
         {
-            ScenarioCache.Store(ModelIdKeys.User, 1);
+            ScenarioCache.Store(ModelIdKeys.UserId, 1);
             WhenUserIsSetUpAsATeacher();
         }
         
@@ -33,7 +33,7 @@ namespace IntegrationTests.Steps.Teachers
             Assert.AreEqual(HttpStatusCode.Created, ScenarioCache.GetResponseStatus());
 
             var teacher = ScenarioCache.GetActionResponse<TeacherModel>();
-            ScenarioCache.Store(ModelIdKeys.Teacher, teacher.Id);
+            ScenarioCache.Store(ModelIdKeys.TeacherId, teacher.Id);
         }
 
         [When(@"user is attempted to be set up as a teacher")]

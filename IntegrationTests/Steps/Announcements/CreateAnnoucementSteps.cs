@@ -3,6 +3,7 @@ using ActionHandlers;
 using Common.Extensions;
 using Contracts.Announcements;
 using Contracts.Blocks;
+using IntegrationTests.Steps.Rooms;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
 using TechTalk.SpecFlow;

@@ -48,13 +48,13 @@ namespace IntegrationTests.Steps.PassTemplates
         {
             var response = ApiCaller.Post<ActionReponse<PassTemplateModel>>(ScenarioCache.Get<PassTemplateModel>(ModelKeys.PassTemplate), Routes.PassTemplate);
             ScenarioCache.StoreActionResponse(response);
-            ScenarioCache.Store(ModelIdKeys.PassTemplate, response.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.PassTemplateId, response.Data.ActionResult.Id);
         }
 
         [Then(@"pass template can be retrieved")]
         public void ThenPassTemplateCanBeRetrieved()
         {
-            var passTemplateId = ScenarioCache.GetId(ModelIdKeys.PassTemplate);
+            var passTemplateId = ScenarioCache.GetId(ModelIdKeys.PassTemplateId);
             Assert.Greater(passTemplateId, 0);
 
             var response = ApiCaller.Get<PassTemplateModel>(Routes.GetPassTemplateById(passTemplateId));

@@ -11,7 +11,7 @@ namespace IntegrationTests.Steps.Rooms
         [When(@"the room is deleted")]
         public void WhenTheRoomIsDeleted()
         {
-            var response = ApiCaller.Delete<ActionReponse<RoomModel>>(Routes.GetById(Routes.Room, ScenarioCache.GetId(ModelIdKeys.Room)));
+            var response = ApiCaller.Delete<ActionReponse<RoomModel>>(Routes.GetById(Routes.Room, ScenarioCache.GetId(ModelIdKeys.RoomId)));
             ScenarioCache.StoreActionResponse(response);
         }
 

@@ -23,7 +23,7 @@ namespace IntegrationTests.Steps.Passes
                 PaymentStatus = PassPaymentStatus.Paid.ToString()
             };
             var response = ApiCaller.Post<ActionReponse<UserModel>>(pass,
-                Routes.GetPassPurchase(ScenarioCache.GetUserId(), ScenarioCache.GetId(ModelIdKeys.PassTemplate)));
+                Routes.GetPassPurchase(ScenarioCache.GetUserId(), ScenarioCache.GetId(ModelIdKeys.PassTemplateId)));
 
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
@@ -31,7 +31,7 @@ namespace IntegrationTests.Steps.Passes
         [Then(@"the user has a pass")]
         public void ThenTheUserHasAPass()
         {
-            var response = ApiCaller.Get<List<PassModel>>(Routes.GetUserPasses(ScenarioCache.GetId(ModelIdKeys.User)));
+            var response = ApiCaller.Get<List<PassModel>>(Routes.GetUserPasses(ScenarioCache.GetId(ModelIdKeys.UserId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotEmpty(response.Data);

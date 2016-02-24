@@ -2,6 +2,7 @@
 using Models;
 using Models.OnlinePayments;
 using Models.PrivateLessons;
+using Models.Settings;
 
 namespace Data.Mappings
 {
@@ -31,6 +32,17 @@ namespace Data.Mappings
             Map(x => x.Day);
             Map(x => x.OpeningTime);
             Map(x => x.ClosingTime);
+            Map(x => x.CreatedDateTime);
+            Map(x => x.LastUpdatedDateTime);
+        }
+    }
+    public class SettingItemMap : ClassMap<SettingItem>
+    {
+        public SettingItemMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.Name);
+            Map(x => x.Value);
             Map(x => x.CreatedDateTime);
             Map(x => x.LastUpdatedDateTime);
         }

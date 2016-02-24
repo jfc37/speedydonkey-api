@@ -53,24 +53,24 @@ namespace IntegrationTests.Steps.Blocks
         {
             var response = ApiCaller.Post<ActionReponse<BlockModel>>(ScenarioCache.Get<BlockModel>(ModelKeys.Block), Routes.Blocks);
             ScenarioCache.StoreActionResponse(response);
-            ScenarioCache.Store(ModelIdKeys.Block, response.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.BlockId, response.Data.ActionResult.Id);
         }
 
         [When(@"the next block is generated")]
         public void WhenTheNextBlockIsGenerated()
         {
-            var response = ApiCaller.Post<ActionReponse<BlockModel>>(Routes.GetCreateNextBlock(ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Post<ActionReponse<BlockModel>>(Routes.GetCreateNextBlock(ScenarioCache.GetId(ModelIdKeys.BlockId)));
 
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
 
             ScenarioCache.StoreActionResponse(response);
-            ScenarioCache.Store(ModelIdKeys.Block, response.Data.ActionResult.Id);
+            ScenarioCache.Store(ModelIdKeys.BlockId, response.Data.ActionResult.Id);
         }
 
         [Then(@"block can be retrieved")]
         public void ThenBlockCanBeRetrieved()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotNull(response.Data);
@@ -80,7 +80,7 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the block is invite only")]
         public void ThenTheBlockIsInviteOnly()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsTrue(response.Data.IsInviteOnly);
@@ -89,7 +89,7 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the block is not invite only")]
         public void ThenTheBlockIsNotInviteOnly()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsFalse(response.Data.IsInviteOnly);
@@ -99,7 +99,7 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the blocks dates are in utc")]
         public void ThenTheBlocksDatesAreInUtc()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
 
             var originalBlock = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
             Assert.AreNotEqual(originalBlock.StartDate.Offset, response.Data.StartDate.Offset);
@@ -124,7 +124,7 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"classes are created for the block")]
         public void ThenClassesAreCreatedForTheBlock()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
             var block = response.Data;
 
             Assert.IsNotEmpty(block.Classes);
@@ -138,7 +138,7 @@ namespace IntegrationTests.Steps.Blocks
         [Then(@"the correct number of classes are created")]
         public void ThenTheCorrectNumberOfClassesAreCreated()
         {
-            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.Block)));
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
             var block = response.Data;
 
             var expectedBlock = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
