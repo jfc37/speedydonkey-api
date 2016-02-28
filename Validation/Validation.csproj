@@ -99,6 +99,7 @@
     <Compile Include="Validators\Settings\AreAllSettingNamesValid.cs" />
     <Compile Include="Validators\Settings\AreNoDuplicateSettings.cs" />
     <Compile Include="Validators\Settings\IsLogoSettingAValidUrl.cs" />
+    <Compile Include="Validators\Settings\IsSettingValueANumber.cs" />
     <Compile Include="Validators\Settings\UpdateSettingsValidator.cs" />
     <Compile Include="Validators\StandAloneEvents\CheckStudentIntoEventValidator.cs" />
     <Compile Include="Validators\StandAloneEvents\CreateStandAloneEventValidator.cs" />

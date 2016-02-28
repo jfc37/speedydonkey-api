@@ -23,7 +23,7 @@ namespace IntegrationTests.Steps.Settings
         [Given(@"the logo setting needs to be changed")]
         public void GivenTheLogoSettingNeedsToBeChanged()
         {
-            var validUri = new Uri("http://www.bing.com");
+            var validUri = new Uri("http://mastiffpartyrentals.com/wp-content/uploads/2015/12/foo-fighters-logo-vector-5230292300-7bff484bd0-b.jpg");
             var logoSetting = new SettingItemModel(SettingTypes.Logo.ToString().ToLower(), validUri.OriginalString);
             var completeSettings = new CompleteSettingsModel(logoSetting);
 

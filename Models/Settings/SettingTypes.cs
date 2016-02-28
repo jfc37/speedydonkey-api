@@ -6,6 +6,8 @@
     public enum SettingTypes
     {
         Invalid,
-        Logo
+        Logo,
+        MinutesPerClass,
+        NumberOfClasses
     }
 }
