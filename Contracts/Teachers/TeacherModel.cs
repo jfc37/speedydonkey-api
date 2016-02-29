@@ -29,7 +29,7 @@ namespace Contracts.Teachers
         public List<ClassModel> Classes { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public string FullName => @"{FirstName} {Surname}";
+        public string FullName => $"{FirstName} {Surname}";
         public override string ToString()
         {
             return this.ToDebugString(nameof(Id), nameof(FirstName), nameof(Surname));

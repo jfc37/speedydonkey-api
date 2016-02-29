@@ -21,7 +21,7 @@ namespace Contracts.Users
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public string FullName { get { return String.Format("{0} {1}", FirstName, Surname); } }
+        public string FullName => $"{FirstName} {Surname}";
         public List<EventModel> Schedule { get; set; }
         public List<BlockModel> EnroledBlocks { get; set; }
         public List<PassModel> Passes { get; set; }
