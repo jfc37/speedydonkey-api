@@ -16,7 +16,7 @@ namespace ActionHandlers
 
         public User Handle(ActivateUser action)
         {
-            var userToActivate = _repository.GetAll().Single(x => x.ActivationKey == action.ActionAgainst.ActivationKey);
+            var userToActivate = _repository.Queryable().Single(x => x.ActivationKey == action.ActionAgainst.ActivationKey);
             userToActivate.Status = UserStatus.Active;
             _repository.Update(userToActivate);
 

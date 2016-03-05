@@ -24,7 +24,7 @@ namespace ActionHandlers
 
         public User Handle(ForgottenPassword action)
         {
-            var user = _repository.GetAll().Single(x => x.Email == action.ActionAgainst.Email);
+            var user = _repository.Queryable().Single(x => x.Email == action.ActionAgainst.Email);
             user.ActivationKey = Guid.NewGuid();
             _repository.Update(user);
 

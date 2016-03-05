@@ -25,7 +25,7 @@ namespace SpeedyDonkeyApi.CodeChunks
                 var globalId = new ExtractGlobalIdFromJwt(_claimsPrincipal).Do();
 
                 var repository = (IRepository<User>)_dependencyScope.GetService(typeof(IRepository<User>));
-                return repository.GetAll()
+                return repository.Queryable()
                     .SingleOrDefault(x => x.GlobalId == globalId);
             }
 

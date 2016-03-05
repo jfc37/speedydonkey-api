@@ -19,7 +19,7 @@ namespace Validation.Validators
 
         private bool MatchExistingUserKey(Guid key)
         {
-            return _repository.GetAll().Any(x => x.ActivationKey == key);
+            return _repository.Queryable().Any(x => x.ActivationKey == key);
         }
     }
 }

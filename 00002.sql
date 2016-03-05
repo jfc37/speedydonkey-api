@@ -16,5 +16,6 @@ GO
 -----------User full name-------------------
 ALTER TABLE [User]
 ADD FullName [nvarchar](255) NULL
+GO
 
 UPDATE [User] set FullName = FirstName + ' ' + Surname

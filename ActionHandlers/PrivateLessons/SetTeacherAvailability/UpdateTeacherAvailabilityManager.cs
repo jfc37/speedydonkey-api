@@ -32,7 +32,7 @@ namespace ActionHandlers.PrivateLessons.SetTeacherAvailability
         /// <returns></returns>
         public TeacherAvailability Save()
         {
-            var original = _repository.GetAll()
+            var original = _repository.Queryable()
                 .Single(x => x.Teacher.Id == _teacherAvailability.Teacher.Id);
 
             original.Availabilities = _teacherAvailability.Availabilities;

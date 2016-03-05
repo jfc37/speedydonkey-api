@@ -21,7 +21,7 @@ namespace Data.CodeChunks
 
         public Registration Do()
         {
-            return _repository.GetAll()
+            return _repository.Queryable()
                 .Single(x => x.RegistationId == _registrationNumber);
         }
     }

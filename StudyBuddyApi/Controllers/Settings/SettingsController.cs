@@ -42,8 +42,8 @@ namespace SpeedyDonkeyApi.Controllers.Settings
         [AllowAnonymous]
         public IHttpActionResult Get(SettingTypes settingType)
         {
-            return _settingsRepository.GetAll().Any(x => x.Name == settingType)
-                ? (IHttpActionResult) Ok(_settingsRepository.GetAll().Single(x => x.Name == settingType).ToModel())
+            return _settingsRepository.Queryable().Any(x => x.Name == settingType)
+                ? (IHttpActionResult) Ok(_settingsRepository.Queryable().Single(x => x.Name == settingType).ToModel())
                 : NotFound();
         }
         
@@ -51,7 +51,7 @@ namespace SpeedyDonkeyApi.Controllers.Settings
         [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            return Ok(_settingsRepository.GetAll().Select(x => x.ToModel()));
+            return Ok(_settingsRepository.Queryable().Select(x => x.ToModel()));
         }
         
     }

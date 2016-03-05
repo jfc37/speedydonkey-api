@@ -38,7 +38,7 @@ namespace Validation.Validators.StandAloneEvents
             var isUserATeacher = IsUserATeacher();
 
             var blockIds = events.Select(x => x.Id);
-            var isEnrollingInInviteOnly = _eventRepository.GetAll()
+            var isEnrollingInInviteOnly = _eventRepository.Queryable()
                 .Where(x => blockIds.Contains(x.Id))
                 .Any(x => x.IsPrivate);
 
@@ -62,7 +62,7 @@ namespace Validation.Validators.StandAloneEvents
 
         private bool BeExistingStandAloneEvent(ICollection<Event> blocks)
         {
-            return _eventRepository.GetAll()
+            return _eventRepository.Queryable()
                 .Select(x => x.Id)
                 .Intersect(blocks.Select(x => x.Id)).Count() == blocks.Count;
         }

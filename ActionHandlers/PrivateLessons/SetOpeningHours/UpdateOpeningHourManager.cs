@@ -32,7 +32,7 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
         /// <returns></returns>
         public TimeSlot Save()
         {
-            var original = _repository.GetAll()
+            var original = _repository.Queryable()
                 .Single(x => x.Day == _timeSlot.Day);
 
             original.OpeningTime = _timeSlot.OpeningTime;

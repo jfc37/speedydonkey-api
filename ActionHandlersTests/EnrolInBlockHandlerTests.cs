@@ -124,7 +124,7 @@ namespace ActionHandlersTests
             PerformAction();
 
             var updatedUser = _userRepositoryBuilder.UpdatedEntity;
-            foreach (var blockClass in _blockRepositoryBuilder.BuildObject().GetAll().SelectMany(x => x.Classes))
+            foreach (var blockClass in _blockRepositoryBuilder.BuildObject().Queryable().SelectMany(x => x.Classes))
             {
                 Assert.Contains(updatedUser, blockClass.RegisteredStudents.ToArray());
             }

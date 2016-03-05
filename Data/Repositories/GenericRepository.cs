@@ -43,8 +43,6 @@ namespace Data.Repositories
     public interface IRepository<TEntity> where TEntity : IEntity
     {
         IQueryable<TEntity> Queryable();
-            
-        IEnumerable<TEntity> GetAll();
 
         IEnumerable<TEntity> GetAllWithChildren(IList<string> children);
 
@@ -71,12 +69,6 @@ namespace Data.Repositories
         public IQueryable<TEntity> Queryable()
         {
             return _session.Query<TEntity>();
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            return _session.CreateCriteria<TEntity>()
-                .List<TEntity>();
         }
 
         public IEnumerable<TEntity> GetAllWithChildren(IList<string> children)

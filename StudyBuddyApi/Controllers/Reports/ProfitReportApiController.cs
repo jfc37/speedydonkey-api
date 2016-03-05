@@ -28,15 +28,15 @@ namespace SpeedyDonkeyApi.Controllers.Reports
         public virtual HttpResponseMessage Get(DateTime from, DateTime to)
         {
             var passesBoughtWithInPeriod =
-                _passRepository.GetAll().Where(x => x.CreatedDateTime >= from && x.CreatedDateTime <= to)
+                _passRepository.Queryable().Where(x => x.CreatedDateTime >= from && x.CreatedDateTime <= to)
                 .ToList();
 
             var unlimitedPassesValidWithInPeriod =
-                _passRepository.GetAll().Where(x => x.StartDate >= from && x.EndDate <= to && x.PassType == PassType.Unlimited.ToString())
+                _passRepository.Queryable().Where(x => x.StartDate >= from && x.EndDate <= to && x.PassType == PassType.Unlimited.ToString())
                 .ToList();
 
             var blocksWithInPeriod =
-                _blockRepository.GetAll().Where(x => x.StartDate >= from && x.EndDate <= to)
+                _blockRepository.Queryable().Where(x => x.StartDate >= from && x.EndDate <= to)
                 .ToList();
 
             var profitReportModel = new ProfitReportModel().Populate(passesBoughtWithInPeriod, blocksWithInPeriod, unlimitedPassesValidWithInPeriod);

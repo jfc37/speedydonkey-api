@@ -19,7 +19,7 @@ namespace ActionHandlers
 
         public User Handle(ResetPassword action)
         {
-            var user = _repository.GetAll().Single(x => x.ActivationKey == action.ActionAgainst.ActivationKey);
+            var user = _repository.Queryable().Single(x => x.ActivationKey == action.ActionAgainst.ActivationKey);
             user.ActivationKey = new Guid();
             user.Password = _passwordHasher.CreateHash(action.ActionAgainst.Password);
             _repository.Update(user);

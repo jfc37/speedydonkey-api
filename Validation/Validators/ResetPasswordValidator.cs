@@ -25,7 +25,7 @@ namespace Validation.Validators
 
         private bool BeKeyForUser(Guid key)
         {
-            return _repository.GetAll().Any(x => x.ActivationKey == key && x.Status == UserStatus.Active);
+            return _repository.Queryable().Any(x => x.ActivationKey == key && x.Status == UserStatus.Active);
         }
     }
 }

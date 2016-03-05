@@ -28,7 +28,7 @@ namespace ActionHandlers.PrivateLessons.SetOpeningHours
         /// <returns></returns>
         public IOpeningHourManager GetManager(TimeSlot timeSlot)
         {
-            var alreadyExists = _repository.GetAll()
+            var alreadyExists = _repository.Queryable()
                 .Any(x => x.Day == timeSlot.Day);
 
             return alreadyExists

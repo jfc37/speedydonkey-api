@@ -42,7 +42,7 @@ namespace ActionHandlers.Settings
 
         public ISettingItemRepository Create(SettingItem settingItem)
         {
-            return _repository.GetAll().Any(x => x.Name == settingItem.Name)
+            return _repository.Queryable().Any(x => x.Name == settingItem.Name)
                 ? (ISettingItemRepository) new UpdateSettingItemRepository(_repository)
                 : new CreateSettingItemRepository(_repository);
         }
@@ -79,7 +79,7 @@ namespace ActionHandlers.Settings
 
         public void Save(SettingItem settingItem)
         {
-            var savedSetting = _repository.GetAll()
+            var savedSetting = _repository.Queryable()
                 .Single(x => x.Name == settingItem.Name);
 
             savedSetting.Value = settingItem.Value;

@@ -1,6 +1,7 @@
 using System.Linq;
 using Action.Users;
 using Actions;
+using Common.Extensions;
 using Data.Repositories;
 using FluentValidation;
 
@@ -36,9 +37,10 @@ namespace Validation.Validators.Users
 
         private bool BeUnique(Models.User user, string email)
         {
-            return _userRepository.GetAll()
+            return _userRepository.Queryable()
                 .Where(x => x.Id != user.Id)
-                .All(x => x.Email != email);
+                .Where(x => x.Email == email)
+                .NotAny();
         }
     }
 }

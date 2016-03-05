@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Common;
 using Common.Tests.Builders.MockBuilders;
 using Data.Repositories;
@@ -46,18 +47,18 @@ namespace Data.Tests.Builders
         {
             if (response == null)
             {
-                Mock.Setup(x => x.GetAll())
-                .Returns(new List<T>());
+                Mock.Setup(x => x.Queryable())
+                .Returns(new List<T>().AsQueryable());
                 Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
                     .Returns(new List<T>());
             }
             else
             {
-                Mock.Setup(x => x.GetAll())
+                Mock.Setup(x => x.Queryable())
                 .Returns(new List<T>
                 {
                     response
-                });
+                }.AsQueryable());
                 Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
                     .Returns(new[]
                 {
@@ -80,8 +81,8 @@ namespace Data.Tests.Builders
 
         public MockRepositoryBuilder<T> WithGetAll()
         {
-            Mock.Setup(x => x.GetAll())
-                .Returns(new List<T>());
+            Mock.Setup(x => x.Queryable())
+                .Returns(new List<T>().AsQueryable());
             Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
                 .Returns(new List<T>());
             return this;
@@ -89,8 +90,8 @@ namespace Data.Tests.Builders
 
         public MockRepositoryBuilder<T> WithGetAll(IEnumerable<T> entities)
         {
-            Mock.Setup(x => x.GetAll())
-                .Returns(entities);
+            Mock.Setup(x => x.Queryable())
+                .Returns(entities.AsQueryable());
             Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
                 .Returns(entities);
             return this;

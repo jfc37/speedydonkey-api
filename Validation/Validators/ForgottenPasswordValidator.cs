@@ -19,7 +19,7 @@ namespace Validation.Validators
 
         private bool ExistForActiveUser(string email)
         {
-            return _repository.GetAll().Any(x => x.Email == email && x.Status == UserStatus.Active);
+            return _repository.Queryable().Any(x => x.Email == email && x.Status == UserStatus.Active);
         }
     }
 }

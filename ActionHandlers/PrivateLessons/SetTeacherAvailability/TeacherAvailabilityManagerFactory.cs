@@ -30,7 +30,7 @@ namespace ActionHandlers.PrivateLessons.SetTeacherAvailability
         /// <returns></returns>
         public ITeacherAvailabilityManager GetManager(TeacherAvailability teacherAvailability)
         {
-            var alreadyExists = _repository.GetAll()
+            var alreadyExists = _repository.Queryable()
                 .Any(x => x.Teacher.Id == teacherAvailability.Teacher.Id);
 
             return alreadyExists

@@ -21,7 +21,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
         public PayPalCompleteResponse CompletePayment(string token)
         {
             var onlinePayment = _repository
-                .GetAll()
+                .Queryable()
                 .Single(x => x.Token == token);
             var request = new PayPalCompleteRequest(onlinePayment);
 
@@ -33,7 +33,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
         public PayPalPayment GetCompletedPayment(string token)
         {
             var onlinePayment = _repository
-                .GetAll()
+                .Queryable()
                 .Single(x => x.Token == token);
             return onlinePayment;
         }

@@ -64,7 +64,7 @@ namespace SpeedyDonkeyApi.Filter
             if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
                 var userSearch = (IRepository<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IRepository<User>));
-                var user = userSearch.GetAll()
+                var user = userSearch.Queryable()
                     .Where(x => x.GlobalId.Contains("auth0"))
                     .SingleOrDefault(x => x.Email == username);
                 if (user != null)
