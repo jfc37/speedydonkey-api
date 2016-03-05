@@ -15,15 +15,12 @@ namespace SpeedyDonkeyApi.Controllers.Users
     [RoutePrefix("api/users")]
     public class UserApiController : GenericApiController<User>
     {
-        private readonly IRepository<User> _repository;
-
         public UserApiController(
             IActionHandlerOverlord actionHandlerOverlord,
             IRepository<User> repository,
             IEntitySearch<User> entitySearch)
             : base(actionHandlerOverlord, repository, entitySearch)
         {
-            _repository = repository;
         }
 
         [Route]
@@ -46,7 +43,7 @@ namespace SpeedyDonkeyApi.Controllers.Users
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            return new SetToHttpActionResult<User>(this, GetAll(), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<User>(this, GetAll(), x => x.ToStripedModel()).Do();
         }
 
         [Route]

@@ -47,7 +47,7 @@ namespace SpeedyDonkeyApi.Controllers.Teachers
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            return new SetToHttpActionResult<Teacher>(this, GetAll(), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<Teacher>(this, GetAll(), x => x.ToStripedModel()).Do();
         }
 
         [Route]

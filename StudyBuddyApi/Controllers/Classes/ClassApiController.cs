@@ -100,7 +100,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            return new SetToHttpActionResult<Class>(this, GetAll(), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<Class>(this, GetAll(), x => x.ToStripedModel()).Do();
         }
 
         [Route]

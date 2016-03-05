@@ -34,7 +34,7 @@ namespace SpeedyDonkeyApi.Controllers.Blocks
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToStripedModel()).Do();
         }
 
         [Route]
