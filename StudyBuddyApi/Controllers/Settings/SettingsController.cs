@@ -28,9 +28,8 @@ namespace SpeedyDonkeyApi.Controllers.Settings
             _settingsRepository = settingsRepository;
         }
 
-        [AllowAnonymous]
         [Route]
-        //[ClaimsAuthorise(Claim = Claim.Admin)]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Post([FromBody]CompleteSettingsModel model)
         {
             var result = PerformAction<UpdateSettings, CompleteSettings>(new UpdateSettings(model.ToEntity()));

@@ -31,7 +31,7 @@ namespace Models
         public virtual string Password { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string Surname { get; set; }
-        public virtual string FullName { get { return String.Format("{0} {1}", FirstName, Surname); } }
+        public virtual string FullName => $"{FirstName} {Surname}";
         public virtual IList<Event> Schedule { get; set; }
         public virtual ICollection<Block> EnroledBlocks { get; set; }
         public virtual IList<Pass> Passes { get; set; }

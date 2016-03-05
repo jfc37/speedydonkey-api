@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Common.Tests.Builders.MockBuilders;
+using Data.Repositories;
 using Data.Searches;
 using Data.Tests.Builders;
 using Data.Tests.Builders.MockBuilders;
@@ -16,7 +17,7 @@ namespace Data.Tests
     public class EntitySearcherTestFixture
     {
         private EntitySearcherBuilder<User> _entitySearcherBuilder;
-        private MockSessionBuilder _sessionBuilder;
+        private Mock<IRepository<User>> _repository;
         private MockSearchStatementParseBuilder _searchStatementParserBuilder;
         private MockQueryModifierFactoryBuilder _queryModifierFactoryBuilder;
 
@@ -24,7 +25,7 @@ namespace Data.Tests
         public void TestFixtureSetup()
         {
             _entitySearcherBuilder = new EntitySearcherBuilder<User>();
-            _sessionBuilder = new MockSessionBuilder();
+            _repository = new Mock<IRepository<User>>(MockBehavior.Loose);
             _searchStatementParserBuilder = new MockSearchStatementParseBuilder();
             _queryModifierFactoryBuilder = new MockQueryModifierFactoryBuilder();
         }
@@ -32,7 +33,7 @@ namespace Data.Tests
         private EntitySearch<User> GetUserSearch()
         {
             return _entitySearcherBuilder
-                .WithContext(_sessionBuilder.BuildObject())
+                .WithRepository(_repository.Object)
                 .WithSearchStatementParser(_searchStatementParserBuilder.BuildObject())
                 .WithQueryModifierFactory(_queryModifierFactoryBuilder.BuildObject())
                 .Build();
@@ -65,11 +66,11 @@ namespace Data.Tests
                 _searchStatementParserBuilder.WithQueryReturningSearchStatement(singleSearchStatement);
 
                 const string usernameSearch = "tim";
-                _sessionBuilder.WithEntities<User>(new List<User>
+                _repository.SetReturnsDefault(new List<User>
                 {
                     new User {Email = usernameSearch},
                     new User {Email = "timmy"}
-                });
+                }.AsQueryable());
 
                 PerformSearch();
 

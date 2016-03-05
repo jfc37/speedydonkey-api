@@ -167,6 +167,8 @@ namespace Data.Mappings
             Map(x => x.LastUpdatedDateTime);
             Map(x => x.FirstName);
             Map(x => x.Surname);
+            Map(x => x.FullName)
+                .Access.ReadOnly();
             Map(x => x.Email);
             Map(x => x.Password);
             Map(x => x.Claims);

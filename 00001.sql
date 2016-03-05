@@ -1,4 +1,6 @@
-﻿----------------------------------------------------
+﻿---------------PRIVATE LESSONS----------------------
+
+----------------------------------------------------
 /**[TeacherAvailability]**/
 CREATE TABLE [dbo].[TeacherAvailability](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -45,21 +47,4 @@ REFERENCES [dbo].[TeacherAvailability] ([Id])
 GO
 
 ALTER TABLE [dbo].[TimeSlot] CHECK CONSTRAINT [FK2FF312B5366393C1]
-GO
-
-
---------------------------------------------------------
-/*[SettingItem]*/
-CREATE TABLE [dbo].[SettingItem](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](255) NULL,
-	[Value] [nvarchar](255) NULL,
-	[CreatedDateTime] [datetime] NULL,
-	[LastUpdatedDateTime] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
 GO

@@ -1,9 +1,7 @@
-using System;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
 using Actions;
-using Contracts;
 using Contracts.MappingExtensions;
 using Contracts.Users;
 using Data.Repositories;
@@ -17,11 +15,16 @@ namespace SpeedyDonkeyApi.Controllers.Users
     [RoutePrefix("api/users")]
     public class UserApiController : GenericApiController<User>
     {
+        private readonly IRepository<User> _repository;
+
         public UserApiController(
             IActionHandlerOverlord actionHandlerOverlord,
             IRepository<User> repository,
             IEntitySearch<User> entitySearch)
-            : base(actionHandlerOverlord, repository, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch)
+        {
+            _repository = repository;
+        }
 
         [Route]
         [AllowAnonymous]
@@ -50,7 +53,7 @@ namespace SpeedyDonkeyApi.Controllers.Users
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(string q)
         {
-            return new SetToHttpActionResult<User>(this, Search(q), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<User>(this, Search(q), x => x.ToStripedModel()).Do();
         }
 
         [Route("{id:int}")]

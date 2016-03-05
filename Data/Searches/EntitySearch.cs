@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Common;
+using Data.Repositories;
 using Models;
-using NHibernate;
 
 namespace Data.Searches
 {
-    public class EntitySearch<T> : IEntitySearch<T> where T : class, IDatabaseEntity
+    public class EntitySearch<T> : IEntitySearch<T> where T : class, IDatabaseEntity, IEntity
     {
-        private readonly ISession _context;
+        private readonly IRepository<T> _repository;
         private readonly ISearchQueryParser _searchQueryParser;
         private readonly IQueryModifierFactory _queryModifierFactory;
 
-        public EntitySearch(ISession context, ISearchQueryParser searchQueryParser, IQueryModifierFactory queryModifierFactory)
+        public EntitySearch(IRepository<T> repository, ISearchQueryParser searchQueryParser, IQueryModifierFactory queryModifierFactory)
         {
-            _context = context;
+            _repository = repository;
             _searchQueryParser = searchQueryParser;
             _queryModifierFactory = queryModifierFactory;
         }
@@ -22,7 +22,7 @@ namespace Data.Searches
         public IList<T> Search(string q)
         {
             var searchStatements = _searchQueryParser.ParseQuery(q);
-            var query = GetQueryable();
+            var query = _repository.Queryable();
 
             foreach (var searchStatement in searchStatements)
             {
@@ -30,18 +30,7 @@ namespace Data.Searches
                 query = queryModifier.ApplyStatementToQuery(searchStatement, query);
             }
 
-            return GetListFromQueryable(query);
-        }
-
-        private static IList<T> GetListFromQueryable(IEnumerable<T> query)
-        {
             return query.ToList();
-        }
-
-        private IQueryable<T> GetQueryable()
-        {
-            var query = _context.CreateCriteria<T>().List<T>().AsQueryable();
-            return query;
         }
     }
 }

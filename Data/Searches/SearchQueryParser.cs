@@ -91,18 +91,6 @@ namespace Data.Searches
         }
     }
 
-    public class IncludeStatementParser : IStatementParser
-    {
-        public SearchStatement ParseStatement(string[] splitStatement)
-        {
-            return new SearchStatement
-            {
-                Condition = splitStatement[0],
-                Element = splitStatement[1]
-            };
-        }
-    }
-
     public class TakeSkipStatementParser : IStatementParser
     {
         public SearchStatement ParseStatement(string[] splitStatement)

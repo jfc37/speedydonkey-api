@@ -4,6 +4,7 @@ using System.Linq;
 using Common;
 using Models;
 using NHibernate;
+using NHibernate.Linq;
 using PostSharp.Patterns.Diagnostics;
 using PostSharp.Extensibility;
 
@@ -41,6 +42,8 @@ namespace Data.Repositories
 
     public interface IRepository<TEntity> where TEntity : IEntity
     {
+        IQueryable<TEntity> Queryable();
+            
         IEnumerable<TEntity> GetAll();
 
         IEnumerable<TEntity> GetAllWithChildren(IList<string> children);
@@ -63,6 +66,11 @@ namespace Data.Repositories
         public GenericRepository(ISession session)
         {
             _session = session;
+        }
+
+        public IQueryable<TEntity> Queryable()
+        {
+            return _session.Query<TEntity>();
         }
 
         public IEnumerable<TEntity> GetAll()
