@@ -172,14 +172,12 @@ namespace Data.Mappings
             Map(x => x.Email);
             Map(x => x.Password);
             Map(x => x.Claims);
-            Map(x => x.Status);
-            Map(x => x.ActivationKey);
             Map(x => x.Note);
             Map(x => x.DoNotEmail);
-            HasManyToMany<Block>(x => x.EnroledBlocks)
+            HasManyToMany(x => x.EnroledBlocks)
                 .Table("UsersEnroledBlocks")
                 .AsSet();
-            HasMany<Pass>(x => x.Passes)
+            HasMany(x => x.Passes)
                 .Cascade.SaveUpdate();
             HasMany(x => x.Schedule);
         }

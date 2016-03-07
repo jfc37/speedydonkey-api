@@ -25,8 +25,6 @@ namespace Models
         }
 
         public virtual string GlobalId { get; set; }
-        public virtual UserStatus Status { get; set; }
-        public virtual Guid ActivationKey { get; set; }
         public virtual string Email { get; set; }
         public virtual string Password { get; set; }
         public virtual string FirstName { get; set; }

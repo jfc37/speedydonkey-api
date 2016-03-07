@@ -53,7 +53,8 @@ namespace ActionHandlersTests
 
         private CreateUserHandler GetHandler()
         {
-            return new CreateUserHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject(), _postOfficeBuilder.BuildObject(), AppSettingsBuilder.BuildObject());
+            return null;
+            //return new CreateUserHandler(RepositoryBuilder.BuildObject(), _passwordHasherBuilder.BuildObject(), _postOfficeBuilder.BuildObject(), AppSettingsBuilder.BuildObject());
         }
 
         private void PerformAction()
@@ -77,14 +78,6 @@ namespace ActionHandlersTests
             CheckCreateWasCalled();
         }
 
-        [Test]
-        public void It_should_send_confirmation_email()
-        {
-            PerformAction();
-
-            _postOfficeBuilder.Mock.Verify(x => x.Send(It.IsAny<UserRegistered>()), Times.Once);
-        }
-
         public class WhenEmailIsAnAdminEmailAddress : GivenCreateUserIsHandled
         {
 
@@ -93,7 +86,6 @@ namespace ActionHandlersTests
             {
                 _action.ActionAgainst.Email = "admin@email.com";
                 AppSettingsBuilder.WithSetting(AppSettingKey.AdminEmailWhitelist, String.Format("|{0}|", _action.ActionAgainst.Email));
-                AppSettingsBuilder.WithSetting(AppSettingKey.AutoActivateAdmin, "true");
 
                 PerformAction();
 

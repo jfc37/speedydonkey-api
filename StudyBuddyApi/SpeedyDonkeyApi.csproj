@@ -281,7 +281,6 @@
     <Compile Include="Controllers\Users\UserEnroledBlocksApiController.cs" />
     <Compile Include="Controllers\Users\UserNoteApiController.cs" />
     <Compile Include="Controllers\Users\UserPassesApiController.cs" />
-    <Compile Include="Controllers\Users\UserPasswordResetApiController.cs" />
     <Compile Include="Controllers\Users\UserScheduleApiController.cs" />
     <Compile Include="Controllers\ValidationResultExtensions.cs" />
     <Compile Include="Controllers\WindyLindy\RegistrationApiController.cs" />

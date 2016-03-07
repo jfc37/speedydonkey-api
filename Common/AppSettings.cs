@@ -37,8 +37,6 @@ namespace Common
         TestEmailAccount,
         UseRealEmail,
         AdminEmailWhitelist,
-        AutoActivateAdmin,
-        AutoActivateUser,
         FromEmail,
         ShouldSendEmail,
         AllowDatabaseDelete,
@@ -53,6 +51,7 @@ namespace Common
 
         AuthZeroClientId,
         AuthZeroClientSecret,
-        AuthZeroDomain
+        AuthZeroDomain,
+        AuthToken
     }
 }
