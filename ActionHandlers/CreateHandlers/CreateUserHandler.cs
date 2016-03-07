@@ -6,7 +6,6 @@ using Auth0.ManagementApi.Models;
 using Common;
 using Data.Repositories;
 using Models;
-using Notification;
 using User = Models.User;
 
 namespace ActionHandlers.CreateHandlers
@@ -18,11 +17,13 @@ namespace ActionHandlers.CreateHandlers
 
     public class AuthZeroClientRepository : IAuthZeroClientRepository
     {
+        private readonly IAppSettings _appSettings;
         private readonly ManagementApiClient _authManagement;
 
         public AuthZeroClientRepository(IAppSettings appSettings)
         {
-            var jwt = appSettings.GetSetting(AppSettingKey.AuthToken);
+            _appSettings = appSettings;
+            var jwt = appSettings.GetSetting(AppSettingKey.AuthZeroToken);
             var api = new Uri($"https://{appSettings.GetSetting(AppSettingKey.AuthZeroDomain)}/api/v2");
             _authManagement = new ManagementApiClient(jwt, api);
             
@@ -35,7 +36,7 @@ namespace ActionHandlers.CreateHandlers
                 Email = user.Email,
                 Password = user.Password,
                 EmailVerified = false,
-                Connection = "speedydonkeydb"
+                Connection = _appSettings.GetSetting(AppSettingKey.AuthZeroConnection)
             };
 
             var authUser = _authManagement.Users.Create(userCreateRequest).Result;
@@ -46,22 +47,14 @@ namespace ActionHandlers.CreateHandlers
 
     public class CreateUserHandler : CreateEntityHandler<CreateUser, User>
     {
-        private readonly IRepository<User> _repository;
-        private readonly IPasswordHasher _passwordHasher;
-        private readonly IPostOffice _postOffice;
         private readonly IAppSettings _appSettings;
         private readonly IAuthZeroClientRepository _authZeroClientRepository;
 
         public CreateUserHandler(
             IRepository<User> repository, 
-            IPasswordHasher passwordHasher, 
-            IPostOffice postOffice, 
             IAppSettings appSettings,
             IAuthZeroClientRepository authZeroClientRepository) : base(repository)
         {
-            _repository = repository;
-            _passwordHasher = passwordHasher;
-            _postOffice = postOffice;
             _appSettings = appSettings;
             _authZeroClientRepository = authZeroClientRepository;
         }
@@ -79,7 +72,6 @@ namespace ActionHandlers.CreateHandlers
                 allClaims.Remove(Claim.Invalid);
                 action.ActionAgainst.Claims = String.Join(",", allClaims);
             }
-
         }
 
         private bool IsEmailOnAdminWhitelist(string email)
