@@ -14,8 +14,6 @@ namespace SpeedyDonkeyApi.Filter
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            new CreateNewUserIfRequired().OnActionExecuting(actionContext);
-
             var claims = GetClaimsForUser(actionContext);
             if  (claims.DoesNotContain(Claim.ToString()))
                 HandleUnauthorised(actionContext);

@@ -2,6 +2,7 @@
 using System.Web.Http;
 using ActionHandlers.CreateHandlers;
 using Common.Extensions;
+using Contracts.Users;
 using Data.Repositories;
 using Models;
 using Notification;
@@ -20,18 +21,14 @@ namespace SpeedyDonkeyApi.Controllers.Emails
         }
 
         [Route]
-        public IHttpActionResult Post(EmailVerificationModel model)
+        public IHttpActionResult Post(AuthZeroUserModel model)
         {
             _emailVerification.SendVerification(model.UserId);
 
             return Ok();
         }
     }
-
-    public class EmailVerificationModel
-    {
-        public string UserId { get; set; }
-    }
+    
 
     public interface IEmailVerification
     {

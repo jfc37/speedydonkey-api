@@ -1,8 +1,7 @@
-﻿using System;
-using Common.Extensions;
+using Actions;
 using Models;
 
-namespace Actions
+namespace Action.Users
 {
     public class CreateUser : SystemAction<User>, ICrudAction<User>
     {

@@ -293,7 +293,6 @@
     <Compile Include="Extensions\OkLoggableNegotiatedContentResult.cs" />
     <Compile Include="Filter\BasicAuthAuthoriseAttribute.cs" />
     <Compile Include="Filter\ClaimsAuthorise.cs" />
-    <Compile Include="Filter\CreateNewUserIfRequired.cs" />
     <Compile Include="Filter\CurrentUserAttribute.cs" />
     <Compile Include="Filter\NullModelActionFilter.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />

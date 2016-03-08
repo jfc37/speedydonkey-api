@@ -1,5 +1,6 @@
 using System.Web.Http;
 using Action;
+using Action.Users;
 using ActionHandlers;
 using Actions;
 using Contracts.MappingExtensions;
@@ -8,6 +9,7 @@ using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
+using SpeedyDonkeyApi.Controllers.Emails;
 using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi.Controllers.Users
@@ -28,6 +30,14 @@ namespace SpeedyDonkeyApi.Controllers.Users
         public IHttpActionResult Post([FromBody] UserModel model)
         {
             var result = PerformAction<CreateUser, User>(new CreateUser(model.ToEntity()));
+
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
+        }
+
+        [Route("auth0")]
+        public IHttpActionResult Post(AuthZeroUserModel model)
+        {
+            var result = PerformAction<CreateUserFromAuthZero, User>(new CreateUserFromAuthZero(model.ToEntity()));
 
             return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
         }

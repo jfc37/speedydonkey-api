@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Action.Users;
 using Actions;
 using Auth0.ManagementApi;
 using Auth0.ManagementApi.Models;

@@ -162,6 +162,7 @@
     <Compile Include="UserPasses\PassCreator.cs" />
     <Compile Include="UserPasses\PurchasePassHandler.cs" />
     <Compile Include="UserPasses\UserPassAppender.cs" />
+    <Compile Include="Users\CreateUserHandler.cs" />
     <Compile Include="Users\DoNotEmailFlags\DoNotEmailForUserFlagChanger.cs" />
     <Compile Include="Users\DoNotEmailFlags\IDoNotEmailForUserFlagChanger.cs" />
     <Compile Include="Users\DoNotEmailFlags\RemoveDoNotEmailForUserHandler.cs" />

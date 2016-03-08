@@ -86,10 +86,11 @@
     <Compile Include="CreateReferenceData.cs" />
     <Compile Include="EnrolInBlock.cs" />
     <Compile Include="CreateBlock.cs" />
-    <Compile Include="CreateUser.cs" />
     <Compile Include="SystemAction.cs" />
     <Compile Include="ICrudAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\CreateUser.cs" />
+    <Compile Include="Users\CreateUserFromAuthZero.cs" />
     <Compile Include="Users\RemoveDoNotEmailForUser.cs" />
     <Compile Include="Users\SetDoNotEmailForUser.cs" />
     <Compile Include="Users\UpdateUser.cs" />
