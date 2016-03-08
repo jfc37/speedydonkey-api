@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using Auth0;
+using ActionHandlers.CreateHandlers;
 using Common;
 using Common.Extensions;
 using Data.Repositories;
@@ -16,7 +16,6 @@ namespace SpeedyDonkeyApi.Filter
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-
             if (actionContext.Request.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
             {
                 //Get user identity
@@ -26,47 +25,22 @@ namespace SpeedyDonkeyApi.Filter
                 if (loggedInUser.IsNull())
                 {
                     var globalId = new ExtractGlobalIdFromJwt(actionContext.Request.GetOwinContext().Authentication.User).Do();
-                    var authZeroUser = new AuthZeroUserRetriever(new AppSettings()).GetUser(globalId);
+                    var user = new AuthZeroClientRepository(new AppSettings()).Get(globalId);
 
-                    CreateNewUser(actionContext, authZeroUser);
+                    CreateNewUser(actionContext, user);
                 }
             }
         }
 
-        private void CreateNewUser(HttpActionContext actionContext, UserProfile authZeroUser)
+        private void CreateNewUser(HttpActionContext actionContext, User authZeroUser)
         {
             var repository = (IRepository<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IRepository<User>));
-            var user = new User
-            {
-                Email = authZeroUser.Email,
-                FirstName = authZeroUser.GivenName,
-                Surname = authZeroUser.FamilyName,
-                GlobalId = authZeroUser.UserId,
-                Claims = authZeroUser.Email.IsSameAs("placid.joe@gmail.com") ? String.Join(",", new [] {Claim.Admin, Claim.Teacher}) : ""
-            };
 
-            repository.Create(user);
-        }
-    }
-
-    public class AuthZeroUserRetriever
-    {
-        private readonly IAppSettings _appSettings;
-
-        public AuthZeroUserRetriever(IAppSettings appSettings)
-        {
-            _appSettings = appSettings;
-        }
-
-        public UserProfile GetUser(string globalId)
-        {
-            var client = new Client(
-                clientID: _appSettings.GetSetting(AppSettingKey.AuthZeroClientId),
-                clientSecret: _appSettings.GetSetting(AppSettingKey.AuthZeroClientSecret),
-                domain: _appSettings.GetSetting(AppSettingKey.AuthZeroDomain)
-                );
-
-            return client.GetUser(globalId);
+            authZeroUser.Claims = authZeroUser.Email.IsSameAs("placid.joe@gmail.com")
+                ? String.Join(",", new[] {Claim.Admin, Claim.Teacher})
+                : "";
+            
+            repository.Create(authZeroUser);
         }
     }
 }
