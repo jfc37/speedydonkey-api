@@ -53,6 +53,8 @@ namespace Common
         AuthZeroClientSecret,
         AuthZeroDomain,
         AuthZeroToken,
-        AuthZeroConnection
+        AuthZeroConnection,
+        AuthZeroApiKey,
+        AuthZeroApiSecret
     }
 }

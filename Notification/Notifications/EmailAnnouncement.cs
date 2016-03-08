@@ -13,6 +13,8 @@ namespace Notification.Notifications
 
         public EmailVerificationMessage(User user, string emailTicket)
         {
+            EmailTo = user.Email;
+
             TemplateContent = new[]
             {
                 new KeyValuePair<string, string>("first_name", user.FirstName),

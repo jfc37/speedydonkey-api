@@ -20,12 +20,17 @@ namespace SpeedyDonkeyApi.Controllers.Emails
         }
 
         [Route]
-        public IHttpActionResult Post(string userId, string email)
+        public IHttpActionResult Post(EmailVerificationModel model)
         {
-            _emailVerification.SendVerification(userId);
+            _emailVerification.SendVerification(model.UserId);
 
             return Ok();
         }
+    }
+
+    public class EmailVerificationModel
+    {
+        public string UserId { get; set; }
     }
 
     public interface IEmailVerification
