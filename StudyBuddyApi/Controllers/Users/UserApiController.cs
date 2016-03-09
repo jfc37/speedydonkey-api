@@ -35,6 +35,7 @@ namespace SpeedyDonkeyApi.Controllers.Users
         }
 
         [Route("auth0")]
+        [AllowAnonymous]
         public IHttpActionResult Post(AuthZeroUserModel model)
         {
             var result = PerformAction<CreateUserFromAuthZero, User>(new CreateUserFromAuthZero(model.ToEntity()));
