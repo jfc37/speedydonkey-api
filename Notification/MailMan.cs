@@ -38,6 +38,12 @@ namespace Notification
                 Content = x.Value
             }).ToList();
 
+            templateContents.Add(new TemplateContent
+            {
+                Name = "application_name",
+                Content = _appSettings.GetSetting(AppSettingKey.ApplicationName)
+            });
+
             var emailMessage = new EmailMessage
             {
                 FromEmail = _appSettings.GetSetting(AppSettingKey.FromEmail),
