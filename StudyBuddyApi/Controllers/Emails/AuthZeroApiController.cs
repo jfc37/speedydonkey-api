@@ -61,20 +61,12 @@ namespace SpeedyDonkeyApi.Controllers.Emails
 
         public void SendVerification(string userId)
         {
-            var userNeedsToBeCreated = _repository.Queryable()
-                .NotAny(x => x.GlobalId == userId);
-
-            if (userNeedsToBeCreated)
-            {
-                var user = _authZeroClientRepository.Get(userId);
-                _repository.Create(user);
-            }
-
-            var domainUser = _repository.Queryable()
+            var user = _repository.Queryable()
                 .Single(x => x.GlobalId == userId);
-            var emailTicket = _emailVerificationRepository.Create(userId);
 
-            var emailVerification = new EmailVerificationMessage(_appSettings, domainUser, emailTicket);
+            var emailTicket = _emailVerificationRepository.Create(userId);
+            var emailVerification = new EmailVerificationMessage(_appSettings, user, emailTicket);
+
             _postOffice.Send(emailVerification);
         }
     }
