@@ -73,6 +73,7 @@
     <Compile Include="MailMan.cs" />
     <Compile Include="NotificationHandlers\INotificationHandler.cs" />
     <Compile Include="NotificationHandlers\NotificationHandler.cs" />
+    <Compile Include="Notifications\EmailVerificationMessage.cs" />
     <Compile Include="Notifications\INotification.cs" />
     <Compile Include="Notifications\UserEnroledInBlock.cs" />
     <Compile Include="Notifications\EmailAnnouncement.cs" />

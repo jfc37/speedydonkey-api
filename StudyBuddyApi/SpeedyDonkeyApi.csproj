@@ -257,7 +257,7 @@
     <Compile Include="Controllers\Classes\ClassPassStaticsticsApiController.cs" />
     <Compile Include="Controllers\Classes\ClassRollApiController.cs" />
     <Compile Include="Controllers\DatabaseApiController.cs" />
-    <Compile Include="Controllers\Emails\VerificationApiController.cs" />
+    <Compile Include="Controllers\Emails\AuthZeroApiController.cs" />
     <Compile Include="Controllers\OnlinePayments\PoliApiController.cs" />
     <Compile Include="Controllers\OnlinePayments\PayPalApiController.cs" />
     <Compile Include="Controllers\Passes\PassApiController.cs" />

@@ -33,6 +33,8 @@ namespace Common
 
     public enum AppSettingKey
     {
+        ApplicationName,
+
         MandrillApiKey,
         TestEmailAccount,
         UseRealEmail,
