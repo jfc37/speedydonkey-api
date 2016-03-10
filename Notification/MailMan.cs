@@ -32,18 +32,14 @@ namespace Notification
 
             var api = new MandrillApi(_appSettings.GetSetting(AppSettingKey.MandrillApiKey));
 
+            notification.TemplateContent.Add(new KeyValuePair<string, string>("application_name", _appSettings.GetSetting(AppSettingKey.ApplicationName)));
+
             var templateContents = notification.TemplateContent.Select(x => new TemplateContent
             {
                 Name = x.Key,
                 Content = x.Value
             }).ToList();
-
-            templateContents.Add(new TemplateContent
-            {
-                Name = "application_name",
-                Content = _appSettings.GetSetting(AppSettingKey.ApplicationName)
-            });
-
+            
             var emailMessage = new EmailMessage
             {
                 FromEmail = _appSettings.GetSetting(AppSettingKey.FromEmail),
