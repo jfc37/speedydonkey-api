@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Common;
 using Common.Extensions;
 using Models;
@@ -24,7 +25,7 @@ namespace Notification.Notifications
                 new KeyValuePair<string, string>("first_name", user.FirstName),
                 new KeyValuePair<string, string>("surname", user.Surname),
                 new KeyValuePair<string, string>("ticket", emailTicket),
-            };
+            }.ToList();
         }
 
         public override string ToString()
