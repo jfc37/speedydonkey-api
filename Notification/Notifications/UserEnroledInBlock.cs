@@ -26,7 +26,7 @@ namespace Notification.Notifications
             };
             if (user.EnroledBlocks != null && user.EnroledBlocks.Any())
             {
-                TemplateContent.Add(new KeyValuePair<string, string>("blocks", String.Join(",", user.EnroledBlocks.Select(x => x.Name))));
+                TemplateContent.Add(new KeyValuePair<string, string>("blocks", String.Join(", ", user.EnroledBlocks.Select(x => x.Name))));
             }
         }
     }
