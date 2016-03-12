@@ -116,6 +116,7 @@
     <Compile Include="Validators\EnrolInBlockValidator.cs" />
     <Compile Include="Validators\IActionValidator.cs" />
     <Compile Include="Validators\Users\CreateUserValidator.cs" />
+    <Compile Include="Validators\Users\DeleteUserValidator.cs" />
     <Compile Include="Validators\Users\UpdateUserNamesValidator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,5 @@
 using System.Linq;
 using Action.Users;
-using Actions;
 using Common.Extensions;
 using Data.Repositories;
 using FluentValidation;

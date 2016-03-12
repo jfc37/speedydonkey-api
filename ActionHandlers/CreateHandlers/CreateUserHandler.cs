@@ -18,6 +18,8 @@ namespace ActionHandlers.CreateHandlers
         string Create(User user);
 
         User Get(string globalId);
+
+        void Delete(string globalId);
     }
     public interface IAuthZeroEmailVerificationRepository
     {
@@ -142,6 +144,11 @@ namespace ActionHandlers.CreateHandlers
             return _authManagement.Users.Get(globalId)
                 .Result
                 .ToUser();
+        }
+
+        public void Delete(string globalId)
+        {
+            _authManagement.Users.Delete(globalId);
         }
     }
 

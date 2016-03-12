@@ -76,13 +76,7 @@ namespace ActionHandlers.DeleteHandlers
             }
         }
     }
-    public class DeleteUserHandler : DeleteEntityHandler<DeleteUser, User>
-    {
-        public DeleteUserHandler(IRepository<User> repository)
-            : base(repository)
-        {
-        }
-    }
+
     public class DeleteAnnouncementHandler : DeleteEntityHandler<DeleteAnnouncement, Announcement>
     {
         public DeleteAnnouncementHandler(IRepository<Announcement> repository)
