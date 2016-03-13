@@ -3,13 +3,9 @@ using Autofac;
 using Data.Mappings;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using Mindscape.Raygun4Net.WebApi;
-#if !DEBUG
-#endif
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using Owin;
-using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi
 {
@@ -65,8 +61,6 @@ namespace SpeedyDonkeyApi
             FilterConfig.Register(config);
 
             log4net.Config.XmlConfigurator.Configure();
-
-            RaygunWebApiClient.Attach(config);
         }
     }
 }

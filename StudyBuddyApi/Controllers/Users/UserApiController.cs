@@ -1,15 +1,14 @@
+using System;
 using System.Web.Http;
 using Action;
 using Action.Users;
 using ActionHandlers;
-using Actions;
 using Contracts.MappingExtensions;
 using Contracts.Users;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
-using SpeedyDonkeyApi.Controllers.Emails;
 using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi.Controllers.Users
@@ -70,7 +69,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         {
             var model = new User(id);
             var result = PerformAction<DeleteUser, User>(new DeleteUser(model));
-
 
             return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this)
                 .Do();
