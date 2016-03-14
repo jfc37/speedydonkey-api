@@ -76,7 +76,6 @@
     <Compile Include="Notifications\INotification.cs" />
     <Compile Include="Notifications\UserEnroledInBlock.cs" />
     <Compile Include="Notifications\EmailAnnouncement.cs" />
-    <Compile Include="Notifications\WindyLindyRegistrationCompletion.cs" />
     <Compile Include="PostOffice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

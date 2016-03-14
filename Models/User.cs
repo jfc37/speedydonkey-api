@@ -6,7 +6,7 @@ using Common.Extensions;
 
 namespace Models
 {
-    public class User : IEntity, IDatabaseEntity
+    public class User : DatabaseEntity
     {
         public User()
         {
@@ -33,9 +33,6 @@ namespace Models
         public virtual IList<Event> Schedule { get; set; }
         public virtual ICollection<Block> EnroledBlocks { get; set; }
         public virtual IList<Pass> Passes { get; set; }
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual string Claims { get; set; } 
         public virtual bool DoNotEmail { get; set; }
 

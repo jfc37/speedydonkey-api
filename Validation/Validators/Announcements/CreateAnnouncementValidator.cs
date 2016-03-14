@@ -7,9 +7,9 @@ using Validation.Rules;
 
 namespace Validation.Validators.Announcements
 {
-    public class CreateAnnouncementHandlerValidator : AbstractValidator<Announcement>, IActionValidator<CreateAnnouncement, Announcement>
+    public class CreateAnnouncementValidator : AbstractValidator<Announcement>, IActionValidator<CreateAnnouncement, Announcement>
     {
-        public CreateAnnouncementHandlerValidator(IRepository<Block> blockRepository)
+        public CreateAnnouncementValidator(IRepository<Block> blockRepository)
         {
             RuleFor(x => x.Id).Must((x, y) => new DoesAnnouncementHaveSomeoneToNotify(x).IsValid());
 

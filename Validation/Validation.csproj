@@ -86,7 +86,7 @@
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="ValidatorOverlord.cs" />
-    <Compile Include="Validators\Announcements\CreateAnnouncementHandlerValidator.cs" />
+    <Compile Include="Validators\Announcements\CreateAnnouncementValidator.cs" />
     <Compile Include="Validators\Announcements\DoesAnnouncementHaveSomeoneToNotify.cs" />
     <Compile Include="Validators\Blocks\ChangeBlockRoomValidator.cs" />
     <Compile Include="Validators\Blocks\CreateBlockValidator.cs" />

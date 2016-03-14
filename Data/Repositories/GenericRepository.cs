@@ -43,18 +43,16 @@ namespace Data.Repositories
     public interface IRepository<TEntity> where TEntity : IEntity
     {
         IQueryable<TEntity> Queryable();
-
-        IEnumerable<TEntity> GetAllWithChildren(IList<string> children);
-
+        
         TEntity Get(int id);
-
-        TEntity GetWithChildren(int id, IList<string> children);
-
+        
         TEntity Create(TEntity entity);
 
         TEntity Update(TEntity entity);
 
         void Delete(int id);
+
+        void SoftDelete(int id);
     }
 
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity , IDatabaseEntity
@@ -68,41 +66,25 @@ namespace Data.Repositories
 
         public IQueryable<TEntity> Queryable()
         {
-            return _session.Query<TEntity>();
-        }
-
-        public IEnumerable<TEntity> GetAllWithChildren(IList<string> children)
-        {
-            var search = _session.CreateCriteria<TEntity>();
-            foreach (var child in children)
-            {
-                search.SetFetchMode(child, FetchMode.Join);
-            }
-            var completedSearch = search.Future<TEntity>();
-
-            var groupedById = completedSearch.GroupBy(x => x.Id);
-            var justTheFirstOfEach = groupedById.Select(x => x.First());
-            return justTheFirstOfEach;
+            return _session.Query<TEntity>()
+                .Where(x => !x.IsDeleted);
         }
 
         [Log]
         public TEntity Get(int id)
         {
             var entity = _session.Get<TEntity>(id);
-            return entity;
-        }
 
-        [Log]
-        public TEntity GetWithChildren(int id, IList<string> children)
-        {
-            var search = _session.CreateCriteria<TEntity>();
-            foreach (var child in children)
+            if (entity == null)
             {
-                search.SetFetchMode(child, FetchMode.Select);
+                return null;
             }
-            var completedSearch = search.Future<TEntity>();
 
-            var entity = completedSearch.First(x => x.Id == id);
+            if (entity.IsDeleted)
+            {
+                return null;
+            }
+
             return entity;
         }
 
@@ -141,6 +123,14 @@ namespace Data.Repositories
                 _session.Flush();
                 transaction.Commit();
             }
+        }
+
+        public void SoftDelete(int id)
+        {
+            var entity = Get(id);
+            entity.IsDeleted = true;
+
+            Update(entity);
         }
     }
 }

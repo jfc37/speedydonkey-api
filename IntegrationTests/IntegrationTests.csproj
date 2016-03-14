@@ -270,6 +270,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CurrentUserSchedule.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Users\DeleteUser.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteUser.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\DoNotEmailUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -335,6 +340,7 @@
     <Compile Include="Steps\Users\CreateUserSteps.cs" />
     <Compile Include="Steps\Users\CurrentUserScheduleSteps.cs" />
     <Compile Include="Steps\Users\CurrentUserSteps.cs" />
+    <Compile Include="Steps\Users\DeleteUserSteps.cs" />
     <Compile Include="Steps\Users\DoNotEmailUserSteps.cs" />
     <Compile Include="Steps\Users\GetClaimsSteps.cs" />
     <Compile Include="Steps\Users\RetrieveUserSteps.cs" />
@@ -499,6 +505,10 @@
     <None Include="Features\Users\CurrentUserSchedule.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CurrentUserSchedule.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\DeleteUser.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteUser.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\DoNotEmailUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

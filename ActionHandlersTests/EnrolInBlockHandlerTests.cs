@@ -72,7 +72,7 @@ namespace ActionHandlersTests
         {
             PerformAction();
 
-            _userRepositoryBuilder.Mock.Verify(x => x.GetWithChildren(_action.ActionAgainst.Id, It.IsAny<IList<string>>()));
+            _userRepositoryBuilder.Mock.Verify(x => x.Queryable());
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace ActionHandlersTests
         {
             PerformAction();
 
-            _blockRepositoryBuilder.Mock.Verify(x => x.GetAllWithChildren(It.IsAny<IList<string>>()));
+            _blockRepositoryBuilder.Mock.Verify(x => x.Queryable());
         }
 
         [TestCase(1)]

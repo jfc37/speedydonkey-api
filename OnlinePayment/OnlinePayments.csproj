@@ -87,7 +87,6 @@
     <Compile Include="Extensions\ErrorTypeExtensions.cs" />
     <Compile Include="Extensions\SetExpressCheckoutResponseTypeExtensions.cs" />
     <Compile Include="IStartPaymentStrategy.cs" />
-    <Compile Include="ItemStrategies\WindyLindy\WindyLindyStrategy.cs" />
     <Compile Include="PaymentFeeStrategies\IPaymentFeeStrategy.cs" />
     <Compile Include="IOnlinePaymentManager.cs" />
     <Compile Include="ItemStrategies\IItemStrategy.cs" />

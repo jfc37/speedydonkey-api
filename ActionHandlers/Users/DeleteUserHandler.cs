@@ -23,7 +23,7 @@ namespace ActionHandlers.Users
         {
             DeleteFromAuth0(action);
 
-            _repository.Delete(action.ActionAgainst.Id);
+            _repository.SoftDelete(action.ActionAgainst.Id);
 
             return action.ActionAgainst;
         }
