@@ -250,6 +250,7 @@
     <Compile Include="CodeChunks\ActionResultToHttpActionResult.cs" />
     <Compile Include="CodeChunks\ActionResultToOkHttpActionResult.cs" />
     <Compile Include="CodeChunks\EntityToHttpActionResult.cs" />
+    <Compile Include="CodeChunks\ExtractGlobalIdFromJwt.cs" />
     <Compile Include="CodeChunks\ExtractLoggedInUser.cs" />
     <Compile Include="CodeChunks\ExtractUserClaims.cs" />
     <Compile Include="CodeChunks\GetUpcomingSchedule.cs" />
@@ -303,7 +304,6 @@
     <Compile Include="Filter\NullModelActionFilter.cs" />
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />
-    <Compile Include="GlobalAspects.cs" />
     <Compile Include="GlobalErrorLoggerService.cs" />
     <Compile Include="Owin\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -367,6 +367,14 @@
     <ProjectReference Include="..\Action\Actions.csproj">
       <Project>{09F22D3D-6200-41BF-BDEE-0F60710FB775}</Project>
       <Name>Actions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AuthZero\AuthZero.Domain\AuthZero.Domain.csproj">
+      <Project>{655e138f-1276-422c-890a-2e1a2b5ec13f}</Project>
+      <Name>AuthZero.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AuthZero\AuthZero.Interfaces\AuthZero.Interfaces.csproj">
+      <Project>{0fc84692-3a1e-4de0-bba0-ccce42d81bf5}</Project>
+      <Name>AuthZero.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>

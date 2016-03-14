@@ -1,7 +1,11 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Reflection;
 using System.Web.Http;
 using ActionHandlers;
+using AuthZero.Domain.Clients;
+using AuthZero.Domain.EmailVerification;
+using AuthZero.Interfaces;
 using Autofac;
 using Autofac.Core;
 using Autofac.Features.ResolveAnything;
@@ -72,7 +76,9 @@ namespace SpeedyDonkeyApi
                 typeof (OnlinePaymentRequestModelExtensions).Assembly,
                 typeof (SearchQueryParser).Assembly,
                 typeof (CommonInterfaceCloner).Assembly,
-                typeof (PostOffice).Assembly
+                typeof (PostOffice).Assembly,
+                typeof (AuthZeroClientRepository).Assembly,
+                typeof (IAuthZeroClientRepository).Assembly
             };
             builder.RegisterAssemblyTypes(assemblies)
                 .AsImplementedInterfaces();
@@ -80,6 +86,17 @@ namespace SpeedyDonkeyApi
             builder.RegisterType<Container>().As<IContainer>();
             builder.RegisterType<CurrentUser>().As<ICurrentUser>().InstancePerLifetimeScope();
 
+            var actualAuth0Integration = Convert.ToBoolean(new AppSettings().GetSetting(AppSettingKey.AuthZeroRealIntegration));
+            if (actualAuth0Integration)
+            {
+                builder.RegisterType<AuthZeroClientRepository>().As<IAuthZeroClientRepository>();
+                builder.RegisterType<AuthZeroEmailVerificationRepository>().As<IAuthZeroEmailVerificationRepository>();
+            }
+            else
+            {
+                builder.RegisterType<FakeAuthZeroClientRepository>().As<IAuthZeroClientRepository>();
+                builder.RegisterType<FakeAuthZeroEmailVerificationRepository>().As<IAuthZeroEmailVerificationRepository>();
+            }
 
             // Build the container.
             var container = builder.Build();

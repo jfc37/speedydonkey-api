@@ -51,6 +51,7 @@ namespace Common
         PoliAuthorisation,
         PoliInitiateUrl,
 
+        AuthZeroRealIntegration,
         AuthZeroClientId,
         AuthZeroClientSecret,
         AuthZeroDomain,

@@ -11,7 +11,7 @@ namespace SpeedyDonkeyApi.Filter
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            if (actionContext.ActionArguments.Any(v => ObjectExtensions.IsNull(v.Value)))
+            if (actionContext.ActionArguments.Any(v => v.Value.IsNull()))
             {
                 actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.BadRequest);
             }

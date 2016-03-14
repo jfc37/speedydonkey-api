@@ -56,7 +56,7 @@ namespace SpeedyDonkeyApi
             RouteConfig.Register(config);
             SerailisationConfig.Register(config);
             HttpsConfig.Register(config);
-           CorsConfig.Register(config);
+            CorsConfig.Register(config);
             DependancyInjectionConfig.Register(config, app);
             FilterConfig.Register(config);
 

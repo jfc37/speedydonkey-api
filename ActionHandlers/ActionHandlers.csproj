@@ -175,6 +175,10 @@
       <Project>{09F22D3D-6200-41BF-BDEE-0F60710FB775}</Project>
       <Name>Actions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AuthZero\AuthZero.Interfaces\AuthZero.Interfaces.csproj">
+      <Project>{0fc84692-3a1e-4de0-bba0-ccce42d81bf5}</Project>
+      <Name>AuthZero.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
       <Name>Common</Name>

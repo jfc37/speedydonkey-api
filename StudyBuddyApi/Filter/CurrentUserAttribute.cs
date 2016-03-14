@@ -1,9 +1,10 @@
-﻿using System;
+﻿using System.Linq;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Common;
-using Common.Extensions;
+using Data.Repositories;
+using Models;
 using SpeedyDonkeyApi.CodeChunks;
 
 namespace SpeedyDonkeyApi.Filter
@@ -12,12 +13,14 @@ namespace SpeedyDonkeyApi.Filter
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            var loggedInUser = new ExtractLoggedInUser(actionContext.Request.GetOwinContext().Authentication.User, actionContext.Request.GetDependencyScope()).Do();
+            var repository = (IRepository<User>)actionContext.Request.GetDependencyScope().GetService(typeof(IRepository<User>));
 
-            if (loggedInUser.IsNotNull())
+            var loggedInUser = new ExtractLoggedInUser(actionContext.Request.GetOwinContext().Authentication.User, repository).Do();
+
+            if (loggedInUser.Any())
             {
                 var currentUser = (ICurrentUser)actionContext.Request.GetDependencyScope().GetService(typeof(ICurrentUser));
-                currentUser.Id = loggedInUser.Id;
+                currentUser.Id = loggedInUser.Single().Id;
             }
         }
     }
