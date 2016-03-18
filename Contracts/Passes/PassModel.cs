@@ -14,13 +14,7 @@ namespace Contracts.Passes
 
         public string PassType { get; set; }
 
-        public string PassNumber
-        {
-            get
-            {
-                return String.Format("{0}{1}", CreatedDateTime.ToString("yy"), Id.ToString("D4"));
-            }
-        }
+        public string PassNumber => $"{CreatedDateTime.ToString("yy")}{Id.ToString("D4")}";
 
         public string PaymentStatus { get; set; }
         public decimal Cost { get; set; }
@@ -28,10 +22,7 @@ namespace Contracts.Passes
         public UserModel Owner { get; set; }
         public PassStatisticModel PassStatistic { get; set; }
 
-        public bool Valid
-        {
-            get { return IsValid(); }
-        }
+        public bool Valid => IsValid();
 
         public virtual bool IsValid()
         {

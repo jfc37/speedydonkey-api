@@ -67,6 +67,7 @@
     <Compile Include="MappingExtensions\LocalTimeMappingExtensions.cs" />
     <Compile Include="MappingExtensions\ModelMappingExtensions.cs" />
     <Compile Include="MappingExtensions\OpeningHoursMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\PassMappingExtensions.cs" />
     <Compile Include="MappingExtensions\SettingMappingExtensions.cs" />
     <Compile Include="MappingExtensions\TeacherAvailablityMappingExtensions.cs" />
     <Compile Include="MappingExtensions\UserMappingExtensions.cs" />

@@ -1,4 +1,4 @@
-﻿Feature: CreateRoom
+﻿Feature: CreateSetting
 
 @settings @create @logo @golden_path
 Scenario: Set logo url setting

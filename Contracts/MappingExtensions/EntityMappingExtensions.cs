@@ -63,26 +63,7 @@ namespace Contracts.MappingExtensions
                 TermsAndConditions = instance.TermsAndConditions
             };
         }
-        public static Pass ToEntity(this PassModel instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new Pass
-            {
-                Id = instance.Id,
-                Cost = instance.Cost,
-                Description = instance.Description,
-                EndDate = instance.EndDate,
-                PassType = instance.PassType,
-                PaymentStatus = instance.PaymentStatus,
-                Note = instance.Note,
-                Owner = instance.Owner.ToEntity(),
-                PassStatistic = instance.PassStatistic.ToEntity(),
-                StartDate = instance.StartDate
-            };
-        }
-
+        
         public static PassTemplate ToEntity(this PassTemplateModel instance)
         {
             if (instance.IsNull())
@@ -131,9 +112,7 @@ namespace Contracts.MappingExtensions
                 Id = instance.Id
             };
         }
-
-
-
+        
         public static Block ToEntity(this BlockModel instance)
         {
             if (instance.IsNull())
@@ -170,8 +149,7 @@ namespace Contracts.MappingExtensions
                 Receivers = instance.Receivers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull()
             };
         }
-
-
+        
         public static Teacher ToEntity(this TeacherModel instance)
         {
             if (instance.IsNull())

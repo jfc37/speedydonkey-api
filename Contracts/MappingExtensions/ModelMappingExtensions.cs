@@ -63,6 +63,7 @@ namespace Contracts.MappingExtensions
                 TermsAndConditions = instance.TermsAndConditions
             };
         }
+
         public static PassTemplateModel ToModel(this PassTemplate instance)
         {
             if (instance.IsNull())
@@ -79,6 +80,7 @@ namespace Contracts.MappingExtensions
                 WeeksValidFor = instance.WeeksValidFor
             };
         }
+
         public static RoomModel ToModel(this Room instance)
         {
             if (instance.IsNull())
@@ -102,92 +104,6 @@ namespace Contracts.MappingExtensions
                 Id = instance.Id,
                 Location = instance.Location,
                 Name = instance.Name
-            };
-        }
-
-        public static PassModel ToModel(this Pass instance)
-        {
-            var clipPass = instance as ClipPass;
-            if (clipPass != null)
-                return clipPass.ToModel();
-
-            if (instance.IsNull())
-                return null;
-
-            return new PassModel
-            {
-                Id = instance.Id,
-                Cost = instance.Cost,
-                Description = instance.Description,
-                EndDate = instance.EndDate,
-                PassType = instance.PassType,
-                PaymentStatus = instance.PaymentStatus,
-                Note = instance.Note,
-                Owner = instance.Owner.ToStripedModel(),
-                StartDate = instance.StartDate,
-                CreatedDateTime = instance.CreatedDateTime
-            };
-        }
-        public static PassModel ToStripedModel(this Pass instance)
-        {
-            var clipPass = instance as ClipPass;
-            if (clipPass != null)
-                return clipPass.ToStripedModel();
-
-            if (instance.IsNull())
-                return null;
-
-            return new PassModel
-            {
-                Id = instance.Id,
-                Cost = instance.Cost,
-                Description = instance.Description,
-                EndDate = instance.EndDate,
-                PassType = instance.PassType,
-                PaymentStatus = instance.PaymentStatus,
-                Note = instance.Note,
-                StartDate = instance.StartDate,
-                CreatedDateTime = instance.CreatedDateTime
-            };
-        }
-
-        public static ClipPassModel ToModel(this ClipPass instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new ClipPassModel
-            {
-                Id = instance.Id,
-                Cost = instance.Cost,
-                Description = instance.Description,
-                EndDate = instance.EndDate,
-                PassType = instance.PassType,
-                PaymentStatus = instance.PaymentStatus,
-                Note = instance.Note,
-                Owner = instance.Owner.ToStripedModel(),
-                StartDate = instance.StartDate,
-                ClipsRemaining = instance.ClipsRemaining,
-                CreatedDateTime = instance.CreatedDateTime
-            };
-        }
-        public static ClipPassModel ToStripedModel(this ClipPass instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new ClipPassModel
-            {
-                Id = instance.Id,
-                Cost = instance.Cost,
-                Description = instance.Description,
-                EndDate = instance.EndDate,
-                PassType = instance.PassType,
-                PaymentStatus = instance.PaymentStatus,
-                Note = instance.Note,
-                StartDate = instance.StartDate,
-                ClipsRemaining = instance.ClipsRemaining,
-                CreatedDateTime = instance.CreatedDateTime
             };
         }
 
