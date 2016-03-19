@@ -104,7 +104,7 @@ namespace IntegrationTests.Steps.Users
         {
             var userResponse = ApiCaller.Get<List<UserModel>>(Routes.Users);
 
-            Assert.AreEqual(userResponse.StatusCode, HttpStatusCode.OK);
+            Assert.AreEqual(HttpStatusCode.OK, userResponse.StatusCode);
 
             var createdUser = userResponse.Data.SingleWithId(ScenarioCache.GetUserId());
             var expectedUser = ScenarioCache.Get<UserModel>(ExpectedUserKey);

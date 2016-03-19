@@ -88,8 +88,6 @@
     <Compile Include="CreateAndUpdateUserValidatorTests.cs" />
     <Compile Include="CreateUpdatePassTemplateValidatorTests.cs" />
     <Compile Include="DeletePassTemplateValidatorTests.cs" />
-    <Compile Include="ResetPasswordValidatorTests.cs" />
-    <Compile Include="ForgottenPasswordValidatorTests.cs" />
     <Compile Include="UpdatePassValidatorTests.cs" />
     <Compile Include="EnrolInBlockValidatorTests.cs" />
     <Compile Include="FluentConverterTestFixture.cs" />

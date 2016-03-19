@@ -33,12 +33,12 @@ namespace Common
 
     public enum AppSettingKey
     {
+        ApplicationName,
+
         MandrillApiKey,
         TestEmailAccount,
         UseRealEmail,
         AdminEmailWhitelist,
-        AutoActivateAdmin,
-        AutoActivateUser,
         FromEmail,
         ShouldSendEmail,
         AllowDatabaseDelete,
@@ -51,8 +51,13 @@ namespace Common
         PoliAuthorisation,
         PoliInitiateUrl,
 
+        AuthZeroRealIntegration,
         AuthZeroClientId,
         AuthZeroClientSecret,
-        AuthZeroDomain
+        AuthZeroDomain,
+        AuthZeroToken,
+        AuthZeroConnection,
+        AuthZeroApiKey,
+        AuthZeroApiSecret
     }
 }

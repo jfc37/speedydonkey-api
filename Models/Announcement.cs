@@ -4,11 +4,8 @@ using Common;
 
 namespace Models
 {
-    public class Announcement : IEntity, IDatabaseEntity
+    public class Announcement : DatabaseEntity
     {
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual string Message { get; set; }
         public virtual string Subject { get; set; }
         public virtual ICollection<Block> Receivers { get; set; }

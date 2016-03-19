@@ -72,8 +72,6 @@
     <Compile Include="CreateActionTests.cs" />
     <Compile Include="EnrolInBlockHandlerTests.cs" />
     <Compile Include="PrivateLessons\SetOpeningHoursHandlerTests.cs" />
-    <Compile Include="ResetPasswordHandlerTests.cs" />
-    <Compile Include="ForgottenPasswordHandlerTests.cs" />
     <Compile Include="PasswordHasherTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateClassHandlerTests.cs" />

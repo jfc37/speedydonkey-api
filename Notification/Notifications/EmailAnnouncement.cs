@@ -6,9 +6,9 @@ namespace Notification.Notifications
 {
     public class EmailAnnouncement : INotification
     {
-        public string EmailTo { get; private set; }
-        public string Subject { get; private set; }
-        public string TemplateName { get { return "Announcement"; } }
+        public string EmailTo { get; }
+        public string Subject { get; }
+        public string TemplateName => "Announcement";
         public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
         User User { get; set; }
 

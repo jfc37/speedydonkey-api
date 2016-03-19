@@ -3,8 +3,6 @@ using System.Net.Http;
 using System.Web.Http;
 using Action;
 using ActionHandlers;
-using Common;
-using Contracts;
 using Contracts.MappingExtensions;
 using Contracts.Passes;
 using Data.Repositories;
@@ -32,16 +30,11 @@ namespace SpeedyDonkeyApi.Controllers.Passes
         {
             model.Id = id;
 
-            if (model.PassType == PassType.Unlimited.ToString())
-            {
-                var unlimitedPassModel = new CommonInterfaceCloner().Clone<ClipPassModel, PassModel>(model);
-                var result = PerformAction<UpdatePass, Pass>(new UpdatePass(unlimitedPassModel.ToEntity()));
-
-                return Request.CreateResponse(result.ValidationResult.GetStatusCode(HttpStatusCode.OK),
-                    new ActionReponse<PassModel>(result.ActionResult.ToModel(), result.ValidationResult));
-            }
-
-            var resultResult = PerformAction<UpdatePass, Pass>(new UpdatePass(model.ToEntity()));
+            var updatePass = model.PassType == PassType.Unlimited.ToString()
+                ? new UpdatePass(((PassModel) model).ToEntity())
+                : new UpdatePass(model.ToEntity());
+            
+            var resultResult = PerformAction<UpdatePass, Pass>(updatePass);
 
             return Request.CreateResponse(resultResult.ValidationResult.GetStatusCode(HttpStatusCode.OK),
                 new ActionReponse<PassModel>(resultResult.ActionResult.ToModel(), resultResult.ValidationResult));

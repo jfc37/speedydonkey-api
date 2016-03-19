@@ -18,6 +18,8 @@
         public const string PasswordTooShort = "Please enter a password atleast 7 characters long";
         public const string MissingEmail = "Please enter an email address";
         public const string InvalidEmail = "Please enter a valid email address";
+        public const string MissingGlobalId = "Please enter a global id";
+        public const string AuthUserAlreadyExistsAsUser = "Auth0 user already exists as a user";
         public const string MissingFirstName = "Please enter a first name";
         public const string MissingSurname = "Please enter a surname";
         public const string DuplicateEmail = "Email address has already been registered";

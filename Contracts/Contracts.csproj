@@ -67,8 +67,10 @@
     <Compile Include="MappingExtensions\LocalTimeMappingExtensions.cs" />
     <Compile Include="MappingExtensions\ModelMappingExtensions.cs" />
     <Compile Include="MappingExtensions\OpeningHoursMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\PassMappingExtensions.cs" />
     <Compile Include="MappingExtensions\SettingMappingExtensions.cs" />
     <Compile Include="MappingExtensions\TeacherAvailablityMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\UserMappingExtensions.cs" />
     <Compile Include="OnlinePayments\OnlinePaymentRequestModel.cs" />
     <Compile Include="OnlinePayments\PayPal\PayPalCompleteModel.cs" />
     <Compile Include="OnlinePayments\PayPal\PayPalConfirmModel.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Settings\CompleteSettingsModel.cs" />
     <Compile Include="Settings\SettingItemModel.cs" />
     <Compile Include="Teachers\TeacherModel.cs" />
+    <Compile Include="Users\AuthZeroUserModel.cs" />
     <Compile Include="Users\UserModel.cs" />
     <Compile Include="Users\UserNamesModel.cs" />
     <Compile Include="Users\UserScheduleModel.cs" />

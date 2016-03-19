@@ -49,8 +49,6 @@ namespace Data.Tests.Builders
             {
                 Mock.Setup(x => x.Queryable())
                 .Returns(new List<T>().AsQueryable());
-                Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                    .Returns(new List<T>());
             }
             else
             {
@@ -59,17 +57,9 @@ namespace Data.Tests.Builders
                 {
                     response
                 }.AsQueryable());
-                Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                    .Returns(new[]
-                {
-                    response
-                });
             }
-
             
             Mock.Setup(x => x.Get(It.IsAny<int>()))
-                .Returns(response);
-            Mock.Setup(x => x.GetWithChildren(It.IsAny<int>(), It.IsAny<IList<string>>()))
                 .Returns(response);
         }
 
@@ -83,8 +73,6 @@ namespace Data.Tests.Builders
         {
             Mock.Setup(x => x.Queryable())
                 .Returns(new List<T>().AsQueryable());
-            Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                .Returns(new List<T>());
             return this;
         }
 
@@ -92,8 +80,6 @@ namespace Data.Tests.Builders
         {
             Mock.Setup(x => x.Queryable())
                 .Returns(entities.AsQueryable());
-            Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                .Returns(entities);
             return this;
         }
     }

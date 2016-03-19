@@ -5,7 +5,7 @@ using Common.Extensions;
 
 namespace Models
 {
-    public class Block : IDatabaseEntity, IEntity
+    public class Block : DatabaseEntity
     {
         public Block(int id) : this()
         {
@@ -16,9 +16,7 @@ namespace Models
         {
             Classes = new List<Class>();
         }
-
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
+        
         public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<User> EnroledStudents { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
@@ -27,7 +25,6 @@ namespace Models
         public virtual DateTimeOffset StartDate { get; set; }
         public virtual DateTimeOffset EndDate { get; set; }
         public virtual string Name { get; set; }
-        public virtual int Id { get; set; }
         public virtual int NumberOfClasses { get; set; }
         public virtual int MinutesPerClass { get; set; }
         public virtual bool IsInviteOnly { get; set; }

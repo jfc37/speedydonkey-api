@@ -9,14 +9,11 @@ namespace Models.PrivateLessons
     /// </summary>
     /// <seealso cref="Common.IEntity" />
     /// <seealso cref="Models.IDatabaseEntity" />
-    public class TimeSlot : IEntity, IDatabaseEntity
+    public class TimeSlot : DatabaseEntity
     {
-        public virtual int Id { get; set; }
         public virtual IsoDayOfWeek Day { get; set; }
         public virtual LocalTime OpeningTime { get; set; }
         public virtual LocalTime ClosingTime { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeSlot"/> class.

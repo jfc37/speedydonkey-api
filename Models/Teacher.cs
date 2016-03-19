@@ -5,13 +5,10 @@ using Common.Extensions;
 
 namespace Models
 {
-    public class Teacher : IEntity, IDatabaseEntity
+    public class Teacher : DatabaseEntity
     {
         public virtual User User { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
 
         public Teacher()
         {

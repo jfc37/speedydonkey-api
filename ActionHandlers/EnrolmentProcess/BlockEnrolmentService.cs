@@ -22,9 +22,9 @@ namespace ActionHandlers.EnrolmentProcess
 
         public IList<Block> EnrolInBlocks(User user, IEnumerable<int> blockIds)
         {
-            var allBlocks = _blockRepository.GetAllWithChildren(new[] {"Classes"});
-            var interestedBlocks = allBlocks.Where(b => blockIds.Any(x => x == b.Id));
-            var blocksBeingEnroledIn = interestedBlocks.ToList();
+            var blocksBeingEnroledIn = _blockRepository.Queryable()
+                .Where(b => blockIds.Contains(b.Id))
+                .ToList();
 
             AddBlocksToUser(user, blocksBeingEnroledIn);
             AddClassesToUserSchedule(user, blocksBeingEnroledIn.SelectMany(x => x.Classes));

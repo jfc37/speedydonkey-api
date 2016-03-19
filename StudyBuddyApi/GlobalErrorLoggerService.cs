@@ -1,8 +1,8 @@
-﻿using System.Configuration;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
-using Mindscape.Raygun4Net.WebApi;
+using log4net;
+using Models;
 
 namespace SpeedyDonkeyApi
 {
@@ -10,10 +10,9 @@ namespace SpeedyDonkeyApi
     {
         public Task LogAsync(ExceptionLoggerContext context, CancellationToken cancellationToken)
         {
-            var raygunApiKey = ConfigurationManager.AppSettings.Get("RaygunKey");
-            var raygunClient = new RaygunWebApiClient(raygunApiKey);
-            raygunClient.Send(context.Exception);
-
+            var logger = LogManager.GetLogger(typeof(Class));
+            logger.Error("Error", context.Exception);
+            
             return Task.FromResult(0);
         }
     }

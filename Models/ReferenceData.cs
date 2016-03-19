@@ -3,20 +3,8 @@ using Common;
 
 namespace Models
 {
-    public interface IReferenceData
+    public class ReferenceData : DatabaseEntity
     {
-        int Id { get; set; }
-        string Type { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
-        string Value { get; set; }
-    }
-
-    public class ReferenceData : IReferenceData, IEntity, IDatabaseEntity
-    {
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual string Type { get; set; }
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }

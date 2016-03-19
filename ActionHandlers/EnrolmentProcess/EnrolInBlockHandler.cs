@@ -27,7 +27,9 @@ namespace ActionHandlers.EnrolmentProcess
         public User Handle(EnrolInBlock action)
         {
             IList<Block> blocks = new List<Block>();
-            var user = _userRepository.GetWithChildren(action.ActionAgainst.Id, new List<string> { "EnroledBlocks", "EnroledBlocks.Classes" });
+            var user = _userRepository.Queryable()
+                .Single(x => x.Id == action.ActionAgainst.Id);
+
             if (action.ActionAgainst.EnroledBlocks != null)
             {
                 blocks = _blockEnrolmentService.EnrolInBlocks(user, action.ActionAgainst.EnroledBlocks.Select(x => x.Id).ToList()); 

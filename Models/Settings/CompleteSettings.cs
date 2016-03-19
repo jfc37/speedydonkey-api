@@ -8,7 +8,7 @@ namespace Models.Settings
     /// <summary>
     /// Complete set of settings
     /// </summary>
-    public class CompleteSettings : IEntity, IDatabaseEntity
+    public class CompleteSettings : DatabaseEntity
     {
         public CompleteSettings()
         {
@@ -19,11 +19,8 @@ namespace Models.Settings
         {
             Settings = settings;
         }
-
-        public virtual int Id { get; set; }
+        
         public virtual IEnumerable<SettingItem> Settings { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
 
         public override string ToString()
         {

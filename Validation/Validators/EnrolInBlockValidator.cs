@@ -68,8 +68,13 @@ namespace Validation.Validators
 
         private bool NotAlreadyBeEnroled(User user, ICollection<Block> blocksBeingEnroledIn)
         {
-            var alreadyEnroledBlockIds = _userRepository.GetWithChildren(user.Id, new List<string>{"EnroledBlocks"}).EnroledBlocks.Select(x => x.Id);
+            var alreadyEnroledBlockIds = _userRepository.Queryable()
+                .Single(x => x.Id == user.Id)
+                .EnroledBlocks
+                .Select(x => x.Id);
+
             var enrolingBlockIds = blocksBeingEnroledIn.Select(x => x.Id);
+
             return !alreadyEnroledBlockIds.Intersect(enrolingBlockIds).Any();
         }
     }

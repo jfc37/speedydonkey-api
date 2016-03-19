@@ -9,7 +9,7 @@ namespace Models.PrivateLessons
     /// </summary>
     /// <seealso cref="Common.IEntity" />
     /// <seealso cref="Models.IDatabaseEntity" />
-    public class TeacherAvailability : IEntity, IDatabaseEntity
+    public class TeacherAvailability : DatabaseEntity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TeacherAvailability"/> class.
@@ -30,11 +30,8 @@ namespace Models.PrivateLessons
             Availabilities = availabilities;
             Teacher = teacher;
         }
-
-        public virtual int Id { get; set; }
+        
         public virtual IEnumerable<TimeSlot> Availabilities { get; set; }
         public virtual Teacher Teacher { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
     }
 }

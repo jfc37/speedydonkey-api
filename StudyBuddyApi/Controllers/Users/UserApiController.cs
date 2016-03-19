@@ -1,7 +1,8 @@
+using System;
 using System.Web.Http;
 using Action;
+using Action.Users;
 using ActionHandlers;
-using Actions;
 using Contracts.MappingExtensions;
 using Contracts.Users;
 using Data.Repositories;
@@ -28,6 +29,15 @@ namespace SpeedyDonkeyApi.Controllers.Users
         public IHttpActionResult Post([FromBody] UserModel model)
         {
             var result = PerformAction<CreateUser, User>(new CreateUser(model.ToEntity()));
+
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
+        }
+
+        [Route("auth0")]
+        [AllowAnonymous]
+        public IHttpActionResult Post(AuthZeroUserModel model)
+        {
+            var result = PerformAction<CreateUserFromAuthZero, User>(new CreateUserFromAuthZero(model.ToEntity()));
 
             return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
         }
@@ -59,7 +69,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         {
             var model = new User(id);
             var result = PerformAction<DeleteUser, User>(new DeleteUser(model));
-
 
             return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this)
                 .Do();

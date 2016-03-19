@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Common;
 using Common.Extensions;
 
 namespace Models
 {
-    public abstract class Event : IEntity, IDatabaseEntity
+    public abstract class Event : DatabaseEntity
     {
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
-        public virtual int Id { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<User> RegisteredStudents { get; set; }
         public virtual ICollection<User> ActualStudents { get; set; }
