@@ -1,6 +1,6 @@
 ﻿---------------PRIVATE LESSONS----------------------
 
-----------------------------------------------------
+-----------------------------------------------------
 /**[TeacherAvailability]**/
 CREATE TABLE [dbo].[TeacherAvailability](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
