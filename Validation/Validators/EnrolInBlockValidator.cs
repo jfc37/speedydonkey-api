@@ -37,7 +37,7 @@ namespace Validation.Validators
             var isUserATeacher = IsUserATeacher();
 
             var blockIds = blocks.Select(x => x.Id);
-            var isEnrollingInInviteOnly = _blockRepository.GetAll()
+            var isEnrollingInInviteOnly = _blockRepository.Queryable()
                 .Where(x => blockIds.Contains(x.Id))
                 .Any(x => x.IsInviteOnly);
 
@@ -61,15 +61,20 @@ namespace Validation.Validators
 
         private bool BeExistingBlocks(ICollection<Block> blocks)
         {
-            return _blockRepository.GetAll()
+            return _blockRepository.Queryable()
                 .Select(x => x.Id)
                 .Intersect(blocks.Select(x => x.Id)).Count() == blocks.Count;
         }
 
         private bool NotAlreadyBeEnroled(User user, ICollection<Block> blocksBeingEnroledIn)
         {
-            var alreadyEnroledBlockIds = _userRepository.GetWithChildren(user.Id, new List<string>{"EnroledBlocks"}).EnroledBlocks.Select(x => x.Id);
+            var alreadyEnroledBlockIds = _userRepository.Queryable()
+                .Single(x => x.Id == user.Id)
+                .EnroledBlocks
+                .Select(x => x.Id);
+
             var enrolingBlockIds = blocksBeingEnroledIn.Select(x => x.Id);
+
             return !alreadyEnroledBlockIds.Intersect(enrolingBlockIds).Any();
         }
     }

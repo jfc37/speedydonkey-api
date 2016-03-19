@@ -5,12 +5,14 @@ using System.Net.Http;
 using System.Web.Http;
 using ActionHandlers;
 using Actions;
+using Contracts;
+using Contracts.MappingExtensions;
+using Contracts.WindyLindy;
 using Data.CodeChunks;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.WindyLindy
 {

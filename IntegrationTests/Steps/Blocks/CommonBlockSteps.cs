@@ -1,9 +1,10 @@
 ﻿using System.Net;
 using ActionHandlers;
+using Contracts.Enrolment;
+using Contracts.Users;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Blocks
@@ -43,7 +44,7 @@ namespace IntegrationTests.Steps.Blocks
         [Given(@"the user enrols in the block")]
         public void GivenTheUserEnrolsInTheBlock()
         {
-            var response = ApiCaller.Post<ActionReponse<UserModel>>(new EnrolmentModel(ScenarioCache.GetId(ModelIdKeys.BlockKeyId)),
+            var response = ApiCaller.Post<ActionReponse<UserModel>>(new EnrolmentModel(ScenarioCache.GetId(ModelIdKeys.BlockId)),
                 Routes.GetEnrolUserInBlock(ScenarioCache.GetUserId()));
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);

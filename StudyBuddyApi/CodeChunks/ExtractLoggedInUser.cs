@@ -1,50 +1,39 @@
 using System.Linq;
 using System.Security.Claims;
-using System.Web.Http.Dependencies;
-using Data.CodeChunks;
+using Common;
 using Data.Repositories;
 using Models;
 
 namespace SpeedyDonkeyApi.CodeChunks
 {
-    public class ExtractLoggedInUser : ICodeChunk<User>
+    public class ExtractLoggedInUser
     {
         private readonly ClaimsPrincipal _claimsPrincipal;
-        private readonly IDependencyScope _dependencyScope;
+        private readonly IRepository<User> _repository;
 
-        public ExtractLoggedInUser(ClaimsPrincipal claimsPrincipal, IDependencyScope dependencyScope)
+        public ExtractLoggedInUser(
+            ClaimsPrincipal claimsPrincipal, 
+            IRepository<User> repository)
         {
             _claimsPrincipal = claimsPrincipal;
-            _dependencyScope = dependencyScope;
+            _repository = repository;
         }
 
-        public User Do()
+        public Option<User> Do()
         {
-            if (_claimsPrincipal.Identity.IsAuthenticated)
+            if (!_claimsPrincipal.Identity.IsAuthenticated)
             {
-                var globalId = new ExtractGlobalIdFromJwt(_claimsPrincipal).Do();
-
-                var repository = (IRepository<User>)_dependencyScope.GetService(typeof(IRepository<User>));
-                return repository.GetAll()
-                    .SingleOrDefault(x => x.GlobalId == globalId);
+                return Option<User>.None();
             }
 
-            return null;
-        }
-    }
+            var globalId = new ExtractGlobalIdFromJwt(_claimsPrincipal).Do();
 
-    public class ExtractGlobalIdFromJwt : ICodeChunk<string>
-    {
-        private readonly ClaimsPrincipal _claimsPrincipal;
-
-        public ExtractGlobalIdFromJwt(ClaimsPrincipal claimsPrincipal)
-        {
-            _claimsPrincipal = claimsPrincipal;
-        }
-
-        public string Do()
-        {
-            return _claimsPrincipal.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
+            return _repository.Queryable()
+                .Where(x => x.GlobalId == globalId)
+                .Select(x => Option<User>.Some(x))
+                .ToList()
+                .DefaultIfEmpty(Option<User>.None())
+                .Single();
         }
     }
 }

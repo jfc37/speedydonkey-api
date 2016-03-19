@@ -1,6 +1,6 @@
 ﻿using ActionHandlers;
+using Contracts.Rooms;
 using IntegrationTests.Utilities;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Rooms
@@ -11,7 +11,7 @@ namespace IntegrationTests.Steps.Rooms
         [When(@"the room is deleted")]
         public void WhenTheRoomIsDeleted()
         {
-            var response = ApiCaller.Delete<ActionReponse<RoomModel>>(Routes.GetById(Routes.Room, ScenarioCache.GetId(ModelIdKeys.RoomKeyId)));
+            var response = ApiCaller.Delete<ActionReponse<RoomModel>>(Routes.GetById(Routes.Room, ScenarioCache.GetId(ModelIdKeys.RoomId)));
             ScenarioCache.StoreActionResponse(response);
         }
 

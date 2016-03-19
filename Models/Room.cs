@@ -7,7 +7,7 @@ using Common.Extensions;
 namespace Models
 {
 
-    public class Room : IEntity, IDatabaseEntity
+    public class Room : DatabaseEntity
     {
         public Room()
         {
@@ -21,9 +21,6 @@ namespace Models
         public virtual string Name { get; set; }
         public virtual string Location { get; set; }
         public virtual ICollection<Event> Events { get; set; }
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
 
         public override string ToString()
         {

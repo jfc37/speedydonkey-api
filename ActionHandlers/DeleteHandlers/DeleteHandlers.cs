@@ -68,7 +68,7 @@ namespace ActionHandlers.DeleteHandlers
         {
             var pass = Repository.Get(action.ActionAgainst.Id);
 
-            var classes = _classRepository.GetAll().Where(x => x.PassStatistics.Contains(pass.PassStatistic));
+            var classes = _classRepository.Queryable().Where(x => x.PassStatistics.Contains(pass.PassStatistic));
             foreach (var theClass in classes)
             {
                 theClass.PassStatistics.Remove(pass.PassStatistic);
@@ -76,13 +76,7 @@ namespace ActionHandlers.DeleteHandlers
             }
         }
     }
-    public class DeleteUserHandler : DeleteEntityHandler<DeleteUser, User>
-    {
-        public DeleteUserHandler(IRepository<User> repository)
-            : base(repository)
-        {
-        }
-    }
+
     public class DeleteAnnouncementHandler : DeleteEntityHandler<DeleteAnnouncement, Announcement>
     {
         public DeleteAnnouncementHandler(IRepository<Announcement> repository)

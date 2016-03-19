@@ -89,11 +89,8 @@ namespace Models
         GroupiesGoodbyeJam
     }
 
-    public class Registration : IRegistration, IDatabaseEntity
+    public class Registration : DatabaseEntity
     {
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual Guid RegistationId { get; set; }
         public virtual decimal Amount { get; set; }
 

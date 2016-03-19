@@ -6,7 +6,7 @@ using Common.Extensions;
 
 namespace Models
 {
-    public class User : IEntity, IDatabaseEntity
+    public class User : DatabaseEntity
     {
         public User()
         {
@@ -25,19 +25,14 @@ namespace Models
         }
 
         public virtual string GlobalId { get; set; }
-        public virtual UserStatus Status { get; set; }
-        public virtual Guid ActivationKey { get; set; }
         public virtual string Email { get; set; }
         public virtual string Password { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string Surname { get; set; }
-        public virtual string FullName { get { return String.Format("{0} {1}", FirstName, Surname); } }
+        public virtual string FullName => $"{FirstName} {Surname}";
         public virtual IList<Event> Schedule { get; set; }
         public virtual ICollection<Block> EnroledBlocks { get; set; }
         public virtual IList<Pass> Passes { get; set; }
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual string Claims { get; set; } 
         public virtual bool DoNotEmail { get; set; }
 

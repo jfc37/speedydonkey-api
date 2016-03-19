@@ -1,13 +1,15 @@
+using System;
 using System.Web.Http;
 using Action;
+using Action.Users;
 using ActionHandlers;
-using Actions;
+using Contracts.MappingExtensions;
+using Contracts.Users;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Users
 {
@@ -18,13 +20,24 @@ namespace SpeedyDonkeyApi.Controllers.Users
             IActionHandlerOverlord actionHandlerOverlord,
             IRepository<User> repository,
             IEntitySearch<User> entitySearch)
-            : base(actionHandlerOverlord, repository, entitySearch) { }
+            : base(actionHandlerOverlord, repository, entitySearch)
+        {
+        }
 
         [Route]
         [AllowAnonymous]
         public IHttpActionResult Post([FromBody] UserModel model)
         {
             var result = PerformAction<CreateUser, User>(new CreateUser(model.ToEntity()));
+
+            return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
+        }
+
+        [Route("auth0")]
+        [AllowAnonymous]
+        public IHttpActionResult Post(AuthZeroUserModel model)
+        {
+            var result = PerformAction<CreateUserFromAuthZero, User>(new CreateUserFromAuthZero(model.ToEntity()));
 
             return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this).Do();
         }
@@ -40,14 +53,14 @@ namespace SpeedyDonkeyApi.Controllers.Users
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            return new SetToHttpActionResult<User>(this, GetAll(), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<User>(this, GetAll(), x => x.ToStripedModel()).Do();
         }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(string q)
         {
-            return new SetToHttpActionResult<User>(this, Search(q), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<User>(this, Search(q), x => x.ToStripedModel()).Do();
         }
 
         [Route("{id:int}")]
@@ -56,7 +69,6 @@ namespace SpeedyDonkeyApi.Controllers.Users
         {
             var model = new User(id);
             var result = PerformAction<DeleteUser, User>(new DeleteUser(model));
-
 
             return new ActionResultToCreatedHttpActionResult<User, UserModel>(result, x => x.ToModel(), this)
                 .Do();

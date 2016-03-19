@@ -1,5 +1,5 @@
-﻿using IntegrationTests.Utilities;
-using SpeedyDonkeyApi.Models;
+﻿using Contracts.Users;
+using IntegrationTests.Utilities;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Users
@@ -15,7 +15,7 @@ namespace IntegrationTests.Steps.Users
             var response = ApiCaller.Get<UserModel>(Routes.GetCurrentUser);
 
             ScenarioCache.Store(ExpectedUserKey, response.Data);
-            ScenarioCache.StoreUserId(response.Data.Id);
+            ScenarioCache.Store(ModelIdKeys.UserId, response.Data.Id);
         }
     }
 }

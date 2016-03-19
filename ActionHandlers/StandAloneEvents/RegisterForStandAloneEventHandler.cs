@@ -27,7 +27,7 @@ namespace ActionHandlers.StandAloneEvents
                 .Select(x => x.Id)
                 .ToList();
 
-            var eventsToRegisterFor = _eventRepository.GetAll()
+            var eventsToRegisterFor = _eventRepository.Queryable()
                 .Where(x => eventIds.Contains(x.Id))
                 .ToList();
 

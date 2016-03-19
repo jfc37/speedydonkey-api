@@ -37,7 +37,7 @@ namespace Validation.Rules
 
         public bool IsValid()
         {
-            var allExistingEntityIds = _repository.GetAll().Select(x => x.Id);
+            var allExistingEntityIds = _repository.Queryable().Select(x => x.Id);
             return _entities.All(x => allExistingEntityIds.Contains(x.Id));
         }
     }

@@ -23,7 +23,7 @@ namespace Data.CodeChunks
         public decimal Do()
         {
             var numberOfClassesAvailableForPass = _repository
-                .GetAll()
+                .Queryable()
                 .Count(x => _pass.StartDate.IsOnOrBefore(x.StartTime) && x.StartTime.IsOnOrBefore(_pass.EndDate));
             if (numberOfClassesAvailableForPass == 0)
                 return 0;

@@ -29,7 +29,7 @@ namespace OnlinePayments.PaymentMethods.Poli
         public PoliPayment GetCompletedPayment(string token)
         {
             var onlinePayment = _repository
-                .GetAll()
+                .Queryable()
                 .Single(x => x.Token == token);
 
             return onlinePayment;

@@ -1,10 +1,9 @@
 ﻿using System;
-using Common;
 using Common.Extensions;
 
 namespace Models
 {
-    public class Pass : IEntity, IDatabaseEntity
+    public class Pass : DatabaseEntity
     {
         public Pass()
         {
@@ -15,9 +14,6 @@ namespace Models
         {
             Id = id;
         }
-        public virtual int Id { get; set; }
-        public virtual DateTime CreatedDateTime { get; set; }
-        public virtual DateTime? LastUpdatedDateTime { get; set; }
         public virtual DateTimeOffset StartDate { get; set; }
         public virtual DateTimeOffset EndDate { get; set; }
 

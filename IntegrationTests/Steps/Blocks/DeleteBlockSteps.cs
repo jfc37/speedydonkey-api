@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using ActionHandlers;
+using Contracts;
+using Contracts.Blocks;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Blocks
@@ -14,7 +15,7 @@ namespace IntegrationTests.Steps.Blocks
         [When(@"the block is deleted")]
         public void WhenTheBlockIsDeleted()
         {
-            var blockId = ScenarioCache.GetId(ModelIdKeys.BlockKeyId);
+            var blockId = ScenarioCache.GetId(ModelIdKeys.BlockId);
             var response = ApiCaller.Delete<ActionReponse<BlockModel>>(Routes.GetById(Routes.Blocks, blockId));
 
             ScenarioCache.StoreActionResponse(response);

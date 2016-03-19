@@ -21,7 +21,7 @@ namespace Validation
             _container = container;
         }
 
-        [Log]
+        //[Log]
         public ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>
         {
             IActionValidator<TAction, TObject> validator;

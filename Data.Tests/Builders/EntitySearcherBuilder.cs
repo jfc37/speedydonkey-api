@@ -1,23 +1,24 @@
+using Common;
+using Data.Repositories;
 using Data.Searches;
 using Models;
-using NHibernate;
 
 namespace Data.Tests.Builders
 {
-    public class EntitySearcherBuilder<T> where T : class, IDatabaseEntity
+    public class EntitySearcherBuilder<T> where T : class, IDatabaseEntity, IEntity
     {
-        private ISession _context;
+        private IRepository<T> _repository;
         private ISearchQueryParser _searchQueryParser;
         private IQueryModifierFactory _queryModifierFactory;
 
         public EntitySearch<T> Build()
         {
-            return new EntitySearch<T>(_context, _searchQueryParser, _queryModifierFactory);
+            return new EntitySearch<T>(_repository, _searchQueryParser, _queryModifierFactory);
         }
 
-        public EntitySearcherBuilder<T> WithContext(ISession userRepository)
+        public EntitySearcherBuilder<T> WithRepository(IRepository<T> userRepository)
         {
-            _context = userRepository;
+            _repository = userRepository;
             return this;
         }
 

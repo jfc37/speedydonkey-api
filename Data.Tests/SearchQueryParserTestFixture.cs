@@ -71,32 +71,6 @@ namespace Data.Tests
             }
         }
 
-        public class Given_an_include_query : SearchQueryParserTestFixture
-        {
-            private string _q;
-
-            private IList<SearchStatement> PerformAction()
-            {
-                return GetParser().ParseQuery(_q);
-            }
-
-            [Test]
-            public void It_should_split_query_into_correct_number_of_include_statements()
-            {
-                const int expectedNumberOfSearchStatements = 6;
-                var searchStatment = String.Format("{0}{1}something", SearchKeyWords.Include, SearchSyntax.Seperator);
-                _q = searchStatment;
-                for (int i = 1; i < expectedNumberOfSearchStatements; i++)
-                {
-                    _q = String.Format("{0}{1}{2}", _q, SearchSyntax.StatementSeperator, searchStatment);
-                }
-
-                var result = PerformAction();
-
-                Assert.AreEqual(expectedNumberOfSearchStatements, result.Count);
-            }
-        }
-
         public class Given_a_take_or_skip_query : SearchQueryParserTestFixture
         {
             private string _q;

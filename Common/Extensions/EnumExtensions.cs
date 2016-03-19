@@ -6,7 +6,7 @@ namespace Common.Extensions
     {
         public static T Parse<T>(this string instance)
         {
-            return (T) Enum.Parse(typeof (T), instance);
+            return (T) Enum.Parse(typeof (T), instance, true);
         }
     }
 }

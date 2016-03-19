@@ -1,11 +1,12 @@
 using System.Web.Http;
 using ActionHandlers;
+using Contracts;
+using Contracts.MappingExtensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Passes
 {

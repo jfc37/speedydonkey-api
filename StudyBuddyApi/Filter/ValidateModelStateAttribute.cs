@@ -12,8 +12,10 @@ namespace SpeedyDonkeyApi.Filter
             var modelState = actionContext.ModelState;
 
             if (!modelState.IsValid)
+            {
                 actionContext.Response = actionContext.Request
                      .CreateErrorResponse(HttpStatusCode.BadRequest, modelState);
+            }
         }
     }
 }

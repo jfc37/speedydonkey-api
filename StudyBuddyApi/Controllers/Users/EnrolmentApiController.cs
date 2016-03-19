@@ -4,11 +4,16 @@ using Action;
 using Action.StandAloneEvents;
 using ActionHandlers;
 using Common;
+using Contracts;
+using Contracts.Blocks;
+using Contracts.Enrolment;
+using Contracts.Events;
+using Contracts.MappingExtensions;
+using Contracts.Users;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Users
 {

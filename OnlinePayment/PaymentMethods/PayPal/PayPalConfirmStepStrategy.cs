@@ -22,7 +22,7 @@ namespace OnlinePayments.PaymentMethods.PayPal
         {
             var result = _expressCheckout.Get(token);
 
-            var onlinePayment = _repository.GetAll().Single(x => x.Token == token);
+            var onlinePayment = _repository.Queryable().Single(x => x.Token == token);
             onlinePayment.PayerId = result.PayerId;
             _repository.Update(onlinePayment);
 

@@ -31,13 +31,13 @@ namespace Notification
                 return;
 
             var api = new MandrillApi(_appSettings.GetSetting(AppSettingKey.MandrillApiKey));
-
+            
             var templateContents = notification.TemplateContent.Select(x => new TemplateContent
             {
                 Name = x.Key,
                 Content = x.Value
             }).ToList();
-
+            
             var emailMessage = new EmailMessage
             {
                 FromEmail = _appSettings.GetSetting(AppSettingKey.FromEmail),
@@ -52,6 +52,7 @@ namespace Notification
             {
                 emailMessage.AddGlobalVariable(templateContent.Key, templateContent.Value);
             }
+            emailMessage.AddGlobalVariable("application_name", _appSettings.GetSetting(AppSettingKey.ApplicationName));
             api.SendMessageTemplate(new SendMessageTemplateRequest(emailMessage, notification.TemplateName, templateContents));
         }
 

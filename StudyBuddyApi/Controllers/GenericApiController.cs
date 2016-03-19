@@ -37,7 +37,7 @@ namespace SpeedyDonkeyApi.Controllers
         }
         protected IEnumerable<TEntity> GetAll()
         {
-            var allEntities = Repository.GetAll();
+            var allEntities = Repository.Queryable();
             return allEntities;
         }
 

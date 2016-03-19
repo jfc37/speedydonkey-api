@@ -1,13 +1,15 @@
 using System.Web.Http;
 using Action.StandAloneEvents;
 using ActionHandlers;
+using Contracts;
+using Contracts.Events;
+using Contracts.MappingExtensions;
 using Data.QueryFilters;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
 {

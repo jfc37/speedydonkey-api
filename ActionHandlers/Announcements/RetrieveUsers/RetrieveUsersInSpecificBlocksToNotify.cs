@@ -17,7 +17,7 @@ namespace ActionHandlers.Announcements.RetrieveUsers
         public IEnumerable<User> Get(Announcement announcement)
         {
             var blockIdsToNotify = announcement.Receivers.Select(x => x.Id);
-            return _repository.GetAll()
+            return _repository.Queryable()
                 .Where(x => blockIdsToNotify.Contains(x.Id))
                 .SelectMany(x => x.EnroledStudents)
                 .Distinct();

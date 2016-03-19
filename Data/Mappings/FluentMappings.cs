@@ -1,17 +1,29 @@
 ﻿using FluentNHibernate.Mapping;
 using Models;
 using Models.OnlinePayments;
+using Models.PrivateLessons;
+using Models.Settings;
 
 namespace Data.Mappings
 {
+    public static class DatabaseEntityMapExtension
+    {
+        public static void MapDatabaseEntity<T>(this ClassMap<T> instance)
+            where T : DatabaseEntity
+        {
+            instance.Id(x => x.Id);
+            instance.Map(x => x.CreatedDateTime);
+            instance.Map(x => x.LastUpdatedDateTime);
+            instance.Map(x => x.IsDeleted);
+        }
+    }
+
     public class OnlinePaymentMap : ClassMap<OnlinePayment>
     {
         public OnlinePaymentMap()
         {
-            Id(x => x.Id);
+            this.MapDatabaseEntity();
             Map(x => x.ItemType);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
             Map(x => x.Description);
             Map(x => x.Fee);
             Map(x => x.ItemId);
@@ -20,6 +32,35 @@ namespace Data.Mappings
             Map(x => x.PaymentStatus);
             Map(x => x.ReferenceNumber);
             Map(x => x.InitiatedBy);
+        }
+    }
+    public class OpeningHoursMap : ClassMap<TimeSlot>
+    {
+        public OpeningHoursMap()
+        {
+            this.MapDatabaseEntity();
+            Map(x => x.Day);
+            Map(x => x.OpeningTime);
+            Map(x => x.ClosingTime);
+        }
+    }
+    public class SettingItemMap : ClassMap<SettingItem>
+    {
+        public SettingItemMap()
+        {
+            this.MapDatabaseEntity();
+            Map(x => x.Name);
+            Map(x => x.Value);
+        }
+    }
+    public class TeacherAvailabilityMap : ClassMap<TeacherAvailability>
+    {
+        public TeacherAvailabilityMap()
+        {
+            this.MapDatabaseEntity();
+            References(x => x.Teacher);
+            HasMany(x => x.Availabilities)
+                .Cascade.All();
         }
     }
 
@@ -50,9 +91,7 @@ namespace Data.Mappings
     {
         public RegistrationMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.PaymentStatus);
             Map(x => x.RegistationId);
             Map(x => x.Amount);
@@ -109,12 +148,10 @@ namespace Data.Mappings
     {
         public AnnouncementMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.Message);
             Map(x => x.NotifyAll);
-            HasManyToMany<Block>(x => x.Receivers)
+            HasManyToMany(x => x.Receivers)
                 .Table("BlockToAnnouncement")
                 .AsSet();
         }
@@ -124,23 +161,21 @@ namespace Data.Mappings
     {
         public UserMap()
         {
-            Id(x => x.Id);
+            this.MapDatabaseEntity();
             Map(x => x.GlobalId);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
             Map(x => x.FirstName);
             Map(x => x.Surname);
+            Map(x => x.FullName)
+                .Access.ReadOnly();
             Map(x => x.Email);
             Map(x => x.Password);
             Map(x => x.Claims);
-            Map(x => x.Status);
-            Map(x => x.ActivationKey);
             Map(x => x.Note);
             Map(x => x.DoNotEmail);
-            HasManyToMany<Block>(x => x.EnroledBlocks)
+            HasManyToMany(x => x.EnroledBlocks)
                 .Table("UsersEnroledBlocks")
                 .AsSet();
-            HasMany<Pass>(x => x.Passes)
+            HasMany(x => x.Passes)
                 .Cascade.SaveUpdate();
             HasMany(x => x.Schedule);
         }
@@ -150,12 +185,10 @@ namespace Data.Mappings
     {
         public TeacherMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
-            HasManyToMany<Class>(x => x.Classes)
+            this.MapDatabaseEntity();
+            HasManyToMany(x => x.Classes)
                 .AsSet();
-            References<User>(x => x.User);
+            References(x => x.User);
         }
     }
     public class ClassMap : SubclassMap<Class>
@@ -164,7 +197,7 @@ namespace Data.Mappings
         {
             References(x => x.Block)
                 .Class(typeof(Block));
-            HasManyToMany<PassStatistic>(x => x.PassStatistics)
+            HasManyToMany(x => x.PassStatistics)
                 .Table("ClassPassStatistic")
                 .AsSet();
         }
@@ -182,9 +215,7 @@ namespace Data.Mappings
     {
         public EventMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.StartTime);
             Map(x => x.EndTime);
             Map(x => x.Name);
@@ -205,9 +236,7 @@ namespace Data.Mappings
     {
         public BlockMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.NumberOfClasses);
@@ -234,9 +263,7 @@ namespace Data.Mappings
     {
         public PassStatisticMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.CostPerClass);
             Map(x => x.NumberOfClassesAttended);
             References<Pass>(x => x.Pass)
@@ -248,9 +275,7 @@ namespace Data.Mappings
     {
         public RoomMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.Name);
             Map(x => x.Location);
             HasMany(x => x.Events);
@@ -261,9 +286,7 @@ namespace Data.Mappings
     {
         public PassMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.StartDate);
             Map(x => x.EndDate);
             Map(x => x.PassType);
@@ -292,9 +315,7 @@ namespace Data.Mappings
     {
         public ReferenceDataMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.Type);
             Map(x => x.Name);
             Map(x => x.Description);
@@ -306,9 +327,7 @@ namespace Data.Mappings
     {
         public PassTemplateMap()
         {
-            Id(x => x.Id);
-            Map(x => x.CreatedDateTime);
-            Map(x => x.LastUpdatedDateTime);
+            this.MapDatabaseEntity();
             Map(x => x.ClassesValidFor);
             Map(x => x.Cost);
             Map(x => x.Description);

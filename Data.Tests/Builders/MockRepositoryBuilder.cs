@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Common;
 using Common.Tests.Builders.MockBuilders;
 using Data.Repositories;
@@ -46,29 +47,19 @@ namespace Data.Tests.Builders
         {
             if (response == null)
             {
-                Mock.Setup(x => x.GetAll())
-                .Returns(new List<T>());
-                Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                    .Returns(new List<T>());
+                Mock.Setup(x => x.Queryable())
+                .Returns(new List<T>().AsQueryable());
             }
             else
             {
-                Mock.Setup(x => x.GetAll())
+                Mock.Setup(x => x.Queryable())
                 .Returns(new List<T>
                 {
                     response
-                });
-                Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                    .Returns(new[]
-                {
-                    response
-                });
+                }.AsQueryable());
             }
-
             
             Mock.Setup(x => x.Get(It.IsAny<int>()))
-                .Returns(response);
-            Mock.Setup(x => x.GetWithChildren(It.IsAny<int>(), It.IsAny<IList<string>>()))
                 .Returns(response);
         }
 
@@ -80,19 +71,15 @@ namespace Data.Tests.Builders
 
         public MockRepositoryBuilder<T> WithGetAll()
         {
-            Mock.Setup(x => x.GetAll())
-                .Returns(new List<T>());
-            Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                .Returns(new List<T>());
+            Mock.Setup(x => x.Queryable())
+                .Returns(new List<T>().AsQueryable());
             return this;
         }
 
         public MockRepositoryBuilder<T> WithGetAll(IEnumerable<T> entities)
         {
-            Mock.Setup(x => x.GetAll())
-                .Returns(entities);
-            Mock.Setup(x => x.GetAllWithChildren(It.IsAny<IList<string>>()))
-                .Returns(entities);
+            Mock.Setup(x => x.Queryable())
+                .Returns(entities.AsQueryable());
             return this;
         }
     }

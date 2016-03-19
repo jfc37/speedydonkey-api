@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using ActionHandlers;
+using Contracts.Teachers;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Teachers
@@ -18,6 +18,13 @@ namespace IntegrationTests.Steps.Teachers
             WhenUserIsSetUpAsATeacher();
         }
 
+        [Given(@"the current user is a teacher")]
+        public void GivenTheCurrentUserIsATeacher()
+        {
+            ScenarioCache.Store(ModelIdKeys.UserId, 1);
+            WhenUserIsSetUpAsATeacher();
+        }
+        
         [When(@"user is set up as a teacher")]
         public void WhenUserIsSetUpAsATeacher()
         {
@@ -26,7 +33,7 @@ namespace IntegrationTests.Steps.Teachers
             Assert.AreEqual(HttpStatusCode.Created, ScenarioCache.GetResponseStatus());
 
             var teacher = ScenarioCache.GetActionResponse<TeacherModel>();
-            ScenarioCache.StoreTeacherId(teacher.Id);
+            ScenarioCache.Store(ModelIdKeys.TeacherId, teacher.Id);
         }
 
         [When(@"user is attempted to be set up as a teacher")]

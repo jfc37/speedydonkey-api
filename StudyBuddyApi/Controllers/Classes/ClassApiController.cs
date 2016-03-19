@@ -6,12 +6,15 @@ using System.Web.Http;
 using Action;
 using Action.Classes;
 using ActionHandlers;
+using Contracts;
+using Contracts.Classes;
+using Contracts.Events;
+using Contracts.MappingExtensions;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Classes
 {
@@ -97,7 +100,7 @@ namespace SpeedyDonkeyApi.Controllers.Classes
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            return new SetToHttpActionResult<Class>(this, GetAll(), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<Class>(this, GetAll(), x => x.ToStripedModel()).Do();
         }
 
         [Route]

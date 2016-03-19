@@ -1,12 +1,14 @@
 using System.Web.Http;
 using ActionHandlers;
 using Actions;
+using Contracts;
+using Contracts.MappingExtensions;
+using Contracts.Teachers;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Teachers
 {
@@ -45,7 +47,7 @@ namespace SpeedyDonkeyApi.Controllers.Teachers
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            return new SetToHttpActionResult<Teacher>(this, GetAll(), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<Teacher>(this, GetAll(), x => x.ToStripedModel()).Do();
         }
 
         [Route]

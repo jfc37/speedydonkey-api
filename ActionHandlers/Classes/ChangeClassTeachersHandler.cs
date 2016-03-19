@@ -20,7 +20,7 @@ namespace ActionHandlers.Classes
         {
             var theClass = _classRepository.Get(action.ActionAgainst.Id);
             var newTeacherIds = action.ActionAgainst.Teachers.Select(x => x.Id);
-            var newClassTeachers = _teacherRepository.GetAll()
+            var newClassTeachers = _teacherRepository.Queryable()
                 .Where(x => newTeacherIds.Contains(x.Id))
                 .ToList();
 

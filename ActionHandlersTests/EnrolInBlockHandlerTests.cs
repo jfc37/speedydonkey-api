@@ -72,7 +72,7 @@ namespace ActionHandlersTests
         {
             PerformAction();
 
-            _userRepositoryBuilder.Mock.Verify(x => x.GetWithChildren(_action.ActionAgainst.Id, It.IsAny<IList<string>>()));
+            _userRepositoryBuilder.Mock.Verify(x => x.Queryable());
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace ActionHandlersTests
         {
             PerformAction();
 
-            _blockRepositoryBuilder.Mock.Verify(x => x.GetAllWithChildren(It.IsAny<IList<string>>()));
+            _blockRepositoryBuilder.Mock.Verify(x => x.Queryable());
         }
 
         [TestCase(1)]
@@ -124,7 +124,7 @@ namespace ActionHandlersTests
             PerformAction();
 
             var updatedUser = _userRepositoryBuilder.UpdatedEntity;
-            foreach (var blockClass in _blockRepositoryBuilder.BuildObject().GetAll().SelectMany(x => x.Classes))
+            foreach (var blockClass in _blockRepositoryBuilder.BuildObject().Queryable().SelectMany(x => x.Classes))
             {
                 Assert.Contains(updatedUser, blockClass.RegisteredStudents.ToArray());
             }

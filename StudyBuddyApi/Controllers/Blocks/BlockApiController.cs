@@ -3,13 +3,15 @@ using System.Web.Http;
 using Action;
 using Action.Blocks;
 using ActionHandlers;
+using Contracts;
+using Contracts.Blocks;
+using Contracts.MappingExtensions;
 using Data.QueryFilters;
 using Data.Repositories;
 using Data.Searches;
 using Models;
 using SpeedyDonkeyApi.CodeChunks;
 using SpeedyDonkeyApi.Filter;
-using SpeedyDonkeyApi.Models;
 
 namespace SpeedyDonkeyApi.Controllers.Blocks
 {
@@ -32,7 +34,7 @@ namespace SpeedyDonkeyApi.Controllers.Blocks
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get()
         {
-            return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToModel()).Do();
+            return new SetToHttpActionResult<Block>(this, GetAll(), x => x.ToStripedModel()).Do();
         }
 
         [Route]

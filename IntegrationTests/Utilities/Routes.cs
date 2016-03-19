@@ -1,4 +1,5 @@
 ﻿using Common.Extensions;
+using Models.Settings;
 
 namespace IntegrationTests.Utilities
 {
@@ -18,7 +19,18 @@ namespace IntegrationTests.Utilities
         public const string GetCurrentUser = "users/current";
         public const string BlocksForEnrolment = "blocks/for-enrolment";
         public const string StandAloneEventsForRegistration = "stand-alone-events/for-registration";
+        public const string OpeningHours = "opening-hours";
+        public const string TeacherAvailability = "teacher-availabilities";
+        public const string Settings = "settings";
 
+        public static string GetCurrentTeacherAvailabilities()
+        {
+            return $"{TeacherAvailability}/current";
+        }
+        public static string GetSettingsByType(SettingTypes settingType)
+        {
+            return $"{Settings}/{settingType}";
+        }
         public static string GetRoomUpcomingSchedule(int roomId)
         {
             return "rooms/{0}/upcoming-schedule".FormatWith(roomId);

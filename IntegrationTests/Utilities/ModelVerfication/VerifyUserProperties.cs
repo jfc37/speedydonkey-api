@@ -1,5 +1,5 @@
+using Contracts.Users;
 using NUnit.Framework;
-using SpeedyDonkeyApi.Models;
 
 namespace IntegrationTests.Utilities.ModelVerfication
 {

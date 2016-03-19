@@ -15,7 +15,7 @@ namespace ActionHandlers.Announcements.RetrieveUsers
 
         public IEnumerable<User> Get(Announcement announcement)
         {
-            return _repository.GetAll();
+            return _repository.Queryable();
         }
     }
 }

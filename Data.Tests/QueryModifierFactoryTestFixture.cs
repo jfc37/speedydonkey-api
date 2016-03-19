@@ -16,16 +16,6 @@ namespace Data.Tests
         public class GetModifier : QueryModifierFactoryTestFixture
         {
             [Test]
-            public void It_should_return_correct_modifier_for_include()
-            {
-                _condition = SearchKeyWords.Include;
-
-                var modifier = PerformAction();
-
-                Assert.AreEqual(typeof(QueryIncludeModifier), modifier.GetType());
-            }
-
-            [Test]
             public void It_should_return_correct_modifier_for_equals()
             {
                 _condition = SearchKeyWords.Equals;

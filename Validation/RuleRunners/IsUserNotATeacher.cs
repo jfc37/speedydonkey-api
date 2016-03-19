@@ -19,7 +19,7 @@ namespace Validation.RuleRunners
 
         public bool IsValid()
         {
-            return _repository.GetAll()
+            return _repository.Queryable()
                 .Where(x => x.User.Id == _userId)
                 .NotAny();
         }
