@@ -3,7 +3,6 @@ using System.Linq;
 using Action.Users;
 using AuthZero.Interfaces;
 using Common;
-using Common.Extensions;
 using Data.Repositories;
 using Models;
 using User = Models.User;
@@ -28,24 +27,16 @@ namespace ActionHandlers.Users
 
         public User Handle(CreateUserFromAuthZero action)
         {
-            var userDoesNotExist = _repository.Queryable()
-                .NotAny(x => x.GlobalId == action.ActionAgainst.GlobalId);
+            var authZeroUser = _authZeroClientRepository.Get(action.ActionAgainst.GlobalId);
 
-            if (userDoesNotExist)
+            if (IsEmailOnAdminWhitelist(authZeroUser.Email))
             {
-                var authZeroUser = _authZeroClientRepository.Get(action.ActionAgainst.GlobalId);
-
-                if (IsEmailOnAdminWhitelist(authZeroUser.Email))
-                {
-                    var allClaims = Enum.GetValues(typeof(Claim)).Cast<Claim>().ToList();
-                    allClaims.Remove(Claim.Invalid);
-                    authZeroUser.Claims = String.Join(",", allClaims);
-                }
-
-                return _repository.Create(authZeroUser);
+                var allClaims = Enum.GetValues(typeof(Claim)).Cast<Claim>().ToList();
+                allClaims.Remove(Claim.Invalid);
+                authZeroUser.Claims = String.Join(",", allClaims);
             }
 
-            return action.ActionAgainst;
+            return _repository.Create(authZeroUser);
         }
 
         private bool IsEmailOnAdminWhitelist(string email)
