@@ -107,37 +107,6 @@ namespace Contracts.MappingExtensions
             };
         }
 
-        public static UserModel ToModel(this User instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new UserModel
-            {
-                Note = instance.Note,
-                Email = instance.Email,
-                EnroledBlocks = instance.EnroledBlocks.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                FirstName = instance.FirstName,
-                Passes = instance.Passes.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull(),
-                Surname = instance.Surname,
-                Id = instance.Id
-            };
-        }
-
-        public static UserModel ToStripedModel(this User instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new UserModel
-            {
-                Email = instance.Email,
-                FirstName = instance.FirstName,
-                Surname = instance.Surname,
-                Id = instance.Id
-            };
-        }
-
         public static BlockModel ToModel(this Block instance)
         {
             if (instance.IsNull())

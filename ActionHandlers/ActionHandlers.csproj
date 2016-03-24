@@ -167,6 +167,7 @@
     <Compile Include="Users\DoNotEmailFlags\IDoNotEmailForUserFlagChanger.cs" />
     <Compile Include="Users\DoNotEmailFlags\RemoveDoNotEmailForUserHandler.cs" />
     <Compile Include="Users\DoNotEmailFlags\SetDoNotEmailForUserHandler.cs" />
+    <Compile Include="Users\TermsAndConditions\AgreeToTermsAndConditionsHandler.cs" />
     <Compile Include="Users\UpdateUserHandler.cs" />
     <Compile Include="Users\UpdateUserNamesHandler.cs" />
   </ItemGroup>

@@ -22,6 +22,7 @@ namespace IntegrationTests.Utilities
         public const string OpeningHours = "opening-hours";
         public const string TeacherAvailability = "teacher-availabilities";
         public const string Settings = "settings";
+        public const string TermsAndConditions = "users/current/terms-and-conditions";
 
         public static string GetCurrentTeacherAvailabilities()
         {

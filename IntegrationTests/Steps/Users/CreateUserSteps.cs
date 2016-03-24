@@ -28,7 +28,8 @@ namespace IntegrationTests.Steps.Users
                 Surname = "Chapman",
                 Email = "joe{0}@email.com".FormatWith(Guid.NewGuid()),
                 Password = "password",
-                FirstName = "Joe"
+                FirstName = "Joe",
+                AgreesToTerms = true
             };
             ScenarioCache.Store(ExpectedUserKey, expectedUser);
         }
@@ -46,6 +47,17 @@ namespace IntegrationTests.Steps.Users
 
         }
 
+        [Given(@"the user doesnt agree to the terms and conditions")]
+        public void GivenTheUserDoesntAgreeToTheTermsAndConditions()
+        {
+            var expectedUser = ScenarioCache.Get<UserModel>(ExpectedUserKey);
+
+            expectedUser.AgreesToTerms = false;
+
+            ScenarioCache.Store(ExpectedUserKey, expectedUser);
+        }
+
+
         [Given(@"an exitings user has the email address '(.*)'")]
         public void GivenAnExitingsUserHasTheEmailAddress(string email)
         {
@@ -54,7 +66,8 @@ namespace IntegrationTests.Steps.Users
                 Surname = "Peterson",
                 Email = email,
                 Password = "password",
-                FirstName = "Peter"
+                FirstName = "Peter",
+                AgreesToTerms = true
             };
             ScenarioCache.Store(ExpectedUserKey, expectedUser);
             WhenAUserIsCreated();
@@ -80,7 +93,7 @@ namespace IntegrationTests.Steps.Users
 
             var userResponse = ApiCaller.Post<ActionReponse<UserModel>>(expectedUser, Routes.Users);
 
-            Assert.AreEqual(userResponse.StatusCode, HttpStatusCode.Created);
+            Assert.AreEqual(HttpStatusCode.Created, userResponse.StatusCode);
 
             ScenarioCache.Store(ModelIdKeys.UserId, userResponse.Data.ActionResult.Id);
         }

@@ -89,6 +89,7 @@
     <Compile Include="SystemAction.cs" />
     <Compile Include="ICrudAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\AgreeToTermsAndConditions.cs" />
     <Compile Include="Users\CreateUser.cs" />
     <Compile Include="Users\CreateUserFromAuthZero.cs" />
     <Compile Include="Users\RemoveDoNotEmailForUser.cs" />

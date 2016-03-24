@@ -172,6 +172,7 @@ namespace Data.Mappings
             Map(x => x.Claims);
             Map(x => x.Note);
             Map(x => x.DoNotEmail);
+            Map(x => x.AgreesToTerms);
             HasManyToMany(x => x.EnroledBlocks)
                 .Table("UsersEnroledBlocks")
                 .AsSet();
