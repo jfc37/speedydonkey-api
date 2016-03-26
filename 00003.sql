@@ -4,3 +4,6 @@ GO
 
 UPDATE [User] set AgreesToTerms = 0
 GO
+
+ALTER TABLE [SettingItem] ALTER COLUMN [Value] nvarchar(max)
+GO
