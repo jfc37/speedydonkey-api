@@ -8,6 +8,7 @@
         Invalid,
         Logo,
         MinutesPerClass,
-        NumberOfClasses
+        NumberOfClasses,
+        TermsAndConditions
     }
 }

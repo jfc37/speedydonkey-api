@@ -7,7 +7,6 @@ namespace Validation.Validators.Users
 {
     public class UpdateUserNamesValidator : AbstractValidator<Models.User>, IActionValidator<UpdateUserNames, Models.User>
     {
-
         public UpdateUserNamesValidator(IRepository<Models.User> userRepository)
         {
             RuleFor(x => x.Id)

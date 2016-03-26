@@ -35,6 +35,7 @@ namespace Models
         public virtual IList<Pass> Passes { get; set; }
         public virtual string Claims { get; set; } 
         public virtual bool DoNotEmail { get; set; }
+        public virtual bool AgreesToTerms { get; set; }
 
         public virtual Pass GetPassToUse()
         {

@@ -295,6 +295,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrieveUser.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Users\TermsAndConditions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TermsAndConditions.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\UpdateUserNames.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -350,6 +355,7 @@
     <Compile Include="Steps\Users\DoNotEmailUserSteps.cs" />
     <Compile Include="Steps\Users\GetClaimsSteps.cs" />
     <Compile Include="Steps\Users\RetrieveUserSteps.cs" />
+    <Compile Include="Steps\Users\TermsAndConditionsSteps.cs" />
     <Compile Include="Steps\Users\UpdateUserNamesSteps.cs" />
     <Compile Include="Utilities\ApiCaller.cs" />
     <Compile Include="Utilities\ModelFunctions\TeacherFunction.cs" />
@@ -532,6 +538,10 @@
     <None Include="Features\Users\RetrieveUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\TermsAndConditions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TermsAndConditions.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\UpdateUserNames.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
