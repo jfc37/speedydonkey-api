@@ -64,12 +64,12 @@ namespace IntegrationTests.Features.Passes
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User purchases pass from a teacher")]
+        [NUnit.Framework.DescriptionAttribute("User purchases clip pass from a teacher")]
         [NUnit.Framework.CategoryAttribute("pass")]
         [NUnit.Framework.CategoryAttribute("create")]
-        public virtual void UserPurchasesPassFromATeacher()
+        public virtual void UserPurchasesClipPassFromATeacher()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User purchases pass from a teacher", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User purchases clip pass from a teacher", new string[] {
                         "pass",
                         "create"});
 #line 4
@@ -85,6 +85,33 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.And("the pass is paid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
+ testRunner.And("the pass is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User purchases unlimited pass from a teacher")]
+        [NUnit.Framework.CategoryAttribute("pass")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        public virtual void UserPurchasesUnlimitedPassFromATeacher()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User purchases unlimited pass from a teacher", new string[] {
+                        "pass",
+                        "create"});
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("a user exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.And("an unlimited pass template exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.When("the user purchases a pass from a teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 17
+ testRunner.Then("the user has a pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
+ testRunner.And("the pass is paid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 19
  testRunner.And("the pass is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
