@@ -28,6 +28,16 @@ namespace IntegrationTests.Steps.PassTemplates
             ScenarioCache.Store(ModelKeys.PassTemplate, passTemplate);
         }
 
+        [Given(@"the pass template is an unlimited type")]
+        public void GivenThePassTemplateIsAnUnlimitedType()
+        {
+            var passTemplate = ScenarioCache.Get<PassTemplateModel>(ModelKeys.PassTemplate);
+
+            passTemplate.PassType = PassType.Unlimited.ToString();
+
+            ScenarioCache.Store(ModelKeys.PassTemplate, passTemplate);
+        }
+
         [Given(@"an invalid pass template is ready to be submitted")]
         public void GivenAnInvalidPassTemplateIsReadyToBeSubmitted()
         {
