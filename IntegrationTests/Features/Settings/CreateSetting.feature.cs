@@ -114,33 +114,6 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Try to set up an invalid logo url setting")]
-        [NUnit.Framework.CategoryAttribute("settings")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("logo")]
-        [NUnit.Framework.CategoryAttribute("validation_error")]
-        public virtual void TryToSetUpAnInvalidLogoUrlSetting()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to set up an invalid logo url setting", new string[] {
-                        "settings",
-                        "create",
-                        "logo",
-                        "validation_error"});
-#line 16
-this.ScenarioSetup(scenarioInfo);
-#line 17
- testRunner.Given("an invalid logo url is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
- testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 19
- testRunner.Then("validation errors are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 20
- testRunner.Then("logo setting is not retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Update logo url setting")]
         [NUnit.Framework.CategoryAttribute("settings")]
         [NUnit.Framework.CategoryAttribute("update")]

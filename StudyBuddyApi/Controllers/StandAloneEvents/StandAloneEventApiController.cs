@@ -1,10 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using Action.StandAloneEvents;
 using ActionHandlers;
-using Contracts;
+using Common;
+using Common.Extensions;
 using Contracts.Events;
 using Contracts.MappingExtensions;
-using Data.QueryFilters;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -16,11 +19,17 @@ namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
     [RoutePrefix("api/stand-alone-events")]
     public class StandAloneEventApiController : GenericApiController<StandAloneEvent>
     {
+        private readonly ICurrentUser _currentUser;
+
         public StandAloneEventApiController(
             IActionHandlerOverlord actionHandlerOverlord,
             IRepository<StandAloneEvent> repository,
-            IEntitySearch<StandAloneEvent> entitySearch)
-            : base(actionHandlerOverlord, repository, entitySearch) { }
+            IEntitySearch<StandAloneEvent> entitySearch,
+            ICurrentUser currentUser)
+            : base(actionHandlerOverlord, repository, entitySearch)
+        {
+            _currentUser = currentUser;
+        }
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
@@ -68,7 +77,31 @@ namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
         [Route("for-registration")]
         public IHttpActionResult GetForEnrolment()
         {
-            return new SetToHttpActionResult<StandAloneEvent>(this, new AvailableEventsForRegistrationFilter().Filter(GetAll()), x => x.ToStripedModel()).Do();
+            return new SetToHttpActionResult<EventForRegistrationModel>(this, new AvailableEventsForRegistrationFilter().Filter(GetAll(), _currentUser.Id), x => x)
+                .Do();
+        }
+    }
+    /// <summary>
+    /// Filters down to only events available for the public to register for
+    /// </summary>
+    /// <seealso cref="StandAloneEvent" />
+    public class AvailableEventsForRegistrationFilter
+    {
+        /// <summary>
+        /// Filters down to only events available for the public to register for
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="userId"></param>
+        /// <returns>Events available for registration</returns>
+        public IEnumerable<EventForRegistrationModel> Filter(IEnumerable<StandAloneEvent> query, int userId)
+        {
+            var today = DateTime.Today;
+            var blah =  query
+                .Where(x => !x.IsPrivate)
+                .Where(x => x.StartTime.Date.IsOnOrAfter(today))
+                .Select(x => x.ToEventForRegistrationModel(userId));
+
+            return blah;
         }
     }
 }
