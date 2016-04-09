@@ -10,7 +10,7 @@ namespace Notification.Notifications
     {
         public string EmailTo { get; }
         public string Subject { get; }
-        public string TemplateName => "Email Verification";
+        public string TemplateName => "9a5a9d27-f31c-4f69-93af-ced633456195";
         public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
 
         public EmailVerificationMessage(IAppSettings appSettings, User user, string emailTicket)
@@ -22,8 +22,6 @@ namespace Notification.Notifications
 
             TemplateContent = new[]
             {
-                new KeyValuePair<string, string>("first_name", user.FirstName),
-                new KeyValuePair<string, string>("surname", user.Surname),
                 new KeyValuePair<string, string>("ticket", emailTicket),
             }.ToList();
         }

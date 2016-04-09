@@ -64,6 +64,31 @@ namespace IntegrationTests.Features.Settings
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Set terms and a conditions setting")]
+        [NUnit.Framework.CategoryAttribute("settings")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        [NUnit.Framework.CategoryAttribute("terms_and_conditions")]
+        [NUnit.Framework.CategoryAttribute("golden_path")]
+        public virtual void SetTermsAndAConditionsSetting()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set terms and a conditions setting", new string[] {
+                        "settings",
+                        "create",
+                        "terms_and_conditions",
+                        "golden_path"});
+#line 4
+this.ScenarioSetup(scenarioInfo);
+#line 5
+ testRunner.Given("a valid terms and conditions is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 6
+ testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+ testRunner.Then("terms and conditions setting is retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Set logo url setting")]
         [NUnit.Framework.CategoryAttribute("settings")]
         [NUnit.Framework.CategoryAttribute("create")]
@@ -76,41 +101,14 @@ namespace IntegrationTests.Features.Settings
                         "create",
                         "logo",
                         "golden_path"});
-#line 4
-this.ScenarioSetup(scenarioInfo);
-#line 5
- testRunner.Given("a valid logo url is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
- testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 7
- testRunner.Then("logo setting is retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Try to set up an invalid logo url setting")]
-        [NUnit.Framework.CategoryAttribute("settings")]
-        [NUnit.Framework.CategoryAttribute("create")]
-        [NUnit.Framework.CategoryAttribute("logo")]
-        [NUnit.Framework.CategoryAttribute("validation_error")]
-        public virtual void TryToSetUpAnInvalidLogoUrlSetting()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to set up an invalid logo url setting", new string[] {
-                        "settings",
-                        "create",
-                        "logo",
-                        "validation_error"});
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 11
- testRunner.Given("an invalid logo url is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a valid logo url is ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
  testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("validation errors are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
- testRunner.Then("logo setting is not retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("logo setting is retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -128,15 +126,15 @@ this.ScenarioSetup(scenarioInfo);
                         "update",
                         "logo",
                         "golden_path"});
-#line 17
+#line 23
 this.ScenarioSetup(scenarioInfo);
-#line 18
+#line 24
  testRunner.Given("the logo setting is already set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
+#line 25
  testRunner.And("the logo setting needs to be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 20
+#line 26
  testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
+#line 27
  testRunner.Then("logo setting is retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

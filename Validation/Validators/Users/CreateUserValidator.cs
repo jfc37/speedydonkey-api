@@ -33,6 +33,10 @@ namespace Validation.Validators.Users
             RuleFor(x => x.Surname)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage(ValidationMessages.MissingSurname);
+
+            RuleFor(x => x.AgreesToTerms)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .Equal(true).WithMessage(ValidationMessages.TermsAndConditions);
         }
 
         private bool BeUnique(User user, string email)

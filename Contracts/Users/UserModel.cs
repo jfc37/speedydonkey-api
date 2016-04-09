@@ -26,6 +26,7 @@ namespace Contracts.Users
         public List<BlockModel> EnroledBlocks { get; set; }
         public List<PassModel> Passes { get; set; }
         public string Email { get; set; }
+        public bool AgreesToTerms { get; set; }
 
         public string Note { get; set; }
 

@@ -8,7 +8,7 @@ namespace Notification.Notifications
     {
         public string EmailTo { get; }
         public string Subject { get; }
-        public string TemplateName => "Announcement";
+        public string TemplateName => "bf054b3c-8d47-48cb-8c55-ba39c232fc3f";
         public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
         User User { get; set; }
 

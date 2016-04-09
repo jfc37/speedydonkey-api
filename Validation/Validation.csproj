@@ -119,6 +119,7 @@
     <Compile Include="Validators\UpdatePassValidator.cs" />
     <Compile Include="Validators\EnrolInBlockValidator.cs" />
     <Compile Include="Validators\IActionValidator.cs" />
+    <Compile Include="Validators\Users\AgreeToTermsAndConditionsValidator.cs" />
     <Compile Include="Validators\Users\CreateUserFromAuthZeroValidator.cs" />
     <Compile Include="Validators\Users\CreateUserValidator.cs" />
     <Compile Include="Validators\Users\DeleteUserValidator.cs" />
