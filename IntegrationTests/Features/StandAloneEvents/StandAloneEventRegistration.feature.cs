@@ -82,6 +82,8 @@ testRunner.When("the user registers for the stand alone event", ((string)(null))
 testRunner.Then("the user is registered in the stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
 testRunner.And("the user has an item in their upcoming schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+testRunner.And("the number of spaces available for the stand alone event has decreased", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -95,17 +97,17 @@ testRunner.And("the user has an item in their upcoming schedule", ((string)(null
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User looks at stand alone events to register for", new string[] {
                         "stand_alone_event",
                         "show"});
-#line 11
-this.ScenarioSetup(scenarioInfo);
 #line 12
-testRunner.Given("a stand alone event exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 13
-testRunner.When("upcoming stand alone events are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("a stand alone event exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
-testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("upcoming stand alone events are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
-testRunner.And("the student sees the stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 16
+testRunner.And("the student sees the stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
 testRunner.And("the student is not marked as already attending", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -120,17 +122,17 @@ testRunner.And("the student is not marked as already attending", ((string)(null)
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User looks at stand alone events that they are already registered for", new string[] {
                         "stand_alone_event",
                         "show"});
-#line 19
-this.ScenarioSetup(scenarioInfo);
 #line 20
-testRunner.Given("the user is registered for a stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 21
-testRunner.When("upcoming stand alone events are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the user is registered for a stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 22
-testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When("upcoming stand alone events are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
-testRunner.And("the student sees the stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 24
+testRunner.And("the student sees the stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
 testRunner.And("the student is marked as already attending", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

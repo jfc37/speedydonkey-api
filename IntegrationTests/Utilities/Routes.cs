@@ -28,6 +28,10 @@ namespace IntegrationTests.Utilities
         {
             return $"{BlocksForEnrolment}/{userId}";
         }
+        public static string GetEventsForEnrolment(int userId)
+        {
+            return $"{StandAloneEventsForRegistration}/{userId}";
+        }
 
         public static string GetCurrentTeacherAvailabilities()
         {

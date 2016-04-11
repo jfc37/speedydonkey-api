@@ -62,6 +62,7 @@ namespace Contracts.MappingExtensions
             model.Name = instance.Name;
             model.EndTime = instance.EndTime;
             model.StartTime = instance.StartTime;
+            model.ClassCapacity = instance.ClassCapacity;
             model.Room = instance.Room.ToStripedModel();
             model.RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull();
             model.ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToStripedModel()).ToListIfNotNull();

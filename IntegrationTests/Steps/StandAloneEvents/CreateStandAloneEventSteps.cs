@@ -23,6 +23,7 @@ namespace IntegrationTests.Steps.StandAloneEvents
             {
                 Name = "Private Lesson",
                 Price = 80,
+                ClassCapacity = 30,
                 Teachers = new TeacherModel { Id = ScenarioCache.GetTeacherId() }.PutIntoList(),
                 StartTime = DateTime.Now.AddDays(2).AddHours(1),
                 EndTime = DateTime.Now.AddDays(2).AddHours(3),
@@ -61,6 +62,8 @@ namespace IntegrationTests.Steps.StandAloneEvents
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotNull(response.Data);
+
+            Assert.Greater(response.Data.ClassCapacity, 0);
         }
 
     }

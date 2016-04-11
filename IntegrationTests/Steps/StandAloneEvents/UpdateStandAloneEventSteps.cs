@@ -20,6 +20,16 @@ namespace IntegrationTests.Steps.StandAloneEvents
             ScenarioCache.Store(ModelKeys.StandAloneEvent, standAloneEvent);
         }
 
+        [Given(@"the stand alone event class capacity changes to '(.*)'")]
+        public void GivenTheStandAloneEventClassCapacityChangesTo(int classCapacity)
+        {
+            var standAloneEvent = ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEvent);
+
+            standAloneEvent.ClassCapacity = classCapacity;
+
+            ScenarioCache.Store(ModelKeys.StandAloneEvent, standAloneEvent);
+        }
+
         [When(@"the stand alone event is updated")]
         public void WhenTheStandAloneEventIsUpdated()
         {
@@ -40,6 +50,16 @@ namespace IntegrationTests.Steps.StandAloneEvents
             Assert.IsTrue(response.Data.IsPrivate);
         }
 
+        [Then(@"the stand alone event class capacity is '(.*)'")]
+        public void ThenTheStandAloneEventClassCapacityIs(int classCapacity)
+        {
+            var response = ApiCaller.Get<StandAloneEventModel>(Routes.GetById(Routes.StandAloneEvent, ScenarioCache.GetId(ModelIdKeys.StandAloneEventId)));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsNotNull(response.Data);
+
+            Assert.AreEqual(classCapacity, response.Data.ClassCapacity);
+        }
 
     }
 }

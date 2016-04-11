@@ -19,6 +19,7 @@ namespace Contracts.MappingExtensions
                 Name = instance.Name,
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
+                ClassCapacity = instance.ClassCapacity,
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Price = instance.Price,
@@ -37,9 +38,11 @@ namespace Contracts.MappingExtensions
                 Name = instance.Name,
                 EndTime = instance.EndTime,
                 StartTime = instance.StartTime,
+                ClassCapacity = instance.ClassCapacity,
                 Price = instance.Price,
                 IsPrivate = instance.IsPrivate,
-                IsAlreadyRegistered = instance.RegisteredStudents.Any(x => x.Id == userId)
+                IsAlreadyRegistered = instance.RegisteredStudents.Any(x => x.Id == userId),
+                SpacesAvailable = instance.ClassCapacity - instance.RegisteredStudents.Count
             };
         }
     }

@@ -75,8 +75,14 @@ namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
         [Route("for-registration")]
         public IHttpActionResult GetForEnrolment()
         {
+            return GetForEnrolment(_currentUser.Id);
+        }
+
+        [Route("for-registration/{id:int}")]
+        public IHttpActionResult GetForEnrolment(int id)
+        {
             var eventForRegistrationModels = new AvailableEventsForRegistrationFilter().Filter(GetAll())
-                .Select(x => x.ToEventForRegistrationModel(_currentUser.Id));
+                .Select(x => x.ToEventForRegistrationModel(id));
             return new SetToHttpActionResult<EventForRegistrationModel>(this, eventForRegistrationModels, x => x)
                 .Do();
         }

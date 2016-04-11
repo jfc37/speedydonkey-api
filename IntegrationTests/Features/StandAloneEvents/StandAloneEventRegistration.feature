@@ -6,6 +6,7 @@ Given a stand alone event exists
 When the user registers for the stand alone event
 Then the user is registered in the stand alone event
 And the user has an item in their upcoming schedule
+And the number of spaces available for the stand alone event has decreased
 
 @stand_alone_event @show
 Scenario: User looks at stand alone events to register for
