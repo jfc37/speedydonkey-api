@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using Action.StandAloneEvents;
 using ActionHandlers;
 using Common;
-using Common.Extensions;
 using Contracts.Events;
 using Contracts.MappingExtensions;
+using Data.QueryFilters;
 using Data.Repositories;
 using Data.Searches;
 using Models;
@@ -77,31 +75,10 @@ namespace SpeedyDonkeyApi.Controllers.StandAloneEvents
         [Route("for-registration")]
         public IHttpActionResult GetForEnrolment()
         {
-            return new SetToHttpActionResult<EventForRegistrationModel>(this, new AvailableEventsForRegistrationFilter().Filter(GetAll(), _currentUser.Id), x => x)
+            var eventForRegistrationModels = new AvailableEventsForRegistrationFilter().Filter(GetAll())
+                .Select(x => x.ToEventForRegistrationModel(_currentUser.Id));
+            return new SetToHttpActionResult<EventForRegistrationModel>(this, eventForRegistrationModels, x => x)
                 .Do();
-        }
-    }
-    /// <summary>
-    /// Filters down to only events available for the public to register for
-    /// </summary>
-    /// <seealso cref="StandAloneEvent" />
-    public class AvailableEventsForRegistrationFilter
-    {
-        /// <summary>
-        /// Filters down to only events available for the public to register for
-        /// </summary>
-        /// <param name="query">The query.</param>
-        /// <param name="userId"></param>
-        /// <returns>Events available for registration</returns>
-        public IEnumerable<EventForRegistrationModel> Filter(IEnumerable<StandAloneEvent> query, int userId)
-        {
-            var today = DateTime.Today;
-            var blah =  query
-                .Where(x => !x.IsPrivate)
-                .Where(x => x.StartTime.Date.IsOnOrAfter(today))
-                .Select(x => x.ToEventForRegistrationModel(userId));
-
-            return blah;
         }
     }
 }

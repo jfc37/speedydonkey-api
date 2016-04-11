@@ -219,6 +219,7 @@ namespace Data.Mappings
             this.MapDatabaseEntity();
             Map(x => x.StartTime);
             Map(x => x.EndTime);
+            Map(x => x.ClassCapacity);
             Map(x => x.Name);
             References(x => x.Room);
             HasManyToMany(x => x.RegisteredStudents)
@@ -242,6 +243,7 @@ namespace Data.Mappings
             Map(x => x.EndDate);
             Map(x => x.NumberOfClasses);
             Map(x => x.MinutesPerClass);
+            Map(x => x.ClassCapacity);
             Map(x => x.Name);
             Map(x => x.IsInviteOnly);
             References(x => x.Room);

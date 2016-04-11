@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Announcements\AnnouncementConfirmationModel.cs" />
     <Compile Include="Announcements\AnnouncementModel.cs" />
+    <Compile Include="Blocks\BlockForRegistrationModel.cs" />
     <Compile Include="Blocks\BlockModel.cs" />
     <Compile Include="Blocks\UserEnroledBlocksModel.cs" />
     <Compile Include="Classes\ClassAttendanceModel.cs" />
@@ -64,7 +65,10 @@
     <Compile Include="Events\EventRegistrationModel.cs" />
     <Compile Include="Events\StandAloneEventModel.cs" />
     <Compile Include="IEntityView.cs" />
+    <Compile Include="MappingExtensions\BlockMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\ClassMappingExtensions.cs" />
     <Compile Include="MappingExtensions\EntityMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\EventMappingExtensions.cs" />
     <Compile Include="MappingExtensions\LocalTimeMappingExtensions.cs" />
     <Compile Include="MappingExtensions\ModelMappingExtensions.cs" />
     <Compile Include="MappingExtensions\OpeningHoursMappingExtensions.cs" />

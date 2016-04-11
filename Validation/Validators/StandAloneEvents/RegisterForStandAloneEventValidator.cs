@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Action;
+using Action.StandAloneEvents;
 using Common;
 using Common.Extensions;
 using Data.Repositories;
@@ -10,7 +11,7 @@ using Validation.Rules;
 
 namespace Validation.Validators.StandAloneEvents
 {
-    public class RegisterForStandAloneEventValidator : AbstractValidator<User>, IActionValidator<EnrolInBlock, User>
+    public class RegisterForStandAloneEventValidator : AbstractValidator<User>, IActionValidator<RegisterForStandAloneEvent, User>
     {
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<StandAloneEvent> _eventRepository;
@@ -64,6 +65,7 @@ namespace Validation.Validators.StandAloneEvents
         {
             return _eventRepository.Queryable()
                 .Select(x => x.Id)
+                .ToList()
                 .Intersect(blocks.Select(x => x.Id)).Count() == blocks.Count;
         }
 

@@ -52,7 +52,19 @@ namespace IntegrationTests.Steps.Blocks
             ScenarioCache.Store(ModelKeys.Block, block);
         }
 
+        [Given(@"the block class capacity changes to '(.*)'")]
+        public void GivenTheBlockClassCapacityChangesTo(int classCapacity)
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, 1));
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
+            var block = response.Data;
+            block.ClassCapacity = classCapacity;
+
+            ScenarioCache.Store(ModelIdKeys.BlockId, block.Id);
+            ScenarioCache.Store(ModelKeys.Block, block);
+        }
+        
         [When(@"the block is updated")]
         public void WhenTheBlockIsUpdated()
         {
@@ -60,6 +72,15 @@ namespace IntegrationTests.Steps.Blocks
                 Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
 
             ScenarioCache.StoreActionResponse(response);
+        }
+
+        [Then(@"the block class capacity is '(.*)'")]
+        public void ThenTheBlockClassCapacityIs(int classCapacity)
+        {
+            var block = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId))).Data;
+
+            Assert.AreEqual(classCapacity, block.ClassCapacity);
+            ScenarioCache.Store(ModelKeys.Block, block);
         }
 
         [Then(@"the blocks start and end time is updated")]

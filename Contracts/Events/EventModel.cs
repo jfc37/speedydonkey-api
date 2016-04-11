@@ -15,6 +15,7 @@ namespace Contracts.Events
         public DateTimeOffset StartTime { get; set; }
         public DateTimeOffset EndTime { get; set; }
         public string Name { get; set; }
+        public int ClassCapacity { get; set; }
         public int Id { get; set; }
         public RoomModel Room { get; set; }
         public override string ToString()

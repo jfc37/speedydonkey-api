@@ -3,7 +3,7 @@ using System.Web.Http;
 using Action;
 using Action.Blocks;
 using ActionHandlers;
-using Contracts;
+using Common;
 using Contracts.Blocks;
 using Contracts.MappingExtensions;
 using Data.QueryFilters;
@@ -18,16 +18,29 @@ namespace SpeedyDonkeyApi.Controllers.Blocks
     [RoutePrefix("api/blocks")]
     public class BlockApiController : GenericApiController<Block>
     {
+        private readonly ICurrentUser _currentUser;
+
         public BlockApiController(
             IActionHandlerOverlord actionHandlerOverlord, 
             IRepository<Block> repository,
-            IEntitySearch<Block> entitySearch)
-            : base(actionHandlerOverlord, repository, entitySearch) { }
+            IEntitySearch<Block> entitySearch,
+            ICurrentUser currentUser)
+            : base(actionHandlerOverlord, repository, entitySearch)
+        {
+            _currentUser = currentUser;
+        }
 
         [Route("for-enrolment")]
         public IHttpActionResult GetForEnrolment()
         {
-            return new SetToHttpActionResult<Block>(this, new AvailableBlocksForEnrolmentFilter(DateTime.Today).Filter(GetAll()), x => x.ToStripedModel()).Do();
+            return GetForEnrolment(_currentUser.Id);
+        }
+
+        [Route("for-enrolment/{id:int}")]
+        [ClaimsAuthorise(Claim = Claim.Teacher)]
+        public IHttpActionResult GetForEnrolment(int id)
+        {
+            return new SetToHttpActionResult<Block>(this, new AvailableBlocksForEnrolmentFilter(DateTime.Today).Filter(GetAll()), x => x.ToBlockForRegistrationModel(id)).Do();
         }
 
         [Route]

@@ -5,6 +5,7 @@
         public const string AlreadyEnroledInBlock = "You are already enroled in a selected block";
         public const string InvalidBlock = "Block doesn't exist";
         public const string UnavailableBlock = "Block isn't available for enrolment";
+        public const string FullBlock = "Block is full";
         public const string InvalidRoom = "Room doesn't exist";
         public const string InvalidClass = "Class doesn't exist";
         public const string InvalidEvent = "Event doesn't exist";
@@ -43,6 +44,7 @@
         public const string EndTimeGreaterThanStartTime = "Please enter an end time greater than the start time";
         public const string InvalidClassMinutes = "Please enter class minutes";
         public const string InvalidClassesInBlock = "Please enter number of classes in a block";
+        public const string InvalidClassCapacity = "Please enter a class capacity greater than 0";
         public const string InvalidTeachers = "Teachers selected are invalid";
         public const string TeachersRequired = "Please select at least one teacher";
         public const string RoomRequired = "Please select a room";

@@ -24,6 +24,11 @@ namespace IntegrationTests.Utilities
         public const string Settings = "settings";
         public const string TermsAndConditions = "users/current/terms-and-conditions";
 
+        public static string GetBlocksForEnrolment(int userId)
+        {
+            return $"{BlocksForEnrolment}/{userId}";
+        }
+
         public static string GetCurrentTeacherAvailabilities()
         {
             return $"{TeacherAvailability}/current";
