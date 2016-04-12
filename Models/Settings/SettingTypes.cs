@@ -7,6 +7,7 @@
     {
         Invalid,
         Logo,
+        ClassCapacity,
         MinutesPerClass,
         NumberOfClasses,
         TermsAndConditions
