@@ -30,6 +30,7 @@ namespace ActionHandlers.Blocks
                 CreatedDateTime = DateTime.Now,
                 MinutesPerClass = previousBlock.MinutesPerClass,
                 NumberOfClasses = previousBlock.NumberOfClasses,
+                ClassCapacity = previousBlock.ClassCapacity,
                 Name = previousBlock.Name,
                 Teachers = new List<Teacher>(previousBlock.Teachers),
                 StartDate = previousBlock.StartDate.AddWeeks(previousBlock.NumberOfClasses),

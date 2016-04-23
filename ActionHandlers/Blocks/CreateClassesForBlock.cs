@@ -27,6 +27,7 @@ namespace ActionHandlers.Blocks
                     StartTime = classTime,
                     EndTime = classTime.AddMinutes(_block.MinutesPerClass),
                     Block = _block,
+                    ClassCapacity = _block.ClassCapacity,
                     Name = _block.Name + " - Week " + classNumber,
                     Teachers = new List<Teacher>(_block.Teachers),
                     CreatedDateTime = DateTime.Now

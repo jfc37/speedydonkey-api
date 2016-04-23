@@ -8,6 +8,7 @@ Scenario: Generate first block
 	And the blocks dates are in utc
 	And classes are created for the block
 	And the correct number of classes are created
+	And the classes have correct class capacity
 
 @block @create @golden_path
 Scenario: Generate second block

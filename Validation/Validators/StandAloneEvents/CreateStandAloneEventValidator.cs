@@ -20,6 +20,9 @@ namespace Validation.Validators.StandAloneEvents
 
             RuleFor(x => x.Price)
                 .NotEmpty().WithMessage(ValidationMessages.MissingPrice);
+            
+            RuleFor(x => x.ClassCapacity)
+                .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassCapacity);
 
             RuleFor(x => x.EndTime)
                 .GreaterThan(x => x.StartTime).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime)

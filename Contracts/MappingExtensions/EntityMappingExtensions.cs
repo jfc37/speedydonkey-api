@@ -1,9 +1,5 @@
-using System;
 using Common.Extensions;
 using Contracts.Announcements;
-using Contracts.Blocks;
-using Contracts.Classes;
-using Contracts.Events;
 using Contracts.Passes;
 using Contracts.Rooms;
 using Contracts.Teachers;
@@ -94,28 +90,6 @@ namespace Contracts.MappingExtensions
             };
         }
         
-        public static Block ToEntity(this BlockModel instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new Block
-            {
-                Announcements = instance.Announcements.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                EndDate = instance.EndDate,
-                StartDate = instance.StartDate,
-                Classes = instance.Classes.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                EnroledStudents = instance.EnroledStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Name = instance.Name,
-                Id = instance.Id,
-                MinutesPerClass = instance.MinutesPerClass,
-                NumberOfClasses = instance.NumberOfClasses,
-                Room = instance.Room.ToEntity(),
-                IsInviteOnly = instance.IsInviteOnly
-            };
-        }
-
         public static Announcement ToEntity(this AnnouncementModel instance)
         {
             if (instance.IsNull())
@@ -143,74 +117,7 @@ namespace Contracts.MappingExtensions
                 Id = instance.Id
             };
         }
-
-        public static Class ToEntity(this ClassModel instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new Class
-            {
-                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Name = instance.Name,
-                EndTime = instance.EndTime,
-                StartTime = instance.StartTime,
-                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Block = instance.Block.ToEntity(),
-                PassStatistics = instance.PassStatistics.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Id = instance.Id
-            };
-        }
-
-        public static Event ToEntity(this EventModel instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            Event model = null;
-
-            var classInstance = instance as ClassModel;
-            if (classInstance.IsNotNull())
-                model = classInstance.ToEntity();
-
-            var standAloneEventInstance = instance as StandAloneEventModel;
-            if (standAloneEventInstance.IsNotNull())
-                model = standAloneEventInstance.ToEntity();
-
-            if (model.IsNull())
-                throw new ArgumentException(
-                    "Can't handle converting to entity for type {0}".FormatWith(instance.GetType()), "instance");
-
-            model.Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull();
-            model.Name = instance.Name;
-            model.EndTime = instance.EndTime;
-            model.StartTime = instance.StartTime;
-            model.RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull();
-            model.ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull();
-
-            return model;
-        }
-
-        public static StandAloneEvent ToEntity(this StandAloneEventModel instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new StandAloneEvent
-            {
-                Id = instance.Id,
-                Teachers = instance.Teachers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Name = instance.Name,
-                EndTime = instance.EndTime,
-                StartTime = instance.StartTime,
-                RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Price = instance.Price,
-                IsPrivate = instance.IsPrivate
-            };
-        }
-
+        
         public static PassStatistic ToEntity(this PassStatisticModel instance)
         {
             if (instance.IsNull())

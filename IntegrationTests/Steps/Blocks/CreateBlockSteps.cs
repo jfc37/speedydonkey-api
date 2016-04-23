@@ -29,6 +29,7 @@ namespace IntegrationTests.Steps.Blocks
             {
                 MinutesPerClass = 60,
                 NumberOfClasses = 6,
+                ClassCapacity = 30,
                 Name = "Charleston Level 1",
                 StartDate = startDateWithOffset,
                 Teachers = new TeacherModel { Id = ScenarioCache.GetTeacherId() }.PutIntoList()
@@ -43,6 +44,15 @@ namespace IntegrationTests.Steps.Blocks
             var block = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
 
             block.IsInviteOnly = true;
+
+            ScenarioCache.Store(ModelKeys.Block, block);
+        }
+        
+        public void GivenTheBlockClassCapacityIs(int classCapacity)
+        {
+            var block = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
+
+            block.ClassCapacity = classCapacity;
 
             ScenarioCache.Store(ModelKeys.Block, block);
         }
@@ -146,5 +156,17 @@ namespace IntegrationTests.Steps.Blocks
             Assert.AreEqual(expectedBlock.NumberOfClasses, block.Classes.Count);
         }
 
+        [Then(@"the classes have correct class capacity")]
+        public void ThenTheClassesHaveCorrectClassCapacity()
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, ScenarioCache.GetId(ModelIdKeys.BlockId)));
+            var block = response.Data;
+
+            var expectedBlock = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
+
+            Assert.IsTrue(block.Classes.All(x => x.ClassCapacity == block.ClassCapacity));
+
+            Assert.AreEqual(expectedBlock.NumberOfClasses, block.Classes.Count);
+        }
     }
 }

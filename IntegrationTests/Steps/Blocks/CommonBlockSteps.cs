@@ -21,6 +21,29 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.ThenBlockCanBeRetrieved();
         }
 
+        [Given(@"a block exists with a student limit of '(.*)'")]
+        public void GivenABlockExistsWithAStudentLimitOf(int classCapacity)
+        {
+            var createBlockSteps = new CreateBlockSteps();
+            createBlockSteps.GivenAValidBlockIsReadyToBeSubmitted();
+            createBlockSteps.GivenTheBlockClassCapacityIs(classCapacity);
+            createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
+            createBlockSteps.ThenBlockCanBeRetrieved();
+        }
+
+        [Given(@"a block exists that is full")]
+        public void GivenABlockExistsThatIsFull()
+        {
+            GivenABlockExistsWithAStudentLimitOf(1);
+
+            var userId = ScenarioCache.GetUserId();
+
+            GivenTheUserEnrolsInTheBlock();
+
+            ScenarioCache.Store(ModelIdKeys.UserId, userId);
+        }
+
+
         [Given(@"an invite only block exists")]
         public void GivenAnInviteOnlyBlockExists()
         {

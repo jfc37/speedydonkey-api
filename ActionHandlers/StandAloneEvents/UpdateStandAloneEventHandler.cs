@@ -26,6 +26,7 @@ namespace ActionHandlers.StandAloneEvents
             standAloneEvent.EndTime = action.ActionAgainst.EndTime;
             standAloneEvent.IsPrivate = action.ActionAgainst.IsPrivate;
             standAloneEvent.Price = action.ActionAgainst.Price;
+            standAloneEvent.ClassCapacity = action.ActionAgainst.ClassCapacity;
 
             if (HasTeachersChanged(standAloneEvent.Teachers, action.ActionAgainst.Teachers))
             {

@@ -21,6 +21,9 @@ namespace Validation.Validators.StandAloneEvents
             RuleFor(x => x.Price)
                 .NotEmpty().WithMessage(ValidationMessages.MissingPrice);
 
+            RuleFor(x => x.ClassCapacity)
+                .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassCapacity);
+
             RuleFor(x => x.Id)
                 .Must(x => new DoesIdExist<StandAloneEvent>(repository, x).IsValid()).WithMessage(ValidationMessages.InvalidEvent);
 

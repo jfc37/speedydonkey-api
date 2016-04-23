@@ -33,3 +33,10 @@ Scenario: Update invite only block to public
 	Then the block is not invite only
 	And there are blocks available for enrolment
 
+@block @update @golden_path
+Scenario: Update block class capacity
+	Given a block exists
+	And the block class capacity changes to '40'
+	When the block is updated
+	Then the block class capacity is '40'
+
