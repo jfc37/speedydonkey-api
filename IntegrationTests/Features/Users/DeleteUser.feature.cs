@@ -64,13 +64,13 @@ namespace IntegrationTests.Features.Users
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a user")]
+        [NUnit.Framework.DescriptionAttribute("Delete a user")]
         [NUnit.Framework.CategoryAttribute("user")]
         [NUnit.Framework.CategoryAttribute("delete")]
         [NUnit.Framework.CategoryAttribute("golden_path")]
-        public virtual void CreateAUser()
+        public virtual void DeleteAUser()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a user", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete a user", new string[] {
                         "user",
                         "delete",
                         "golden_path"});

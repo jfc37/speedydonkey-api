@@ -85,6 +85,56 @@ testRunner.And("the user has an item in their upcoming schedule", ((string)(null
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User looks at stand alone events to register for")]
+        [NUnit.Framework.CategoryAttribute("stand_alone_event")]
+        [NUnit.Framework.CategoryAttribute("show")]
+        public virtual void UserLooksAtStandAloneEventsToRegisterFor()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User looks at stand alone events to register for", new string[] {
+                        "stand_alone_event",
+                        "show"});
+#line 11
+this.ScenarioSetup(scenarioInfo);
+#line 12
+testRunner.Given("a stand alone event exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+testRunner.When("upcoming stand alone events are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+testRunner.And("the student sees the stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+testRunner.And("the student is not marked as already attending", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User looks at stand alone events that they are already registered for")]
+        [NUnit.Framework.CategoryAttribute("stand_alone_event")]
+        [NUnit.Framework.CategoryAttribute("show")]
+        public virtual void UserLooksAtStandAloneEventsThatTheyAreAlreadyRegisteredFor()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User looks at stand alone events that they are already registered for", new string[] {
+                        "stand_alone_event",
+                        "show"});
+#line 19
+this.ScenarioSetup(scenarioInfo);
+#line 20
+testRunner.Given("the user is registered for a stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+testRunner.When("upcoming stand alone events are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+testRunner.And("the student sees the stand alone event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+testRunner.And("the student is marked as already attending", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

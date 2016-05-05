@@ -35,7 +35,7 @@ namespace Common
     {
         ApplicationName,
 
-        MandrillApiKey,
+        SendGridApiKey,
         TestEmailAccount,
         UseRealEmail,
         AdminEmailWhitelist,

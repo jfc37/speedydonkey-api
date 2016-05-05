@@ -59,6 +59,7 @@
     <Compile Include="Classes\ClassPassStaticsticsModel.cs" />
     <Compile Include="Classes\ClassRegisterModel.cs" />
     <Compile Include="Enrolment\EnrolmentModel.cs" />
+    <Compile Include="Events\EventForRegistrationModel.cs" />
     <Compile Include="Events\EventModel.cs" />
     <Compile Include="Events\EventRegistrationModel.cs" />
     <Compile Include="Events\StandAloneEventModel.cs" />
@@ -67,7 +68,9 @@
     <Compile Include="MappingExtensions\LocalTimeMappingExtensions.cs" />
     <Compile Include="MappingExtensions\ModelMappingExtensions.cs" />
     <Compile Include="MappingExtensions\OpeningHoursMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\PassMappingExtensions.cs" />
     <Compile Include="MappingExtensions\SettingMappingExtensions.cs" />
+    <Compile Include="MappingExtensions\StandAloneEventMappingExtensions.cs" />
     <Compile Include="MappingExtensions\TeacherAvailablityMappingExtensions.cs" />
     <Compile Include="MappingExtensions\UserMappingExtensions.cs" />
     <Compile Include="OnlinePayments\OnlinePaymentRequestModel.cs" />

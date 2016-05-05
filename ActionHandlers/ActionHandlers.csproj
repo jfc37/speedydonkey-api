@@ -161,12 +161,13 @@
     <Compile Include="UserPasses\PassCreator.cs" />
     <Compile Include="UserPasses\PurchasePassHandler.cs" />
     <Compile Include="UserPasses\UserPassAppender.cs" />
-    <Compile Include="Users\CreateUserHandler.cs" />
+    <Compile Include="Users\CreateUserFromAuthZeroHandler.cs" />
     <Compile Include="Users\DeleteUserHandler.cs" />
     <Compile Include="Users\DoNotEmailFlags\DoNotEmailForUserFlagChanger.cs" />
     <Compile Include="Users\DoNotEmailFlags\IDoNotEmailForUserFlagChanger.cs" />
     <Compile Include="Users\DoNotEmailFlags\RemoveDoNotEmailForUserHandler.cs" />
     <Compile Include="Users\DoNotEmailFlags\SetDoNotEmailForUserHandler.cs" />
+    <Compile Include="Users\TermsAndConditions\AgreeToTermsAndConditionsHandler.cs" />
     <Compile Include="Users\UpdateUserHandler.cs" />
     <Compile Include="Users\UpdateUserNamesHandler.cs" />
   </ItemGroup>

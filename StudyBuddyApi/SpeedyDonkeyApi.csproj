@@ -290,6 +290,7 @@
     <Compile Include="Controllers\Users\UserNoteApiController.cs" />
     <Compile Include="Controllers\Users\UserPassesApiController.cs" />
     <Compile Include="Controllers\Users\UserScheduleApiController.cs" />
+    <Compile Include="Controllers\Users\UserTermsAndConditionsApiController.cs" />
     <Compile Include="Controllers\ValidationResultExtensions.cs" />
     <Compile Include="Controllers\WindyLindy\RegistrationApiController.cs" />
     <Compile Include="Extensions\ApiControllerExtensions.cs" />

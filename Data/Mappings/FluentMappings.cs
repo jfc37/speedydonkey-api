@@ -50,7 +50,7 @@ namespace Data.Mappings
         {
             this.MapDatabaseEntity();
             Map(x => x.Name);
-            Map(x => x.Value);
+            Map(x => x.Value).Length(4001);
         }
     }
     public class TeacherAvailabilityMap : ClassMap<TeacherAvailability>
@@ -172,6 +172,7 @@ namespace Data.Mappings
             Map(x => x.Claims);
             Map(x => x.Note);
             Map(x => x.DoNotEmail);
+            Map(x => x.AgreesToTerms);
             HasManyToMany(x => x.EnroledBlocks)
                 .Table("UsersEnroledBlocks")
                 .AsSet();

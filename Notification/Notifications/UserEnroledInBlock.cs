@@ -10,7 +10,7 @@ namespace Notification.Notifications
         public string EmailTo { get; }
         public string Subject => "Block Enrolment Confirmation";
         public string EmailBody { get; set; }
-        public string TemplateName => "Block Enrolment v2";
+        public string TemplateName => "19376af6-a639-4a68-9d75-1103220c643e";
         public IList<KeyValuePair<string, string>> TemplateContent { get; set; }
         User User { get; set; }
 

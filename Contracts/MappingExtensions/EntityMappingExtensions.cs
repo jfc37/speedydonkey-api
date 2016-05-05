@@ -63,26 +63,7 @@ namespace Contracts.MappingExtensions
                 TermsAndConditions = instance.TermsAndConditions
             };
         }
-        public static Pass ToEntity(this PassModel instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new Pass
-            {
-                Id = instance.Id,
-                Cost = instance.Cost,
-                Description = instance.Description,
-                EndDate = instance.EndDate,
-                PassType = instance.PassType,
-                PaymentStatus = instance.PaymentStatus,
-                Note = instance.Note,
-                Owner = instance.Owner.ToEntity(),
-                PassStatistic = instance.PassStatistic.ToEntity(),
-                StartDate = instance.StartDate
-            };
-        }
-
+        
         public static PassTemplate ToEntity(this PassTemplateModel instance)
         {
             if (instance.IsNull())
@@ -112,28 +93,7 @@ namespace Contracts.MappingExtensions
                 Name = instance.Name
             };
         }
-
-        public static User ToEntity(this UserModel instance)
-        {
-            if (instance.IsNull())
-                return null;
-
-            return new User
-            {
-                Note = instance.Note,
-                Email = instance.Email,
-                EnroledBlocks = instance.EnroledBlocks.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                FirstName = instance.FirstName,
-                Passes = instance.Passes.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Schedule = instance.Schedule.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
-                Surname = instance.Surname,
-                Password = instance.Password,
-                Id = instance.Id
-            };
-        }
-
-
-
+        
         public static Block ToEntity(this BlockModel instance)
         {
             if (instance.IsNull())
@@ -170,8 +130,7 @@ namespace Contracts.MappingExtensions
                 Receivers = instance.Receivers.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull()
             };
         }
-
-
+        
         public static Teacher ToEntity(this TeacherModel instance)
         {
             if (instance.IsNull())

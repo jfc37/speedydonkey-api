@@ -30,7 +30,18 @@ namespace IntegrationTests.Steps.Settings
             ScenarioCache.Store(ModelKeys.SettingItem, logoSetting);
             ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
         }
-        
+
+        [Given(@"a valid terms and conditions is ready to be submitted")]
+        public void GivenAValidTermsAndConditionsIsReadyToBeSubmitted()
+        {
+            var validTerms = "<p>something</p>";
+            var termsAndConditionsSetting = new SettingItemModel("termsAndConditions", validTerms);
+            var completeSettings = new CompleteSettingsModel(termsAndConditionsSetting);
+
+            ScenarioCache.Store(ModelKeys.SettingItem, termsAndConditionsSetting);
+            ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
+        }
+
         [Given(@"a valid logo url is ready to be submitted")]
         public void GivenAValidLogoUrlIsReadyToBeSubmitted()
         {
@@ -47,6 +58,18 @@ namespace IntegrationTests.Steps.Settings
         {
             var response = ApiCaller.Post<ActionReponse<CompleteSettingsModel>>(ScenarioCache.Get<CompleteSettingsModel>(ModelKeys.CompleteSettings), Routes.Settings);
             ScenarioCache.StoreActionResponse(response);
+        }
+
+        [Then(@"terms and conditions setting is retrieved")]
+        public void ThenTermsAndConditionsSettingIsRetrieved()
+        {
+            var response = ApiCaller.Get<SettingItemModel>(Routes.GetSettingsByType(SettingTypes.TermsAndConditions));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            var expectedSetting = ScenarioCache.Get<SettingItemModel>(ModelKeys.SettingItem);
+
+            Assert.AreEqual(expectedSetting.Value, response.Data.Value);
         }
 
         [Then(@"logo setting is retrieved")]

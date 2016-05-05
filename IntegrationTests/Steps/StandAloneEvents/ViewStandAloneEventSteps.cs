@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Contracts.Events;
 using IntegrationTests.Utilities;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.StandAloneEvents
@@ -34,9 +36,44 @@ namespace IntegrationTests.Steps.StandAloneEvents
         [When(@"upcoming stand alone events are requested")]
         public void WhenUpcomingStatndAloneEventsAreRequested()
         {
-            var response = ApiCaller.Get<List<StandAloneEventModel>>(Routes.StandAloneEventsForRegistration);
+            var response = ApiCaller.Get<List<EventForRegistrationModel>>(Routes.StandAloneEventsForRegistration);
 
             ScenarioCache.StoreResponse(response);
+        }
+
+        [Given(@"the user is registered for a stand alone event")]
+        public void GivenTheUserIsRegisteredForAStandAloneEvent()
+        {
+            GivenAStandAloneEventExists();
+            var standAloneEventRegistrationSteps = new StandAloneEventRegistrationSteps();
+            ScenarioCache.Store(ModelIdKeys.UserId, 1);
+            standAloneEventRegistrationSteps.WhenTheUserRegistersForTheStandAloneEvent();
+            standAloneEventRegistrationSteps.ThenTheUserIsRegisteredInTheStandAloneEvent();
+        }
+
+        [Then(@"the student sees the stand alone event")]
+        public void ThenTheStudentSeesTheStandAloneEvent()
+        {
+            var events = ScenarioCache.GetResponse<List<EventForRegistrationModel>>();
+
+            Assert.IsNotEmpty(events);
+            Assert.AreEqual(1, events.Count);
+        }
+
+        [Then(@"the student is not marked as already attending")]
+        public void ThenTheStudentIsNotMarkedAsAlreadyAttending()
+        {
+            var events = ScenarioCache.GetResponse<List<EventForRegistrationModel>>();
+
+            Assert.IsFalse(events.Single().IsAlreadyRegistered);
+        }
+
+        [Then(@"the student is marked as already attending")]
+        public void ThenTheStudentIsMarkedAsAlreadyAttending()
+        {
+            var events = ScenarioCache.GetResponse<List<EventForRegistrationModel>>();
+
+            Assert.IsTrue(events.Single().IsAlreadyRegistered);
         }
 
     }

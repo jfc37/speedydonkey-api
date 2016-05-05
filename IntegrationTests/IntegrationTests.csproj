@@ -155,6 +155,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PurchasePass.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Passes\UpdatePass.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdatePass.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\PassTemplates\CreatePassTemplate.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -290,6 +295,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrieveUser.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Users\TermsAndConditions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TermsAndConditions.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\UpdateUserNames.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -314,6 +324,7 @@
     <Compile Include="Steps\Levels\RetrieveLevelSteps.cs" />
     <Compile Include="Steps\Passes\CommonPassSteps.cs" />
     <Compile Include="Steps\Passes\PurchasePassSteps.cs" />
+    <Compile Include="Steps\Passes\UpdatePassSteps.cs" />
     <Compile Include="Steps\PassTemplates\CommonPassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\CreatePassTemplateSteps.cs" />
     <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
@@ -344,10 +355,12 @@
     <Compile Include="Steps\Users\DoNotEmailUserSteps.cs" />
     <Compile Include="Steps\Users\GetClaimsSteps.cs" />
     <Compile Include="Steps\Users\RetrieveUserSteps.cs" />
+    <Compile Include="Steps\Users\TermsAndConditionsSteps.cs" />
     <Compile Include="Steps\Users\UpdateUserNamesSteps.cs" />
     <Compile Include="Utilities\ApiCaller.cs" />
     <Compile Include="Utilities\ModelFunctions\TeacherFunction.cs" />
     <Compile Include="Utilities\ModelFunctions\UserFunction.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyClipPassProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyOpeningHoursProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyPassTemplateProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyRoomProperties.cs" />
@@ -413,6 +426,10 @@
     <None Include="Features\Passes\PurchasePass.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PurchasePass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Passes\UpdatePass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdatePass.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\PassTemplates\CreatePassTemplate.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -521,6 +538,10 @@
     <None Include="Features\Users\RetrieveUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveUser.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Users\TermsAndConditions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TermsAndConditions.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\UpdateUserNames.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

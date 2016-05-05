@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.Mail;
 using Common;
-using Mandrill;
-using Mandrill.Models;
-using Mandrill.Requests.Messages;
+using Common.Extensions;
 using Notification.Notifications;
 using PostSharp.Patterns.Diagnostics;
-using PostSharp.Extensibility;
+using SendGrid;
 
 namespace Notification
 {
-    public interface IMailMan
-    {
-        void Send(INotification notification);
-    }
     public class MailMan : IMailMan
     {
         private readonly IAppSettings _appSettings;
@@ -30,38 +23,48 @@ namespace Notification
             if (!Convert.ToBoolean(_appSettings.GetSetting(AppSettingKey.ShouldSendEmail)))
                 return;
 
-            var api = new MandrillApi(_appSettings.GetSetting(AppSettingKey.MandrillApiKey));
-            
-            var templateContents = notification.TemplateContent.Select(x => new TemplateContent
-            {
-                Name = x.Key,
-                Content = x.Value
-            }).ToList();
-            
-            var emailMessage = new EmailMessage
-            {
-                FromEmail = _appSettings.GetSetting(AppSettingKey.FromEmail),
-                To = new List<EmailAddress>
-                {
-                    new EmailAddress(GetEmailTo(notification.EmailTo))
-                },
-                Subject = notification.Subject,
-                MergeLanguage = "handlebars"
-            };
+            var message = GetMessage(notification);
+
+            SendMessage(message);
+        }
+
+        private void SendMessage(SendGridMessage message)
+        {
+            var transportWeb = new Web(_appSettings.GetSetting(AppSettingKey.SendGridApiKey));
+            transportWeb.DeliverAsync(message);
+        }
+
+        private SendGridMessage GetMessage(INotification notification)
+        {
+            var applicationName = _appSettings.GetSetting(AppSettingKey.ApplicationName);
+
+            var message = new SendGridMessage();
+            message.From = new MailAddress(_appSettings.GetSetting(AppSettingKey.FromEmail), applicationName);
+            message.Subject = notification.Subject;
+            message.AddTo(GetEmailTo(notification.EmailTo));
+
+            message.EnableTemplateEngine(notification.TemplateName);
+
+            message.Text = "   ";
+
             foreach (var templateContent in notification.TemplateContent)
             {
-                emailMessage.AddGlobalVariable(templateContent.Key, templateContent.Value);
+                message.AddSubstitution(GetReplacementTag(templateContent.Key), templateContent.Value.PutIntoList());
             }
-            emailMessage.AddGlobalVariable("application_name", _appSettings.GetSetting(AppSettingKey.ApplicationName));
-            api.SendMessageTemplate(new SendMessageTemplateRequest(emailMessage, notification.TemplateName, templateContents));
+            message.AddSubstitution(GetReplacementTag("application_name"), applicationName.PutIntoList());
+            return message;
+        }
+
+        private static string GetReplacementTag(string content)
+        {
+            return $"-{content}-";
         }
 
         private string GetEmailTo(string realEmail)
         {
-            if (Convert.ToBoolean(_appSettings.GetSetting(AppSettingKey.UseRealEmail)))
-                return realEmail;
-
-            return _appSettings.GetSetting(AppSettingKey.TestEmailAccount);
+            return Convert.ToBoolean(_appSettings.GetSetting(AppSettingKey.UseRealEmail)) 
+                ? realEmail 
+                : _appSettings.GetSetting(AppSettingKey.TestEmailAccount);
         }
     }
 }
