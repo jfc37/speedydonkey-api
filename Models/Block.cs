@@ -27,6 +27,7 @@ namespace Models
         public virtual string Name { get; set; }
         public virtual int NumberOfClasses { get; set; }
         public virtual int MinutesPerClass { get; set; }
+        public virtual int ClassCapacity { get; set; }
         public virtual bool IsInviteOnly { get; set; }
 
         public override string ToString()

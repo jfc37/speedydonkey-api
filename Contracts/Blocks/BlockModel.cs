@@ -37,6 +37,7 @@ namespace Contracts.Blocks
         public RoomModel Room { get; set; }
         public int NumberOfClasses { get; set; }
         public int MinutesPerClass { get; set; }
+        public int ClassCapacity { get; set; }
         public string Name { get; set; }
         public bool IsInviteOnly { get; set; }
         public int Id { get; set; }

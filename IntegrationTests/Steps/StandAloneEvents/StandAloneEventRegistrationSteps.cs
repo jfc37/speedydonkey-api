@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using ActionHandlers;
 using Contracts.Events;
@@ -31,5 +32,14 @@ namespace IntegrationTests.Steps.StandAloneEvents
             var user = response.Data.RegisteredStudents.Single();
             Assert.AreEqual(ScenarioCache.GetId(ModelIdKeys.UserId), user.Id);
         }
+
+        [Then(@"the number of spaces available for the stand alone event has decreased")]
+        public void ThenTheNumberOfSpacesAvailableForTheStandAloneEventHasDecreased()
+        {
+            var response = ApiCaller.Get<List<EventForRegistrationModel>>(Routes.GetEventsForEnrolment(2));
+
+            response.Data.ForEach(x => Assert.Less(x.SpacesAvailable, x.ClassCapacity));
+        }
+
     }
 }

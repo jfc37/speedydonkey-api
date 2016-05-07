@@ -28,6 +28,9 @@ namespace Validation.Validators.Blocks
             RuleFor(x => x.NumberOfClasses)
                 .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassesInBlock);
 
+            RuleFor(x => x.ClassCapacity)
+                .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassCapacity);
+
             RuleFor(x => x.Teachers)
                 .NotEmpty().WithMessage(ValidationMessages.TeachersRequired)
                 .Must(x => new AreTeachersValidRule(x, _teacherRepository).IsValid()).WithMessage(ValidationMessages.InvalidTeachers);

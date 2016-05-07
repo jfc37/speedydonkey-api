@@ -82,29 +82,58 @@ testRunner.When("the user enrols in the block", ((string)(null)), ((TechTalk.Spe
 testRunner.Then("the user is enroled in the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
 testRunner.And("the user has an item in their upcoming schedule", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 9
+testRunner.And("the user sees the block as already enrolled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 10
+testRunner.And("the number of spaces available has decreased", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User see\'s which blocks they can enrol in")]
+        [NUnit.Framework.DescriptionAttribute("User sees which blocks they can enrol in")]
         [NUnit.Framework.CategoryAttribute("block")]
         [NUnit.Framework.CategoryAttribute("available_blocks")]
-        public virtual void UserSeeSWhichBlocksTheyCanEnrolIn()
+        public virtual void UserSeesWhichBlocksTheyCanEnrolIn()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User see\'s which blocks they can enrol in", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User sees which blocks they can enrol in", new string[] {
                         "block",
                         "available_blocks"});
-#line 11
-this.ScenarioSetup(scenarioInfo);
-#line 12
-testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
-testRunner.When("blocks for enrolment is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
 #line 14
-testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Given("a block exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
+testRunner.When("blocks for enrolment is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
 testRunner.And("there are blocks available for enrolment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User can not enrol in a full block")]
+        [NUnit.Framework.CategoryAttribute("block")]
+        [NUnit.Framework.CategoryAttribute("enrolment")]
+        [NUnit.Framework.CategoryAttribute("validation_error")]
+        public virtual void UserCanNotEnrolInAFullBlock()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can not enrol in a full block", new string[] {
+                        "block",
+                        "enrolment",
+                        "validation_error"});
+#line 20
+this.ScenarioSetup(scenarioInfo);
+#line 21
+testRunner.Given("a block exists that is full", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 22
+testRunner.When("the user tries to enrol in the block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+testRunner.Then("the request is unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+testRunner.And("validation errors are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

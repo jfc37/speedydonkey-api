@@ -26,10 +26,22 @@ namespace Validation.Validators
                 RuleFor(x => x.EnroledBlocks)
                     .Must(NotAlreadyBeEnroled).WithMessage(ValidationMessages.AlreadyEnroledInBlock)
                     .Must(BeExistingBlocks).WithMessage(ValidationMessages.InvalidBlock)
-                    .Must(ComplyWithInviteOnlyRule).WithMessage(ValidationMessages.UnavailableBlock);
+                    .Must(ComplyWithInviteOnlyRule).WithMessage(ValidationMessages.UnavailableBlock)
+                    .Must(NotFull).WithMessage(ValidationMessages.FullBlock);
                 RuleFor(x => x.Id)
                     .Must(BeAllowedToEnrol).WithMessage(ValidationMessages.InvalidUserToEnrol);
             });
+        }
+
+        private bool NotFull(ICollection<Block> blocks)
+        {
+            var blockIds = blocks.Select(x => x.Id);
+            var areAllNotFull = _blockRepository.Queryable()
+                .Where(x => blockIds.Contains(x.Id))
+                .ToList()
+                .All(x => x.EnroledStudents.Count < x.ClassCapacity);
+
+            return areAllNotFull;
         }
 
         private bool ComplyWithInviteOnlyRule(ICollection<Block> blocks)
@@ -63,6 +75,7 @@ namespace Validation.Validators
         {
             return _blockRepository.Queryable()
                 .Select(x => x.Id)
+                .ToList()
                 .Intersect(blocks.Select(x => x.Id)).Count() == blocks.Count;
         }
 

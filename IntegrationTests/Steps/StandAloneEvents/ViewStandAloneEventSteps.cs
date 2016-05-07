@@ -58,6 +58,8 @@ namespace IntegrationTests.Steps.StandAloneEvents
 
             Assert.IsNotEmpty(events);
             Assert.AreEqual(1, events.Count);
+
+            events.ForEach(x => Assert.Greater(x.SpacesAvailable, 0));
         }
 
         [Then(@"the student is not marked as already attending")]

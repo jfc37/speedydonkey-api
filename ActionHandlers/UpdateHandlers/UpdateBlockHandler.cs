@@ -24,6 +24,7 @@ namespace ActionHandlers.UpdateHandlers
             var block = _repository.Get(action.ActionAgainst.Id);
             block.Name = action.ActionAgainst.Name;
             block.IsInviteOnly = action.ActionAgainst.IsInviteOnly;
+            block.ClassCapacity = action.ActionAgainst.ClassCapacity;
 
             var startDateDifference = block.StartDate.Subtract(action.ActionAgainst.StartDate);
             var endDateDifference = block.EndDate.Subtract(action.ActionAgainst.EndDate);
@@ -31,6 +32,7 @@ namespace ActionHandlers.UpdateHandlers
             {
                 theClass.StartTime = theClass.StartTime.Subtract(startDateDifference);
                 theClass.EndTime = theClass.EndTime.Subtract(endDateDifference);
+                theClass.ClassCapacity = action.ActionAgainst.ClassCapacity;
             }
             block.StartDate = action.ActionAgainst.StartDate;
             block.EndDate = action.ActionAgainst.EndDate;

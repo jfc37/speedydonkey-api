@@ -75,7 +75,6 @@
     <Compile Include="UpdateClass.cs" />
     <Compile Include="UpdateBlock.cs" />
     <Compile Include="DeleteBlock.cs" />
-    <Compile Include="GenerateBlocksForAllLevels.cs" />
     <Compile Include="UpdateAnnouncement.cs" />
     <Compile Include="DeletePassTemplate.cs" />
     <Compile Include="DeletePass.cs" />
