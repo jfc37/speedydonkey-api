@@ -62,7 +62,6 @@
     <Compile Include="Rooms\CreateRoom.cs" />
     <Compile Include="Rooms\DeleteRoom.cs" />
     <Compile Include="Rooms\UpdateRoom.cs" />
-    <Compile Include="SetAsTeacher.cs" />
     <Compile Include="DeleteClass.cs" />
     <Compile Include="Settings\UpdateSettings.cs" />
     <Compile Include="StandAloneEvents\CheckStudentIntoEvent.cs" />
@@ -70,6 +69,8 @@
     <Compile Include="StandAloneEvents\RegisterForStandAloneEvent.cs" />
     <Compile Include="StandAloneEvents\RemoveStudentFromEvent.cs" />
     <Compile Include="StandAloneEvents\UpdateStandAloneEvent.cs" />
+    <Compile Include="Teachers\SetAsTeacher.cs" />
+    <Compile Include="Teachers\UpdateTeacherRate.cs" />
     <Compile Include="UpdatePassNote.cs" />
     <Compile Include="UpdateUserNote.cs" />
     <Compile Include="UpdateClass.cs" />

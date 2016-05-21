@@ -58,8 +58,8 @@ namespace IntegrationTests.Steps.Settings
         [Given(@"a valid teacher rates are ready to be submitted")]
         public void GivenAValidTeacherRatesAreReadyToBeSubmitted()
         {
-            var teacherRateSingle = new SettingItemModel(SettingTypes.TeacherRateSingle.ToString().ToLower(), "30.50");
-            var teacherRateMultiple = new SettingItemModel(SettingTypes.TeacherRateMultiple.ToString().ToLower(), "60");
+            var teacherRateSingle = new SettingItemModel(SettingTypes.TeacherRateSolo.ToString().ToLower(), "30.50");
+            var teacherRateMultiple = new SettingItemModel(SettingTypes.TeacherRatePartnered.ToString().ToLower(), "60");
             var completeSettings = new CompleteSettingsModel(teacherRateSingle, teacherRateMultiple);
             
             ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
@@ -68,8 +68,8 @@ namespace IntegrationTests.Steps.Settings
         [Given(@"an invalid teacher rates are ready to be submitted")]
         public void GivenAnInvalidTeacherRatesAreReadyToBeSubmitted()
         {
-            var teacherRateSingle = new SettingItemModel(SettingTypes.TeacherRateSingle.ToString().ToLower(), "invalid");
-            var teacherRateMultiple = new SettingItemModel(SettingTypes.TeacherRateMultiple.ToString().ToLower(), "invalid");
+            var teacherRateSingle = new SettingItemModel(SettingTypes.TeacherRateSolo.ToString().ToLower(), "invalid");
+            var teacherRateMultiple = new SettingItemModel(SettingTypes.TeacherRatePartnered.ToString().ToLower(), "invalid");
             var completeSettings = new CompleteSettingsModel(teacherRateSingle, teacherRateMultiple);
 
             ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
@@ -111,8 +111,8 @@ namespace IntegrationTests.Steps.Settings
         [Then(@"teacher rate settings are not retrieved")]
         public void ThenTeacherRateSettingsAreNotRetrieved()
         {
-            SettingsNotFound(SettingTypes.TeacherRateSingle);
-            SettingsNotFound(SettingTypes.TeacherRateMultiple);
+            SettingsNotFound(SettingTypes.TeacherRateSolo);
+            SettingsNotFound(SettingTypes.TeacherRatePartnered);
         }
 
         private static void SettingsNotFound(SettingTypes setting)
@@ -125,13 +125,13 @@ namespace IntegrationTests.Steps.Settings
         [Then(@"teacher rate settings are retrieved")]
         public void ThenTeacherRateSettingsAreRetrieved()
         {
-            var actualSingleRate = GetSetting(SettingTypes.TeacherRateSingle);
-            var actualMultipleRate = GetSetting(SettingTypes.TeacherRateMultiple);
+            var actualSingleRate = GetSetting(SettingTypes.TeacherRateSolo);
+            var actualMultipleRate = GetSetting(SettingTypes.TeacherRatePartnered);
 
             var expectedSettings = ScenarioCache.Get<CompleteSettingsModel>(ModelKeys.CompleteSettings);
-            var expectedSingleRate = expectedSettings.Settings.Single(x => x.Name.EqualsEnum(SettingTypes.TeacherRateSingle))
+            var expectedSingleRate = expectedSettings.Settings.Single(x => x.Name.EqualsEnum(SettingTypes.TeacherRateSolo))
                 .Value;
-            var expectedMultipleRate = expectedSettings.Settings.Single(x => x.Name.EqualsEnum(SettingTypes.TeacherRateMultiple))
+            var expectedMultipleRate = expectedSettings.Settings.Single(x => x.Name.EqualsEnum(SettingTypes.TeacherRatePartnered))
                 .Value;
 
             Assert.AreEqual(expectedSingleRate, actualSingleRate);

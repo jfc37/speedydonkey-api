@@ -101,6 +101,8 @@
     <Compile Include="Settings\CompleteSettingsModel.cs" />
     <Compile Include="Settings\SettingItemModel.cs" />
     <Compile Include="Teachers\TeacherModel.cs" />
+    <Compile Include="Teachers\TeacherRateMappingExtensions.cs" />
+    <Compile Include="Teachers\TeacherRateModel.cs" />
     <Compile Include="Users\AuthZeroUserModel.cs" />
     <Compile Include="Users\UserModel.cs" />
     <Compile Include="Users\UserNamesModel.cs" />

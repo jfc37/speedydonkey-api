@@ -11,7 +11,7 @@
         MinutesPerClass,
         NumberOfClasses,
         TermsAndConditions,
-        TeacherRateSingle,
-        TeacherRateMultiple
+        TeacherRateSolo,
+        TeacherRatePartnered
     }
 }

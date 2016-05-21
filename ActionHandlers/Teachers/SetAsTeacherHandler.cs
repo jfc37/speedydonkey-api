@@ -1,7 +1,7 @@
-﻿using Actions;
+using Action.Teachers;
 using Models;
 
-namespace ActionHandlers
+namespace ActionHandlers.Teachers
 {
     public class SetAsTeacherHandler : IActionHandler<SetAsTeacher, Teacher>
     {
@@ -17,5 +17,4 @@ namespace ActionHandlers
             return _teacherStudentConverter.AddAsTeacher(action.ActionAgainst.User.Id);
         }
     }
-
 }

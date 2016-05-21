@@ -8,6 +8,7 @@ namespace Models
     public class Teacher : DatabaseEntity
     {
         public virtual User User { get; set; }
+        public virtual TeacherRate Rate { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
 
         public Teacher()

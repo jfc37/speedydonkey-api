@@ -72,6 +72,11 @@ namespace IntegrationTests.Utilities
             return "{0}/{1}".FormatWith(Teachers, userId);
         }
 
+        public static string GetTeacherRatesById(int userId)
+        {
+            return "{0}/{1}/rates".FormatWith(Teachers, userId);
+        }
+
         public static string GetPassTemplateById(int id)
         {
             return "{0}/{1}".FormatWith(PassTemplate, id);

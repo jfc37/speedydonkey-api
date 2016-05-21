@@ -260,6 +260,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrieveTeacher.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Teachers\SetRatesForATeacher.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SetRatesForATeacher.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\CreateUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -347,6 +352,7 @@
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RetrieveTeacherSteps.cs" />
+    <Compile Include="Steps\Teachers\SetRatesForATeacherSteps.cs" />
     <Compile Include="Steps\Users\CommonUserSteps.cs" />
     <Compile Include="Steps\Users\CreateUserSteps.cs" />
     <Compile Include="Steps\Users\CurrentUserScheduleSteps.cs" />
@@ -364,6 +370,7 @@
     <Compile Include="Utilities\ModelVerfication\VerifyOpeningHoursProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyPassTemplateProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyRoomProperties.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyTeacherRateProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyUserProperties.cs" />
     <Compile Include="Utilities\Routes.cs" />
     <Compile Include="Utilities\ScenarioCache.cs" />
@@ -510,6 +517,10 @@
     <None Include="Features\Teachers\RetrieveTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveTeacher.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Teachers\SetRatesForATeacher.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SetRatesForATeacher.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\CreateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

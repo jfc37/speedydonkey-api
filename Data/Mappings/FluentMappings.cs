@@ -190,8 +190,21 @@ namespace Data.Mappings
             HasManyToMany(x => x.Classes)
                 .AsSet();
             References(x => x.User);
+            References(x => x.Rate)
+                .Cascade.All();
         }
     }
+
+    public class TeacherRateMap : ClassMap<TeacherRate>
+    {
+        public TeacherRateMap()
+        {
+            this.MapDatabaseEntity();
+            Map(x => x.SoloRate);
+            Map(x => x.PartnerRate);
+        }
+    }
+
     public class ClassMap : SubclassMap<Class>
     {
         public ClassMap()

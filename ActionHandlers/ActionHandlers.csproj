@@ -131,7 +131,6 @@
     <Compile Include="Rooms\CreateRoomHandler.cs" />
     <Compile Include="Rooms\DeleteRoomHandler.cs" />
     <Compile Include="Rooms\UpdateRoomHandler.cs" />
-    <Compile Include="SetAsTeacherHandler.cs" />
     <Compile Include="CreateHandlers\CreatePassTemplateHandler.cs" />
     <Compile Include="DeleteHandlers\DeleteEntityHandler.cs" />
     <Compile Include="DeleteHandlers\DeleteHandlers.cs" />
@@ -150,6 +149,10 @@
     <Compile Include="StandAloneEvents\RemoveStudentFromEventHandler.cs" />
     <Compile Include="StandAloneEvents\UpdateStandAloneEventHandler.cs" />
     <Compile Include="TeacherStudentConverter.cs" />
+    <Compile Include="Teachers\SetAsTeacherHandler.cs" />
+    <Compile Include="Teachers\TeacherRates\ITeacherRateFactory.cs" />
+    <Compile Include="Teachers\TeacherRates\TeacherRateFactory.cs" />
+    <Compile Include="Teachers\UpdateTeacherRateHandler.cs" />
     <Compile Include="UpdateHandlers\UpdatePassNoteHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateUserNoteHandler.cs" />
     <Compile Include="UpdateHandlers\UpdateClassHandler.cs" />
