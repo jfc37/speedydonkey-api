@@ -10,6 +10,8 @@
         ClassCapacity,
         MinutesPerClass,
         NumberOfClasses,
-        TermsAndConditions
+        TermsAndConditions,
+        TeacherRateSingle,
+        TeacherRateMultiple
     }
 }

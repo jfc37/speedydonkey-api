@@ -1,5 +1,4 @@
-﻿/*UNRELEASED!!!!!*/
-
+﻿
 -------------------------------------------------
 ALTER TABLE [Block]
 ADD [ClassCapacity] [int] NULL DEFAULT(0)

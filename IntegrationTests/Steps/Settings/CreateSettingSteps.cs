@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using Contracts.Settings;
 using IntegrationTests.Utilities;
 using Models.Settings;
@@ -53,6 +55,28 @@ namespace IntegrationTests.Steps.Settings
             ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
         }
 
+        [Given(@"a valid teacher rates are ready to be submitted")]
+        public void GivenAValidTeacherRatesAreReadyToBeSubmitted()
+        {
+            var teacherRateSingle = new SettingItemModel(SettingTypes.TeacherRateSingle.ToString().ToLower(), "30.50");
+            var teacherRateMultiple = new SettingItemModel(SettingTypes.TeacherRateMultiple.ToString().ToLower(), "60");
+            var completeSettings = new CompleteSettingsModel(teacherRateSingle, teacherRateMultiple);
+            
+            ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
+        }
+
+        [Given(@"an invalid teacher rates are ready to be submitted")]
+        public void GivenAnInvalidTeacherRatesAreReadyToBeSubmitted()
+        {
+            var teacherRateSingle = new SettingItemModel(SettingTypes.TeacherRateSingle.ToString().ToLower(), "invalid");
+            var teacherRateMultiple = new SettingItemModel(SettingTypes.TeacherRateMultiple.ToString().ToLower(), "invalid");
+            var completeSettings = new CompleteSettingsModel(teacherRateSingle, teacherRateMultiple);
+
+            ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
+        }
+
+
+
         [When(@"the settings are attempted to be set")]
         public void WhenTheSettingsAreAttemptedToBeSet()
         {
@@ -83,6 +107,47 @@ namespace IntegrationTests.Steps.Settings
 
             Assert.AreEqual(expectedLogoSetting.Value, response.Data.Value);
         }
+
+        [Then(@"teacher rate settings are not retrieved")]
+        public void ThenTeacherRateSettingsAreNotRetrieved()
+        {
+            SettingsNotFound(SettingTypes.TeacherRateSingle);
+            SettingsNotFound(SettingTypes.TeacherRateMultiple);
+        }
+
+        private static void SettingsNotFound(SettingTypes setting)
+        {
+            var response = ApiCaller.Get<SettingItemModel>(Routes.GetSettingsByType(setting));
+
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Then(@"teacher rate settings are retrieved")]
+        public void ThenTeacherRateSettingsAreRetrieved()
+        {
+            var actualSingleRate = GetSetting(SettingTypes.TeacherRateSingle);
+            var actualMultipleRate = GetSetting(SettingTypes.TeacherRateMultiple);
+
+            var expectedSettings = ScenarioCache.Get<CompleteSettingsModel>(ModelKeys.CompleteSettings);
+            var expectedSingleRate = expectedSettings.Settings.Single(x => x.Name.EqualsEnum(SettingTypes.TeacherRateSingle))
+                .Value;
+            var expectedMultipleRate = expectedSettings.Settings.Single(x => x.Name.EqualsEnum(SettingTypes.TeacherRateMultiple))
+                .Value;
+
+            Assert.AreEqual(expectedSingleRate, actualSingleRate);
+            Assert.AreEqual(expectedMultipleRate, actualMultipleRate);
+        }
+
+        private string GetSetting(SettingTypes settingType)
+        {
+            var response = ApiCaller.Get<SettingItemModel>(Routes.GetSettingsByType(settingType));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            var actualRate = response.Data.Value;
+            return actualRate;
+        }
+
 
         [Given(@"an invalid logo url is ready to be submitted")]
         public void GivenAnInvalidLogoUrlIsReadyToBeSubmitted()

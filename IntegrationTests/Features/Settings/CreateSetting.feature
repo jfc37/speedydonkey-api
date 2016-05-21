@@ -12,6 +12,19 @@ Scenario: Set logo url setting
 	When the settings are attempted to be set
 	Then logo setting is retrieved
 
+@settings @create @teacher_rate @golden_path
+Scenario: Set teacher rates setting
+	Given a valid teacher rates are ready to be submitted
+	When the settings are attempted to be set
+	Then teacher rate settings are retrieved
+
+@settings @create @teacher_rate @validation_error
+Scenario: Try to set invalid teacher rates setting
+	Given an invalid teacher rates are ready to be submitted
+	When the settings are attempted to be set
+	Then validation errors are returned
+	And teacher rate settings are not retrieved
+
 #@settings @create @logo @validation_error
 #Scenario: Try to set up an invalid logo url setting
 #	Given an invalid logo url is ready to be submitted
