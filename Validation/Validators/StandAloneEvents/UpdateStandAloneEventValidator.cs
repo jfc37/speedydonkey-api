@@ -24,6 +24,9 @@ namespace Validation.Validators.StandAloneEvents
             RuleFor(x => x.ClassCapacity)
                 .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassCapacity);
 
+            RuleFor(x => x.TeacherRate)
+                .GreaterThanOrEqualTo(0).WithMessage(ValidationMessages.InvalidTeacherRate);
+
             RuleFor(x => x.Id)
                 .Must(x => new DoesIdExist<StandAloneEvent>(repository, x).IsValid()).WithMessage(ValidationMessages.InvalidEvent);
 

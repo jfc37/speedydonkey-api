@@ -222,6 +222,7 @@ namespace Data.Mappings
         {
             Map(x => x.IsPrivate);
             Map(x => x.Price);
+            Map(x => x.TeacherRate);
         }
     }
 

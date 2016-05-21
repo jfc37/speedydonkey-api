@@ -23,7 +23,8 @@ namespace Contracts.MappingExtensions
                 RegisteredStudents = instance.RegisteredStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 ActualStudents = instance.ActualStudents.SelectIfNotNull(x => x.ToEntity()).ToListIfNotNull(),
                 Price = instance.Price,
-                IsPrivate = instance.IsPrivate
+                IsPrivate = instance.IsPrivate,
+                TeacherRate = instance.TeacherRate
             };
         }
 

@@ -35,5 +35,6 @@ namespace Models
 
         public virtual decimal Price { get; set; }
         public virtual bool IsPrivate { get; set; }
+        public virtual decimal TeacherRate { get; set; }
     }
 }

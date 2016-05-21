@@ -6,6 +6,7 @@ using Contracts.Events;
 using Contracts.Teachers;
 using IntegrationTests.Steps.Teachers;
 using IntegrationTests.Utilities;
+using IntegrationTests.Utilities.ModelVerfication;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -27,6 +28,7 @@ namespace IntegrationTests.Steps.StandAloneEvents
                 Teachers = new TeacherModel { Id = ScenarioCache.GetTeacherId() }.PutIntoList(),
                 StartTime = DateTime.Now.AddDays(2).AddHours(1),
                 EndTime = DateTime.Now.AddDays(2).AddHours(3),
+                TeacherRate = 100
             };
 
             ScenarioCache.Store(ModelKeys.StandAloneEvent, standAloneEvent);
@@ -63,8 +65,10 @@ namespace IntegrationTests.Steps.StandAloneEvents
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.IsNotNull(response.Data);
 
-            Assert.Greater(response.Data.ClassCapacity, 0);
-        }
+            var expected = ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEvent);
 
+            new VerifyStandAloneEventProperties(expected, response.Data)
+                .Verify();
+        }
     }
 }
