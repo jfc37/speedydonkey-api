@@ -97,6 +97,9 @@
     <Compile Include="Reports\ClassProfitReport.cs" />
     <Compile Include="Reports\PassProfitReport.cs" />
     <Compile Include="Reports\ProfitReportModel.cs" />
+    <Compile Include="Reports\TeacherInvoices\TeacherInvoiceLine.cs" />
+    <Compile Include="Reports\TeacherInvoices\TeacherInvoiceRequest.cs" />
+    <Compile Include="Reports\TeacherInvoices\TeacherInvoiceResponse.cs" />
     <Compile Include="Rooms\RoomModel.cs" />
     <Compile Include="Settings\CompleteSettingsModel.cs" />
     <Compile Include="Settings\SettingItemModel.cs" />

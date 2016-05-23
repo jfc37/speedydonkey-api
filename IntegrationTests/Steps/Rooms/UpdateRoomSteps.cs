@@ -36,13 +36,6 @@ namespace IntegrationTests.Steps.Rooms
             ScenarioCache.StoreActionResponse(response);
         }
 
-        [Then(@"the request is successful")]
-        public void ThenTheRequestIsSuccessful()
-        {
-            var httpStatusCode = ScenarioCache.GetResponseStatus();
-            Assert.Contains(httpStatusCode, new []{HttpStatusCode.OK, HttpStatusCode.Created});
-        }
-
         [Given(@"the room has invalid details")]
         public void GivenTheRoomHasInvalidDetails()
         {

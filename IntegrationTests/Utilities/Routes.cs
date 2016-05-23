@@ -1,4 +1,6 @@
-﻿using Common.Extensions;
+﻿using System;
+using Common.Extensions;
+using Common.Extensions.DateTimes;
 using Models.Settings;
 
 namespace IntegrationTests.Utilities
@@ -170,6 +172,14 @@ namespace IntegrationTests.Utilities
         public static string GetBlockRoom(int blockId)
         {
             return "blocks/{0}/rooms".FormatWith(blockId);
+        }
+
+        public static string GetTeacherInvoiceReport(DateTime from, DateTime to)
+        {
+            var fromDisplay = from.ToUrlDateString();
+            var toDisplay = to.ToUrlDateString();
+
+            return $"reports/teacher-invoices?from={fromDisplay}&to={toDisplay}";
         }
     }
 }

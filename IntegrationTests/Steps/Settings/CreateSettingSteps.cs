@@ -4,6 +4,7 @@ using System.Net;
 using ActionHandlers;
 using Common.Extensions;
 using Contracts.Settings;
+using IntegrationTests.Steps.Common;
 using IntegrationTests.Utilities;
 using Models.Settings;
 using NUnit.Framework;
@@ -14,6 +15,30 @@ namespace IntegrationTests.Steps.Settings
     [Binding]
     public class CreateSettingSteps
     {
+        [Given(@"the default solo teacher rate is '(.*)'")]
+        public void GivenTheDefaultSoloTeacherRateIs(decimal rate)
+        {
+            SetSetting(SettingTypes.TeacherRateSolo, rate.ToString());
+        }
+
+        [Given(@"the default partnered teacher rate is '(.*)'")]
+        public void GivenTheDefaultPartneredTeacherRateIs(decimal rate)
+        {
+            SetSetting(SettingTypes.TeacherRatePartnered, rate.ToString());
+        }
+
+
+        private void SetSetting(SettingTypes type, string value)
+        {
+            var settingItem = new SettingItemModel(type.ToString().ToLower(), value);
+            var completeSettings = new CompleteSettingsModel(settingItem);
+
+            ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
+            WhenTheSettingsAreAttemptedToBeSet();
+            new CommonSteps().ThenTheRequestIsSuccessful();
+        }
+
+
         [Given(@"the logo setting is already set")]
         public void GivenTheLogoSettingIsAlreadySet()
         {

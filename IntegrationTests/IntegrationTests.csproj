@@ -180,6 +180,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SetTeacherAvailability.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Reports\TeacherInvoices.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeacherInvoices.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Rooms\AssignRoomToBlock.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -335,6 +340,7 @@
     <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
     <Compile Include="Steps\PrivateLessons\SetOpeningHoursSteps.cs" />
     <Compile Include="Steps\PrivateLessons\SetTeacherAvailabilitySteps.cs" />
+    <Compile Include="Steps\Reports\TeacherInvoicesSteps.cs" />
     <Compile Include="Steps\Rooms\AssignRoomToBlockSteps.cs" />
     <Compile Include="Steps\Rooms\AssignRoomToClassSteps.cs" />
     <Compile Include="Steps\Rooms\CreateRoomSteps.cs" />
@@ -453,6 +459,10 @@
     <None Include="Features\PrivateLessons\SetTeacherAvailability.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SetTeacherAvailability.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Reports\TeacherInvoices.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TeacherInvoices.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Rooms\AssignRoomToBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

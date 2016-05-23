@@ -23,6 +23,7 @@ namespace IntegrationTests.Utilities
         SettingItem,
         CompleteSettings,
         TeacherRate,
+        TeacherInvoiceReport,
 
         Response
     }

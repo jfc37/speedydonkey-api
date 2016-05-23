@@ -274,7 +274,10 @@
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\PrivateLessons\OpeningHoursApiController.cs" />
+    <Compile Include="Controllers\Reports\ITeacherInvoiceReportGenerator.cs" />
     <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
+    <Compile Include="Controllers\Reports\TeacherInvoiceReportController.cs" />
+    <Compile Include="Controllers\Reports\TeacherInvoiceReportGenerator.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
     <Compile Include="Controllers\Settings\SettingsController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventApiController.cs" />

@@ -56,6 +56,15 @@ namespace IntegrationTests.Steps.Blocks
 
             ScenarioCache.Store(ModelKeys.Block, block);
         }
+        
+        public void GivenTheNumberOfClassesInTheBlockIs(int numberOfClasses)
+        {
+            var block = ScenarioCache.Get<BlockModel>(ModelKeys.Block);
+
+            block.NumberOfClasses= numberOfClasses;
+
+            ScenarioCache.Store(ModelKeys.Block, block);
+        }
 
 
         [When(@"the block is attempted to be created")]
