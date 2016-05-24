@@ -1,10 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Common.Extensions
 {
     public static class ObjectExtensions
     {
+        /// <summary>
+        /// Guards the against null.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance">The instance.</param>
+        /// <exception cref="System.InvalidOperationException"></exception>
+        public static void GuardAgainstNull<T>(this T instance)
+        {
+            if (instance.IsNull())
+            {
+                throw new InvalidOperationException($"Parameter was null: {instance.GetType().Name}");
+            }
+        }
+
         public static string ToJson(this object instance)
         {
             return JsonConvert.SerializeObject(instance);

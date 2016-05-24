@@ -25,6 +25,7 @@ namespace IntegrationTests.Utilities
         public const string TeacherAvailability = "teacher-availabilities";
         public const string Settings = "settings";
         public const string TermsAndConditions = "users/current/terms-and-conditions";
+        public const string TeacherRates = "teacher-rates";
 
         public static string GetBlocksForEnrolment(int userId)
         {
@@ -74,9 +75,9 @@ namespace IntegrationTests.Utilities
             return "{0}/{1}".FormatWith(Teachers, userId);
         }
 
-        public static string GetTeacherRatesById(int userId)
+        public static string GetTeacherRatesById(int teacherId)
         {
-            return "{0}/{1}/rates".FormatWith(Teachers, userId);
+            return "{0}/{1}".FormatWith(TeacherRates, teacherId);
         }
 
         public static string GetPassTemplateById(int id)

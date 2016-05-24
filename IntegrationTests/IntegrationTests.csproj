@@ -265,10 +265,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrieveTeacher.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\Teachers\SetRatesForATeacher.feature.cs">
+    <Compile Include="Features\Teachers\TeacherRates.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SetRatesForATeacher.feature</DependentUpon>
+      <DependentUpon>TeacherRates.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\Users\CreateUser.feature.cs">
       <AutoGen>True</AutoGen>
@@ -358,7 +358,7 @@
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RetrieveTeacherSteps.cs" />
-    <Compile Include="Steps\Teachers\SetRatesForATeacherSteps.cs" />
+    <Compile Include="Steps\Teachers\TeacherRatesSteps.cs" />
     <Compile Include="Steps\Users\CommonUserSteps.cs" />
     <Compile Include="Steps\Users\CreateUserSteps.cs" />
     <Compile Include="Steps\Users\CurrentUserScheduleSteps.cs" />
@@ -528,9 +528,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveTeacher.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\Teachers\SetRatesForATeacher.feature">
+    <None Include="Features\Teachers\TeacherRates.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SetRatesForATeacher.feature.cs</LastGenOutput>
+      <LastGenOutput>TeacherRates.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\CreateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

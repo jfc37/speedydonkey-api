@@ -1,13 +1,15 @@
-﻿using ActionHandlers;
+﻿using System.Collections.Generic;
+using ActionHandlers;
 using Contracts.Teachers;
 using IntegrationTests.Utilities;
 using IntegrationTests.Utilities.ModelVerfication;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Teachers
 {
     [Binding]
-    public class SetRatesForATeacherSteps
+    public class TeacherRatesSteps
     {
         [When(@"the rate for the teacher is changed")]
         public void WhenTheRateForTheTeacherIsChanged()
@@ -35,5 +37,26 @@ namespace IntegrationTests.Steps.Teachers
 
             new VerifyTeacherRateProperties(expectedRate, actualRate).Verify();
         }
+
+        [When(@"the rates for all teachers are requested")]
+        public void WhenTheRatesForAllTeachersAreRequested()
+        {
+            var url = Routes.TeacherRates;
+
+            var response = ApiCaller.Get<List<TeacherRateModel>>(url);
+
+            ScenarioCache.StoreResponse(response);
+            ScenarioCache.Store(ModelKeys.TeacherRate, response.Data);
+        }
+
+        [Then(@"the rates for '(.*)' teachers are retrieved")]
+        public void ThenTheRatesForTeachersAreRetrieved(int expectedNumberOfRates)
+        {
+            var rates = ScenarioCache.Get<List<TeacherRateModel>>(ModelKeys.TeacherRate);
+
+            Assert.AreEqual(expectedNumberOfRates, rates.Count);
+        }
+
+
     }
 }

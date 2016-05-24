@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using Contracts;
 using Contracts.Blocks;
 using Contracts.Teachers;
@@ -46,7 +47,7 @@ namespace IntegrationTests.Steps.Blocks
         [Given(@"the block has '(.*)' teacher")]
         public void GivenTheBlockHasTeacher(int numberOfTeachers)
         {
-            var teachers = Enumerable.Range(1, numberOfTeachers)
+            var teachers = numberOfTeachers.ToNumberRange()
                 .Select(x => CreateNewTeacher())
                 .ToList();
             

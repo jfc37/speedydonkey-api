@@ -18,20 +18,20 @@ namespace IntegrationTests.Features.Teachers
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SetRatesForATeacher")]
-    public partial class SetRatesForATeacherFeature
+    [NUnit.Framework.DescriptionAttribute("TeacherRates")]
+    public partial class TeacherRatesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SetRatesForATeacher.feature"
+#line 1 "TeacherRates.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SetRatesForATeacher", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TeacherRates", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,12 +66,14 @@ namespace IntegrationTests.Features.Teachers
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Set rate for a teacher")]
         [NUnit.Framework.CategoryAttribute("teacher")]
+        [NUnit.Framework.CategoryAttribute("teacher_rates")]
         [NUnit.Framework.CategoryAttribute("set_rate")]
         [NUnit.Framework.CategoryAttribute("golden_path")]
         public virtual void SetRateForATeacher()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set rate for a teacher", new string[] {
                         "teacher",
+                        "teacher_rates",
                         "set_rate",
                         "golden_path"});
 #line 4
@@ -84,6 +86,33 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 8
  testRunner.And("the rate for the teacher is updated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get rates for all teachers")]
+        [NUnit.Framework.CategoryAttribute("teacher")]
+        [NUnit.Framework.CategoryAttribute("teacher_rates")]
+        [NUnit.Framework.CategoryAttribute("get_rates")]
+        [NUnit.Framework.CategoryAttribute("golden_path")]
+        public virtual void GetRatesForAllTeachers()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get rates for all teachers", new string[] {
+                        "teacher",
+                        "teacher_rates",
+                        "get_rates",
+                        "golden_path"});
+#line 11
+this.ScenarioSetup(scenarioInfo);
+#line 12
+ testRunner.Given("\'2\' teachers exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+ testRunner.When("the rates for all teachers are requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.And("the rates for \'2\' teachers are retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

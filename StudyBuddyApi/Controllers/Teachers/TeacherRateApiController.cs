@@ -13,7 +13,7 @@ using SpeedyDonkeyApi.Filter;
 
 namespace SpeedyDonkeyApi.Controllers.Teachers
 {
-    [RoutePrefix("api/teachers")]
+    [RoutePrefix("api/teacher-rates")]
     public class TeacherRateApiController : GenericApiController<Teacher>
     {
         public TeacherRateApiController(
@@ -24,7 +24,7 @@ namespace SpeedyDonkeyApi.Controllers.Teachers
         {
         }
 
-        [Route("{id}/rates")]
+        [Route("{id}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Post(int id, [FromBody] TeacherRateModel model)
         {
@@ -37,16 +37,20 @@ namespace SpeedyDonkeyApi.Controllers.Teachers
                 .Do();
         }
 
-        [Route("{id}/rates")]
+        [Route("{id}")]
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Get(int id)
         {
             var teacher = GetById(id);
             
-            var rate = GetById(id)
-                .Select(x => x.Rate)
-                .ConvertSetToOption();
-            return new EntityToHttpActionResult<TeacherRate>(this, rate, x => x.ToModel()).Do();
+            return new EntityToHttpActionResult<Teacher>(this, teacher, x => x.ToRateModel()).Do();
+        }
+
+        [Route]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
+        public IHttpActionResult Get()
+        {
+            return new SetToHttpActionResult<Teacher>(this, GetAll(), x => x.ToRateModel()).Do();
         }
     }
 }

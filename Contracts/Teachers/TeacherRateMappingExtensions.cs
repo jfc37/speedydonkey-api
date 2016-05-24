@@ -13,12 +13,11 @@ namespace Contracts.Teachers
         /// </summary>
         /// <param name="instance">The instance.</param>
         /// <returns></returns>
-        public static TeacherRateModel ToModel(this TeacherRate instance)
+        public static TeacherRateModel ToRateModel(this Teacher instance)
         {
-            if (instance.IsNull())
-                return null;
+            instance.GuardAgainstNull();
 
-            return new TeacherRateModel(instance.SoloRate, instance.PartnerRate);
+            return new TeacherRateModel(instance.Rate.SoloRate, instance.Rate.PartnerRate, instance.Id, instance.User.FullName);
         }
 
         /// <summary>
