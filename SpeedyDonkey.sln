@@ -68,6 +68,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthZero.Interfaces", "Auth
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthZero.Domain", "AuthZero\AuthZero.Domain\AuthZero.Domain.csproj", "{655E138F-1276-422C-890A-2E1A2B5EC13F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queries", "Queries\Queries.csproj", "{CAF24F44-EA69-4FCC-833B-E509F637AB1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3CAB5B51-4CA4-4FB4-98B0-F7A45BEB2207}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +162,14 @@ Global
 		{655E138F-1276-422C-890A-2E1A2B5EC13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{655E138F-1276-422C-890A-2E1A2B5EC13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{655E138F-1276-422C-890A-2E1A2B5EC13F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF24F44-EA69-4FCC-833B-E509F637AB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF24F44-EA69-4FCC-833B-E509F637AB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF24F44-EA69-4FCC-833B-E509F637AB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF24F44-EA69-4FCC-833B-E509F637AB1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CAB5B51-4CA4-4FB4-98B0-F7A45BEB2207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CAB5B51-4CA4-4FB4-98B0-F7A45BEB2207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CAB5B51-4CA4-4FB4-98B0-F7A45BEB2207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CAB5B51-4CA4-4FB4-98B0-F7A45BEB2207}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

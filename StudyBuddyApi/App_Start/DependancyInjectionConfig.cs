@@ -11,6 +11,7 @@ using Autofac.Core;
 using Autofac.Features.ResolveAnything;
 using Autofac.Integration.WebApi;
 using Common;
+using Core.Queries.Reports.TeacherInvoices;
 using Data.Repositories;
 using Data.Searches;
 using Notification;
@@ -18,6 +19,7 @@ using Notification.NotificationHandlers;
 using OnlinePayments;
 using OnlinePayments.PaymentMethods.PayPal;
 using Owin;
+using Queries.Reports.TeacherInvoices;
 using SpeedyDonkeyApi.Extensions.Models;
 using Validation;
 using Validation.Validators;
@@ -78,7 +80,9 @@ namespace SpeedyDonkeyApi
                 typeof (CommonInterfaceCloner).Assembly,
                 typeof (PostOffice).Assembly,
                 typeof (AuthZeroClientRepository).Assembly,
-                typeof (IAuthZeroClientRepository).Assembly
+                typeof (IAuthZeroClientRepository).Assembly,
+                typeof (ITeacherInvoiceReportGenerator).Assembly,
+                typeof (TeacherInvoiceReportGenerator).Assembly
             };
             builder.RegisterAssemblyTypes(assemblies)
                 .AsImplementedInterfaces();

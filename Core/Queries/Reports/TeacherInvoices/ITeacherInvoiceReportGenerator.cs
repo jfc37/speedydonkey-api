@@ -1,6 +1,6 @@
-using Contracts.Reports.TeacherInvoices;
+﻿using Contracts.Reports.TeacherInvoices;
 
-namespace SpeedyDonkeyApi.Controllers.Reports
+namespace Core.Queries.Reports.TeacherInvoices
 {
     /// <summary>
     /// Generates teacher invoice reports

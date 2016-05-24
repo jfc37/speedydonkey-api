@@ -274,10 +274,8 @@
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\PrivateLessons\OpeningHoursApiController.cs" />
-    <Compile Include="Controllers\Reports\ITeacherInvoiceReportGenerator.cs" />
     <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
     <Compile Include="Controllers\Reports\TeacherInvoiceReportController.cs" />
-    <Compile Include="Controllers\Reports\TeacherInvoiceReportGenerator.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
     <Compile Include="Controllers\Settings\SettingsController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventApiController.cs" />
@@ -389,6 +387,10 @@
       <Project>{1408690b-c0f8-482a-a36e-75a2a13c3430}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{3CAB5B51-4CA4-4FB4-98B0-F7A45BEB2207}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{0A9770C7-4D7D-445E-94EB-A01A00061E9F}</Project>
       <Name>Data</Name>
@@ -404,6 +406,10 @@
     <ProjectReference Include="..\OnlinePayment\OnlinePayments.csproj">
       <Project>{16EE1C93-463A-4CB5-B63B-8F894A7B0CDE}</Project>
       <Name>OnlinePayments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Queries\Queries.csproj">
+      <Project>{CAF24F44-EA69-4FCC-833B-E509F637AB1B}</Project>
+      <Name>Queries</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>

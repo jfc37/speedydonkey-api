@@ -1,5 +1,6 @@
 using System.Web.Http;
 using Contracts.Reports.TeacherInvoices;
+using Core.Queries.Reports.TeacherInvoices;
 using Models;
 using SpeedyDonkeyApi.Filter;
 

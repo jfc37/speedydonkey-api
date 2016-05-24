@@ -1,10 +1,11 @@
-using System.Linq;
+﻿using System.Linq;
 using Contracts.Reports.TeacherInvoices;
+using Core.Queries.Reports.TeacherInvoices;
 using Data.Repositories;
 using Models;
 using NHibernate.Linq;
 
-namespace SpeedyDonkeyApi.Controllers.Reports
+namespace Queries.Reports.TeacherInvoices
 {
     /// <summary>
     /// Generates teacher invoice reports
@@ -18,6 +19,11 @@ namespace SpeedyDonkeyApi.Controllers.Reports
             _repository = repository;
         }
 
+        /// <summary>
+        /// Creates the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
         public TeacherInvoiceResponse Create(TeacherInvoiceRequest request)
         {
             var eventsInRange = _repository.Queryable()
