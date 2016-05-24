@@ -59,6 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql Scripts", "Sql Scripts"
 		00002.sql = 00002.sql
 		00003.sql = 00003.sql
 		00004.sql = 00004.sql
+		00005.sql = 00005.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthZero", "AuthZero", "{DE172848-45D7-4AE0-81D4-E90B8451A58F}"
