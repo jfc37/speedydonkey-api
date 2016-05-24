@@ -50,3 +50,8 @@ ALTER TABLE [TeacherRate]
 DROP COLUMN [Temp_Teacher_Id] 
 GO
 ---------------------------
+
+ALTER TABLE [StandAloneEvent]
+ADD [TeacherRate] [decimal](19, 5) NULL
+GO
+------------------------------
