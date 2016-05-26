@@ -176,6 +176,48 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Failed generate teacher invoices report - no dates provided")]
+        [NUnit.Framework.CategoryAttribute("teacher_invoices")]
+        [NUnit.Framework.CategoryAttribute("reports")]
+        [NUnit.Framework.CategoryAttribute("validation_errors")]
+        public virtual void FailedGenerateTeacherInvoicesReport_NoDatesProvided()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Failed generate teacher invoices report - no dates provided", new string[] {
+                        "teacher_invoices",
+                        "reports",
+                        "validation_errors"});
+#line 43
+this.ScenarioSetup(scenarioInfo);
+#line 44
+ testRunner.When("the teacher invoice report is requested with no dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 45
+ testRunner.Then("the request is unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Failed generate teacher invoices report - from date is after to date")]
+        [NUnit.Framework.CategoryAttribute("teacher_invoices")]
+        [NUnit.Framework.CategoryAttribute("reports")]
+        [NUnit.Framework.CategoryAttribute("validation_errors")]
+        public virtual void FailedGenerateTeacherInvoicesReport_FromDateIsAfterToDate()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Failed generate teacher invoices report - from date is after to date", new string[] {
+                        "teacher_invoices",
+                        "reports",
+                        "validation_errors"});
+#line 48
+this.ScenarioSetup(scenarioInfo);
+#line 49
+ testRunner.When("the teacher invoice report is requested with from date being after to date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 50
+ testRunner.Then("the request is unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -1,6 +1,7 @@
 ﻿using Actions;
 using Autofac;
 using Autofac.Core.Registration;
+using FluentValidation;
 using FluentValidation.Results;
 using Validation.Validators;
 using PostSharp.Patterns.Diagnostics;
@@ -9,6 +10,21 @@ namespace Validation
 {
     public interface IValidatorOverlord
     {
+        /// <summary>
+        /// Validates any object
+        /// </summary>
+        /// <typeparam name="TObject">The type of the object.</typeparam>
+        /// <param name="validate">The validate.</param>
+        /// <returns></returns>
+        ValidationResult Validate<TObject>(TObject validate);
+
+        /// <summary>
+        /// Validates an action
+        /// </summary>
+        /// <typeparam name="TAction">The type of the action.</typeparam>
+        /// <typeparam name="TObject">The type of the object.</typeparam>
+        /// <param name="validate">The validate.</param>
+        /// <returns></returns>
         ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>;
     }
 
@@ -20,8 +36,37 @@ namespace Validation
         {
             _container = container;
         }
+        
+        /// <summary>
+        /// Validates any object
+        /// </summary>
+        /// <typeparam name="TObject">The type of the object.</typeparam>
+        /// <param name="validate">The validate.</param>
+        /// <returns></returns>
+        public ValidationResult Validate<TObject>(TObject validate)
+        {
+            FluentValidation.Results.ValidationResult validationResult;
+            if (validate == null)
+            {
+                validationResult = new FluentValidation.Results.ValidationResult();
+                validationResult.Errors.Add(new ValidationFailure("ActionObject", "Please provide some input"));
+            }
+            else
+            {
+                var validator = GetValidator<TObject>();
+                validationResult = validator.Validate(validate);
+            }
 
-        //[Log]
+            return FluentConverter.ToProjectValidationResult(validationResult);
+        }
+
+        /// <summary>
+        /// Validates an action
+        /// </summary>
+        /// <typeparam name="TAction">The type of the action.</typeparam>
+        /// <typeparam name="TObject">The type of the object.</typeparam>
+        /// <param name="validate">The validate.</param>
+        /// <returns></returns>
         public ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>
         {
             IActionValidator<TAction, TObject> validator;
@@ -49,6 +94,12 @@ namespace Validation
         private IActionValidator<TAction, TObject> GetValidator<TAction, TObject>() where TAction : SystemAction<TObject>
         {
             var actionValidator = _container.Resolve<IActionValidator<TAction, TObject>>();
+            return actionValidator;
+        }
+
+        private IValidator<TObject> GetValidator<TObject>()
+        {
+            var actionValidator = _container.Resolve<IValidator<TObject>>();
             return actionValidator;
         }
     }

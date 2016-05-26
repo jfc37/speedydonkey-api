@@ -38,3 +38,13 @@ Scenario: Generate teacher invoices report - event
 	Then the request is successful
 	And the teacher invoice report has '1' teacher
 	And the teacher invoice report totals '25'
+
+@teacher_invoices @reports @validation_errors
+Scenario: Failed generate teacher invoices report - no dates provided
+	When the teacher invoice report is requested with no dates
+	Then the request is unsuccessful
+
+@teacher_invoices @reports @validation_errors
+Scenario: Failed generate teacher invoices report - from date is after to date
+	When the teacher invoice report is requested with from date being after to date
+	Then the request is unsuccessful

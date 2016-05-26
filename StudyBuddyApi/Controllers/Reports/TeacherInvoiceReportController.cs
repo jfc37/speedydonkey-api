@@ -3,15 +3,19 @@ using Contracts.Reports.TeacherInvoices;
 using Core.Queries.Reports.TeacherInvoices;
 using Models;
 using SpeedyDonkeyApi.Filter;
+using Validation;
 
 namespace SpeedyDonkeyApi.Controllers.Reports
 {
     [RoutePrefix("api/reports/teacher-invoices")]
-    public class TeacherInvoiceReportController : BaseApiController
+    public class TeacherInvoiceReportController : ReportController<TeacherInvoiceRequest, TeacherInvoiceResponse>
     {
         private readonly ITeacherInvoiceReportGenerator _reportGenerator;
 
-        public TeacherInvoiceReportController(ITeacherInvoiceReportGenerator reportGenerator)
+        public TeacherInvoiceReportController(
+            IValidatorOverlord validatorOverlord,
+            ITeacherInvoiceReportGenerator reportGenerator) 
+            : base(validatorOverlord)
         {
             _reportGenerator = reportGenerator;
         }
@@ -20,8 +24,7 @@ namespace SpeedyDonkeyApi.Controllers.Reports
         [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Get([FromUri] TeacherInvoiceRequest request)
         {
-            var report = _reportGenerator.Create(request);
-            return Ok(report);
+            return RunReport(request, x => _reportGenerator.Create(x));
         }
     }
 }

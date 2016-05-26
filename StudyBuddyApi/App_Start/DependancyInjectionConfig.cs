@@ -14,6 +14,7 @@ using Common;
 using Core.Queries.Reports.TeacherInvoices;
 using Data.Repositories;
 using Data.Searches;
+using FluentValidation;
 using Notification;
 using Notification.NotificationHandlers;
 using OnlinePayments;
@@ -44,7 +45,8 @@ namespace SpeedyDonkeyApi
 
             // Register other dependencies.
             builder.RegisterAssemblyTypes(typeof(ValidatorOverlord).Assembly)
-                .AsClosedTypesOf(typeof(IActionValidator<,>)).AsImplementedInterfaces();
+                .AsClosedTypesOf(typeof(IActionValidator<,>)).AsImplementedInterfaces()
+                .AsClosedTypesOf(typeof(IValidator<>)).AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(typeof(ActionHandlerOverlord).Assembly)
                 .AsClosedTypesOf(typeof(IActionHandlerWithResult<,,>)).AsImplementedInterfaces();

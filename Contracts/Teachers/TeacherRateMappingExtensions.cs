@@ -15,7 +15,7 @@ namespace Contracts.Teachers
         /// <returns></returns>
         public static TeacherRateModel ToRateModel(this Teacher instance)
         {
-            instance.GuardAgainstNull();
+            instance.GuardAgainstNull(nameof(instance));
 
             return new TeacherRateModel(instance.Rate.SoloRate, instance.Rate.PartnerRate, instance.Id, instance.User.FullName);
         }

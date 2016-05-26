@@ -10,6 +10,23 @@ namespace IntegrationTests.Steps.Reports
     [Binding]
     public class TeacherInvoicesSteps
     {
+        [When(@"the teacher invoice report is requested with no dates")]
+        public void WhenTheTeacherInvoiceReportIsRequestedWithNoDates()
+        {
+            RequestReport("reports/teacher-invoices");
+        }
+
+        [When(@"the teacher invoice report is requested with from date being after to date")]
+        public void WhenTheTeacherInvoiceReportIsRequestedWithFromDateBeingAfterToDate()
+        {
+            var from = DateTime.Today;
+            var to = from.AddDays(-1);
+
+            var url = Routes.GetTeacherInvoiceReport(from, to);
+            RequestReport(url);
+        }
+
+
         [When(@"the teacher invoice report is requested")]
         public void WhenTheTeacherInvoiceReportIsRequested()
         {
@@ -17,6 +34,11 @@ namespace IntegrationTests.Steps.Reports
             var to = from.AddWeeks(4);
 
             var url = Routes.GetTeacherInvoiceReport(from, to);
+            RequestReport(url);
+        }
+
+        private static void RequestReport(string url)
+        {
             var response = ApiCaller.Get<TeacherInvoiceResponse>(url);
 
             ScenarioCache.StoreResponse(response);

@@ -11,12 +11,13 @@ namespace Common.Extensions
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="instance">The instance.</param>
+        /// <param name="parameterName"></param>
         /// <exception cref="System.InvalidOperationException"></exception>
-        public static void GuardAgainstNull<T>(this T instance)
+        public static void GuardAgainstNull<T>(this T instance, string parameterName)
         {
             if (instance.IsNull())
             {
-                throw new InvalidOperationException($"Parameter was null: {instance.GetType().Name}");
+                throw new InvalidOperationException($"Parameter was null: {parameterName}");
             }
         }
 
