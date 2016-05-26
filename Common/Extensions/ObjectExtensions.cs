@@ -62,5 +62,16 @@ namespace Common.Extensions
         {
             return !instance.IsOfType<T>();
         }
+
+        public static T ToType<T>(this object instance) where T : class
+        {
+            var typedObject = instance as T;
+            if (typedObject == null)
+            {
+                throw new InvalidOperationException($"Cannot convert instance to type: {typeof (T).Name}");
+            }
+
+            return typedObject;
+        }
     }
 }

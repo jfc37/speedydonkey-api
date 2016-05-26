@@ -83,6 +83,10 @@
       <HintPath>..\packages\Autofac.WebApi2.Owin.3.3.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.14.2\lib\net45\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
       <Private>True</Private>
@@ -242,6 +246,7 @@
     <Compile Include="App_Start\CorsConfig.cs" />
     <Compile Include="App_Start\DependancyInjectionConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FormattersConfig.cs" />
     <Compile Include="App_Start\HttpsConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SerailisationConfig.cs" />
@@ -309,6 +314,8 @@
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />
     <Compile Include="GlobalErrorLoggerService.cs" />
+    <Compile Include="MediaFormatters\CsvFormatter.cs" />
+    <Compile Include="MediaFormatters\TeacherInvoiceCsvFormatter.cs" />
     <Compile Include="Owin\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
