@@ -40,7 +40,7 @@ namespace SpeedyDonkeyApi.Controllers.Users
         [ClaimsAuthorise(Claim = Claim.Teacher)]
         public IHttpActionResult Get(int id)
         {
-            return new EntityToHttpActionResult<User>(this, _entityRepository.Get(id), x => new CurrentUserPassesModel().ConvertFromEntity(x)).Do();
+            return new EntityToHttpActionResult<User>(this, _entityRepository.Get(id).ToOption(), x => new CurrentUserPassesModel().ConvertFromEntity(x)).Do();
         }
 
         [Route("current/pass-templates/{passTemplateId:int}")]

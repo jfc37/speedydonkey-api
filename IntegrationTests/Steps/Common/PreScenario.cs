@@ -1,11 +1,24 @@
-﻿using Auth0;
+﻿using System.Net;
+using Auth0;
 using Common;
 using Contracts.Users;
 using IntegrationTests.Utilities;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Common
 {
+    [Binding]
+    public class CommonSteps
+    {
+        [Then(@"the request is successful")]
+        public void ThenTheRequestIsSuccessful()
+        {
+            var httpStatusCode = ScenarioCache.GetResponseStatus();
+            Assert.Contains(httpStatusCode, new[] { HttpStatusCode.OK, HttpStatusCode.Created });
+        }
+    }
+
     [Binding]
     public static class PreScenario
     {

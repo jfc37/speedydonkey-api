@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using Contracts.Teachers;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
@@ -11,6 +13,14 @@ namespace IntegrationTests.Steps.Teachers
     [Binding]
     public class CommonTeacherSteps
     {
+        [Given(@"'(.*)' teachers exist")]
+        public void GivenTeachersExist(int numberOfTeachers)
+        {
+            numberOfTeachers.ToNumberRange()
+                .Each(x => GivenAnExistingUserIsATeacher());
+        }
+
+
         [Given(@"an existing user is a teacher")]
         public void GivenAnExistingUserIsATeacher()
         {

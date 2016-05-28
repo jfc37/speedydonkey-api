@@ -114,6 +114,58 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Set teacher rates setting")]
+        [NUnit.Framework.CategoryAttribute("settings")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        [NUnit.Framework.CategoryAttribute("teacher_rate")]
+        [NUnit.Framework.CategoryAttribute("golden_path")]
+        public virtual void SetTeacherRatesSetting()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set teacher rates setting", new string[] {
+                        "settings",
+                        "create",
+                        "teacher_rate",
+                        "golden_path"});
+#line 16
+this.ScenarioSetup(scenarioInfo);
+#line 17
+ testRunner.Given("a valid teacher rates are ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 18
+ testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 19
+ testRunner.Then("teacher rate settings are retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Try to set invalid teacher rates setting")]
+        [NUnit.Framework.CategoryAttribute("settings")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        [NUnit.Framework.CategoryAttribute("teacher_rate")]
+        [NUnit.Framework.CategoryAttribute("validation_error")]
+        public virtual void TryToSetInvalidTeacherRatesSetting()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try to set invalid teacher rates setting", new string[] {
+                        "settings",
+                        "create",
+                        "teacher_rate",
+                        "validation_error"});
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 23
+ testRunner.Given("an invalid teacher rates are ready to be submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+ testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
+ testRunner.Then("validation errors are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+ testRunner.And("teacher rate settings are not retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Update logo url setting")]
         [NUnit.Framework.CategoryAttribute("settings")]
         [NUnit.Framework.CategoryAttribute("update")]
@@ -126,15 +178,15 @@ this.ScenarioSetup(scenarioInfo);
                         "update",
                         "logo",
                         "golden_path"});
-#line 23
+#line 36
 this.ScenarioSetup(scenarioInfo);
-#line 24
+#line 37
  testRunner.Given("the logo setting is already set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 25
+#line 38
  testRunner.And("the logo setting needs to be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 39
  testRunner.When("the settings are attempted to be set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 27
+#line 40
  testRunner.Then("logo setting is retrieved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -1,7 +1,10 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using ActionHandlers;
 using Contracts.Enrolment;
+using Contracts.Teachers;
 using Contracts.Users;
+using IntegrationTests.Steps.Teachers;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
@@ -19,6 +22,33 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.GivenAValidBlockIsReadyToBeSubmitted();
             createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
             createBlockSteps.ThenBlockCanBeRetrieved();
+        }
+
+        [Given(@"a block with '(.*)' classes exists")]
+        public void GivenABlockWithClassesExists(int numberOfClasses)
+        {
+            var createBlockSteps = new CreateBlockSteps();
+            createBlockSteps.GivenAValidBlockIsReadyToBeSubmitted();
+            createBlockSteps.GivenTheNumberOfClassesInTheBlockIs(numberOfClasses);
+            createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
+            createBlockSteps.ThenBlockCanBeRetrieved();
+        }
+
+        [Given(@"a teacher is teaching a solo block and a partnered block")]
+        public void GivenATeacherIsTeachingASoloBlockAndAPartneredBlock()
+        {
+            GivenABlockWithClassesExists(2);
+            var mainTeacher = new TeacherModel(ScenarioCache.GetTeacherId());
+
+            GivenABlockWithClassesExists(2);
+            var secondTeacher = new TeacherModel(ScenarioCache.GetTeacherId());
+
+            var teachers = new List<TeacherModel>
+            {
+                mainTeacher,
+                secondTeacher
+            };
+            new UpdateBlockSteps().SetTeachersForBlock(teachers);
         }
 
         [Given(@"a block exists with a student limit of '(.*)'")]

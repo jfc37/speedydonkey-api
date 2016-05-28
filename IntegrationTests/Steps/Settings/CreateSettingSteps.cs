@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using Contracts.Settings;
+using IntegrationTests.Steps.Common;
 using IntegrationTests.Utilities;
 using Models.Settings;
 using NUnit.Framework;
@@ -12,6 +15,30 @@ namespace IntegrationTests.Steps.Settings
     [Binding]
     public class CreateSettingSteps
     {
+        [Given(@"the default solo teacher rate is '(.*)'")]
+        public void GivenTheDefaultSoloTeacherRateIs(decimal rate)
+        {
+            SetSetting(SettingTypes.TeacherRateSolo, rate.ToString());
+        }
+
+        [Given(@"the default partnered teacher rate is '(.*)'")]
+        public void GivenTheDefaultPartneredTeacherRateIs(decimal rate)
+        {
+            SetSetting(SettingTypes.TeacherRatePartnered, rate.ToString());
+        }
+
+
+        private void SetSetting(SettingTypes type, string value)
+        {
+            var settingItem = new SettingItemModel(type.ToString().ToLower(), value);
+            var completeSettings = new CompleteSettingsModel(settingItem);
+
+            ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
+            WhenTheSettingsAreAttemptedToBeSet();
+            new CommonSteps().ThenTheRequestIsSuccessful();
+        }
+
+
         [Given(@"the logo setting is already set")]
         public void GivenTheLogoSettingIsAlreadySet()
         {
@@ -53,6 +80,28 @@ namespace IntegrationTests.Steps.Settings
             ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
         }
 
+        [Given(@"a valid teacher rates are ready to be submitted")]
+        public void GivenAValidTeacherRatesAreReadyToBeSubmitted()
+        {
+            var teacherRateSingle = new SettingItemModel(SettingTypes.TeacherRateSolo.ToString().ToLower(), "30.50");
+            var teacherRateMultiple = new SettingItemModel(SettingTypes.TeacherRatePartnered.ToString().ToLower(), "60");
+            var completeSettings = new CompleteSettingsModel(teacherRateSingle, teacherRateMultiple);
+            
+            ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
+        }
+
+        [Given(@"an invalid teacher rates are ready to be submitted")]
+        public void GivenAnInvalidTeacherRatesAreReadyToBeSubmitted()
+        {
+            var teacherRateSingle = new SettingItemModel(SettingTypes.TeacherRateSolo.ToString().ToLower(), "invalid");
+            var teacherRateMultiple = new SettingItemModel(SettingTypes.TeacherRatePartnered.ToString().ToLower(), "invalid");
+            var completeSettings = new CompleteSettingsModel(teacherRateSingle, teacherRateMultiple);
+
+            ScenarioCache.Store(ModelKeys.CompleteSettings, completeSettings);
+        }
+
+
+
         [When(@"the settings are attempted to be set")]
         public void WhenTheSettingsAreAttemptedToBeSet()
         {
@@ -83,6 +132,47 @@ namespace IntegrationTests.Steps.Settings
 
             Assert.AreEqual(expectedLogoSetting.Value, response.Data.Value);
         }
+
+        [Then(@"teacher rate settings are not retrieved")]
+        public void ThenTeacherRateSettingsAreNotRetrieved()
+        {
+            SettingsNotFound(SettingTypes.TeacherRateSolo);
+            SettingsNotFound(SettingTypes.TeacherRatePartnered);
+        }
+
+        private static void SettingsNotFound(SettingTypes setting)
+        {
+            var response = ApiCaller.Get<SettingItemModel>(Routes.GetSettingsByType(setting));
+
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Then(@"teacher rate settings are retrieved")]
+        public void ThenTeacherRateSettingsAreRetrieved()
+        {
+            var actualSingleRate = GetSetting(SettingTypes.TeacherRateSolo);
+            var actualMultipleRate = GetSetting(SettingTypes.TeacherRatePartnered);
+
+            var expectedSettings = ScenarioCache.Get<CompleteSettingsModel>(ModelKeys.CompleteSettings);
+            var expectedSingleRate = expectedSettings.Settings.Single(x => x.Name.EqualsEnum(SettingTypes.TeacherRateSolo))
+                .Value;
+            var expectedMultipleRate = expectedSettings.Settings.Single(x => x.Name.EqualsEnum(SettingTypes.TeacherRatePartnered))
+                .Value;
+
+            Assert.AreEqual(expectedSingleRate, actualSingleRate);
+            Assert.AreEqual(expectedMultipleRate, actualMultipleRate);
+        }
+
+        private string GetSetting(SettingTypes settingType)
+        {
+            var response = ApiCaller.Get<SettingItemModel>(Routes.GetSettingsByType(settingType));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            var actualRate = response.Data.Value;
+            return actualRate;
+        }
+
 
         [Given(@"an invalid logo url is ready to be submitted")]
         public void GivenAnInvalidLogoUrlIsReadyToBeSubmitted()

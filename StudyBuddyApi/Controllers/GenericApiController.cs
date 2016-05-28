@@ -30,10 +30,10 @@ namespace SpeedyDonkeyApi.Controllers
             ActionReponse<TE> result = _actionHandlerOverlord.HandleAction<TAction, TE>(action);
             return result;
         }
-        protected TEntity GetById(int id)
+        protected Option<TEntity> GetById(int id)
         {
             var entity = Repository.Get(id);
-            return entity;
+            return entity.ToOption();
         }
         protected IEnumerable<TEntity> GetAll()
         {

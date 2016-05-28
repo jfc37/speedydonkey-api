@@ -97,12 +97,14 @@
     <Compile Include="Validators\Classes\UnassignClassRoomValidator.cs" />
     <Compile Include="Validators\PrivateLessons\SetOpeningHoursValidator.cs" />
     <Compile Include="Validators\PrivateLessons\SetTeacherAvailabilityValidator.cs" />
+    <Compile Include="Validators\Reports\TeacherInvoicesValidator.cs" />
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />
     <Compile Include="Validators\Rooms\UpdateRoomValidator.cs" />
     <Compile Include="Validators\Settings\AreAllSettingNamesValid.cs" />
     <Compile Include="Validators\Settings\AreNoDuplicateSettings.cs" />
     <Compile Include="Validators\Settings\IsLogoSettingAValidUrl.cs" />
+    <Compile Include="Validators\Settings\IsSettingValueADecimal.cs" />
     <Compile Include="Validators\Settings\IsSettingValueANumber.cs" />
     <Compile Include="Validators\Settings\UpdateSettingsValidator.cs" />
     <Compile Include="Validators\StandAloneEvents\CheckStudentIntoEventValidator.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Validators\StandAloneEvents\UpdateStandAloneEventValidator.cs" />
     <Compile Include="Validators\Teachers\RemoveAsTeacherValidator.cs" />
     <Compile Include="Validators\Teachers\SetAsTeacherValidator.cs" />
+    <Compile Include="Validators\Teachers\UpdateTeacherRateValidator.cs" />
     <Compile Include="Validators\UpdateClassValidator.cs" />
     <Compile Include="Validators\UpdateBlockValidator.cs" />
     <Compile Include="Validators\DeleteValidators.cs" />
@@ -133,6 +136,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{1408690B-C0F8-482A-A36E-75A2A13C3430}</Project>
+      <Name>Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{0A9770C7-4D7D-445E-94EB-A01A00061E9F}</Project>

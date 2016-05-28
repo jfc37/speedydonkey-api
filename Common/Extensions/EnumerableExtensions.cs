@@ -17,6 +17,28 @@ namespace Common.Extensions
 
     public static class EnumerableExtensions
     {
+        /// <summary>
+        /// Creates a list of numbers from 1, up to the specified number.
+        /// </summary>
+        /// <param name="instance">The instance.</param>
+        /// <returns></returns>
+        public static IEnumerable<int> ToNumberRange(this int instance)
+        {
+            return Enumerable.Range(1, instance);
+        }
+
+        /// <summary>
+        /// For each on an IEnumerable
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance">The instance.</param>
+        /// <param name="action">The action.</param>
+        public static void Each<T>(this IEnumerable<T> instance, Action<T> action)
+        {
+            instance.ToList()
+                .ForEach(action);
+        }
+
         public static bool DoesNotHaveSameItemIds<T>(this IEnumerable<T> instance, IEnumerable<T> toCompare) where T : IEntity
         {
             var orginalIds = instance.Select(x => x.Id);

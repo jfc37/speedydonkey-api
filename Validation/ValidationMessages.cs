@@ -45,6 +45,7 @@
         public const string InvalidClassMinutes = "Please enter class minutes";
         public const string InvalidClassesInBlock = "Please enter number of classes in a block";
         public const string InvalidClassCapacity = "Please enter a class capacity greater than 0";
+        public const string InvalidTeacherRate = "Please enter a teacher rate greater than 0";
         public const string InvalidTeachers = "Teachers selected are invalid";
         public const string TeachersRequired = "Please select at least one teacher";
         public const string RoomRequired = "Please select a room";

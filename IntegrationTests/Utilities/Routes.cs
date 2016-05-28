@@ -1,4 +1,6 @@
-﻿using Common.Extensions;
+﻿using System;
+using Common.Extensions;
+using Common.Extensions.DateTimes;
 using Models.Settings;
 
 namespace IntegrationTests.Utilities
@@ -23,6 +25,7 @@ namespace IntegrationTests.Utilities
         public const string TeacherAvailability = "teacher-availabilities";
         public const string Settings = "settings";
         public const string TermsAndConditions = "users/current/terms-and-conditions";
+        public const string TeacherRates = "teacher-rates";
 
         public static string GetBlocksForEnrolment(int userId)
         {
@@ -70,6 +73,11 @@ namespace IntegrationTests.Utilities
         public static string GetTeacherById(int userId)
         {
             return "{0}/{1}".FormatWith(Teachers, userId);
+        }
+
+        public static string GetTeacherRatesById(int teacherId)
+        {
+            return "{0}/{1}".FormatWith(TeacherRates, teacherId);
         }
 
         public static string GetPassTemplateById(int id)
@@ -165,6 +173,14 @@ namespace IntegrationTests.Utilities
         public static string GetBlockRoom(int blockId)
         {
             return "blocks/{0}/rooms".FormatWith(blockId);
+        }
+
+        public static string GetTeacherInvoiceReport(DateTime from, DateTime to)
+        {
+            var fromDisplay = from.ToUrlDateString();
+            var toDisplay = to.ToUrlDateString();
+
+            return $"reports/teacher-invoices?from={fromDisplay}&to={toDisplay}";
         }
     }
 }

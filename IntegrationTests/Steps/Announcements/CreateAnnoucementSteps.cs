@@ -3,6 +3,7 @@ using ActionHandlers;
 using Common.Extensions;
 using Contracts.Announcements;
 using Contracts.Blocks;
+using IntegrationTests.Steps.Common;
 using IntegrationTests.Steps.Rooms;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
@@ -108,7 +109,7 @@ namespace IntegrationTests.Steps.Announcements
             GivenAValidAnnouncementIsReadyToBeSubmitted();
             GivenTheAnnouncementIsToBeSentToTheBlock();
             WhenTheAnnouncementIsAttemptedToBeCreated();
-            new UpdateRoomSteps().ThenTheRequestIsSuccessful();
+            new CommonSteps().ThenTheRequestIsSuccessful();
         }
     }
 }

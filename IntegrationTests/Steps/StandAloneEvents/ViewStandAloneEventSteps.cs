@@ -33,6 +33,21 @@ namespace IntegrationTests.Steps.StandAloneEvents
             createSteps.ThenTheStandAloneEventCanBeRetrieved();
         }
 
+        [Given(@"a stand alone event with '(.*)' teacher rate exists")]
+        public void GivenAStandAloneEventWithTeacherRateExists(decimal teacherRate)
+        {
+            var createSteps = new CreateStandAloneEventSteps();
+            createSteps.GivenAValidStandAloneEventIsReadyToBeSubmitted();
+
+            var standAloneEvent = ScenarioCache.Get<StandAloneEventModel>(ModelKeys.StandAloneEvent);
+            standAloneEvent.TeacherRate = teacherRate;
+            ScenarioCache.Store(ModelKeys.StandAloneEvent, standAloneEvent);
+
+            createSteps.WhenTheStandAloneEventIsAttemptedToBeCreated();
+            createSteps.ThenTheStandAloneEventCanBeRetrieved();
+        }
+
+
         [When(@"upcoming stand alone events are requested")]
         public void WhenUpcomingStatndAloneEventsAreRequested()
         {
