@@ -1,7 +1,7 @@
 using System.Web.Http;
+using Action.Teachers;
 using ActionHandlers;
 using Actions;
-using Contracts;
 using Contracts.MappingExtensions;
 using Contracts.Teachers;
 using Data.Repositories;

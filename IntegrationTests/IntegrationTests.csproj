@@ -180,6 +180,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SetTeacherAvailability.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Reports\TeacherInvoices.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeacherInvoices.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Rooms\AssignRoomToBlock.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -260,6 +265,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RetrieveTeacher.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Teachers\TeacherRates.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeacherRates.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Users\CreateUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -330,6 +340,7 @@
     <Compile Include="Steps\PassTemplates\RetrievePassTemplateSteps.cs" />
     <Compile Include="Steps\PrivateLessons\SetOpeningHoursSteps.cs" />
     <Compile Include="Steps\PrivateLessons\SetTeacherAvailabilitySteps.cs" />
+    <Compile Include="Steps\Reports\TeacherInvoicesSteps.cs" />
     <Compile Include="Steps\Rooms\AssignRoomToBlockSteps.cs" />
     <Compile Include="Steps\Rooms\AssignRoomToClassSteps.cs" />
     <Compile Include="Steps\Rooms\CreateRoomSteps.cs" />
@@ -347,6 +358,7 @@
     <Compile Include="Steps\Teachers\CreateTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RemoveTeacherSteps.cs" />
     <Compile Include="Steps\Teachers\RetrieveTeacherSteps.cs" />
+    <Compile Include="Steps\Teachers\TeacherRatesSteps.cs" />
     <Compile Include="Steps\Users\CommonUserSteps.cs" />
     <Compile Include="Steps\Users\CreateUserSteps.cs" />
     <Compile Include="Steps\Users\CurrentUserScheduleSteps.cs" />
@@ -364,6 +376,7 @@
     <Compile Include="Utilities\ModelVerfication\VerifyOpeningHoursProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyPassTemplateProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyRoomProperties.cs" />
+    <Compile Include="Utilities\ModelVerfication\VerifyTeacherRateProperties.cs" />
     <Compile Include="Utilities\ModelVerfication\VerifyUserProperties.cs" />
     <Compile Include="Utilities\Routes.cs" />
     <Compile Include="Utilities\ScenarioCache.cs" />
@@ -447,6 +460,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SetTeacherAvailability.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\Reports\TeacherInvoices.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TeacherInvoices.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Rooms\AssignRoomToBlock.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AssignRoomToBlock.feature.cs</LastGenOutput>
@@ -510,6 +527,10 @@
     <None Include="Features\Teachers\RetrieveTeacher.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RetrieveTeacher.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Teachers\TeacherRates.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TeacherRates.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Users\CreateUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

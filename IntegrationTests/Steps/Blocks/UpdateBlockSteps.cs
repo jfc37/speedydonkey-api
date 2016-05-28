@@ -1,8 +1,13 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using Contracts;
 using Contracts.Blocks;
+using Contracts.Teachers;
+using IntegrationTests.Steps.Common;
+using IntegrationTests.Steps.Teachers;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -38,6 +43,40 @@ namespace IntegrationTests.Steps.Blocks
             ScenarioCache.Store(ModelIdKeys.BlockId, block.Id);
             ScenarioCache.Store(ModelKeys.Block, block);
         }
+
+        [Given(@"the block has '(.*)' teacher")]
+        public void GivenTheBlockHasTeacher(int numberOfTeachers)
+        {
+            var teachers = numberOfTeachers.ToNumberRange()
+                .Select(x => CreateNewTeacher())
+                .ToList();
+            
+            SetTeachersForBlock(teachers);
+        }
+
+        public void SetTeachersForBlock(List<TeacherModel> teachers)
+        {
+            var response = ApiCaller.Get<BlockModel>(Routes.GetById(Routes.Blocks, 1));
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            var block = response.Data;
+            block.Teachers = teachers;
+
+            ScenarioCache.Store(ModelIdKeys.BlockId, block.Id);
+            ScenarioCache.Store(ModelKeys.Block, block);
+
+            WhenTheBlockIsUpdated();
+            new CommonSteps().ThenTheRequestIsSuccessful();
+        }
+
+        private TeacherModel CreateNewTeacher()
+        {
+            new CommonTeacherSteps().GivenAnExistingUserIsATeacher();
+            var id = ScenarioCache.GetTeacherId();
+
+            return new TeacherModel(id);
+        }
+
 
         [Given(@"the block needs to change from invite only")]
         public void GivenTheBlockNeedsToChangeFromInviteOnly()

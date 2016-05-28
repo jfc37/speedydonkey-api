@@ -85,7 +85,8 @@ namespace Contracts.MappingExtensions
                 StartTime = instance.StartTime,
                 Room = instance.Room.ToStripedModel(),
                 Price = instance.Price,
-                IsPrivate = instance.IsPrivate
+                IsPrivate = instance.IsPrivate,
+                TeacherRate = instance.TeacherRate
             };
         }
 

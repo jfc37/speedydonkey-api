@@ -23,6 +23,9 @@ namespace Validation.Validators.StandAloneEvents
             
             RuleFor(x => x.ClassCapacity)
                 .GreaterThan(0).WithMessage(ValidationMessages.InvalidClassCapacity);
+            
+            RuleFor(x => x.TeacherRate)
+                .GreaterThanOrEqualTo(0).WithMessage(ValidationMessages.InvalidTeacherRate);
 
             RuleFor(x => x.EndTime)
                 .GreaterThan(x => x.StartTime).WithMessage(ValidationMessages.EndTimeGreaterThanStartTime)

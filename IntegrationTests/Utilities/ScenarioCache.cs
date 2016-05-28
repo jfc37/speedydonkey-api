@@ -22,6 +22,8 @@ namespace IntegrationTests.Utilities
         TeacherAvailability,
         SettingItem,
         CompleteSettings,
+        TeacherRate,
+        TeacherInvoiceReport,
 
         Response
     }

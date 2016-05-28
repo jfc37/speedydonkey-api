@@ -50,9 +50,9 @@ namespace SpeedyDonkeyApi.Controllers.Rooms
         {
             var room = GetById(id);
 
-            return room.IsNull()
+            return room.IsEmpty()
                 ? (IHttpActionResult) NotFound()
-                : Ok(room.GetUpcomingSchedule().Select(x => x.ToModel()));
+                : Ok(room.Single().GetUpcomingSchedule().Select(x => x.ToModel()));
         }
 
         [Route]

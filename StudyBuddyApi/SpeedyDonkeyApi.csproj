@@ -83,6 +83,10 @@
       <HintPath>..\packages\Autofac.WebApi2.Owin.3.3.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.14.2\lib\net45\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
       <Private>True</Private>
@@ -242,6 +246,7 @@
     <Compile Include="App_Start\CorsConfig.cs" />
     <Compile Include="App_Start\DependancyInjectionConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FormattersConfig.cs" />
     <Compile Include="App_Start\HttpsConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SerailisationConfig.cs" />
@@ -275,11 +280,14 @@
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\PrivateLessons\OpeningHoursApiController.cs" />
     <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
+    <Compile Include="Controllers\Reports\ReportController.cs" />
+    <Compile Include="Controllers\Reports\TeacherInvoiceReportController.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
     <Compile Include="Controllers\Settings\SettingsController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventApiController.cs" />
     <Compile Include="Controllers\StandAloneEvents\StandAloneEventAttendanceApiController.cs" />
     <Compile Include="Controllers\Teachers\TeacherApiController.cs" />
+    <Compile Include="Controllers\Teachers\TeacherRateApiController.cs" />
     <Compile Include="Controllers\Users\CurrentUserApiController.cs" />
     <Compile Include="Controllers\Users\UserEmailApiController.cs" />
     <Compile Include="Controllers\Users\CurrentUserNameApiController.cs" />
@@ -306,6 +314,8 @@
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />
     <Compile Include="GlobalErrorLoggerService.cs" />
+    <Compile Include="MediaFormatters\CsvFormatter.cs" />
+    <Compile Include="MediaFormatters\TeacherInvoiceCsvFormatter.cs" />
     <Compile Include="Owin\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -385,6 +395,10 @@
       <Project>{1408690b-c0f8-482a-a36e-75a2a13c3430}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{3CAB5B51-4CA4-4FB4-98B0-F7A45BEB2207}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{0A9770C7-4D7D-445E-94EB-A01A00061E9F}</Project>
       <Name>Data</Name>
@@ -400,6 +414,10 @@
     <ProjectReference Include="..\OnlinePayment\OnlinePayments.csproj">
       <Project>{16EE1C93-463A-4CB5-B63B-8F894A7B0CDE}</Project>
       <Name>OnlinePayments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Queries\Queries.csproj">
+      <Project>{CAF24F44-EA69-4FCC-833B-E509F637AB1B}</Project>
+      <Name>Queries</Name>
     </ProjectReference>
     <ProjectReference Include="..\Validation\Validation.csproj">
       <Project>{BC011616-5A9F-47CD-86DB-8C4C8F4CF55F}</Project>

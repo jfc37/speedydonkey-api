@@ -76,6 +76,7 @@
     <Compile Include="Settings\SettingTypes.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="Registration.cs" />
+    <Compile Include="TeacherRate.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserClaim.cs" />
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System;
+using ActionHandlers.Teachers.TeacherRates;
 using Common.Extensions;
 using Data.CodeChunks;
 using Data.Repositories;
@@ -16,11 +17,16 @@ namespace ActionHandlers
     {
         private readonly IRepository<Teacher> _teacherRepository;
         private readonly IRepository<User> _studentRepository;
+        private readonly ITeacherRateFactory _teacherRateFactory;
 
-        public TeacherStudentConverter(IRepository<Teacher> teacherRepository, IRepository<User> studentRepository)
+        public TeacherStudentConverter(
+            IRepository<Teacher> teacherRepository, 
+            IRepository<User> studentRepository,
+            ITeacherRateFactory teacherRateFactory)
         {
             _teacherRepository = teacherRepository;
             _studentRepository = studentRepository;
+            _teacherRateFactory = teacherRateFactory;
         }
 
         public Teacher AddAsTeacher(int studentId)
@@ -30,7 +36,10 @@ namespace ActionHandlers
             student.Claims = new AppendClaimToUser(student.Claims, Claim.Teacher)
                 .Do();
 
-            return _teacherRepository.Create(new Teacher(student));
+            var teacher = new Teacher(student);
+            teacher.Rate = _teacherRateFactory.CreateDefault();
+
+            return _teacherRepository.Create(teacher);
         }
 
         public User RemoveAsTeacher(int teacherId)
