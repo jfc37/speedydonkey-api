@@ -15,6 +15,21 @@ namespace IntegrationTests.Steps.Passes
     [Binding]
     public class PurchasePassSteps
     {
+        [When(@"the user purchases a pass that doesnt exist from a teacher")]
+        public void WhenTheUserPurchasesAPassThatDoesntExistFromATeacher()
+        {
+            var pass = new PassModel
+            {
+                PaymentStatus = PassPaymentStatus.Paid.ToString()
+            };
+
+            var url = Routes.GetPassPurchase(ScenarioCache.GetUserId(), 2);
+            var response = ApiCaller.Post<ActionReponse<UserModel>>(pass, url);
+
+            ScenarioCache.StoreActionResponse(response);
+        }
+
+
         [When(@"the user purchases a pass from a teacher")]
         public void WhenTheUserPurchasesAPassFromATeacher()
         {
@@ -45,6 +60,16 @@ namespace IntegrationTests.Steps.Passes
 
             ScenarioCache.Store(ModelKeys.Pass, response.Data.Single());
         }
+
+        [Then(@"the user doesnt have a pass")]
+        public void ThenTheUserDoesntHaveAPass()
+        {
+            var response = ApiCaller.Get<List<PassModel>>(Routes.GetUserPasses(ScenarioCache.GetId(ModelIdKeys.UserId)));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsEmpty(response.Data);
+        }
+
 
         [Then(@"the user has a clip pass")]
         public void ThenTheUserHasAClipPass()

@@ -55,7 +55,7 @@ namespace ActionHandlersTests
                 var overlord = BuildOverlord();
                 overlord.HandleAction<TestAction, TestObject>(_actionToHandle);
 
-                _validatorOverlordBuilder.Mock.Verify(x => x.Validate<TestAction, TestObject>(It.IsAny<TestObject>()), Times.Once);
+                _validatorOverlordBuilder.Mock.Verify(x => x.Validate<TestAction, TestObject>(It.IsAny<TestAction>()), Times.Once);
             }
 
             [Test]

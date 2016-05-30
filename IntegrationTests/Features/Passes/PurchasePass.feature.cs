@@ -162,6 +162,31 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User tries to purchase a pass that doesnt exist")]
+        [NUnit.Framework.CategoryAttribute("pass")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        [NUnit.Framework.CategoryAttribute("validation_errors")]
+        public virtual void UserTriesToPurchaseAPassThatDoesntExist()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User tries to purchase a pass that doesnt exist", new string[] {
+                        "pass",
+                        "create",
+                        "validation_errors"});
+#line 36
+this.ScenarioSetup(scenarioInfo);
+#line 37
+ testRunner.Given("a user exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 38
+ testRunner.When("the user purchases a pass that doesnt exist from a teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 39
+ testRunner.Then("validation errors are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 40
+ testRunner.And("the user doesnt have a pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
