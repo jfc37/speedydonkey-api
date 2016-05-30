@@ -28,6 +28,13 @@ namespace IntegrationTests.Steps.Passes
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
 
+        [When(@"the user purchases '(.*)' passes from a teacher")]
+        public void WhenTheUserPurchasesPassesFromATeacher(int numberOfPasses)
+        {
+            numberOfPasses.ToNumberRange()
+                .Each(x => WhenTheUserPurchasesAPassFromATeacher());
+        }
+
         [Then(@"the user has a pass")]
         public void ThenTheUserHasAPass()
         {
@@ -37,6 +44,25 @@ namespace IntegrationTests.Steps.Passes
             Assert.IsNotEmpty(response.Data);
 
             ScenarioCache.Store(ModelKeys.Pass, response.Data.Single());
+        }
+
+        [Then(@"all passes expire on the same day")]
+        public void ThenAllPassesExpireOnTheSameDay()
+        {
+            var response = ApiCaller.Get<List<PassModel>>(Routes.GetUserPasses(ScenarioCache.GetId(ModelIdKeys.UserId)));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsNotEmpty(response.Data);
+
+            var allPasses = response.Data;
+
+            Assert.Greater(allPasses.Count, 1);
+
+            var distinctEndDates = allPasses.Select(x => x.EndDate.Date.Date)
+                .Distinct()
+                .Count();
+
+            Assert.AreEqual(1, distinctEndDates);
         }
 
         [Then(@"the pass is paid")]
