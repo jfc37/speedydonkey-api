@@ -14,7 +14,7 @@ namespace IntegrationTests.Steps.Passes
 
             var purchasePassSteps = new PurchasePassSteps();
             purchasePassSteps.WhenTheUserPurchasesAPassFromATeacher();
-            purchasePassSteps.ThenTheUserHasAPass();
+            purchasePassSteps.ThenTheUserHasAClipPass();
             purchasePassSteps.ThenThePassIsPaid();
             purchasePassSteps.ThenThePassIsValid();
         }

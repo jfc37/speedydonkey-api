@@ -46,6 +46,17 @@ namespace IntegrationTests.Steps.Passes
             ScenarioCache.Store(ModelKeys.Pass, response.Data.Single());
         }
 
+        [Then(@"the user has a clip pass")]
+        public void ThenTheUserHasAClipPass()
+        {
+            var response = ApiCaller.Get<List<ClipPassModel>>(Routes.GetUserPasses(ScenarioCache.GetId(ModelIdKeys.UserId)));
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsNotEmpty(response.Data);
+
+            ScenarioCache.Store(ModelKeys.Pass, response.Data.Single());
+        }
+
         [Then(@"all passes expire on the same day")]
         public void ThenAllPassesExpireOnTheSameDay()
         {

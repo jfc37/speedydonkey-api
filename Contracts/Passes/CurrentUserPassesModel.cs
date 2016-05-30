@@ -11,7 +11,7 @@ namespace Contracts.Passes
         {
             if (user.Passes == null)
                 return new List<PassModel>();
-            var validPasses = user.Passes.Where(x => x.IsValid() || x.IsFuturePass());
+            var validPasses = user.Passes.Where(x => x.IsValid());
             return validPasses.Select(x => x.ToModel());
         }
     }
