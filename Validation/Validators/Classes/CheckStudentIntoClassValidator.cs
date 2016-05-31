@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Action.Classes;
+using Common;
 using Data.Repositories;
 using FluentValidation;
 using Models;
@@ -21,12 +22,12 @@ namespace Validation.Validators.Classes
             ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
 
             RuleFor(x => x.Id).Must(x => new DoesIdExist<Class>(classRepository, x).IsValid()).WithMessage(ValidationMessages.InvalidClass);
+
             RuleFor(x => x.ActualStudents)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .Must(x => new HasExactlyOneInSetRule(x).IsValid()).WithMessage(ValidationMessages.IncorrectNumberOfAttendees)
                 .Must(BeExistingUser).WithMessage(ValidationMessages.InvalidUser)
                 .Must(HaveAValidPass).WithMessage(ValidationMessages.NoValidPasses)
-                .Must(HavePaidForAPass).WithMessage(ValidationMessages.NoPaidForPasses)
                 .Must(NotAlreadyBeAttendingClass).WithMessage(ValidationMessages.AlreadyAttending);
         }
 
@@ -42,13 +43,8 @@ namespace Validation.Validators.Classes
         private bool HaveAValidPass(ICollection<User> users)
         {
             var user = GetUser(users);
-            return user.Passes != null && user.Passes.Any(x => x.IsValid());
-        }
-
-        private bool HavePaidForAPass(ICollection<User> users)
-        {
-            var user = GetUser(users);
-            return user.Passes != null && user.Passes.Any(x => x.PaymentStatus == PassPaymentStatus.Paid.ToString());
+            return user.SelectMany(x => x.Passes)
+                .Any(x => x.IsValid());
         }
 
         private bool BeExistingUser(ICollection<User> users)
@@ -57,9 +53,10 @@ namespace Validation.Validators.Classes
             return user != null;
         }
 
-        private User GetUser(ICollection<User> users)
+        private Option<User> GetUser(ICollection<User> users)
         {
-            var user = _userRepository.Get(users.Single().Id);
+            var user = _userRepository.Get(users.Single().Id)
+                .ToOption();
             return user;
         }
 

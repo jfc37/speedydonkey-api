@@ -84,7 +84,6 @@
     <Compile Include="Rules\IsUserMissingClaimRuleTests.cs" />
     <Compile Include="UpdateClassValidatorTests.cs" />
     <Compile Include="UpdateBlockValidatorTests.cs" />
-    <Compile Include="PurchasePassValidatorTests.cs" />
     <Compile Include="CreateAndUpdateUserValidatorTests.cs" />
     <Compile Include="CreateUpdatePassTemplateValidatorTests.cs" />
     <Compile Include="DeletePassTemplateValidatorTests.cs" />

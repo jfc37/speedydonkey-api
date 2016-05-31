@@ -4,7 +4,6 @@ using Autofac.Core.Registration;
 using FluentValidation;
 using FluentValidation.Results;
 using Validation.Validators;
-using PostSharp.Patterns.Diagnostics;
 
 namespace Validation
 {
@@ -25,7 +24,7 @@ namespace Validation
         /// <typeparam name="TObject">The type of the object.</typeparam>
         /// <param name="validate">The validate.</param>
         /// <returns></returns>
-        ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>;
+        ValidationResult Validate<TAction, TObject>(TAction validate) where TAction : SystemAction<TObject>;
     }
 
     public class ValidatorOverlord : IValidatorOverlord
@@ -67,27 +66,35 @@ namespace Validation
         /// <typeparam name="TObject">The type of the object.</typeparam>
         /// <param name="validate">The validate.</param>
         /// <returns></returns>
-        public ValidationResult Validate<TAction, TObject>(TObject validate) where TAction : SystemAction<TObject>
+        public ValidationResult Validate<TAction, TObject>(TAction validate) where TAction : SystemAction<TObject>
         {
-            IActionValidator<TAction, TObject> validator;
-            try
-            {
-                validator = GetValidator<TAction, TObject>();
-            }
-            catch (ComponentNotRegisteredException)
-            {
-                return new ValidationResult();
-            }
             FluentValidation.Results.ValidationResult validationResult;
-            if (validate == null)
+            if (validate.ActionAgainst == null)
             {
                 validationResult = new FluentValidation.Results.ValidationResult();
                 validationResult.Errors.Add(new ValidationFailure("ActionObject", "Please provide an object"));
             }
             else
             {
-                validationResult = validator.Validate(validate);   
+                try
+                {
+                    validationResult = GetValidator<TAction, TObject>()
+                        .Validate(validate.ActionAgainst);
+                }
+                catch (ComponentNotRegisteredException)
+                {
+                    try
+                    {
+                        validationResult = GetValidator<TAction>()
+                            .Validate(validate);
+                    }
+                    catch (ComponentNotRegisteredException)
+                    {
+                        return new ValidationResult();
+                    }
+                }
             }
+            
             return FluentConverter.ToProjectValidationResult(validationResult);
         }
 

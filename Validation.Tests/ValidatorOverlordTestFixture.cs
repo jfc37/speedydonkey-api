@@ -51,7 +51,7 @@ namespace Validation.Tests
                 _lifetimeScopeBuilder.WithActionValidatorsRegistered();
 
                 var validatorOverlord = BuildOverlord();
-                var validationResult = validatorOverlord.Validate<TestAction, TestObject>(_actionToValidate.ActionAgainst);
+                var validationResult = validatorOverlord.Validate<TestAction, TestObject>(_actionToValidate);
 
                 Assert.AreEqual("test validator", validationResult.ValidationErrors.Single().ErrorMessage);
             }
@@ -62,7 +62,7 @@ namespace Validation.Tests
                 _lifetimeScopeBuilder.WithNothingRegistered();
 
                 var validatorOverlord = BuildOverlord();
-                var validationResult = validatorOverlord.Validate<TestAction, TestObject>(_actionToValidate.ActionAgainst);
+                var validationResult = validatorOverlord.Validate<TestAction, TestObject>(_actionToValidate);
 
                 Assert.IsTrue(validationResult.IsValid);
             }
@@ -71,7 +71,7 @@ namespace Validation.Tests
             public void It_should_return_correct_error_mappings()
             {
                 var validatorOverlord = BuildOverlord();
-                var validationResult = validatorOverlord.Validate<TestAction, TestObject>(_actionToValidate.ActionAgainst);
+                var validationResult = validatorOverlord.Validate<TestAction, TestObject>(_actionToValidate);
 
                 Assert.AreEqual("test validator", validationResult.ValidationErrors.Single().ErrorMessage);
                 Assert.AreEqual("TestProperty", validationResult.ValidationErrors.Single().PropertyName);
@@ -83,7 +83,7 @@ namespace Validation.Tests
                 _actionToValidate.ActionAgainst = null;
 
                 var validatorOverlord = BuildOverlord();
-                var validationResult = validatorOverlord.Validate<TestAction, TestObject>(_actionToValidate.ActionAgainst);
+                var validationResult = validatorOverlord.Validate<TestAction, TestObject>(_actionToValidate);
 
                 Assert.AreEqual("ActionObject", validationResult.ValidationErrors.Single().PropertyName);
             }

@@ -43,25 +43,7 @@ namespace ActionHandlers.Classes
             var passToUse = user.GetPassToUse();
             passToUse.PayForClass();
 
-            if (passToUse is ClipPass)
-                MakeNextPassValid(user);
-
             return passToUse;
-        }
-
-        private void MakeNextPassValid(User user)
-        {
-            var nextPass = user.Passes
-                .Where(x => x.IsFuturePass())
-                .OrderBy(x => x.StartDate)
-                .FirstOrDefault();
-
-            if (nextPass != null)
-            {
-                var expiryPeriod = nextPass.EndDate.Subtract(nextPass.StartDate);
-                nextPass.StartDate = DateTime.Now.Date;
-                nextPass.EndDate = nextPass.StartDate.Add(expiryPeriod);
-            }
         }
     }
 }

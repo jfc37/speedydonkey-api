@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Common;
 using Common.Extensions;
 
 namespace Models
@@ -60,11 +58,5 @@ namespace Models
         }
 
         public virtual string Note { get; set; }
-    }
-
-    public enum UserStatus
-    {
-        Unactiviated,
-        Active
     }
 }

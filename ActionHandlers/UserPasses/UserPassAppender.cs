@@ -22,12 +22,10 @@ namespace ActionHandlers.UserPasses
         {
             if (user.Passes == null)
                 user.Passes = new List<Pass>();
-
-            var startDate = new GetStartDateForUsersPurchasedPass(user)
-                .Do();
+            
             var createdPass = _passCreatorFactory
                 .Get(passTemplate.PassType)
-                .CreatePass(startDate, passTemplate);
+                .CreatePass(passTemplate);
 
             createdPass.PaymentStatus = paymentStatus;
             createdPass.CreatedDateTime = DateTime.Now;

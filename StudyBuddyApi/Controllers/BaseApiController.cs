@@ -5,8 +5,8 @@ using PostSharp.Extensibility;
 
 namespace SpeedyDonkeyApi.Controllers
 {
-    //[Authorize]
-    //[CurrentUser]
+    [Authorize]
+    [CurrentUser]
     [Log(AttributeTargetElements = MulticastTargets.Method, AttributeTargetMemberAttributes = MulticastAttributes.Public)]
     public abstract class BaseApiController : ApiController
     {

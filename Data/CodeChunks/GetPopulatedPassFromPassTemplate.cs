@@ -1,6 +1,5 @@
 using System;
 using Common.Extensions;
-using Common.Extensions.DateTimes;
 using Models;
 
 namespace Data.CodeChunks
@@ -11,20 +10,18 @@ namespace Data.CodeChunks
     public class GetPopulatedPassFromPassTemplate : ICodeChunk<Pass>
     {
         private readonly Pass _passToPopulate;
-        private readonly DateTime _startDate;
         private readonly PassTemplate _passTemplate;
 
-        public GetPopulatedPassFromPassTemplate(Pass passToPopulate, DateTime startDate, PassTemplate passTemplate)
+        public GetPopulatedPassFromPassTemplate(Pass passToPopulate, PassTemplate passTemplate)
         {
             _passToPopulate = passToPopulate;
-            _startDate = startDate;
             _passTemplate = passTemplate;
         }
 
         public Pass Do()
         {
-            _passToPopulate.StartDate = _startDate;
-            _passToPopulate.EndDate = _startDate.AddWeeks(_passTemplate.WeeksValidFor);
+            _passToPopulate.StartDate = DateTime.Now.Date;
+            _passToPopulate.EndDate = _passToPopulate.StartDate.AddWeeks(_passTemplate.WeeksValidFor);
             _passToPopulate.Cost = _passTemplate.Cost;
             _passToPopulate.PassType = _passTemplate.PassType;
             _passToPopulate.Description = _passTemplate.Description;

@@ -1,5 +1,4 @@
-﻿---------------UNRELEASED------------------
-
+﻿
 CREATE TABLE [dbo].[TeacherRate](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CreatedDateTime] [datetime] NULL,
