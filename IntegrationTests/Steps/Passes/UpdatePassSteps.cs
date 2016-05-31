@@ -19,8 +19,7 @@ namespace IntegrationTests.Steps.Passes
         public void GivenThePassNeedsToBeChanged()
         {
             var existingPass = ScenarioCache.Get<PassModel>(ModelKeys.Pass);
-
-            existingPass.StartDate = existingPass.StartDate.AddMonths(1);
+            
             existingPass.EndDate = existingPass.EndDate.AddMonths(1);
 
             ScenarioCache.Store(_updatedPassKey, existingPass);

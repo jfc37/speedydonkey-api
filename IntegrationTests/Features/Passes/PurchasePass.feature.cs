@@ -116,6 +116,77 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User purchases multiple unlimited passes from a teacher")]
+        [NUnit.Framework.CategoryAttribute("pass")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        public virtual void UserPurchasesMultipleUnlimitedPassesFromATeacher()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User purchases multiple unlimited passes from a teacher", new string[] {
+                        "pass",
+                        "create"});
+#line 22
+this.ScenarioSetup(scenarioInfo);
+#line 23
+ testRunner.Given("a user exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+ testRunner.And("an unlimited pass template exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.When("the user purchases \'2\' passes from a teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+ testRunner.Then("all passes expire on the same day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User purchases multiple clip passes from a teacher")]
+        [NUnit.Framework.CategoryAttribute("pass")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        public virtual void UserPurchasesMultipleClipPassesFromATeacher()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User purchases multiple clip passes from a teacher", new string[] {
+                        "pass",
+                        "create"});
+#line 29
+this.ScenarioSetup(scenarioInfo);
+#line 30
+ testRunner.Given("a user exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 31
+ testRunner.And("a pass template exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+ testRunner.When("the user purchases \'2\' passes from a teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 33
+ testRunner.Then("all passes expire on the same day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User tries to purchase a pass that doesnt exist")]
+        [NUnit.Framework.CategoryAttribute("pass")]
+        [NUnit.Framework.CategoryAttribute("create")]
+        [NUnit.Framework.CategoryAttribute("validation_errors")]
+        public virtual void UserTriesToPurchaseAPassThatDoesntExist()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User tries to purchase a pass that doesnt exist", new string[] {
+                        "pass",
+                        "create",
+                        "validation_errors"});
+#line 36
+this.ScenarioSetup(scenarioInfo);
+#line 37
+ testRunner.Given("a user exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 38
+ testRunner.When("the user purchases a pass that doesnt exist from a teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 39
+ testRunner.Then("validation errors are returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 40
+ testRunner.And("the user doesnt have a pass", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

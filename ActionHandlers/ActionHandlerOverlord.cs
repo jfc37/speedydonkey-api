@@ -24,7 +24,7 @@ namespace ActionHandlers
         [Log]
         public ActionReponse<TObject> HandleAction<TAction, TObject>(TAction action) where TAction : SystemAction<TObject>
         {
-            var validationResult = _validatorOverlord.Validate<TAction, TObject>(action.ActionAgainst);
+            var validationResult = _validatorOverlord.Validate<TAction, TObject>(action);
 
             if (validationResult.IsValid)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Common.Extensions;
+using Common.Extensions.DateTimes;
 
 namespace Models
 {
@@ -37,8 +38,13 @@ namespace Models
 
         public virtual bool IsValid()
         {
+            if (_paymentStatus != PassPaymentStatus.Paid)
+            {
+                return false;
+            }
+
             var today = DateTime.Now.Date;
-            return today >= StartDate && today <= EndDate;
+            return today.IsOnOrBefore(EndDate.DateTime);
         }
 
         private PassType _passType;
@@ -52,12 +58,6 @@ namespace Models
         public virtual void RefundForClass()
         {
             PassStatistic.NumberOfClassesAttended--;
-        }
-
-        public virtual bool IsFuturePass()
-        {
-            var today = DateTime.Now.Date;
-            return today < StartDate;
         }
 
         public virtual string Note { get; set; }

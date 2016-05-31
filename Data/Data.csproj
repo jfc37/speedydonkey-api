@@ -75,7 +75,6 @@
     <Compile Include="CodeChunks\GetPayPalConfig.cs" />
     <Compile Include="CodeChunks\GetPopulatedPassFromPassTemplate.cs" />
     <Compile Include="CodeChunks\GetRegistrationFromRegistrationNumber.cs" />
-    <Compile Include="CodeChunks\GetStartDateForUsersPurchasedPass.cs" />
     <Compile Include="CodeChunks\ICodeChunk.cs" />
     <Compile Include="CodeChunks\ReferenceNumberPlaceholderReplacement.cs" />
     <Compile Include="Mappings\FluentMappings.cs" />
