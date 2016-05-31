@@ -6,7 +6,7 @@ using Validation.Rules;
 
 namespace Validation.Validators.Reports
 {
-    public class TeacherInvoicesValidator : AbstractValidator<TeacherInvoiceRequest>
+    public class TeacherInvoicesValidator : AbstractValidator<DateRangeReportRequest>
     {
         public TeacherInvoicesValidator()
         {

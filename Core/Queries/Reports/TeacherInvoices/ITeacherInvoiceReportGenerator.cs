@@ -12,6 +12,6 @@ namespace Core.Queries.Reports.TeacherInvoices
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        TeacherInvoiceResponse Create(TeacherInvoiceRequest request);
+        TeacherInvoiceResponse Create(DateRangeReportRequest request);
     }
 }

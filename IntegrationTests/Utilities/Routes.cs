@@ -182,5 +182,13 @@ namespace IntegrationTests.Utilities
 
             return $"reports/teacher-invoices?from={fromDisplay}&to={toDisplay}";
         }
+
+        public static string GetPassSalesReport(DateTime from, DateTime to)
+        {
+            var fromDisplay = from.ToUrlDateString();
+            var toDisplay = to.ToUrlDateString();
+
+            return $"reports/pass-sales?from={fromDisplay}&to={toDisplay}";
+        }
     }
 }

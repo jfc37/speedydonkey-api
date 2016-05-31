@@ -29,7 +29,7 @@ namespace Queries.Reports.TeacherInvoices
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public TeacherInvoiceResponse Create(TeacherInvoiceRequest request)
+        public TeacherInvoiceResponse Create(DateRangeReportRequest request)
         {
             request.GuardAgainstNull(nameof(request));
 

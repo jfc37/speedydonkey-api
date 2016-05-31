@@ -24,6 +24,7 @@ namespace IntegrationTests.Utilities
         CompleteSettings,
         TeacherRate,
         TeacherInvoiceReport,
+        PassSalesReport,
 
         Response
     }

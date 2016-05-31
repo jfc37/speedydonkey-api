@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\Reports\PassSales\IPassSalesReportGenerator.cs" />
     <Compile Include="Queries\Reports\TeacherInvoices\ITeacherInvoiceReportGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

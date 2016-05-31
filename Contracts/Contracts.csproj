@@ -96,9 +96,11 @@
     <Compile Include="Reports\BlockProfitReport.cs" />
     <Compile Include="Reports\ClassProfitReport.cs" />
     <Compile Include="Reports\PassProfitReport.cs" />
+    <Compile Include="Reports\PassSales\PassSaleLine.cs" />
+    <Compile Include="Reports\PassSales\PassSalesResponse.cs" />
     <Compile Include="Reports\ProfitReportModel.cs" />
     <Compile Include="Reports\TeacherInvoices\TeacherInvoiceLine.cs" />
-    <Compile Include="Reports\TeacherInvoices\TeacherInvoiceRequest.cs" />
+    <Compile Include="Reports\TeacherInvoices\DateRangeReportRequest.cs" />
     <Compile Include="Reports\TeacherInvoices\TeacherInvoiceResponse.cs" />
     <Compile Include="Rooms\RoomModel.cs" />
     <Compile Include="Settings\CompleteSettingsModel.cs" />

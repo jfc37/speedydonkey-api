@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Contracts.Reports.TeacherInvoices
 {
     /// <summary>
-    /// Teacher invoice report request
+    /// Date range report request
     /// </summary>
-    public class TeacherInvoiceRequest
+    public class DateRangeReportRequest
     {
         [Required]
         public DateTime From { get; set; }
