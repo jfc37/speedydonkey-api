@@ -317,7 +317,10 @@
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />
     <Compile Include="GlobalErrorLoggerService.cs" />
+    <Compile Include="MediaFormatters\BlockDetailsCsvFormatter.cs" />
+    <Compile Include="MediaFormatters\BlockSummaryCsvFormatter.cs" />
     <Compile Include="MediaFormatters\CsvFormatter.cs" />
+    <Compile Include="MediaFormatters\PassSalesCsvFormatter.cs" />
     <Compile Include="MediaFormatters\TeacherInvoiceCsvFormatter.cs" />
     <Compile Include="Owin\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,32 +1,34 @@
-﻿using Contracts.Reports.TeacherInvoices;
+using Contracts.Reports.BlockSummary;
 using CsvHelper;
 
 namespace SpeedyDonkeyApi.MediaFormatters
 {
     /// <summary>
-    /// Teacher invoice CSV formatter
+    /// Block Summary CSV formatter
     /// </summary>
-    public class TeacherInvoiceCsvFormatter : CsvFormatter<TeacherInvoiceResponse>
+    public class BlockSummaryCsvFormatter : CsvFormatter<BlockSummaryResponse>
     {
         protected override void WriteCsvHeader(CsvWriter writer)
         {
             writer.WriteField("Name");
-            writer.WriteField("Amount Owed");
+            writer.WriteField("Attendance");
+            writer.WriteField("Revenue");
         }
 
-        protected override void WriteCsvBody(CsvWriter writer, TeacherInvoiceResponse value)
+        protected override void WriteCsvBody(CsvWriter writer, BlockSummaryResponse value)
         {
             foreach (var line in value.Lines)
             {
                 writer.WriteField(line.Name);
-                writer.WriteField(line.AmountOwed);
+                writer.WriteField(line.Attendance);
+                writer.WriteField(line.Revenue);
                 writer.NextRecord();
             }
         }
 
         protected override string GetFileName()
         {
-            return "TeacherInvoices";
+            return "BlockSummary";
         }
     }
 }
