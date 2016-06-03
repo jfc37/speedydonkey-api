@@ -77,21 +77,25 @@ namespace IntegrationTests.Features.Reports
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
- testRunner.Given("\'1\' blocks exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the default solo teacher rate is \'10.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
- testRunner.And("\'1\' student has \'1\' class pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
- testRunner.And("\'1\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'1\' student has \'1\' class pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 8
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("\'1\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 11
- testRunner.And("the block summary total attendance is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
+ testRunner.And("the block summary total attendance is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
  testRunner.And("the block summary total revenue is \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And("the block summary total expense is \'40.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -107,24 +111,28 @@ this.ScenarioSetup(scenarioInfo);
                     "e students", new string[] {
                         "block_summary",
                         "reports"});
-#line 15
-this.ScenarioSetup(scenarioInfo);
-#line 16
- testRunner.Given("\'1\' blocks exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
- testRunner.And("\'2\' student has \'1\' class pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 18
- testRunner.And("\'2\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the default solo teacher rate is \'10.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("\'2\' student has \'1\' class pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
- testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'2\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
- testRunner.And("the block summary total attendance is \'2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 25
+ testRunner.And("the block summary total attendance is \'2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
  testRunner.And("the block summary total revenue is \'40.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.And("the block summary total expense is \'40.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -140,24 +148,28 @@ this.ScenarioSetup(scenarioInfo);
                     "ple students", new string[] {
                         "block_summary",
                         "reports"});
-#line 26
-this.ScenarioSetup(scenarioInfo);
-#line 27
- testRunner.Given("\'1\' blocks exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 28
- testRunner.And("\'2\' student has \'2\' class pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
- testRunner.And("\'2\' student attends \'2\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 30
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
 #line 31
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("the default solo teacher rate is \'10.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 32
- testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 33
- testRunner.And("the block summary total attendance is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'2\' student has \'2\' class pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
+ testRunner.And("\'2\' student attends \'2\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 37
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+ testRunner.And("the block summary total attendance is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
  testRunner.And("the block summary total revenue is \'40.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("the block summary total expense is \'40.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -173,24 +185,28 @@ this.ScenarioSetup(scenarioInfo);
                     "tiple students", new string[] {
                         "block_summary",
                         "reports"});
-#line 37
-this.ScenarioSetup(scenarioInfo);
-#line 38
- testRunner.Given("\'2\' blocks exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 39
- testRunner.And("\'2\' student has \'4\' class pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
- testRunner.And("\'2\' student attends \'2\' class of \'2\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 42
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 43
- testRunner.And("the block summary report has \'2\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 44
- testRunner.And("the block summary total attendance is \'8\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("the default solo teacher rate is \'10.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 45
+ testRunner.And("\'2\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+ testRunner.And("\'2\' student has \'4\' class pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 47
+ testRunner.And("\'2\' student attends \'2\' class of \'2\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 48
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 49
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 50
+ testRunner.And("the block summary report has \'2\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 51
+ testRunner.And("the block summary total attendance is \'8\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
  testRunner.And("the block summary total revenue is \'40.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
+ testRunner.And("the block summary total expense is \'80.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -206,23 +222,23 @@ this.ScenarioSetup(scenarioInfo);
                     "ngle student", new string[] {
                         "block_summary",
                         "reports"});
-#line 48
-this.ScenarioSetup(scenarioInfo);
-#line 49
- testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 50
- testRunner.And("\'1\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
- testRunner.And("\'1\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 52
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 53
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 54
- testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 55
- testRunner.And("the block summary total attendance is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 56
+this.ScenarioSetup(scenarioInfo);
+#line 57
+ testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 58
+ testRunner.And("\'1\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+ testRunner.And("\'1\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 60
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 61
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 62
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
+ testRunner.And("the block summary total attendance is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 64
  testRunner.And("the block summary total revenue is \'5.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -239,23 +255,23 @@ this.ScenarioSetup(scenarioInfo);
                     "ltiple students", new string[] {
                         "block_summary",
                         "reports"});
-#line 59
-this.ScenarioSetup(scenarioInfo);
-#line 60
- testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 61
- testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 62
- testRunner.And("\'2\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 64
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 65
- testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 66
- testRunner.And("the block summary total attendance is \'2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 67
+this.ScenarioSetup(scenarioInfo);
+#line 68
+ testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 69
+ testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
+ testRunner.And("\'2\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 72
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 73
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 74
+ testRunner.And("the block summary total attendance is \'2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 75
  testRunner.And("the block summary total revenue is \'10.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -272,23 +288,23 @@ this.ScenarioSetup(scenarioInfo);
                     "multiple students", new string[] {
                         "block_summary",
                         "reports"});
-#line 70
-this.ScenarioSetup(scenarioInfo);
-#line 71
- testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 72
- testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 73
- testRunner.And("\'2\' student attends \'2\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 74
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 75
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 76
- testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 77
- testRunner.And("the block summary total attendance is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 78
+this.ScenarioSetup(scenarioInfo);
+#line 79
+ testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 80
+ testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+ testRunner.And("\'2\' student attends \'2\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 82
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 83
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 84
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 85
+ testRunner.And("the block summary total attendance is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 86
  testRunner.And("the block summary total revenue is \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -305,23 +321,23 @@ this.ScenarioSetup(scenarioInfo);
                     ", multiple students", new string[] {
                         "block_summary",
                         "reports"});
-#line 81
-this.ScenarioSetup(scenarioInfo);
-#line 82
- testRunner.Given("\'2\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 83
- testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 84
- testRunner.And("\'2\' student attends \'2\' class of \'2\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 85
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 86
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 87
- testRunner.And("the block summary report has \'2\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 88
- testRunner.And("the block summary total attendance is \'8\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 89
+this.ScenarioSetup(scenarioInfo);
+#line 90
+ testRunner.Given("\'2\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 91
+ testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 92
+ testRunner.And("\'2\' student attends \'2\' class of \'2\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 94
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 95
+ testRunner.And("the block summary report has \'2\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 96
+ testRunner.And("the block summary total attendance is \'8\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 97
  testRunner.And("the block summary total revenue is \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -336,23 +352,23 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - unlimited passes - pass doesnt cover all classes", new string[] {
                         "block_summary",
                         "reports"});
-#line 92
-this.ScenarioSetup(scenarioInfo);
-#line 93
- testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 94
- testRunner.And("\'1\' student has a \'2\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 95
- testRunner.And("\'1\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 96
- testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 97
- testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 98
- testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 99
- testRunner.And("the block summary total attendance is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 100
+this.ScenarioSetup(scenarioInfo);
+#line 101
+ testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 102
+ testRunner.And("\'1\' student has a \'2\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 103
+ testRunner.And("\'1\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 104
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 105
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 106
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 107
+ testRunner.And("the block summary total attendance is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 108
  testRunner.And("the block summary total revenue is \'10.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

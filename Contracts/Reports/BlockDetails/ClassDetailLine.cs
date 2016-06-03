@@ -9,5 +9,7 @@ namespace Contracts.Reports.BlockDetails
         public string Name { get; set; }
         public int Attendance { get; set; }
         public decimal Revenue { get; set; }
+        public decimal Expense { get; set; }
+        public decimal Profit => Revenue - Expense;
     }
 }

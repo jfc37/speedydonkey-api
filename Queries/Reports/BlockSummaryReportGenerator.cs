@@ -42,7 +42,8 @@ namespace Queries.Reports
                     Name = x.Name,
                     BlockId = x.Id,
                     Attendance = x.Classes.Sum(y => y.ActualStudents.Count),
-                    Revenue = x.Classes.Sum(y => y.PassStatistics.Sum(z => z.CostPerClass))
+                    Revenue = x.Classes.Sum(y => y.PassStatistics.Sum(z => z.CostPerClass)),
+                    Expenses = x.Classes.SelectMany(y => y.GetPaySlips()).Sum(y => y.Pay)
                 })
                 .ToList();
             

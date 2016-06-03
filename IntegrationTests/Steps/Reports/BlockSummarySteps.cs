@@ -47,6 +47,15 @@ namespace IntegrationTests.Steps.Reports
             Assert.AreEqual(expectedRevenue, report.TotalRevenue);
         }
 
+        [Then(@"the block details total expense is '(.*)'")]
+        public void ThenTheBlockDetailsTotalExpenseIs(decimal expectedExpense)
+        {
+            var report = ScenarioCache.Get<BlockDetailsResponse>(ModelKeys.BlockDetailsReport);
+
+            Assert.AreEqual(expectedExpense, report.TotalExpense);
+        }
+
+
         [Then(@"line '(.*)' of block details report revenue is '(.*)'")]
         public void ThenLineOfBlockDetailsReportRevenueIs(int lineNumber, decimal expectedRevenue)
         {
@@ -116,5 +125,14 @@ namespace IntegrationTests.Steps.Reports
 
             Assert.AreEqual(expectedRevenue, report.TotalRevenue);
         }
+
+        [Then(@"the block summary total expense is '(.*)'")]
+        public void ThenTheBlockSummaryTotalExpenseIs(decimal expectedExpense)
+        {
+            var report = ScenarioCache.Get<BlockSummaryResponse>(ModelKeys.BlockSummaryReport);
+
+            Assert.AreEqual(expectedExpense, report.TotalExpenses);
+        }
+
     }
 }

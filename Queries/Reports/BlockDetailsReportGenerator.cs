@@ -37,7 +37,8 @@ namespace Queries.Reports
                 ClassId = x.Id,
                 Name = x.Name,
                 Attendance = x.ActualStudents.Count,
-                Revenue = x.PassStatistics.Sum(y => y.CostPerClass)
+                Revenue = x.PassStatistics.Sum(y => y.CostPerClass),
+                Expense = x.GetPaySlips().Sum(y => y.Pay)
             }).ToList();
 
             var report = new BlockDetailsResponse(classDetailLines);

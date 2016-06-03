@@ -2,7 +2,8 @@
 
 @block_details @reports
 Scenario: Generate block details report - clip passes - single class, single student
-	Given a block with '4' classes exists
+	Given the default solo teacher rate is '10.00'
+	And a block with '4' classes exists
 	And '1' student has '1' class pass costing '20.00'
 	And '1' student attends '1' class of '1' block
 	When the block details report is requested
@@ -10,6 +11,7 @@ Scenario: Generate block details report - clip passes - single class, single stu
 	And the block details report has '4' line
 	And the block details total attendance is '1'
 	And the block details total revenue is '20.00'
+	And the block details total expense is '40.00'
 	And line '1' of block details report revenue is '20.00'
 	And line '1' of block details report attendance is '1'
 	And line '2' of block details report revenue is '0.00'

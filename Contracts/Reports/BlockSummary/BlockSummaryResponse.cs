@@ -27,5 +27,11 @@ namespace Contracts.Reports.BlockSummary
         public decimal TotalRevenue => Lines.Select(x => x.Revenue)
             .DefaultIfEmpty(0)
             .Sum();
+
+        public decimal TotalExpenses => Lines.Select(x => x.Expenses)
+            .DefaultIfEmpty(0)
+            .Sum();
+
+        public decimal TotalProfit => TotalRevenue - TotalExpenses;
     }
 }
