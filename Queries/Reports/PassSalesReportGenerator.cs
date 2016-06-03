@@ -2,11 +2,11 @@ using System.Linq;
 using Common.Extensions;
 using Contracts.Reports.PassSales;
 using Contracts.Reports.TeacherInvoices;
-using Core.Queries.Reports.PassSales;
+using Core.Queries.Reports;
 using Data.Repositories;
 using Models;
 
-namespace Queries.Reports.PassSales
+namespace Queries.Reports
 {
     /// <summary>
     /// Generates pass sales reports

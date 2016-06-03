@@ -1,4 +1,5 @@
 using System.Web.Http;
+using Contracts.Reports.BlockSummary;
 using Contracts.Reports.TeacherInvoices;
 using Core.Queries.Reports;
 using Models;
@@ -7,21 +8,21 @@ using Validation;
 
 namespace SpeedyDonkeyApi.Controllers.Reports
 {
-    [RoutePrefix("api/reports/teacher-invoices")]
-    public class TeacherInvoiceReportController : ReportController<DateRangeReportRequest, TeacherInvoiceResponse>
+    [RoutePrefix("api/reports/block-summary")]
+    public class BlockSummaryReportController : ReportController<DateRangeReportRequest, BlockSummaryResponse>
     {
-        private readonly ITeacherInvoiceReportGenerator _reportGenerator;
+        private readonly IBlockSummaryReportGenerator _reportGenerator;
 
-        public TeacherInvoiceReportController(
+        public BlockSummaryReportController(
             IValidatorOverlord validatorOverlord,
-            ITeacherInvoiceReportGenerator reportGenerator) 
+            IBlockSummaryReportGenerator reportGenerator) 
             : base(validatorOverlord)
         {
             _reportGenerator = reportGenerator;
         }
 
         [Route]
-        [ClaimsAuthorise(Claim = Claim.Admin)]
+        //[ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Get([FromUri] DateRangeReportRequest request)
         {
             return RunReport(request, x => _reportGenerator.Create(x));

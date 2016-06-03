@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using Contracts.Enrolment;
 using Contracts.Teachers;
 using Contracts.Users;
-using IntegrationTests.Steps.Teachers;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
@@ -22,6 +22,11 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.GivenAValidBlockIsReadyToBeSubmitted();
             createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
             createBlockSteps.ThenBlockCanBeRetrieved();
+
+            var blockId = ScenarioCache.GetId(ModelIdKeys.BlockId);
+            var blockIds = ScenarioCache.Get<List<int>>(ModelIdKeys.BlockIds);
+            blockIds.Add(blockId);
+            ScenarioCache.Store(ModelIdKeys.BlockIds, blockIds);
         }
 
         [Given(@"a block with '(.*)' classes exists")]
@@ -88,10 +93,11 @@ namespace IntegrationTests.Steps.Blocks
         [Given(@"'(.*)' blocks exists")]
         public void GivenBlocksExists(int numberOfBlocks)
         {
-            for (var blockNumber = 1; blockNumber <= numberOfBlocks; blockNumber++)
-            {
-                GivenABlockExists();
-            }
+            numberOfBlocks.ToNumberRange()
+                .Each(x =>
+                {
+                    GivenABlockExists();
+                });
         }
 
         [Given(@"the user enrols in the block")]

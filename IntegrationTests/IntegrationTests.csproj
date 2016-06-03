@@ -180,6 +180,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SetTeacherAvailability.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Reports\BlockSummary.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlockSummary.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Reports\PassSales.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -465,6 +470,10 @@
     <None Include="Features\PrivateLessons\SetTeacherAvailability.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SetTeacherAvailability.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Reports\BlockSummary.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BlockSummary.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Reports\PassSales.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

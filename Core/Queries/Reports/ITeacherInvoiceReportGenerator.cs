@@ -1,18 +1,17 @@
-﻿using Contracts.Reports.PassSales;
 using Contracts.Reports.TeacherInvoices;
 
-namespace Core.Queries.Reports.PassSales
+namespace Core.Queries.Reports
 {
     /// <summary>
-    /// Generates pass sales reports
+    /// Generates teacher invoice reports
     /// </summary>
-    public interface IPassSalesReportGenerator
+    public interface ITeacherInvoiceReportGenerator
     {
         /// <summary>
         /// Creates the specified request.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        PassSalesResponse Create(DateRangeReportRequest request);
+        TeacherInvoiceResponse Create(DateRangeReportRequest request);
     }
 }

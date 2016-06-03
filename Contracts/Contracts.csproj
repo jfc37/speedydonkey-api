@@ -94,6 +94,8 @@
     <Compile Include="PrivateLessons\TimeSlotModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\BlockProfitReport.cs" />
+    <Compile Include="Reports\BlockSummary\BlockDetailLine.cs" />
+    <Compile Include="Reports\BlockSummary\BlockSummaryResponse.cs" />
     <Compile Include="Reports\ClassProfitReport.cs" />
     <Compile Include="Reports\PassProfitReport.cs" />
     <Compile Include="Reports\PassSales\PassSaleLine.cs" />

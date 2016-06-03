@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Common.Extensions;
 using Contracts.Reports.TeacherInvoices;
-using Core.Queries.Reports.TeacherInvoices;
+using Core.Queries.Reports;
 using Data.Repositories;
 using Models;
 using NHibernate.Linq;

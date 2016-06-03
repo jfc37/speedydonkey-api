@@ -25,6 +25,7 @@ namespace IntegrationTests.Utilities
         TeacherRate,
         TeacherInvoiceReport,
         PassSalesReport,
+        BlockSummaryReport,
 
         Response
     }
@@ -37,7 +38,9 @@ namespace IntegrationTests.Utilities
         StandAloneEventId,
         PassTemplateId,
         ClassId,
-        RoomId
+        RoomId,
+        StudentIds,
+        BlockIds
     }
 
     public static class ScenarioCache

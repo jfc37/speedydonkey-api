@@ -4,6 +4,7 @@ using System.Net;
 using ActionHandlers;
 using Contracts;
 using Contracts.Classes;
+using Contracts.Events;
 using Contracts.Passes;
 using Contracts.Users;
 using IntegrationTests.Utilities;
@@ -15,6 +16,32 @@ namespace IntegrationTests.Steps.Classes
     [Binding]
     public class ClassAttendanceSteps
     {
+        [Given(@"'(.*)' student attends '(.*)' class of '(.*)' block")]
+        public void GivenStudentAttendsClassOfBlock(int numberOfStudents, int numberOfClasses, int numberOfBlocks)
+        {
+            var studentIds = ScenarioCache.Get<List<int>>(ModelIdKeys.StudentIds);
+            var blockIds = ScenarioCache.Get<List<int>>(ModelIdKeys.BlockIds);
+
+            foreach (var blockId in blockIds.Take(numberOfBlocks))
+            {
+                var classes = ApiCaller.Get<List<EventModel>>(Routes.GetBlockClasses(blockId))
+                    .Data;
+
+                foreach (var studentId in studentIds.Take(numberOfStudents))
+                {
+                    ScenarioCache.Store(ModelIdKeys.UserId, studentId);
+                    
+                    foreach (var classId in classes.Select(x => x.Id).Take(numberOfClasses))
+                    {
+                        ScenarioCache.Store(ModelIdKeys.ClassId, classId);
+                        WhenTheTeacherChecksTheStudentIn();
+                        ThenCheckInIsSuccessful();
+                        ThenTheStudentIsMarkedAgainstClass();
+                    }
+                }
+            }
+        }
+        
         [Given(@"the user attends a class")]
         public void GivenTheUserAttendsAClass()
         {

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Common.Extensions;
 using Common.Extensions.DateTimes;
 using Contracts.Passes;
+using Contracts.Reports.BlockSummary;
 using Contracts.Reports.PassSales;
 using IntegrationTests.Steps.Passes;
 using IntegrationTests.Steps.PassTemplates;
@@ -13,15 +15,69 @@ using TechTalk.SpecFlow;
 namespace IntegrationTests.Steps.Reports
 {
     [Binding]
+    public class BlockSummarySteps
+    {
+        [When(@"the block summary report is requested")]
+        public void WhenTheBlockSummaryReportIsRequested()
+        {
+            var from = DateTime.Today;
+            var to = from.AddMonths(4);
+
+            var url = Routes.GetBlockSummaryReport(from, to);
+            RequestReport(url);
+        }
+
+        private static void RequestReport(string url)
+        {
+            var response = ApiCaller.Get<BlockSummaryResponse>(url);
+
+            ScenarioCache.StoreResponse(response);
+            ScenarioCache.Store(ModelKeys.BlockSummaryReport, response.Data);
+        }
+
+        [Then(@"the block summary report has '(.*)' line")]
+        public void ThenTheBlockSummaryReportHasLine(int expectedNumberOfLines)
+        {
+            var report = ScenarioCache.Get<BlockSummaryResponse>(ModelKeys.BlockSummaryReport);
+
+            Assert.AreEqual(expectedNumberOfLines, report.Lines.Count);
+        }
+
+        [Then(@"the block summary total attendance is '(.*)'")]
+        public void ThenTheBlockSummaryTotalAttendanceIs(int expectedAttendance)
+        {
+            var report = ScenarioCache.Get<BlockSummaryResponse>(ModelKeys.BlockSummaryReport);
+
+            Assert.AreEqual(expectedAttendance, report.TotalAttendance);
+        }
+
+        [Then(@"the block summary total revenue is '(.*)'")]
+        public void ThenTheBlockSummaryTotalRevenueIs(decimal expectedRevenue)
+        {
+            var report = ScenarioCache.Get<BlockSummaryResponse>(ModelKeys.BlockSummaryReport);
+
+            Assert.AreEqual(expectedRevenue, report.TotalRevenue);
+        }
+
+    }
+
+    [Binding]
     public class PassSalesSteps
     {
         [Given(@"'(.*)' type of pass costing '(.*)' has been sold")]
         public void GivenTypeOfPassCostingHasBeenSold(int numberSold, decimal cost)
         {
+            GivenStudentHasClassPassCosting(numberSold, 6, cost);
+        }
+
+        [Given(@"'(.*)' student has '(.*)' class pass costing '(.*)'")]
+        public void GivenStudentHasClassPassCosting(int numberOfStudents, int numberOfClips, decimal cost)
+        {
             var createPassTemplateSteps = new CreatePassTemplateSteps();
             createPassTemplateSteps.GivenAValidPassTemplateIsReadyToBeSubmitted();
 
             var passTemplate = ScenarioCache.Get<PassTemplateModel>(ModelKeys.PassTemplate);
+            passTemplate.ClassesValidFor = numberOfClips;
             passTemplate.Cost = cost;
             passTemplate.Description = $"Pass - {Guid.NewGuid()}";
             ScenarioCache.Store(ModelKeys.PassTemplate, passTemplate);
@@ -29,12 +85,18 @@ namespace IntegrationTests.Steps.Reports
             createPassTemplateSteps.WhenThePassTemplateIsAttemptedToBeCreated();
             createPassTemplateSteps.ThenPassTemplateCanBeRetrieved();
 
-            numberSold.ToNumberRange().Each(x => BuyPass());
+            numberOfStudents.ToNumberRange().Each(x => BuyPass());
         }
 
         private static void BuyPass()
         {
             new CommonUserSteps().GivenAUserExists();
+
+            var userId = ScenarioCache.GetUserId();
+            var studentIds = ScenarioCache.Get<List<int>>(ModelIdKeys.StudentIds);
+            studentIds.Add(userId);
+            ScenarioCache.Store(ModelIdKeys.StudentIds, studentIds);
+
             var purchasePassSteps = new PurchasePassSteps();
             purchasePassSteps.WhenTheUserPurchasesAPassFromATeacher();
             purchasePassSteps.ThenTheUserHasAClipPass();

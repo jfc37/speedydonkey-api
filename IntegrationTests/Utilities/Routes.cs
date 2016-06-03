@@ -174,6 +174,10 @@ namespace IntegrationTests.Utilities
         {
             return "blocks/{0}/rooms".FormatWith(blockId);
         }
+        public static string GetBlockClasses(int blockId)
+        {
+            return $"blocks/{blockId}/classes";
+        }
 
         public static string GetTeacherInvoiceReport(DateTime from, DateTime to)
         {
@@ -189,6 +193,14 @@ namespace IntegrationTests.Utilities
             var toDisplay = to.ToUrlDateString();
 
             return $"reports/pass-sales?from={fromDisplay}&to={toDisplay}";
+        }
+
+        public static string GetBlockSummaryReport(DateTime from, DateTime to)
+        {
+            var fromDisplay = from.ToUrlDateString();
+            var toDisplay = to.ToUrlDateString();
+
+            return $"reports/block-summary?from={fromDisplay}&to={toDisplay}";
         }
     }
 }

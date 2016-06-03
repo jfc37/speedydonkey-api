@@ -1,7 +1,7 @@
 using System.Web.Http;
 using Contracts.Reports.PassSales;
 using Contracts.Reports.TeacherInvoices;
-using Core.Queries.Reports.PassSales;
+using Core.Queries.Reports;
 using Models;
 using SpeedyDonkeyApi.Filter;
 using Validation;
