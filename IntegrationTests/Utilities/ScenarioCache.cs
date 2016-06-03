@@ -27,6 +27,7 @@ namespace IntegrationTests.Utilities
         TeacherInvoiceReport,
         PassSalesReport,
         BlockSummaryReport,
+        BlockDetailsReport,
 
         Response
     }

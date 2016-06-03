@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Common.Extensions;
 using Common.Extensions.DateTimes;
 using Contracts.Passes;
-using Contracts.Reports.BlockSummary;
 using Contracts.Reports.PassSales;
 using IntegrationTests.Steps.Passes;
 using IntegrationTests.Steps.PassTemplates;
@@ -15,53 +14,6 @@ using TechTalk.SpecFlow;
 
 namespace IntegrationTests.Steps.Reports
 {
-    [Binding]
-    public class BlockSummarySteps
-    {
-        [When(@"the block summary report is requested")]
-        public void WhenTheBlockSummaryReportIsRequested()
-        {
-            var from = DateTime.Today;
-            var to = from.AddMonths(4);
-
-            var url = Routes.GetBlockSummaryReport(from, to);
-            RequestReport(url);
-        }
-
-        private static void RequestReport(string url)
-        {
-            var response = ApiCaller.Get<BlockSummaryResponse>(url);
-
-            ScenarioCache.StoreResponse(response);
-            ScenarioCache.Store(ModelKeys.BlockSummaryReport, response.Data);
-        }
-
-        [Then(@"the block summary report has '(.*)' line")]
-        public void ThenTheBlockSummaryReportHasLine(int expectedNumberOfLines)
-        {
-            var report = ScenarioCache.Get<BlockSummaryResponse>(ModelKeys.BlockSummaryReport);
-
-            Assert.AreEqual(expectedNumberOfLines, report.Lines.Count);
-        }
-
-        [Then(@"the block summary total attendance is '(.*)'")]
-        public void ThenTheBlockSummaryTotalAttendanceIs(int expectedAttendance)
-        {
-            var report = ScenarioCache.Get<BlockSummaryResponse>(ModelKeys.BlockSummaryReport);
-
-            Assert.AreEqual(expectedAttendance, report.TotalAttendance);
-        }
-
-        [Then(@"the block summary total revenue is '(.*)'")]
-        public void ThenTheBlockSummaryTotalRevenueIs(decimal expectedRevenue)
-        {
-            var report = ScenarioCache.Get<BlockSummaryResponse>(ModelKeys.BlockSummaryReport);
-
-            Assert.AreEqual(expectedRevenue, report.TotalRevenue);
-        }
-
-    }
-
     [Binding]
     public class PassSalesSteps
     {

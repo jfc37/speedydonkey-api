@@ -22,7 +22,7 @@ namespace SpeedyDonkeyApi.Controllers.Reports
         }
 
         [Route]
-        //[ClaimsAuthorise(Claim = Claim.Admin)]
+        [ClaimsAuthorise(Claim = Claim.Admin)]
         public IHttpActionResult Get([FromUri] DateRangeReportRequest request)
         {
             return RunReport(request, x => _reportGenerator.Create(x));

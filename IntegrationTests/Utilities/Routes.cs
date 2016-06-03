@@ -202,5 +202,10 @@ namespace IntegrationTests.Utilities
 
             return $"reports/block-summary?from={fromDisplay}&to={toDisplay}";
         }
+
+        public static string GetBlockDetailsReport(int blockId)
+        {
+            return $"reports/block-details?blockId={blockId}";
+        }
     }
 }
