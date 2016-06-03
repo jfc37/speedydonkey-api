@@ -24,9 +24,7 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.ThenBlockCanBeRetrieved();
 
             var blockId = ScenarioCache.GetId(ModelIdKeys.BlockId);
-            var blockIds = ScenarioCache.Get<List<int>>(ModelIdKeys.BlockIds);
-            blockIds.Add(blockId);
-            ScenarioCache.Store(ModelIdKeys.BlockIds, blockIds);
+            ScenarioCache.AddToSet(ModelIdKeys.BlockIds, blockId);
         }
 
         [Given(@"a block with '(.*)' classes exists")]
@@ -37,6 +35,9 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.GivenTheNumberOfClassesInTheBlockIs(numberOfClasses);
             createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
             createBlockSteps.ThenBlockCanBeRetrieved();
+
+            var blockId = ScenarioCache.GetId(ModelIdKeys.BlockId);
+            ScenarioCache.AddToSet(ModelIdKeys.BlockIds, blockId);
         }
 
         [Given(@"a teacher is teaching a solo block and a partnered block")]
@@ -89,15 +90,18 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.ThenBlockCanBeRetrieved();
         }
 
+        [Given(@"'(.*)' blocks with '(.*)' classes exists")]
+        public void GivenBlocksWithClassesExists(int numberOfBlocks, int numberOfClasses)
+        {
+            numberOfBlocks.ToNumberRange()
+                .Each(x => GivenABlockWithClassesExists(numberOfClasses));
+        }
 
         [Given(@"'(.*)' blocks exists")]
         public void GivenBlocksExists(int numberOfBlocks)
         {
             numberOfBlocks.ToNumberRange()
-                .Each(x =>
-                {
-                    GivenABlockExists();
-                });
+                .Each(x => GivenABlockExists());
         }
 
         [Given(@"the user enrols in the block")]

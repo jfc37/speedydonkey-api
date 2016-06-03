@@ -64,12 +64,14 @@ namespace IntegrationTests.Features.Reports
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Generate block summary report - single block, single class, single student")]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - clip passes - single block, single class, single " +
+            "student")]
         [NUnit.Framework.CategoryAttribute("block_summary")]
         [NUnit.Framework.CategoryAttribute("reports")]
-        public virtual void GenerateBlockSummaryReport_SingleBlockSingleClassSingleStudent()
+        public virtual void GenerateBlockSummaryReport_ClipPasses_SingleBlockSingleClassSingleStudent()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - single block, single class, single student", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - clip passes - single block, single class, single " +
+                    "student", new string[] {
                         "block_summary",
                         "reports"});
 #line 4
@@ -95,12 +97,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Generate block summary report - single block, single class, multiple students")]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - clip passes - single block, single class, multipl" +
+            "e students")]
         [NUnit.Framework.CategoryAttribute("block_summary")]
         [NUnit.Framework.CategoryAttribute("reports")]
-        public virtual void GenerateBlockSummaryReport_SingleBlockSingleClassMultipleStudents()
+        public virtual void GenerateBlockSummaryReport_ClipPasses_SingleBlockSingleClassMultipleStudents()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - single block, single class, multiple students", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - clip passes - single block, single class, multipl" +
+                    "e students", new string[] {
                         "block_summary",
                         "reports"});
 #line 15
@@ -126,12 +130,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Generate block summary report - single block, multiple class, multiple students")]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - clip passes - single block, multiple class, multi" +
+            "ple students")]
         [NUnit.Framework.CategoryAttribute("block_summary")]
         [NUnit.Framework.CategoryAttribute("reports")]
-        public virtual void GenerateBlockSummaryReport_SingleBlockMultipleClassMultipleStudents()
+        public virtual void GenerateBlockSummaryReport_ClipPasses_SingleBlockMultipleClassMultipleStudents()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - single block, multiple class, multiple students", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - clip passes - single block, multiple class, multi" +
+                    "ple students", new string[] {
                         "block_summary",
                         "reports"});
 #line 26
@@ -157,14 +163,14 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Generate block summary report - multiple block, multiple class, multiple students" +
-            "")]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - clip passes - multiple block, multiple class, mul" +
+            "tiple students")]
         [NUnit.Framework.CategoryAttribute("block_summary")]
         [NUnit.Framework.CategoryAttribute("reports")]
-        public virtual void GenerateBlockSummaryReport_MultipleBlockMultipleClassMultipleStudents()
+        public virtual void GenerateBlockSummaryReport_ClipPasses_MultipleBlockMultipleClassMultipleStudents()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - multiple block, multiple class, multiple students" +
-                    "", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - clip passes - multiple block, multiple class, mul" +
+                    "tiple students", new string[] {
                         "block_summary",
                         "reports"});
 #line 37
@@ -185,6 +191,169 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("the block summary total attendance is \'8\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 45
  testRunner.And("the block summary total revenue is \'40.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - unlimited passes - single block, single class, si" +
+            "ngle student")]
+        [NUnit.Framework.CategoryAttribute("block_summary")]
+        [NUnit.Framework.CategoryAttribute("reports")]
+        public virtual void GenerateBlockSummaryReport_UnlimitedPasses_SingleBlockSingleClassSingleStudent()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - unlimited passes - single block, single class, si" +
+                    "ngle student", new string[] {
+                        "block_summary",
+                        "reports"});
+#line 48
+this.ScenarioSetup(scenarioInfo);
+#line 49
+ testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 50
+ testRunner.And("\'1\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 51
+ testRunner.And("\'1\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 53
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 54
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 55
+ testRunner.And("the block summary total attendance is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+ testRunner.And("the block summary total revenue is \'5.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - unlimited passes - single block, single class, mu" +
+            "ltiple students")]
+        [NUnit.Framework.CategoryAttribute("block_summary")]
+        [NUnit.Framework.CategoryAttribute("reports")]
+        public virtual void GenerateBlockSummaryReport_UnlimitedPasses_SingleBlockSingleClassMultipleStudents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - unlimited passes - single block, single class, mu" +
+                    "ltiple students", new string[] {
+                        "block_summary",
+                        "reports"});
+#line 59
+this.ScenarioSetup(scenarioInfo);
+#line 60
+ testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 61
+ testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 62
+ testRunner.And("\'2\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 64
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 65
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 66
+ testRunner.And("the block summary total attendance is \'2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+ testRunner.And("the block summary total revenue is \'10.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - unlimited passes - single block, multiple class, " +
+            "multiple students")]
+        [NUnit.Framework.CategoryAttribute("block_summary")]
+        [NUnit.Framework.CategoryAttribute("reports")]
+        public virtual void GenerateBlockSummaryReport_UnlimitedPasses_SingleBlockMultipleClassMultipleStudents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - unlimited passes - single block, multiple class, " +
+                    "multiple students", new string[] {
+                        "block_summary",
+                        "reports"});
+#line 70
+this.ScenarioSetup(scenarioInfo);
+#line 71
+ testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 72
+ testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 73
+ testRunner.And("\'2\' student attends \'2\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 74
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 75
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 76
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+ testRunner.And("the block summary total attendance is \'4\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 78
+ testRunner.And("the block summary total revenue is \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - unlimited passes - multiple block, multiple class" +
+            ", multiple students")]
+        [NUnit.Framework.CategoryAttribute("block_summary")]
+        [NUnit.Framework.CategoryAttribute("reports")]
+        public virtual void GenerateBlockSummaryReport_UnlimitedPasses_MultipleBlockMultipleClassMultipleStudents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - unlimited passes - multiple block, multiple class" +
+                    ", multiple students", new string[] {
+                        "block_summary",
+                        "reports"});
+#line 81
+this.ScenarioSetup(scenarioInfo);
+#line 82
+ testRunner.Given("\'2\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 83
+ testRunner.And("\'2\' student has a \'4\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 84
+ testRunner.And("\'2\' student attends \'2\' class of \'2\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 85
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 86
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 87
+ testRunner.And("the block summary report has \'2\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 88
+ testRunner.And("the block summary total attendance is \'8\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 89
+ testRunner.And("the block summary total revenue is \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Generate block summary report - unlimited passes - pass doesnt cover all classes")]
+        [NUnit.Framework.CategoryAttribute("block_summary")]
+        [NUnit.Framework.CategoryAttribute("reports")]
+        public virtual void GenerateBlockSummaryReport_UnlimitedPasses_PassDoesntCoverAllClasses()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate block summary report - unlimited passes - pass doesnt cover all classes", new string[] {
+                        "block_summary",
+                        "reports"});
+#line 92
+this.ScenarioSetup(scenarioInfo);
+#line 93
+ testRunner.Given("\'1\' blocks with \'4\' classes exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 94
+ testRunner.And("\'1\' student has a \'2\' week unlimited pass costing \'20.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 95
+ testRunner.And("\'1\' student attends \'1\' class of \'1\' block", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 96
+ testRunner.When("the block summary report is requested", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 97
+ testRunner.Then("the request is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 98
+ testRunner.And("the block summary report has \'1\' line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 99
+ testRunner.And("the block summary total attendance is \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 100
+ testRunner.And("the block summary total revenue is \'10.00\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

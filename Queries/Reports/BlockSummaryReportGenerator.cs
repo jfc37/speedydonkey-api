@@ -5,7 +5,6 @@ using Contracts.Reports.TeacherInvoices;
 using Core.Queries.Reports;
 using Data.Repositories;
 using Models;
-using NHibernate.Linq;
 
 namespace Queries.Reports
 {
@@ -33,17 +32,8 @@ namespace Queries.Reports
         public BlockSummaryResponse Create(DateRangeReportRequest request)
         {
             request.GuardAgainstNull(nameof(request));
-
-            var blah = _repository.Queryable()
-                //.FetchMany(x => x.Classes)
-                //.ThenFetchMany(x => x.ActualStudents)
-                .Where(x => x.StartDate >= request.From)
-                .Where(x => x.EndDate <= request.To)
-                .ToList();
-
+            
             var blockSummaries = _repository.Queryable()
-                //.FetchMany(x => x.Classes)
-                //.ThenFetchMany(x => x.ActualStudents)
                 .Where(x => x.StartDate >= request.From)
                 .Where(x => x.EndDate <= request.To)
                 .ToList()

@@ -5,6 +5,7 @@ using NUnit.Framework;
 using RestSharp;
 using TechTalk.SpecFlow;
 using Validation;
+using System.Collections.Generic;
 
 namespace IntegrationTests.Utilities
 {
@@ -48,7 +49,14 @@ namespace IntegrationTests.Utilities
         private const string ValidationResultKey = "validationResult";
         private const string ActionResultKey = "actionResultKey";
         private const string ResponseStatusKey = "responseStatusKey";
-        
+
+        public static void AddToSet<T>(ModelIdKeys key, T value)
+        {
+            var valueSet = ScenarioCache.Get<List<T>>(key);
+            valueSet.Add(value);
+            ScenarioCache.Store(key, valueSet);
+        }
+
         public static void Store(ModelIdKeys key, object item)
         {
             Store(key.ToString(), item);

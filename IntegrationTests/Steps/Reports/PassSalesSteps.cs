@@ -9,6 +9,7 @@ using IntegrationTests.Steps.Passes;
 using IntegrationTests.Steps.PassTemplates;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
+using Models;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -64,6 +65,27 @@ namespace IntegrationTests.Steps.Reports
     [Binding]
     public class PassSalesSteps
     {
+        [Given(@"'(.*)' student has a '(.*)' week unlimited pass costing '(.*)'")]
+        public void GivenStudentHasAWeekUnlimitedPassCosting(int numberOfStudents, int numberOfWeeks, decimal cost)
+        {
+            var createPassTemplateSteps = new CreatePassTemplateSteps();
+            createPassTemplateSteps.GivenAValidPassTemplateIsReadyToBeSubmitted();
+
+            var passTemplate = ScenarioCache.Get<PassTemplateModel>(ModelKeys.PassTemplate);
+            passTemplate.Cost = cost;
+            passTemplate.ClassesValidFor = 999;
+            passTemplate.WeeksValidFor = numberOfWeeks;
+            passTemplate.PassType = PassType.Unlimited.ToString();
+            passTemplate.Description = $"Pass - {Guid.NewGuid()}";
+            ScenarioCache.Store(ModelKeys.PassTemplate, passTemplate);
+
+            createPassTemplateSteps.WhenThePassTemplateIsAttemptedToBeCreated();
+            createPassTemplateSteps.ThenPassTemplateCanBeRetrieved();
+
+            numberOfStudents.ToNumberRange().Each(x => BuyPass());
+        }
+
+
         [Given(@"'(.*)' type of pass costing '(.*)' has been sold")]
         public void GivenTypeOfPassCostingHasBeenSold(int numberSold, decimal cost)
         {
@@ -99,7 +121,7 @@ namespace IntegrationTests.Steps.Reports
 
             var purchasePassSteps = new PurchasePassSteps();
             purchasePassSteps.WhenTheUserPurchasesAPassFromATeacher();
-            purchasePassSteps.ThenTheUserHasAClipPass();
+            purchasePassSteps.ThenTheUserHasAPass();
             purchasePassSteps.ThenThePassIsPaid();
             purchasePassSteps.ThenThePassIsValid();
         }
