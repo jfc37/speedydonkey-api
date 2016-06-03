@@ -96,14 +96,10 @@
     <Compile Include="Reports\BlockDetails\BlockDetailsRequest.cs" />
     <Compile Include="Reports\BlockDetails\BlockDetailsResponse.cs" />
     <Compile Include="Reports\BlockDetails\ClassDetailLine.cs" />
-    <Compile Include="Reports\BlockProfitReport.cs" />
     <Compile Include="Reports\BlockSummary\BlockDetailLine.cs" />
     <Compile Include="Reports\BlockSummary\BlockSummaryResponse.cs" />
-    <Compile Include="Reports\ClassProfitReport.cs" />
-    <Compile Include="Reports\PassProfitReport.cs" />
     <Compile Include="Reports\PassSales\PassSaleLine.cs" />
     <Compile Include="Reports\PassSales\PassSalesResponse.cs" />
-    <Compile Include="Reports\ProfitReportModel.cs" />
     <Compile Include="Reports\TeacherInvoices\TeacherInvoiceLine.cs" />
     <Compile Include="Reports\TeacherInvoices\DateRangeReportRequest.cs" />
     <Compile Include="Reports\TeacherInvoices\TeacherInvoiceResponse.cs" />

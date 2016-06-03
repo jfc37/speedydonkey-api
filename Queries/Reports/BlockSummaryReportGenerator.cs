@@ -35,7 +35,7 @@ namespace Queries.Reports
             
             var blockSummaries = _repository.Queryable()
                 .Where(x => x.StartDate >= request.From)
-                .Where(x => x.EndDate <= request.To)
+                .Where(x => x.StartDate <= request.To)
                 .ToList()
                 .Select(x => new BlockDetailLine
                 {

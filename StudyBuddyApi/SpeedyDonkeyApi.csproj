@@ -282,7 +282,6 @@
     <Compile Include="Controllers\Reports\BlockDetailsReportController.cs" />
     <Compile Include="Controllers\Reports\BlockSummaryReportController.cs" />
     <Compile Include="Controllers\Reports\PassSalesReportController.cs" />
-    <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
     <Compile Include="Controllers\Reports\ReportController.cs" />
     <Compile Include="Controllers\Reports\TeacherInvoiceReportController.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
