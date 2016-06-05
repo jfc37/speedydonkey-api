@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Common.Extensions;
 using Contracts.Reports.TeacherInvoices;
-using Core.Queries.Reports.TeacherInvoices;
+using Core.Queries.Reports;
 using Data.Repositories;
 using Models;
 using NHibernate.Linq;
@@ -29,7 +29,7 @@ namespace Queries.Reports.TeacherInvoices
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public TeacherInvoiceResponse Create(TeacherInvoiceRequest request)
+        public TeacherInvoiceResponse Create(DateRangeReportRequest request)
         {
             request.GuardAgainstNull(nameof(request));
 

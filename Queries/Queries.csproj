@@ -52,9 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\BlockDetailsReportGenerator.cs" />
+    <Compile Include="Reports\BlockSummaryReportGenerator.cs" />
+    <Compile Include="Reports\PassSalesReportGenerator.cs" />
     <Compile Include="Reports\TeacherInvoices\TeacherInvoiceReportGenerator.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reports\PassSales\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A959D4DB-5B77-47CA-B50E-800392FC4DC2}</Project>

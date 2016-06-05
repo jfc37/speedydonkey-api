@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using Auth0;
 using Common;
 using Contracts.Users;
@@ -41,6 +42,8 @@ namespace IntegrationTests.Steps.Common
         {
             ResetDatabase();
             ScenarioCache.Store(ModelIdKeys.UserId, 1);
+            ScenarioCache.Store(ModelIdKeys.StudentIds, new List<int>());
+            ScenarioCache.Store(ModelIdKeys.BlockIds, new List<int>());
         }
 
         private static void ResetDatabase()

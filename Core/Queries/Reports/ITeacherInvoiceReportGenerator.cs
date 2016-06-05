@@ -1,6 +1,6 @@
-﻿using Contracts.Reports.TeacherInvoices;
+using Contracts.Reports.TeacherInvoices;
 
-namespace Core.Queries.Reports.TeacherInvoices
+namespace Core.Queries.Reports
 {
     /// <summary>
     /// Generates teacher invoice reports
@@ -12,6 +12,6 @@ namespace Core.Queries.Reports.TeacherInvoices
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        TeacherInvoiceResponse Create(TeacherInvoiceRequest request);
+        TeacherInvoiceResponse Create(DateRangeReportRequest request);
     }
 }

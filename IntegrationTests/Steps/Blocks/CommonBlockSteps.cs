@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using ActionHandlers;
+using Common.Extensions;
 using Contracts.Enrolment;
 using Contracts.Teachers;
 using Contracts.Users;
-using IntegrationTests.Steps.Teachers;
 using IntegrationTests.Steps.Users;
 using IntegrationTests.Utilities;
 using NUnit.Framework;
@@ -22,6 +22,9 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.GivenAValidBlockIsReadyToBeSubmitted();
             createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
             createBlockSteps.ThenBlockCanBeRetrieved();
+
+            var blockId = ScenarioCache.GetId(ModelIdKeys.BlockId);
+            ScenarioCache.AddToSet(ModelIdKeys.BlockIds, blockId);
         }
 
         [Given(@"a block with '(.*)' classes exists")]
@@ -32,6 +35,9 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.GivenTheNumberOfClassesInTheBlockIs(numberOfClasses);
             createBlockSteps.WhenTheBlockIsAttemptedToBeCreated();
             createBlockSteps.ThenBlockCanBeRetrieved();
+
+            var blockId = ScenarioCache.GetId(ModelIdKeys.BlockId);
+            ScenarioCache.AddToSet(ModelIdKeys.BlockIds, blockId);
         }
 
         [Given(@"a teacher is teaching a solo block and a partnered block")]
@@ -84,14 +90,18 @@ namespace IntegrationTests.Steps.Blocks
             createBlockSteps.ThenBlockCanBeRetrieved();
         }
 
+        [Given(@"'(.*)' blocks with '(.*)' classes exists")]
+        public void GivenBlocksWithClassesExists(int numberOfBlocks, int numberOfClasses)
+        {
+            numberOfBlocks.ToNumberRange()
+                .Each(x => GivenABlockWithClassesExists(numberOfClasses));
+        }
 
         [Given(@"'(.*)' blocks exists")]
         public void GivenBlocksExists(int numberOfBlocks)
         {
-            for (var blockNumber = 1; blockNumber <= numberOfBlocks; blockNumber++)
-            {
-                GivenABlockExists();
-            }
+            numberOfBlocks.ToNumberRange()
+                .Each(x => GivenABlockExists());
         }
 
         [Given(@"the user enrols in the block")]
