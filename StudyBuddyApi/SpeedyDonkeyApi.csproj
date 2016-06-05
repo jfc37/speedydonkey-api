@@ -279,7 +279,9 @@
     <Compile Include="Controllers\EntityPropertyApiController.cs" />
     <Compile Include="Controllers\GenericApiController.cs" />
     <Compile Include="Controllers\PrivateLessons\OpeningHoursApiController.cs" />
-    <Compile Include="Controllers\Reports\ProfitReportApiController.cs" />
+    <Compile Include="Controllers\Reports\BlockDetailsReportController.cs" />
+    <Compile Include="Controllers\Reports\BlockSummaryReportController.cs" />
+    <Compile Include="Controllers\Reports\PassSalesReportController.cs" />
     <Compile Include="Controllers\Reports\ReportController.cs" />
     <Compile Include="Controllers\Reports\TeacherInvoiceReportController.cs" />
     <Compile Include="Controllers\Rooms\RoomsApiController.cs" />
@@ -314,7 +316,10 @@
     <Compile Include="Filter\RequireHttpsAttribute.cs" />
     <Compile Include="Filter\ValidateModelStateAttribute.cs" />
     <Compile Include="GlobalErrorLoggerService.cs" />
+    <Compile Include="MediaFormatters\BlockDetailsCsvFormatter.cs" />
+    <Compile Include="MediaFormatters\BlockSummaryCsvFormatter.cs" />
     <Compile Include="MediaFormatters\CsvFormatter.cs" />
+    <Compile Include="MediaFormatters\PassSalesCsvFormatter.cs" />
     <Compile Include="MediaFormatters\TeacherInvoiceCsvFormatter.cs" />
     <Compile Include="Owin\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

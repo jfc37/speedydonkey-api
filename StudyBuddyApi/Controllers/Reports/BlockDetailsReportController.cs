@@ -1,5 +1,5 @@
 using System.Web.Http;
-using Contracts.Reports.TeacherInvoices;
+using Contracts.Reports.BlockDetails;
 using Core.Queries.Reports;
 using Models;
 using SpeedyDonkeyApi.Filter;
@@ -7,14 +7,14 @@ using Validation;
 
 namespace SpeedyDonkeyApi.Controllers.Reports
 {
-    [RoutePrefix("api/reports/teacher-invoices")]
-    public class TeacherInvoiceReportController : ReportController<DateRangeReportRequest, TeacherInvoiceResponse>
+    [RoutePrefix("api/reports/block-details")]
+    public class BlockDetailsReportController : ReportController<BlockDetailsRequest, BlockDetailsResponse>
     {
-        private readonly ITeacherInvoiceReportGenerator _reportGenerator;
+        private readonly IBlockDetailsReportGenerator _reportGenerator;
 
-        public TeacherInvoiceReportController(
+        public BlockDetailsReportController(
             IValidatorOverlord validatorOverlord,
-            ITeacherInvoiceReportGenerator reportGenerator) 
+            IBlockDetailsReportGenerator reportGenerator) 
             : base(validatorOverlord)
         {
             _reportGenerator = reportGenerator;
@@ -22,7 +22,7 @@ namespace SpeedyDonkeyApi.Controllers.Reports
 
         [Route]
         [ClaimsAuthorise(Claim = Claim.Admin)]
-        public IHttpActionResult Get([FromUri] DateRangeReportRequest request)
+        public IHttpActionResult Get([FromUri] BlockDetailsRequest request)
         {
             return RunReport(request, x => _reportGenerator.Create(x));
         }

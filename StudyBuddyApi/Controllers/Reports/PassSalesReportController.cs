@@ -1,4 +1,5 @@
 using System.Web.Http;
+using Contracts.Reports.PassSales;
 using Contracts.Reports.TeacherInvoices;
 using Core.Queries.Reports;
 using Models;
@@ -7,14 +8,14 @@ using Validation;
 
 namespace SpeedyDonkeyApi.Controllers.Reports
 {
-    [RoutePrefix("api/reports/teacher-invoices")]
-    public class TeacherInvoiceReportController : ReportController<DateRangeReportRequest, TeacherInvoiceResponse>
+    [RoutePrefix("api/reports/pass-sales")]
+    public class PassSalesReportController : ReportController<DateRangeReportRequest, PassSalesResponse>
     {
-        private readonly ITeacherInvoiceReportGenerator _reportGenerator;
+        private readonly IPassSalesReportGenerator _reportGenerator;
 
-        public TeacherInvoiceReportController(
+        public PassSalesReportController(
             IValidatorOverlord validatorOverlord,
-            ITeacherInvoiceReportGenerator reportGenerator) 
+            IPassSalesReportGenerator reportGenerator) 
             : base(validatorOverlord)
         {
             _reportGenerator = reportGenerator;

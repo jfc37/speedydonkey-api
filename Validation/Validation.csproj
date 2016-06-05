@@ -97,7 +97,8 @@
     <Compile Include="Validators\Classes\UnassignClassRoomValidator.cs" />
     <Compile Include="Validators\PrivateLessons\SetOpeningHoursValidator.cs" />
     <Compile Include="Validators\PrivateLessons\SetTeacherAvailabilityValidator.cs" />
-    <Compile Include="Validators\Reports\TeacherInvoicesValidator.cs" />
+    <Compile Include="Validators\Reports\BlockDetailsRequestValidator.cs" />
+    <Compile Include="Validators\Reports\DateRangeReportRequestValidator.cs" />
     <Compile Include="Validators\Rooms\CreateRoomValidator.cs" />
     <Compile Include="Validators\Rooms\DeleteRoomValidator.cs" />
     <Compile Include="Validators\Rooms\UpdateRoomValidator.cs" />

@@ -11,7 +11,7 @@ using Autofac.Core;
 using Autofac.Features.ResolveAnything;
 using Autofac.Integration.WebApi;
 using Common;
-using Core.Queries.Reports.TeacherInvoices;
+using Core.Queries.Reports;
 using Data.Repositories;
 using Data.Searches;
 using FluentValidation;

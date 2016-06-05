@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Web.Http;
 using Common.Extensions;
-using Contracts;
-using Contracts.Classes;
 using Contracts.Events;
 using Contracts.MappingExtensions;
 using Data.Repositories;
