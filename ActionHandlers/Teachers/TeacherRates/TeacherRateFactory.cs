@@ -37,12 +37,12 @@ namespace ActionHandlers.Teachers.TeacherRates
 
         private decimal GetSoloRate()
         {
-            return GetRate(SettingTypes.TeacherRateSolo, 30);
+            return GetRate(SettingTypes.TeacherRateSolo, 40);
         }
 
         private decimal GetPartneredRate()
         {
-            return GetRate(SettingTypes.TeacherRatePartnered, 40);
+            return GetRate(SettingTypes.TeacherRatePartnered, 30);
         }
 
         private decimal GetRate(SettingTypes type, decimal defaultRate)
