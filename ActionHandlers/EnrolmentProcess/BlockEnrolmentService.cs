@@ -8,6 +8,7 @@ namespace ActionHandlers.EnrolmentProcess
     public interface IBlockEnrolmentService
     {
         IList<Block> EnrolInBlocks(User user, IEnumerable<int> blockIds);
+        IList<Block> UnenrolInBlocks(User user, IEnumerable<int> blockIds);
     }
 
     public class BlockEnrolmentService : IBlockEnrolmentService
@@ -32,6 +33,18 @@ namespace ActionHandlers.EnrolmentProcess
 
             return blocksBeingEnroledIn;
         }
+        public IList<Block> UnenrolInBlocks(User user, IEnumerable<int> blockIds)
+        {
+            var blocksBeingEnroledIn = _blockRepository.Queryable()
+                .Where(b => blockIds.Contains(b.Id))
+                .ToList();
+
+            RemoveBlocksFromUser(user, blocksBeingEnroledIn);
+            RemoveClassesFromUserSchedule(user, blocksBeingEnroledIn.SelectMany(x => x.Classes));
+            RemoveUserFromClassRoll(user, blocksBeingEnroledIn.SelectMany(x => x.Classes));
+
+            return blocksBeingEnroledIn;
+        }
 
         private void AddClassesToUserSchedule(User user, IEnumerable<Class> classes)
         {
@@ -42,6 +55,18 @@ namespace ActionHandlers.EnrolmentProcess
             foreach (var theClass in classes)
             {
                 user.Schedule.Add(theClass);
+            }
+        }
+
+        private void RemoveClassesFromUserSchedule(User user, IEnumerable<Class> classes)
+        {
+            if (user.Schedule == null)
+            {
+                user.Schedule = new List<Event>();
+            }
+            foreach (var theClass in classes)
+            {
+                user.Schedule.Remove(theClass);
             }
         }
 
@@ -56,6 +81,17 @@ namespace ActionHandlers.EnrolmentProcess
             }
         }
 
+        private void RemoveUserFromClassRoll(User user, IEnumerable<Class> classes)
+        {
+            foreach (var thisClass in classes)
+            {
+                if (thisClass.RegisteredStudents == null)
+                    thisClass.RegisteredStudents = new List<User>();
+
+                thisClass.RegisteredStudents.Remove(user);
+            }
+        }
+
         private void AddBlocksToUser(User user, IEnumerable<Block> blockBeingEnroledIn)
         {
             if (user.EnroledBlocks == null)
@@ -65,6 +101,17 @@ namespace ActionHandlers.EnrolmentProcess
             foreach (var block in blockBeingEnroledIn)
             {
                 user.EnroledBlocks.Add(block);
+            }
+        }
+        private void RemoveBlocksFromUser(User user, IEnumerable<Block> blockBeingEnroledIn)
+        {
+            if (user.EnroledBlocks == null)
+            {
+                user.EnroledBlocks = new List<Block>();
+            }
+            foreach (var block in blockBeingEnroledIn)
+            {
+                user.EnroledBlocks.Remove(block);
             }
         }
     }

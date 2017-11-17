@@ -52,4 +52,34 @@ namespace ActionHandlers.EnrolmentProcess
             _postOffice.Send(notification);
         }
     }
+
+    public class UnenrolInBlockHandler : IActionHandler<UnenrolInBlock, User>
+    {
+        private readonly IRepository<User> _userRepository;
+        private readonly IBlockEnrolmentService _blockEnrolmentService;
+        private readonly IPostOffice _postOffice;
+
+        public UnenrolInBlockHandler(
+            IRepository<User> userRepository,
+            IBlockEnrolmentService blockEnrolmentService,
+            IPostOffice postOffice)
+        {
+            _userRepository = userRepository;
+            _blockEnrolmentService = blockEnrolmentService;
+            _postOffice = postOffice;
+        }
+
+        public User Handle(UnenrolInBlock action)
+        {
+            IList<Block> blocks = new List<Block>();
+            var user = _userRepository.Queryable()
+                .Single(x => x.Id == action.ActionAgainst.Id);
+
+            if (action.ActionAgainst.EnroledBlocks != null)
+            {
+                blocks = _blockEnrolmentService.UnenrolInBlocks(user, action.ActionAgainst.EnroledBlocks.Select(x => x.Id).ToList());
+            }
+            return _userRepository.Update(user);
+        }
+    }
 }

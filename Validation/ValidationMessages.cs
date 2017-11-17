@@ -3,6 +3,7 @@
     public static class ValidationMessages
     {
         public const string AlreadyEnroledInBlock = "You are already enroled in a selected block";
+        public const string NotEnroledInBlock = "You are not enroled in the selected block";
         public const string InvalidBlock = "Block doesn't exist";
         public const string UnavailableBlock = "Block isn't available for enrolment";
         public const string FullBlock = "Block is full";
