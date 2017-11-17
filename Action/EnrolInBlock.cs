@@ -18,4 +18,20 @@ namespace Action
             ActionAgainst = user;
         }
     }
+
+    /// <summary>
+    /// Action for unenrolling a user in a block
+    /// </summary>
+    /// <seealso cref="User" />
+    public class UnenrolInBlock : SystemAction<User>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UnenrolInBlock"/> class.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        public UnenrolInBlock(User user)
+        {
+            ActionAgainst = user;
+        }
+    }
 }
